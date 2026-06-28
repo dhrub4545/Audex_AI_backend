@@ -1,0 +1,922 @@
+[
+  {
+    "category": "Chat & Reasoning",
+    "provider": "OpenAI",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "openai/gpt-5.3-chat"
+    ],
+    "rawModels": [
+      "GPT-5.3 Instant"
+    ],
+    "limits": "10 messages / 5 hours; basic web search."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "OpenAI",
+    "plan": "ChatGPT Go",
+    "monthlyPrice": 8.0,
+    "annualPrice": 96.0,
+    "annualPriceEquiv": 8.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "openai/gpt-5.3-chat"
+    ],
+    "rawModels": [
+      "GPT-5.3 Instant"
+    ],
+    "limits": "10x Free limits; basic image generation."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "OpenAI",
+    "plan": "ChatGPT Plus",
+    "monthlyPrice": 20.0,
+    "annualPrice": 240.0,
+    "annualPriceEquiv": 20.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "openai/gpt-5.5"
+    ],
+    "rawModels": [
+      "GPT-5.5",
+      "Sora",
+      "o1-mini"
+    ],
+    "limits": "10 Deep Research runs/mo; Agent Mode."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "OpenAI",
+    "plan": "ChatGPT Pro",
+    "monthlyPrice": 200.0,
+    "annualPrice": 2400.0,
+    "annualPriceEquiv": 200.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "openai/gpt-5.5-pro"
+    ],
+    "rawModels": [
+      "GPT-5.5",
+      "o1 Pro",
+      "Sora"
+    ],
+    "limits": "Unlimited usage; 1M context; 250 Deep Research runs."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "OpenAI",
+    "plan": "Business",
+    "monthlyPrice": 25.0,
+    "annualPrice": 240.0,
+    "annualPriceEquiv": 20.0,
+    "annualDiscount": true,
+    "isPerSeat": true,
+    "models": [
+      "openai/gpt-5.5"
+    ],
+    "rawModels": [
+      "GPT-5.5"
+    ],
+    "limits": "2-seat min; SOC 2; zero data training."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Anthropic",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "anthropic/claude-sonnet-4.6",
+      "anthropic/claude-haiku-4.5"
+    ],
+    "rawModels": [
+      "Claude 4.6 Sonnet & Haiku"
+    ],
+    "limits": "Basic limits; standard Artifacts."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Anthropic",
+    "plan": "Claude Pro",
+    "monthlyPrice": 20.0,
+    "annualPrice": 204.0,
+    "annualPriceEquiv": 17.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "anthropic/claude-opus-4.7"
+    ],
+    "rawModels": [
+      "Claude 4.7 Opus",
+      "4.6 Sonnet"
+    ],
+    "limits": "Claude Code access; unlimited Projects."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Anthropic",
+    "plan": "Claude Max 5x",
+    "monthlyPrice": 100.0,
+    "annualPrice": 1200.0,
+    "annualPriceEquiv": 100.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "anthropic/claude-opus-4.7"
+    ],
+    "rawModels": [
+      "Claude 4.7 Opus",
+      "4.6 Sonnet"
+    ],
+    "limits": "5x the Pro session capacity."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Anthropic",
+    "plan": "Claude Max 20x",
+    "monthlyPrice": 200.0,
+    "annualPrice": 2400.0,
+    "annualPriceEquiv": 200.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "anthropic/claude-opus-4.7"
+    ],
+    "rawModels": [
+      "Claude 4.7 Opus",
+      "4.6 Sonnet"
+    ],
+    "limits": "20x the Pro capacity; for continuous IDE use."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Anthropic",
+    "plan": "Team",
+    "monthlyPrice": 25.0,
+    "annualPrice": 240.0,
+    "annualPriceEquiv": 20.0,
+    "annualDiscount": true,
+    "isPerSeat": true,
+    "models": [
+      "anthropic/claude-opus-4.7"
+    ],
+    "rawModels": [
+      "Claude 4.7 Opus",
+      "4.6 Sonnet"
+    ],
+    "limits": "5-seat min; SSO; centralized billing."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Google",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "google/gemini-2.5-flash"
+    ],
+    "rawModels": [
+      "Gemini 2.5 Flash"
+    ],
+    "limits": "100 AI credits/mo; 15GB storage."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Google",
+    "plan": "AI Plus",
+    "monthlyPrice": 7.99,
+    "annualPrice": 79.99,
+    "annualPriceEquiv": 6.67,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "google/gemini-2.5-flash"
+    ],
+    "rawModels": [
+      "Gemini 2.5 Flash"
+    ],
+    "limits": "200GB storage; basic AI access."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Google",
+    "plan": "AI Pro",
+    "monthlyPrice": 19.99,
+    "annualPrice": 219.99,
+    "annualPriceEquiv": 18.33,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "google/gemini-2.5-pro"
+    ],
+    "rawModels": [
+      "Gemini 2.5 Pro",
+      "Veo 3.1"
+    ],
+    "limits": "1,000 monthly credits; Workspace integration."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Google",
+    "plan": "AI Ultra",
+    "monthlyPrice": 41.67,
+    "annualPrice": 499.96,
+    "annualPriceEquiv": 41.66,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "google/gemini-3.1-pro-preview"
+    ],
+    "rawModels": [
+      "Gemini 3.1 Pro",
+      "Deep Think"
+    ],
+    "limits": "25,000 AI credits; Antigravity platform."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "DeepSeek",
+    "plan": "Consumer",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "deepseek/deepseek-v4-flash",
+      "deepseek/deepseek-v4-pro"
+    ],
+    "rawModels": [
+      "DeepSeek V4-Flash",
+      "V4-Pro"
+    ],
+    "limits": "100% Free unlimited chat; NO premium chat tier exists."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Mistral",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "mistralai/mistral-nemo"
+    ],
+    "rawModels": [
+      "Mistral Nemo",
+      "Pixtral"
+    ],
+    "limits": "Basic Le Chat web access."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Mistral",
+    "plan": "Le Chat Pro",
+    "monthlyPrice": 14.99,
+    "annualPrice": 179.88,
+    "annualPriceEquiv": 14.99,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "mistralai/codestral-2508",
+      "mistralai/mistral-large-2512"
+    ],
+    "rawModels": [
+      "Mistral Large 3",
+      "Codestral"
+    ],
+    "limits": "No-telemet ry privacy mode ($5.99 for students)."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Meta",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "meta-llama/llama-4-scout",
+      "meta-llama/llama-4-maverick"
+    ],
+    "rawModels": [
+      "Llama 4 (8B",
+      "70B)"
+    ],
+    "limits": "Standard Meta AI in WhatsApp/I nstagram."
+  },
+  {
+    "category": "Chat & Reasoning",
+    "provider": "Meta",
+    "plan": "Meta One Plus",
+    "monthlyPrice": 7.99,
+    "annualPrice": 80.0,
+    "annualPriceEquiv": 6.67,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "meta-llama/llama-4-maverick"
+    ],
+    "rawModels": [
+      "Llama 4 (400B+)",
+      "Emu 3"
+    ],
+    "limits": "Removes generation limits; advanced reasoning."
+  },
+  {
+    "category": "Search & Research",
+    "provider": "xAI",
+    "plan": "Grok Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "x-ai/grok-4.20"
+    ],
+    "rawModels": [
+      "Grok 4 (Distilled)"
+    ],
+    "limits": "~10 prompts per 2 hours."
+  },
+  {
+    "category": "Search & Research",
+    "provider": "xAI",
+    "plan": "X Premium",
+    "monthlyPrice": 8.0,
+    "annualPrice": 84.0,
+    "annualPriceEquiv": 7.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "x-ai/grok-4.20"
+    ],
+    "rawModels": [
+      "Grok 4"
+    ],
+    "limits": "Basic Grok access inside X app."
+  },
+  {
+    "category": "Search & Research",
+    "provider": "xAI",
+    "plan": "SuperGrok Lite",
+    "monthlyPrice": 10.0,
+    "annualPrice": 120.0,
+    "annualPriceEquiv": 10.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "x-ai/grok-4.20"
+    ],
+    "rawModels": [
+      "Grok 4"
+    ],
+    "limits": "Basic Imagine (images); 2x longer context."
+  },
+  {
+    "category": "Search & Research",
+    "provider": "xAI",
+    "plan": "SuperGrok",
+    "monthlyPrice": 30.0,
+    "annualPrice": 300.0,
+    "annualPriceEquiv": 25.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "x-ai/grok-4.3"
+    ],
+    "rawModels": [
+      "Grok 4.3"
+    ],
+    "limits": "Unlimited queries; Voice mode; DeepSearc h."
+  },
+  {
+    "category": "Search & Research",
+    "provider": "xAI",
+    "plan": "SuperGrok Heavy",
+    "monthlyPrice": 300.0,
+    "annualPrice": 3600.0,
+    "annualPriceEquiv": 300.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "x-ai/grok-4.3"
+    ],
+    "rawModels": [
+      "Grok 4.3 (Uncapped)"
+    ],
+    "limits": "Extreme compute priority; 16-agent processing."
+  },
+  {
+    "category": "Search & Research",
+    "provider": "Perplexity",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "perplexity/sonar"
+    ],
+    "rawModels": [
+      "Sonar Default"
+    ],
+    "limits": "Unlimited standard search; 5 Pro searches/da y."
+  },
+  {
+    "category": "Search & Research",
+    "provider": "Perplexity",
+    "plan": "Pro",
+    "monthlyPrice": 20.0,
+    "annualPrice": 200.0,
+    "annualPriceEquiv": 16.67,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "perplexity/sonar-pro"
+    ],
+    "rawModels": [
+      "Sonar Pro",
+      "GPT-5.4",
+      "Opus 4.7"
+    ],
+    "limits": "Unlimited Pro search; 50 Deep Research runs."
+  },
+  {
+    "category": "Search & Research",
+    "provider": "Perplexity",
+    "plan": "Max",
+    "monthlyPrice": 200.0,
+    "annualPrice": 2000.0,
+    "annualPriceEquiv": 166.67,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "perplexity/sonar"
+    ],
+    "rawModels": [
+      "19-Model Computer"
+    ],
+    "limits": "10,000 multi-mode l orchestrati on credits."
+  },
+  {
+    "category": "Code & Agents",
+    "provider": "Cursor",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Cursor-Sm all",
+      "GPT-4o-mi ni"
+    ],
+    "limits": "2,000 Tab completion s; 50 slow premium prompts."
+  },
+  {
+    "category": "Code & Agents",
+    "provider": "Cursor",
+    "plan": "Pro",
+    "monthlyPrice": 20.0,
+    "annualPrice": 192.0,
+    "annualPriceEquiv": 16.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "openai/gpt-5.5",
+      "anthropic/claude-sonnet-4.6"
+    ],
+    "rawModels": [
+      "Composer 2",
+      "GPT-5.5",
+      "Sonnet 4.6"
+    ],
+    "limits": "Unlimited Tabs; $20/mo premium credit pool."
+  },
+  {
+    "category": "Code & Agents",
+    "provider": "Cursor",
+    "plan": "Pro+",
+    "monthlyPrice": 60.0,
+    "annualPrice": 576.0,
+    "annualPriceEquiv": 48.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "openai/gpt-5.5",
+      "anthropic/claude-sonnet-4.6"
+    ],
+    "rawModels": [
+      "Composer 2",
+      "GPT-5.5",
+      "Sonnet 4.6"
+    ],
+    "limits": "3x premium credit pool ($60 value)."
+  },
+  {
+    "category": "Code & Agents",
+    "provider": "Cursor",
+    "plan": "Ultra",
+    "monthlyPrice": 200.0,
+    "annualPrice": 1920.0,
+    "annualPriceEquiv": 160.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "openai/gpt-5.5",
+      "anthropic/claude-sonnet-4.6"
+    ],
+    "rawModels": [
+      "Composer 2",
+      "GPT-5.5",
+      "Sonnet 4.6"
+    ],
+    "limits": "20x credit pool for continuous agentic tasks."
+  },
+  {
+    "category": "Code & Agents",
+    "provider": "GitHub",
+    "plan": "Copilot Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "openai/gpt-4o"
+    ],
+    "rawModels": [
+      "Copilot Basic (GPT-4o)"
+    ],
+    "limits": "Standard inline autocomple te in VS Code."
+  },
+  {
+    "category": "Code & Agents",
+    "provider": "GitHub",
+    "plan": "Copilot Pro",
+    "monthlyPrice": 10.0,
+    "annualPrice": 120.0,
+    "annualPriceEquiv": 10.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "openai/gpt-4o"
+    ],
+    "rawModels": [
+      "Copilot Pro Models"
+    ],
+    "limits": "Priority inline; $15/mo AI chat credit pool."
+  },
+  {
+    "category": "Code & Agents",
+    "provider": "GitHub",
+    "plan": "Copilot Pro+",
+    "monthlyPrice": 39.0,
+    "annualPrice": 468.0,
+    "annualPriceEquiv": 39.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "openai/gpt-5.5"
+    ],
+    "rawModels": [
+      "GPT-5.5",
+      "Copilot Workspace"
+    ],
+    "limits": "$70/mo AI credit pool; frontier models."
+  },
+  {
+    "category": "Code & Agents",
+    "provider": "Windsurf",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "openai/gpt-4o-mini",
+      "openai/gpt-4o"
+    ],
+    "rawModels": [
+      "SWE-1.5 Lite"
+    ],
+    "limits": "25 prompt credits."
+  },
+  {
+    "category": "Code & Agents",
+    "provider": "Windsurf",
+    "plan": "Pro",
+    "monthlyPrice": 15.0,
+    "annualPrice": 144.0,
+    "annualPriceEquiv": 12.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [
+      "mistralai/mistral-large-2512",
+      "openai/gpt-4o"
+    ],
+    "rawModels": [
+      "Cascade",
+      "SWE-1.5"
+    ],
+    "limits": "Codebase- aware agentic execution."
+  },
+  {
+    "category": "Code & Agents",
+    "provider": "Verdent AI",
+    "plan": "Starter",
+    "monthlyPrice": 19.0,
+    "annualPrice": 228.0,
+    "annualPriceEquiv": 19.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [
+      "x-ai/grok-4.20-multi-agent"
+    ],
+    "rawModels": [
+      "Verdent Multi-Agent Engine"
+    ],
+    "limits": "640 credits; parallel agent coding."
+  },
+  {
+    "category": "Media (Image)",
+    "provider": "Midjourney",
+    "plan": "Basic",
+    "monthlyPrice": 10.0,
+    "annualPrice": 96.0,
+    "annualPriceEquiv": 8.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Midjourney V7"
+    ],
+    "limits": "3.3 Fast GPU hours/mo; NO Relax mode."
+  },
+  {
+    "category": "Media (Image)",
+    "provider": "Midjourney",
+    "plan": "Standard",
+    "monthlyPrice": 30.0,
+    "annualPrice": 288.0,
+    "annualPriceEquiv": 24.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Midjourney V7"
+    ],
+    "limits": "15 Fast hours/mo; Unlimited Relax Mode."
+  },
+  {
+    "category": "Media (Image)",
+    "provider": "Midjourney",
+    "plan": "Pro",
+    "monthlyPrice": 60.0,
+    "annualPrice": 576.0,
+    "annualPriceEquiv": 48.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Midjourney V7"
+    ],
+    "limits": "30 Fast hours/mo; Stealth Mode."
+  },
+  {
+    "category": "Media (Video)",
+    "provider": "Runway",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Gen-4 Basic"
+    ],
+    "limits": ""
+  },
+  {
+    "category": "Media (Video)",
+    "provider": "Runway",
+    "plan": "Standard",
+    "monthlyPrice": 15.0,
+    "annualPrice": 144.0,
+    "annualPriceEquiv": 12.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Gen-4.5",
+      "Gen-4 Turbo"
+    ],
+    "limits": "625 credits/mo (~25s of high-end video)."
+  },
+  {
+    "category": "Media (Video)",
+    "provider": "Runway",
+    "plan": "Pro",
+    "monthlyPrice": 35.0,
+    "annualPrice": 336.0,
+    "annualPriceEquiv": 28.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Gen-4.5",
+      "Gen-4 Turbo"
+    ],
+    "limits": "2,250 credits/mo; Custom lip-sync."
+  },
+  {
+    "category": "Media (Video)",
+    "provider": "Runway",
+    "plan": "Unlimited",
+    "monthlyPrice": 95.0,
+    "annualPrice": 912.0,
+    "annualPriceEquiv": 76.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Gen-4.5",
+      "Gen-4 Turbo"
+    ],
+    "limits": "Unlimited generation at relaxed rendering speed."
+  },
+  {
+    "category": "Media (Audio)",
+    "provider": "ElevenLabs",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Multilingual v2 (Standard)"
+    ],
+    "limits": "10,000 characters/ mo; attribution required."
+  },
+  {
+    "category": "Media (Audio)",
+    "provider": "ElevenLabs",
+    "plan": "Starter",
+    "monthlyPrice": 5.0,
+    "annualPrice": 50.0,
+    "annualPriceEquiv": 4.17,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Multilingual v2 (Premium)"
+    ],
+    "limits": "30,000 characters/ mo; Instant Voice Cloning."
+  },
+  {
+    "category": "Media (Audio)",
+    "provider": "ElevenLabs",
+    "plan": "Creator",
+    "monthlyPrice": 22.0,
+    "annualPrice": 220.0,
+    "annualPriceEquiv": 18.33,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Multilingual v2 (Pro HQ)"
+    ],
+    "limits": "100,000 characters/ mo; Pro high-fidelity cloning."
+  },
+  {
+    "category": "Media (Audio)",
+    "provider": "Suno",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Suno v5.5"
+    ],
+    "limits": "50 credits/day (~10 songs); non-comm ercial."
+  },
+  {
+    "category": "Media (Audio)",
+    "provider": "Suno",
+    "plan": "Pro",
+    "monthlyPrice": 10.0,
+    "annualPrice": 96.0,
+    "annualPriceEquiv": 8.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Suno v5.5"
+    ],
+    "limits": "2,500 credits/mo; commercial use rights."
+  },
+  {
+    "category": "Media (Audio)",
+    "provider": "Suno",
+    "plan": "Premier",
+    "monthlyPrice": 30.0,
+    "annualPrice": 289.0,
+    "annualPriceEquiv": 24.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Suno v5.5"
+    ],
+    "limits": "10,000 credits/mo; Stems export."
+  },
+  {
+    "category": "UI & Layouts",
+    "provider": "v0 (Vercel)",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "v0 Core"
+    ],
+    "limits": "200 credits/mo."
+  },
+  {
+    "category": "UI & Layouts",
+    "provider": "v0 (Vercel)",
+    "plan": "Premium",
+    "monthlyPrice": 20.0,
+    "annualPrice": 240.0,
+    "annualPriceEquiv": 20.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "v0 Pro"
+    ],
+    "limits": "Unlimited UI generation; private generations ."
+  },
+  {
+    "category": "UI & Layouts",
+    "provider": "Gamma AI",
+    "plan": "Free",
+    "monthlyPrice": 0.0,
+    "annualPrice": 0.0,
+    "annualPriceEquiv": 0.0,
+    "annualDiscount": false,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Gamma Core"
+    ],
+    "limits": "400 one-time credits; watermark included."
+  },
+  {
+    "category": "UI & Layouts",
+    "provider": "Gamma AI",
+    "plan": "Plus",
+    "monthlyPrice": 9.0,
+    "annualPrice": 96.0,
+    "annualPriceEquiv": 8.0,
+    "annualDiscount": true,
+    "isPerSeat": false,
+    "models": [],
+    "rawModels": [
+      "Gamma Pro"
+    ],
+    "limits": "1,000 credits/mo; removes watermark."
+  }
+]

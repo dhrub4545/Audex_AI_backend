@@ -1,0 +1,1263 @@
+[
+    {
+        "id": "cd55210d-358e-4df1-ba9c-9acb5f186cc9",
+        "name": "Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)",
+        "slug": "claude-fable-5",
+        "release_date": "2026-06-09",
+        "model_creator": {
+            "id": "f0aa413f-e8ae-4fcd-9c48-0e049f4f3128",
+            "name": "Anthropic",
+            "slug": "anthropic"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 59.9,
+            "artificial_analysis_coding_index": 76.5,
+            "gpqa": 0.926,
+            "hle": 0.533,
+            "scicode": 0.602,
+            "ifbench": 0.63469387755102,
+            "lcr": 0.7,
+            "terminalbench_hard": 0.628787878787879,
+            "terminalbench_v2_1": 0.846441947565543,
+            "tau2": 0.985380116959064,
+            "tau_banking": 0.268041237113402
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 20,
+            "price_1m_input_tokens": 10,
+            "price_1m_output_tokens": 50
+        },
+        "median_output_tokens_per_second": 0,
+        "median_time_to_first_token_seconds": 0,
+        "median_time_to_first_answer_token": 0,
+        "rank": 1,
+        "model_name": "Claude Fable 5",
+        "organization": "Anthropic",
+        "arena_elo": 1510,
+        "primary_benchmark": "94.3% (GPQA Diamond)",
+        "notes": "Approaching human expert ceiling on deep medical/scientific evals",
+        "votes": 3212,
+        "arena_rank": 5,
+        "rating": 1510,
+        "arena_reliability": 0.6769,
+        "final_score": 94.7,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "trusted_provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "992b7b84-5069-4c6a-9295-834252553d50",
+        "name": "Claude Opus 4.8 (Adaptive Reasoning, Max Effort)",
+        "slug": "claude-opus-4-8",
+        "release_date": "2026-05-28",
+        "model_creator": {
+            "id": "f0aa413f-e8ae-4fcd-9c48-0e049f4f3128",
+            "name": "Anthropic",
+            "slug": "anthropic"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 55.7,
+            "artificial_analysis_coding_index": 74.3,
+            "gpqa": 0.92,
+            "hle": 0.457,
+            "scicode": 0.535,
+            "ifbench": 0.622448979591837,
+            "lcr": 0.676666666666667,
+            "terminalbench_hard": 0.583333333333333,
+            "terminalbench_v2_1": 0.846441947565543,
+            "tau2": 0.944444444444445,
+            "tau_banking": 0.276288659793814
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 10,
+            "price_1m_input_tokens": 5,
+            "price_1m_output_tokens": 25
+        },
+        "median_output_tokens_per_second": 68.308,
+        "median_time_to_first_token_seconds": 29.474,
+        "median_time_to_first_answer_token": 29.474,
+        "rank": 2,
+        "model_name": "Claude Opus 4.8 Thinking",
+        "organization": "Anthropic",
+        "arena_elo": 1506,
+        "primary_benchmark": "90.1% (MMLU-Pro)",
+        "notes": "Flawless synthesis across highly dense academic literature",
+        "votes": 9999,
+        "arena_rank": 3,
+        "rating": 1506,
+        "arena_reliability": 0.751,
+        "final_score": 91.55,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "trusted_provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "e9a09db3-8fd6-41dd-ba2f-20e0a2bff7f2",
+        "name": "Claude Opus 4.7 (Adaptive Reasoning, Max Effort)",
+        "slug": "claude-opus-4-7",
+        "release_date": "2026-04-16",
+        "model_creator": {
+            "id": "f0aa413f-e8ae-4fcd-9c48-0e049f4f3128",
+            "name": "Anthropic",
+            "slug": "anthropic"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 53.5,
+            "artificial_analysis_coding_index": 73.6,
+            "gpqa": 0.914,
+            "hle": 0.396,
+            "scicode": 0.545,
+            "ifbench": 0.586394557823129,
+            "lcr": 0.703333333333333,
+            "terminalbench_hard": 0.515151515151515,
+            "terminalbench_v2_1": 0.831460674157303,
+            "tau2": 0.885964912280702,
+            "tau_banking": 0.288659793814433
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 10,
+            "price_1m_input_tokens": 5,
+            "price_1m_output_tokens": 25
+        },
+        "median_output_tokens_per_second": 53.009,
+        "median_time_to_first_token_seconds": 14.6,
+        "median_time_to_first_answer_token": 14.6,
+        "rank": 3,
+        "model_name": "Claude Opus 4.7 Thinking",
+        "organization": "Anthropic",
+        "arena_elo": 1505,
+        "primary_benchmark": "90.0% (MMLU-Pro)",
+        "notes": "Deep self-directed research hypothesis cross-examination",
+        "votes": 26051,
+        "arena_rank": 6,
+        "rating": 1505,
+        "arena_reliability": 0.8135,
+        "final_score": 91.05,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "trusted_provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "992b7b84-5069-4c6a-9295-834252553d50",
+        "name": "Claude Opus 4.8 (Adaptive Reasoning, Max Effort)",
+        "slug": "claude-opus-4-8",
+        "release_date": "2026-05-28",
+        "model_creator": {
+            "id": "f0aa413f-e8ae-4fcd-9c48-0e049f4f3128",
+            "name": "Anthropic",
+            "slug": "anthropic"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 55.7,
+            "artificial_analysis_coding_index": 74.3,
+            "gpqa": 0.92,
+            "hle": 0.457,
+            "scicode": 0.535,
+            "ifbench": 0.622448979591837,
+            "lcr": 0.676666666666667,
+            "terminalbench_hard": 0.583333333333333,
+            "terminalbench_v2_1": 0.846441947565543,
+            "tau2": 0.944444444444445,
+            "tau_banking": 0.276288659793814
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 10,
+            "price_1m_input_tokens": 5,
+            "price_1m_output_tokens": 25
+        },
+        "median_output_tokens_per_second": 68.308,
+        "median_time_to_first_token_seconds": 29.474,
+        "median_time_to_first_answer_token": 29.474,
+        "rank": 4,
+        "model_name": "Claude Opus 4.8",
+        "organization": "Anthropic",
+        "arena_elo": 1504,
+        "primary_benchmark": "90.0% (MMLU-Pro)",
+        "notes": "Highly structured patent analysis framework engine",
+        "votes": 9999,
+        "arena_rank": 11,
+        "rating": 1504,
+        "arena_reliability": 0.751,
+        "final_score": 90.67,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "trusted_provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "e9a09db3-8fd6-41dd-ba2f-20e0a2bff7f2",
+        "name": "Claude Opus 4.7 (Adaptive Reasoning, Max Effort)",
+        "slug": "claude-opus-4-7",
+        "release_date": "2026-04-16",
+        "model_creator": {
+            "id": "f0aa413f-e8ae-4fcd-9c48-0e049f4f3128",
+            "name": "Anthropic",
+            "slug": "anthropic"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 53.5,
+            "artificial_analysis_coding_index": 73.6,
+            "gpqa": 0.914,
+            "hle": 0.396,
+            "scicode": 0.545,
+            "ifbench": 0.586394557823129,
+            "lcr": 0.703333333333333,
+            "terminalbench_hard": 0.515151515151515,
+            "terminalbench_v2_1": 0.831460674157303,
+            "tau2": 0.885964912280702,
+            "tau_banking": 0.288659793814433
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 10,
+            "price_1m_input_tokens": 5,
+            "price_1m_output_tokens": 25
+        },
+        "median_output_tokens_per_second": 53.009,
+        "median_time_to_first_token_seconds": 14.6,
+        "median_time_to_first_answer_token": 14.6,
+        "rank": 5,
+        "model_name": "Claude Opus 4.7",
+        "organization": "Anthropic",
+        "arena_elo": 1503,
+        "primary_benchmark": "89.9% (MMLU-Pro)",
+        "notes": "Exceptional legal contract risk analysis synthesis matrix",
+        "votes": 26051,
+        "arena_rank": 12,
+        "rating": 1503,
+        "arena_reliability": 0.8135,
+        "final_score": 90.1,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "trusted_provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "a89c4b28-2d8c-456e-88ea-255fb51fd2b6",
+        "name": "GPT-5.4 (xhigh)",
+        "slug": "gpt-5-4",
+        "release_date": "2026-03-05",
+        "model_creator": {
+            "id": "e67e56e3-15cd-43db-b679-da4660a69f41",
+            "name": "OpenAI",
+            "slug": "openai"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 51.4,
+            "artificial_analysis_coding_index": 71.1,
+            "gpqa": 0.92,
+            "hle": 0.416,
+            "scicode": 0.566,
+            "ifbench": 0.739455782312925,
+            "lcr": 0.74,
+            "terminalbench_hard": 0.575757575757576,
+            "terminalbench_v2_1": 0.782771535580524,
+            "tau2": 0.871345029239766,
+            "tau_banking": 0.303092783505155
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 5.625,
+            "price_1m_input_tokens": 2.5,
+            "price_1m_output_tokens": 15
+        },
+        "median_output_tokens_per_second": 166.925,
+        "median_time_to_first_token_seconds": 101.362,
+        "median_time_to_first_answer_token": 101.362,
+        "rank": 6,
+        "model_name": "GPT-5.4-high",
+        "organization": "OpenAI",
+        "arena_elo": 1495,
+        "primary_benchmark": "88.5% (MMLU-Pro)",
+        "notes": "Great automated cross-referencing capabilities across whitepapers",
+        "votes": 33525,
+        "arena_rank": 10,
+        "rating": 1495,
+        "arena_reliability": 0.8299,
+        "final_score": 85.58,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "trusted_provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "4386585e-71b4-4a0c-8a63-afb333419cd6",
+        "name": "Claude Opus 4.6 (Non-reasoning, High Effort)",
+        "slug": "claude-opus-4-6",
+        "release_date": "2026-02-05",
+        "model_creator": {
+            "id": "f0aa413f-e8ae-4fcd-9c48-0e049f4f3128",
+            "name": "Anthropic",
+            "slug": "anthropic"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 37.8,
+            "gpqa": 0.84,
+            "hle": 0.186,
+            "scicode": 0.457,
+            "ifbench": 0.446258503401361,
+            "lcr": 0.583333333333333,
+            "terminalbench_hard": 0.484848484848485,
+            "tau2": 0.847953216374269
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 10,
+            "price_1m_input_tokens": 5,
+            "price_1m_output_tokens": 25
+        },
+        "median_output_tokens_per_second": 55.979,
+        "median_time_to_first_token_seconds": 1.824,
+        "median_time_to_first_answer_token": 1.824,
+        "rank": 7,
+        "model_name": "Claude Opus 4.6 Thinking",
+        "organization": "Anthropic",
+        "arena_elo": 1503,
+        "primary_benchmark": "89.7% (MMLU-Pro)",
+        "notes": "Phenomenal validation routines across massive source logs",
+        "votes": 37563,
+        "arena_rank": 9,
+        "rating": 1503,
+        "arena_reliability": 0.8373,
+        "final_score": 83.26,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "trusted_provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "69534bed-2ffd-4235-832b-e20a810333ab",
+        "name": "Qwen3.7 Max",
+        "slug": "qwen3-7-max",
+        "release_date": "2026-05-19",
+        "model_creator": {
+            "id": "d874d370-74d3-4fa0-ba00-5272f92f946b",
+            "name": "Alibaba",
+            "slug": "alibaba"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 46,
+            "artificial_analysis_coding_index": 66,
+            "gpqa": 0.923,
+            "hle": 0.381,
+            "scicode": 0.488,
+            "ifbench": 0.805442176870748,
+            "lcr": 0.69,
+            "terminalbench_hard": 0.507575757575758,
+            "terminalbench_v2_1": 0.745318352059925,
+            "tau2": 0.947368421052632,
+            "tau_banking": 0.109278350515464
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 3.75,
+            "price_1m_input_tokens": 2.5,
+            "price_1m_output_tokens": 7.5
+        },
+        "median_output_tokens_per_second": 199.082,
+        "median_time_to_first_token_seconds": 1.588,
+        "median_time_to_first_answer_token": 13.688,
+        "rank": 8,
+        "model_name": "Qwen3.7-Max",
+        "organization": "Alibaba",
+        "arena_elo": 1486,
+        "primary_benchmark": "89.6% (MMLU-Pro)",
+        "notes": "Massive international multi-source dataset aggregator",
+        "arena_rank": 13,
+        "rating": 1486,
+        "arena_reliability": 0.15,
+        "final_score": 78.92,
+        "confidence": 15.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "trusted_provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "ebf3b39f-0be6-43a1-a37a-f9b2978c9916",
+        "name": "Muse Spark",
+        "slug": "muse-spark",
+        "release_date": "2026-04-08",
+        "model_creator": {
+            "id": "e1694725-0192-4e54-b1b8-c97e816c6cbe",
+            "name": "Meta",
+            "slug": "meta"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 43.1,
+            "artificial_analysis_coding_index": 58.6,
+            "gpqa": 0.884,
+            "hle": 0.399,
+            "scicode": 0.515,
+            "ifbench": 0.759183673469388,
+            "lcr": 0.696666666666667,
+            "terminalbench_hard": 0.454545454545455,
+            "terminalbench_v2_1": 0.621722846441948,
+            "tau2": 0.915204678362573,
+            "tau_banking": 0.195876288659794
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 0.0,
+            "price_1m_input_tokens": 0.0,
+            "price_1m_output_tokens": 0.0
+        },
+        "median_output_tokens_per_second": 0,
+        "median_time_to_first_token_seconds": 0,
+        "median_time_to_first_answer_token": 0,
+        "rank": 9,
+        "model_name": "Muse Spark",
+        "organization": "Meta",
+        "arena_elo": 1485,
+        "primary_benchmark": "87.3% (MMLU-Pro)",
+        "notes": "Deep structured retrieval framework for multi-modal blocks",
+        "votes": 10312,
+        "arena_rank": 14,
+        "rating": 1485,
+        "arena_reliability": 0.753,
+        "final_score": 78.61,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "trusted_provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "f7a4ea75-e548-4069-80d4-9be8bc7c009b",
+        "name": "GLM-5.2 (max)",
+        "slug": "glm-5-2",
+        "release_date": "2026-06-16",
+        "model_creator": {
+            "id": "67437eb6-7dc1-4e93-befd-22c8b8ec2065",
+            "name": "Z AI",
+            "slug": "zai"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 51.1,
+            "artificial_analysis_coding_index": 68.8,
+            "gpqa": 0.895,
+            "hle": 0.401,
+            "scicode": 0.505,
+            "ifbench": 0.733333333333333,
+            "lcr": 0.713333333333333,
+            "terminalbench_hard": 0.507575757575758,
+            "terminalbench_v2_1": 0.779026217228464,
+            "tau2": 0.991228070175439,
+            "tau_banking": 0.268041237113402
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 2.15,
+            "price_1m_input_tokens": 1.4,
+            "price_1m_output_tokens": 4.4
+        },
+        "median_output_tokens_per_second": 94.415,
+        "median_time_to_first_token_seconds": 0.937,
+        "median_time_to_first_answer_token": 22.12,
+        "rank": 10,
+        "model_name": "GLM-5.2",
+        "organization": "Zhipu AI",
+        "arena_elo": 1488,
+        "primary_benchmark": "87.5% (MMLU-Pro)",
+        "notes": "Superb academic extraction with entirely open weights",
+        "votes": 2479,
+        "arena_rank": 17,
+        "rating": 1488,
+        "arena_reliability": 0.66,
+        "final_score": 55.0,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "e3396f8f-7994-4df5-bdab-43745681ef0a",
+        "name": "GPT-5.5 Pro (xhigh)",
+        "slug": "gpt-5-5-pro",
+        "release_date": "2026-04-23",
+        "model_creator": {
+            "id": "e67e56e3-15cd-43db-b679-da4660a69f41",
+            "name": "OpenAI",
+            "slug": "openai"
+        },
+        "evaluations": {},
+        "pricing": {
+            "price_1m_blended_3_to_1": 67.5,
+            "price_1m_input_tokens": 30.0,
+            "price_1m_output_tokens": 180.0
+        },
+        "median_output_tokens_per_second": 0,
+        "median_time_to_first_token_seconds": 0,
+        "median_time_to_first_answer_token": 0,
+        "rank": 10,
+        "model_name": "GPT-5.5-Pro",
+        "organization": "OpenAI",
+        "arena_elo": 1510,
+        "primary_benchmark": "91.5% (MMLU-Pro)",
+        "notes": "Elite multi-source correlation engine for complex mapping",
+        "arena_rank": 4,
+        "rating": 1510,
+        "arena_reliability": 0.15,
+        "final_score": 55.0,
+        "confidence": 15.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "c72cb85a-18a4-4235-b455-77dff2f16c50",
+        "name": "Grok 4.20 0309 v2 (Reasoning)",
+        "slug": "grok-4-20",
+        "release_date": "2026-04-07",
+        "model_creator": {
+            "id": "a1e3ddcf-d3e4-44a5-9e8f-029a69850875",
+            "name": "xAI",
+            "slug": "xai"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 37,
+            "gpqa": 0.911,
+            "hle": 0.322,
+            "scicode": 0.456,
+            "ifbench": 0.812244897959184,
+            "lcr": 0.58,
+            "terminalbench_hard": 0.378787878787879,
+            "tau2": 0.929824561403509
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 3,
+            "price_1m_input_tokens": 2,
+            "price_1m_output_tokens": 6
+        },
+        "median_output_tokens_per_second": 261.371,
+        "median_time_to_first_token_seconds": 11.234,
+        "median_time_to_first_answer_token": 11.234,
+        "rank": 10,
+        "model_name": "Grok-4.20",
+        "organization": "xAI",
+        "arena_elo": 1496,
+        "primary_benchmark": "Real-Time Streaming",
+        "notes": "Supreme for time-sensitive exploration synced to live web feeds",
+        "arena_rank": 7,
+        "rating": 1496,
+        "arena_reliability": 0.15,
+        "final_score": 55.0,
+        "confidence": 15.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "4d6dd5ce-08cb-4e87-9288-1dd2f022aa35",
+        "name": "Doubao Seed Code",
+        "slug": "doubao-seed-code",
+        "release_date": "2025-11-11",
+        "model_creator": {
+            "id": "2354746c-4775-4a06-b64d-0ba4137785b8",
+            "name": "ByteDance Seed",
+            "slug": "bytedance_seed"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 26,
+            "artificial_analysis_math_index": 79.3,
+            "mmlu_pro": 0.854,
+            "gpqa": 0.764,
+            "hle": 0.133,
+            "livecodebench": 0.766,
+            "scicode": 0.407,
+            "aime_25": 0.793333333333333,
+            "ifbench": 0.514285714285714,
+            "lcr": 0.653333333333333,
+            "terminalbench_hard": 0.265151515151515,
+            "tau2": 0.58187134502924
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 1.6,
+            "price_1m_input_tokens": 0.8,
+            "price_1m_output_tokens": 4.0
+        },
+        "median_output_tokens_per_second": 0,
+        "median_time_to_first_token_seconds": 0,
+        "median_time_to_first_answer_token": 0,
+        "rank": 13,
+        "model_name": "Seed2.0 Pro",
+        "organization": "ByteDance",
+        "arena_elo": 1466,
+        "primary_benchmark": "87.8% (MMLU-Pro)",
+        "notes": "Extremely fluid corporate data repository categorization",
+        "arena_rank": 21,
+        "rating": 1466,
+        "arena_reliability": 0.15,
+        "final_score": 54.38,
+        "confidence": 15.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "23149f9b-c904-43e2-9ec4-afa2bf843941",
+        "name": "Grok 4.1 Fast (Reasoning)",
+        "slug": "grok-4-1-fast-reasoning",
+        "release_date": "2025-11-19",
+        "model_creator": {
+            "id": "a1e3ddcf-d3e4-44a5-9e8f-029a69850875",
+            "name": "xAI",
+            "slug": "xai"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 30.6,
+            "artificial_analysis_math_index": 89.3,
+            "mmlu_pro": 0.854,
+            "gpqa": 0.853,
+            "hle": 0.176,
+            "livecodebench": 0.822,
+            "scicode": 0.442,
+            "aime_25": 0.893333333333333,
+            "ifbench": 0.527210884353742,
+            "lcr": 0.68,
+            "terminalbench_hard": 0.242424242424242,
+            "tau2": 0.932748538011696
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 4.0,
+            "price_1m_input_tokens": 2.0,
+            "price_1m_output_tokens": 10.0
+        },
+        "median_output_tokens_per_second": 0,
+        "median_time_to_first_token_seconds": 0,
+        "median_time_to_first_answer_token": 0,
+        "rank": 14,
+        "model_name": "Grok-4.1-Thinking",
+        "organization": "xAI",
+        "arena_elo": 1482,
+        "primary_benchmark": "89.0% (MMLU-Pro)",
+        "notes": "Iterative live discovery loop tracking active telemetry",
+        "votes": 41179,
+        "arena_rank": 15,
+        "rating": 1482,
+        "arena_reliability": 0.8433,
+        "final_score": 53.99,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "922c69c7-9037-43c6-8bcf-a1c555e7f3eb",
+        "name": "Llama 4 Maverick",
+        "slug": "llama-4-maverick",
+        "release_date": "2025-04-05",
+        "model_creator": {
+            "id": "e1694725-0192-4e54-b1b8-c97e816c6cbe",
+            "name": "Meta",
+            "slug": "meta"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 14.3,
+            "artificial_analysis_coding_index": 16.3,
+            "artificial_analysis_math_index": 19.3,
+            "mmlu_pro": 0.809,
+            "gpqa": 0.671,
+            "hle": 0.048,
+            "livecodebench": 0.397,
+            "scicode": 0.331,
+            "math_500": 0.888666666666667,
+            "aime": 0.39,
+            "aime_25": 0.193333333333333,
+            "ifbench": 0.429931972789116,
+            "lcr": 0.46,
+            "terminalbench_hard": 0.0681818181818182,
+            "terminalbench_v2_1": 0.0786516853932584,
+            "tau2": 0.178362573099415,
+            "tau_banking": 0.0391752577319588
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 0.475,
+            "price_1m_input_tokens": 0.35,
+            "price_1m_output_tokens": 0.85
+        },
+        "median_output_tokens_per_second": 121.63,
+        "median_time_to_first_token_seconds": 0.62,
+        "median_time_to_first_answer_token": 0.62,
+        "rank": 15,
+        "model_name": "Llama 4 Maverick",
+        "organization": "Meta",
+        "arena_elo": 1420,
+        "primary_benchmark": "86.5% (MMLU-Pro)",
+        "notes": "Premium local deployment alternative for private institutional data",
+        "arena_rank": 25,
+        "rating": 1420,
+        "arena_reliability": 0.15,
+        "final_score": 52.84,
+        "confidence": 15.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "5aa1c578-af76-4b91-8699-cdd43582b3af",
+        "name": "GLM-5.1 (Reasoning)",
+        "slug": "glm-5-1",
+        "release_date": "2026-04-07",
+        "model_creator": {
+            "id": "67437eb6-7dc1-4e93-befd-22c8b8ec2065",
+            "name": "Z AI",
+            "slug": "zai"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 40.2,
+            "artificial_analysis_coding_index": 55.8,
+            "gpqa": 0.868,
+            "hle": 0.28,
+            "scicode": 0.438,
+            "ifbench": 0.762585034013605,
+            "lcr": 0.623333333333333,
+            "terminalbench_hard": 0.431818181818182,
+            "terminalbench_v2_1": 0.617977528089888,
+            "tau2": 0.976608187134503,
+            "tau_banking": 0.115463917525773
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 2.15,
+            "price_1m_input_tokens": 1.4,
+            "price_1m_output_tokens": 4.4
+        },
+        "median_output_tokens_per_second": 104.977,
+        "median_time_to_first_token_seconds": 0.811,
+        "median_time_to_first_answer_token": 36.924,
+        "rank": 16,
+        "model_name": "GLM-5.1",
+        "organization": "Zhipu AI",
+        "arena_elo": 1467,
+        "primary_benchmark": "87.1% (MMLU-Pro)",
+        "notes": "Excellent open-weight documentation structural scanner",
+        "votes": 12411,
+        "arena_rank": 19,
+        "rating": 1467,
+        "arena_reliability": 0.7651,
+        "final_score": 51.54,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "2e40e695-3cec-43da-83f9-615af30b8e91",
+        "name": "Claude Sonnet 4.6 (Non-reasoning, High Effort)",
+        "slug": "claude-sonnet-4-6",
+        "release_date": "2026-02-17",
+        "model_creator": {
+            "id": "f0aa413f-e8ae-4fcd-9c48-0e049f4f3128",
+            "name": "Anthropic",
+            "slug": "anthropic"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 35.9,
+            "gpqa": 0.799,
+            "hle": 0.132,
+            "scicode": 0.469,
+            "ifbench": 0.41156462585034,
+            "lcr": 0.576666666666667,
+            "terminalbench_hard": 0.462121212121212,
+            "tau2": 0.795321637426901
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 6,
+            "price_1m_input_tokens": 3,
+            "price_1m_output_tokens": 15
+        },
+        "median_output_tokens_per_second": 51.459,
+        "median_time_to_first_token_seconds": 0.985,
+        "median_time_to_first_answer_token": 0.985,
+        "rank": 17,
+        "model_name": "Claude Sonnet 4.6 Thinking",
+        "organization": "Anthropic",
+        "arena_elo": 1468,
+        "primary_benchmark": "88.0% (MMLU-Pro)",
+        "notes": "Fast scientific abstract formatting and validation agent",
+        "votes": 29825,
+        "arena_rank": 18,
+        "rating": 1468,
+        "arena_reliability": 0.8223,
+        "final_score": 51.46,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "bf220674-68bd-43cc-a1b8-ce5ed4d2f18d",
+        "name": "DeepSeek V4 Pro (Reasoning, Max Effort)",
+        "slug": "deepseek-v4-pro",
+        "release_date": "2026-04-24",
+        "model_creator": {
+            "id": "58b835bf-4c87-4f87-a846-df4b692c6e7d",
+            "name": "DeepSeek",
+            "slug": "deepseek"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 44.3,
+            "artificial_analysis_coding_index": 59.4,
+            "gpqa": 0.888,
+            "hle": 0.359,
+            "scicode": 0.5,
+            "ifbench": 0.764625850340136,
+            "lcr": 0.663333333333333,
+            "terminalbench_hard": 0.462121212121212,
+            "terminalbench_v2_1": 0.640449438202247,
+            "tau2": 0.961988304093567,
+            "tau_banking": 0.257731958762887
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 0.544,
+            "price_1m_input_tokens": 0.435,
+            "price_1m_output_tokens": 0.87
+        },
+        "median_output_tokens_per_second": 99.857,
+        "median_time_to_first_token_seconds": 0.996,
+        "median_time_to_first_answer_token": 44.809,
+        "rank": 18,
+        "model_name": "DeepSeek-V4-Pro",
+        "organization": "DeepSeek",
+        "arena_elo": 1467,
+        "primary_benchmark": "87.5% (MMLU-Pro)",
+        "notes": "Top value tier for high-volume automated literature reviews",
+        "votes": 21880,
+        "arena_rank": 20,
+        "rating": 1467,
+        "arena_reliability": 0.8021,
+        "final_score": 51.37,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "0de67206-4d36-4d10-b8f6-cf37fa747a03",
+        "name": "Kimi K2.6",
+        "slug": "kimi-k2-6",
+        "release_date": "2026-04-20",
+        "model_creator": {
+            "id": "0a177021-87dd-4250-9a37-f01df196bfe0",
+            "name": "Kimi",
+            "slug": "kimi"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 42.8,
+            "artificial_analysis_coding_index": 56,
+            "gpqa": 0.911,
+            "hle": 0.359,
+            "scicode": 0.535,
+            "ifbench": 0.759863945578231,
+            "lcr": 0.696666666666667,
+            "terminalbench_hard": 0.439393939393939,
+            "terminalbench_v2_1": 0.573033707865168,
+            "tau2": 0.95906432748538,
+            "tau_banking": 0.206185567010309
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 1.712,
+            "price_1m_input_tokens": 0.95,
+            "price_1m_output_tokens": 4
+        },
+        "median_output_tokens_per_second": 59.538,
+        "median_time_to_first_token_seconds": 1.127,
+        "median_time_to_first_answer_token": 75.885,
+        "rank": 19,
+        "model_name": "Kimi-K2.6-Thinking",
+        "organization": "Moonshot",
+        "arena_elo": 1466,
+        "primary_benchmark": "2M+ Context (99.4% Needle)",
+        "notes": "Pioneering long-context model with deep analytical scanning",
+        "votes": 18890,
+        "arena_rank": 16,
+        "rating": 1466,
+        "arena_reliability": 0.7925,
+        "final_score": 51.24,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "2236df45-0699-40d1-b5cc-69ee345d2257",
+        "name": "Qwen3.5 122B A10B (Reasoning)",
+        "slug": "qwen3-5-122b-a10b",
+        "release_date": "2026-02-24",
+        "model_creator": {
+            "id": "d874d370-74d3-4fa0-ba00-5272f92f946b",
+            "name": "Alibaba",
+            "slug": "alibaba"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 32.3,
+            "artificial_analysis_coding_index": 45.7,
+            "gpqa": 0.857,
+            "hle": 0.234,
+            "scicode": 0.42,
+            "ifbench": 0.757142857142857,
+            "lcr": 0.666666666666667,
+            "terminalbench_hard": 0.310606060606061,
+            "terminalbench_v2_1": 0.47565543071161,
+            "tau2": 0.935672514619883,
+            "tau_banking": 0.136082474226804
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 1.1,
+            "price_1m_input_tokens": 0.4,
+            "price_1m_output_tokens": 3.2
+        },
+        "median_output_tokens_per_second": 142.716,
+        "median_time_to_first_token_seconds": 1.139,
+        "median_time_to_first_answer_token": 15.153,
+        "rank": 20,
+        "model_name": "Qwen3.5-Max",
+        "organization": "Alibaba",
+        "arena_elo": 1466,
+        "primary_benchmark": "87.8% (MMLU-Pro)",
+        "notes": "Excellent cross-lingual technical repository parsing matrix",
+        "votes": 20913,
+        "arena_rank": 22,
+        "rating": 1466,
+        "arena_reliability": 0.7991,
+        "final_score": 51.2,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "498862c3-f9ac-49d2-852f-16a02bb0c38f",
+        "name": "GPT-5.2 (xhigh)",
+        "slug": "gpt-5-2",
+        "release_date": "2025-12-11",
+        "model_creator": {
+            "id": "e67e56e3-15cd-43db-b679-da4660a69f41",
+            "name": "OpenAI",
+            "slug": "openai"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 42.2,
+            "artificial_analysis_math_index": 99,
+            "mmlu_pro": 0.874,
+            "gpqa": 0.903,
+            "hle": 0.354,
+            "livecodebench": 0.889,
+            "scicode": 0.521,
+            "aime_25": 0.99,
+            "ifbench": 0.754421768707483,
+            "lcr": 0.726666666666667,
+            "terminalbench_hard": 0.46969696969697,
+            "tau2": 0.847953216374269
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 4.813,
+            "price_1m_input_tokens": 1.75,
+            "price_1m_output_tokens": 14
+        },
+        "median_output_tokens_per_second": 89.082,
+        "median_time_to_first_token_seconds": 71.452,
+        "median_time_to_first_answer_token": 71.452,
+        "rank": 21,
+        "model_name": "GPT-5.2-high",
+        "organization": "OpenAI",
+        "arena_elo": 1465,
+        "primary_benchmark": "87.5% (MMLU-Pro)",
+        "notes": "Strong structured query mapping against historical records",
+        "votes": 44503,
+        "arena_rank": 23,
+        "rating": 1465,
+        "arena_reliability": 0.8484,
+        "final_score": 50.77,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "bbd93ebe-80da-4594-bb19-61e69d0331df",
+        "name": "Gemini 3.1 Pro Preview",
+        "slug": "gemini-3-1-pro-preview",
+        "release_date": "2026-02-19",
+        "model_creator": {
+            "id": "faddc6d9-2c14-445f-9b28-56726f59c793",
+            "name": "Google",
+            "slug": "google"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 46.5,
+            "artificial_analysis_coding_index": 68.8,
+            "gpqa": 0.941,
+            "hle": 0.447,
+            "scicode": 0.589,
+            "ifbench": 0.771428571428571,
+            "lcr": 0.726666666666667,
+            "terminalbench_hard": 0.537878787878788,
+            "terminalbench_v2_1": 0.737827715355805,
+            "tau2": 0.956140350877193,
+            "tau_banking": 0.164948453608247
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 4.5,
+            "price_1m_input_tokens": 2,
+            "price_1m_output_tokens": 12
+        },
+        "median_output_tokens_per_second": 138.124,
+        "median_time_to_first_token_seconds": 27.02,
+        "median_time_to_first_answer_token": 27.02,
+        "rank": 22,
+        "model_name": "Gemini-3.1-Pro",
+        "organization": "Google",
+        "arena_elo": 1505,
+        "primary_benchmark": "2M+ Tokens (100% Needle)",
+        "notes": "Undisputed champion of massive multi-document analysis sets",
+        "votes": 45610,
+        "arena_rank": 1,
+        "rating": 1505,
+        "arena_reliability": 0.85,
+        "final_score": 50.0,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "d1122eff-ee85-4fdc-8a9f-23bee6590667",
+        "name": "Gemini 3 Pro Preview (high)",
+        "slug": "gemini-3-pro",
+        "release_date": "2025-11-18",
+        "model_creator": {
+            "id": "faddc6d9-2c14-445f-9b28-56726f59c793",
+            "name": "Google",
+            "slug": "google"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 39.6,
+            "artificial_analysis_math_index": 95.7,
+            "mmlu_pro": 0.898,
+            "gpqa": 0.908,
+            "hle": 0.372,
+            "livecodebench": 0.917,
+            "scicode": 0.561,
+            "aime_25": 0.956666666666667,
+            "ifbench": 0.704081632653061,
+            "lcr": 0.706666666666667,
+            "terminalbench_hard": 0.416666666666667,
+            "tau2": 0.871345029239766
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 4.5,
+            "price_1m_input_tokens": 2,
+            "price_1m_output_tokens": 12
+        },
+        "median_output_tokens_per_second": 0,
+        "median_time_to_first_token_seconds": 0,
+        "median_time_to_first_answer_token": 0,
+        "rank": 22,
+        "model_name": "Gemini-3-Pro",
+        "organization": "Google",
+        "arena_elo": 1492,
+        "primary_benchmark": "1M+ Tokens (99.8% Needle)",
+        "notes": "Incredible long-horizon codebase dependency tracing",
+        "votes": 29671,
+        "arena_rank": 8,
+        "rating": 1492,
+        "arena_reliability": 0.8219,
+        "final_score": 50.0,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "7c73c3be-7f51-4d14-bec8-d5789488df25",
+        "name": "Gemini 3 Flash Preview (Reasoning)",
+        "slug": "gemini-3-flash-reasoning",
+        "release_date": "2025-12-17",
+        "model_creator": {
+            "id": "faddc6d9-2c14-445f-9b28-56726f59c793",
+            "name": "Google",
+            "slug": "google"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 37.8,
+            "artificial_analysis_math_index": 97,
+            "mmlu_pro": 0.89,
+            "gpqa": 0.898,
+            "hle": 0.347,
+            "livecodebench": 0.908,
+            "scicode": 0.506,
+            "aime_25": 0.97,
+            "ifbench": 0.779591836734694,
+            "lcr": 0.663333333333333,
+            "terminalbench_hard": 0.386363636363636,
+            "tau2": 0.804093567251462,
+            "tau_banking": 0.175257731958763
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 1.125,
+            "price_1m_input_tokens": 0.5,
+            "price_1m_output_tokens": 3
+        },
+        "median_output_tokens_per_second": 226.561,
+        "median_time_to_first_token_seconds": 5.775,
+        "median_time_to_first_answer_token": 5.775,
+        "rank": 22,
+        "model_name": "Gemini-3-Flash",
+        "organization": "Google",
+        "arena_elo": 1465,
+        "primary_benchmark": "1M+ Context (99.1% Needle)",
+        "notes": "Ultra-economical historical document processing framework",
+        "votes": 21818,
+        "arena_rank": 24,
+        "rating": 1465,
+        "arena_reliability": 0.8019,
+        "final_score": 50.0,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    },
+    {
+        "id": "0097ebf5-124f-42f6-9463-33b00e711f03",
+        "name": "Gemini 3.5 Flash (high)",
+        "slug": "gemini-3-5-flash",
+        "release_date": "2026-05-19",
+        "model_creator": {
+            "id": "faddc6d9-2c14-445f-9b28-56726f59c793",
+            "name": "Google",
+            "slug": "google"
+        },
+        "evaluations": {
+            "artificial_analysis_intelligence_index": 50.2,
+            "artificial_analysis_coding_index": 70.1,
+            "gpqa": 0.922,
+            "hle": 0.41,
+            "scicode": 0.531,
+            "ifbench": 0.763265306122449,
+            "lcr": 0.693333333333333,
+            "terminalbench_hard": 0.409090909090909,
+            "terminalbench_v2_1": 0.786516853932584,
+            "tau2": 0.953216374269006,
+            "tau_banking": 0.25360824742268
+        },
+        "pricing": {
+            "price_1m_blended_3_to_1": 3.375,
+            "price_1m_input_tokens": 1.5,
+            "price_1m_output_tokens": 9
+        },
+        "median_output_tokens_per_second": 241.776,
+        "median_time_to_first_token_seconds": 15.302,
+        "median_time_to_first_answer_token": 15.302,
+        "rank": 22,
+        "model_name": "Gemini-3.5-Flash",
+        "organization": "Google",
+        "arena_elo": 1504,
+        "primary_benchmark": "1M+ Tokens (100% Needle)",
+        "notes": "Blazing fast financial audit data lookup processing speed",
+        "votes": 7856,
+        "arena_rank": 2,
+        "rating": 1504,
+        "arena_reliability": 0.7352,
+        "final_score": 50.0,
+        "confidence": 60.0,
+        "coverage": 0.0,
+        "data_sources": [
+            "arena"
+        ],
+        "ranking_status": "provisional",
+        "artificial_analysis_rank": null,
+        "model_key": null
+    }
+]
