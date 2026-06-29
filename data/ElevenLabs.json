@@ -1,0 +1,357 @@
+{
+  "provider": "ElevenLabs",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official ElevenLabs Documentation",
+  "officialSources": [
+    {
+      "title": "ElevenLabs",
+      "url": "https://elevenlabs.io/"
+    },
+    {
+      "title": "ElevenLabs Pricing",
+      "url": "https://elevenlabs.io/pricing"
+    },
+    {
+      "title": "ElevenLabs API Documentation",
+      "url": "https://elevenlabs.io/docs"
+    },
+    {
+      "title": "ElevenLabs API Reference",
+      "url": "https://elevenlabs.io/docs/api-reference"
+    }
+  ],
+  "modelCatalog": {
+    "elevenlabs/eleven-v3": {
+      "displayName": "Eleven v3",
+      "officialNames": [
+        "Eleven v3"
+      ],
+      "verified": true,
+      "notes": "Latest flagship text-to-speech model supporting expressive speech, dialogue generation, and 70+ languages."
+    },
+    "elevenlabs/eleven-v3-conversational": {
+      "displayName": "Eleven v3 Conversational",
+      "officialNames": [
+        "Eleven v3 Conversational"
+      ],
+      "verified": true,
+      "notes": "Optimized for real-time conversational voice agents."
+    },
+    "elevenlabs/flash-v2.5": {
+      "displayName": "Flash v2.5",
+      "officialNames": [
+        "Flash v2.5"
+      ],
+      "verified": true,
+      "notes": "Ultra-low latency text-to-speech model."
+    },
+    "elevenlabs/multilingual-v2": {
+      "displayName": "Multilingual v2",
+      "officialNames": [
+        "Eleven Multilingual v2"
+      ],
+      "verified": true
+    },
+    "elevenlabs/scribe-v2": {
+      "displayName": "Scribe v2",
+      "officialNames": [
+        "Scribe v2"
+      ],
+      "verified": true,
+      "notes": "Speech-to-text model."
+    },
+    "elevenlabs/scribe-v2-realtime": {
+      "displayName": "Scribe v2 Realtime",
+      "officialNames": [
+        "Scribe v2 Realtime"
+      ],
+      "verified": true
+    },
+    "elevenlabs/music": {
+      "displayName": "Eleven Music",
+      "officialNames": [
+        "Eleven Music"
+      ],
+      "verified": true
+    }
+  },
+  "productCatalog": {
+    "text-to-speech": {
+      "displayName": "Text to Speech",
+      "verified": true
+    },
+    "speech-to-text": {
+      "displayName": "Speech to Text",
+      "verified": true
+    },
+    "voice-cloning": {
+      "displayName": "Voice Cloning",
+      "verified": true
+    },
+    "professional-voice-cloning": {
+      "displayName": "Professional Voice Cloning",
+      "verified": true
+    },
+    "voice-library": {
+      "displayName": "Voice Library",
+      "verified": true
+    },
+    "voice-design": {
+      "displayName": "Voice Design",
+      "verified": true
+    },
+    "voice-isolator": {
+      "displayName": "Voice Isolator",
+      "verified": true
+    },
+    "dubbing": {
+      "displayName": "AI Dubbing",
+      "verified": true
+    },
+    "studio": {
+      "displayName": "Studio",
+      "verified": true
+    },
+    "reader": {
+      "displayName": "ElevenReader",
+      "verified": true
+    },
+    "music": {
+      "displayName": "Eleven Music",
+      "verified": true
+    },
+    "sound-effects": {
+      "displayName": "Sound Effects",
+      "verified": true
+    },
+    "agents": {
+      "displayName": "ElevenAgents",
+      "verified": true
+    },
+    "conversational-ai": {
+      "displayName": "Conversational AI",
+      "verified": true
+    },
+    "api": {
+      "displayName": "API",
+      "verified": true
+    },
+    "webhooks": {
+      "displayName": "Webhooks",
+      "verified": true
+    },
+    "workspaces": {
+      "displayName": "Workspaces",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "elevenlabs/eleven-v3",
+        "elevenlabs/flash-v2.5",
+        "elevenlabs/multilingual-v2"
+      ],
+      "products": [
+        "text-to-speech",
+        "speech-to-text",
+        "voice-library",
+        "voice-design",
+        "reader",
+        "sound-effects",
+        "api"
+      ],
+      "notes": "Free tier with monthly credits and limited commercial usage."
+    },
+    {
+      "plan": "Starter",
+      "monthlyPrice": 5,
+      "verified": true,
+      "models": [
+        "elevenlabs/eleven-v3",
+        "elevenlabs/flash-v2.5",
+        "elevenlabs/multilingual-v2",
+        "elevenlabs/scribe-v2"
+      ],
+      "products": [
+        "text-to-speech",
+        "speech-to-text",
+        "voice-cloning",
+        "voice-library",
+        "voice-design",
+        "reader",
+        "studio",
+        "sound-effects",
+        "api"
+      ]
+    },
+    {
+      "plan": "Creator",
+      "monthlyPrice": 22,
+      "verified": true,
+      "models": [
+        "elevenlabs/eleven-v3",
+        "elevenlabs/eleven-v3-conversational",
+        "elevenlabs/flash-v2.5",
+        "elevenlabs/multilingual-v2",
+        "elevenlabs/scribe-v2"
+      ],
+      "products": [
+        "text-to-speech",
+        "speech-to-text",
+        "voice-cloning",
+        "professional-voice-cloning",
+        "voice-library",
+        "voice-design",
+        "voice-isolator",
+        "dubbing",
+        "studio",
+        "reader",
+        "sound-effects",
+        "agents",
+        "conversational-ai",
+        "api",
+        "webhooks"
+      ]
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 99,
+      "verified": true,
+      "models": [
+        "elevenlabs/eleven-v3",
+        "elevenlabs/eleven-v3-conversational",
+        "elevenlabs/flash-v2.5",
+        "elevenlabs/multilingual-v2",
+        "elevenlabs/scribe-v2",
+        "elevenlabs/scribe-v2-realtime"
+      ],
+      "products": [
+        "text-to-speech",
+        "speech-to-text",
+        "voice-cloning",
+        "professional-voice-cloning",
+        "voice-library",
+        "voice-design",
+        "voice-isolator",
+        "dubbing",
+        "studio",
+        "reader",
+        "music",
+        "sound-effects",
+        "agents",
+        "conversational-ai",
+        "api",
+        "webhooks",
+        "workspaces"
+      ]
+    },
+    {
+      "plan": "Scale",
+      "monthlyPrice": 330,
+      "verified": true,
+      "models": [
+        "elevenlabs/eleven-v3",
+        "elevenlabs/eleven-v3-conversational",
+        "elevenlabs/flash-v2.5",
+        "elevenlabs/multilingual-v2",
+        "elevenlabs/scribe-v2",
+        "elevenlabs/scribe-v2-realtime",
+        "elevenlabs/music"
+      ],
+      "products": [
+        "text-to-speech",
+        "speech-to-text",
+        "voice-cloning",
+        "professional-voice-cloning",
+        "voice-library",
+        "voice-design",
+        "voice-isolator",
+        "dubbing",
+        "studio",
+        "reader",
+        "music",
+        "sound-effects",
+        "agents",
+        "conversational-ai",
+        "api",
+        "webhooks",
+        "workspaces"
+      ],
+      "notes": "Designed for businesses with high-volume voice generation."
+    },
+    {
+      "plan": "Business",
+      "monthlyPrice": 1320,
+      "verified": true,
+      "models": [
+        "elevenlabs/eleven-v3",
+        "elevenlabs/eleven-v3-conversational",
+        "elevenlabs/flash-v2.5",
+        "elevenlabs/multilingual-v2",
+        "elevenlabs/scribe-v2",
+        "elevenlabs/scribe-v2-realtime",
+        "elevenlabs/music"
+      ],
+      "products": [
+        "text-to-speech",
+        "speech-to-text",
+        "voice-cloning",
+        "professional-voice-cloning",
+        "voice-library",
+        "voice-design",
+        "voice-isolator",
+        "dubbing",
+        "studio",
+        "reader",
+        "music",
+        "sound-effects",
+        "agents",
+        "conversational-ai",
+        "api",
+        "webhooks",
+        "workspaces"
+      ],
+      "notes": "High-volume commercial plan with advanced collaboration and priority support."
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "elevenlabs/eleven-v3",
+        "elevenlabs/eleven-v3-conversational",
+        "elevenlabs/flash-v2.5",
+        "elevenlabs/multilingual-v2",
+        "elevenlabs/scribe-v2",
+        "elevenlabs/scribe-v2-realtime",
+        "elevenlabs/music"
+      ],
+      "products": [
+        "text-to-speech",
+        "speech-to-text",
+        "voice-cloning",
+        "professional-voice-cloning",
+        "voice-library",
+        "voice-design",
+        "voice-isolator",
+        "dubbing",
+        "studio",
+        "reader",
+        "music",
+        "sound-effects",
+        "agents",
+        "conversational-ai",
+        "api",
+        "webhooks",
+        "workspaces"
+      ],
+      "notes": "Custom enterprise pricing with dedicated infrastructure, security, and support."
+    }
+  ]
+}

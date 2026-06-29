@@ -1,0 +1,288 @@
+{
+  "provider": "Gamma",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Gamma Documentation",
+  "officialSources": [
+    {
+      "title": "Gamma",
+      "url": "https://gamma.app"
+    },
+    {
+      "title": "Gamma Pricing",
+      "url": "https://gamma.app/pricing"
+    },
+    {
+      "title": "Gamma Help Center",
+      "url": "https://help.gamma.app"
+    },
+    {
+      "title": "Gamma Developers",
+      "url": "https://developers.gamma.app"
+    }
+  ],
+  "modelCatalog": {
+    "gamma/ai-agent": {
+      "displayName": "Gamma AI Agent",
+      "officialNames": [
+        "Gamma AI Agent"
+      ],
+      "verified": true,
+      "notes": "Primary AI assistant used for creating presentations, documents, websites, and social content."
+    },
+    "gamma/basic-image-models": {
+      "displayName": "Basic Image Models",
+      "officialNames": [
+        "Basic Image Models"
+      ],
+      "verified": true
+    },
+    "gamma/advanced-image-models": {
+      "displayName": "Advanced Image Models",
+      "officialNames": [
+        "Advanced Image Models"
+      ],
+      "verified": true
+    },
+    "gamma/premium-image-models": {
+      "displayName": "Premium Image Models",
+      "officialNames": [
+        "Premium Image Models"
+      ],
+      "verified": true
+    },
+    "gamma/ultra-image-models": {
+      "displayName": "Ultra Image Models",
+      "officialNames": [
+        "Ultra Image Models"
+      ],
+      "verified": true,
+      "notes": "Available exclusively on the Ultra plan."
+    }
+  },
+  "productCatalog": {
+    "presentations": {
+      "displayName": "AI Presentations",
+      "verified": true
+    },
+    "documents": {
+      "displayName": "AI Documents",
+      "verified": true
+    },
+    "websites": {
+      "displayName": "AI Websites",
+      "verified": true
+    },
+    "socials": {
+      "displayName": "AI Social Content",
+      "verified": true
+    },
+    "ai-agent": {
+      "displayName": "AI Agent",
+      "verified": true
+    },
+    "api": {
+      "displayName": "API",
+      "verified": true
+    },
+    "analytics": {
+      "displayName": "Analytics",
+      "verified": true
+    },
+    "custom-domains": {
+      "displayName": "Custom Domains",
+      "verified": true
+    },
+    "password-protection": {
+      "displayName": "Password Protection",
+      "verified": true
+    },
+    "custom-fonts": {
+      "displayName": "Custom Fonts",
+      "verified": true
+    },
+    "branding-removal": {
+      "displayName": "Branding Removal",
+      "verified": true
+    },
+    "templates": {
+      "displayName": "Templates",
+      "verified": true
+    },
+    "workspaces": {
+      "displayName": "Workspaces",
+      "verified": true
+    },
+    "teams": {
+      "displayName": "Teams",
+      "verified": true
+    },
+    "business": {
+      "displayName": "Business",
+      "verified": true
+    },
+    "developer-api": {
+      "displayName": "Developer API",
+      "verified": true
+    },
+    "connectors": {
+      "displayName": "Connectors",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "gamma/ai-agent",
+        "gamma/basic-image-models"
+      ],
+      "products": [
+        "presentations",
+        "documents",
+        "websites",
+        "socials",
+        "ai-agent",
+        "templates"
+      ],
+      "notes": "One-time AI credits, basic image models, AI Agent access, up to 10 generated cards per prompt, Gamma branding included."
+    },
+    {
+      "plan": "Plus",
+      "monthlyPrice": 9,
+      "verified": true,
+      "models": [
+        "gamma/ai-agent",
+        "gamma/basic-image-models",
+        "gamma/advanced-image-models"
+      ],
+      "products": [
+        "presentations",
+        "documents",
+        "websites",
+        "socials",
+        "ai-agent",
+        "branding-removal",
+        "templates"
+      ],
+      "notes": "1,000 monthly AI credits, advanced image models, branding removal, up to 20 generated cards per prompt."
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 18,
+      "verified": true,
+      "models": [
+        "gamma/ai-agent",
+        "gamma/basic-image-models",
+        "gamma/advanced-image-models",
+        "gamma/premium-image-models"
+      ],
+      "products": [
+        "presentations",
+        "documents",
+        "websites",
+        "socials",
+        "ai-agent",
+        "api",
+        "analytics",
+        "custom-domains",
+        "password-protection",
+        "custom-fonts",
+        "branding-removal",
+        "developer-api",
+        "templates"
+      ],
+      "notes": "4,000 monthly AI credits, premium AI models, API access, analytics, custom domains, up to 50 generated cards per prompt."
+    },
+    {
+      "plan": "Ultra",
+      "monthlyPrice": 100,
+      "verified": true,
+      "models": [
+        "gamma/ai-agent",
+        "gamma/basic-image-models",
+        "gamma/advanced-image-models",
+        "gamma/premium-image-models",
+        "gamma/ultra-image-models"
+      ],
+      "products": [
+        "presentations",
+        "documents",
+        "websites",
+        "socials",
+        "ai-agent",
+        "api",
+        "analytics",
+        "custom-domains",
+        "password-protection",
+        "custom-fonts",
+        "branding-removal",
+        "developer-api",
+        "templates"
+      ],
+      "notes": "20,000 monthly AI credits, earliest access to newest AI models, Studio Mode, ultra image models, up to 75 generated cards per prompt."
+    },
+    {
+      "plan": "Teams",
+      "monthlyPrice": 25,
+      "verified": true,
+      "models": [
+        "gamma/ai-agent",
+        "gamma/basic-image-models",
+        "gamma/advanced-image-models",
+        "gamma/premium-image-models"
+      ],
+      "products": [
+        "presentations",
+        "documents",
+        "websites",
+        "socials",
+        "ai-agent",
+        "api",
+        "analytics",
+        "custom-domains",
+        "password-protection",
+        "custom-fonts",
+        "branding-removal",
+        "developer-api",
+        "workspaces",
+        "teams"
+      ],
+      "notes": "Per-user pricing with centralized workspace management and collaboration."
+    },
+    {
+      "plan": "Business",
+      "monthlyPrice": 40,
+      "verified": true,
+      "models": [
+        "gamma/ai-agent",
+        "gamma/basic-image-models",
+        "gamma/advanced-image-models",
+        "gamma/premium-image-models",
+        "gamma/ultra-image-models"
+      ],
+      "products": [
+        "presentations",
+        "documents",
+        "websites",
+        "socials",
+        "ai-agent",
+        "api",
+        "analytics",
+        "custom-domains",
+        "password-protection",
+        "custom-fonts",
+        "branding-removal",
+        "developer-api",
+        "workspaces",
+        "teams",
+        "business",
+        "connectors"
+      ],
+      "notes": "Enterprise-grade collaboration, administration, security, and connectors for organizations."
+    }
+  ]
+}

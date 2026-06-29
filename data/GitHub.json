@@ -1,0 +1,328 @@
+{
+  "provider": "GitHub",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official GitHub Documentation",
+  "officialSources": [
+    {
+      "title": "GitHub Copilot",
+      "url": "https://github.com/features/copilot"
+    },
+    {
+      "title": "GitHub Copilot Plans & Pricing",
+      "url": "https://github.com/features/copilot/plans"
+    },
+    {
+      "title": "GitHub Copilot Documentation",
+      "url": "https://docs.github.com/en/copilot"
+    },
+    {
+      "title": "GitHub Pricing",
+      "url": "https://github.com/pricing"
+    }
+  ],
+  "modelCatalog": {
+    "github/copilot": {
+      "displayName": "GitHub Copilot",
+      "officialNames": [
+        "GitHub Copilot"
+      ],
+      "verified": true,
+      "notes": "GitHub's native coding assistant."
+    },
+    "github/cloud-agent": {
+      "displayName": "Cloud Agent",
+      "officialNames": [
+        "Cloud Agent"
+      ],
+      "verified": true,
+      "notes": "Autonomous cloud-based coding agent."
+    },
+    "github/code-review": {
+      "displayName": "Code Review Agent",
+      "officialNames": [
+        "Code Review"
+      ],
+      "verified": true
+    },
+    "github/copilot-cli": {
+      "displayName": "Copilot CLI",
+      "officialNames": [
+        "Copilot CLI"
+      ],
+      "verified": true
+    },
+    "github/copilot-chat": {
+      "displayName": "Copilot Chat",
+      "officialNames": [
+        "Copilot Chat"
+      ],
+      "verified": true
+    },
+    "github/copilot-edits": {
+      "displayName": "Copilot Edits",
+      "officialNames": [
+        "Copilot Edits"
+      ],
+      "verified": true
+    },
+    "github/agent-mode": {
+      "displayName": "Agent Mode",
+      "officialNames": [
+        "Agent Mode"
+      ],
+      "verified": true
+    }
+  },
+  "productCatalog": {
+    "copilot": {
+      "displayName": "GitHub Copilot",
+      "verified": true
+    },
+    "copilot-chat": {
+      "displayName": "Copilot Chat",
+      "verified": true
+    },
+    "code-completion": {
+      "displayName": "Code Completion",
+      "verified": true
+    },
+    "next-edit-suggestions": {
+      "displayName": "Next Edit Suggestions",
+      "verified": true
+    },
+    "agent-mode": {
+      "displayName": "Agent Mode",
+      "verified": true
+    },
+    "cloud-agent": {
+      "displayName": "Cloud Agent",
+      "verified": true
+    },
+    "code-review": {
+      "displayName": "Code Review",
+      "verified": true
+    },
+    "copilot-cli": {
+      "displayName": "Copilot CLI",
+      "verified": true
+    },
+    "copilot-mobile": {
+      "displayName": "Copilot Mobile",
+      "verified": true
+    },
+    "github-com-chat": {
+      "displayName": "GitHub.com Chat",
+      "verified": true
+    },
+    "third-party-agents": {
+      "displayName": "Third-party Agents",
+      "verified": true
+    },
+    "model-selection": {
+      "displayName": "Model Selection",
+      "verified": true
+    },
+    "organization-management": {
+      "displayName": "Organization Management",
+      "verified": true
+    },
+    "policy-management": {
+      "displayName": "Policy Management",
+      "verified": true
+    },
+    "audit-logs": {
+      "displayName": "Audit Logs",
+      "verified": true
+    },
+    "knowledge-base": {
+      "displayName": "Knowledge Base",
+      "verified": true
+    },
+    "custom-models": {
+      "displayName": "Custom Models",
+      "verified": true
+    },
+    "ai-credits": {
+      "displayName": "GitHub AI Credits",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "github/copilot",
+        "github/copilot-chat",
+        "github/copilot-cli"
+      ],
+      "products": [
+        "copilot",
+        "copilot-chat",
+        "code-completion",
+        "copilot-cli"
+      ],
+      "notes": "Includes 2,000 code completions/month and 50 chat requests/month."
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 10,
+      "verified": true,
+      "models": [
+        "github/copilot",
+        "github/copilot-chat",
+        "github/copilot-edits",
+        "github/cloud-agent",
+        "github/code-review",
+        "github/agent-mode",
+        "github/copilot-cli"
+      ],
+      "products": [
+        "copilot",
+        "copilot-chat",
+        "code-completion",
+        "next-edit-suggestions",
+        "agent-mode",
+        "cloud-agent",
+        "code-review",
+        "copilot-cli",
+        "copilot-mobile",
+        "github-com-chat",
+        "model-selection",
+        "ai-credits"
+      ],
+      "notes": "$10 monthly AI Credits included."
+    },
+    {
+      "plan": "Pro+",
+      "monthlyPrice": 39,
+      "verified": true,
+      "models": [
+        "github/copilot",
+        "github/copilot-chat",
+        "github/copilot-edits",
+        "github/cloud-agent",
+        "github/code-review",
+        "github/agent-mode",
+        "github/copilot-cli"
+      ],
+      "products": [
+        "copilot",
+        "copilot-chat",
+        "code-completion",
+        "next-edit-suggestions",
+        "agent-mode",
+        "cloud-agent",
+        "code-review",
+        "copilot-cli",
+        "copilot-mobile",
+        "github-com-chat",
+        "third-party-agents",
+        "model-selection",
+        "audit-logs",
+        "ai-credits"
+      ],
+      "notes": "$39 monthly AI Credits included with access to premium models."
+    },
+    {
+      "plan": "Max",
+      "monthlyPrice": 100,
+      "verified": true,
+      "models": [
+        "github/copilot",
+        "github/copilot-chat",
+        "github/copilot-edits",
+        "github/cloud-agent",
+        "github/code-review",
+        "github/agent-mode",
+        "github/copilot-cli"
+      ],
+      "products": [
+        "copilot",
+        "copilot-chat",
+        "code-completion",
+        "next-edit-suggestions",
+        "agent-mode",
+        "cloud-agent",
+        "code-review",
+        "copilot-cli",
+        "copilot-mobile",
+        "github-com-chat",
+        "third-party-agents",
+        "model-selection",
+        "audit-logs",
+        "ai-credits"
+      ],
+      "notes": "$100 monthly AI Credits included for heavy agent workflows."
+    },
+    {
+      "plan": "Business",
+      "monthlyPrice": 19,
+      "verified": true,
+      "models": [
+        "github/copilot",
+        "github/copilot-chat",
+        "github/copilot-edits",
+        "github/cloud-agent",
+        "github/code-review",
+        "github/agent-mode",
+        "github/copilot-cli"
+      ],
+      "products": [
+        "copilot",
+        "copilot-chat",
+        "code-completion",
+        "next-edit-suggestions",
+        "agent-mode",
+        "cloud-agent",
+        "code-review",
+        "copilot-cli",
+        "copilot-mobile",
+        "github-com-chat",
+        "organization-management",
+        "policy-management",
+        "model-selection",
+        "ai-credits"
+      ],
+      "notes": "Per-user pricing with organization management, policies, and pooled AI Credits."
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": 39,
+      "verified": true,
+      "models": [
+        "github/copilot",
+        "github/copilot-chat",
+        "github/copilot-edits",
+        "github/cloud-agent",
+        "github/code-review",
+        "github/agent-mode",
+        "github/copilot-cli"
+      ],
+      "products": [
+        "copilot",
+        "copilot-chat",
+        "code-completion",
+        "next-edit-suggestions",
+        "agent-mode",
+        "cloud-agent",
+        "code-review",
+        "copilot-cli",
+        "copilot-mobile",
+        "github-com-chat",
+        "organization-management",
+        "policy-management",
+        "knowledge-base",
+        "custom-models",
+        "audit-logs",
+        "third-party-agents",
+        "model-selection",
+        "ai-credits"
+      ],
+      "notes": "Per-user pricing with enterprise knowledge indexing, custom models, organization-wide administration, and AI Credits."
+    }
+  ]
+}

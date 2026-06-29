@@ -1,0 +1,275 @@
+{
+  "provider": "Verdent AI",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Verdent Documentation",
+  "officialSources": [
+    {
+      "title": "Verdent AI",
+      "url": "https://www.verdent.ai/"
+    },
+    {
+      "title": "Verdent Pricing",
+      "url": "https://www.verdent.ai/pricing"
+    },
+    {
+      "title": "Verdent Documentation",
+      "url": "https://www.verdent.ai/docs"
+    },
+    {
+      "title": "Verdent Pricing Overview",
+      "url": "https://www.verdent.ai/docs/verdent-manager/pricing/view-plans"
+    }
+  ],
+  "modelCatalog": {
+    "verdent/plan-mode": {
+      "displayName": "Plan Mode",
+      "officialNames": [
+        "Plan Mode"
+      ],
+      "verified": true,
+      "notes": "Creates structured implementation plans before code generation."
+    },
+    "verdent/code-mode": {
+      "displayName": "Code Mode",
+      "officialNames": [
+        "Code Mode"
+      ],
+      "verified": true,
+      "notes": "Executes implementation using selected AI providers."
+    },
+    "verdent/verify-mode": {
+      "displayName": "Verify Mode",
+      "officialNames": [
+        "Verify Mode"
+      ],
+      "verified": true,
+      "notes": "Reviews, validates, and verifies generated code."
+    },
+    "verdent/parallel-agents": {
+      "displayName": "Parallel Agents",
+      "officialNames": [
+        "Parallel Agents"
+      ],
+      "verified": true,
+      "notes": "Coordinates multiple autonomous coding agents simultaneously."
+    },
+    "verdent/eco-mode": {
+      "displayName": "Eco Mode",
+      "officialNames": [
+        "Eco Mode"
+      ],
+      "verified": true,
+      "notes": "Low-cost execution mode that operates without consuming subscription credits."
+    }
+  },
+  "productCatalog": {
+    "parallel-agents": {
+      "displayName": "Parallel Agents",
+      "verified": true
+    },
+    "plan-mode": {
+      "displayName": "Plan Mode",
+      "verified": true
+    },
+    "code-mode": {
+      "displayName": "Code Mode",
+      "verified": true
+    },
+    "verify-mode": {
+      "displayName": "Verify Mode",
+      "verified": true
+    },
+    "workspace-isolation": {
+      "displayName": "Workspace Isolation",
+      "verified": true
+    },
+    "git-worktrees": {
+      "displayName": "Git Worktrees",
+      "verified": true
+    },
+    "code-review": {
+      "displayName": "AI Code Review",
+      "verified": true
+    },
+    "agent-orchestration": {
+      "displayName": "Agent Orchestration",
+      "verified": true
+    },
+    "mcp": {
+      "displayName": "MCP",
+      "verified": true
+    },
+    "vs-code-extension": {
+      "displayName": "VS Code Extension",
+      "verified": true
+    },
+    "verdent-deck": {
+      "displayName": "Verdent Deck",
+      "verified": true
+    },
+    "eco-mode": {
+      "displayName": "Eco Mode",
+      "verified": true
+    },
+    "byok": {
+      "displayName": "Bring Your Own Key",
+      "verified": true
+    },
+    "byoa": {
+      "displayName": "Bring Your Own Account",
+      "verified": true
+    },
+    "pay-as-you-go": {
+      "displayName": "Pay-as-you-go",
+      "verified": true
+    },
+    "credits": {
+      "displayName": "Credits",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free Trial",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "verdent/plan-mode",
+        "verdent/code-mode",
+        "verdent/verify-mode"
+      ],
+      "products": [
+        "parallel-agents",
+        "plan-mode",
+        "code-mode",
+        "verify-mode",
+        "vs-code-extension",
+        "verdent-deck",
+        "byok",
+        "byoa"
+      ],
+      "notes": "7-day trial with 100 credits."
+    },
+    {
+      "plan": "Starter",
+      "monthlyPrice": 19,
+      "verified": true,
+      "models": [
+        "verdent/plan-mode",
+        "verdent/code-mode",
+        "verdent/verify-mode",
+        "verdent/eco-mode"
+      ],
+      "products": [
+        "parallel-agents",
+        "plan-mode",
+        "code-mode",
+        "verify-mode",
+        "workspace-isolation",
+        "git-worktrees",
+        "code-review",
+        "agent-orchestration",
+        "vs-code-extension",
+        "verdent-deck",
+        "eco-mode",
+        "byok",
+        "byoa",
+        "credits"
+      ],
+      "notes": "480 monthly credits with Eco Mode included."
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 59,
+      "verified": true,
+      "models": [
+        "verdent/plan-mode",
+        "verdent/code-mode",
+        "verdent/verify-mode",
+        "verdent/parallel-agents",
+        "verdent/eco-mode"
+      ],
+      "products": [
+        "parallel-agents",
+        "plan-mode",
+        "code-mode",
+        "verify-mode",
+        "workspace-isolation",
+        "git-worktrees",
+        "code-review",
+        "agent-orchestration",
+        "mcp",
+        "vs-code-extension",
+        "verdent-deck",
+        "eco-mode",
+        "byok",
+        "byoa",
+        "credits"
+      ],
+      "notes": "1,500 monthly credits with extended Eco Mode usage."
+    },
+    {
+      "plan": "Max",
+      "monthlyPrice": 179,
+      "verified": true,
+      "models": [
+        "verdent/plan-mode",
+        "verdent/code-mode",
+        "verdent/verify-mode",
+        "verdent/parallel-agents",
+        "verdent/eco-mode"
+      ],
+      "products": [
+        "parallel-agents",
+        "plan-mode",
+        "code-mode",
+        "verify-mode",
+        "workspace-isolation",
+        "git-worktrees",
+        "code-review",
+        "agent-orchestration",
+        "mcp",
+        "vs-code-extension",
+        "verdent-deck",
+        "eco-mode",
+        "byok",
+        "byoa",
+        "pay-as-you-go",
+        "credits"
+      ],
+      "notes": "4,500 monthly credits with maximum usage limits."
+    },
+    {
+      "plan": "Teams",
+      "monthlyPrice": 20,
+      "verified": true,
+      "models": [
+        "verdent/plan-mode",
+        "verdent/code-mode",
+        "verdent/verify-mode",
+        "verdent/parallel-agents",
+        "verdent/eco-mode"
+      ],
+      "products": [
+        "parallel-agents",
+        "plan-mode",
+        "code-mode",
+        "verify-mode",
+        "workspace-isolation",
+        "git-worktrees",
+        "code-review",
+        "agent-orchestration",
+        "mcp",
+        "vs-code-extension",
+        "verdent-deck",
+        "eco-mode",
+        "byok",
+        "byoa",
+        "credits"
+      ],
+      "notes": "Per-user pricing with 480 credits per user each month."
+    }
+  ]
+}

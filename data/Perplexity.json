@@ -1,0 +1,226 @@
+{
+  "provider": "Perplexity",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Perplexity Documentation",
+  "officialSources": [
+    {
+      "title": "Perplexity",
+      "url": "https://www.perplexity.ai/"
+    },
+    {
+      "title": "Perplexity Pricing",
+      "url": "https://www.perplexity.ai/pro"
+    },
+    {
+      "title": "Perplexity Enterprise Pro",
+      "url": "https://www.perplexity.ai/enterprise"
+    },
+    {
+      "title": "Perplexity API Documentation",
+      "url": "https://docs.perplexity.ai/"
+    }
+  ],
+  "modelCatalog": {
+    "perplexity/sonar": {
+      "displayName": "Sonar",
+      "officialNames": [
+        "Sonar"
+      ],
+      "verified": true,
+      "notes": "Fast search-native language model."
+    },
+    "perplexity/sonar-pro": {
+      "displayName": "Sonar Pro",
+      "officialNames": [
+        "Sonar Pro"
+      ],
+      "verified": true,
+      "notes": "Higher-quality search and reasoning model."
+    },
+    "perplexity/sonar-reasoning": {
+      "displayName": "Sonar Reasoning",
+      "officialNames": [
+        "Sonar Reasoning"
+      ],
+      "verified": true,
+      "notes": "Reasoning model optimized for complex tasks."
+    },
+    "perplexity/sonar-reasoning-pro": {
+      "displayName": "Sonar Reasoning Pro",
+      "officialNames": [
+        "Sonar Reasoning Pro"
+      ],
+      "verified": true,
+      "notes": "Flagship reasoning model."
+    },
+    "perplexity/r1-1776": {
+      "displayName": "R1-1776",
+      "officialNames": [
+        "R1-1776"
+      ],
+      "verified": true,
+      "notes": "Perplexity's post-trained reasoning model."
+    }
+  },
+  "productCatalog": {
+    "search": {
+      "displayName": "AI Search",
+      "verified": true
+    },
+    "deep-research": {
+      "displayName": "Deep Research",
+      "verified": true
+    },
+    "labs": {
+      "displayName": "Perplexity Labs",
+      "verified": true
+    },
+    "spaces": {
+      "displayName": "Spaces",
+      "verified": true
+    },
+    "discover": {
+      "displayName": "Discover",
+      "verified": true
+    },
+    "pages": {
+      "displayName": "Pages",
+      "verified": true
+    },
+    "web-search": {
+      "displayName": "Web Search",
+      "verified": true
+    },
+    "voice": {
+      "displayName": "Voice",
+      "verified": true
+    },
+    "image-generation": {
+      "displayName": "Image Generation",
+      "verified": true
+    },
+    "file-analysis": {
+      "displayName": "File Analysis",
+      "verified": true
+    },
+    "api": {
+      "displayName": "Developer API",
+      "verified": true
+    },
+    "enterprise": {
+      "displayName": "Enterprise",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "perplexity/sonar"
+      ],
+      "products": [
+        "search",
+        "discover",
+        "web-search",
+        "voice"
+      ],
+      "notes": "Free AI search with limited Pro searches per day."
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 20,
+      "verified": true,
+      "models": [
+        "perplexity/sonar",
+        "perplexity/sonar-pro",
+        "perplexity/sonar-reasoning",
+        "perplexity/sonar-reasoning-pro",
+        "perplexity/r1-1776"
+      ],
+      "products": [
+        "search",
+        "deep-research",
+        "labs",
+        "spaces",
+        "discover",
+        "pages",
+        "web-search",
+        "voice",
+        "image-generation",
+        "file-analysis"
+      ],
+      "notes": "Includes unlimited Quick searches, daily Pro searches, Labs, Deep Research, and access to premium AI models."
+    },
+    {
+      "plan": "Max",
+      "monthlyPrice": 200,
+      "verified": true,
+      "models": [
+        "perplexity/sonar",
+        "perplexity/sonar-pro",
+        "perplexity/sonar-reasoning",
+        "perplexity/sonar-reasoning-pro",
+        "perplexity/r1-1776"
+      ],
+      "products": [
+        "search",
+        "deep-research",
+        "labs",
+        "spaces",
+        "discover",
+        "pages",
+        "web-search",
+        "voice",
+        "image-generation",
+        "file-analysis"
+      ],
+      "notes": "Highest consumer tier with significantly increased usage limits and priority access."
+    },
+    {
+      "plan": "Enterprise Pro",
+      "monthlyPrice": 40,
+      "verified": true,
+      "models": [
+        "perplexity/sonar",
+        "perplexity/sonar-pro",
+        "perplexity/sonar-reasoning",
+        "perplexity/sonar-reasoning-pro",
+        "perplexity/r1-1776"
+      ],
+      "products": [
+        "search",
+        "deep-research",
+        "labs",
+        "spaces",
+        "discover",
+        "pages",
+        "web-search",
+        "voice",
+        "image-generation",
+        "file-analysis",
+        "enterprise"
+      ],
+      "notes": "Per-user pricing with enterprise administration, SSO, enhanced security, and compliance."
+    },
+    {
+      "plan": "Developer API",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "perplexity/sonar",
+        "perplexity/sonar-pro",
+        "perplexity/sonar-reasoning",
+        "perplexity/sonar-reasoning-pro",
+        "perplexity/r1-1776"
+      ],
+      "products": [
+        "api"
+      ],
+      "notes": "Usage-based API pricing."
+    }
+  ]
+}

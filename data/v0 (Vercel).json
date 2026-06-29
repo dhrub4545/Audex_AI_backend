@@ -1,0 +1,283 @@
+{
+  "provider": "Vercel",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Vercel Documentation",
+  "officialSources": [
+    {
+      "title": "v0",
+      "url": "https://v0.app"
+    },
+    {
+      "title": "v0 Pricing",
+      "url": "https://v0.app/pricing"
+    },
+    {
+      "title": "v0 Documentation",
+      "url": "https://v0.app/docs"
+    },
+    {
+      "title": "v0 API",
+      "url": "https://v0.app/docs/api"
+    },
+    {
+      "title": "Vercel Blog - Updated v0 Pricing",
+      "url": "https://vercel.com/blog/updated-v0-pricing"
+    }
+  ],
+  "modelCatalog": {
+    "vercel/v0-mini": {
+      "displayName": "v0 Mini",
+      "officialNames": [
+        "v0 Mini"
+      ],
+      "verified": true,
+      "notes": "Fastest and lowest-cost model for UI generation and everyday development."
+    },
+    "vercel/v0-pro": {
+      "displayName": "v0 Pro",
+      "officialNames": [
+        "v0 Pro"
+      ],
+      "verified": true,
+      "notes": "Balanced model for production-quality app generation."
+    },
+    "vercel/v0-max": {
+      "displayName": "v0 Max",
+      "officialNames": [
+        "v0 Max"
+      ],
+      "verified": true,
+      "notes": "Highest intelligence model for complex engineering tasks."
+    },
+    "vercel/v0-max-fast": {
+      "displayName": "v0 Max Fast",
+      "officialNames": [
+        "v0 Max Fast"
+      ],
+      "verified": true,
+      "notes": "High-speed version of v0 Max optimized for rapid iteration."
+    }
+  },
+  "productCatalog": {
+    "agent": {
+      "displayName": "Agent",
+      "verified": true
+    },
+    "app-generation": {
+      "displayName": "App Generation",
+      "verified": true
+    },
+    "design-mode": {
+      "displayName": "Design Mode",
+      "verified": true
+    },
+    "templates": {
+      "displayName": "Templates",
+      "verified": true
+    },
+    "github-sync": {
+      "displayName": "GitHub Sync",
+      "verified": true
+    },
+    "vercel-deployment": {
+      "displayName": "One-click Deployment",
+      "verified": true
+    },
+    "figma-import": {
+      "displayName": "Figma Import",
+      "verified": true
+    },
+    "api": {
+      "displayName": "v0 API",
+      "verified": true
+    },
+    "design-systems": {
+      "displayName": "Design Systems",
+      "verified": true
+    },
+    "databases": {
+      "displayName": "Database Integration",
+      "verified": true
+    },
+    "integrations": {
+      "displayName": "Integrations",
+      "verified": true
+    },
+    "code-export": {
+      "displayName": "Code Export",
+      "verified": true
+    },
+    "collaboration": {
+      "displayName": "Collaboration",
+      "verified": true
+    },
+    "shared-projects": {
+      "displayName": "Shared Projects",
+      "verified": true
+    },
+    "shared-credit-pool": {
+      "displayName": "Shared Credit Pool",
+      "verified": true
+    },
+    "centralized-billing": {
+      "displayName": "Centralized Billing",
+      "verified": true
+    },
+    "priority-access": {
+      "displayName": "Priority Access",
+      "verified": true
+    },
+    "saml-sso": {
+      "displayName": "SAML SSO",
+      "verified": true
+    },
+    "rbac": {
+      "displayName": "Role-Based Access Control",
+      "verified": true
+    },
+    "training-opt-out": {
+      "displayName": "Training Opt-out",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "vercel/v0-mini"
+      ],
+      "products": [
+        "agent",
+        "app-generation",
+        "design-mode",
+        "templates",
+        "github-sync",
+        "vercel-deployment",
+        "code-export"
+      ],
+      "notes": "$5 monthly credits, 7 messages/day, deploy to Vercel, visual editing, GitHub sync."
+    },
+    {
+      "plan": "Premium",
+      "monthlyPrice": 20,
+      "verified": true,
+      "models": [
+        "vercel/v0-mini",
+        "vercel/v0-pro"
+      ],
+      "products": [
+        "agent",
+        "app-generation",
+        "design-mode",
+        "templates",
+        "github-sync",
+        "vercel-deployment",
+        "figma-import",
+        "design-systems",
+        "databases",
+        "integrations",
+        "code-export",
+        "api"
+      ],
+      "notes": "$20 monthly credits, $2 daily login credits, purchase additional credits, larger uploads, API access. Premium is being sunset for new users but remains for existing subscribers."
+    },
+    {
+      "plan": "Team",
+      "monthlyPrice": 30,
+      "verified": true,
+      "models": [
+        "vercel/v0-mini",
+        "vercel/v0-pro",
+        "vercel/v0-max"
+      ],
+      "products": [
+        "agent",
+        "app-generation",
+        "design-mode",
+        "templates",
+        "github-sync",
+        "vercel-deployment",
+        "figma-import",
+        "design-systems",
+        "databases",
+        "integrations",
+        "code-export",
+        "api",
+        "collaboration",
+        "shared-projects",
+        "shared-credit-pool",
+        "centralized-billing"
+      ],
+      "notes": "$30 included credits per user each month, shared credit pool, collaboration features, centralized billing."
+    },
+    {
+      "plan": "Business",
+      "monthlyPrice": 100,
+      "verified": true,
+      "models": [
+        "vercel/v0-mini",
+        "vercel/v0-pro",
+        "vercel/v0-max",
+        "vercel/v0-max-fast"
+      ],
+      "products": [
+        "agent",
+        "app-generation",
+        "design-mode",
+        "templates",
+        "github-sync",
+        "vercel-deployment",
+        "figma-import",
+        "design-systems",
+        "databases",
+        "integrations",
+        "code-export",
+        "api",
+        "collaboration",
+        "shared-projects",
+        "shared-credit-pool",
+        "centralized-billing",
+        "training-opt-out"
+      ],
+      "notes": "$30 included monthly credits per user, business privacy defaults, centralized billing, additional credits available."
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "vercel/v0-mini",
+        "vercel/v0-pro",
+        "vercel/v0-max",
+        "vercel/v0-max-fast"
+      ],
+      "products": [
+        "agent",
+        "app-generation",
+        "design-mode",
+        "templates",
+        "github-sync",
+        "vercel-deployment",
+        "figma-import",
+        "design-systems",
+        "databases",
+        "integrations",
+        "code-export",
+        "api",
+        "collaboration",
+        "shared-projects",
+        "shared-credit-pool",
+        "centralized-billing",
+        "priority-access",
+        "training-opt-out",
+        "saml-sso",
+        "rbac"
+      ],
+      "notes": "Custom pricing with SAML SSO, RBAC, guaranteed SLAs, priority inference, enterprise security, and dedicated support."
+    }
+  ]
+}

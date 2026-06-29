@@ -1,0 +1,328 @@
+{
+  "provider": "Runway",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Runway Documentation",
+  "officialSources": [
+    {
+      "title": "Runway",
+      "url": "https://runwayml.com/"
+    },
+    {
+      "title": "Runway Pricing",
+      "url": "https://runwayml.com/pricing"
+    },
+    {
+      "title": "Runway Documentation",
+      "url": "https://help.runwayml.com/"
+    },
+    {
+      "title": "Runway API",
+      "url": "https://docs.dev.runwayml.com/"
+    }
+  ],
+  "modelCatalog": {
+    "runway/gen-4": {
+      "displayName": "Gen-4",
+      "officialNames": [
+        "Gen-4"
+      ],
+      "verified": true,
+      "notes": "Latest flagship multimodal video generation model."
+    },
+    "runway/gen-4-turbo": {
+      "displayName": "Gen-4 Turbo",
+      "officialNames": [
+        "Gen-4 Turbo"
+      ],
+      "verified": true,
+      "notes": "High-speed version of Gen-4 optimized for rapid generation."
+    },
+    "runway/gen-3-alpha": {
+      "displayName": "Gen-3 Alpha",
+      "officialNames": [
+        "Gen-3 Alpha"
+      ],
+      "verified": true,
+      "notes": "Production video generation model."
+    },
+    "runway/gen-3-alpha-turbo": {
+      "displayName": "Gen-3 Alpha Turbo",
+      "officialNames": [
+        "Gen-3 Alpha Turbo"
+      ],
+      "verified": true
+    },
+    "runway/act-one": {
+      "displayName": "Act-One",
+      "officialNames": [
+        "Act-One"
+      ],
+      "verified": true,
+      "notes": "Performance-driven character animation model."
+    },
+    "runway/frames": {
+      "displayName": "Frames",
+      "officialNames": [
+        "Frames"
+      ],
+      "verified": true,
+      "notes": "Image generation model for cinematic stills."
+    },
+    "runway/aleph": {
+      "displayName": "Aleph",
+      "officialNames": [
+        "Aleph"
+      ],
+      "verified": true,
+      "notes": "Universal in-context image editing model."
+    }
+  },
+  "productCatalog": {
+    "video-generation": {
+      "displayName": "Video Generation",
+      "verified": true
+    },
+    "image-generation": {
+      "displayName": "Image Generation",
+      "verified": true
+    },
+    "image-editing": {
+      "displayName": "Image Editing",
+      "verified": true
+    },
+    "video-editing": {
+      "displayName": "Video Editing",
+      "verified": true
+    },
+    "act-one": {
+      "displayName": "Act-One",
+      "verified": true
+    },
+    "frames": {
+      "displayName": "Frames",
+      "verified": true
+    },
+    "aleph": {
+      "displayName": "Aleph",
+      "verified": true
+    },
+    "motion-brush": {
+      "displayName": "Motion Brush",
+      "verified": true
+    },
+    "camera-controls": {
+      "displayName": "Camera Controls",
+      "verified": true
+    },
+    "lip-sync": {
+      "displayName": "Lip Sync",
+      "verified": true
+    },
+    "green-screen": {
+      "displayName": "Green Screen",
+      "verified": true
+    },
+    "erase-replace": {
+      "displayName": "Erase & Replace",
+      "verified": true
+    },
+    "expand-video": {
+      "displayName": "Expand Video",
+      "verified": true
+    },
+    "inpainting": {
+      "displayName": "Inpainting",
+      "verified": true
+    },
+    "upscaling": {
+      "displayName": "Upscaling",
+      "verified": true
+    },
+    "audio-tools": {
+      "displayName": "Audio Tools",
+      "verified": true
+    },
+    "assets": {
+      "displayName": "Assets",
+      "verified": true
+    },
+    "workspaces": {
+      "displayName": "Workspaces",
+      "verified": true
+    },
+    "api": {
+      "displayName": "Runway API",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Basic",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "runway/gen-4",
+        "runway/frames"
+      ],
+      "products": [
+        "video-generation",
+        "image-generation",
+        "image-editing",
+        "video-editing",
+        "frames",
+        "assets"
+      ],
+      "notes": "Free plan with limited monthly credits."
+    },
+    {
+      "plan": "Standard",
+      "monthlyPrice": 15,
+      "verified": true,
+      "models": [
+        "runway/gen-4",
+        "runway/gen-4-turbo",
+        "runway/gen-3-alpha",
+        "runway/frames",
+        "runway/aleph"
+      ],
+      "products": [
+        "video-generation",
+        "image-generation",
+        "image-editing",
+        "video-editing",
+        "frames",
+        "aleph",
+        "motion-brush",
+        "camera-controls",
+        "green-screen",
+        "erase-replace",
+        "assets"
+      ],
+      "notes": "625 monthly credits."
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 35,
+      "verified": true,
+      "models": [
+        "runway/gen-4",
+        "runway/gen-4-turbo",
+        "runway/gen-3-alpha",
+        "runway/gen-3-alpha-turbo",
+        "runway/act-one",
+        "runway/frames",
+        "runway/aleph"
+      ],
+      "products": [
+        "video-generation",
+        "image-generation",
+        "image-editing",
+        "video-editing",
+        "act-one",
+        "frames",
+        "aleph",
+        "motion-brush",
+        "camera-controls",
+        "lip-sync",
+        "green-screen",
+        "erase-replace",
+        "expand-video",
+        "inpainting",
+        "upscaling",
+        "audio-tools",
+        "assets"
+      ],
+      "notes": "2250 monthly credits with higher generation limits."
+    },
+    {
+      "plan": "Unlimited",
+      "monthlyPrice": 95,
+      "verified": true,
+      "models": [
+        "runway/gen-4",
+        "runway/gen-4-turbo",
+        "runway/gen-3-alpha",
+        "runway/gen-3-alpha-turbo",
+        "runway/act-one",
+        "runway/frames",
+        "runway/aleph"
+      ],
+      "products": [
+        "video-generation",
+        "image-generation",
+        "image-editing",
+        "video-editing",
+        "act-one",
+        "frames",
+        "aleph",
+        "motion-brush",
+        "camera-controls",
+        "lip-sync",
+        "green-screen",
+        "erase-replace",
+        "expand-video",
+        "inpainting",
+        "upscaling",
+        "audio-tools",
+        "assets"
+      ],
+      "notes": "Unlimited relaxed video generations with monthly credits for premium modes."
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "runway/gen-4",
+        "runway/gen-4-turbo",
+        "runway/gen-3-alpha",
+        "runway/gen-3-alpha-turbo",
+        "runway/act-one",
+        "runway/frames",
+        "runway/aleph"
+      ],
+      "products": [
+        "video-generation",
+        "image-generation",
+        "image-editing",
+        "video-editing",
+        "act-one",
+        "frames",
+        "aleph",
+        "motion-brush",
+        "camera-controls",
+        "lip-sync",
+        "green-screen",
+        "erase-replace",
+        "expand-video",
+        "inpainting",
+        "upscaling",
+        "audio-tools",
+        "assets",
+        "workspaces",
+        "api"
+      ],
+      "notes": "Custom enterprise pricing with SSO, team administration, API access, and dedicated support."
+    },
+    {
+      "plan": "API",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "runway/gen-4",
+        "runway/gen-4-turbo",
+        "runway/gen-3-alpha",
+        "runway/gen-3-alpha-turbo",
+        "runway/act-one",
+        "runway/frames",
+        "runway/aleph"
+      ],
+      "products": [
+        "api"
+      ],
+      "notes": "Usage-based API pricing."
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "provider": "Windsurf",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Windsurf Documentation",
+  "officialSources": [
+    {
+      "title": "Windsurf",
+      "url": "https://windsurf.com/"
+    },
+    {
+      "title": "Windsurf Pricing",
+      "url": "https://windsurf.com/pricing"
+    },
+    {
+      "title": "Windsurf Docs",
+      "url": "https://docs.windsurf.com/"
+    },
+    {
+      "title": "Windsurf Blog",
+      "url": "https://windsurf.com/blog"
+    }
+  ],
+  "modelCatalog": {
+    "windsurf/swe-1": {
+      "displayName": "SWE-1",
+      "officialNames": [
+        "SWE-1"
+      ],
+      "verified": true,
+      "notes": "Flagship proprietary software engineering model."
+    },
+    "windsurf/swe-1.5": {
+      "displayName": "SWE-1.5",
+      "officialNames": [
+        "SWE-1.5"
+      ],
+      "verified": true,
+      "notes": "Improved generation of SWE-1 optimized for agent workflows."
+    },
+    "windsurf/swe-1-mini": {
+      "displayName": "SWE-1 Mini",
+      "officialNames": [
+        "SWE-1 Mini"
+      ],
+      "verified": true,
+      "notes": "Lightweight proprietary coding model."
+    },
+    "windsurf/tab": {
+      "displayName": "Tab",
+      "officialNames": [
+        "Tab"
+      ],
+      "verified": true,
+      "notes": "Native autocomplete model."
+    },
+    "windsurf/cascade": {
+      "displayName": "Cascade",
+      "officialNames": [
+        "Cascade"
+      ],
+      "verified": true,
+      "notes": "Multi-file autonomous coding agent."
+    }
+  },
+  "productCatalog": {
+    "cascade": {
+      "displayName": "Cascade",
+      "verified": true
+    },
+    "tab": {
+      "displayName": "Tab",
+      "verified": true
+    },
+    "chat": {
+      "displayName": "Chat",
+      "verified": true
+    },
+    "inline-edit": {
+      "displayName": "Inline Edit",
+      "verified": true
+    },
+    "fast-context": {
+      "displayName": "Fast Context",
+      "verified": true
+    },
+    "riptide-indexing": {
+      "displayName": "Riptide Indexing",
+      "verified": true
+    },
+    "terminal": {
+      "displayName": "Terminal Agent",
+      "verified": true
+    },
+    "code-review": {
+      "displayName": "AI Code Review",
+      "verified": true
+    },
+    "background-agents": {
+      "displayName": "Background Agents",
+      "verified": true
+    },
+    "app-deploy": {
+      "displayName": "App Deploy",
+      "verified": true
+    },
+    "preview": {
+      "displayName": "Live Preview",
+      "verified": true
+    },
+    "mcp": {
+      "displayName": "MCP",
+      "verified": true
+    },
+    "byok": {
+      "displayName": "Bring Your Own Key",
+      "verified": true
+    },
+    "teams": {
+      "displayName": "Teams",
+      "verified": true
+    },
+    "enterprise": {
+      "displayName": "Enterprise",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "windsurf/swe-1-mini",
+        "windsurf/tab"
+      ],
+      "products": [
+        "cascade",
+        "tab",
+        "chat",
+        "inline-edit",
+        "fast-context",
+        "preview"
+      ],
+      "notes": "Free tier with limited AI usage, unlimited Tab completions, and limited Cascade access."
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 20,
+      "verified": true,
+      "models": [
+        "windsurf/swe-1",
+        "windsurf/swe-1.5",
+        "windsurf/swe-1-mini",
+        "windsurf/tab",
+        "windsurf/cascade"
+      ],
+      "products": [
+        "cascade",
+        "tab",
+        "chat",
+        "inline-edit",
+        "fast-context",
+        "riptide-indexing",
+        "terminal",
+        "code-review",
+        "background-agents",
+        "preview",
+        "app-deploy",
+        "mcp",
+        "byok"
+      ],
+      "notes": "Individual developer plan with standard usage quotas and access to proprietary SWE models. Windsurf transitioned from credit-based pricing to quota-based usage in 2026. :contentReference[oaicite:0]{index=0}"
+    },
+    {
+      "plan": "Max",
+      "monthlyPrice": 200,
+      "verified": true,
+      "models": [
+        "windsurf/swe-1",
+        "windsurf/swe-1.5",
+        "windsurf/swe-1-mini",
+        "windsurf/tab",
+        "windsurf/cascade"
+      ],
+      "products": [
+        "cascade",
+        "tab",
+        "chat",
+        "inline-edit",
+        "fast-context",
+        "riptide-indexing",
+        "terminal",
+        "code-review",
+        "background-agents",
+        "preview",
+        "app-deploy",
+        "mcp",
+        "byok"
+      ],
+      "notes": "Highest individual tier with significantly increased AI quotas and priority model access. :contentReference[oaicite:1]{index=1}"
+    },
+    {
+      "plan": "Teams",
+      "monthlyPrice": 40,
+      "verified": true,
+      "models": [
+        "windsurf/swe-1",
+        "windsurf/swe-1.5",
+        "windsurf/swe-1-mini",
+        "windsurf/tab",
+        "windsurf/cascade"
+      ],
+      "products": [
+        "cascade",
+        "tab",
+        "chat",
+        "inline-edit",
+        "fast-context",
+        "riptide-indexing",
+        "terminal",
+        "code-review",
+        "background-agents",
+        "preview",
+        "app-deploy",
+        "mcp",
+        "teams"
+      ],
+      "notes": "Per-user pricing with centralized billing, team management, and shared administration. :contentReference[oaicite:2]{index=2}"
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "windsurf/swe-1",
+        "windsurf/swe-1.5",
+        "windsurf/swe-1-mini",
+        "windsurf/tab",
+        "windsurf/cascade"
+      ],
+      "products": [
+        "cascade",
+        "tab",
+        "chat",
+        "inline-edit",
+        "fast-context",
+        "riptide-indexing",
+        "terminal",
+        "code-review",
+        "background-agents",
+        "preview",
+        "app-deploy",
+        "mcp",
+        "teams",
+        "enterprise"
+      ],
+      "notes": "Custom enterprise pricing with SSO, RBAC, SCIM, priority support, and enterprise administration."
+    }
+  ]
+}

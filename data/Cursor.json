@@ -1,0 +1,244 @@
+{
+  "provider": "Cursor",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Cursor Documentation",
+  "officialSources": [
+    {
+      "title": "Cursor",
+      "url": "https://cursor.com/"
+    },
+    {
+      "title": "Cursor Pricing",
+      "url": "https://cursor.com/pricing"
+    },
+    {
+      "title": "Models & Pricing",
+      "url": "https://cursor.com/docs/models-and-pricing"
+    },
+    {
+      "title": "Cursor Documentation",
+      "url": "https://cursor.com/docs"
+    }
+  ],
+  "modelCatalog": {
+    "cursor/auto": {
+      "displayName": "Auto",
+      "officialNames": [
+        "Auto"
+      ],
+      "verified": true,
+      "notes": "Cursor automatically selects the best available model for the task."
+    },
+    "cursor/tab": {
+      "displayName": "Tab",
+      "officialNames": [
+        "Tab"
+      ],
+      "verified": true,
+      "notes": "Cursor's proprietary autocomplete model."
+    },
+    "cursor/bugbot": {
+      "displayName": "BugBot",
+      "officialNames": [
+        "BugBot"
+      ],
+      "verified": true
+    }
+  },
+  "productCatalog": {
+    "agent": {
+      "displayName": "Agent",
+      "verified": true
+    },
+    "chat": {
+      "displayName": "Chat",
+      "verified": true
+    },
+    "tab": {
+      "displayName": "Tab",
+      "verified": true
+    },
+    "bugbot": {
+      "displayName": "BugBot",
+      "verified": true
+    },
+    "background-agents": {
+      "displayName": "Background Agents",
+      "verified": true
+    },
+    "cloud-agents": {
+      "displayName": "Cloud Agents",
+      "verified": true
+    },
+    "mcp": {
+      "displayName": "MCP",
+      "verified": true
+    },
+    "rules": {
+      "displayName": "Rules",
+      "verified": true
+    },
+    "skills": {
+      "displayName": "Skills",
+      "verified": true
+    },
+    "hooks": {
+      "displayName": "Hooks",
+      "verified": true
+    },
+    "privacy-mode": {
+      "displayName": "Privacy Mode",
+      "verified": true
+    },
+    "teams": {
+      "displayName": "Teams",
+      "verified": true
+    },
+    "enterprise": {
+      "displayName": "Enterprise",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Hobby",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "cursor/auto",
+        "cursor/tab"
+      ],
+      "products": [
+        "agent",
+        "chat",
+        "tab"
+      ],
+      "notes": "Free plan with limited Agent usage and Tab completions."
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 20,
+      "verified": true,
+      "models": [
+        "cursor/auto",
+        "cursor/tab",
+        "cursor/bugbot"
+      ],
+      "products": [
+        "agent",
+        "chat",
+        "tab",
+        "bugbot",
+        "background-agents",
+        "cloud-agents",
+        "mcp",
+        "rules",
+        "skills",
+        "hooks",
+        "privacy-mode"
+      ],
+      "notes": "Includes base monthly model usage with optional on-demand billing."
+    },
+    {
+      "plan": "Pro+",
+      "monthlyPrice": 60,
+      "verified": true,
+      "models": [
+        "cursor/auto",
+        "cursor/tab",
+        "cursor/bugbot"
+      ],
+      "products": [
+        "agent",
+        "chat",
+        "tab",
+        "bugbot",
+        "background-agents",
+        "cloud-agents",
+        "mcp",
+        "rules",
+        "skills",
+        "hooks",
+        "privacy-mode"
+      ],
+      "notes": "Includes approximately 3× the Pro model usage."
+    },
+    {
+      "plan": "Ultra",
+      "monthlyPrice": 200,
+      "verified": true,
+      "models": [
+        "cursor/auto",
+        "cursor/tab",
+        "cursor/bugbot"
+      ],
+      "products": [
+        "agent",
+        "chat",
+        "tab",
+        "bugbot",
+        "background-agents",
+        "cloud-agents",
+        "mcp",
+        "rules",
+        "skills",
+        "hooks",
+        "privacy-mode"
+      ],
+      "notes": "Includes approximately 20× the Pro model usage with priority access."
+    },
+    {
+      "plan": "Teams",
+      "monthlyPrice": 40,
+      "verified": true,
+      "models": [
+        "cursor/auto",
+        "cursor/tab",
+        "cursor/bugbot"
+      ],
+      "products": [
+        "agent",
+        "chat",
+        "tab",
+        "bugbot",
+        "background-agents",
+        "cloud-agents",
+        "mcp",
+        "rules",
+        "skills",
+        "hooks",
+        "privacy-mode",
+        "teams"
+      ],
+      "notes": "Per-user pricing with centralized billing, analytics, RBAC, and SSO."
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "cursor/auto",
+        "cursor/tab",
+        "cursor/bugbot"
+      ],
+      "products": [
+        "agent",
+        "chat",
+        "tab",
+        "bugbot",
+        "background-agents",
+        "cloud-agents",
+        "mcp",
+        "rules",
+        "skills",
+        "hooks",
+        "privacy-mode",
+        "teams",
+        "enterprise"
+      ],
+      "notes": "Custom enterprise pricing with pooled usage, SCIM, audit logs, and enterprise administration."
+    }
+  ]
+}

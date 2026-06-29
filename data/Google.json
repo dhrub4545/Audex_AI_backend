@@ -1,0 +1,349 @@
+{
+  "provider": "Google",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Google Documentation",
+  "officialSources": [
+    {
+      "title": "Google AI Plans",
+      "url": "https://one.google.com/about/google-ai-plans/"
+    },
+    {
+      "title": "Gemini",
+      "url": "https://gemini.google.com/"
+    },
+    {
+      "title": "Google AI for Developers",
+      "url": "https://ai.google.dev/"
+    },
+    {
+      "title": "Gemini API Documentation",
+      "url": "https://ai.google.dev/gemini-api/docs"
+    },
+    {
+      "title": "Gemini API Billing",
+      "url": "https://ai.google.dev/gemini-api/docs/billing"
+    }
+  ],
+  "modelCatalog": {
+    "google/gemini-3.5-pro": {
+      "displayName": "Gemini 3.5 Pro",
+      "officialNames": [
+        "Gemini 3.5 Pro"
+      ],
+      "verified": true,
+      "notes": "Google's flagship reasoning model."
+    },
+    "google/gemini-3.5-flash": {
+      "displayName": "Gemini 3.5 Flash",
+      "officialNames": [
+        "Gemini 3.5 Flash"
+      ],
+      "verified": true,
+      "notes": "Fast multimodal model optimized for everyday AI tasks."
+    },
+    "google/gemini-3.1-pro": {
+      "displayName": "Gemini 3.1 Pro",
+      "officialNames": [
+        "Gemini 3.1 Pro"
+      ],
+      "verified": true
+    },
+    "google/gemini-3.1-flash": {
+      "displayName": "Gemini 3.1 Flash",
+      "officialNames": [
+        "Gemini 3.1 Flash"
+      ],
+      "verified": true
+    },
+    "google/gemini-3.1-flash-lite": {
+      "displayName": "Gemini 3.1 Flash-Lite",
+      "officialNames": [
+        "Gemini 3.1 Flash-Lite"
+      ],
+      "verified": true
+    },
+    "google/gemini-2.5-pro": {
+      "displayName": "Gemini 2.5 Pro",
+      "officialNames": [
+        "Gemini 2.5 Pro"
+      ],
+      "verified": true,
+      "notes": "Available for compatibility and API workloads."
+    },
+    "google/gemini-2.5-flash": {
+      "displayName": "Gemini 2.5 Flash",
+      "officialNames": [
+        "Gemini 2.5 Flash"
+      ],
+      "verified": true
+    },
+    "google/gemini-2.5-flash-lite": {
+      "displayName": "Gemini 2.5 Flash-Lite",
+      "officialNames": [
+        "Gemini 2.5 Flash-Lite"
+      ],
+      "verified": true
+    },
+    "google/gemini-live": {
+      "displayName": "Gemini Live",
+      "officialNames": [
+        "Gemini Live"
+      ],
+      "verified": true
+    },
+    "google/gemini-omni": {
+      "displayName": "Gemini Omni",
+      "officialNames": [
+        "Gemini Omni"
+      ],
+      "verified": true
+    },
+    "google/nano-banana": {
+      "displayName": "Nano Banana",
+      "officialNames": [
+        "Nano Banana"
+      ],
+      "verified": true,
+      "notes": "Google's image generation/editing model family."
+    },
+    "google/lyria-3": {
+      "displayName": "Lyria 3",
+      "officialNames": [
+        "Lyria 3"
+      ],
+      "verified": true,
+      "notes": "Music generation model."
+    },
+    "google/veo-3": {
+      "displayName": "Veo 3",
+      "officialNames": [
+        "Veo 3"
+      ],
+      "verified": true,
+      "notes": "Video generation model."
+    },
+    "google/imagen-4": {
+      "displayName": "Imagen 4",
+      "officialNames": [
+        "Imagen 4"
+      ],
+      "verified": true,
+      "notes": "Image generation model."
+    }
+  },
+  "productCatalog": {
+    "gemini": {
+      "displayName": "Gemini",
+      "verified": true
+    },
+    "gemini-live": {
+      "displayName": "Gemini Live",
+      "verified": true
+    },
+    "gems": {
+      "displayName": "Gems",
+      "verified": true
+    },
+    "deep-search": {
+      "displayName": "Deep Search",
+      "verified": true
+    },
+    "canvas": {
+      "displayName": "Canvas",
+      "verified": true
+    },
+    "flow": {
+      "displayName": "Google Flow",
+      "verified": true
+    },
+    "ai-studio": {
+      "displayName": "Google AI Studio",
+      "verified": true
+    },
+    "developer-api": {
+      "displayName": "Gemini Developer API",
+      "verified": true
+    },
+    "vertex-ai": {
+      "displayName": "Vertex AI",
+      "verified": true
+    },
+    "notebooklm": {
+      "displayName": "NotebookLM",
+      "verified": true
+    },
+    "whisk": {
+      "displayName": "Whisk",
+      "verified": true
+    },
+    "jules": {
+      "displayName": "Jules",
+      "verified": true
+    },
+    "android-studio-ai": {
+      "displayName": "Android Studio AI",
+      "verified": true
+    },
+    "antigravity": {
+      "displayName": "Antigravity",
+      "verified": true
+    },
+    "spark": {
+      "displayName": "Gemini Spark",
+      "verified": true
+    },
+    "workspace-ai": {
+      "displayName": "Workspace AI",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "google/gemini-3.5-flash",
+        "google/gemini-3.1-flash",
+        "google/gemini-3.1-flash-lite"
+      ],
+      "products": [
+        "gemini",
+        "gemini-live",
+        "gems",
+        "canvas",
+        "notebooklm",
+        "ai-studio"
+      ],
+      "notes": "Limited usage with access to Gemini and Google AI Studio free tier."
+    },
+    {
+      "plan": "Google AI Plus",
+      "monthlyPrice": 5,
+      "verified": true,
+      "models": [
+        "google/gemini-3.5-flash",
+        "google/nano-banana"
+      ],
+      "products": [
+        "gemini",
+        "gemini-live",
+        "gems",
+        "canvas",
+        "flow",
+        "notebooklm"
+      ],
+      "notes": "Includes higher limits than Free and 400 GB cloud storage."
+    },
+    {
+      "plan": "Google AI Pro",
+      "monthlyPrice": 20,
+      "verified": true,
+      "models": [
+        "google/gemini-3.5-pro",
+        "google/gemini-3.5-flash",
+        "google/gemini-3.1-pro",
+        "google/gemini-3.1-flash",
+        "google/nano-banana",
+        "google/veo-3",
+        "google/imagen-4"
+      ],
+      "products": [
+        "gemini",
+        "gemini-live",
+        "gems",
+        "deep-search",
+        "canvas",
+        "flow",
+        "ai-studio",
+        "developer-api",
+        "notebooklm",
+        "jules",
+        "android-studio-ai",
+        "workspace-ai"
+      ],
+      "notes": "Higher usage limits, 5 TB cloud storage, Google Cloud credits, expanded AI Studio access."
+    },
+    {
+      "plan": "Google AI Ultra",
+      "monthlyPrice": 100,
+      "verified": true,
+      "models": [
+        "google/gemini-3.5-pro",
+        "google/gemini-3.5-flash",
+        "google/gemini-3.1-pro",
+        "google/gemini-3.1-flash",
+        "google/gemini-live",
+        "google/gemini-omni",
+        "google/nano-banana",
+        "google/imagen-4",
+        "google/veo-3",
+        "google/lyria-3"
+      ],
+      "products": [
+        "gemini",
+        "gemini-live",
+        "gems",
+        "deep-search",
+        "canvas",
+        "flow",
+        "ai-studio",
+        "developer-api",
+        "vertex-ai",
+        "notebooklm",
+        "whisk",
+        "jules",
+        "android-studio-ai",
+        "spark",
+        "workspace-ai",
+        "antigravity"
+      ],
+      "notes": "Highest consumer tier with early access to newest Gemini capabilities, highest limits, AI Studio expansion, Google Cloud credits, and 20 TB cloud storage."
+    },
+    {
+      "plan": "Gemini Developer API",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "google/gemini-3.5-pro",
+        "google/gemini-3.5-flash",
+        "google/gemini-3.1-pro",
+        "google/gemini-3.1-flash",
+        "google/gemini-3.1-flash-lite",
+        "google/gemini-2.5-pro",
+        "google/gemini-2.5-flash",
+        "google/gemini-2.5-flash-lite",
+        "google/imagen-4",
+        "google/veo-3",
+        "google/lyria-3"
+      ],
+      "products": [
+        "developer-api",
+        "ai-studio"
+      ],
+      "notes": "Pay-as-you-go token pricing with billing tiers."
+    },
+    {
+      "plan": "Vertex AI",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "google/gemini-3.5-pro",
+        "google/gemini-3.5-flash",
+        "google/gemini-3.1-pro",
+        "google/gemini-3.1-flash",
+        "google/gemini-2.5-pro",
+        "google/gemini-2.5-flash",
+        "google/imagen-4",
+        "google/veo-3",
+        "google/lyria-3"
+      ],
+      "products": [
+        "vertex-ai"
+      ],
+      "notes": "Enterprise pay-as-you-go deployment through Google Cloud."
+    }
+  ]
+}

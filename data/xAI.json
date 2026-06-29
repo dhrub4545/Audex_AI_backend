@@ -1,0 +1,289 @@
+{
+  "provider": "xAI",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official xAI Documentation",
+  "officialSources": [
+    {
+      "title": "xAI",
+      "url": "https://x.ai/"
+    },
+    {
+      "title": "xAI Pricing",
+      "url": "https://x.ai/pricing"
+    },
+    {
+      "title": "xAI API",
+      "url": "https://x.ai/api"
+    },
+    {
+      "title": "xAI Developer Documentation",
+      "url": "https://docs.x.ai/"
+    },
+    {
+      "title": "xAI API Pricing",
+      "url": "https://docs.x.ai/developers/pricing"
+    }
+  ],
+  "modelCatalog": {
+    "xai/grok-4.3": {
+      "displayName": "Grok 4.3",
+      "officialNames": [
+        "grok-4.3"
+      ],
+      "verified": true,
+      "notes": "Latest flagship multimodal reasoning model with 1M-token context."
+    },
+    "xai/grok-4.20-multi-agent": {
+      "displayName": "Grok 4.20 Multi-Agent",
+      "officialNames": [
+        "grok-4.20-multi-agent-0309"
+      ],
+      "verified": true,
+      "notes": "Designed for collaborative multi-agent workflows."
+    },
+    "xai/grok-4.20-reasoning": {
+      "displayName": "Grok 4.20 Reasoning",
+      "officialNames": [
+        "grok-4.20-0309-reasoning"
+      ],
+      "verified": true,
+      "notes": "Reasoning-optimized flagship model."
+    },
+    "xai/grok-4.20": {
+      "displayName": "Grok 4.20",
+      "officialNames": [
+        "grok-4.20-0309-non-reasoning"
+      ],
+      "verified": true,
+      "notes": "Standard flagship model with reasoning disabled."
+    },
+    "xai/grok-build": {
+      "displayName": "Grok Build",
+      "officialNames": [
+        "grok-build-0.1"
+      ],
+      "verified": true,
+      "notes": "Agentic software engineering model for application development."
+    },
+    "xai/grok-voice": {
+      "displayName": "Grok Voice",
+      "officialNames": [
+        "Realtime Voice"
+      ],
+      "verified": true,
+      "notes": "Native realtime speech model for conversational AI."
+    },
+    "xai/aurora": {
+      "displayName": "Aurora",
+      "officialNames": [
+        "Aurora"
+      ],
+      "verified": true,
+      "notes": "Image generation model."
+    }
+  },
+  "productCatalog": {
+    "grok": {
+      "displayName": "Grok",
+      "verified": true
+    },
+    "deepsearch": {
+      "displayName": "DeepSearch",
+      "verified": true
+    },
+    "deepersearch": {
+      "displayName": "DeeperSearch",
+      "verified": true
+    },
+    "think": {
+      "displayName": "Think Mode",
+      "verified": true
+    },
+    "expert": {
+      "displayName": "Expert",
+      "verified": true
+    },
+    "voice": {
+      "displayName": "Voice",
+      "verified": true
+    },
+    "image-generation": {
+      "displayName": "Image Generation",
+      "verified": true
+    },
+    "image-editing": {
+      "displayName": "Image Editing",
+      "verified": true
+    },
+    "video-generation": {
+      "displayName": "Video Generation",
+      "verified": true
+    },
+    "connectors": {
+      "displayName": "Connectors",
+      "verified": true
+    },
+    "memory": {
+      "displayName": "Memory",
+      "verified": true
+    },
+    "web-search": {
+      "displayName": "Web Search",
+      "verified": true
+    },
+    "live-search": {
+      "displayName": "Live Search",
+      "verified": true
+    },
+    "developer-api": {
+      "displayName": "Developer API",
+      "verified": true
+    },
+    "function-calling": {
+      "displayName": "Function Calling",
+      "verified": true
+    },
+    "structured-outputs": {
+      "displayName": "Structured Outputs",
+      "verified": true
+    },
+    "batch-api": {
+      "displayName": "Batch API",
+      "verified": true
+    },
+    "vision": {
+      "displayName": "Vision",
+      "verified": true
+    },
+    "realtime-api": {
+      "displayName": "Realtime API",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "xai/grok-4.3"
+      ],
+      "products": [
+        "grok",
+        "deepsearch",
+        "web-search",
+        "voice",
+        "image-generation"
+      ],
+      "notes": "Limited daily usage with access to Grok and basic multimodal features."
+    },
+    {
+      "plan": "SuperGrok",
+      "monthlyPrice": 30,
+      "verified": true,
+      "models": [
+        "xai/grok-4.3",
+        "xai/grok-4.20",
+        "xai/grok-4.20-reasoning",
+        "xai/aurora"
+      ],
+      "products": [
+        "grok",
+        "deepsearch",
+        "deepersearch",
+        "think",
+        "expert",
+        "voice",
+        "image-generation",
+        "image-editing",
+        "video-generation",
+        "connectors",
+        "memory",
+        "web-search",
+        "live-search"
+      ],
+      "notes": "Higher rate limits, Grok 4 access, frontier models, image/video generation, connectors, and Expert mode."
+    },
+    {
+      "plan": "Business",
+      "monthlyPrice": 300,
+      "verified": true,
+      "models": [
+        "xai/grok-4.3",
+        "xai/grok-4.20-multi-agent",
+        "xai/grok-4.20-reasoning",
+        "xai/grok-build",
+        "xai/aurora"
+      ],
+      "products": [
+        "grok",
+        "deepsearch",
+        "deepersearch",
+        "think",
+        "expert",
+        "voice",
+        "image-generation",
+        "image-editing",
+        "video-generation",
+        "connectors",
+        "memory",
+        "developer-api",
+        "web-search",
+        "live-search"
+      ],
+      "notes": "Highest consumer/business tier with maximum rate limits and access to advanced Grok capabilities."
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "xai/grok-4.3",
+        "xai/grok-4.20-multi-agent",
+        "xai/grok-4.20-reasoning",
+        "xai/grok-build",
+        "xai/grok-voice",
+        "xai/aurora"
+      ],
+      "products": [
+        "grok",
+        "developer-api",
+        "function-calling",
+        "structured-outputs",
+        "batch-api",
+        "vision",
+        "realtime-api",
+        "voice",
+        "image-generation",
+        "web-search",
+        "live-search"
+      ],
+      "notes": "Custom enterprise pricing with dedicated onboarding, SSO, audit logging, data residency, and custom rate limits."
+    },
+    {
+      "plan": "Developer API",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "xai/grok-4.3",
+        "xai/grok-4.20",
+        "xai/grok-4.20-reasoning",
+        "xai/grok-4.20-multi-agent",
+        "xai/grok-build",
+        "xai/grok-voice",
+        "xai/aurora"
+      ],
+      "products": [
+        "developer-api",
+        "function-calling",
+        "structured-outputs",
+        "batch-api",
+        "vision",
+        "realtime-api"
+      ],
+      "notes": "Usage-based token pricing with access to all public Grok models, realtime APIs, and developer tools."
+    }
+  ]
+}

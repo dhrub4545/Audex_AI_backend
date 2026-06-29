@@ -1,0 +1,212 @@
+{
+  "provider": "Suno",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Suno Documentation",
+  "officialSources": [
+    {
+      "title": "Suno",
+      "url": "https://suno.com/"
+    },
+    {
+      "title": "Suno Pricing",
+      "url": "https://suno.com/pricing"
+    },
+    {
+      "title": "Suno Help Center",
+      "url": "https://help.suno.com/"
+    },
+    {
+      "title": "Suno API",
+      "url": "https://docs.suno.com/"
+    }
+  ],
+  "modelCatalog": {
+    "suno/v5.5": {
+      "displayName": "Suno v5.5",
+      "officialNames": [
+        "v5.5"
+      ],
+      "verified": true,
+      "notes": "Latest flagship AI music generation model."
+    },
+    "suno/v5": {
+      "displayName": "Suno v5",
+      "officialNames": [
+        "v5"
+      ],
+      "verified": true
+    },
+    "suno/v4.5-plus": {
+      "displayName": "Suno v4.5+",
+      "officialNames": [
+        "v4.5+"
+      ],
+      "verified": true
+    },
+    "suno/v4.5": {
+      "displayName": "Suno v4.5",
+      "officialNames": [
+        "v4.5"
+      ],
+      "verified": true
+    },
+    "suno/v4.5-all": {
+      "displayName": "Suno v4.5-all",
+      "officialNames": [
+        "v4.5-all"
+      ],
+      "verified": true,
+      "notes": "Default model available on the Free plan."
+    },
+    "suno/personas": {
+      "displayName": "Personas",
+      "officialNames": [
+        "Personas"
+      ],
+      "verified": true,
+      "notes": "Reusable style and voice personalization capability."
+    }
+  },
+  "productCatalog": {
+    "music-generation": {
+      "displayName": "AI Music Generation",
+      "verified": true
+    },
+    "lyrics-generation": {
+      "displayName": "Lyrics Generation",
+      "verified": true
+    },
+    "song-editor": {
+      "displayName": "Song Editor",
+      "verified": true
+    },
+    "studio": {
+      "displayName": "Suno Studio",
+      "verified": true
+    },
+    "personas": {
+      "displayName": "Personas",
+      "verified": true
+    },
+    "advanced-editing": {
+      "displayName": "Advanced Editing",
+      "verified": true
+    },
+    "stem-separation": {
+      "displayName": "Stem Separation",
+      "verified": true
+    },
+    "voice-recording": {
+      "displayName": "Voice Recording",
+      "verified": true
+    },
+    "audio-upload": {
+      "displayName": "Audio Upload",
+      "verified": true
+    },
+    "custom-tuning": {
+      "displayName": "Custom Tuning",
+      "verified": true
+    },
+    "midi-export": {
+      "displayName": "MIDI Export",
+      "verified": true
+    },
+    "multitrack-editor": {
+      "displayName": "Multitrack Editor",
+      "verified": true
+    },
+    "commercial-use": {
+      "displayName": "Commercial Use Rights",
+      "verified": true
+    },
+    "api": {
+      "displayName": "Developer API",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "suno/v4.5-all"
+      ],
+      "products": [
+        "music-generation",
+        "lyrics-generation",
+        "audio-upload"
+      ],
+      "notes": "50 credits renewed daily (about 10 songs/day), non-commercial use only, shared queue, standard editing, upload up to 8 minutes of audio."
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 10,
+      "verified": true,
+      "models": [
+        "suno/v5.5",
+        "suno/v5",
+        "suno/v4.5-plus",
+        "suno/v4.5"
+      ],
+      "products": [
+        "music-generation",
+        "lyrics-generation",
+        "song-editor",
+        "personas",
+        "advanced-editing",
+        "stem-separation",
+        "voice-recording",
+        "audio-upload",
+        "custom-tuning",
+        "commercial-use"
+      ],
+      "notes": "2,500 monthly credits (up to ~500 songs), commercial use rights, priority queue, add-on credits, upload up to 30 minutes, access to the latest v5.5 model and early features."
+    },
+    {
+      "plan": "Premier",
+      "monthlyPrice": 30,
+      "verified": true,
+      "models": [
+        "suno/v5.5",
+        "suno/v5",
+        "suno/v4.5-plus",
+        "suno/v4.5"
+      ],
+      "products": [
+        "music-generation",
+        "lyrics-generation",
+        "song-editor",
+        "studio",
+        "personas",
+        "advanced-editing",
+        "stem-separation",
+        "voice-recording",
+        "audio-upload",
+        "custom-tuning",
+        "multitrack-editor",
+        "midi-export",
+        "commercial-use"
+      ],
+      "notes": "10,000 monthly credits (up to ~2,000 songs), includes Suno Studio, multitrack editing, MIDI export, all Pro features, and highest generation limits."
+    },
+    {
+      "plan": "Developer API",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "suno/v5.5",
+        "suno/v5",
+        "suno/v4.5-plus",
+        "suno/v4.5"
+      ],
+      "products": [
+        "api"
+      ],
+      "notes": "Usage-based API pricing."
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "provider": "Meta",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Meta Documentation",
+  "officialSources": [
+    {
+      "title": "Meta AI",
+      "url": "https://www.meta.ai/"
+    },
+    {
+      "title": "AI at Meta",
+      "url": "https://ai.meta.com/"
+    },
+    {
+      "title": "Llama",
+      "url": "https://www.llama.com/"
+    },
+    {
+      "title": "Meta AI App",
+      "url": "https://about.fb.com/news/2025/04/introducing-meta-ai-app-new-way-access-ai-assistant/"
+    }
+  ],
+  "modelCatalog": {
+    "meta/llama-4-maverick": {
+      "displayName": "Llama 4 Maverick",
+      "officialNames": [
+        "Llama 4 Maverick"
+      ],
+      "verified": true,
+      "notes": "Flagship open-weight multimodal model."
+    },
+    "meta/llama-4-scout": {
+      "displayName": "Llama 4 Scout",
+      "officialNames": [
+        "Llama 4 Scout"
+      ],
+      "verified": true,
+      "notes": "Long-context multimodal model."
+    },
+    "meta/llama-4-behemoth": {
+      "displayName": "Llama 4 Behemoth",
+      "officialNames": [
+        "Llama 4 Behemoth"
+      ],
+      "verified": true,
+      "notes": "Teacher model previewed by Meta."
+    },
+    "meta/llama-3.3-70b": {
+      "displayName": "Llama 3.3 70B",
+      "officialNames": [
+        "Llama 3.3 70B Instruct"
+      ],
+      "verified": true
+    },
+    "meta/llama-3.2": {
+      "displayName": "Llama 3.2",
+      "officialNames": [
+        "Llama 3.2"
+      ],
+      "verified": true
+    },
+    "meta/llama-3.1": {
+      "displayName": "Llama 3.1",
+      "officialNames": [
+        "Llama 3.1"
+      ],
+      "verified": true
+    },
+    "meta/llama-guard-4": {
+      "displayName": "Llama Guard 4",
+      "officialNames": [
+        "Llama Guard 4"
+      ],
+      "verified": true,
+      "notes": "Safety and moderation model."
+    },
+    "meta/prompt-guard": {
+      "displayName": "Prompt Guard",
+      "officialNames": [
+        "Prompt Guard"
+      ],
+      "verified": true,
+      "notes": "Prompt injection detection model."
+    }
+  },
+  "productCatalog": {
+    "meta-ai": {
+      "displayName": "Meta AI",
+      "verified": true
+    },
+    "meta-ai-app": {
+      "displayName": "Meta AI App",
+      "verified": true
+    },
+    "llama": {
+      "displayName": "Llama",
+      "verified": true
+    },
+    "llama-api": {
+      "displayName": "Llama API",
+      "verified": true
+    },
+    "ai-studio": {
+      "displayName": "Meta AI Studio",
+      "verified": true
+    },
+    "ai-glasses": {
+      "displayName": "Meta AI Glasses",
+      "verified": true
+    },
+    "image-generation": {
+      "displayName": "Image Generation",
+      "verified": true
+    },
+    "voice-chat": {
+      "displayName": "Voice Chat",
+      "verified": true
+    },
+    "web-search": {
+      "displayName": "Web Search",
+      "verified": true
+    },
+    "memory": {
+      "displayName": "Memory",
+      "verified": true
+    },
+    "facebook": {
+      "displayName": "Facebook AI",
+      "verified": true
+    },
+    "instagram": {
+      "displayName": "Instagram AI",
+      "verified": true
+    },
+    "whatsapp": {
+      "displayName": "WhatsApp AI",
+      "verified": true
+    },
+    "messenger": {
+      "displayName": "Messenger AI",
+      "verified": true
+    },
+    "developer-api": {
+      "displayName": "Developer API",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "meta/llama-4-maverick",
+        "meta/llama-4-scout",
+        "meta/llama-3.3-70b"
+      ],
+      "products": [
+        "meta-ai",
+        "meta-ai-app",
+        "image-generation",
+        "voice-chat",
+        "web-search",
+        "facebook",
+        "instagram",
+        "whatsapp",
+        "messenger",
+        "memory"
+      ],
+      "notes": "Meta AI is free across Meta apps with usage limits depending on region."
+    },
+    {
+      "plan": "Developer",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "meta/llama-4-maverick",
+        "meta/llama-4-scout",
+        "meta/llama-4-behemoth",
+        "meta/llama-3.3-70b",
+        "meta/llama-3.2",
+        "meta/llama-3.1",
+        "meta/llama-guard-4",
+        "meta/prompt-guard"
+      ],
+      "products": [
+        "llama",
+        "llama-api",
+        "developer-api",
+        "ai-studio"
+      ],
+      "notes": "Llama models are available under the Llama Community License. API pricing is usage-based where available."
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "meta/llama-4-maverick",
+        "meta/llama-4-scout",
+        "meta/llama-4-behemoth",
+        "meta/llama-guard-4",
+        "meta/prompt-guard"
+      ],
+      "products": [
+        "llama-api",
+        "developer-api",
+        "ai-studio"
+      ],
+      "notes": "Enterprise deployments are offered through infrastructure and cloud partners."
+    }
+  ]
+}

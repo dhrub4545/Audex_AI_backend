@@ -1,0 +1,340 @@
+{
+  "provider": "Mistral AI",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Mistral AI Documentation",
+  "officialSources": [
+    {
+      "title": "Mistral AI",
+      "url": "https://mistral.ai/"
+    },
+    {
+      "title": "La Plateforme",
+      "url": "https://console.mistral.ai/"
+    },
+    {
+      "title": "Mistral Documentation",
+      "url": "https://docs.mistral.ai/"
+    },
+    {
+      "title": "Mistral Pricing",
+      "url": "https://mistral.ai/pricing"
+    }
+  ],
+  "modelCatalog": {
+    "mistral/magistral-medium": {
+      "displayName": "Magistral Medium",
+      "officialNames": [
+        "Magistral Medium"
+      ],
+      "verified": true,
+      "notes": "Flagship reasoning model."
+    },
+    "mistral/magistral-small": {
+      "displayName": "Magistral Small",
+      "officialNames": [
+        "Magistral Small"
+      ],
+      "verified": true,
+      "notes": "Open-weight reasoning model."
+    },
+    "mistral/mistral-medium-3": {
+      "displayName": "Mistral Medium 3",
+      "officialNames": [
+        "Mistral Medium 3"
+      ],
+      "verified": true
+    },
+    "mistral/mistral-small-3.2": {
+      "displayName": "Mistral Small 3.2",
+      "officialNames": [
+        "Mistral Small 3.2"
+      ],
+      "verified": true
+    },
+    "mistral/devstral-medium": {
+      "displayName": "Devstral Medium",
+      "officialNames": [
+        "Devstral Medium"
+      ],
+      "verified": true,
+      "notes": "Flagship coding model."
+    },
+    "mistral/devstral-small": {
+      "displayName": "Devstral Small",
+      "officialNames": [
+        "Devstral Small"
+      ],
+      "verified": true,
+      "notes": "Open coding model."
+    },
+    "mistral/codestral-25.08": {
+      "displayName": "Codestral 25.08",
+      "officialNames": [
+        "Codestral 25.08"
+      ],
+      "verified": true
+    },
+    "mistral/voxtral-small": {
+      "displayName": "Voxtral Small",
+      "officialNames": [
+        "Voxtral Small"
+      ],
+      "verified": true,
+      "notes": "Speech understanding model."
+    },
+    "mistral/voxtral-mini": {
+      "displayName": "Voxtral Mini",
+      "officialNames": [
+        "Voxtral Mini"
+      ],
+      "verified": true
+    },
+    "mistral/mistral-ocr": {
+      "displayName": "Mistral OCR",
+      "officialNames": [
+        "Mistral OCR"
+      ],
+      "verified": true,
+      "notes": "Optical character recognition model."
+    },
+    "mistral/pixtral-large": {
+      "displayName": "Pixtral Large",
+      "officialNames": [
+        "Pixtral Large"
+      ],
+      "verified": true,
+      "notes": "Flagship multimodal vision-language model."
+    },
+    "mistral/pixtral-12b": {
+      "displayName": "Pixtral 12B",
+      "officialNames": [
+        "Pixtral 12B"
+      ],
+      "verified": true
+    },
+    "mistral/ministral-8b": {
+      "displayName": "Ministral 8B",
+      "officialNames": [
+        "Ministral 8B"
+      ],
+      "verified": true
+    },
+    "mistral/ministral-3b": {
+      "displayName": "Ministral 3B",
+      "officialNames": [
+        "Ministral 3B"
+      ],
+      "verified": true
+    }
+  },
+  "productCatalog": {
+    "le-chat": {
+      "displayName": "Le Chat",
+      "verified": true
+    },
+    "la-plateforme": {
+      "displayName": "La Plateforme",
+      "verified": true
+    },
+    "developer-api": {
+      "displayName": "Developer API",
+      "verified": true
+    },
+    "agents": {
+      "displayName": "Agents",
+      "verified": true
+    },
+    "web-search": {
+      "displayName": "Web Search",
+      "verified": true
+    },
+    "canvas": {
+      "displayName": "Canvas",
+      "verified": true
+    },
+    "code-interpreter": {
+      "displayName": "Code Interpreter",
+      "verified": true
+    },
+    "image-generation": {
+      "displayName": "Image Generation",
+      "verified": true
+    },
+    "document-understanding": {
+      "displayName": "Document Understanding",
+      "verified": true
+    },
+    "ocr": {
+      "displayName": "OCR",
+      "verified": true
+    },
+    "vision": {
+      "displayName": "Vision",
+      "verified": true
+    },
+    "voice": {
+      "displayName": "Voice",
+      "verified": true
+    },
+    "function-calling": {
+      "displayName": "Function Calling",
+      "verified": true
+    },
+    "fine-tuning": {
+      "displayName": "Fine-tuning",
+      "verified": true
+    },
+    "batch-api": {
+      "displayName": "Batch API",
+      "verified": true
+    },
+    "embeddings": {
+      "displayName": "Embeddings",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "mistral/magistral-small",
+        "mistral/mistral-small-3.2",
+        "mistral/devstral-small",
+        "mistral/pixtral-12b",
+        "mistral/ministral-3b"
+      ],
+      "products": [
+        "le-chat",
+        "web-search",
+        "canvas",
+        "vision",
+        "voice",
+        "image-generation"
+      ],
+      "notes": "Free access with daily usage limits."
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 14.99,
+      "verified": true,
+      "models": [
+        "mistral/magistral-medium",
+        "mistral/magistral-small",
+        "mistral/mistral-medium-3",
+        "mistral/mistral-small-3.2",
+        "mistral/devstral-medium",
+        "mistral/devstral-small",
+        "mistral/pixtral-large",
+        "mistral/pixtral-12b",
+        "mistral/voxtral-small",
+        "mistral/mistral-ocr"
+      ],
+      "products": [
+        "le-chat",
+        "agents",
+        "web-search",
+        "canvas",
+        "code-interpreter",
+        "vision",
+        "voice",
+        "image-generation",
+        "document-understanding",
+        "ocr"
+      ],
+      "notes": "Higher limits with access to flagship models and advanced capabilities."
+    },
+    {
+      "plan": "Team",
+      "monthlyPrice": 24.99,
+      "verified": true,
+      "models": [
+        "mistral/magistral-medium",
+        "mistral/mistral-medium-3",
+        "mistral/devstral-medium",
+        "mistral/pixtral-large",
+        "mistral/voxtral-small",
+        "mistral/mistral-ocr"
+      ],
+      "products": [
+        "le-chat",
+        "agents",
+        "web-search",
+        "canvas",
+        "code-interpreter",
+        "vision",
+        "voice",
+        "image-generation",
+        "document-understanding",
+        "ocr"
+      ],
+      "notes": "Per-user pricing with collaboration features."
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "mistral/magistral-medium",
+        "mistral/mistral-medium-3",
+        "mistral/devstral-medium",
+        "mistral/codestral-25.08",
+        "mistral/pixtral-large",
+        "mistral/voxtral-small",
+        "mistral/mistral-ocr"
+      ],
+      "products": [
+        "le-chat",
+        "agents",
+        "la-plateforme",
+        "developer-api",
+        "web-search",
+        "canvas",
+        "code-interpreter",
+        "vision",
+        "voice",
+        "image-generation",
+        "document-understanding",
+        "ocr",
+        "function-calling",
+        "fine-tuning",
+        "batch-api",
+        "embeddings"
+      ],
+      "notes": "Custom enterprise pricing with private deployment, security, administration, and enterprise support."
+    },
+    {
+      "plan": "Developer API",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "mistral/magistral-medium",
+        "mistral/magistral-small",
+        "mistral/mistral-medium-3",
+        "mistral/mistral-small-3.2",
+        "mistral/devstral-medium",
+        "mistral/devstral-small",
+        "mistral/codestral-25.08",
+        "mistral/pixtral-large",
+        "mistral/pixtral-12b",
+        "mistral/voxtral-small",
+        "mistral/voxtral-mini",
+        "mistral/mistral-ocr",
+        "mistral/ministral-8b",
+        "mistral/ministral-3b"
+      ],
+      "products": [
+        "la-plateforme",
+        "developer-api",
+        "function-calling",
+        "fine-tuning",
+        "batch-api",
+        "embeddings"
+      ],
+      "notes": "Usage-based token pricing through La Plateforme."
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "provider": "DeepSeek",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official DeepSeek Documentation",
+  "officialSources": [
+    {
+      "title": "DeepSeek",
+      "url": "https://www.deepseek.com/"
+    },
+    {
+      "title": "DeepSeek API Documentation",
+      "url": "https://api-docs.deepseek.com/"
+    },
+    {
+      "title": "DeepSeek Platform",
+      "url": "https://platform.deepseek.com/"
+    },
+    {
+      "title": "DeepSeek Pricing",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing"
+    }
+  ],
+  "modelCatalog": {
+    "deepseek/deepseek-r1": {
+      "displayName": "DeepSeek R1",
+      "officialNames": [
+        "DeepSeek-R1"
+      ],
+      "verified": true
+    },
+    "deepseek/deepseek-v3.1": {
+      "displayName": "DeepSeek V3.1",
+      "officialNames": [
+        "DeepSeek-V3.1"
+      ],
+      "verified": true
+    },
+    "deepseek/deepseek-v3": {
+      "displayName": "DeepSeek V3",
+      "officialNames": [
+        "DeepSeek-V3"
+      ],
+      "verified": true,
+      "notes": "Previous generation foundation model."
+    }
+  },
+  "productCatalog": {
+    "deepseek-chat": {
+      "displayName": "DeepSeek Chat",
+      "verified": true
+    },
+    "deepseek-reasoner": {
+      "displayName": "DeepSeek Reasoner",
+      "verified": true
+    },
+    "api-platform": {
+      "displayName": "API Platform",
+      "verified": true
+    },
+    "web-chat": {
+      "displayName": "Web Chat",
+      "verified": true
+    },
+    "mobile-app": {
+      "displayName": "Mobile App",
+      "verified": true
+    },
+    "context-caching": {
+      "displayName": "Context Caching",
+      "verified": true
+    },
+    "json-mode": {
+      "displayName": "JSON Mode",
+      "verified": true
+    },
+    "function-calling": {
+      "displayName": "Function Calling",
+      "verified": true
+    },
+    "fill-in-the-middle": {
+      "displayName": "Fill-in-the-Middle",
+      "verified": true
+    },
+    "prefix-completion": {
+      "displayName": "Prefix Completion",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "deepseek/deepseek-r1",
+        "deepseek/deepseek-v3.1"
+      ],
+      "products": [
+        "deepseek-chat",
+        "deepseek-reasoner",
+        "web-chat",
+        "mobile-app"
+      ],
+      "notes": "Free public chat with usage limits."
+    },
+    {
+      "plan": "API (Pay-as-you-go)",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "deepseek/deepseek-r1",
+        "deepseek/deepseek-v3.1",
+        "deepseek/deepseek-v3"
+      ],
+      "products": [
+        "api-platform",
+        "context-caching",
+        "json-mode",
+        "function-calling",
+        "fill-in-the-middle",
+        "prefix-completion"
+      ],
+      "notes": "Usage-based pricing billed per token."
+    }
+  ]
+}

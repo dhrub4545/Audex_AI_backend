@@ -1,0 +1,206 @@
+{
+  "provider": "Anthropic",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Anthropic Documentation",
+  "officialSources": [
+    {
+      "title": "Claude Pricing",
+      "url": "https://claude.com/pricing"
+    },
+    {
+      "title": "Anthropic",
+      "url": "https://www.anthropic.com/"
+    },
+    {
+      "title": "Claude Sonnet",
+      "url": "https://www.anthropic.com/claude/sonnet"
+    }
+  ],
+  "modelCatalog": {
+    "anthropic/claude-opus-4.8": {
+      "displayName": "Claude Opus 4.8",
+      "officialNames": [
+        "Claude Opus 4.8"
+      ],
+      "verified": true
+    },
+    "anthropic/claude-sonnet-4.6": {
+      "displayName": "Claude Sonnet 4.6",
+      "officialNames": [
+        "Claude Sonnet 4.6"
+      ],
+      "verified": true
+    },
+    "anthropic/claude-haiku-4.5": {
+      "displayName": "Claude Haiku 4.5",
+      "officialNames": [
+        "Claude Haiku 4.5"
+      ],
+      "verified": true
+    }
+  },
+  "productCatalog": {
+    "claude": {
+      "displayName": "Claude",
+      "verified": true
+    },
+    "claude-code": {
+      "displayName": "Claude Code",
+      "verified": true
+    },
+    "artifacts": {
+      "displayName": "Artifacts",
+      "verified": true
+    },
+    "projects": {
+      "displayName": "Projects",
+      "verified": true
+    },
+    "research": {
+      "displayName": "Research",
+      "verified": true
+    },
+    "web-search": {
+      "displayName": "Web Search",
+      "verified": true
+    },
+    "voice-mode": {
+      "displayName": "Voice Mode",
+      "verified": true
+    },
+    "integrations": {
+      "displayName": "Integrations",
+      "verified": true
+    },
+    "memory": {
+      "displayName": "Memory",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "anthropic/claude-sonnet-4.6",
+        "anthropic/claude-haiku-4.5"
+      ],
+      "products": [
+        "claude",
+        "artifacts",
+        "projects",
+        "web-search"
+      ],
+      "notes": "Limited daily usage."
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 20,
+      "verified": true,
+      "models": [
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "anthropic/claude-haiku-4.5"
+      ],
+      "products": [
+        "claude",
+        "claude-code",
+        "artifacts",
+        "projects",
+        "research",
+        "web-search",
+        "voice-mode",
+        "memory"
+      ]
+    },
+    {
+      "plan": "Max 5x",
+      "monthlyPrice": 100,
+      "verified": true,
+      "models": [
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "anthropic/claude-haiku-4.5"
+      ],
+      "products": [
+        "claude",
+        "claude-code",
+        "artifacts",
+        "projects",
+        "research",
+        "web-search",
+        "voice-mode",
+        "memory"
+      ],
+      "notes": "Approximately 5× higher usage limits than Pro."
+    },
+    {
+      "plan": "Max 20x",
+      "monthlyPrice": 200,
+      "verified": true,
+      "models": [
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "anthropic/claude-haiku-4.5"
+      ],
+      "products": [
+        "claude",
+        "claude-code",
+        "artifacts",
+        "projects",
+        "research",
+        "web-search",
+        "voice-mode",
+        "memory"
+      ],
+      "notes": "Approximately 20× higher usage limits than Pro."
+    },
+    {
+      "plan": "Team",
+      "monthlyPrice": 25,
+      "verified": true,
+      "models": [
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "anthropic/claude-haiku-4.5"
+      ],
+      "products": [
+        "claude",
+        "claude-code",
+        "artifacts",
+        "projects",
+        "research",
+        "web-search",
+        "voice-mode",
+        "memory",
+        "integrations"
+      ],
+      "notes": "Per-user pricing."
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": null,
+      "verified": true,
+      "models": [
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "anthropic/claude-haiku-4.5"
+      ],
+      "products": [
+        "claude",
+        "claude-code",
+        "artifacts",
+        "projects",
+        "research",
+        "web-search",
+        "voice-mode",
+        "memory",
+        "integrations"
+      ],
+      "notes": "Custom enterprise pricing."
+    }
+  ]
+}

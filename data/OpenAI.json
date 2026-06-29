@@ -1,0 +1,208 @@
+
+{
+  "provider": "OpenAI",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official OpenAI Documentation",
+  "officialSources": [
+    {
+      "title": "ChatGPT Pricing",
+      "url": "https://chatgpt.com/pricing"
+    },
+    {
+      "title": "GPT-5.5 in ChatGPT",
+      "url": "https://help.openai.com/articles/11909943"
+    },
+    {
+      "title": "ChatGPT Business Models & Limits",
+      "url": "https://help.openai.com/en/articles/12003714-chatgpt-business-models-limits"
+    },
+    {
+      "title": "Introducing GPT-5.5",
+      "url": "https://openai.com/index/introducing-gpt-5-5/"
+    }
+  ],
+  "modelCatalog": {
+    "openai/gpt-5.5": {
+      "displayName": "GPT-5.5",
+      "officialNames": [
+        "GPT-5.5 Instant",
+        "GPT-5.5 Thinking"
+      ],
+      "verified": true
+    },
+    "openai/gpt-5.5-pro": {
+      "displayName": "GPT-5.5 Pro",
+      "officialNames": [
+        "GPT-5.5 Pro"
+      ],
+      "verified": true
+    },
+    "openai/gpt-5.5-mini": {
+      "displayName": "GPT-5.5 mini",
+      "officialNames": [
+        "GPT-5.5 mini"
+      ],
+      "verified": true,
+      "canonicalId": null,
+      "notes": "Fallback model documented by OpenAI. No corresponding Overall JSON model has been confirmed."
+    }
+  },
+  "productCatalog": {
+    "sora": {
+      "displayName": "Sora",
+      "verified": true
+    },
+    "codex": {
+      "displayName": "Codex",
+      "verified": true
+    },
+    "deep-research": {
+      "displayName": "Deep Research",
+      "verified": true
+    },
+    "agent-mode": {
+      "displayName": "Agent Mode",
+      "verified": true
+    },
+    "canvas": {
+      "displayName": "Canvas",
+      "verified": true
+    },
+    "custom-gpts": {
+      "displayName": "Custom GPTs",
+      "verified": true
+    },
+    "projects": {
+      "displayName": "Projects",
+      "verified": true
+    },
+    "tasks": {
+      "displayName": "Tasks",
+      "verified": true
+    },
+    "advanced-voice": {
+      "displayName": "Advanced Voice",
+      "verified": true
+    },
+    "image-generation": {
+      "displayName": "Image Generation",
+      "verified": true
+    },
+    "memory": {
+      "displayName": "Memory",
+      "verified": true
+    },
+    "voice": {
+      "displayName": "Voice",
+      "verified": true
+    },
+    "web-search": {
+      "displayName": "Web Search",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Free",
+      "monthlyPrice": 0,
+      "verified": true,
+      "models": [
+        "openai/gpt-5.5",
+        "openai/gpt-5.5-mini"
+      ],
+      "products": [
+        "image-generation",
+        "memory",
+        "voice",
+        "web-search",
+        "projects"
+      ],
+      "notes": "Limited usage."
+    },
+    {
+      "plan": "ChatGPT Go",
+      "monthlyPrice": 8,
+      "verified": true,
+      "models": [
+        "openai/gpt-5.5",
+        "openai/gpt-5.5-mini"
+      ],
+      "products": [
+        "image-generation",
+        "memory",
+        "voice",
+        "projects",
+        "deep-research"
+      ],
+      "notes": "Higher limits than Free."
+    },
+    {
+      "plan": "ChatGPT Plus",
+      "monthlyPrice": 20,
+      "verified": true,
+      "models": [
+        "openai/gpt-5.5",
+        "openai/gpt-5.5-mini"
+      ],
+      "products": [
+        "sora",
+        "codex",
+        "deep-research",
+        "agent-mode",
+        "canvas",
+        "custom-gpts",
+        "projects",
+        "tasks",
+        "advanced-voice",
+        "image-generation"
+      ]
+    },
+    {
+      "plan": "ChatGPT Pro",
+      "monthlyPrice": 200,
+      "verified": true,
+      "models": [
+        "openai/gpt-5.5",
+        "openai/gpt-5.5-pro",
+        "openai/gpt-5.5-mini"
+      ],
+      "products": [
+        "sora",
+        "codex",
+        "deep-research",
+        "agent-mode",
+        "canvas",
+        "custom-gpts",
+        "projects",
+        "tasks",
+        "advanced-voice",
+        "image-generation"
+      ]
+    },
+    {
+      "plan": "Business",
+      "monthlyPrice": 25,
+      "verified": true,
+      "models": [
+        "openai/gpt-5.5",
+        "openai/gpt-5.5-pro"
+      ],
+      "products": [
+        "sora",
+        "codex",
+        "deep-research",
+        "agent-mode",
+        "canvas",
+        "custom-gpts",
+        "projects",
+        "tasks",
+        "advanced-voice",
+        "image-generation"
+      ],
+      "notes": "Per-user pricing with business administration and security features."
+    }
+  ]
+}
+

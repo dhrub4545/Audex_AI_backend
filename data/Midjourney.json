@@ -1,0 +1,218 @@
+{
+  "provider": "Midjourney",
+  "status": "verified",
+  "version": "2.0.0",
+  "lastVerified": "2026-06-29",
+  "verificationMethod": "Official Midjourney Documentation",
+  "officialSources": [
+    {
+      "title": "Midjourney",
+      "url": "https://www.midjourney.com/"
+    },
+    {
+      "title": "Midjourney Pricing",
+      "url": "https://www.midjourney.com/account/plans/"
+    },
+    {
+      "title": "Midjourney Documentation",
+      "url": "https://docs.midjourney.com/"
+    },
+    {
+      "title": "Midjourney Alpha",
+      "url": "https://alpha.midjourney.com/"
+    }
+  ],
+  "modelCatalog": {
+    "midjourney/v7": {
+      "displayName": "Midjourney V7",
+      "officialNames": [
+        "V7"
+      ],
+      "verified": true,
+      "notes": "Latest flagship image generation model."
+    },
+    "midjourney/v6.1": {
+      "displayName": "Midjourney V6.1",
+      "officialNames": [
+        "V6.1"
+      ],
+      "verified": true,
+      "notes": "Production-quality image generation model."
+    },
+    "midjourney/v6": {
+      "displayName": "Midjourney V6",
+      "officialNames": [
+        "V6"
+      ],
+      "verified": true
+    },
+    "midjourney/niji-6": {
+      "displayName": "Niji 6",
+      "officialNames": [
+        "Niji Journey 6"
+      ],
+      "verified": true,
+      "notes": "Anime and illustration-focused model developed with Spellbrush."
+    }
+  },
+  "productCatalog": {
+    "image-generation": {
+      "displayName": "Image Generation",
+      "verified": true
+    },
+    "image-editing": {
+      "displayName": "Image Editing",
+      "verified": true
+    },
+    "editor": {
+      "displayName": "Midjourney Editor",
+      "verified": true
+    },
+    "web-app": {
+      "displayName": "Midjourney Web App",
+      "verified": true
+    },
+    "discord": {
+      "displayName": "Discord Bot",
+      "verified": true
+    },
+    "personalization": {
+      "displayName": "Personalization",
+      "verified": true
+    },
+    "style-reference": {
+      "displayName": "Style Reference",
+      "verified": true
+    },
+    "character-reference": {
+      "displayName": "Character Reference",
+      "verified": true
+    },
+    "moodboards": {
+      "displayName": "Moodboards",
+      "verified": true
+    },
+    "draft-mode": {
+      "displayName": "Draft Mode",
+      "verified": true
+    },
+    "relax-mode": {
+      "displayName": "Relax Mode",
+      "verified": true
+    },
+    "turbo-mode": {
+      "displayName": "Turbo Mode",
+      "verified": true
+    },
+    "stealth-mode": {
+      "displayName": "Stealth Mode",
+      "verified": true
+    },
+    "video-generation": {
+      "displayName": "Video Generation",
+      "verified": true
+    }
+  },
+  "plans": [
+    {
+      "plan": "Basic",
+      "monthlyPrice": 10,
+      "verified": true,
+      "models": [
+        "midjourney/v7",
+        "midjourney/v6.1",
+        "midjourney/niji-6"
+      ],
+      "products": [
+        "image-generation",
+        "image-editing",
+        "editor",
+        "web-app",
+        "discord",
+        "personalization",
+        "style-reference",
+        "character-reference",
+        "draft-mode"
+      ],
+      "notes": "Includes limited Fast GPU hours. Relax Mode not included."
+    },
+    {
+      "plan": "Standard",
+      "monthlyPrice": 30,
+      "verified": true,
+      "models": [
+        "midjourney/v7",
+        "midjourney/v6.1",
+        "midjourney/niji-6"
+      ],
+      "products": [
+        "image-generation",
+        "image-editing",
+        "editor",
+        "web-app",
+        "discord",
+        "personalization",
+        "style-reference",
+        "character-reference",
+        "moodboards",
+        "draft-mode",
+        "relax-mode"
+      ],
+      "notes": "Unlimited Relax Mode with monthly Fast GPU hours."
+    },
+    {
+      "plan": "Pro",
+      "monthlyPrice": 60,
+      "verified": true,
+      "models": [
+        "midjourney/v7",
+        "midjourney/v6.1",
+        "midjourney/niji-6"
+      ],
+      "products": [
+        "image-generation",
+        "image-editing",
+        "editor",
+        "web-app",
+        "discord",
+        "personalization",
+        "style-reference",
+        "character-reference",
+        "moodboards",
+        "draft-mode",
+        "relax-mode",
+        "turbo-mode",
+        "stealth-mode",
+        "video-generation"
+      ],
+      "notes": "Includes Stealth Mode and increased Fast GPU hours."
+    },
+    {
+      "plan": "Mega",
+      "monthlyPrice": 120,
+      "verified": true,
+      "models": [
+        "midjourney/v7",
+        "midjourney/v6.1",
+        "midjourney/niji-6"
+      ],
+      "products": [
+        "image-generation",
+        "image-editing",
+        "editor",
+        "web-app",
+        "discord",
+        "personalization",
+        "style-reference",
+        "character-reference",
+        "moodboards",
+        "draft-mode",
+        "relax-mode",
+        "turbo-mode",
+        "stealth-mode",
+        "video-generation"
+      ],
+      "notes": "Highest Fast GPU allocation with unlimited Relax Mode and Stealth Mode."
+    }
+  ]
+}
