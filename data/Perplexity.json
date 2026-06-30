@@ -1,8 +1,8 @@
 {
   "provider": "Perplexity",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Perplexity Documentation",
   "officialSources": [
     {
@@ -10,107 +10,153 @@
       "url": "https://www.perplexity.ai/"
     },
     {
-      "title": "Perplexity Pricing",
+      "title": "Perplexity Pro",
       "url": "https://www.perplexity.ai/pro"
     },
     {
-      "title": "Perplexity Enterprise Pro",
+      "title": "Perplexity Enterprise",
       "url": "https://www.perplexity.ai/enterprise"
     },
     {
       "title": "Perplexity API Documentation",
       "url": "https://docs.perplexity.ai/"
+    },
+    {
+      "title": "Agent API Models",
+      "url": "https://docs.perplexity.ai/agent-api/models"
     }
   ],
   "modelCatalog": {
     "perplexity/sonar": {
       "displayName": "Sonar",
-      "officialNames": [
-        "Sonar"
-      ],
+      "officialNames": ["sonar"],
+      "description": "Perplexity's grounded search model. Fast, search-augmented chat with real-time web information and citations.",
+      "contextLength": 200000,
+      "inputPricePerMTok": 1.0,
+      "outputPricePerMTok": 1.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Fast search-native language model."
+      "notes": "Base model. Input: $1.00/MTok, Output: $1.00/MTok. Context window: 200K. Web search enabled by default."
     },
     "perplexity/sonar-pro": {
       "displayName": "Sonar Pro",
-      "officialNames": [
-        "Sonar Pro"
-      ],
+      "officialNames": ["sonar-pro"],
+      "description": "Flagship search and reasoning model with higher-quality output. Optimized for complex research and analysis.",
+      "contextLength": 200000,
+      "inputPricePerMTok": 3.0,
+      "outputPricePerMTok": 15.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Higher-quality search and reasoning model."
+      "notes": "Flagship model. Input: $3.00/MTok, Output: $15.00/MTok. Context window: 200K."
     },
     "perplexity/sonar-reasoning": {
       "displayName": "Sonar Reasoning",
-      "officialNames": [
-        "Sonar Reasoning"
-      ],
+      "officialNames": ["sonar-reasoning"],
+      "description": "Reasoning model optimized for complex tasks with chain-of-thought over live web results.",
+      "contextLength": null,
+      "inputPricePerMTok": 1.0,
+      "outputPricePerMTok": 5.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Reasoning model optimized for complex tasks."
+      "notes": "Input: $1.00/MTok, Output: $5.00/MTok."
     },
     "perplexity/sonar-reasoning-pro": {
       "displayName": "Sonar Reasoning Pro",
-      "officialNames": [
-        "Sonar Reasoning Pro"
-      ],
+      "officialNames": ["sonar-reasoning-pro"],
+      "description": "Flagship reasoning model. Advanced chain-of-thought reasoning over live web results for complex problem-solving.",
+      "contextLength": null,
+      "inputPricePerMTok": 2.0,
+      "outputPricePerMTok": 8.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Flagship reasoning model."
+      "notes": "Input: $2.00/MTok, Output: $8.00/MTok."
     },
     "perplexity/r1-1776": {
       "displayName": "R1-1776",
-      "officialNames": [
-        "R1-1776"
-      ],
+      "officialNames": ["r1-1776"],
+      "description": "Perplexity's post-trained reasoning model.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Perplexity's post-trained reasoning model."
+      "notes": "Available on Pro, Max, and Enterprise plans."
     }
   },
   "productCatalog": {
     "search": {
       "displayName": "AI Search",
+      "description": "Real-time AI-powered search with citations.",
       "verified": true
     },
     "deep-research": {
       "displayName": "Deep Research",
+      "description": "In-depth research capabilities with extended analysis.",
       "verified": true
     },
     "labs": {
       "displayName": "Perplexity Labs",
+      "description": "Early access to experimental features and new AI models.",
       "verified": true
     },
     "spaces": {
       "displayName": "Spaces",
+      "description": "Collaborative workspaces for organizing research and projects.",
       "verified": true
     },
     "discover": {
       "displayName": "Discover",
+      "description": "Content discovery and personalized feed.",
       "verified": true
     },
     "pages": {
       "displayName": "Pages",
+      "description": "Create and publish shareable research pages.",
       "verified": true
     },
     "web-search": {
       "displayName": "Web Search",
+      "description": "Real-time web search with citations.",
       "verified": true
     },
     "voice": {
       "displayName": "Voice",
+      "description": "Voice input for search and queries.",
       "verified": true
     },
     "image-generation": {
       "displayName": "Image Generation",
+      "description": "AI-powered image creation.",
       "verified": true
     },
     "file-analysis": {
       "displayName": "File Analysis",
+      "description": "Upload and analyze documents, images, and files.",
+      "verified": true
+    },
+    "computer": {
+      "displayName": "Perplexity Computer",
+      "description": "Build personalized applications, tools, and documents. Available on Max and Enterprise plans.",
+      "verified": true
+    },
+    "comet": {
+      "displayName": "Comet Browser",
+      "description": "AI-powered browser for faster workflows. Available on Enterprise plans.",
       "verified": true
     },
     "api": {
       "displayName": "Developer API",
+      "description": "Programmatic access to Perplexity models with pay-as-you-go pricing.",
       "verified": true
     },
     "enterprise": {
       "displayName": "Enterprise",
+      "description": "Enterprise-grade security, SSO, SCIM, and compliance. SOC 2 Type II certified.",
       "verified": true
     }
   },
@@ -118,6 +164,7 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "perplexity/sonar"
@@ -133,6 +180,7 @@
     {
       "plan": "Pro",
       "monthlyPrice": 20,
+      "annualPrice": 200,
       "verified": true,
       "models": [
         "perplexity/sonar",
@@ -153,36 +201,12 @@
         "image-generation",
         "file-analysis"
       ],
-      "notes": "Includes unlimited Quick searches, daily Pro searches, Labs, Deep Research, and access to premium AI models."
+      "notes": "Includes unlimited Quick searches, daily Pro searches, Labs, Deep Research, and access to premium AI models. Annual billing: $200/year (save ~17%)."
     },
     {
       "plan": "Max",
       "monthlyPrice": 200,
-      "verified": true,
-      "models": [
-        "perplexity/sonar",
-        "perplexity/sonar-pro",
-        "perplexity/sonar-reasoning",
-        "perplexity/sonar-reasoning-pro",
-        "perplexity/r1-1776"
-      ],
-      "products": [
-        "search",
-        "deep-research",
-        "labs",
-        "spaces",
-        "discover",
-        "pages",
-        "web-search",
-        "voice",
-        "image-generation",
-        "file-analysis"
-      ],
-      "notes": "Highest consumer tier with significantly increased usage limits and priority access."
-    },
-    {
-      "plan": "Enterprise Pro",
-      "monthlyPrice": 40,
+      "annualPrice": 2000,
       "verified": true,
       "models": [
         "perplexity/sonar",
@@ -202,13 +226,97 @@
         "voice",
         "image-generation",
         "file-analysis",
+        "computer"
+      ],
+      "notes": "Highest consumer tier with significantly increased usage limits and priority access. Includes Computer access, 10,000 monthly credits."
+    },
+    {
+      "plan": "Education Pro",
+      "monthlyPrice": 10,
+      "annualPrice": null,
+      "verified": true,
+      "models": [
+        "perplexity/sonar",
+        "perplexity/sonar-pro",
+        "perplexity/sonar-reasoning",
+        "perplexity/sonar-reasoning-pro",
+        "perplexity/r1-1776"
+      ],
+      "products": [
+        "search",
+        "deep-research",
+        "labs",
+        "spaces",
+        "discover",
+        "pages",
+        "web-search",
+        "voice",
+        "image-generation",
+        "file-analysis"
+      ],
+      "notes": "Discounted plan for verified students. $10/month."
+    },
+    {
+      "plan": "Enterprise Pro",
+      "monthlyPrice": 40,
+      "annualPrice": 400,
+      "verified": true,
+      "models": [
+        "perplexity/sonar",
+        "perplexity/sonar-pro",
+        "perplexity/sonar-reasoning",
+        "perplexity/sonar-reasoning-pro",
+        "perplexity/r1-1776"
+      ],
+      "products": [
+        "search",
+        "deep-research",
+        "labs",
+        "spaces",
+        "discover",
+        "pages",
+        "web-search",
+        "voice",
+        "image-generation",
+        "file-analysis",
+        "comet",
         "enterprise"
       ],
-      "notes": "Per-user pricing with enterprise administration, SSO, enhanced security, and compliance."
+      "notes": "Per-user pricing with enterprise administration, SSO, SCIM, enhanced security, and compliance. Annual billing: $400/year."
+    },
+    {
+      "plan": "Enterprise Max",
+      "monthlyPrice": 325,
+      "annualPrice": 3250,
+      "verified": true,
+      "models": [
+        "perplexity/sonar",
+        "perplexity/sonar-pro",
+        "perplexity/sonar-reasoning",
+        "perplexity/sonar-reasoning-pro",
+        "perplexity/r1-1776"
+      ],
+      "products": [
+        "search",
+        "deep-research",
+        "labs",
+        "spaces",
+        "discover",
+        "pages",
+        "web-search",
+        "voice",
+        "image-generation",
+        "file-analysis",
+        "computer",
+        "comet",
+        "enterprise"
+      ],
+      "notes": "Highest enterprise tier. Full Computer access. 10,000 credits/month. Annual billing: $3,250/year."
     },
     {
       "plan": "Developer API",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "perplexity/sonar",
@@ -220,7 +328,62 @@
       "products": [
         "api"
       ],
-      "notes": "Usage-based API pricing."
+      "notes": "Usage-based API pricing. Pay-as-you-go with no subscription required. Pricing rates reflect direct first-party provider pricing with no markup and are subject to change."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "perplexity/sonar",
+        "inputPricePerMTok": 1.0,
+        "outputPricePerMTok": 1.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Grounded search model. Web search enabled by default."
+      },
+      {
+        "model": "perplexity/sonar-pro",
+        "inputPricePerMTok": 3.0,
+        "outputPricePerMTok": 15.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Flagship model. 200K context window."
+      },
+      {
+        "model": "perplexity/sonar-reasoning",
+        "inputPricePerMTok": 1.0,
+        "outputPricePerMTok": 5.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Reasoning model with chain-of-thought."
+      },
+      {
+        "model": "perplexity/sonar-reasoning-pro",
+        "inputPricePerMTok": 2.0,
+        "outputPricePerMTok": 8.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Flagship reasoning model."
+      }
+    ],
+    "features": {
+      "noMarkup": {
+        "displayName": "Direct Provider Pricing",
+        "description": "Perplexity API pricing reflects direct first-party provider pricing with no markup. Charges are based on actual token consumption.",
+        "verified": true
+      },
+      "payAsYouGo": {
+        "displayName": "Pay-as-you-go",
+        "description": "No subscription required. Pay only for what you use.",
+        "verified": true
+      },
+      "contextPricing": {
+        "displayName": "Search Context Pricing",
+        "description": "Perplexity charges per request based on the search context size requested (low, medium, or high). Higher context pulls more web content and costs more.",
+        "verified": true
+      }
+    },
+    "notes": "All prices in USD per 1M tokens. Pricing rates are subject to change. API responses include exact token counts for cost transparency."
+  },
+  "notes": "Perplexity operates a freemium model with consumer subscriptions (Free, Pro, Max, Education Pro) and enterprise plans (Enterprise Pro, Enterprise Max). Pro is $20/month ($200/year). Max is $200/month ($2,000/year) and includes Perplexity Computer access. Enterprise Pro is $40/seat/month ($400/year), and Enterprise Max is $325/seat/month ($3,250/year) with full Computer access. The Developer API offers pay-as-you-go access to Sonar models with no markup on provider pricing. Perplexity also provides access to a selection of third-party models, subject to availability."
 }

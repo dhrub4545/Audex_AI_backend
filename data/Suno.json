@@ -1,129 +1,162 @@
 {
   "provider": "Suno",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Suno Documentation",
   "officialSources": [
     {
-      "title": "Suno",
-      "url": "https://suno.com/"
-    },
-    {
       "title": "Suno Pricing",
       "url": "https://suno.com/pricing"
+    },
+    {
+      "title": "Suno v5.5: More Expressive. More You.",
+      "url": "https://suno.com/blog/v5-5"
     },
     {
       "title": "Suno Help Center",
       "url": "https://help.suno.com/"
     },
     {
-      "title": "Suno API",
+      "title": "Suno API Documentation",
       "url": "https://docs.suno.com/"
     }
   ],
   "modelCatalog": {
     "suno/v5.5": {
       "displayName": "Suno v5.5",
-      "officialNames": [
-        "v5.5"
-      ],
+      "officialNames": ["v5.5"],
+      "description": "Latest flagship AI music generation model. Most expressive model yet with support for Voices, Custom Models, and My Taste personalization features.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Latest flagship AI music generation model."
+      "notes": "Available on Pro and Premier plans. Supports voice capture, custom model tuning with up to 3 custom models for Pro and Premier subscribers."
     },
     "suno/v5": {
       "displayName": "Suno v5",
-      "officialNames": [
-        "v5"
-      ],
-      "verified": true
+      "officialNames": ["v5"],
+      "description": "Previous generation model. Studio-quality music generation.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Legacy model. Superseded by v5.5 for most use cases."
     },
     "suno/v4.5-plus": {
       "displayName": "Suno v4.5+",
-      "officialNames": [
-        "v4.5+"
-      ],
+      "officialNames": ["v4.5+"],
+      "description": "Enhanced version of v4.5 with improved quality.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true
     },
     "suno/v4.5": {
       "displayName": "Suno v4.5",
-      "officialNames": [
-        "v4.5"
-      ],
+      "officialNames": ["v4.5"],
+      "description": "Production-quality music generation model.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true
     },
     "suno/v4.5-all": {
       "displayName": "Suno v4.5-all",
-      "officialNames": [
-        "v4.5-all"
-      ],
+      "officialNames": ["v4.5-all"],
+      "description": "Default model available on the Free plan.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Default model available on the Free plan."
+      "notes": "Available on Free plan only."
     },
     "suno/personas": {
       "displayName": "Personas",
-      "officialNames": [
-        "Personas"
-      ],
+      "officialNames": ["Personas"],
+      "description": "Reusable style and voice personalization capability.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Reusable style and voice personalization capability."
+      "notes": "Available on Pro and Premier plans."
     }
   },
   "productCatalog": {
     "music-generation": {
       "displayName": "AI Music Generation",
+      "description": "Generate full songs with vocals and instrumentals from text prompts.",
       "verified": true
     },
     "lyrics-generation": {
       "displayName": "Lyrics Generation",
+      "description": "AI-powered lyrics generation.",
       "verified": true
     },
     "song-editor": {
       "displayName": "Song Editor",
+      "description": "Edit and refine generated songs.",
       "verified": true
     },
     "studio": {
       "displayName": "Suno Studio",
+      "description": "Advanced studio environment for music production. Available on Premier plan.",
       "verified": true
     },
     "personas": {
       "displayName": "Personas",
+      "description": "Reusable style and voice personalization. Available on Pro and Premier.",
       "verified": true
     },
     "advanced-editing": {
       "displayName": "Advanced Editing",
+      "description": "Advanced editing tools including stem separation and voice recording.",
       "verified": true
     },
     "stem-separation": {
       "displayName": "Stem Separation",
+      "description": "Split songs into vocal and instrument stems. Additional stem types available on Premier.",
       "verified": true
     },
     "voice-recording": {
       "displayName": "Voice Recording",
+      "description": "Record and upload your voice to create music with your own voice.",
       "verified": true
     },
     "audio-upload": {
       "displayName": "Audio Upload",
+      "description": "Upload audio files. Free: up to 8 min. Pro/Premier: up to 30 min.",
       "verified": true
     },
-    "custom-tuning": {
-      "displayName": "Custom Tuning",
+    "custom-models": {
+      "displayName": "Custom Models",
+      "description": "Tune v5.5 using your own audio to build a personalized version of the model that knows your style. Pro and Premier subscribers can create up to three.",
       "verified": true
     },
-    "midi-export": {
-      "displayName": "MIDI Export",
+    "my-taste": {
+      "displayName": "My Taste",
+      "description": "Personalization feature that learns your favorite genres and moods over time. Available for everyone.",
       "verified": true
     },
-    "multitrack-editor": {
-      "displayName": "Multitrack Editor",
+    "voices": {
+      "displayName": "Voices",
+      "description": "Capture your voice and create music with it. Includes verification process. Available for Pro and Premier subscribers.",
       "verified": true
     },
     "commercial-use": {
       "displayName": "Commercial Use Rights",
+      "description": "Commercial use rights for new songs made. Available on Pro and Premier.",
       "verified": true
     },
     "api": {
       "displayName": "Developer API",
+      "description": "Programmatic access to Suno music generation.",
       "verified": true
     }
   },
@@ -131,6 +164,7 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "suno/v4.5-all"
@@ -138,19 +172,22 @@
       "products": [
         "music-generation",
         "lyrics-generation",
-        "audio-upload"
+        "audio-upload",
+        "my-taste"
       ],
-      "notes": "50 credits renewed daily (about 10 songs/day), non-commercial use only, shared queue, standard editing, upload up to 8 minutes of audio."
+      "notes": "50 credits renew daily. No commercial use. Standard features only. Upload up to 8 min of audio. Shared creation queue. No add-on credit purchases. No stem separation."
     },
     {
       "plan": "Pro",
       "monthlyPrice": 10,
+      "annualPrice": 96,
       "verified": true,
       "models": [
         "suno/v5.5",
         "suno/v5",
         "suno/v4.5-plus",
-        "suno/v4.5"
+        "suno/v4.5",
+        "suno/personas"
       ],
       "products": [
         "music-generation",
@@ -161,20 +198,23 @@
         "stem-separation",
         "voice-recording",
         "audio-upload",
-        "custom-tuning",
+        "custom-models",
+        "voices",
         "commercial-use"
       ],
-      "notes": "2,500 monthly credits (up to ~500 songs), commercial use rights, priority queue, add-on credits, upload up to 30 minutes, access to the latest v5.5 model and early features."
+      "notes": "2,500 credits/month. Commercial use rights. Standard stem separation. Upload up to 30 min of audio. Priority queue. Early access to new features. Ability to purchase add-on credits. Annual billing: $96/year (save $24)."
     },
     {
       "plan": "Premier",
       "monthlyPrice": 30,
+      "annualPrice": 288,
       "verified": true,
       "models": [
         "suno/v5.5",
         "suno/v5",
         "suno/v4.5-plus",
-        "suno/v4.5"
+        "suno/v4.5",
+        "suno/personas"
       ],
       "products": [
         "music-generation",
@@ -186,16 +226,16 @@
         "stem-separation",
         "voice-recording",
         "audio-upload",
-        "custom-tuning",
-        "multitrack-editor",
-        "midi-export",
+        "custom-models",
+        "voices",
         "commercial-use"
       ],
-      "notes": "10,000 monthly credits (up to ~2,000 songs), includes Suno Studio, multitrack editing, MIDI export, all Pro features, and highest generation limits."
+      "notes": "10,000 credits/month. Includes Suno Studio. Advanced stem separation (more stem types). All Pro features plus highest generation limits. Annual billing: $288/year (save $72)."
     },
     {
       "plan": "Developer API",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "suno/v5.5",
@@ -206,7 +246,41 @@
       "products": [
         "api"
       ],
-      "notes": "Usage-based API pricing."
+      "notes": "Usage-based API pricing. Pricing not publicly published; contact Suno for current rates."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "suno/v5.5",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "API pricing not publicly published. Contact Suno for current rates."
+      },
+      {
+        "model": "suno/v5",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "API pricing not publicly published. Contact Suno for current rates."
+      }
+    ],
+    "features": {
+      "creditSystem": {
+        "displayName": "Credit System",
+        "description": "Suno uses a credit-based system for music generation. Credit consumption varies by model and generation complexity. Check official documentation for exact usage.",
+        "verified": true
+      },
+      "commercialUse": {
+        "displayName": "Commercial Use",
+        "description": "Commercial use rights require a paid subscription (Pro or Premier).",
+        "verified": true
+      }
+    },
+    "notes": "API pricing is usage-based and not publicly documented. For current rates, contact Suno directly."
+  },
+  "notes": "Suno operates a freemium model with three tiers: Free (50 daily credits), Pro (2,500 monthly credits, $10/month or $96/year), and Premier (10,000 monthly credits, $30/month or $288/year). v5.5 is the latest flagship model with Voices, Custom Models, and My Taste features. The Free plan uses v4.5-all. Paid plans include commercial use rights, stem separation, priority queues, and access to v5.5. Annual billing saves approximately $24 (Pro) and $72 (Premier)."
 }

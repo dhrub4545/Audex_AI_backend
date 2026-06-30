@@ -1,170 +1,291 @@
 {
   "provider": "Runway",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Runway Documentation",
   "officialSources": [
-    {
-      "title": "Runway",
-      "url": "https://runwayml.com/"
-    },
     {
       "title": "Runway Pricing",
       "url": "https://runwayml.com/pricing"
     },
     {
-      "title": "Runway Documentation",
-      "url": "https://help.runwayml.com/"
+      "title": "Unlimited plan is switching to Max",
+      "url": "https://help.runwayml.com/hc/en-us/articles/52068047744019-Unlimited-plan-is-switching-to-Max"
     },
     {
-      "title": "Runway API",
-      "url": "https://docs.dev.runwayml.com/"
+      "title": "API Pricing & Costs",
+      "url": "https://docs.dev.runwayml.com/guides/pricing/"
+    },
+    {
+      "title": "Creating with Gen-4 Video",
+      "url": "https://help.runwayml.com/hc/en-us/articles/37327109429011-Creating-with-Gen-4-Video"
+    },
+    {
+      "title": "Creating with Gen-4 Image",
+      "url": "https://help.runwayml.com/hc/en-us/articles/37053594806419-Creating-with-Gen-4-Image"
     }
   ],
   "modelCatalog": {
+    "runway/gen-4.5": {
+      "displayName": "Gen-4.5",
+      "officialNames": ["Gen-4.5"],
+      "description": "World's best video model. Supports text-to-video, image-to-video, and keyframe animation. Delivers state-of-the-art quality and coherence.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Cost: 12 credits per second of video. Available on all paid plans. Introduced December 2025."
+    },
     "runway/gen-4": {
       "displayName": "Gen-4",
-      "officialNames": [
-        "Gen-4"
-      ],
+      "officialNames": ["Gen-4"],
+      "description": "Flagship video generation model. Creates fast, controllable, and flexible video generation that can seamlessly sit beside live action, animated, and VFX content.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Latest flagship multimodal video generation model."
+      "notes": "Cost: 12 credits per second. Supports 5 or 10 second durations. Requires an input image. Available on all paid plans."
     },
     "runway/gen-4-turbo": {
       "displayName": "Gen-4 Turbo",
-      "officialNames": [
-        "Gen-4 Turbo"
-      ],
+      "officialNames": ["Gen-4 Turbo"],
+      "description": "High-speed version of Gen-4 optimized for rapid iteration. Delivers faster generation times at a lower cost.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "High-speed version of Gen-4 optimized for rapid generation."
+      "notes": "Cost: 5 credits per second. Supports 5 or 10 second durations. Recommended for initial testing and iteration. Available on all paid plans."
     },
-    "runway/gen-3-alpha": {
-      "displayName": "Gen-3 Alpha",
-      "officialNames": [
-        "Gen-3 Alpha"
-      ],
+    "runway/gen-4-image": {
+      "displayName": "Gen-4 Image",
+      "officialNames": ["Gen-4 Image"],
+      "description": "Most advanced base model for image generation, offering stylistic control and visual fidelity. Formerly known as Frames.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Production video generation model."
+      "notes": "Cost: 8 credits per 1080p image, 5 credits per 720p image. Supports image references for consistent characters and scenes. Available on all plans."
     },
-    "runway/gen-3-alpha-turbo": {
-      "displayName": "Gen-3 Alpha Turbo",
-      "officialNames": [
-        "Gen-3 Alpha Turbo"
-      ],
-      "verified": true
+    "runway/gen-4-image-turbo": {
+      "displayName": "Gen-4 Image Turbo",
+      "officialNames": ["Gen-4 Image Turbo"],
+      "description": "High-speed version of Gen-4 Image for rapid image generation.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Cost: 2 credits per image, any resolution. Available on paid plans."
+    },
+    "runway/seedance-2.0": {
+      "displayName": "Seedance 2.0",
+      "officialNames": ["Seedance 2.0"],
+      "description": "Advanced video generation and editing model. Use text, image, video, or audio to generate or edit videos.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Cost: 36-40 credits per second (varies by resolution). Available on Unlimited/Enterprise plans (outside US)."
+    },
+    "runway/aleph-2.0": {
+      "displayName": "Aleph 2.0",
+      "officialNames": ["Aleph 2.0"],
+      "description": "Video editing model in Edit Studio. Edit a frame the way you want, and Aleph 2.0 edits the rest of your video to match.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Cost: 28 credits per second (56 credit minimum). Available on paid plans."
     },
     "runway/act-one": {
       "displayName": "Act-One",
-      "officialNames": [
-        "Act-One"
-      ],
+      "officialNames": ["Act-One"],
+      "description": "Performance-driven character animation model. Creates expressive character performances from video input.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Performance-driven character animation model."
+      "notes": "Available on Pro and above. Works with Gen-3 Alpha and Turbo."
     },
-    "runway/frames": {
-      "displayName": "Frames",
-      "officialNames": [
-        "Frames"
-      ],
+    "runway/nano-banana-2": {
+      "displayName": "Nano Banana 2",
+      "officialNames": ["Nano Banana 2"],
+      "description": "Most advanced and consistent image generation and editing model.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Image generation model for cinematic stills."
+      "notes": "Available on paid plans. Introduced February 2026."
     },
-    "runway/aleph": {
-      "displayName": "Aleph",
-      "officialNames": [
-        "Aleph"
-      ],
+    "runway/gen-3-alpha": {
+      "displayName": "Gen-3 Alpha",
+      "officialNames": ["Gen-3 Alpha"],
+      "description": "Production video generation model. Precursor to Gen-4.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Universal in-context image editing model."
+      "notes": "Legacy model. Superseded by Gen-4 and Gen-4.5 for most use cases."
+    },
+    "runway/gen-3-alpha-turbo": {
+      "displayName": "Gen-3 Alpha Turbo",
+      "officialNames": ["Gen-3 Alpha Turbo"],
+      "description": "High-speed version of Gen-3 Alpha.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Legacy model. Cost: 5 credits per second (API)."
     }
   },
   "productCatalog": {
     "video-generation": {
       "displayName": "Video Generation",
+      "description": "Generate videos from text, images, or keyframes using Gen-4.5, Gen-4, Seedance 2.0, and third-party models.",
       "verified": true
     },
     "image-generation": {
       "displayName": "Image Generation",
+      "description": "Generate images using Gen-4 Image, Nano Banana 2, and third-party models.",
       "verified": true
     },
     "image-editing": {
       "displayName": "Image Editing",
+      "description": "Edit images using Aleph, Nano Banana 2, and other tools.",
       "verified": true
     },
     "video-editing": {
       "displayName": "Video Editing",
+      "description": "Edit videos using Edit Studio, Aleph 2.0, and other tools.",
       "verified": true
     },
     "act-one": {
       "displayName": "Act-One",
+      "description": "Performance-driven character animation.",
       "verified": true
     },
     "frames": {
       "displayName": "Frames",
+      "description": "Image generation for cinematic stills (now part of Gen-4 Image).",
       "verified": true
     },
     "aleph": {
       "displayName": "Aleph",
+      "description": "Universal in-context image editing model.",
       "verified": true
     },
     "motion-brush": {
       "displayName": "Motion Brush",
+      "description": "Animate specific areas of an image.",
       "verified": true
     },
     "camera-controls": {
       "displayName": "Camera Controls",
+      "description": "Control camera movement in generated videos.",
       "verified": true
     },
     "lip-sync": {
       "displayName": "Lip Sync",
+      "description": "Sync audio to character lip movements. Custom voices available on Pro.",
       "verified": true
     },
     "green-screen": {
       "displayName": "Green Screen",
+      "description": "Remove or replace backgrounds.",
       "verified": true
     },
     "erase-replace": {
       "displayName": "Erase & Replace",
+      "description": "Erase objects and replace with AI-generated content.",
       "verified": true
     },
     "expand-video": {
       "displayName": "Expand Video",
+      "description": "Expand video canvas beyond original frame.",
       "verified": true
     },
     "inpainting": {
       "displayName": "Inpainting",
+      "description": "Fill in missing parts of images or videos.",
       "verified": true
     },
     "upscaling": {
       "displayName": "Upscaling",
+      "description": "Upscale images and videos to 4K resolution.",
       "verified": true
     },
     "audio-tools": {
       "displayName": "Audio Tools",
+      "description": "Text-to-Speech, Sound Effects, and Speech-to-Speech audio generation.",
       "verified": true
     },
     "assets": {
       "displayName": "Assets",
+      "description": "Asset storage and management.",
       "verified": true
     },
     "workspaces": {
       "displayName": "Workspaces",
+      "description": "Team collaboration and shared workspaces.",
       "verified": true
     },
     "api": {
       "displayName": "Runway API",
+      "description": "Programmatic access to Runway models with credit-based pricing.",
+      "verified": true
+    },
+    "studio": {
+      "displayName": "Studio",
+      "description": "Timeline-based video editing: trim, stitch, reorder, and export final videos.",
+      "verified": true
+    },
+    "runway-agent": {
+      "displayName": "Runway Agent",
+      "description": "AI creative partner to develop and produce finished videos through conversation.",
+      "verified": true
+    },
+    "characters": {
+      "displayName": "Runway Characters",
+      "description": "Real-time intelligent avatars you can talk with and learn from.",
+      "verified": true
+    },
+    "workflows": {
+      "displayName": "Workflows",
+      "description": "Custom node-based workflows chaining together multiple models and modalities.",
       "verified": true
     }
   },
   "plans": [
     {
-      "plan": "Basic",
+      "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "runway/gen-4",
-        "runway/frames"
+        "runway/gen-4-turbo",
+        "runway/gen-4-image"
       ],
       "products": [
         "video-generation",
@@ -172,48 +293,58 @@
         "image-editing",
         "video-editing",
         "frames",
-        "assets"
+        "assets",
+        "studio",
+        "runway-agent"
       ],
-      "notes": "Free plan with limited monthly credits."
+      "notes": "125 one-time credits. Includes Gen-4 Turbo (Image to Video), Gen-4 Image (Text to Image, References), Gemini 3 Pro, Gemini 2.5, Image Apps, Generative Audio, Text to Speech, Audio Apps. 3 video editor projects, 5GB asset storage."
     },
     {
       "plan": "Standard",
       "monthlyPrice": 15,
+      "annualPrice": 12,
       "verified": true,
       "models": [
+        "runway/gen-4.5",
         "runway/gen-4",
         "runway/gen-4-turbo",
-        "runway/gen-3-alpha",
-        "runway/frames",
-        "runway/aleph"
+        "runway/gen-4-image",
+        "runway/gen-4-image-turbo",
+        "runway/nano-banana-2",
+        "runway/aleph-2.0"
       ],
       "products": [
         "video-generation",
         "image-generation",
         "image-editing",
         "video-editing",
-        "frames",
         "aleph",
         "motion-brush",
         "camera-controls",
         "green-screen",
         "erase-replace",
-        "assets"
+        "assets",
+        "studio",
+        "runway-agent",
+        "characters",
+        "workflows"
       ],
-      "notes": "625 monthly credits."
+      "notes": "625 credits/month = 52s of Gen-4.5, 104s of Gen-4 Turbo, or 78 Gen-4 Images (1080p). No watermarks. 4K upscaling. Access to all AI images and video models (Gen-4.5, Nano Banana Pro, Aleph, Veo 3.1, and more). Annual billing: $12/month (save $36/year)."
     },
     {
       "plan": "Pro",
       "monthlyPrice": 35,
+      "annualPrice": 28,
       "verified": true,
       "models": [
+        "runway/gen-4.5",
         "runway/gen-4",
         "runway/gen-4-turbo",
-        "runway/gen-3-alpha",
-        "runway/gen-3-alpha-turbo",
-        "runway/act-one",
-        "runway/frames",
-        "runway/aleph"
+        "runway/gen-4-image",
+        "runway/gen-4-image-turbo",
+        "runway/nano-banana-2",
+        "runway/aleph-2.0",
+        "runway/act-one"
       ],
       "products": [
         "video-generation",
@@ -221,7 +352,6 @@
         "image-editing",
         "video-editing",
         "act-one",
-        "frames",
         "aleph",
         "motion-brush",
         "camera-controls",
@@ -232,22 +362,29 @@
         "inpainting",
         "upscaling",
         "audio-tools",
-        "assets"
+        "assets",
+        "studio",
+        "runway-agent",
+        "characters",
+        "workflows"
       ],
-      "notes": "2250 monthly credits with higher generation limits."
+      "notes": "2250 credits/month = 187s of Gen-4.5, 375s of Gen-4 Turbo, or 281 Gen-4 Images (1080p). Create Custom Voices for Lip Sync and Text to Speech. 500GB asset storage. Access to best models (Gen-4.5, Seedance 2.0, Kling 3.0, Nano Banana Pro, and more). Annual billing: $28/month (save $84/year)."
     },
     {
-      "plan": "Unlimited",
+      "plan": "Max",
       "monthlyPrice": 95,
+      "annualPrice": 76,
       "verified": true,
       "models": [
+        "runway/gen-4.5",
         "runway/gen-4",
         "runway/gen-4-turbo",
-        "runway/gen-3-alpha",
-        "runway/gen-3-alpha-turbo",
+        "runway/gen-4-image",
+        "runway/gen-4-image-turbo",
+        "runway/nano-banana-2",
+        "runway/aleph-2.0",
         "runway/act-one",
-        "runway/frames",
-        "runway/aleph"
+        "runway/seedance-2.0"
       ],
       "products": [
         "video-generation",
@@ -255,7 +392,6 @@
         "image-editing",
         "video-editing",
         "act-one",
-        "frames",
         "aleph",
         "motion-brush",
         "camera-controls",
@@ -266,22 +402,29 @@
         "inpainting",
         "upscaling",
         "audio-tools",
-        "assets"
+        "assets",
+        "studio",
+        "runway-agent",
+        "characters",
+        "workflows"
       ],
-      "notes": "Unlimited relaxed video generations with monthly credits for premium modes."
+      "notes": "Replaces Unlimited plan as of June 1, 2026. 9500 credits/month = 791s of Gen-4.5, 1900s of Gen-4 Turbo, or 1187 Gen-4 Images (1080p). Roll over unused credits for 1 month. First access to newest models. Highest generation volume. Annual billing: $76/month (save $228/year). Existing Unlimited subscribers automatically move to Max on September 1, 2026 at the same price."
     },
     {
       "plan": "Enterprise",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
+        "runway/gen-4.5",
         "runway/gen-4",
         "runway/gen-4-turbo",
-        "runway/gen-3-alpha",
-        "runway/gen-3-alpha-turbo",
+        "runway/gen-4-image",
+        "runway/gen-4-image-turbo",
+        "runway/nano-banana-2",
+        "runway/aleph-2.0",
         "runway/act-one",
-        "runway/frames",
-        "runway/aleph"
+        "runway/seedance-2.0"
       ],
       "products": [
         "video-generation",
@@ -289,7 +432,6 @@
         "image-editing",
         "video-editing",
         "act-one",
-        "frames",
         "aleph",
         "motion-brush",
         "camera-controls",
@@ -302,27 +444,98 @@
         "audio-tools",
         "assets",
         "workspaces",
-        "api"
+        "api",
+        "studio",
+        "runway-agent",
+        "characters",
+        "workflows"
       ],
-      "notes": "Custom enterprise pricing with SSO, team administration, API access, and dedicated support."
+      "notes": "Custom enterprise pricing with custom credit packages, SSO, workspace analytics, configurable teamspaces, enterprise-wide onboarding, priority support, and custom team sizes. Contact sales for details."
     },
     {
-      "plan": "API",
+      "plan": "Developer API",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "runway/gen-4",
+        "runway/gen-4.5",
         "runway/gen-4-turbo",
-        "runway/gen-3-alpha",
-        "runway/gen-3-alpha-turbo",
-        "runway/act-one",
-        "runway/frames",
-        "runway/aleph"
+        "runway/gen-4-image",
+        "runway/gen-4-image-turbo",
+        "runway/aleph-2.0",
+        "runway/seedance-2.0"
       ],
       "products": [
         "api"
       ],
-      "notes": "Usage-based API pricing."
+      "notes": "Usage-based credit pricing. Credits purchased at $0.01 per credit. Minimum payment of $10 to get started. Model costs vary: gen4.5 (12 credits/sec), gen4_turbo (5 credits/sec), gen4_image (5-8 credits/image), gen4_image_turbo (2 credits/image), aleph2 (28 credits/sec), seedance2 (36-150 credits/sec)."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "runway/gen-4.5",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "12 credits per second of video."
+      },
+      {
+        "model": "runway/gen-4-turbo",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "5 credits per second of video."
+      },
+      {
+        "model": "runway/gen-4-image",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "5 credits per 720p image, 8 credits per 1080p image."
+      },
+      {
+        "model": "runway/gen-4-image-turbo",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "2 credits per image, any resolution."
+      },
+      {
+        "model": "runway/aleph-2.0",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "28 credits per second (56 credit minimum per generation)."
+      },
+      {
+        "model": "runway/seedance-2.0",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "36-40 credits per second (varies by resolution). 150 credits/sec for 4K."
+      }
+    ],
+    "features": {
+      "creditSystem": {
+        "displayName": "Credit System",
+        "price": "$0.01 per credit",
+        "description": "API usage is metered in credits. Credits can be purchased at $0.01 per credit. Minimum payment of $10 to get started.",
+        "verified": true
+      },
+      "thirdPartyModels": {
+        "displayName": "Third-Party Models",
+        "description": "API access to select third-party models including Veo 3.1, Gemini Image 3 Pro, GPT Image 2, and ElevenLabs audio models. Pricing varies by model.",
+        "verified": true
+      }
+    },
+    "notes": "All API pricing is in credits. 1 credit = $0.01 USD. Credit costs vary by model, duration, quality, and resolution. Sales tax may apply depending on location."
+  },
+  "notes": "Runway operates a credit-based subscription model. Free plan includes 125 one-time credits. Standard ($15/mo): 625 credits. Pro ($35/mo): 2250 credits. Max ($95/mo): 9500 credits. Enterprise: custom. The Unlimited plan is being phased out and replaced by Max as of June 1, 2026, with existing subscribers automatically moved on September 1, 2026. Gen-4.5 is the latest flagship video model. Gen-4 Image (formerly Frames) is the flagship image model. API credits purchased at $0.01/credit with a $10 minimum."
 }

@@ -1,164 +1,187 @@
 {
   "provider": "xAI",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official xAI Documentation",
   "officialSources": [
     {
-      "title": "xAI",
-      "url": "https://x.ai/"
+      "title": "Pricing | xAI Docs",
+      "url": "https://docs.x.ai/developers/pricing"
     },
     {
-      "title": "xAI Pricing",
-      "url": "https://x.ai/pricing"
-    },
-    {
-      "title": "xAI API",
+      "title": "API: Frontier Models for Reasoning & Enterprise | xAI",
       "url": "https://x.ai/api"
     },
     {
-      "title": "xAI Developer Documentation",
-      "url": "https://docs.x.ai/"
+      "title": "Models | xAI Docs",
+      "url": "https://docs.x.ai/developers/models"
     },
     {
-      "title": "xAI API Pricing",
-      "url": "https://docs.x.ai/developers/pricing"
+      "title": "Grok 4.3 | xAI Docs",
+      "url": "https://docs.x.ai/developers/models/grok-4.3"
+    },
+    {
+      "title": "Grok 4.20 Multi Agent Beta 0309 | xAI Docs",
+      "url": "https://docs.x.ai/developers/models/grok-4.20-multi-agent-beta-0309"
     }
   ],
   "modelCatalog": {
     "xai/grok-4.3": {
       "displayName": "Grok 4.3",
-      "officialNames": [
-        "grok-4.3"
-      ],
+      "officialNames": ["grok-4.3"],
+      "description": "Most advanced flagship model with industry-leading non-hallucination rate, agentic tool calling, and instruction following. Supports both non-reasoning and configurable reasoning modes (low, medium, high).[reference:0][reference:1]",
+      "contextLength": 1000000,
+      "inputPricePerMTok": 1.25,
+      "outputPricePerMTok": 2.50,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.20,
       "verified": true,
-      "notes": "Latest flagship multimodal reasoning model with 1M-token context."
+      "notes": "Context window: 1M tokens.[reference:2][reference:3] Cached input: $0.20/1M tokens.[reference:4] Requests exceeding 200K context window are charged at different rates.[reference:5]"
     },
     "xai/grok-4.20-multi-agent": {
       "displayName": "Grok 4.20 Multi-Agent",
-      "officialNames": [
-        "grok-4.20-multi-agent-0309"
-      ],
+      "officialNames": ["grok-4.20-multi-agent-0309"],
+      "description": "Designed for multi-agent orchestration where multiple agents collaborate in parallel for deep research tasks and document analysis.[reference:6]",
+      "contextLength": 1000000,
+      "inputPricePerMTok": 1.25,
+      "outputPricePerMTok": 2.50,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.20,
       "verified": true,
-      "notes": "Designed for collaborative multi-agent workflows."
+      "notes": "Context window: 1M tokens.[reference:7] Cached input: $0.20/1M tokens.[reference:8] Requests exceeding 200K context window are charged at different rates.[reference:9]"
     },
     "xai/grok-4.20-reasoning": {
       "displayName": "Grok 4.20 Reasoning",
-      "officialNames": [
-        "grok-4.20-0309-reasoning"
-      ],
+      "officialNames": ["grok-4.20-0309-reasoning"],
+      "description": "Reasoning-optimized flagship model with industry-leading speed and the lowest hallucination rate on the market.[reference:10]",
+      "contextLength": 1000000,
+      "inputPricePerMTok": 1.25,
+      "outputPricePerMTok": 2.50,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.20,
       "verified": true,
-      "notes": "Reasoning-optimized flagship model."
+      "notes": "Context window: 1M tokens.[reference:11] Cached input: $0.20/1M tokens.[reference:12] Requests exceeding 200K context window are charged at different rates.[reference:13]"
     },
     "xai/grok-4.20": {
       "displayName": "Grok 4.20",
-      "officialNames": [
-        "grok-4.20-0309-non-reasoning"
-      ],
+      "officialNames": ["grok-4.20-0309-non-reasoning"],
+      "description": "Standard flagship model with reasoning disabled for fast, non-reasoning completions.",
+      "contextLength": 1000000,
+      "inputPricePerMTok": 1.25,
+      "outputPricePerMTok": 2.50,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.20,
       "verified": true,
-      "notes": "Standard flagship model with reasoning disabled."
+      "notes": "Context window: 1M tokens.[reference:14] Cached input: $0.20/1M tokens.[reference:15]"
     },
     "xai/grok-build": {
       "displayName": "Grok Build",
-      "officialNames": [
-        "grok-build-0.1"
-      ],
+      "officialNames": ["grok-build-0.1"],
+      "description": "Fast coding model trained specifically for agentic software engineering and application development. Currently in early access.[reference:16]",
+      "contextLength": 256000,
+      "inputPricePerMTok": 1.00,
+      "outputPricePerMTok": 2.00,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.20,
       "verified": true,
-      "notes": "Agentic software engineering model for application development."
-    },
-    "xai/grok-voice": {
-      "displayName": "Grok Voice",
-      "officialNames": [
-        "Realtime Voice"
-      ],
-      "verified": true,
-      "notes": "Native realtime speech model for conversational AI."
-    },
-    "xai/aurora": {
-      "displayName": "Aurora",
-      "officialNames": [
-        "Aurora"
-      ],
-      "verified": true,
-      "notes": "Image generation model."
+      "notes": "Context window: 256K tokens.[reference:17][reference:18] Cached input: $0.20/1M tokens.[reference:19]"
     }
   },
   "productCatalog": {
     "grok": {
       "displayName": "Grok",
+      "description": "AI assistant with chat, reasoning, and multimodal capabilities.",
       "verified": true
     },
     "deepsearch": {
       "displayName": "DeepSearch",
+      "description": "Advanced search with deep reasoning over web and X content.",
       "verified": true
     },
     "deepersearch": {
       "displayName": "DeeperSearch",
+      "description": "Enhanced search with multi-step reasoning and analysis.",
       "verified": true
     },
     "think": {
       "displayName": "Think Mode",
+      "description": "Extended reasoning mode for complex problem-solving.",
       "verified": true
     },
     "expert": {
       "displayName": "Expert",
+      "description": "Specialized expert personas for domain-specific tasks.",
       "verified": true
     },
     "voice": {
       "displayName": "Voice",
+      "description": "Voice interaction and conversation capabilities.",
       "verified": true
     },
     "image-generation": {
       "displayName": "Image Generation",
+      "description": "AI-powered image creation from text prompts. Powered by Grok Imagine models with flat per-image pricing.[reference:20]",
       "verified": true
     },
     "image-editing": {
       "displayName": "Image Editing",
+      "description": "Edit and refine images using AI.",
       "verified": true
     },
     "video-generation": {
       "displayName": "Video Generation",
+      "description": "AI-powered video generation with per-second pricing based on duration and resolution.[reference:21]",
       "verified": true
     },
     "connectors": {
       "displayName": "Connectors",
+      "description": "Third-party integrations and connectors.",
       "verified": true
     },
     "memory": {
       "displayName": "Memory",
+      "description": "Persistent memory across conversations.",
       "verified": true
     },
     "web-search": {
       "displayName": "Web Search",
+      "description": "Real-time web search integration.",
       "verified": true
     },
     "live-search": {
       "displayName": "Live Search",
+      "description": "Real-time search with live updates.",
       "verified": true
     },
     "developer-api": {
       "displayName": "Developer API",
+      "description": "Programmatic access to all Grok models with usage-based pricing. Compatible with OpenAI and Anthropic SDKs.[reference:22]",
       "verified": true
     },
     "function-calling": {
       "displayName": "Function Calling",
+      "description": "Connect models to external tools and systems.[reference:23]",
       "verified": true
     },
     "structured-outputs": {
       "displayName": "Structured Outputs",
+      "description": "Return responses in specific, organized formats.[reference:24]",
       "verified": true
     },
     "batch-api": {
       "displayName": "Batch API",
+      "description": "Batch processing with discounted pricing for text and language models.[reference:25]",
       "verified": true
     },
     "vision": {
       "displayName": "Vision",
+      "description": "Multimodal vision capabilities for image understanding.",
       "verified": true
     },
     "realtime-api": {
       "displayName": "Realtime API",
+      "description": "Build real-time voice agents with speech-to-text, text-to-speech, and conversational AI.[reference:26]",
       "verified": true
     }
   },
@@ -166,6 +189,7 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "xai/grok-4.3"
@@ -182,12 +206,12 @@
     {
       "plan": "SuperGrok",
       "monthlyPrice": 30,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "xai/grok-4.3",
         "xai/grok-4.20",
-        "xai/grok-4.20-reasoning",
-        "xai/aurora"
+        "xai/grok-4.20-reasoning"
       ],
       "products": [
         "grok",
@@ -204,18 +228,19 @@
         "web-search",
         "live-search"
       ],
-      "notes": "Higher rate limits, Grok 4 access, frontier models, image/video generation, connectors, and Expert mode."
+      "notes": "Higher rate limits, Grok 4 access, frontier models, image/video generation, connectors, and Expert mode.[reference:27]"
     },
     {
-      "plan": "Business",
+      "plan": "SuperGrok Heavy",
       "monthlyPrice": 300,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "xai/grok-4.3",
         "xai/grok-4.20-multi-agent",
         "xai/grok-4.20-reasoning",
         "xai/grok-build",
-        "xai/aurora"
+        "xai/grok-4.20"
       ],
       "products": [
         "grok",
@@ -233,19 +258,19 @@
         "web-search",
         "live-search"
       ],
-      "notes": "Highest consumer/business tier with maximum rate limits and access to advanced Grok capabilities."
+      "notes": "Highest consumer/business tier with maximum rate limits and access to advanced Grok capabilities.[reference:28]"
     },
     {
       "plan": "Enterprise",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "xai/grok-4.3",
         "xai/grok-4.20-multi-agent",
         "xai/grok-4.20-reasoning",
         "xai/grok-build",
-        "xai/grok-voice",
-        "xai/aurora"
+        "xai/grok-4.20"
       ],
       "products": [
         "grok",
@@ -265,15 +290,14 @@
     {
       "plan": "Developer API",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "xai/grok-4.3",
         "xai/grok-4.20",
         "xai/grok-4.20-reasoning",
         "xai/grok-4.20-multi-agent",
-        "xai/grok-build",
-        "xai/grok-voice",
-        "xai/aurora"
+        "xai/grok-build"
       ],
       "products": [
         "developer-api",
@@ -283,7 +307,93 @@
         "vision",
         "realtime-api"
       ],
-      "notes": "Usage-based token pricing with access to all public Grok models, realtime APIs, and developer tools."
+      "notes": "Usage-based token pricing with access to all public Grok models, realtime APIs, and developer tools. Developers may be eligible for up to $150/month in free API credits via the data-sharing program.[reference:29]"
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "xai/grok-4.3",
+        "inputPricePerMTok": 1.25,
+        "outputPricePerMTok": 2.50,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.20,
+        "notes": "Context: 1M tokens. Cached input: $0.20/1M tokens.[reference:30]"
+      },
+      {
+        "model": "xai/grok-4.20-multi-agent",
+        "inputPricePerMTok": 1.25,
+        "outputPricePerMTok": 2.50,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.20,
+        "notes": "Context: 1M tokens. Cached input: $0.20/1M tokens.[reference:31]"
+      },
+      {
+        "model": "xai/grok-4.20-reasoning",
+        "inputPricePerMTok": 1.25,
+        "outputPricePerMTok": 2.50,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.20,
+        "notes": "Context: 1M tokens. Cached input: $0.20/1M tokens.[reference:32]"
+      },
+      {
+        "model": "xai/grok-4.20",
+        "inputPricePerMTok": 1.25,
+        "outputPricePerMTok": 2.50,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.20,
+        "notes": "Context: 1M tokens. Cached input: $0.20/1M tokens.[reference:33]"
+      },
+      {
+        "model": "xai/grok-build",
+        "inputPricePerMTok": 1.00,
+        "outputPricePerMTok": 2.00,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.20,
+        "notes": "Context: 256K tokens. Cached input: $0.20/1M tokens.[reference:34]"
+      }
+    ],
+    "features": {
+      "imageGeneration": {
+        "displayName": "Image Generation",
+        "description": "grok-imagine-image: $0.002/img (1K) or $0.02/img (2K). grok-imagine-image-quality: $0.01/img (1K) or $0.05-$0.07/img (2K).[reference:35][reference:36]",
+        "verified": true
+      },
+      "videoGeneration": {
+        "displayName": "Video Generation",
+        "description": "grok-imagine-video: $0.01/sec input. Output: 480p $0.05/sec, 720p $0.07/sec. grok-imagine-video-1.5: $0.01/img input. Output: 480p $0.08/sec, 720p $0.14/sec, 1080p $0.25/sec.[reference:37][reference:38]",
+        "verified": true
+      },
+      "realtimeVoice": {
+        "displayName": "Realtime Voice API",
+        "price": "$0.05/min ($3.00/hr)",
+        "description": "Voice Agent API for real-time conversational AI.[reference:39]",
+        "verified": true
+      },
+      "textToSpeech": {
+        "displayName": "Text to Speech",
+        "price": "$15.00 per 1M characters",
+        "description": "TTS for voice output.[reference:40]",
+        "verified": true
+      },
+      "speechToText": {
+        "displayName": "Speech to Text",
+        "price": "$0.10/hr (REST), $0.20/hr (Streaming)",
+        "description": "STT for voice input.[reference:41]",
+        "verified": true
+      },
+      "batchApi": {
+        "displayName": "Batch API",
+        "description": "Batch discount applies to text and language models only. See model detail pages for specific batch pricing.[reference:42]",
+        "verified": true
+      },
+      "dataSharing": {
+        "displayName": "Data Sharing Program",
+        "description": "Developers may be eligible for up to $150/month in free API credits via the data-sharing program. Verify current availability in the xAI console.[reference:43]",
+        "verified": true
+      }
+    },
+    "notes": "All prices in USD per 1M tokens unless otherwise noted. Requests exceeding 200K context window are charged at different rates for models with 1M token context.[reference:44] Tool requests are priced based on token usage and server-side tool invocations.[reference:45]"
+  },
+  "notes": "xAI operates a dual model: consumer subscriptions (Free, SuperGrok at $30/mo, SuperGrok Heavy at $300/mo) and API access with usage-based token pricing. Grok 4.3 is the current flagship model with 1M token context and pricing at $1.25/MTok input and $2.50/MTok output. The Grok 4.20 family includes multi-agent, reasoning, and non-reasoning variants. Grok Build (grok-build-0.1) is an early-access coding model. Image and video generation are available through the Imagine API with flat per-image and per-second pricing. The Realtime Voice API is priced at $0.05/min. Batch API discounts are available for text and language models."
 }

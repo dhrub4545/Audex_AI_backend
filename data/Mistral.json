@@ -1,13 +1,17 @@
 {
   "provider": "Mistral AI",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Mistral AI Documentation",
   "officialSources": [
     {
-      "title": "Mistral AI",
-      "url": "https://mistral.ai/"
+      "title": "Pricing",
+      "url": "https://mistral.ai/pricing"
+    },
+    {
+      "title": "Models Overview",
+      "url": "https://docs.mistral.ai/models/overview"
     },
     {
       "title": "La Plateforme",
@@ -16,182 +20,314 @@
     {
       "title": "Mistral Documentation",
       "url": "https://docs.mistral.ai/"
-    },
-    {
-      "title": "Mistral Pricing",
-      "url": "https://mistral.ai/pricing"
     }
   ],
   "modelCatalog": {
     "mistral/magistral-medium": {
       "displayName": "Magistral Medium",
-      "officialNames": [
-        "Magistral Medium"
-      ],
+      "officialNames": ["magistral-medium"],
+      "description": "Premier reasoning model excelling in domain-specific, transparent, and multilingual reasoning. Supports text-to-text, reasoning, and multimodal capabilities.",
+      "contextLength": 128000,
+      "inputPricePerMTok": 2.0,
+      "outputPricePerMTok": 5.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Flagship reasoning model."
+      "notes": "Flagship reasoning model. Context window: 128K. Proprietary – available via API only."
     },
     "mistral/magistral-small": {
       "displayName": "Magistral Small",
-      "officialNames": [
-        "Magistral Small"
-      ],
+      "officialNames": ["magistral-small"],
+      "description": "Open-weight reasoning model, excelling in domain-specific, transparent, and multilingual reasoning.",
+      "contextLength": 128000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Open-weight reasoning model."
+      "notes": "Open-weight model. Pricing not publicly published for this variant. Available for self‑hosting under the Mistral Research License."
     },
-    "mistral/mistral-medium-3": {
-      "displayName": "Mistral Medium 3",
-      "officialNames": [
-        "Mistral Medium 3"
-      ],
-      "verified": true
+    "mistral/mistral-large": {
+      "displayName": "Mistral Large",
+      "officialNames": ["mistral-large-3-25-12"],
+      "description": "Best overall performance for most tasks. Supports text-to-text capabilities.",
+      "contextLength": 128000,
+      "inputPricePerMTok": 2.0,
+      "outputPricePerMTok": 6.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Context window: 128K. Batch processing receives a 50% discount. Proprietary model – available via API only (not open-sourced)."
+    },
+    "mistral/mistral-medium-3.5": {
+      "displayName": "Mistral Medium 3.5",
+      "officialNames": ["mistral-medium-3.5"],
+      "description": "Frontier-class multimodal model optimized for agentic and coding use cases. State-of-the-art performance for coding tasks.",
+      "contextLength": 256000,
+      "inputPricePerMTok": 1.5,
+      "outputPricePerMTok": 7.5,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Released as open weights under a Modified MIT license. Context window: 256K."
+    },
+    "mistral/mistral-small-4": {
+      "displayName": "Mistral Small 4",
+      "officialNames": ["mistral-small-4"],
+      "description": "Powerful hybrid model unifying instruct, reasoning, and coding capabilities in a single model. 119B parameters with 6.5B active. Open SOTA, multimodal, multilingual.",
+      "contextLength": 256000,
+      "inputPricePerMTok": 0.15,
+      "outputPricePerMTok": 0.6,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Released March 16, 2026 under Apache 2.0 license. Context window: 256K. Cost-efficient option."
     },
     "mistral/mistral-small-3.2": {
       "displayName": "Mistral Small 3.2",
-      "officialNames": [
-        "Mistral Small 3.2"
-      ],
-      "verified": true
-    },
-    "mistral/devstral-medium": {
-      "displayName": "Devstral Medium",
-      "officialNames": [
-        "Devstral Medium"
-      ],
+      "officialNames": ["mistral-small-2506"],
+      "description": "Cost-sensitive project model. Version 25.06.",
+      "contextLength": 32000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Flagship coding model."
+      "notes": "Deprecation scheduled. Alternative: Mistral Small 4. Context window: 32K."
     },
-    "mistral/devstral-small": {
-      "displayName": "Devstral Small",
-      "officialNames": [
-        "Devstral Small"
-      ],
+    "mistral/devstral-2": {
+      "displayName": "Devstral 2",
+      "officialNames": ["devstral-2"],
+      "description": "Open-weights agentic coding model for autonomous software engineering.",
+      "contextLength": 128000,
+      "inputPricePerMTok": 0.4,
+      "outputPricePerMTok": 2.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Open coding model."
+      "notes": "Flagship coding model. Released under a modified MIT license. Context window: 128K."
+    },
+    "mistral/devstral-small-2": {
+      "displayName": "Devstral Small 2",
+      "officialNames": ["labs-devstral-small-2512"],
+      "description": "Best lightweight, open model for coding agents. Supports coding, agentic, text-to-text, lightweight, and multimodal capabilities. Version 25.12.",
+      "contextLength": 128000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Deprecation scheduled. Alternative: Devstral 2. Released under Apache 2.0 license. Context window: 128K."
     },
     "mistral/codestral-25.08": {
       "displayName": "Codestral 25.08",
-      "officialNames": [
-        "Codestral 25.08"
-      ],
-      "verified": true
+      "officialNames": ["codestral-25.08"],
+      "description": "Coding-focused model.",
+      "contextLength": 128000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Released under Mistral AI Non-Production (MNPL) License."
     },
     "mistral/voxtral-small": {
       "displayName": "Voxtral Small",
-      "officialNames": [
-        "Voxtral Small"
-      ],
+      "officialNames": ["voxtral-small"],
+      "description": "State-of-the-art performance on speech and audio. First model with audio input capabilities for instruct use cases.",
+      "contextLength": 32000,
+      "inputPricePerMTok": 0.1,
+      "outputPricePerMTok": 0.3,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Speech understanding model."
+      "notes": "Context window: 32K. Supports audio input (billed per minute – see API pricing). Token pricing applies to text input and output."
+    },
+    "mistral/voxtral-mini-transcribe-2": {
+      "displayName": "Voxtral Mini Transcribe 2",
+      "officialNames": ["voxtral-mini-transcribe-2"],
+      "description": "Premier state-of-the-art transcription model.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Audio input pricing: $0.003/min (standard) and $0.006/min (realtime). Open‑weights under Apache 2.0 license."
     },
     "mistral/voxtral-mini": {
       "displayName": "Voxtral Mini",
-      "officialNames": [
-        "Voxtral Mini"
-      ],
-      "verified": true
-    },
-    "mistral/mistral-ocr": {
-      "displayName": "Mistral OCR",
-      "officialNames": [
-        "Mistral OCR"
-      ],
+      "officialNames": ["voxtral-mini-2507"],
+      "description": "Audio chat model. Version 25.07.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Optical character recognition model."
+      "notes": "Deprecation scheduled. Alternative: Voxtral Mini Transcribe 2."
+    },
+    "mistral/voxtral-tts": {
+      "displayName": "Voxtral TTS",
+      "officialNames": ["voxtral-tts"],
+      "description": "State-of-the-art text-to-speech generation and voice cloning. Supports 9 languages, streaming with ~90ms time-to-first-audio.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Audio generation: $16 per 1M characters (equivalent to $0.016 per 1k characters). Zero-shot voice cloning."
     },
     "mistral/pixtral-large": {
       "displayName": "Pixtral Large",
-      "officialNames": [
-        "Pixtral Large"
-      ],
+      "officialNames": ["pixtral-large"],
+      "description": "Flagship multimodal vision-language model.",
+      "contextLength": 128000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Flagship multimodal vision-language model."
+      "notes": "Pricing not publicly published. Context window: 128K. Released under Mistral Research License."
     },
     "mistral/pixtral-12b": {
       "displayName": "Pixtral 12B",
-      "officialNames": [
-        "Pixtral 12B"
-      ],
-      "verified": true
+      "officialNames": ["pixtral-12b"],
+      "description": "Vision-language model.",
+      "contextLength": 128000,
+      "inputPricePerMTok": 0.15,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Input: $0.15 per MTok. Output pricing not specified."
+    },
+    "mistral/mistral-ocr": {
+      "displayName": "Mistral OCR",
+      "officialNames": ["mistral-ocr"],
+      "description": "Optical character recognition model for document extraction and understanding.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Document extraction pricing: $4 per 1000 pages (standard), $2 per 1000 pages (batch). Annotated pages: $5 per 1000 pages."
     },
     "mistral/ministral-8b": {
       "displayName": "Ministral 8B",
-      "officialNames": [
-        "Ministral 8B"
-      ],
-      "verified": true
+      "officialNames": ["ministral-8b"],
+      "description": "Lightweight model.",
+      "contextLength": 128000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Released under Mistral Research License."
     },
     "mistral/ministral-3b": {
       "displayName": "Ministral 3B",
-      "officialNames": [
-        "Ministral 3B"
-      ],
+      "officialNames": ["ministral-3b"],
+      "description": "Lightweight model.",
+      "contextLength": 128000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true
     }
   },
   "productCatalog": {
     "le-chat": {
       "displayName": "Le Chat",
+      "description": "AI assistant with chat, search, creation, and Vibe for code.",
       "verified": true
     },
     "la-plateforme": {
       "displayName": "La Plateforme",
+      "description": "Serverless platform to build and tune with Mistral models as API endpoints.",
       "verified": true
     },
     "developer-api": {
       "displayName": "Developer API",
+      "description": "Programmatic access to Mistral models with pay-as-you-go token pricing.",
+      "verified": true
+    },
+    "vibe": {
+      "displayName": "Mistral Vibe",
+      "description": "Agentic coding assistant in your terminal. Available on Le Chat Pro and Team plans with generous usage.",
       "verified": true
     },
     "agents": {
       "displayName": "Agents",
+      "description": "AI agents for autonomous task execution.",
       "verified": true
     },
     "web-search": {
       "displayName": "Web Search",
+      "description": "Real-time web search integration within Le Chat.",
       "verified": true
     },
     "canvas": {
       "displayName": "Canvas",
+      "description": "Collaborative writing and editing workspace.",
       "verified": true
     },
     "code-interpreter": {
       "displayName": "Code Interpreter",
+      "description": "Execute code within chat conversations.",
       "verified": true
     },
     "image-generation": {
       "displayName": "Image Generation",
+      "description": "AI-powered image creation. Pro and Team plans offer increased generation limits.",
       "verified": true
     },
     "document-understanding": {
       "displayName": "Document Understanding",
+      "description": "AI-powered document analysis and extraction.",
       "verified": true
     },
     "ocr": {
       "displayName": "OCR",
+      "description": "Document extraction and understanding. Available via API.",
       "verified": true
     },
     "vision": {
       "displayName": "Vision",
+      "description": "Multimodal vision-language capabilities.",
       "verified": true
     },
     "voice": {
       "displayName": "Voice",
+      "description": "Speech and audio capabilities including transcription and TTS.",
       "verified": true
     },
     "function-calling": {
       "displayName": "Function Calling",
+      "description": "Tool calling support.",
       "verified": true
     },
     "fine-tuning": {
       "displayName": "Fine-tuning",
+      "description": "Customize models on your own data.",
       "verified": true
     },
     "batch-api": {
       "displayName": "Batch API",
+      "description": "Asynchronous processing with 50% discount on standard rates.",
       "verified": true
     },
     "embeddings": {
       "displayName": "Embeddings",
+      "description": "Text embedding models for semantic search and retrieval.",
+      "verified": true
+    },
+    "workspace": {
+      "displayName": "Workspace",
+      "description": "Team collaboration and shared workspaces on Team and Enterprise plans.",
       "verified": true
     }
   },
@@ -199,13 +335,13 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "mistral/magistral-small",
         "mistral/mistral-small-3.2",
-        "mistral/devstral-small",
         "mistral/pixtral-12b",
-        "mistral/ministral-3b"
+        "mistral/ministral-3b",
+        "mistral/voxtral-mini"
       ],
       "products": [
         "le-chat",
@@ -215,26 +351,27 @@
         "voice",
         "image-generation"
       ],
-      "notes": "Free access with daily usage limits."
+      "notes": "Limited access to Vibe, latest models, chat, search, creation. Limited image generations."
     },
     {
       "plan": "Pro",
       "monthlyPrice": 14.99,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "mistral/magistral-medium",
         "mistral/magistral-small",
-        "mistral/mistral-medium-3",
-        "mistral/mistral-small-3.2",
-        "mistral/devstral-medium",
-        "mistral/devstral-small",
+        "mistral/mistral-large",
+        "mistral/mistral-medium-3.5",
+        "mistral/mistral-small-4",
+        "mistral/devstral-2",
         "mistral/pixtral-large",
-        "mistral/pixtral-12b",
         "mistral/voxtral-small",
         "mistral/mistral-ocr"
       ],
       "products": [
         "le-chat",
+        "vibe",
         "agents",
         "web-search",
         "canvas",
@@ -245,22 +382,25 @@
         "document-understanding",
         "ocr"
       ],
-      "notes": "Higher limits with access to flagship models and advanced capabilities."
+      "notes": "Higher limits across chat, more messages and web searches, more extended thinking and deep research reports, expanded Mistral Vibe capacity, chat and email support. Student discount available."
     },
     {
       "plan": "Team",
       "monthlyPrice": 24.99,
+      "annualPrice": 19.99,
       "verified": true,
       "models": [
         "mistral/magistral-medium",
-        "mistral/mistral-medium-3",
-        "mistral/devstral-medium",
+        "mistral/mistral-large",
+        "mistral/mistral-medium-3.5",
+        "mistral/devstral-2",
         "mistral/pixtral-large",
         "mistral/voxtral-small",
         "mistral/mistral-ocr"
       ],
       "products": [
         "le-chat",
+        "vibe",
         "agents",
         "web-search",
         "canvas",
@@ -269,18 +409,21 @@
         "voice",
         "image-generation",
         "document-understanding",
-        "ocr"
+        "ocr",
+        "workspace"
       ],
-      "notes": "Per-user pricing with collaboration features."
+      "notes": "Per-user pricing. Annual billing available: $19.99/user/month (paid annually). Priority support."
     },
     {
       "plan": "Enterprise",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "mistral/magistral-medium",
-        "mistral/mistral-medium-3",
-        "mistral/devstral-medium",
+        "mistral/mistral-large",
+        "mistral/mistral-medium-3.5",
+        "mistral/devstral-2",
         "mistral/codestral-25.08",
         "mistral/pixtral-large",
         "mistral/voxtral-small",
@@ -288,6 +431,7 @@
       ],
       "products": [
         "le-chat",
+        "vibe",
         "agents",
         "la-plateforme",
         "developer-api",
@@ -302,26 +446,31 @@
         "function-calling",
         "fine-tuning",
         "batch-api",
-        "embeddings"
+        "embeddings",
+        "workspace"
       ],
-      "notes": "Custom enterprise pricing with private deployment, security, administration, and enterprise support."
+      "notes": "Custom enterprise pricing with custom SLAs, dedicated support, and private deployments. Contact sales for details."
     },
     {
       "plan": "Developer API",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "mistral/magistral-medium",
         "mistral/magistral-small",
-        "mistral/mistral-medium-3",
+        "mistral/mistral-large",
+        "mistral/mistral-medium-3.5",
+        "mistral/mistral-small-4",
         "mistral/mistral-small-3.2",
-        "mistral/devstral-medium",
-        "mistral/devstral-small",
+        "mistral/devstral-2",
+        "mistral/devstral-small-2",
         "mistral/codestral-25.08",
         "mistral/pixtral-large",
         "mistral/pixtral-12b",
         "mistral/voxtral-small",
-        "mistral/voxtral-mini",
+        "mistral/voxtral-mini-transcribe-2",
+        "mistral/voxtral-tts",
         "mistral/mistral-ocr",
         "mistral/ministral-8b",
         "mistral/ministral-3b"
@@ -332,9 +481,104 @@
         "function-calling",
         "fine-tuning",
         "batch-api",
-        "embeddings"
+        "embeddings",
+        "ocr"
       ],
-      "notes": "Usage-based token pricing through La Plateforme."
+      "notes": "Usage-based token pricing through La Plateforme. Free tier: $5 credits every 30 days for new accounts. Batch processing gets 50% discount."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "mistral/magistral-medium",
+        "inputPricePerMTok": 2.0,
+        "outputPricePerMTok": 5.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Premier reasoning model."
+      },
+      {
+        "model": "mistral/mistral-large",
+        "inputPricePerMTok": 2.0,
+        "outputPricePerMTok": 6.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Best overall performance. Batch: 50% discount."
+      },
+      {
+        "model": "mistral/mistral-medium-3.5",
+        "inputPricePerMTok": 1.5,
+        "outputPricePerMTok": 7.5,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Frontier-class multimodal, optimized for agentic and coding. Context: 256K."
+      },
+      {
+        "model": "mistral/mistral-small-4",
+        "inputPricePerMTok": 0.15,
+        "outputPricePerMTok": 0.6,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Cost-efficient option. Context: 256K."
+      },
+      {
+        "model": "mistral/devstral-2",
+        "inputPricePerMTok": 0.4,
+        "outputPricePerMTok": 2.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Open-weights agentic coding model."
+      },
+      {
+        "model": "mistral/voxtral-small",
+        "inputPricePerMTok": 0.1,
+        "outputPricePerMTok": 0.3,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Token pricing for text input/output. Audio input is billed separately at $0.004/min."
+      },
+      {
+        "model": "mistral/pixtral-12b",
+        "inputPricePerMTok": 0.15,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Vision-language model. Output pricing not specified."
+      }
+    ],
+    "features": {
+      "batch-api": {
+        "displayName": "Batch API",
+        "price": "50% of standard rates",
+        "description": "Asynchronous processing with 50% discount on standard per-token rates.",
+        "verified": true
+      },
+      "free-tier": {
+        "displayName": "Free Tier",
+        "price": "$5 credits every 30 days",
+        "description": "New accounts receive $5 of credits every 30 days for experimentation.",
+        "verified": true
+      },
+      "ocr-pricing": {
+        "displayName": "OCR Pricing",
+        "price": "$4 per 1000 pages (standard), $2 per 1000 pages (batch)",
+        "description": "Document extraction pricing. Annotated pages: $5 per 1000 pages.",
+        "verified": true
+      },
+      "voxtral-tts": {
+        "displayName": "Voxtral TTS",
+        "price": "$16 per 1M characters",
+        "description": "Text-to-speech and voice cloning. Equivalent to $0.016 per 1k characters.",
+        "verified": true
+      },
+      "transcription": {
+        "displayName": "Transcription",
+        "price": "$0.003-$0.006 per minute",
+        "description": "Voxtral Mini Transcribe: $0.003/min, Realtime: $0.006/min.",
+        "verified": true
+      }
+    },
+    "notes": "All prices in USD per 1M tokens unless otherwise noted. Batch processing receives 50% discount. Free tier available for API experimentation."
+  },
+  "notes": "Mistral AI operates a dual model: consumer subscriptions (Le Chat Free, Pro, Team) and API access (La Plateforme). Pro is $14.99/month. Team is $24.99/user/month ($19.99 with annual billing). Enterprise has custom pricing. Models include Magistral (reasoning), Devstral (coding), Voxtral (speech/audio), Pixtral (vision), and Mistral (general-purpose). Mistral Small 4 (March 2026) and Mistral Medium 3.5 are the latest open models. Batch API provides 50% discount on standard rates. Licensing varies: Modified MIT (Magistral Small, Mistral Medium 3.5, Devstral 2), Apache 2.0 (Mistral Small 4, Devstral Small, Voxtral), MNPL (Codestral), and Mistral Research License (Pixtral Large, Ministral 8B). Proprietary models (Magistral Medium, Mistral Large) are available via API only."
 }

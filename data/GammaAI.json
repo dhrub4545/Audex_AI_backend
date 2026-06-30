@@ -1,140 +1,172 @@
 {
   "provider": "Gamma",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Gamma Documentation",
   "officialSources": [
-    {
-      "title": "Gamma",
-      "url": "https://gamma.app"
-    },
     {
       "title": "Gamma Pricing",
       "url": "https://gamma.app/pricing"
     },
     {
-      "title": "Gamma Help Center",
-      "url": "https://help.gamma.app"
+      "title": "Review access and pricing",
+      "url": "https://developers.gamma.app/get-started/access-and-pricing"
     },
     {
-      "title": "Gamma Developers",
-      "url": "https://developers.gamma.app"
+      "title": "Plans and pricing (Teams)",
+      "url": "https://gamma.app/pricing/teams"
+    },
+    {
+      "title": "Gamma Help Center",
+      "url": "https://help.gamma.app"
     }
   ],
   "modelCatalog": {
     "gamma/ai-agent": {
       "displayName": "Gamma AI Agent",
-      "officialNames": [
-        "Gamma AI Agent"
-      ],
+      "officialNames": ["gamma-ai-agent"],
+      "description": "Primary AI assistant for creating presentations, documents, websites, and social content. Capable of generating text, images, and full layouts from natural language prompts.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Primary AI assistant used for creating presentations, documents, websites, and social content."
+      "notes": "Available across Gamma plans with varying capabilities and credit usage."
     },
     "gamma/basic-image-models": {
       "displayName": "Basic Image Models",
-      "officialNames": [
-        "Basic Image Models"
-      ],
-      "verified": true
+      "officialNames": [],
+      "description": "Standard image generation tier. Cost: 2-15 credits per image.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Available on Free and Plus plans. Represents Gamma's standard image capability tier."
     },
     "gamma/advanced-image-models": {
       "displayName": "Advanced Image Models",
-      "officialNames": [
-        "Advanced Image Models"
-      ],
-      "verified": true
+      "officialNames": [],
+      "description": "Enhanced image generation tier with higher quality output. Cost: 20-33 credits per image.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Available on Plus and above. Represents Gamma's advanced image capability tier."
     },
     "gamma/premium-image-models": {
       "displayName": "Premium Image Models",
-      "officialNames": [
-        "Premium Image Models"
-      ],
-      "verified": true
+      "officialNames": [],
+      "description": "Premium image generation tier with advanced capabilities. Cost: 34-75 credits per image.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Available on Pro and above. Represents Gamma's premium image capability tier."
     },
     "gamma/ultra-image-models": {
       "displayName": "Ultra Image Models",
-      "officialNames": [
-        "Ultra Image Models"
-      ],
+      "officialNames": [],
+      "description": "Most advanced image generation tier, offering cinematic quality and full-image slides. Cost: 30-125 credits per image.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Available exclusively on the Ultra plan."
+      "notes": "Available exclusively on the Ultra and Business plans. Represents Gamma's highest image capability tier."
     }
   },
   "productCatalog": {
     "presentations": {
       "displayName": "AI Presentations",
+      "description": "Create AI-generated presentations from text prompts.",
       "verified": true
     },
     "documents": {
       "displayName": "AI Documents",
+      "description": "Generate documents, reports, and articles using AI.",
       "verified": true
     },
     "websites": {
       "displayName": "AI Websites",
+      "description": "Build AI-generated websites and landing pages.",
       "verified": true
     },
     "socials": {
       "displayName": "AI Social Content",
+      "description": "Create social media posts and carousels.",
       "verified": true
     },
     "ai-agent": {
       "displayName": "AI Agent",
+      "description": "AI assistant for editing, rewriting, and content refinement.",
       "verified": true
     },
     "api": {
       "displayName": "API",
+      "description": "Programmatic access to Gamma generation capabilities (Pro, Ultra, Teams, Business).",
       "verified": true
     },
     "analytics": {
       "displayName": "Analytics",
+      "description": "Detailed per-viewer analytics and engagement insights.",
       "verified": true
     },
     "custom-domains": {
       "displayName": "Custom Domains",
+      "description": "Publish content to custom domains.",
       "verified": true
     },
     "password-protection": {
       "displayName": "Password Protection",
+      "description": "Protect content with password-based access control.",
       "verified": true
     },
     "custom-fonts": {
       "displayName": "Custom Fonts",
+      "description": "Upload and apply custom fonts to content.",
       "verified": true
     },
     "branding-removal": {
       "displayName": "Branding Removal",
+      "description": "Remove 'Made with Gamma' branding from shared content.",
       "verified": true
     },
     "templates": {
       "displayName": "Templates",
+      "description": "Access to workspace templates and pre-built themes.",
       "verified": true
     },
     "workspaces": {
       "displayName": "Workspaces",
+      "description": "Shared team workspaces with centralized management.",
       "verified": true
     },
     "teams": {
       "displayName": "Teams",
+      "description": "Team collaboration features and admin controls.",
       "verified": true
     },
     "business": {
       "displayName": "Business",
-      "verified": true
-    },
-    "developer-api": {
-      "displayName": "Developer API",
+      "description": "Enterprise-grade administration and security features.",
       "verified": true
     },
     "connectors": {
       "displayName": "Connectors",
-      "verified": true
+      "description": "Integrations with ChatGPT, Claude, Zapier, Make, and n8n.",
+      "verified": true,
+      "notes": "Available on all plans, including Free and Plus."
     }
   },
   "plans": [
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "gamma/ai-agent",
@@ -146,13 +178,15 @@
         "websites",
         "socials",
         "ai-agent",
-        "templates"
+        "templates",
+        "connectors"
       ],
-      "notes": "One-time AI credits, basic image models, AI Agent access, up to 10 generated cards per prompt, Gamma branding included."
+      "notes": "400 one-time AI credits (no monthly refresh). Up to 10 cards per prompt. Gamma branding included. Import from PDF and PPTX. Export to PDF, PPTX, PNG, and Google Slides."
     },
     {
       "plan": "Plus",
-      "monthlyPrice": 9,
+      "monthlyPrice": 12,
+      "annualPrice": 108,
       "verified": true,
       "models": [
         "gamma/ai-agent",
@@ -166,13 +200,15 @@
         "socials",
         "ai-agent",
         "branding-removal",
-        "templates"
+        "templates",
+        "connectors"
       ],
-      "notes": "1,000 monthly AI credits, advanced image models, branding removal, up to 20 generated cards per prompt."
+      "notes": "1,000 monthly AI credits. Up to 20 cards per prompt. Gamma branding removed. Advanced image models. Annual pricing: $9/month."
     },
     {
       "plan": "Pro",
-      "monthlyPrice": 18,
+      "monthlyPrice": 25,
+      "annualPrice": 216,
       "verified": true,
       "models": [
         "gamma/ai-agent",
@@ -192,14 +228,15 @@
         "password-protection",
         "custom-fonts",
         "branding-removal",
-        "developer-api",
-        "templates"
+        "templates",
+        "connectors"
       ],
-      "notes": "4,000 monthly AI credits, premium AI models, API access, analytics, custom domains, up to 50 generated cards per prompt."
+      "notes": "4,000 monthly AI credits. Up to 60 cards per prompt. Premium image models. API access. Custom fonts, password protection. Up to 10 custom domains. Annual pricing: $18/month."
     },
     {
       "plan": "Ultra",
       "monthlyPrice": 100,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "gamma/ai-agent",
@@ -220,14 +257,15 @@
         "password-protection",
         "custom-fonts",
         "branding-removal",
-        "developer-api",
-        "templates"
+        "templates",
+        "connectors"
       ],
-      "notes": "20,000 monthly AI credits, earliest access to newest AI models, Studio Mode, ultra image models, up to 75 generated cards per prompt."
+      "notes": "20,000 monthly AI credits. Up to 75 cards per prompt. Ultra image models. Studio Mode for cinematic full-image slides. Up to 100 custom domains. Early access to new features. Monthly-only (annual pricing forthcoming)."
     },
     {
       "plan": "Teams",
-      "monthlyPrice": 25,
+      "monthlyPrice": 20,
+      "annualPrice": 240,
       "verified": true,
       "models": [
         "gamma/ai-agent",
@@ -247,15 +285,16 @@
         "password-protection",
         "custom-fonts",
         "branding-removal",
-        "developer-api",
         "workspaces",
-        "teams"
+        "teams",
+        "connectors"
       ],
-      "notes": "Per-user pricing with centralized workspace management and collaboration."
+      "notes": "Per-seat pricing (minimum 2 seats). 6,000 monthly credits per seat. Up to 60 cards per prompt. Everything in Pro. Centralized billing. Custom company theme. Shared folders & admin controls. Annual pricing: $240 per seat."
     },
     {
       "plan": "Business",
       "monthlyPrice": 40,
+      "annualPrice": 480,
       "verified": true,
       "models": [
         "gamma/ai-agent",
@@ -276,13 +315,74 @@
         "password-protection",
         "custom-fonts",
         "branding-removal",
-        "developer-api",
         "workspaces",
         "teams",
         "business",
         "connectors"
       ],
-      "notes": "Enterprise-grade collaboration, administration, security, and connectors for organizations."
+      "notes": "Per-seat pricing (minimum 10 seats). 10,000 monthly credits per seat. Up to 75 cards per prompt. Everything in Team. SSO authentication. Advanced data controls. Access to the most advanced image generation tiers. Annual pricing: $480 per seat."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "gamma/basic-image-models",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Standard image tier: credit consumption varies by generation complexity."
+      },
+      {
+        "model": "gamma/advanced-image-models",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Advanced image tier: credit consumption varies by generation complexity."
+      },
+      {
+        "model": "gamma/premium-image-models",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Premium image tier: credit consumption varies by generation complexity."
+      },
+      {
+        "model": "gamma/ultra-image-models",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Ultra image tier: credit consumption varies by generation complexity."
+      }
+    ],
+    "features": {
+      "creditSystem": {
+        "displayName": "Credit System",
+        "unit": "Credits",
+        "description": "Gamma uses a credit-based billing system. Credit consumption varies by generation type, model tier, and content complexity.",
+        "verified": true
+      },
+      "apiAccess": {
+        "displayName": "API Access",
+        "availablePlans": ["Pro", "Ultra", "Teams", "Business"],
+        "description": "API key access available on Pro, Ultra, Teams, and Business plans. Generations via API consume credits similarly to web/app usage.",
+        "verified": true
+      },
+      "autoRecharge": {
+        "displayName": "Auto-Recharge",
+        "description": "Recommended way to prevent failed generations due to exhausted credits. Can be enabled at Settings > Billing.",
+        "verified": true
+      },
+      "creditRollover": {
+        "displayName": "Credit Rollover",
+        "description": "Unused monthly credits roll over up to 2× the plan's monthly allowance.",
+        "verified": true
+      }
+    },
+    "notes": "API billing uses a credit-based system. Higher-tier subscribers receive more monthly credits. If you run out of credits, you can upgrade, purchase ad hoc credits, or enable auto-recharge. Credit consumption rates are determined by the selected image model tier and generation complexity."
+  },
+  "notes": "Gamma uses a card-based format where one card equals one slide or section. Free plan includes 400 one-time credits (no monthly refresh). Credit consumption depends on the selected generation features and model tier. Annual billing provides approximately two months free compared to monthly billing."
 }

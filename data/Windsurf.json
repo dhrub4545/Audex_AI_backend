@@ -1,128 +1,160 @@
 {
   "provider": "Windsurf",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Windsurf Documentation",
   "officialSources": [
-    {
-      "title": "Windsurf",
-      "url": "https://windsurf.com/"
-    },
     {
       "title": "Windsurf Pricing",
       "url": "https://windsurf.com/pricing"
     },
     {
-      "title": "Windsurf Docs",
-      "url": "https://docs.windsurf.com/"
+      "title": "Plans and Usage - Windsurf Docs",
+      "url": "https://docs.windsurf.com/windsurf/accounts/usage"
     },
     {
-      "title": "Windsurf Blog",
-      "url": "https://windsurf.com/blog"
+      "title": "Windsurf Docs",
+      "url": "https://docs.windsurf.com/"
     }
   ],
   "modelCatalog": {
-    "windsurf/swe-1": {
-      "displayName": "SWE-1",
-      "officialNames": [
-        "SWE-1"
-      ],
-      "verified": true,
-      "notes": "Flagship proprietary software engineering model."
-    },
     "windsurf/swe-1.5": {
       "displayName": "SWE-1.5",
-      "officialNames": [
-        "SWE-1.5"
-      ],
+      "officialNames": ["SWE-1.5"],
+      "description": "Flagship proprietary software engineering model. Optimized for agent workflows with improved reasoning and tool calling capabilities. Powers Cascade agents in Windsurf IDE.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Improved generation of SWE-1 optimized for agent workflows."
+      "notes": "Available on Pro, Max, Teams, and Enterprise plans. Fixed cost per interaction, not token-based."
+    },
+    "windsurf/swe-1": {
+      "displayName": "SWE-1",
+      "officialNames": ["SWE-1"],
+      "description": "First-generation agentic coding model. Achieved Claude 3.5-level performance at a fraction of the cost. Powers core agentic features in Windsurf.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Available on Pro, Max, Teams, and Enterprise plans. Fixed cost per interaction."
     },
     "windsurf/swe-1-mini": {
       "displayName": "SWE-1 Mini",
-      "officialNames": [
-        "SWE-1 Mini"
-      ],
+      "officialNames": ["SWE-1-mini"],
+      "description": "Lightweight proprietary coding model. Powers passive suggestions in Windsurf Tab, optimized for real-time latency and autocomplete.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Lightweight proprietary coding model."
-    },
-    "windsurf/tab": {
-      "displayName": "Tab",
-      "officialNames": [
-        "Tab"
-      ],
-      "verified": true,
-      "notes": "Native autocomplete model."
-    },
-    "windsurf/cascade": {
-      "displayName": "Cascade",
-      "officialNames": [
-        "Cascade"
-      ],
-      "verified": true,
-      "notes": "Multi-file autonomous coding agent."
+      "notes": "Available on all plans including Free. Unlimited usage on Free plan."
     }
   },
   "productCatalog": {
     "cascade": {
       "displayName": "Cascade",
+      "description": "Multi-file autonomous coding agent for complex edits and project-wide changes. Available on all plans with varying usage quotas.",
       "verified": true
     },
     "tab": {
       "displayName": "Tab",
+      "description": "AI-powered autocomplete with inline code suggestions. Unlimited on all plans.",
       "verified": true
     },
     "chat": {
       "displayName": "Chat",
+      "description": "AI chat interface for coding assistance, debugging, and code generation.",
       "verified": true
     },
     "inline-edit": {
       "displayName": "Inline Edit",
+      "description": "Inline code editing and refinement within the editor.",
       "verified": true
     },
     "fast-context": {
       "displayName": "Fast Context",
+      "description": "Fast context retrieval for efficient code understanding.",
       "verified": true
     },
     "riptide-indexing": {
       "displayName": "Riptide Indexing",
+      "description": "Advanced codebase indexing for improved context awareness.",
       "verified": true
     },
     "terminal": {
       "displayName": "Terminal Agent",
+      "description": "AI agent capable of executing terminal commands.",
       "verified": true
     },
     "code-review": {
       "displayName": "AI Code Review",
+      "description": "Automated code review and analysis.",
       "verified": true
     },
     "background-agents": {
       "displayName": "Background Agents",
+      "description": "Agents that run autonomously in the background.",
       "verified": true
     },
     "app-deploy": {
       "displayName": "App Deploy",
+      "description": "One-click application deployment. Free: limited per day. Pro: increased limits.",
       "verified": true
     },
     "preview": {
       "displayName": "Live Preview",
+      "description": "Live preview of applications. Unlimited on all plans.",
       "verified": true
     },
     "mcp": {
       "displayName": "MCP",
+      "description": "Model Context Protocol support for external integrations.",
       "verified": true
     },
     "byok": {
       "displayName": "Bring Your Own Key",
+      "description": "Use your own API keys for supported third-party models.",
       "verified": true
     },
     "teams": {
       "displayName": "Teams",
+      "description": "Team collaboration features, centralized billing, and admin controls.",
       "verified": true
     },
     "enterprise": {
       "displayName": "Enterprise",
+      "description": "Enterprise-grade features including SSO, RBAC, SCIM, and priority support.",
+      "verified": true
+    },
+    "centralized-billing": {
+      "displayName": "Centralized Billing",
+      "description": "Centralized billing and subscription management for organizations.",
+      "verified": true
+    },
+    "admin-dashboard": {
+      "displayName": "Admin Dashboard",
+      "description": "Administrative dashboard with usage analytics and team management.",
+      "verified": true
+    },
+    "sso": {
+      "displayName": "SAML SSO",
+      "description": "SAML Single Sign-On. Available on Enterprise plans.",
+      "verified": true
+    },
+    "rbac": {
+      "displayName": "Role-Based Access Control",
+      "description": "Fine-grained role-based access control. Available on Enterprise plans.",
+      "verified": true
+    },
+    "scim": {
+      "displayName": "SCIM",
+      "description": "System for Cross-domain Identity Management for automated user provisioning. Available on Enterprise plans.",
       "verified": true
     }
   },
@@ -130,31 +162,30 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "windsurf/swe-1-mini",
-        "windsurf/tab"
+        "windsurf/swe-1-mini"
       ],
       "products": [
         "cascade",
         "tab",
         "chat",
         "inline-edit",
-        "fast-context",
-        "preview"
+        "preview",
+        "app-deploy"
       ],
-      "notes": "Free tier with limited AI usage, unlimited Tab completions, and limited Cascade access."
+      "notes": "25 prompt credits/month. Light daily and weekly quota. Unlimited Tab autocomplete. Unlimited previews. Basic models only."
     },
     {
       "plan": "Pro",
       "monthlyPrice": 20,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "windsurf/swe-1",
         "windsurf/swe-1.5",
-        "windsurf/swe-1-mini",
-        "windsurf/tab",
-        "windsurf/cascade"
+        "windsurf/swe-1",
+        "windsurf/swe-1-mini"
       ],
       "products": [
         "cascade",
@@ -171,18 +202,17 @@
         "mcp",
         "byok"
       ],
-      "notes": "Individual developer plan with standard usage quotas and access to proprietary SWE models. Windsurf transitioned from credit-based pricing to quota-based usage in 2026. :contentReference[oaicite:0]{index=0}"
+      "notes": "500 prompt credits/month. Standard daily and weekly quota. Unlimited Tab autocomplete. Access to all premium models including SWE-1.5, Claude Sonnet 4.6, and GPT-5.4. Additional credits available for purchase."
     },
     {
       "plan": "Max",
       "monthlyPrice": 200,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "windsurf/swe-1",
         "windsurf/swe-1.5",
-        "windsurf/swe-1-mini",
-        "windsurf/tab",
-        "windsurf/cascade"
+        "windsurf/swe-1",
+        "windsurf/swe-1-mini"
       ],
       "products": [
         "cascade",
@@ -199,18 +229,17 @@
         "mcp",
         "byok"
       ],
-      "notes": "Highest individual tier with significantly increased AI quotas and priority model access. :contentReference[oaicite:1]{index=1}"
+      "notes": "Heavy daily and weekly quota. Unlimited Tab autocomplete. Significantly higher usage limits than Pro. Priority access to new models. Access to all premium models."
     },
     {
-      "plan": "Teams",
-      "monthlyPrice": 40,
+      "plan": "Student",
+      "monthlyPrice": 10,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "windsurf/swe-1",
         "windsurf/swe-1.5",
-        "windsurf/swe-1-mini",
-        "windsurf/tab",
-        "windsurf/cascade"
+        "windsurf/swe-1",
+        "windsurf/swe-1-mini"
       ],
       "products": [
         "cascade",
@@ -225,20 +254,19 @@
         "preview",
         "app-deploy",
         "mcp",
-        "teams"
+        "byok"
       ],
-      "notes": "Per-user pricing with centralized billing, team management, and shared administration. :contentReference[oaicite:2]{index=2}"
+      "notes": "Discounted plan for verified students with .edu email address. Includes all Pro features at reduced price."
     },
     {
-      "plan": "Enterprise",
-      "monthlyPrice": null,
+      "plan": "Teams",
+      "monthlyPrice": 40,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "windsurf/swe-1",
         "windsurf/swe-1.5",
-        "windsurf/swe-1-mini",
-        "windsurf/tab",
-        "windsurf/cascade"
+        "windsurf/swe-1",
+        "windsurf/swe-1-mini"
       ],
       "products": [
         "cascade",
@@ -254,9 +282,95 @@
         "app-deploy",
         "mcp",
         "teams",
-        "enterprise"
+        "centralized-billing",
+        "admin-dashboard"
       ],
-      "notes": "Custom enterprise pricing with SSO, RBAC, SCIM, priority support, and enterprise administration."
+      "notes": "Per-user pricing. 500 prompt credits per user per month. Centralized billing and admin dashboard. Priority support. Additional pooled credits available."
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": null,
+      "annualPrice": null,
+      "verified": true,
+      "models": [
+        "windsurf/swe-1.5",
+        "windsurf/swe-1",
+        "windsurf/swe-1-mini"
+      ],
+      "products": [
+        "cascade",
+        "tab",
+        "chat",
+        "inline-edit",
+        "fast-context",
+        "riptide-indexing",
+        "terminal",
+        "code-review",
+        "background-agents",
+        "preview",
+        "app-deploy",
+        "mcp",
+        "teams",
+        "enterprise",
+        "centralized-billing",
+        "admin-dashboard",
+        "sso",
+        "rbac",
+        "scim"
+      ],
+      "notes": "Custom enterprise pricing. Includes SSO, RBAC, SCIM, hybrid deployment, volume discounts, dedicated account management, and custom SLAs. Longer context windows."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "windsurf/swe-1.5",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Fixed cost per interaction. Consumes prompt credits based on task complexity. Not token-based."
+      },
+      {
+        "model": "windsurf/swe-1",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Fixed cost per interaction. Consumes prompt credits. Not token-based."
+      },
+      {
+        "model": "windsurf/swe-1-mini",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Available on Free plan without consuming credits. Unlimited usage."
+      }
+    ],
+    "features": {
+      "creditSystem": {
+        "displayName": "Prompt Credits",
+        "description": "Windsurf uses a quota-based system with prompt credits. Each message to Cascade with a premium model consumes credits. Simple requests consume fewer credits than complex ones. Credits reset monthly and do not roll over.",
+        "verified": true
+      },
+      "additionalCredits": {
+        "displayName": "Additional Credits",
+        "description": "Pro users can purchase additional credits. Teams and Enterprise can purchase pooled credits. Pricing varies by plan.",
+        "verified": true
+      },
+      "autoReplenish": {
+        "displayName": "Auto-Replenish",
+        "description": "Automatic credit replenishment when balance runs low. Configured in plan settings.",
+        "verified": true
+      },
+      "freeModels": {
+        "displayName": "Free Models",
+        "description": "When credits are exhausted, users can still use free models in Write or Chat mode without consuming credits.",
+        "verified": true
+      }
+    },
+    "notes": "Windsurf switched to a quota-based pricing model in March 2026. Pro users can purchase extra usage at API pricing when exceeding included quotas. Annual billing saves approximately 17-20%."
+  },
+  "notes": "Windsurf by Codeium (acquired by Cognition AI in 2025) offers an AI-powered IDE with plans: Free, Pro ($20/mo), Max ($200/mo), Student ($10/mo), Teams ($40/user/mo), and Enterprise (custom). The March 2026 pricing overhaul replaced credits with quotas. Pro includes 500 prompt credits/month, Max offers significantly higher limits, and Teams provides 500 credits/user/month. SWE-1.5 is the flagship proprietary model. Tab autocomplete is unlimited on all plans."
 }

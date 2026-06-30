@@ -1,8 +1,8 @@
 {
   "provider": "Anthropic",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Anthropic Documentation",
   "officialSources": [
     {
@@ -14,68 +14,241 @@
       "url": "https://www.anthropic.com/"
     },
     {
-      "title": "Claude Sonnet",
+      "title": "Claude Models",
       "url": "https://www.anthropic.com/claude/sonnet"
     }
   ],
   "modelCatalog": {
+    "anthropic/claude-fable-5": {
+      "displayName": "Claude Fable 5",
+      "officialNames": ["Claude Fable 5"],
+      "description": "Next generation intelligence for long-running agents",
+      "inputPricePerMTok": 10,
+      "outputPricePerMTok": 50,
+      "promptCachingWrite": 12.5,
+      "promptCachingRead": 1,
+      "verified": true
+    },
     "anthropic/claude-opus-4.8": {
       "displayName": "Claude Opus 4.8",
-      "officialNames": [
-        "Claude Opus 4.8"
-      ],
+      "officialNames": ["Claude Opus 4.8"],
+      "description": "Ideal for complex agentic coding and enterprise work",
+      "inputPricePerMTok": 5,
+      "outputPricePerMTok": 25,
+      "promptCachingWrite": 6.25,
+      "promptCachingRead": 0.5,
       "verified": true
     },
     "anthropic/claude-sonnet-4.6": {
       "displayName": "Claude Sonnet 4.6",
-      "officialNames": [
-        "Claude Sonnet 4.6"
-      ],
+      "officialNames": ["Claude Sonnet 4.6"],
+      "description": "Optimal balance of intelligence, cost, and speed",
+      "inputPricePerMTok": 3,
+      "outputPricePerMTok": 15,
+      "promptCachingWrite": 3.75,
+      "promptCachingRead": 0.3,
       "verified": true
     },
     "anthropic/claude-haiku-4.5": {
       "displayName": "Claude Haiku 4.5",
-      "officialNames": [
-        "Claude Haiku 4.5"
-      ],
+      "officialNames": ["Claude Haiku 4.5"],
+      "description": "Fastest, most cost-efficient model",
+      "inputPricePerMTok": 1,
+      "outputPricePerMTok": 5,
+      "promptCachingWrite": 1.25,
+      "promptCachingRead": 0.1,
       "verified": true
     }
   },
   "productCatalog": {
-    "claude": {
-      "displayName": "Claude",
+    "claude-chat": {
+      "displayName": "Claude Chat",
+      "description": "Chat on web, iOS, Android, and desktop",
       "verified": true
     },
     "claude-code": {
       "displayName": "Claude Code",
+      "description": "Code generation and visualization",
+      "verified": true
+    },
+    "claude-cowork": {
+      "displayName": "Claude Cowork",
+      "description": "Collaborative AI assistant for teams",
+      "verified": true
+    },
+    "claude-design": {
+      "displayName": "Claude Design",
+      "description": "Design assistance and visualization",
       "verified": true
     },
     "artifacts": {
       "displayName": "Artifacts",
+      "description": "Create and manage content artifacts",
       "verified": true
     },
     "projects": {
       "displayName": "Projects",
+      "description": "Organize chats and documents",
+      "verified": true
+    },
+    "project-sharing": {
+      "displayName": "Project Sharing & Collaboration",
+      "description": "Share and collaborate on projects",
       "verified": true
     },
     "research": {
       "displayName": "Research",
+      "description": "Advanced research capabilities",
       "verified": true
     },
     "web-search": {
       "displayName": "Web Search",
+      "description": "Search the web for latest information",
+      "verified": true
+    },
+    "enterprise-search": {
+      "displayName": "Enterprise Search",
+      "description": "Search across your organization",
       "verified": true
     },
     "voice-mode": {
       "displayName": "Voice Mode",
-      "verified": true
-    },
-    "integrations": {
-      "displayName": "Integrations",
+      "description": "Voice interaction capabilities",
       "verified": true
     },
     "memory": {
       "displayName": "Memory",
+      "description": "Persistent memory across conversations",
+      "verified": true
+    },
+    "skills": {
+      "displayName": "Skills",
+      "description": "Specialized capabilities and workflows",
+      "verified": true
+    },
+    "connectors": {
+      "displayName": "Connectors",
+      "description": "Connect external services and tools",
+      "verified": true
+    },
+    "remote-mcp": {
+      "displayName": "Remote MCP",
+      "description": "Model Context Protocol for external tools",
+      "verified": true
+    },
+    "desktop-extensions": {
+      "displayName": "Desktop Extensions",
+      "description": "Extended desktop capabilities",
+      "verified": true
+    },
+    "code-execution": {
+      "displayName": "Code Execution",
+      "description": "Create and edit files with code execution",
+      "verified": true
+    },
+    "incognito-chats": {
+      "displayName": "Incognito Chats",
+      "description": "Private chat mode",
+      "verified": true
+    },
+    "user-preferences": {
+      "displayName": "User Preferences",
+      "description": "Customize your experience",
+      "verified": true
+    },
+    "claude-for-chrome": {
+      "displayName": "Claude for Chrome",
+      "description": "Chrome extension",
+      "verified": true
+    },
+    "claude-for-microsoft-365": {
+      "displayName": "Claude for Microsoft 365",
+      "description": "Microsoft 365 integration",
+      "verified": true
+    },
+    "claude-for-outlook": {
+      "displayName": "Claude for Microsoft Outlook",
+      "description": "Outlook integration",
+      "verified": true
+    },
+    "claude-security": {
+      "displayName": "Claude Security",
+      "description": "Enhanced security features (beta)",
+      "verified": true
+    },
+    "sso": {
+      "displayName": "Single Sign-On (SSO)",
+      "description": "SSO and domain capture",
+      "verified": true
+    },
+    "domain-capture": {
+      "displayName": "Domain Capture",
+      "description": "Domain verification and capture",
+      "verified": true
+    },
+    "central-billing": {
+      "displayName": "Central Billing",
+      "description": "Centralized billing and administration",
+      "verified": true
+    },
+    "admin-controls": {
+      "displayName": "Admin Controls",
+      "description": "Controls for remote and local connectors",
+      "verified": true
+    },
+    "enterprise-deployment": {
+      "displayName": "Enterprise Deployment",
+      "description": "Enterprise deployment for Claude desktop app",
+      "verified": true
+    },
+    "role-based-access": {
+      "displayName": "Role-Based Access",
+      "description": "Fine-grained access control",
+      "verified": true
+    },
+    "scim": {
+      "displayName": "SCIM",
+      "description": "System for Cross-domain Identity Management",
+      "verified": true
+    },
+    "audit-logs": {
+      "displayName": "Audit Logs",
+      "description": "Security and compliance audit logs",
+      "verified": true
+    },
+    "usage-analytics": {
+      "displayName": "Usage Analytics",
+      "description": "Detailed usage reporting",
+      "verified": true
+    },
+    "compliance-api": {
+      "displayName": "Compliance API",
+      "description": "API for observability and monitoring",
+      "verified": true
+    },
+    "data-retention": {
+      "displayName": "Custom Data Retention",
+      "description": "Custom data retention controls",
+      "verified": true
+    },
+    "hipaa-ready": {
+      "displayName": "HIPAA-Ready",
+      "description": "HIPAA-ready offering",
+      "verified": true
+    },
+    "ip-allowlisting": {
+      "displayName": "IP Allowlisting",
+      "description": "Network-level access control",
+      "verified": true
+    },
+    "spend-controls": {
+      "displayName": "Spend Controls",
+      "description": "User and organizational level spend limits",
+      "verified": true
+    },
+    "organization-skills": {
+      "displayName": "Organization Skills",
+      "description": "Organization-wide skills deployment",
       "verified": true
     }
   },
@@ -83,124 +256,329 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "anthropic/claude-sonnet-4.6",
         "anthropic/claude-haiku-4.5"
       ],
       "products": [
-        "claude",
+        "claude-chat",
         "artifacts",
         "projects",
-        "web-search"
+        "web-search",
+        "memory",
+        "code-execution",
+        "desktop-extensions",
+        "connectors",
+        "remote-mcp",
+        "voice-mode",
+        "incognito-chats",
+        "user-preferences"
       ],
-      "notes": "Limited daily usage."
+      "notes": "Limited daily usage. Free for everyone."
     },
     {
       "plan": "Pro",
       "monthlyPrice": 20,
+      "annualPrice": 200,
+      "billingOptions": [
+        {
+          "type": "monthly",
+          "price": 20,
+          "note": "Billed monthly."
+        },
+        {
+          "type": "annual",
+          "price": 200,
+          "monthlyEquivalent": 16.67,
+          "note": "$200 billed upfront for the year."
+        }
+      ],
       "verified": true,
       "models": [
+        "anthropic/claude-fable-5",
         "anthropic/claude-opus-4.8",
         "anthropic/claude-sonnet-4.6",
         "anthropic/claude-haiku-4.5"
       ],
       "products": [
-        "claude",
+        "claude-chat",
         "claude-code",
+        "claude-cowork",
+        "claude-design",
         "artifacts",
         "projects",
+        "project-sharing",
         "research",
         "web-search",
         "voice-mode",
-        "memory"
-      ]
+        "memory",
+        "skills",
+        "connectors",
+        "code-execution",
+        "desktop-extensions",
+        "claude-for-microsoft-365",
+        "claude-for-outlook",
+        "incognito-chats",
+        "user-preferences"
+      ],
+      "notes": "More usage than Free plan. Access to unlimited projects."
     },
     {
       "plan": "Max 5x",
       "monthlyPrice": 100,
+      "annualPrice": null,
       "verified": true,
       "models": [
+        "anthropic/claude-fable-5",
         "anthropic/claude-opus-4.8",
         "anthropic/claude-sonnet-4.6",
         "anthropic/claude-haiku-4.5"
       ],
       "products": [
-        "claude",
+        "claude-chat",
         "claude-code",
+        "claude-cowork",
+        "claude-design",
         "artifacts",
         "projects",
+        "project-sharing",
         "research",
         "web-search",
         "voice-mode",
-        "memory"
+        "memory",
+        "skills",
+        "connectors",
+        "code-execution",
+        "desktop-extensions",
+        "claude-for-microsoft-365",
+        "claude-for-outlook",
+        "incognito-chats",
+        "user-preferences"
       ],
-      "notes": "Approximately 5× higher usage limits than Pro."
+      "notes": "Approximately 5× higher usage limits than Pro. Early access to advanced features."
     },
     {
       "plan": "Max 20x",
       "monthlyPrice": 200,
+      "annualPrice": null,
       "verified": true,
       "models": [
+        "anthropic/claude-fable-5",
         "anthropic/claude-opus-4.8",
         "anthropic/claude-sonnet-4.6",
         "anthropic/claude-haiku-4.5"
       ],
       "products": [
-        "claude",
+        "claude-chat",
         "claude-code",
+        "claude-cowork",
+        "claude-design",
         "artifacts",
         "projects",
-        "research",
-        "web-search",
-        "voice-mode",
-        "memory"
-      ],
-      "notes": "Approximately 20× higher usage limits than Pro."
-    },
-    {
-      "plan": "Team",
-      "monthlyPrice": 25,
-      "verified": true,
-      "models": [
-        "anthropic/claude-opus-4.8",
-        "anthropic/claude-sonnet-4.6",
-        "anthropic/claude-haiku-4.5"
-      ],
-      "products": [
-        "claude",
-        "claude-code",
-        "artifacts",
-        "projects",
+        "project-sharing",
         "research",
         "web-search",
         "voice-mode",
         "memory",
-        "integrations"
+        "skills",
+        "connectors",
+        "code-execution",
+        "desktop-extensions",
+        "claude-for-microsoft-365",
+        "claude-for-outlook",
+        "incognito-chats",
+        "user-preferences"
       ],
-      "notes": "Per-user pricing."
+      "notes": "Approximately 20× higher usage limits than Pro. Highest usage limits available."
+    },
+    {
+      "plan": "Team",
+      "monthlyPrice": null,
+      "annualPrice": null,
+      "verified": true,
+      "seatTypes": [
+        {
+          "type": "Standard",
+          "monthlyPrice": 20,
+          "annualPrice": 240,
+          "description": "Standard seat with more usage than Pro",
+          "verified": true
+        },
+        {
+          "type": "Premium",
+          "monthlyPrice": 100,
+          "annualPrice": 1200,
+          "description": "Premium seat with 5x more usage than standard seats",
+          "verified": true
+        }
+      ],
+      "models": [
+        "anthropic/claude-fable-5",
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "anthropic/claude-haiku-4.5"
+      ],
+      "products": [
+        "claude-chat",
+        "claude-code",
+        "claude-cowork",
+        "claude-design",
+        "artifacts",
+        "projects",
+        "project-sharing",
+        "research",
+        "web-search",
+        "enterprise-search",
+        "voice-mode",
+        "memory",
+        "skills",
+        "connectors",
+        "remote-mcp",
+        "code-execution",
+        "desktop-extensions",
+        "claude-for-chrome",
+        "claude-for-microsoft-365",
+        "claude-for-outlook",
+        "sso",
+        "domain-capture",
+        "central-billing",
+        "admin-controls",
+        "enterprise-deployment",
+        "role-based-access",
+        "scim",
+        "audit-logs",
+        "usage-analytics",
+        "compliance-api",
+        "hipaa-ready",
+        "spend-controls",
+        "organization-skills"
+      ],
+      "notes": "For teams of 5 to 150. Mix and match seat types. Annual billing available. Model training is off by default."
     },
     {
       "plan": "Enterprise",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
+        "anthropic/claude-fable-5",
         "anthropic/claude-opus-4.8",
         "anthropic/claude-sonnet-4.6",
         "anthropic/claude-haiku-4.5"
       ],
       "products": [
-        "claude",
+        "claude-chat",
         "claude-code",
+        "claude-cowork",
+        "claude-design",
         "artifacts",
         "projects",
+        "project-sharing",
         "research",
         "web-search",
+        "enterprise-search",
         "voice-mode",
         "memory",
-        "integrations"
+        "skills",
+        "connectors",
+        "remote-mcp",
+        "code-execution",
+        "desktop-extensions",
+        "claude-for-chrome",
+        "claude-for-microsoft-365",
+        "claude-for-outlook",
+        "claude-security",
+        "sso",
+        "domain-capture",
+        "central-billing",
+        "admin-controls",
+        "enterprise-deployment",
+        "role-based-access",
+        "scim",
+        "audit-logs",
+        "usage-analytics",
+        "compliance-api",
+        "data-retention",
+        "hipaa-ready",
+        "ip-allowlisting",
+        "spend-controls",
+        "organization-skills"
       ],
-      "notes": "Custom enterprise pricing."
+      "notes": "Custom enterprise pricing. Seat price + usage at API rates. AWS Marketplace availability. HIPAA-ready offering available. Model training is off by default."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "anthropic/claude-fable-5",
+        "inputPricePerMTok": 10,
+        "outputPricePerMTok": 50,
+        "promptCachingWrite": 12.5,
+        "promptCachingRead": 1,
+        "notes": "Premium intelligence for complex agentic tasks"
+      },
+      {
+        "model": "anthropic/claude-opus-4.8",
+        "inputPricePerMTok": 5,
+        "outputPricePerMTok": 25,
+        "promptCachingWrite": 6.25,
+        "promptCachingRead": 0.5,
+        "notes": "Fast mode available at 2x standard pricing"
+      },
+      {
+        "model": "anthropic/claude-sonnet-4.6",
+        "inputPricePerMTok": 3,
+        "outputPricePerMTok": 15,
+        "promptCachingWrite": 3.75,
+        "promptCachingRead": 0.3,
+        "notes": "Best balance of performance and cost"
+      },
+      {
+        "model": "anthropic/claude-haiku-4.5",
+        "inputPricePerMTok": 1,
+        "outputPricePerMTok": 5,
+        "promptCachingWrite": 1.25,
+        "promptCachingRead": 0.1,
+        "notes": "Fastest and most cost-effective model"
+      }
+    ],
+    "features": {
+      "managedAgents": {
+        "displayName": "Managed Agents",
+        "price": "0.08 per session-hour for active runtime",
+        "description": "Build and deploy agents at scale",
+        "verified": true
+      },
+      "webSearchAPI": {
+        "displayName": "Web Search API",
+        "price": "10 per 1K searches",
+        "description": "Access to latest web information",
+        "verified": true
+      },
+      "codeExecutionAPI": {
+        "displayName": "Code Execution",
+        "price": "0.05 per hour per container",
+        "description": "Run Python code in sandboxed environment",
+        "freeTier": "50 free hours daily per organization",
+        "verified": true
+      }
+    },
+    "serviceTiers": [
+      {
+        "name": "Priority",
+        "description": "When time, availability, and predictable pricing are most important"
+      },
+      {
+        "name": "Standard",
+        "description": "Default tier for both piloting and scaling everyday use cases"
+      },
+      {
+        "name": "Batch",
+        "description": "For asynchronous workloads that can be processed together for better efficiency"
+      }
+    ],
+    "notes": "US-only inference available at 1.1x pricing for input and output tokens. Prompt caching pricing reflects 5-minute TTL."
+  }
 }

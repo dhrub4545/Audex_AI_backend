@@ -1,149 +1,202 @@
 {
   "provider": "ElevenLabs",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official ElevenLabs Documentation",
   "officialSources": [
-    {
-      "title": "ElevenLabs",
-      "url": "https://elevenlabs.io/"
-    },
     {
       "title": "ElevenLabs Pricing",
       "url": "https://elevenlabs.io/pricing"
     },
     {
-      "title": "ElevenLabs API Documentation",
-      "url": "https://elevenlabs.io/docs"
+      "title": "ElevenAPI Pricing",
+      "url": "https://elevenlabs.io/pricing/api"
     },
     {
-      "title": "ElevenLabs API Reference",
-      "url": "https://elevenlabs.io/docs/api-reference"
+      "title": "Models Overview",
+      "url": "https://elevenlabs.io/docs/overview/models"
+    },
+    {
+      "title": "Billing Documentation",
+      "url": "https://elevenlabs.io/docs/overview/administration/billing"
+    },
+    {
+      "title": "API Pricing Update",
+      "url": "https://elevenlabs.io/blog/weve-lowered-api-agents-pricing-and-introduced-pay-as-you-go"
     }
   ],
   "modelCatalog": {
-    "elevenlabs/eleven-v3": {
+    "elevenlabs/eleven_v3": {
       "displayName": "Eleven v3",
-      "officialNames": [
-        "Eleven v3"
-      ],
+      "officialNames": ["eleven_v3"],
+      "description": "Latest flagship text-to-speech model. Produces natural, life-like speech with high emotional range and contextual understanding across 70+ languages.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Latest flagship text-to-speech model supporting expressive speech, dialogue generation, and 70+ languages."
+      "notes": "Supports Text to Speech and Text to Voice (Voice Design) use cases."
     },
-    "elevenlabs/eleven-v3-conversational": {
-      "displayName": "Eleven v3 Conversational",
-      "officialNames": [
-        "Eleven v3 Conversational"
-      ],
+    "elevenlabs/eleven_multilingual_v2": {
+      "displayName": "Eleven Multilingual v2",
+      "officialNames": ["eleven_multilingual_v2"],
+      "description": "Most lifelike, emotionally rich speech synthesis model supporting 29 languages.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Optimized for real-time conversational voice agents."
+      "notes": "Supports TTS, Text to Voice (Voice Design), and Speech to Speech (Voice Changer)."
     },
-    "elevenlabs/flash-v2.5": {
+    "elevenlabs/eleven_flash_v2_5": {
       "displayName": "Flash v2.5",
-      "officialNames": [
-        "Flash v2.5"
-      ],
+      "officialNames": ["eleven_flash_v2_5"],
+      "description": "Ultra-fast model optimized for real-time use (~75ms latency). Supports all Multilingual v2 languages plus Hungarian, Norwegian, and Vietnamese.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Ultra-low latency text-to-speech model."
+      "notes": "Recommended over legacy Turbo models for all use cases."
     },
-    "elevenlabs/multilingual-v2": {
-      "displayName": "Multilingual v2",
-      "officialNames": [
-        "Eleven Multilingual v2"
-      ],
-      "verified": true
+    "elevenlabs/eleven_flash_v2": {
+      "displayName": "Flash v2",
+      "officialNames": ["eleven_flash_v2"],
+      "description": "Ultra-fast model optimized for real-time use (~75ms latency). English-only.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "English-only. Recommended over legacy Turbo models."
     },
-    "elevenlabs/scribe-v2": {
+    "elevenlabs/scribe_v2": {
       "displayName": "Scribe v2",
-      "officialNames": [
-        "Scribe v2"
-      ],
-      "verified": true,
-      "notes": "Speech-to-text model."
-    },
-    "elevenlabs/scribe-v2-realtime": {
-      "displayName": "Scribe v2 Realtime",
-      "officialNames": [
-        "Scribe v2 Realtime"
-      ],
+      "officialNames": ["scribe_v2"],
+      "description": "State-of-the-art speech recognition model for accurate transcription across 90+ languages. Provides precise word-level timestamps, speaker diarization, and dynamic audio tagging.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true
     },
-    "elevenlabs/music": {
-      "displayName": "Eleven Music",
-      "officialNames": [
-        "Eleven Music"
-      ],
+    "elevenlabs/scribe_v2_realtime": {
+      "displayName": "Scribe v2 Realtime",
+      "officialNames": ["scribe_v2_realtime"],
+      "description": "Accurate low-latency Speech to Text model delivering live transcription in under 150ms.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true
+    },
+    "elevenlabs/music_v2": {
+      "displayName": "Music v2",
+      "officialNames": ["music_v2"],
+      "description": "Studio-grade music generation from text prompts, composition plans, and previously generated songs.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Supports chunk-based composition plans for finer control over structure and arrangement."
+    },
+    "elevenlabs/eleven_text_to_sound_v2": {
+      "displayName": "Sound Effects v2",
+      "officialNames": ["eleven_text_to_sound_v2"],
+      "description": "Sound effects generation from text prompts.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true
     }
   },
   "productCatalog": {
     "text-to-speech": {
       "displayName": "Text to Speech",
+      "description": "Generate natural, lifelike speech from text.",
       "verified": true
     },
     "speech-to-text": {
       "displayName": "Speech to Text",
+      "description": "Transcribe audio with high accuracy across 90+ languages.",
       "verified": true
     },
     "voice-cloning": {
       "displayName": "Voice Cloning",
+      "description": "Clone voices from short audio samples (Instant Voice Cloning).",
       "verified": true
     },
     "professional-voice-cloning": {
       "displayName": "Professional Voice Cloning",
+      "description": "High-fidelity voice cloning with advanced controls (available on Creator and above).",
       "verified": true
     },
     "voice-library": {
       "displayName": "Voice Library",
+      "description": "Access to a library of pre-made voices.",
       "verified": true
     },
     "voice-design": {
       "displayName": "Voice Design",
+      "description": "Create custom voices from text descriptions.",
       "verified": true
     },
     "voice-isolator": {
       "displayName": "Voice Isolator",
+      "description": "Remove background noise from audio.",
       "verified": true
     },
     "dubbing": {
       "displayName": "AI Dubbing",
+      "description": "Automatically dub audio and video content.",
       "verified": true
     },
     "studio": {
       "displayName": "Studio",
+      "description": "Studio projects for content creation.",
       "verified": true
     },
     "reader": {
       "displayName": "ElevenReader",
+      "description": "Mobile app for listening to text content.",
       "verified": true
     },
     "music": {
       "displayName": "Eleven Music",
+      "description": "AI music generation.",
       "verified": true
     },
     "sound-effects": {
       "displayName": "Sound Effects",
+      "description": "Generate sound effects from text prompts.",
       "verified": true
     },
     "agents": {
       "displayName": "ElevenAgents",
+      "description": "Build conversational AI agents with voice.",
       "verified": true
     },
     "conversational-ai": {
       "displayName": "Conversational AI",
+      "description": "Real-time conversational AI capabilities.",
       "verified": true
     },
     "api": {
       "displayName": "API",
+      "description": "Programmatic access to all ElevenLabs models.",
       "verified": true
     },
     "webhooks": {
       "displayName": "Webhooks",
+      "description": "Real-time event notifications for API actions.",
       "verified": true
     },
     "workspaces": {
       "displayName": "Workspaces",
+      "description": "Team collaboration and shared credits (Scale and above).",
       "verified": true
     }
   },
@@ -151,11 +204,13 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "elevenlabs/eleven-v3",
-        "elevenlabs/flash-v2.5",
-        "elevenlabs/multilingual-v2"
+        "elevenlabs/eleven_v3",
+        "elevenlabs/eleven_multilingual_v2",
+        "elevenlabs/eleven_flash_v2_5",
+        "elevenlabs/scribe_v2"
       ],
       "products": [
         "text-to-speech",
@@ -166,17 +221,18 @@
         "sound-effects",
         "api"
       ],
-      "notes": "Free tier with monthly credits and limited commercial usage."
+      "notes": "10,000 credits/month. Non-commercial use only with attribution. 3 custom voice slots. No instant voice cloning."
     },
     {
       "plan": "Starter",
       "monthlyPrice": 5,
+      "annualPrice": 50,
       "verified": true,
       "models": [
-        "elevenlabs/eleven-v3",
-        "elevenlabs/flash-v2.5",
-        "elevenlabs/multilingual-v2",
-        "elevenlabs/scribe-v2"
+        "elevenlabs/eleven_v3",
+        "elevenlabs/eleven_multilingual_v2",
+        "elevenlabs/eleven_flash_v2_5",
+        "elevenlabs/scribe_v2"
       ],
       "products": [
         "text-to-speech",
@@ -187,19 +243,21 @@
         "reader",
         "studio",
         "sound-effects",
+        "dubbing",
         "api"
-      ]
+      ],
+      "notes": "30,000 credits/month. Commercial license included. Instant voice cloning. 20 Studio projects."
     },
     {
       "plan": "Creator",
       "monthlyPrice": 22,
+      "annualPrice": 220,
       "verified": true,
       "models": [
-        "elevenlabs/eleven-v3",
-        "elevenlabs/eleven-v3-conversational",
-        "elevenlabs/flash-v2.5",
-        "elevenlabs/multilingual-v2",
-        "elevenlabs/scribe-v2"
+        "elevenlabs/eleven_v3",
+        "elevenlabs/eleven_multilingual_v2",
+        "elevenlabs/eleven_flash_v2_5",
+        "elevenlabs/scribe_v2"
       ],
       "products": [
         "text-to-speech",
@@ -217,19 +275,20 @@
         "conversational-ai",
         "api",
         "webhooks"
-      ]
+      ],
+      "notes": "100,000 credits/month. 192kbps audio quality. Professional Voice Cloning. First month 50% off ($11). Overage ~$0.30/min (TTS) and ~$0.22/min (STT)."
     },
     {
       "plan": "Pro",
       "monthlyPrice": 99,
+      "annualPrice": 990,
       "verified": true,
       "models": [
-        "elevenlabs/eleven-v3",
-        "elevenlabs/eleven-v3-conversational",
-        "elevenlabs/flash-v2.5",
-        "elevenlabs/multilingual-v2",
-        "elevenlabs/scribe-v2",
-        "elevenlabs/scribe-v2-realtime"
+        "elevenlabs/eleven_v3",
+        "elevenlabs/eleven_multilingual_v2",
+        "elevenlabs/eleven_flash_v2_5",
+        "elevenlabs/scribe_v2",
+        "elevenlabs/scribe_v2_realtime"
       ],
       "products": [
         "text-to-speech",
@@ -247,22 +306,22 @@
         "agents",
         "conversational-ai",
         "api",
-        "webhooks",
-        "workspaces"
-      ]
+        "webhooks"
+      ],
+      "notes": "500,000 credits/month. 44.1kHz PCM audio output via API. Overage TTS: $0.24/min; STT: $0.17/min."
     },
     {
       "plan": "Scale",
       "monthlyPrice": 330,
+      "annualPrice": 3300,
       "verified": true,
       "models": [
-        "elevenlabs/eleven-v3",
-        "elevenlabs/eleven-v3-conversational",
-        "elevenlabs/flash-v2.5",
-        "elevenlabs/multilingual-v2",
-        "elevenlabs/scribe-v2",
-        "elevenlabs/scribe-v2-realtime",
-        "elevenlabs/music"
+        "elevenlabs/eleven_v3",
+        "elevenlabs/eleven_multilingual_v2",
+        "elevenlabs/eleven_flash_v2_5",
+        "elevenlabs/scribe_v2",
+        "elevenlabs/scribe_v2_realtime",
+        "elevenlabs/music_v2"
       ],
       "products": [
         "text-to-speech",
@@ -283,20 +342,20 @@
         "webhooks",
         "workspaces"
       ],
-      "notes": "Designed for businesses with high-volume voice generation."
+      "notes": "2,000,000 credits/month. 3 workspace seats. Team collaboration. Overage TTS: $0.18/min; STT: $0.12/min."
     },
     {
       "plan": "Business",
       "monthlyPrice": 1320,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "elevenlabs/eleven-v3",
-        "elevenlabs/eleven-v3-conversational",
-        "elevenlabs/flash-v2.5",
-        "elevenlabs/multilingual-v2",
-        "elevenlabs/scribe-v2",
-        "elevenlabs/scribe-v2-realtime",
-        "elevenlabs/music"
+        "elevenlabs/eleven_v3",
+        "elevenlabs/eleven_multilingual_v2",
+        "elevenlabs/eleven_flash_v2_5",
+        "elevenlabs/scribe_v2",
+        "elevenlabs/scribe_v2_realtime",
+        "elevenlabs/music_v2"
       ],
       "products": [
         "text-to-speech",
@@ -317,20 +376,20 @@
         "webhooks",
         "workspaces"
       ],
-      "notes": "High-volume commercial plan with advanced collaboration and priority support."
+      "notes": "11,000,000 credits/month. 5 seats. 3 Professional Voice Clones. TTS starting at $0.05/min (volume discounted), STT starting at $0.04/min. Overage rates vary."
     },
     {
       "plan": "Enterprise",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "elevenlabs/eleven-v3",
-        "elevenlabs/eleven-v3-conversational",
-        "elevenlabs/flash-v2.5",
-        "elevenlabs/multilingual-v2",
-        "elevenlabs/scribe-v2",
-        "elevenlabs/scribe-v2-realtime",
-        "elevenlabs/music"
+        "elevenlabs/eleven_v3",
+        "elevenlabs/eleven_multilingual_v2",
+        "elevenlabs/eleven_flash_v2_5",
+        "elevenlabs/scribe_v2",
+        "elevenlabs/scribe_v2_realtime",
+        "elevenlabs/music_v2"
       ],
       "products": [
         "text-to-speech",
@@ -351,7 +410,59 @@
         "webhooks",
         "workspaces"
       ],
-      "notes": "Custom enterprise pricing with dedicated infrastructure, security, and support."
+      "notes": "Custom enterprise pricing. Custom credits and seats. HIPAA BAAs, custom SSO, DPA, SLA terms. Elevated concurrency limits. ElevenStudios fully managed dubbing. Volume discounts."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "elevenlabs/eleven_flash_v2_5",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Text to Speech pricing: starting at $0.05 per 1,000 characters (Creator plan). Billed in characters, not tokens."
+      },
+      {
+        "model": "elevenlabs/scribe_v2",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Speech to Text pricing: starting at $0.22 per minute of audio (Starter plan). Billed by audio duration, not tokens."
+      }
+    ],
+    "features": {
+      "textToSpeech": {
+        "displayName": "Text to Speech",
+        "unit": "USD per 1,000 characters",
+        "startingPrice": 0.05,
+        "description": "Pricing varies by plan and model. Flash model under Creator plan: $0.05/1K characters (reduced from $0.11, 55% savings).",
+        "verified": true
+      },
+      "speechToText": {
+        "displayName": "Speech to Text",
+        "unit": "USD per minute of audio",
+        "startingPrice": 0.22,
+        "description": "Scribe v2 under Starter plan: $0.22/min (reduced from $0.40, 45% savings).",
+        "verified": true
+      },
+      "elevenAgents": {
+        "displayName": "ElevenAgents",
+        "unit": "USD per minute",
+        "startingPrice": 0.08,
+        "description": "Starter plan: $0.08/min (reduced from $0.10, 20% savings).",
+        "verified": true
+      },
+      "payAsYouGo": {
+        "displayName": "Pay As You Go",
+        "unit": "Usage-based",
+        "startingPrice": null,
+        "description": "Prepay for usage with or without a paid subscription. Scale from prototype to production without plan constraints.",
+        "verified": true
+      }
+    },
+    "notes": "Annual billing provides approximately two months free compared to monthly billing. Overage rates vary by plan: Creator ~$0.30/min (TTS) / $0.22/min (STT), Pro ~$0.24/min / $0.17/min, Scale ~$0.18/min / $0.12/min, Business volume discounted. Enterprise pricing is custom."
+  },
+  "notes": "ElevenLabs operates on a credit-based system. Credits are consumed across all products (TTS, STT, dubbing, music, etc.). The scribe_v1, eleven_monolingual_v1, and eleven_multilingual_v1 models are deprecated and will be removed on July 9, 2026. The eleven_turbo_v2_5 and eleven_turbo_v2 models are functionally equivalent to Flash models; Flash models are recommended."
 }

@@ -1,151 +1,193 @@
 {
   "provider": "GitHub",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official GitHub Documentation",
   "officialSources": [
     {
-      "title": "GitHub Copilot",
-      "url": "https://github.com/features/copilot"
+      "title": "Plans for GitHub Copilot",
+      "url": "https://docs.github.com/en/copilot/get-started/plans"
     },
     {
-      "title": "GitHub Copilot Plans & Pricing",
-      "url": "https://github.com/features/copilot/plans"
+      "title": "GitHub Copilot individual plans: Introducing flex allotments",
+      "url": "https://github.blog/news-insights/company-news/github-copilot-individual-plans-introducing-flex-allotments-in-pro-and-pro-and-a-new-max-plan/"
     },
     {
-      "title": "GitHub Copilot Documentation",
-      "url": "https://docs.github.com/en/copilot"
+      "title": "Models and pricing for GitHub Copilot",
+      "url": "https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/copilot-billing/models-and-pricing"
     },
     {
-      "title": "GitHub Pricing",
-      "url": "https://github.com/pricing"
+      "title": "GitHub Copilot is moving to usage-based billing",
+      "url": "https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/"
+    },
+    {
+      "title": "Updates to GitHub Copilot billing and plans",
+      "url": "https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans/"
     }
   ],
   "modelCatalog": {
-    "github/copilot": {
-      "displayName": "GitHub Copilot",
-      "officialNames": [
-        "GitHub Copilot"
-      ],
+    "github/gpt-5.5": {
+      "displayName": "GPT-5.5",
+      "officialNames": ["GPT-5.5"],
+      "description": "Powerful model available in Copilot. Input: $5.00/MTok (≤272K), $10.00/MTok (Long context). Output: $30.00/MTok (Default), $45.00/MTok (Long context).",
+      "inputPricePerMTok": 5.0,
+      "outputPricePerMTok": 30.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.5,
       "verified": true,
-      "notes": "GitHub's native coding assistant."
+      "notes": "Long context tier (>272K tokens) available at higher rates. Cached input: $0.50/MTok."
     },
-    "github/cloud-agent": {
-      "displayName": "Cloud Agent",
-      "officialNames": [
-        "Cloud Agent"
-      ],
+    "github/gpt-5.4": {
+      "displayName": "GPT-5.4",
+      "officialNames": ["GPT-5.4"],
+      "description": "Versatile model. Input: $2.50/MTok (≤272K), $5.00/MTok (Long context). Output: $15.00/MTok (Default), $22.50/MTok (Long context).",
+      "inputPricePerMTok": 2.5,
+      "outputPricePerMTok": 15.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.25,
       "verified": true,
-      "notes": "Autonomous cloud-based coding agent."
+      "notes": "Long context tier (>272K tokens) available at higher rates. Cached input: $0.25/MTok."
     },
-    "github/code-review": {
-      "displayName": "Code Review Agent",
-      "officialNames": [
-        "Code Review"
-      ],
-      "verified": true
+    "github/gpt-5.3-codex": {
+      "displayName": "GPT-5.3-Codex",
+      "officialNames": ["GPT-5.3-Codex"],
+      "description": "Powerful coding-optimized model. Input: $1.75/MTok. Output: $14.00/MTok.",
+      "inputPricePerMTok": 1.75,
+      "outputPricePerMTok": 14.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.175,
+      "verified": true,
+      "notes": "Cached input: $0.175/MTok."
     },
-    "github/copilot-cli": {
-      "displayName": "Copilot CLI",
-      "officialNames": [
-        "Copilot CLI"
-      ],
-      "verified": true
+    "github/gpt-5.4-mini": {
+      "displayName": "GPT-5.4 mini",
+      "officialNames": ["GPT-5.4 mini"],
+      "description": "Lightweight, cost-efficient model. Input: $0.75/MTok. Output: $4.50/MTok.",
+      "inputPricePerMTok": 0.75,
+      "outputPricePerMTok": 4.5,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.075,
+      "verified": true,
+      "notes": "Cached input: $0.075/MTok."
     },
-    "github/copilot-chat": {
-      "displayName": "Copilot Chat",
-      "officialNames": [
-        "Copilot Chat"
-      ],
-      "verified": true
+    "github/gpt-5-mini": {
+      "displayName": "GPT-5 mini",
+      "officialNames": ["GPT-5 mini"],
+      "description": "Lightweight model. Input: $0.25/MTok. Output: $2.00/MTok.",
+      "inputPricePerMTok": 0.25,
+      "outputPricePerMTok": 2.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.025,
+      "verified": true,
+      "notes": "Cached input: $0.025/MTok."
     },
-    "github/copilot-edits": {
-      "displayName": "Copilot Edits",
-      "officialNames": [
-        "Copilot Edits"
-      ],
-      "verified": true
-    },
-    "github/agent-mode": {
-      "displayName": "Agent Mode",
-      "officialNames": [
-        "Agent Mode"
-      ],
-      "verified": true
+    "github/gpt-5.4-nano": {
+      "displayName": "GPT-5.4 nano",
+      "officialNames": ["GPT-5.4 nano"],
+      "description": "Most lightweight model. Input: $0.20/MTok. Output: $1.25/MTok.",
+      "inputPricePerMTok": 0.2,
+      "outputPricePerMTok": 1.25,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.02,
+      "verified": true,
+      "notes": "Cached input: $0.02/MTok."
     }
   },
   "productCatalog": {
     "copilot": {
       "displayName": "GitHub Copilot",
-      "verified": true
-    },
-    "copilot-chat": {
-      "displayName": "Copilot Chat",
+      "description": "AI-powered coding assistant with code completion, chat, and agentic capabilities.",
       "verified": true
     },
     "code-completion": {
       "displayName": "Code Completion",
+      "description": "Inline code suggestions. Unlimited on paid plans. Does not consume AI Credits.[reference:0][reference:1]",
       "verified": true
     },
     "next-edit-suggestions": {
       "displayName": "Next Edit Suggestions",
+      "description": "Predictive next-edit suggestions. Unlimited on paid plans. Does not consume AI Credits.[reference:2][reference:3]",
       "verified": true
     },
-    "agent-mode": {
-      "displayName": "Agent Mode",
+    "copilot-chat": {
+      "displayName": "Copilot Chat",
+      "description": "Chat interface in IDE, GitHub.com, and CLI. Consumes AI Credits based on token usage.",
       "verified": true
     },
     "cloud-agent": {
       "displayName": "Cloud Agent",
+      "description": "Autonomous cloud-based coding agent capable of running long, multi-step coding sessions.[reference:4][reference:5]",
+      "verified": true
+    },
+    "agent-mode": {
+      "displayName": "Agent Mode",
+      "description": "Agentic mode for autonomous task execution. Available on paid plans.[reference:6]",
       "verified": true
     },
     "code-review": {
       "displayName": "Code Review",
+      "description": "AI-powered code review. Consumes GitHub AI Credits and GitHub Actions minutes.[reference:7][reference:8]",
       "verified": true
     },
     "copilot-cli": {
       "displayName": "Copilot CLI",
+      "description": "Copilot access from the command line.",
       "verified": true
     },
     "copilot-mobile": {
       "displayName": "Copilot Mobile",
+      "description": "Copilot access from GitHub Mobile app.",
       "verified": true
     },
     "github-com-chat": {
       "displayName": "GitHub.com Chat",
+      "description": "Copilot Chat on github.com.",
       "verified": true
     },
     "third-party-agents": {
       "displayName": "Third-party Agents",
+      "description": "Access to third-party agent integrations (public preview).[reference:9]",
       "verified": true
     },
     "model-selection": {
       "displayName": "Model Selection",
+      "description": "Choice of AI models including GPT-5.5, GPT-5.4, GPT-5.3-Codex, and more.",
       "verified": true
     },
     "organization-management": {
       "displayName": "Organization Management",
+      "description": "Centralized management and policy controls for organization members.[reference:10]",
       "verified": true
     },
     "policy-management": {
       "displayName": "Policy Management",
+      "description": "Copilot policy controls at the organization level.",
       "verified": true
     },
     "audit-logs": {
       "displayName": "Audit Logs",
+      "description": "Enterprise-grade audit logging for Copilot usage.",
       "verified": true
     },
     "knowledge-base": {
       "displayName": "Knowledge Base",
+      "description": "Enterprise knowledge indexing for custom model context.[reference:11]",
       "verified": true
     },
     "custom-models": {
       "displayName": "Custom Models",
+      "description": "Ability to deploy and use custom models.",
       "verified": true
     },
     "ai-credits": {
       "displayName": "GitHub AI Credits",
+      "description": "Usage-based billing credits for Copilot. 1 AI credit = $0.01 USD.[reference:12]",
+      "verified": true
+    },
+    "user-budgets": {
+      "displayName": "User-level Budgets",
+      "description": "Granular spend controls for organizations and enterprises. GA as of June 1, 2026.[reference:13]",
       "verified": true
     }
   },
@@ -153,40 +195,40 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "github/copilot",
-        "github/copilot-chat",
-        "github/copilot-cli"
+        "github/gpt-5-mini",
+        "github/gpt-5.4-nano"
       ],
       "products": [
         "copilot",
-        "copilot-chat",
         "code-completion",
+        "copilot-chat",
         "copilot-cli"
       ],
-      "notes": "Includes 2,000 code completions/month and 50 chat requests/month."
+      "notes": "2,000 code completions/month.[reference:14] 50 chat/agent messages/month.[reference:15][reference:16] Limited access to select models.[reference:17]"
     },
     {
       "plan": "Pro",
       "monthlyPrice": 10,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "github/copilot",
-        "github/copilot-chat",
-        "github/copilot-edits",
-        "github/cloud-agent",
-        "github/code-review",
-        "github/agent-mode",
-        "github/copilot-cli"
+        "github/gpt-5.5",
+        "github/gpt-5.4",
+        "github/gpt-5.3-codex",
+        "github/gpt-5.4-mini",
+        "github/gpt-5-mini",
+        "github/gpt-5.4-nano"
       ],
       "products": [
         "copilot",
-        "copilot-chat",
         "code-completion",
         "next-edit-suggestions",
-        "agent-mode",
+        "copilot-chat",
         "cloud-agent",
+        "agent-mode",
         "code-review",
         "copilot-cli",
         "copilot-mobile",
@@ -194,28 +236,28 @@
         "model-selection",
         "ai-credits"
       ],
-      "notes": "$10 monthly AI Credits included."
+      "notes": "$10/month. Includes $10 base credits + $5 flex allotment = $15 total included usage.[reference:18][reference:19] Code completions and next-edit suggestions unlimited and do not consume credits.[reference:20]"
     },
     {
       "plan": "Pro+",
       "monthlyPrice": 39,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "github/copilot",
-        "github/copilot-chat",
-        "github/copilot-edits",
-        "github/cloud-agent",
-        "github/code-review",
-        "github/agent-mode",
-        "github/copilot-cli"
+        "github/gpt-5.5",
+        "github/gpt-5.4",
+        "github/gpt-5.3-codex",
+        "github/gpt-5.4-mini",
+        "github/gpt-5-mini",
+        "github/gpt-5.4-nano"
       ],
       "products": [
         "copilot",
-        "copilot-chat",
         "code-completion",
         "next-edit-suggestions",
-        "agent-mode",
+        "copilot-chat",
         "cloud-agent",
+        "agent-mode",
         "code-review",
         "copilot-cli",
         "copilot-mobile",
@@ -225,28 +267,28 @@
         "audit-logs",
         "ai-credits"
       ],
-      "notes": "$39 monthly AI Credits included with access to premium models."
+      "notes": "$39/month. Includes $39 base credits + $31 flex allotment = $70 total included usage.[reference:21][reference:22] Access to premium models.[reference:23]"
     },
     {
       "plan": "Max",
       "monthlyPrice": 100,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "github/copilot",
-        "github/copilot-chat",
-        "github/copilot-edits",
-        "github/cloud-agent",
-        "github/code-review",
-        "github/agent-mode",
-        "github/copilot-cli"
+        "github/gpt-5.5",
+        "github/gpt-5.4",
+        "github/gpt-5.3-codex",
+        "github/gpt-5.4-mini",
+        "github/gpt-5-mini",
+        "github/gpt-5.4-nano"
       ],
       "products": [
         "copilot",
-        "copilot-chat",
         "code-completion",
         "next-edit-suggestions",
-        "agent-mode",
+        "copilot-chat",
         "cloud-agent",
+        "agent-mode",
         "code-review",
         "copilot-cli",
         "copilot-mobile",
@@ -256,28 +298,28 @@
         "audit-logs",
         "ai-credits"
       ],
-      "notes": "$100 monthly AI Credits included for heavy agent workflows."
+      "notes": "$100/month. Includes $100 base credits + $100 flex allotment = $200 total included usage.[reference:24][reference:25] Designed for sustained, high-volume Copilot work.[reference:26][reference:27] Available for upgrade to existing Copilot subscribers as of June 1, 2026.[reference:28]"
     },
     {
       "plan": "Business",
       "monthlyPrice": 19,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "github/copilot",
-        "github/copilot-chat",
-        "github/copilot-edits",
-        "github/cloud-agent",
-        "github/code-review",
-        "github/agent-mode",
-        "github/copilot-cli"
+        "github/gpt-5.5",
+        "github/gpt-5.4",
+        "github/gpt-5.3-codex",
+        "github/gpt-5.4-mini",
+        "github/gpt-5-mini",
+        "github/gpt-5.4-nano"
       ],
       "products": [
         "copilot",
-        "copilot-chat",
         "code-completion",
         "next-edit-suggestions",
-        "agent-mode",
+        "copilot-chat",
         "cloud-agent",
+        "agent-mode",
         "code-review",
         "copilot-cli",
         "copilot-mobile",
@@ -285,44 +327,128 @@
         "organization-management",
         "policy-management",
         "model-selection",
-        "ai-credits"
+        "ai-credits",
+        "user-budgets"
       ],
-      "notes": "Per-user pricing with organization management, policies, and pooled AI Credits."
+      "notes": "$19/user/month.[reference:29][reference:30] Per-user AI Credits pooled at the billing entity level.[reference:31] Includes centralized management and policy controls.[reference:32]"
     },
     {
       "plan": "Enterprise",
       "monthlyPrice": 39,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "github/copilot",
-        "github/copilot-chat",
-        "github/copilot-edits",
-        "github/cloud-agent",
-        "github/code-review",
-        "github/agent-mode",
-        "github/copilot-cli"
+        "github/gpt-5.5",
+        "github/gpt-5.4",
+        "github/gpt-5.3-codex",
+        "github/gpt-5.4-mini",
+        "github/gpt-5-mini",
+        "github/gpt-5.4-nano"
       ],
       "products": [
         "copilot",
-        "copilot-chat",
         "code-completion",
         "next-edit-suggestions",
-        "agent-mode",
+        "copilot-chat",
         "cloud-agent",
+        "agent-mode",
         "code-review",
         "copilot-cli",
         "copilot-mobile",
         "github-com-chat",
+        "third-party-agents",
         "organization-management",
         "policy-management",
         "knowledge-base",
         "custom-models",
         "audit-logs",
-        "third-party-agents",
         "model-selection",
-        "ai-credits"
+        "ai-credits",
+        "user-budgets"
       ],
-      "notes": "Per-user pricing with enterprise knowledge indexing, custom models, organization-wide administration, and AI Credits."
+      "notes": "$39/user/month.[reference:33][reference:34] Priority access to new models and features.[reference:35] Larger monthly pool of AI credits.[reference:36] Enterprise-grade capabilities including knowledge indexing and custom models.[reference:37]"
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "github/gpt-5.5",
+        "inputPricePerMTok": 5.0,
+        "outputPricePerMTok": 30.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.5,
+        "notes": "Long context (>272K tokens): Input $10.00/MTok, Output $45.00/MTok.[reference:38]"
+      },
+      {
+        "model": "github/gpt-5.4",
+        "inputPricePerMTok": 2.5,
+        "outputPricePerMTok": 15.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.25,
+        "notes": "Long context (>272K tokens): Input $5.00/MTok, Output $22.50/MTok.[reference:39]"
+      },
+      {
+        "model": "github/gpt-5.3-codex",
+        "inputPricePerMTok": 1.75,
+        "outputPricePerMTok": 14.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.175,
+        "notes": "Cached input: $0.175/MTok.[reference:40]"
+      },
+      {
+        "model": "github/gpt-5.4-mini",
+        "inputPricePerMTok": 0.75,
+        "outputPricePerMTok": 4.5,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.075,
+        "notes": "Cached input: $0.075/MTok.[reference:41]"
+      },
+      {
+        "model": "github/gpt-5-mini",
+        "inputPricePerMTok": 0.25,
+        "outputPricePerMTok": 2.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.025,
+        "notes": "Cached input: $0.025/MTok.[reference:42]"
+      },
+      {
+        "model": "github/gpt-5.4-nano",
+        "inputPricePerMTok": 0.2,
+        "outputPricePerMTok": 1.25,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.02,
+        "notes": "Cached input: $0.02/MTok.[reference:43]"
+      }
+    ],
+    "features": {
+      "aiCredits": {
+        "displayName": "GitHub AI Credits",
+        "unit": "1 credit = $0.01 USD",
+        "description": "Usage is calculated based on token consumption (input, output, and cached tokens) using the listed per-model rates.[reference:44][reference:45] Code completions and next-edit suggestions do not consume credits.[reference:46]",
+        "verified": true
+      },
+      "creditAllotments": {
+        "displayName": "Monthly Credit Allotments",
+        "description": "Pro: $15 total ($10 base + $5 flex). Pro+: $70 total ($39 base + $31 flex). Max: $200 total ($100 base + $100 flex).[reference:47] Business and Enterprise: per-user pooled credits.[reference:48]",
+        "verified": true
+      },
+      "additionalUsage": {
+        "displayName": "Additional Usage",
+        "description": "When included usage is exceeded, additional usage is billed in AI Credits at per-token rates.[reference:49] Individual plans may have additional usage limits.[reference:50]",
+        "verified": true
+      },
+      "codeReview": {
+        "displayName": "Code Review",
+        "description": "Consumes GitHub AI Credits and GitHub Actions minutes.[reference:51][reference:52]",
+        "verified": true
+      },
+      "userBudgets": {
+        "displayName": "User-level Budgets",
+        "description": "Granular spend controls for organizations and enterprises. GA as of June 1, 2026.[reference:53]",
+        "verified": true
+      }
+    },
+    "notes": "Base plan pricing unchanged as of June 1, 2026.[reference:54] Flex allotments are variable and may change over time.[reference:55] New sign-ups for Pro, Pro+, Max, and Student are temporarily paused.[reference:56]"
+  },
+  "notes": "GitHub Copilot transitioned to usage-based billing on June 1, 2026.[reference:57] Premium request units (PRUs) replaced by GitHub AI Credits.[reference:58] Code completions and next-edit suggestions remain unlimited on paid plans and do not consume credits.[reference:59] 1 AI credit = $0.01 USD.[reference:60] Flex allotments are variable and designed to adapt as the economics of AI evolve.[reference:61]"
 }

@@ -1,8 +1,8 @@
 {
   "provider": "Meta",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Meta Documentation",
   "officialSources": [
     {
@@ -10,140 +10,222 @@
       "url": "https://www.meta.ai/"
     },
     {
-      "title": "AI at Meta",
-      "url": "https://ai.meta.com/"
-    },
-    {
       "title": "Llama",
       "url": "https://www.llama.com/"
     },
     {
+      "title": "Llama API Overview",
+      "url": "https://llama.developer.meta.com/"
+    },
+    {
       "title": "Meta AI App",
       "url": "https://about.fb.com/news/2025/04/introducing-meta-ai-app-new-way-access-ai-assistant/"
+    },
+    {
+      "title": "About Meta One plans",
+      "url": "https://www.meta.com/help/subscriptions/960854640235758/"
+    },
+    {
+      "title": "About Meta One Plus plans",
+      "url": "https://www.meta.com/help/subscriptions/1887238708654023/"
+    },
+    {
+      "title": "About Meta One Premium plans",
+      "url": "https://www.meta.com/help/artificial-intelligence/1864308977565149/"
     }
   ],
   "modelCatalog": {
     "meta/llama-4-maverick": {
       "displayName": "Llama 4 Maverick",
-      "officialNames": [
-        "Llama 4 Maverick"
-      ],
+      "officialNames": ["llama-4-maverick"],
+      "description": "Flagship open-weight multimodal model. Features 400B total parameters with balanced general-purpose performance. Supports image understanding and tool calling.",
+      "contextLength": 128000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Flagship open-weight multimodal model."
+      "notes": "Available for free self-hosted deployment under the Llama Community License. Hosted inference is available through third-party cloud providers."
     },
     "meta/llama-4-scout": {
       "displayName": "Llama 4 Scout",
-      "officialNames": [
-        "Llama 4 Scout"
-      ],
+      "officialNames": ["llama-4-scout"],
+      "description": "Long-context multimodal model with an unprecedented 10 million token context window — roughly equivalent to 75 full-length novels. Supports image understanding and tool calling.",
+      "contextLength": 10000000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Long-context multimodal model."
+      "notes": "Available for free self-hosted deployment under the Llama Community License. Hosted inference is available through third-party cloud providers."
     },
     "meta/llama-4-behemoth": {
       "displayName": "Llama 4 Behemoth",
-      "officialNames": [
-        "Llama 4 Behemoth"
-      ],
+      "officialNames": ["llama-4-behemoth"],
+      "description": "Teacher model previewed by Meta. Represents the largest and most capable model in the Llama 4 family, intended for distillation and research purposes.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Teacher model previewed by Meta."
+      "notes": "Available for research and enterprise deployments. Pricing not publicly published for API access."
     },
     "meta/llama-3.3-70b": {
       "displayName": "Llama 3.3 70B",
-      "officialNames": [
-        "Llama 3.3 70B Instruct"
-      ],
-      "verified": true
+      "officialNames": ["llama-3.3-70b-instruct"],
+      "description": "Powerful instruction-tuned model with 70B parameters. Supports 128K context length, multi-language processing, and enhanced tool calling capabilities.",
+      "contextLength": 128000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Available for free self-hosted deployment under the Llama Community License."
     },
     "meta/llama-3.2": {
       "displayName": "Llama 3.2",
-      "officialNames": [
-        "Llama 3.2"
-      ],
-      "verified": true
+      "officialNames": ["llama-3.2"],
+      "description": "Vision model family with 11B and 90B parameter variants. Supports image understanding and multimodal tasks.",
+      "contextLength": 128000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Available for free self-hosted deployment under the Llama Community License."
     },
     "meta/llama-3.1": {
       "displayName": "Llama 3.1",
-      "officialNames": [
-        "Llama 3.1"
-      ],
-      "verified": true
+      "officialNames": ["llama-3.1"],
+      "description": "Open-weight model family with 8B, 70B, and 405B parameter variants. Supports 128K context length, multi-language processing, and tool calling.",
+      "contextLength": 128000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Available for free self-hosted deployment under the Llama Community License."
     },
     "meta/llama-guard-4": {
       "displayName": "Llama Guard 4",
-      "officialNames": [
-        "Llama Guard 4"
-      ],
+      "officialNames": ["llama-guard-4"],
+      "description": "Safety and moderation model for filtering harmful content and enforcing safety policies.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Safety and moderation model."
+      "notes": "Available for enterprise deployments and safety-critical applications."
     },
     "meta/prompt-guard": {
       "displayName": "Prompt Guard",
-      "officialNames": [
-        "Prompt Guard"
-      ],
+      "officialNames": ["prompt-guard"],
+      "description": "Prompt injection detection model for identifying and mitigating security risks in user inputs.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Prompt injection detection model."
+      "notes": "Available for enterprise deployments and security-critical applications."
     }
   },
   "productCatalog": {
     "meta-ai": {
       "displayName": "Meta AI",
+      "description": "Conversational AI assistant powered by Llama 4. Available across WhatsApp, Instagram, Facebook, Messenger, and the standalone Meta AI app.",
       "verified": true
     },
     "meta-ai-app": {
       "displayName": "Meta AI App",
+      "description": "Standalone mobile app for iOS and Android. Features richer responses, image and video generation, voice chat, live AI for real-time answers, and Incognito Chats.",
       "verified": true
     },
     "llama": {
       "displayName": "Llama",
+      "description": "Open-weight AI models available for research and commercial use under the Llama Community License.",
       "verified": true
     },
     "llama-api": {
       "displayName": "Llama API",
+      "description": "Developer API for Llama models. Available as a limited free preview for US-based developers. Partners with cloud providers for inference services.",
       "verified": true
     },
     "ai-studio": {
       "displayName": "Meta AI Studio",
+      "description": "Platform for building and experimenting with AI agents and custom Llama-powered applications.",
       "verified": true
     },
     "ai-glasses": {
       "displayName": "Meta AI Glasses",
+      "description": "Ray-Ban Meta AI Glasses integration for hands-free AI assistance. Requires the Meta AI app as a companion app.",
       "verified": true
     },
     "image-generation": {
       "displayName": "Image Generation",
+      "description": "AI-powered image creation and editing. Expanded access available through Meta One subscriptions.",
+      "verified": true
+    },
+    "video-generation": {
+      "displayName": "Video Generation",
+      "description": "AI-powered video creation starring users, friends, or anything imaginable. Expanded access available through Meta One subscriptions.",
       "verified": true
     },
     "voice-chat": {
       "displayName": "Voice Chat",
+      "description": "Natural voice conversations with support for 13 languages.",
+      "verified": true
+    },
+    "live-ai": {
+      "displayName": "Live AI",
+      "description": "Real-time answers about anything you're looking at.",
       "verified": true
     },
     "web-search": {
       "displayName": "Web Search",
+      "description": "Real-time web search integration within Meta AI conversations.",
       "verified": true
     },
     "memory": {
       "displayName": "Memory",
+      "description": "Persistent memory across conversations for personalized assistance.",
+      "verified": true
+    },
+    "incognito-chats": {
+      "displayName": "Incognito Chats",
+      "description": "Private, temporary conversations that only the user can see.",
+      "verified": true
+    },
+    "thinking-mode": {
+      "displayName": "Thinking Mode",
+      "description": "Step-by-step reasoning for complex questions. Available on the Meta AI app and meta.ai. Expanded access through Meta One subscriptions.[reference:6][reference:7]",
       "verified": true
     },
     "facebook": {
       "displayName": "Facebook AI",
+      "description": "Meta AI integration within Facebook.",
       "verified": true
     },
     "instagram": {
       "displayName": "Instagram AI",
+      "description": "Meta AI integration within Instagram.",
       "verified": true
     },
     "whatsapp": {
       "displayName": "WhatsApp AI",
+      "description": "Meta AI integration within WhatsApp.",
       "verified": true
     },
     "messenger": {
       "displayName": "Messenger AI",
+      "description": "Meta AI integration within Messenger.",
       "verified": true
     },
     "developer-api": {
       "displayName": "Developer API",
+      "description": "Programmatic access to Meta AI and Llama models through the Llama API.",
       "verified": true
     }
   },
@@ -151,6 +233,7 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "meta/llama-4-maverick",
@@ -161,19 +244,80 @@
         "meta-ai",
         "meta-ai-app",
         "image-generation",
+        "video-generation",
         "voice-chat",
+        "live-ai",
         "web-search",
+        "memory",
+        "incognito-chats",
+        "thinking-mode",
         "facebook",
         "instagram",
         "whatsapp",
-        "messenger",
-        "memory"
+        "messenger"
       ],
-      "notes": "Meta AI is free across Meta apps with usage limits depending on region."
+      "notes": "Meta AI is free across all Meta apps with unlimited conversational chat. Image generation, video creation, and Thinking mode are capped for free users. Available in 200+ countries with multi-language support."
     },
     {
-      "plan": "Developer",
+      "plan": "Meta One Plus",
+      "monthlyPrice": 7.99,
+      "annualPrice": null,
+      "verified": true,
+      "models": [
+        "meta/llama-4-maverick",
+        "meta/llama-4-scout",
+        "meta/llama-3.3-70b"
+      ],
+      "products": [
+        "meta-ai",
+        "meta-ai-app",
+        "image-generation",
+        "video-generation",
+        "voice-chat",
+        "live-ai",
+        "web-search",
+        "memory",
+        "incognito-chats",
+        "thinking-mode",
+        "facebook",
+        "instagram",
+        "whatsapp",
+        "messenger"
+      ],
+      "notes": "Includes Facebook Plus, Instagram Plus, and WhatsApp Plus benefits at a discounted price[reference:8]. More monthly AI usage allowance for eligible AI features[reference:9]. More advanced reasoning with Thinking mode[reference:10]. Currently in limited testing in select locations[reference:11][reference:12]."
+    },
+    {
+      "plan": "Meta One Premium",
+      "monthlyPrice": 19.99,
+      "annualPrice": null,
+      "verified": true,
+      "models": [
+        "meta/llama-4-maverick",
+        "meta/llama-4-scout",
+        "meta/llama-3.3-70b"
+      ],
+      "products": [
+        "meta-ai",
+        "meta-ai-app",
+        "image-generation",
+        "video-generation",
+        "voice-chat",
+        "live-ai",
+        "web-search",
+        "memory",
+        "incognito-chats",
+        "thinking-mode",
+        "facebook",
+        "instagram",
+        "whatsapp",
+        "messenger"
+      ],
+      "notes": "All benefits of Meta One Plus, plus: expanded monthly AI usage allowance[reference:13], expanded access to image and video models[reference:14], more advanced reasoning with Thinking mode[reference:15], and features for AI glasses (conversation focus, premium device support)[reference:16]. Currently in limited testing in select locations[reference:17]."
+    },
+    {
+      "plan": "Developer (Llama API)",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "meta/llama-4-maverick",
@@ -191,11 +335,12 @@
         "developer-api",
         "ai-studio"
       ],
-      "notes": "Llama models are available under the Llama Community License. API pricing is usage-based where available."
+      "notes": "Llama models are available under the Llama Community License for free self-hosted deployment. Llama API is available as a limited free preview for US-based developers."
     },
     {
-      "plan": "Enterprise",
+      "plan": "Enterprise Deployment",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "meta/llama-4-maverick",
@@ -209,7 +354,61 @@
         "developer-api",
         "ai-studio"
       ],
-      "notes": "Enterprise deployments are offered through infrastructure and cloud partners."
+      "notes": "Enterprise deployments are offered through infrastructure and cloud partners including AWS, Azure, Databricks, Snowflake, and Vertex AI. Custom licensing available for organizations above 700 million monthly active users."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "meta/llama-4-maverick",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Self-hosted deployment is free under the Llama Community License. Hosted inference pricing varies by provider."
+      },
+      {
+        "model": "meta/llama-4-scout",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Self-hosted deployment is free under the Llama Community License. Hosted inference pricing varies by provider."
+      },
+      {
+        "model": "meta/llama-3.3-70b",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Self-hosted deployment is free under the Llama Community License."
+      }
+    ],
+    "features": {
+      "freeSelfHosting": {
+        "displayName": "Self-Hosted Deployment",
+        "price": "Free",
+        "description": "All Llama models are available for free self-hosted deployment under the Llama Community License for organizations below 700 million monthly active users.",
+        "verified": true
+      },
+      "cloudInference": {
+        "displayName": "Cloud Inference",
+        "description": "Meta partners with cloud providers including AWS, Azure, Databricks, Snowflake, and Vertex AI to offer Llama models and inference services.",
+        "verified": true
+      },
+      "llamaApiPreview": {
+        "displayName": "Llama API (Preview)",
+        "description": "Available as a limited free preview for US-based developers. Provides one-click API key creation and interactive playgrounds.",
+        "verified": true
+      },
+      "marketProviders": {
+        "displayName": "Example Hosted Provider Pricing",
+        "description": "Third-party providers offer hosted Llama inference at competitive rates. Examples include Together AI, Groq, Fireworks, and OpenRouter. Pricing varies by provider and region.",
+        "verified": false,
+        "notes": "This represents third-party hosted pricing, not official Meta pricing."
+      }
+    },
+    "notes": "Meta does not publish official token pricing for Llama models. Models are available for free self-hosted deployment. Hosted inference is available through third-party providers with pricing set by each provider. The Llama API is currently in preview with rate limits being defined."
+  },
+  "notes": "Meta AI operates under an advertising-subsidized freemium model. Consumer access is free with unlimited conversational chat. Paid subscriptions (Meta One Plus at $7.99/mo and Meta One Premium at $19.99/mo) provide expanded access to image generation, video creation, and Thinking mode[reference:18][reference:19][reference:20]. Meta One is currently in limited testing and not available everywhere yet[reference:21][reference:22][reference:23]. Llama models are available for free self-hosted deployment under the Llama Community License. The Llama API is in limited preview. All pricing for hosted inference is set by third-party providers, not by Meta."
 }

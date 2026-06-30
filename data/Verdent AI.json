@@ -1,132 +1,185 @@
 {
   "provider": "Verdent AI",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.2.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Verdent Documentation",
   "officialSources": [
     {
-      "title": "Verdent AI",
-      "url": "https://www.verdent.ai/"
+      "title": "Verdent Pricing",
+      "url": "https://www.verdent.ai/zh-CN/pricing"
     },
     {
-      "title": "Verdent Pricing",
-      "url": "https://www.verdent.ai/pricing"
+      "title": "Model Pricing",
+      "url": "https://www.verdent.ai/zh-CN/docs/account-billing/model-pricing"
+    },
+    {
+      "title": "Credits & Subscription Details",
+      "url": "https://www.verdent.ai/zh-CN/credits-detail"
     },
     {
       "title": "Verdent Documentation",
       "url": "https://www.verdent.ai/docs"
-    },
-    {
-      "title": "Verdent Pricing Overview",
-      "url": "https://www.verdent.ai/docs/verdent-manager/pricing/view-plans"
     }
   ],
   "modelCatalog": {
-    "verdent/plan-mode": {
-      "displayName": "Plan Mode",
-      "officialNames": [
-        "Plan Mode"
-      ],
+    "anthropic/claude-opus-4.8": {
+      "displayName": "Claude Opus 4.8",
+      "officialNames": ["claude-opus-4.8"],
+      "description": "Anthropic's flagship reasoning model, available through Verdent for complex coding and planning tasks.",
+      "contextLength": 200000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Creates structured implementation plans before code generation."
+      "notes": "Credits are consumed based on underlying API usage. Refer to Verdent's credit system for exact consumption rates."
     },
-    "verdent/code-mode": {
-      "displayName": "Code Mode",
-      "officialNames": [
-        "Code Mode"
-      ],
+    "anthropic/claude-sonnet-4.6": {
+      "displayName": "Claude Sonnet 4.6",
+      "officialNames": ["claude-sonnet-4.6"],
+      "description": "Anthropic's balanced model for general-purpose coding and reasoning tasks.",
+      "contextLength": 200000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Executes implementation using selected AI providers."
+      "notes": "Credits consumed based on underlying API usage. Refer to Verdent's credit system."
     },
-    "verdent/verify-mode": {
-      "displayName": "Verify Mode",
-      "officialNames": [
-        "Verify Mode"
-      ],
+    "openai/gpt-5.5": {
+      "displayName": "GPT-5.5",
+      "officialNames": ["gpt-5.5"],
+      "description": "OpenAI's most advanced general-purpose model, available via Verdent for high-quality code generation and reasoning.",
+      "contextLength": 200000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Reviews, validates, and verifies generated code."
+      "notes": "Credits consumed based on underlying API usage."
     },
-    "verdent/parallel-agents": {
-      "displayName": "Parallel Agents",
-      "officialNames": [
-        "Parallel Agents"
-      ],
+    "google/gemini-3.1-pro": {
+      "displayName": "Gemini 3.1 Pro",
+      "officialNames": ["gemini-3.1-pro"],
+      "description": "Google's advanced multimodal model, integrated for coding and reasoning workflows.",
+      "contextLength": 1000000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Coordinates multiple autonomous coding agents simultaneously."
+      "notes": "Credits consumed based on underlying API usage."
     },
-    "verdent/eco-mode": {
-      "displayName": "Eco Mode",
-      "officialNames": [
-        "Eco Mode"
-      ],
+    "zhipu/glm-5.1": {
+      "displayName": "GLM-5.1",
+      "officialNames": ["glm-5.1"],
+      "description": "Zhipu AI's large language model, available through Verdent for Chinese-language and multilingual tasks.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Low-cost execution mode that operates without consuming subscription credits."
+      "notes": "Credits consumed based on underlying API usage."
+    },
+    "moonshot/kimi-k2.6": {
+      "displayName": "Kimi K2.6",
+      "officialNames": ["kimi-k2.6"],
+      "description": "Moonshot AI's large context model, optimized for processing long documents and complex reasoning.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Credits consumed based on underlying API usage."
     }
   },
   "productCatalog": {
     "parallel-agents": {
       "displayName": "Parallel Agents",
+      "description": "Run multiple autonomous coding agents in parallel to accelerate development. Available on Pro and above.",
       "verified": true
     },
     "plan-mode": {
       "displayName": "Plan Mode",
+      "description": "Create structured implementation plans before code generation, with requirements analysis and architectural design.",
       "verified": true
     },
     "code-mode": {
       "displayName": "Code Mode",
+      "description": "Execute implementation using selected AI providers. Supports parallel execution on Pro and above.",
       "verified": true
     },
     "verify-mode": {
       "displayName": "Verify Mode",
-      "verified": true
-    },
-    "workspace-isolation": {
-      "displayName": "Workspace Isolation",
-      "verified": true
-    },
-    "git-worktrees": {
-      "displayName": "Git Worktrees",
-      "verified": true
-    },
-    "code-review": {
-      "displayName": "AI Code Review",
-      "verified": true
-    },
-    "agent-orchestration": {
-      "displayName": "Agent Orchestration",
-      "verified": true
-    },
-    "mcp": {
-      "displayName": "MCP",
-      "verified": true
-    },
-    "vs-code-extension": {
-      "displayName": "VS Code Extension",
-      "verified": true
-    },
-    "verdent-deck": {
-      "displayName": "Verdent Deck",
+      "description": "Review, validate, and verify generated code through multi-round generate→test→fix cycles.",
       "verified": true
     },
     "eco-mode": {
       "displayName": "Eco Mode",
+      "description": "Low-cost execution that does not consume subscription credits. Uses lower-cost models for budget-conscious workflows.",
+      "verified": true
+    },
+    "workspace-isolation": {
+      "displayName": "Workspace Isolation",
+      "description": "Isolated workspaces for safe code execution.",
+      "verified": true
+    },
+    "git-worktrees": {
+      "displayName": "Git Worktrees",
+      "description": "Automatic Git Worktree isolation for safe parallel development.",
+      "verified": true
+    },
+    "code-review": {
+      "displayName": "AI Code Review",
+      "description": "AI-powered code review and validation.",
+      "verified": true
+    },
+    "agent-orchestration": {
+      "displayName": "Agent Orchestration",
+      "description": "Orchestrate multiple agents for complex workflows.",
+      "verified": true
+    },
+    "mcp": {
+      "displayName": "MCP",
+      "description": "Model Context Protocol support for external tool integration.",
+      "verified": true
+    },
+    "vs-code-extension": {
+      "displayName": "VS Code Extension",
+      "description": "Verdent integration for VS Code.",
+      "verified": true
+    },
+    "verdent-deck": {
+      "displayName": "Verdent Deck",
+      "description": "Desktop application for Verdent.",
       "verified": true
     },
     "byok": {
       "displayName": "Bring Your Own Key",
+      "description": "Use your own API keys for supported models.",
       "verified": true
     },
     "byoa": {
       "displayName": "Bring Your Own Account",
+      "description": "Use your own provider accounts (Enterprise).",
       "verified": true
     },
     "pay-as-you-go": {
       "displayName": "Pay-as-you-go",
+      "description": "Flexible top-up credits with no expiration.",
       "verified": true
     },
     "credits": {
       "displayName": "Credits",
+      "description": "Usage-based credit system. Credits are consumed based on model usage and task complexity.",
+      "verified": true
+    },
+    "flexible-topups": {
+      "displayName": "Flexible Top-ups",
+      "description": "One-time credit purchases. Credits never expire.",
       "verified": true
     }
   },
@@ -134,11 +187,15 @@
     {
       "plan": "Free Trial",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "verdent/plan-mode",
-        "verdent/code-mode",
-        "verdent/verify-mode"
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "openai/gpt-5.5",
+        "google/gemini-3.1-pro",
+        "zhipu/glm-5.1",
+        "moonshot/kimi-k2.6"
       ],
       "products": [
         "parallel-agents",
@@ -150,17 +207,20 @@
         "byok",
         "byoa"
       ],
-      "notes": "7-day trial with 100 credits."
+      "notes": "7-day free trial with 100 credits. Access to all supported models. BYOK and BYOA available."
     },
     {
       "plan": "Starter",
       "monthlyPrice": 19,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "verdent/plan-mode",
-        "verdent/code-mode",
-        "verdent/verify-mode",
-        "verdent/eco-mode"
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "openai/gpt-5.5",
+        "google/gemini-3.1-pro",
+        "zhipu/glm-5.1",
+        "moonshot/kimi-k2.6"
       ],
       "products": [
         "parallel-agents",
@@ -178,18 +238,20 @@
         "byoa",
         "credits"
       ],
-      "notes": "480 monthly credits with Eco Mode included."
+      "notes": "480 credits/month (320 base + 160 current promotional bonus). Eco Mode for light usage. Access to all models. Suitable for occasional use and small tasks."
     },
     {
       "plan": "Pro",
       "monthlyPrice": 59,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "verdent/plan-mode",
-        "verdent/code-mode",
-        "verdent/verify-mode",
-        "verdent/parallel-agents",
-        "verdent/eco-mode"
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "openai/gpt-5.5",
+        "google/gemini-3.1-pro",
+        "zhipu/glm-5.1",
+        "moonshot/kimi-k2.6"
       ],
       "products": [
         "parallel-agents",
@@ -208,18 +270,20 @@
         "byoa",
         "credits"
       ],
-      "notes": "1,500 monthly credits with extended Eco Mode usage."
+      "notes": "1,500 credits/month (1,000 base + 500 current promotional bonus). Eco Mode for longer continuous tasks. Access to all models. Suitable for daily use and continuous work."
     },
     {
       "plan": "Max",
       "monthlyPrice": 179,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "verdent/plan-mode",
-        "verdent/code-mode",
-        "verdent/verify-mode",
-        "verdent/parallel-agents",
-        "verdent/eco-mode"
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "openai/gpt-5.5",
+        "google/gemini-3.1-pro",
+        "zhipu/glm-5.1",
+        "moonshot/kimi-k2.6"
       ],
       "products": [
         "parallel-agents",
@@ -239,18 +303,20 @@
         "pay-as-you-go",
         "credits"
       ],
-      "notes": "4,500 monthly credits with maximum usage limits."
+      "notes": "4,500 credits/month (3,000 base + 1,500 current promotional bonus). Eco Mode for high-intensity tasks. Maximum usage limits. Suitable for deep usage and complex work."
     },
     {
       "plan": "Teams",
       "monthlyPrice": 20,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "verdent/plan-mode",
-        "verdent/code-mode",
-        "verdent/verify-mode",
-        "verdent/parallel-agents",
-        "verdent/eco-mode"
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "openai/gpt-5.5",
+        "google/gemini-3.1-pro",
+        "zhipu/glm-5.1",
+        "moonshot/kimi-k2.6"
       ],
       "products": [
         "parallel-agents",
@@ -269,7 +335,117 @@
         "byoa",
         "credits"
       ],
-      "notes": "Per-user pricing with 480 credits per user each month."
+      "notes": "Per-user pricing: $20/user/month. 480 credits/user/month (320 base + 160 current promotional bonus). Unified payment, member management, priority support. Suitable for small teams scaling up."
+    },
+    {
+      "plan": "Enterprise",
+      "monthlyPrice": null,
+      "annualPrice": null,
+      "verified": true,
+      "models": [
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-sonnet-4.6",
+        "openai/gpt-5.5",
+        "google/gemini-3.1-pro",
+        "zhipu/glm-5.1",
+        "moonshot/kimi-k2.6"
+      ],
+      "products": [
+        "parallel-agents",
+        "plan-mode",
+        "code-mode",
+        "verify-mode",
+        "workspace-isolation",
+        "git-worktrees",
+        "code-review",
+        "agent-orchestration",
+        "mcp",
+        "vs-code-extension",
+        "verdent-deck",
+        "eco-mode",
+        "byok",
+        "byoa",
+        "pay-as-you-go",
+        "credits",
+        "flexible-topups"
+      ],
+      "notes": "Custom enterprise pricing. Includes all Team features plus: custom credit allocation, custom billing structures, organization-level controls (advanced management, permissions, visibility), priority support, dedicated account management. Contact sales for details."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "anthropic/claude-opus-4.8",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Credits consumed based on underlying API usage. Verdent passes through provider rates without markup."
+      },
+      {
+        "model": "anthropic/claude-sonnet-4.6",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Credits consumed based on underlying API usage. Verdent passes through provider rates without markup."
+      },
+      {
+        "model": "openai/gpt-5.5",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Credits consumed based on underlying API usage. Verdent passes through provider rates without markup."
+      },
+      {
+        "model": "google/gemini-3.1-pro",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Credits consumed based on underlying API usage. Verdent passes through provider rates without markup."
+      },
+      {
+        "model": "zhipu/glm-5.1",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Credits consumed based on underlying API usage. Verdent passes through provider rates without markup."
+      },
+      {
+        "model": "moonshot/kimi-k2.6",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Credits consumed based on underlying API usage. Verdent passes through provider rates without markup."
+      }
+    ],
+    "features": {
+      "creditSystem": {
+        "displayName": "Credit System",
+        "description": "Credits are the unit of usage for all Verdent tasks. Each task consumes credits based on the selected model and the complexity of the request. The exact credit cost per operation is displayed in the interface and documented in the help center.",
+        "verified": true
+      },
+      "flexibleTopups": {
+        "displayName": "Flexible Top-ups",
+        "description": "One-time credit purchases are available: credits can be purchased in various amounts starting from $20. Purchased credits never expire and can be used across all plans.",
+        "verified": true
+      },
+      "ecoMode": {
+        "displayName": "Eco Mode",
+        "description": "Use Verdent without consuming subscription credits by using lower-cost models. Available on all paid plans with varying capacity.",
+        "verified": true
+      },
+      "passthroughPricing": {
+        "displayName": "Pass-through Pricing",
+        "description": "Verdent passes through the underlying provider's API costs with no markup. Credits are calculated based on the actual token usage of the selected model.",
+        "verified": true
+      }
+    },
+    "notes": "All pricing is in USD. Credits are consumed based on actual token usage of the underlying AI models. Verdent does not add markup to provider rates. For specific credit costs per operation, refer to the in-app billing details or the documentation."
+  },
+  "notes": "Verdent AI is a multi-agent orchestration platform for coding. It operates on a credit-based subscription model with a free 7-day trial (100 credits). Plans: Starter ($19/mo, 480 credits), Pro ($59/mo, 1,500 credits), Max ($179/mo, 4,500 credits), Teams ($20/user/mo, 480 credits/user), and Enterprise (custom pricing). Promotional bonus credits (50% extra) are currently offered on monthly subscriptions. Eco Mode allows usage without consuming credits. Verdent integrates with VS Code and offers a desktop app (Verdent Deck). Supports BYOK (Bring Your Own Key) and BYOA (Bring Your Own Account). All provider pricing is passed through with no markup."
 }

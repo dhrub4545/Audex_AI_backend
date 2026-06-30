@@ -1,90 +1,173 @@
 {
   "provider": "DeepSeek",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official DeepSeek Documentation",
   "officialSources": [
     {
-      "title": "DeepSeek",
-      "url": "https://www.deepseek.com/"
-    },
-    {
-      "title": "DeepSeek API Documentation",
-      "url": "https://api-docs.deepseek.com/"
-    },
-    {
-      "title": "DeepSeek Platform",
-      "url": "https://platform.deepseek.com/"
-    },
-    {
-      "title": "DeepSeek Pricing",
+      "title": "Models & Pricing",
       "url": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    {
+      "title": "DeepSeek V4 Preview Release",
+      "url": "https://api-docs.deepseek.com/news/news260424"
+    },
+    {
+      "title": "DeepSeek V3.2 Release",
+      "url": "https://api-docs.deepseek.com/news/news251201"
+    },
+    {
+      "title": "DeepSeek V3.1 Release",
+      "url": "https://api-docs.deepseek.com/news/news250821"
     }
   ],
   "modelCatalog": {
-    "deepseek/deepseek-r1": {
-      "displayName": "DeepSeek R1",
-      "officialNames": [
-        "DeepSeek-R1"
-      ],
-      "verified": true
+    "deepseek/deepseek-v4-pro": {
+      "displayName": "DeepSeek V4 Pro",
+      "officialNames": ["deepseek-v4-pro"],
+      "description": "Flagship model with 1.6T total parameters (49B active). Rivals top closed-source models in agentic coding, world knowledge, and reasoning.",
+      "contextLength": 1000000,
+      "maxOutput": 384000,
+      "inputPricePerMTok": 0.435,
+      "outputPricePerMTok": 0.87,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.003625,
+      "verified": true,
+      "notes": "Supports both thinking and non-thinking modes."
+    },
+    "deepseek/deepseek-v4-flash": {
+      "displayName": "DeepSeek V4 Flash",
+      "officialNames": ["deepseek-v4-flash"],
+      "description": "Fast, efficient, cost-effective model with 284B total parameters (13B active).",
+      "contextLength": 1000000,
+      "maxOutput": 384000,
+      "inputPricePerMTok": 0.14,
+      "outputPricePerMTok": 0.28,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.0028,
+      "verified": true,
+      "notes": "Supports both thinking and non-thinking modes."
+    },
+    "deepseek/deepseek-v3.2": {
+      "displayName": "DeepSeek V3.2",
+      "officialNames": ["DeepSeek-V3.2"],
+      "description": "Balances reasoning capability with output length. First DeepSeek model to integrate thinking with tool calling.",
+      "contextLength": 128000,
+      "maxOutput": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Replaced by V4 models in API. Available for legacy use."
     },
     "deepseek/deepseek-v3.1": {
       "displayName": "DeepSeek V3.1",
-      "officialNames": [
-        "DeepSeek-V3.1"
-      ],
-      "verified": true
+      "officialNames": ["DeepSeek-V3.1"],
+      "description": "Hybrid reasoning architecture supporting both thinking and non-thinking modes.",
+      "contextLength": 128000,
+      "maxOutput": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Replaced by V4 models in API. Available for legacy use."
+    },
+    "deepseek/deepseek-r1": {
+      "displayName": "DeepSeek R1",
+      "officialNames": ["DeepSeek-R1"],
+      "description": "Reasoning-focused model. Precursor to V3.1 and V4 thinking capabilities.",
+      "contextLength": 164000,
+      "maxOutput": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Legacy model. Superseded by V3.1-Think and V4 models."
     },
     "deepseek/deepseek-v3": {
       "displayName": "DeepSeek V3",
-      "officialNames": [
-        "DeepSeek-V3"
-      ],
+      "officialNames": ["DeepSeek-V3"],
+      "description": "Previous generation foundation model.",
+      "contextLength": 131000,
+      "maxOutput": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Previous generation foundation model."
+      "notes": "Legacy model. Superseded by V3.1, V3.2, and V4."
     }
   },
   "productCatalog": {
     "deepseek-chat": {
       "displayName": "DeepSeek Chat",
-      "verified": true
+      "description": "Web and mobile chat interface. Free with no ads. Currently uses V4 models internally.",
+      "verified": true,
+      "notes": "Legacy deepseek-chat API name is deprecated; refer to official docs for migration."
     },
     "deepseek-reasoner": {
       "displayName": "DeepSeek Reasoner",
-      "verified": true
+      "description": "Reasoning-enhanced chat mode with thinking capabilities. Currently uses V4 models in thinking mode.",
+      "verified": true,
+      "notes": "Legacy deepseek-reasoner API name is deprecated; refer to official docs for migration."
     },
     "api-platform": {
       "displayName": "API Platform",
+      "description": "OpenAI and Anthropic-compatible API endpoints.",
       "verified": true
     },
     "web-chat": {
       "displayName": "Web Chat",
+      "description": "Free web-based chat interface.",
       "verified": true
     },
     "mobile-app": {
       "displayName": "Mobile App",
+      "description": "Free mobile application.",
+      "verified": true
+    },
+    "expert-mode": {
+      "displayName": "Expert Mode",
+      "description": "UI mode on web/app for advanced reasoning and complex tasks.",
+      "verified": true
+    },
+    "instant-mode": {
+      "displayName": "Instant Mode",
+      "description": "UI mode on web/app for faster, more concise responses.",
+      "verified": true
+    },
+    "image-recognition": {
+      "displayName": "Image Recognition",
+      "description": "Vision capabilities for image understanding in web/app.",
       "verified": true
     },
     "context-caching": {
       "displayName": "Context Caching",
+      "description": "Reduced pricing for cached input tokens (API only).",
       "verified": true
     },
     "json-mode": {
       "displayName": "JSON Mode",
+      "description": "Structured JSON output support (API only).",
       "verified": true
     },
     "function-calling": {
       "displayName": "Function Calling",
+      "description": "Tool calling support with strict mode (API only).",
       "verified": true
     },
     "fill-in-the-middle": {
       "displayName": "Fill-in-the-Middle",
+      "description": "FIM completion beta – non-thinking mode only (API only).",
       "verified": true
     },
     "prefix-completion": {
       "displayName": "Prefix Completion",
+      "description": "Chat prefix completion beta (API only).",
       "verified": true
     }
   },
@@ -92,26 +175,34 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "deepseek/deepseek-r1",
-        "deepseek/deepseek-v3.1"
+        "deepseek/deepseek-v4-pro",
+        "deepseek/deepseek-v4-flash"
       ],
       "products": [
         "deepseek-chat",
         "deepseek-reasoner",
         "web-chat",
-        "mobile-app"
+        "mobile-app",
+        "expert-mode",
+        "instant-mode",
+        "image-recognition"
       ],
-      "notes": "Free public chat with usage limits."
+      "notes": "Completely free on web and app with no ads. No paid consumer plans available."
     },
     {
       "plan": "API (Pay-as-you-go)",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
-        "deepseek/deepseek-r1",
+        "deepseek/deepseek-v4-pro",
+        "deepseek/deepseek-v4-flash",
+        "deepseek/deepseek-v3.2",
         "deepseek/deepseek-v3.1",
+        "deepseek/deepseek-r1",
         "deepseek/deepseek-v3"
       ],
       "products": [
@@ -122,7 +213,44 @@
         "fill-in-the-middle",
         "prefix-completion"
       ],
-      "notes": "Usage-based pricing billed per token."
+      "notes": "Usage-based pricing billed per token. New accounts receive 5M free tokens without credit card."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "deepseek/deepseek-v4-pro",
+        "inputPricePerMTok": 0.435,
+        "outputPricePerMTok": 0.87,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.003625,
+        "notes": "Supports 1M context window. Peak pricing doubles during high-traffic periods (9:00-12:00 and 14:00-18:00 Beijing time)."
+      },
+      {
+        "model": "deepseek/deepseek-v4-flash",
+        "inputPricePerMTok": 0.14,
+        "outputPricePerMTok": 0.28,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.0028,
+        "notes": "Supports 1M context window. Peak pricing doubles during high-traffic periods."
+      }
+    ],
+    "features": {
+      "contextCaching": {
+        "displayName": "Context Caching",
+        "cacheHitMultiplier": 0.0083,
+        "description": "Cache-hit pricing is approximately 0.83% of the standard input token price.",
+        "details": "V4 Pro: $0.003625/MTok cache hit vs $0.435/MTok cache miss. V4 Flash: $0.0028/MTok cache hit vs $0.14/MTok cache miss.",
+        "verified": true
+      },
+      "peakPricing": {
+        "displayName": "Peak Pricing",
+        "priceMultiplier": 2.0,
+        "description": "Peak hours: 9:00-12:00 and 14:00-18:00 Beijing time (effective July 2026).",
+        "verified": true
+      }
+    },
+    "notes": "All prices in USD per 1M tokens. V4 models support 1M context. Legacy deepseek-chat and deepseek-reasoner API names are deprecated; consult official documentation for sunset dates."
+  },
+  "notes": "DeepSeek offers free web and app chat with no paid consumer plans. API is pay-as-you-go with competitive pricing. V4 series (Pro and Flash) are the current flagship models with 1M context. Legacy V3 models remain available but are being phased out."
 }

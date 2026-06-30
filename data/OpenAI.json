@@ -1,105 +1,132 @@
-
 {
   "provider": "OpenAI",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official OpenAI Documentation",
   "officialSources": [
     {
-      "title": "ChatGPT Pricing",
-      "url": "https://chatgpt.com/pricing"
-    },
-    {
-      "title": "GPT-5.5 in ChatGPT",
-      "url": "https://help.openai.com/articles/11909943"
-    },
-    {
-      "title": "ChatGPT Business Models & Limits",
-      "url": "https://help.openai.com/en/articles/12003714-chatgpt-business-models-limits"
-    },
-    {
       "title": "Introducing GPT-5.5",
       "url": "https://openai.com/index/introducing-gpt-5-5/"
+    },
+    {
+      "title": "Model Release Notes",
+      "url": "https://help.openai.com/en/articles/9624314-model-release-notes"
+    },
+    {
+      "title": "ChatGPT Pricing",
+      "url": "https://chatgpt.com/pricing"
     }
   ],
   "modelCatalog": {
     "openai/gpt-5.5": {
       "displayName": "GPT-5.5",
-      "officialNames": [
-        "GPT-5.5 Instant",
-        "GPT-5.5 Thinking"
-      ],
+      "officialNames": ["GPT-5.5", "GPT-5.5 Instant"],
+      "description": "Fast, powerful default model for everyday tasks. Supports writing and coding directly in chat responses.",
+      "inputPricePerMTok": 5,
+      "outputPricePerMTok": 30,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.5,
+      "verified": true
+    },
+    "openai/gpt-5.5-thinking": {
+      "displayName": "GPT-5.5 Thinking",
+      "officialNames": ["GPT-5.5 Thinking"],
+      "description": "Enhanced reasoning model for complex tasks with selectable reasoning levels",
+      "reasoningLevels": ["medium", "high", "ultra"],
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true
     },
     "openai/gpt-5.5-pro": {
       "displayName": "GPT-5.5 Pro",
-      "officialNames": [
-        "GPT-5.5 Pro"
-      ],
+      "officialNames": ["GPT-5.5 Pro"],
+      "description": "Most powerful model for the most difficult tasks and long-running workflows",
+      "inputPricePerMTok": 30,
+      "outputPricePerMTok": 180,
+      "promptCachingWrite": null,
+      "promptCachingRead": 3,
       "verified": true
     },
     "openai/gpt-5.5-mini": {
-      "displayName": "GPT-5.5 mini",
-      "officialNames": [
-        "GPT-5.5 mini"
-      ],
+      "displayName": "GPT-5.5 Mini",
+      "officialNames": ["GPT-5.5 Mini"],
+      "description": "Lightweight fallback model used when rate limits are reached",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "canonicalId": null,
-      "notes": "Fallback model documented by OpenAI. No corresponding Overall JSON model has been confirmed."
+      "notes": "ChatGPT fallback model. No published API pricing."
     }
   },
   "productCatalog": {
     "sora": {
       "displayName": "Sora",
+      "description": "Video generation model",
       "verified": true
     },
     "codex": {
       "displayName": "Codex",
+      "description": "Advanced coding assistant with GPT-5.5 integration",
       "verified": true
     },
     "deep-research": {
       "displayName": "Deep Research",
+      "description": "In-depth research capabilities",
       "verified": true
     },
     "agent-mode": {
       "displayName": "Agent Mode",
+      "description": "Autonomous task execution",
       "verified": true
     },
     "canvas": {
       "displayName": "Canvas",
-      "verified": true
+      "description": "Collaborative writing and editing interface (legacy - not available with GPT-5.5 models)",
+      "verified": true,
+      "notes": "Canvas is no longer available in GPT-5.5 Instant or GPT-5.5 Thinking. Writing and coding are now supported directly in chat responses."
     },
     "custom-gpts": {
       "displayName": "Custom GPTs",
+      "description": "Create and use custom versions of ChatGPT",
       "verified": true
     },
     "projects": {
       "displayName": "Projects",
+      "description": "Organize chats and files into projects",
       "verified": true
     },
     "tasks": {
       "displayName": "Tasks",
+      "description": "Scheduling and task management (beta)",
       "verified": true
     },
     "advanced-voice": {
       "displayName": "Advanced Voice",
+      "description": "Multi-modal voice interactions with natural intonation",
       "verified": true
     },
     "image-generation": {
       "displayName": "Image Generation",
+      "description": "Generate images from text descriptions",
       "verified": true
     },
     "memory": {
       "displayName": "Memory",
+      "description": "Persistent memory across conversations",
       "verified": true
     },
     "voice": {
       "displayName": "Voice",
+      "description": "Basic voice input",
       "verified": true
     },
     "web-search": {
       "displayName": "Web Search",
+      "description": "Access to real-time information",
       "verified": true
     }
   },
@@ -107,6 +134,7 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "openai/gpt-5.5",
@@ -119,74 +147,38 @@
         "web-search",
         "projects"
       ],
-      "notes": "Limited usage."
+      "notes": "Limited usage. Dynamic rate limits apply. GPT-5.5 Mini serves as fallback when limits are reached."
     },
     {
-      "plan": "ChatGPT Go",
-      "monthlyPrice": 8,
-      "verified": true,
-      "models": [
-        "openai/gpt-5.5",
-        "openai/gpt-5.5-mini"
-      ],
-      "products": [
-        "image-generation",
-        "memory",
-        "voice",
-        "projects",
-        "deep-research"
-      ],
-      "notes": "Higher limits than Free."
-    },
-    {
-      "plan": "ChatGPT Plus",
+      "plan": "Plus",
       "monthlyPrice": 20,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "openai/gpt-5.5",
-        "openai/gpt-5.5-mini"
+        "openai/gpt-5.5-thinking"
       ],
       "products": [
         "sora",
         "codex",
         "deep-research",
         "agent-mode",
-        "canvas",
         "custom-gpts",
         "projects",
         "tasks",
         "advanced-voice",
         "image-generation"
-      ]
+      ],
+      "notes": "Includes GPT-5.5 Thinking with 'Medium' and 'High' reasoning levels. Canvas is not available with GPT-5.5 models."
     },
     {
-      "plan": "ChatGPT Pro",
+      "plan": "Pro",
       "monthlyPrice": 200,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "openai/gpt-5.5",
-        "openai/gpt-5.5-pro",
-        "openai/gpt-5.5-mini"
-      ],
-      "products": [
-        "sora",
-        "codex",
-        "deep-research",
-        "agent-mode",
-        "canvas",
-        "custom-gpts",
-        "projects",
-        "tasks",
-        "advanced-voice",
-        "image-generation"
-      ]
-    },
-    {
-      "plan": "Business",
-      "monthlyPrice": 25,
-      "verified": true,
-      "models": [
-        "openai/gpt-5.5",
+        "openai/gpt-5.5-thinking",
         "openai/gpt-5.5-pro"
       ],
       "products": [
@@ -194,15 +186,71 @@
         "codex",
         "deep-research",
         "agent-mode",
-        "canvas",
         "custom-gpts",
         "projects",
         "tasks",
         "advanced-voice",
         "image-generation"
       ],
-      "notes": "Per-user pricing with business administration and security features."
+      "notes": "Highest level of access. Includes 'Ultra' reasoning for Thinking and full access to GPT-5.5 Pro."
+    },
+    {
+      "plan": "Business",
+      "monthlyPrice": 25,
+      "annualPrice": 300,
+      "verified": true,
+      "models": [
+        "openai/gpt-5.5",
+        "openai/gpt-5.5-thinking"
+      ],
+      "products": [
+        "sora",
+        "codex",
+        "deep-research",
+        "agent-mode",
+        "custom-gpts",
+        "projects",
+        "tasks",
+        "advanced-voice",
+        "image-generation"
+      ],
+      "notes": "Per-user pricing. $25/user/month billed annually ($300/user/year). Includes 'Ultra' reasoning for Thinking. GPT-5.5 Pro available as add-on."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "openai/gpt-5.5",
+        "inputPricePerMTok": 5,
+        "outputPricePerMTok": 30,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.5,
+        "notes": "Supports 1M context window. Batch and Flex pricing available at 50% of standard rate. Priority processing at 2.5x standard rate."
+      },
+      {
+        "model": "openai/gpt-5.5-pro",
+        "inputPricePerMTok": 30,
+        "outputPricePerMTok": 180,
+        "promptCachingWrite": null,
+        "promptCachingRead": 3,
+        "notes": "Premium tier for highest accuracy requirements"
+      }
+    ],
+    "features": {
+      "batchPricing": {
+        "displayName": "Batch & Flex Pricing",
+        "price": "50% of standard API rate",
+        "description": "Discounted rate for asynchronous workloads",
+        "verified": true
+      },
+      "priorityProcessing": {
+        "displayName": "Priority Processing",
+        "price": "2.5× standard API rate",
+        "description": "Higher priority processing for time-sensitive requests",
+        "verified": true
+      }
+    },
+    "notes": "GPT-5.5 and GPT-5.5 Pro API pricing officially published. GPT-5.5 Thinking and GPT-5.5 Mini API pricing not yet published."
+  },
+  "notes": "Canvas is not available with GPT-5.5 models. Writing and coding functionality is now supported directly in chat responses. Rate limits are dynamic and vary by plan and usage patterns."
 }
-

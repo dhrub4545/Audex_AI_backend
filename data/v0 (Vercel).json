@@ -1,144 +1,182 @@
 {
   "provider": "Vercel",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Vercel Documentation",
   "officialSources": [
-    {
-      "title": "v0",
-      "url": "https://v0.app"
-    },
     {
       "title": "v0 Pricing",
       "url": "https://v0.app/pricing"
     },
     {
+      "title": "Updated v0 pricing",
+      "url": "https://vercel.com/blog/updated-v0-pricing"
+    },
+    {
+      "title": "v0 Enterprise",
+      "url": "https://v0.app/enterprise"
+    },
+    {
       "title": "v0 Documentation",
       "url": "https://v0.app/docs"
-    },
-    {
-      "title": "v0 API",
-      "url": "https://v0.app/docs/api"
-    },
-    {
-      "title": "Vercel Blog - Updated v0 Pricing",
-      "url": "https://vercel.com/blog/updated-v0-pricing"
     }
   ],
   "modelCatalog": {
     "vercel/v0-mini": {
       "displayName": "v0 Mini",
-      "officialNames": [
-        "v0 Mini"
-      ],
+      "officialNames": ["v0-mini"],
+      "description": "Lightning-fast speed with near-frontier intelligence. Most cost-effective model for UI generation and everyday development.",
+      "inputPricePerMTok": 1.0,
+      "outputPricePerMTok": 5.0,
+      "promptCachingWrite": 1.25,
+      "promptCachingRead": 0.1,
       "verified": true,
-      "notes": "Fastest and lowest-cost model for UI generation and everyday development."
+      "notes": "Input: $1.00/MTok, Output: $5.00/MTok, Cache Write: $1.25/MTok, Cache Read: $0.10/MTok. Available on all plans."
     },
     "vercel/v0-pro": {
       "displayName": "v0 Pro",
-      "officialNames": [
-        "v0 Pro"
-      ],
+      "officialNames": ["v0-pro"],
+      "description": "Balanced speed and intelligence, with superior performance for most tasks. Ideal for production-quality app generation.",
+      "inputPricePerMTok": 3.0,
+      "outputPricePerMTok": 15.0,
+      "promptCachingWrite": 3.75,
+      "promptCachingRead": 0.3,
       "verified": true,
-      "notes": "Balanced model for production-quality app generation."
+      "notes": "Input: $3.00/MTok, Output: $15.00/MTok, Cache Write: $3.75/MTok, Cache Read: $0.30/MTok. Available on Premium, Team, Business, and Enterprise plans."
     },
     "vercel/v0-max": {
       "displayName": "v0 Max",
-      "officialNames": [
-        "v0 Max"
-      ],
+      "officialNames": ["v0-max"],
+      "description": "Maximum intelligence for complex work and demanding users. Highest-quality model for complex engineering tasks.",
+      "inputPricePerMTok": 5.0,
+      "outputPricePerMTok": 25.0,
+      "promptCachingWrite": 6.25,
+      "promptCachingRead": 0.5,
       "verified": true,
-      "notes": "Highest intelligence model for complex engineering tasks."
+      "notes": "Input: $5.00/MTok, Output: $25.00/MTok, Cache Write: $6.25/MTok, Cache Read: $0.50/MTok. Available on Team, Business, and Enterprise plans."
     },
     "vercel/v0-max-fast": {
       "displayName": "v0 Max Fast",
-      "officialNames": [
-        "v0 Max Fast"
-      ],
+      "officialNames": ["v0-max-fast"],
+      "description": "Maximum intelligence with 2.5x faster output speed for rapid iteration. Optimized for high-velocity development cycles.",
+      "inputPricePerMTok": 10.0,
+      "outputPricePerMTok": 50.0,
+      "promptCachingWrite": 12.5,
+      "promptCachingRead": 1.0,
       "verified": true,
-      "notes": "High-speed version of v0 Max optimized for rapid iteration."
+      "notes": "Input: $10.00/MTok, Output: $50.00/MTok, Cache Write: $12.50/MTok, Cache Read: $1.00/MTok. Available on Business and Enterprise plans."
     }
   },
   "productCatalog": {
     "agent": {
       "displayName": "Agent",
+      "description": "AI agent for generating and refining code and UI components.",
       "verified": true
     },
     "app-generation": {
       "displayName": "App Generation",
+      "description": "Generate full-stack applications from natural language prompts.",
       "verified": true
     },
     "design-mode": {
       "displayName": "Design Mode",
+      "description": "Visual editing interface for design and layout adjustments.",
       "verified": true
     },
     "templates": {
       "displayName": "Templates",
+      "description": "Pre-built templates and starter projects.",
       "verified": true
     },
     "github-sync": {
       "displayName": "GitHub Sync",
+      "description": "Sync projects with GitHub repositories.",
       "verified": true
     },
     "vercel-deployment": {
       "displayName": "One-click Deployment",
+      "description": "Deploy directly to Vercel with one click.",
       "verified": true
     },
     "figma-import": {
       "displayName": "Figma Import",
+      "description": "Import designs directly from Figma.",
       "verified": true
     },
     "api": {
       "displayName": "v0 API",
+      "description": "Programmatic access to v0 models. Available on Business and Enterprise plans.",
       "verified": true
     },
     "design-systems": {
       "displayName": "Design Systems",
+      "description": "Apply and manage design system components.",
       "verified": true
     },
     "databases": {
       "displayName": "Database Integration",
+      "description": "Connect and integrate with databases.",
       "verified": true
     },
     "integrations": {
       "displayName": "Integrations",
+      "description": "Third-party integrations and extensions.",
       "verified": true
     },
     "code-export": {
       "displayName": "Code Export",
+      "description": "Export generated code to your preferred format.",
       "verified": true
     },
     "collaboration": {
       "displayName": "Collaboration",
+      "description": "Collaborative editing and project sharing. Available on Team and above.",
       "verified": true
     },
     "shared-projects": {
       "displayName": "Shared Projects",
+      "description": "Share projects with team members.",
       "verified": true
     },
     "shared-credit-pool": {
       "displayName": "Shared Credit Pool",
+      "description": "Pool credits across team members. Available on Team and above.",
       "verified": true
     },
     "centralized-billing": {
       "displayName": "Centralized Billing",
+      "description": "Centralized billing and administration. Available on Team and above.",
       "verified": true
     },
     "priority-access": {
       "displayName": "Priority Access",
+      "description": "Priority access with no queues and better performance. Available on Enterprise.",
       "verified": true
     },
     "saml-sso": {
       "displayName": "SAML SSO",
+      "description": "SAML Single Sign-On for enterprise authentication. Available on Enterprise.",
       "verified": true
     },
     "rbac": {
       "displayName": "Role-Based Access Control",
+      "description": "Fine-grained access control with roles and permissions. Available on Enterprise.",
       "verified": true
     },
     "training-opt-out": {
       "displayName": "Training Opt-out",
+      "description": "Opt out of model training by default. Available on Business and Enterprise.",
+      "verified": true
+    },
+    "audit-logs": {
+      "displayName": "Audit Logs",
+      "description": "Security and compliance audit logs. Available on Enterprise.",
+      "verified": true
+    },
+    "aws-bedrock": {
+      "displayName": "AWS Bedrock Inference",
+      "description": "Inference on AWS Bedrock. Available on Enterprise.",
       "verified": true
     }
   },
@@ -146,6 +184,7 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "vercel/v0-mini"
@@ -159,11 +198,12 @@
         "vercel-deployment",
         "code-export"
       ],
-      "notes": "$5 monthly credits, 7 messages/day, deploy to Vercel, visual editing, GitHub sync."
+      "notes": "$5 in included monthly credits. Deploy to Vercel. Visual editing with Design Mode. GitHub sync. 7 messages/day limit. Credit expires at end of month."
     },
     {
       "plan": "Premium",
       "monthlyPrice": 20,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "vercel/v0-mini",
@@ -180,14 +220,14 @@
         "design-systems",
         "databases",
         "integrations",
-        "code-export",
-        "api"
+        "code-export"
       ],
-      "notes": "$20 monthly credits, $2 daily login credits, purchase additional credits, larger uploads, API access. Premium is being sunset for new users but remains for existing subscribers."
+      "notes": "$20 in included monthly credits. $2 of free daily credits on login. Purchase additional credits. Larger uploads. No API access. Premium is being sunset for new users but remains for existing subscribers."
     },
     {
       "plan": "Team",
       "monthlyPrice": 30,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "vercel/v0-mini",
@@ -206,17 +246,17 @@
         "databases",
         "integrations",
         "code-export",
-        "api",
         "collaboration",
         "shared-projects",
         "shared-credit-pool",
         "centralized-billing"
       ],
-      "notes": "$30 included credits per user each month, shared credit pool, collaboration features, centralized billing."
+      "notes": "$30 in included monthly credits per user. $2 of free daily credits on login per user. Purchase additional credits shared across team. Centralized billing on vercel.com. Share chats, Blocks, and Projects with team. Higher messaging limits. Use custom subdomains on Published Blocks."
     },
     {
       "plan": "Business",
       "monthlyPrice": 100,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "vercel/v0-mini",
@@ -243,11 +283,12 @@
         "centralized-billing",
         "training-opt-out"
       ],
-      "notes": "$30 included monthly credits per user, business privacy defaults, centralized billing, additional credits available."
+      "notes": "$30 in included monthly credits per user. $2 of free daily credits on login per user. Training opt-out by default. Purchase additional credits shared across team. Centralized billing on vercel.com. Access to v0 API. Share chats and collaborate with team."
     },
     {
       "plan": "Enterprise",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "vercel/v0-mini",
@@ -275,9 +316,66 @@
         "priority-access",
         "training-opt-out",
         "saml-sso",
-        "rbac"
+        "rbac",
+        "audit-logs",
+        "aws-bedrock"
       ],
-      "notes": "Custom pricing with SAML SSO, RBAC, guaranteed SLAs, priority inference, enterprise security, and dedicated support."
+      "notes": "Custom enterprise pricing. Your data is never used for training. SAML SSO. Role-based access control. Priority access for better performance and no queues. Guaranteed customer support SLAs. Dedicated Secure Compute environment. Access to AWS Bedrock Inference. Compliance inheritance (SOC 2, ISO, GDPR, HIPAA). Higher messaging limits."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "vercel/v0-mini",
+        "inputPricePerMTok": 1.0,
+        "outputPricePerMTok": 5.0,
+        "promptCachingWrite": 1.25,
+        "promptCachingRead": 0.1,
+        "notes": "Most cost-effective model. Available on all plans."
+      },
+      {
+        "model": "vercel/v0-pro",
+        "inputPricePerMTok": 3.0,
+        "outputPricePerMTok": 15.0,
+        "promptCachingWrite": 3.75,
+        "promptCachingRead": 0.3,
+        "notes": "Balanced performance model. Available on Premium, Team, Business, and Enterprise."
+      },
+      {
+        "model": "vercel/v0-max",
+        "inputPricePerMTok": 5.0,
+        "outputPricePerMTok": 25.0,
+        "promptCachingWrite": 6.25,
+        "promptCachingRead": 0.5,
+        "notes": "Maximum intelligence model. Available on Team, Business, and Enterprise."
+      },
+      {
+        "model": "vercel/v0-max-fast",
+        "inputPricePerMTok": 10.0,
+        "outputPricePerMTok": 50.0,
+        "promptCachingWrite": 12.5,
+        "promptCachingRead": 1.0,
+        "notes": "2.5x faster output speed. Available on Business and Enterprise."
+      }
+    ],
+    "features": {
+      "creditSystem": {
+        "displayName": "Credit System",
+        "description": "v0 consumes credits based on input and output tokens. Longer prompts and larger outputs use more tokens. Context like chat history, source files, and Vercel-specific knowledge is counted as input tokens.",
+        "verified": true
+      },
+      "includedCredits": {
+        "displayName": "Included Monthly Credits",
+        "description": "Free: $5/month. Premium: $20/month. Team: $30/user/month. Business: $30/user/month. Plus $2 of free daily credits on login for Team, Business, and Premium users.",
+        "verified": true
+      },
+      "additionalCredits": {
+        "displayName": "Additional Credits",
+        "description": "Users on Premium, Team, Business, and Enterprise plans can purchase additional credits as needed. Purchased credits expire after one year and can be shared across teams on Team and Enterprise plans.",
+        "verified": true
+      }
+    },
+    "notes": "All prices in USD per 1M tokens. Usage is metered on input and output tokens which convert to credits. This replaced the fixed message count system in May 2025. Existing users automatically transitioned to the new billing model."
+  },
+  "notes": "v0 by Vercel operates on a credit-based token consumption model. Free plan includes $5 in monthly credits. Premium ($20/mo) includes $20 in monthly credits plus $2 daily login credits. Team ($30/user/mo) includes $30 in monthly credits per user plus $2 daily login credits. Business ($100/user/mo) includes $30 in monthly credits per user plus $2 daily login credits and training opt-out by default. Enterprise has custom pricing with SAML SSO, RBAC, audit logs, and AWS Bedrock inference. Model pricing: v0 Mini ($1/$5 per MTok), v0 Pro ($3/$15), v0 Max ($5/$25), v0 Max Fast ($10/$50). Prompt caching is available on all models with discounted cache read rates."
 }

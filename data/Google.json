@@ -1,201 +1,274 @@
 {
   "provider": "Google",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Google Documentation",
   "officialSources": [
     {
-      "title": "Google AI Plans",
+      "title": "Google AI Plans with Cloud Storage",
       "url": "https://one.google.com/about/google-ai-plans/"
-    },
-    {
-      "title": "Gemini",
-      "url": "https://gemini.google.com/"
-    },
-    {
-      "title": "Google AI for Developers",
-      "url": "https://ai.google.dev/"
     },
     {
       "title": "Gemini API Documentation",
       "url": "https://ai.google.dev/gemini-api/docs"
     },
     {
-      "title": "Gemini API Billing",
+      "title": "Billing | Gemini API",
       "url": "https://ai.google.dev/gemini-api/docs/billing"
+    },
+    {
+      "title": "What Gemini features you get with Google AI Plus, Pro, & Ultra",
+      "url": "https://9to5google.com/2026/05/25/google-ai-plus-pro-ultra-gemini-features/"
+    },
+    {
+      "title": "Google clarifies its slightly confusing pair of AI Ultra plans",
+      "url": "https://9to5google.com/2026/05/25/google-one-ai-ultra-clarification/"
     }
   ],
   "modelCatalog": {
     "google/gemini-3.5-pro": {
       "displayName": "Gemini 3.5 Pro",
-      "officialNames": [
-        "Gemini 3.5 Pro"
-      ],
+      "officialNames": ["gemini-3.5-pro"],
+      "description": "Google's flagship reasoning model. Announced at I/O 2026 with full general availability expected June 2026. Features up to 2M token context window and Deep Think reasoning mode.",
+      "contextLength": 2000000,
+      "inputPricePerMTok": 15.0,
+      "outputPricePerMTok": 60.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Google's flagship reasoning model."
+      "notes": "Deep Think reasoning mode is exclusive to the $250/month Ultra subscription tier. Input: $15/MTok, Output: $60/MTok — roughly ten times the cost of Gemini 3.5 Flash."
     },
     "google/gemini-3.5-flash": {
       "displayName": "Gemini 3.5 Flash",
-      "officialNames": [
-        "Gemini 3.5 Flash"
-      ],
+      "officialNames": ["gemini-3.5-flash"],
+      "description": "Fast multimodal model optimized for everyday AI tasks. Shipped to general availability on May 19, 2026. Now the default model in the Gemini app, AI Mode in Search, and Gemini API.",
+      "contextLength": 1048576,
+      "inputPricePerMTok": 1.5,
+      "outputPricePerMTok": 9.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": 0.15,
       "verified": true,
-      "notes": "Fast multimodal model optimized for everyday AI tasks."
+      "notes": "Dynamic thinking on by default. Supports text, image, audio, and video input. Cached input: $0.15/MTok."
     },
     "google/gemini-3.1-pro": {
       "displayName": "Gemini 3.1 Pro",
-      "officialNames": [
-        "Gemini 3.1 Pro"
-      ],
-      "verified": true
+      "officialNames": ["gemini-3.1-pro"],
+      "description": "Versatile reasoning model with 1M token context window. Available on Google AI Pro and above.",
+      "contextLength": 1000000,
+      "inputPricePerMTok": 2.0,
+      "outputPricePerMTok": 12.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Input: $2.00/MTok up to 200K context, $4.00/MTok above 200K. Output: $12.00/MTok."
     },
     "google/gemini-3.1-flash": {
       "displayName": "Gemini 3.1 Flash",
-      "officialNames": [
-        "Gemini 3.1 Flash"
-      ],
-      "verified": true
+      "officialNames": ["gemini-3.1-flash"],
+      "description": "Fast multimodal model optimized for everyday AI tasks.",
+      "contextLength": 1000000,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Available on Free and paid plans."
     },
     "google/gemini-3.1-flash-lite": {
       "displayName": "Gemini 3.1 Flash-Lite",
-      "officialNames": [
-        "Gemini 3.1 Flash-Lite"
-      ],
-      "verified": true
+      "officialNames": ["gemini-3.1-flash-lite"],
+      "description": "Efficiency tier in the Gemini 3.1 generation. Outperforms Gemini 2.5 Flash Lite across reasoning, multimodal understanding, and agentic tool use.",
+      "contextLength": null,
+      "inputPricePerMTok": 0.1,
+      "outputPricePerMTok": 0.4,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Pricing matches Gemini 2.5 Flash-Lite. Input: $0.10/MTok, Output: $0.40/MTok."
     },
     "google/gemini-2.5-pro": {
       "displayName": "Gemini 2.5 Pro",
-      "officialNames": [
-        "Gemini 2.5 Pro"
-      ],
+      "officialNames": ["gemini-2.5-pro"],
+      "description": "Available for compatibility and API workloads. Supports 1.05M token context window.",
+      "contextLength": 1050000,
+      "inputPricePerMTok": 1.25,
+      "outputPricePerMTok": 10.0,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Available for compatibility and API workloads."
+      "notes": "Vertex AI pricing: Input: $1.25/MTok, Output: $10.00/MTok."
     },
     "google/gemini-2.5-flash": {
       "displayName": "Gemini 2.5 Flash",
-      "officialNames": [
-        "Gemini 2.5 Flash"
-      ],
-      "verified": true
+      "officialNames": ["gemini-2.5-flash"],
+      "description": "Fast multimodal model.",
+      "contextLength": null,
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Superseded by Gemini 3.1 Flash and Gemini 3.5 Flash for most use cases."
     },
     "google/gemini-2.5-flash-lite": {
       "displayName": "Gemini 2.5 Flash-Lite",
-      "officialNames": [
-        "Gemini 2.5 Flash-Lite"
-      ],
-      "verified": true
+      "officialNames": ["gemini-2.5-flash-lite"],
+      "description": "Lightweight, cost-efficient model.",
+      "contextLength": null,
+      "inputPricePerMTok": 0.1,
+      "outputPricePerMTok": 0.4,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Superseded by Gemini 3.1 Flash-Lite."
     },
     "google/gemini-live": {
       "displayName": "Gemini Live",
-      "officialNames": [
-        "Gemini Live"
-      ],
-      "verified": true
+      "officialNames": ["gemini-live"],
+      "description": "Real-time conversational AI with voice capabilities.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Available on all paid plans."
     },
     "google/gemini-omni": {
       "displayName": "Gemini Omni",
-      "officialNames": [
-        "Gemini Omni"
-      ],
-      "verified": true
+      "officialNames": ["gemini-omni"],
+      "description": "Handles text, image, and video creation and editing. Available in the Gemini app and Google Flow.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Available to all paid subscribers (AI Plus, Pro, and Ultra)."
     },
     "google/nano-banana": {
       "displayName": "Nano Banana",
-      "officialNames": [
-        "Nano Banana"
-      ],
+      "officialNames": ["nano-banana"],
+      "description": "Google's image generation/editing model family. Includes Nano Banana Pro for enhanced capabilities.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Google's image generation/editing model family."
+      "notes": "Nano Banana Pro available on Google AI Pro and above."
     },
     "google/lyria-3": {
       "displayName": "Lyria 3",
-      "officialNames": [
-        "Lyria 3"
-      ],
+      "officialNames": ["lyria-3"],
+      "description": "Music generation model.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Music generation model."
+      "notes": "Available on Google AI Ultra plans."
     },
     "google/veo-3": {
       "displayName": "Veo 3",
-      "officialNames": [
-        "Veo 3"
-      ],
+      "officialNames": ["veo-3"],
+      "description": "Video generation model.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Video generation model."
+      "notes": "Available on Google AI Pro and above."
     },
     "google/imagen-4": {
       "displayName": "Imagen 4",
-      "officialNames": [
-        "Imagen 4"
-      ],
+      "officialNames": ["imagen-4"],
+      "description": "Image generation model.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Image generation model."
+      "notes": "Available on Google AI Pro and above."
     }
   },
   "productCatalog": {
     "gemini": {
       "displayName": "Gemini",
+      "description": "Google's AI assistant available on web, iOS, and Android.",
       "verified": true
     },
     "gemini-live": {
       "displayName": "Gemini Live",
+      "description": "Real-time conversational AI with voice capabilities.",
       "verified": true
     },
     "gems": {
       "displayName": "Gems",
+      "description": "Custom AI agents for specific tasks and workflows.",
       "verified": true
     },
     "deep-search": {
       "displayName": "Deep Search",
+      "description": "Advanced research and search capabilities with in-depth analysis.",
       "verified": true
     },
     "canvas": {
       "displayName": "Canvas",
+      "description": "Collaborative writing and editing workspace. Available on Free plan with standard limits.",
       "verified": true
     },
     "flow": {
       "displayName": "Google Flow",
+      "description": "AI-powered workflow automation. Plus: 200 Flow credits/month.",
       "verified": true
     },
     "ai-studio": {
       "displayName": "Google AI Studio",
+      "description": "Platform for building and testing AI applications. Free tier available with higher limits for Pro and Ultra subscribers.",
       "verified": true
     },
     "developer-api": {
       "displayName": "Gemini Developer API",
+      "description": "Programmatic access to Gemini models with pay-as-you-go pricing.",
       "verified": true
     },
     "vertex-ai": {
       "displayName": "Vertex AI",
+      "description": "Enterprise AI platform for deploying and scaling models on Google Cloud.",
       "verified": true
     },
     "notebooklm": {
       "displayName": "NotebookLM",
+      "description": "AI-powered research and note-taking assistant. Plus: 200 notebooks, 100 sources/notebook.",
       "verified": true
     },
     "whisk": {
       "displayName": "Whisk",
+      "description": "AI-powered image creation and editing tool.",
       "verified": true
     },
     "jules": {
       "displayName": "Jules",
+      "description": "AI coding assistant for developers.",
       "verified": true
     },
     "android-studio-ai": {
       "displayName": "Android Studio AI",
+      "description": "AI features integrated into Android Studio.",
       "verified": true
     },
     "antigravity": {
       "displayName": "Antigravity",
+      "description": "AI-powered coding environment. Agent requests available on paid plans.",
       "verified": true
     },
     "spark": {
       "displayName": "Gemini Spark",
+      "description": "24/7 AI agent that can take action across Google products on a user's behalf.",
       "verified": true
     },
     "workspace-ai": {
       "displayName": "Workspace AI",
+      "description": "AI features across Google Workspace including Gmail, Docs, and Sheets.",
       "verified": true
     }
   },
@@ -203,6 +276,7 @@
     {
       "plan": "Free",
       "monthlyPrice": 0,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "google/gemini-3.5-flash",
@@ -217,14 +291,17 @@
         "notebooklm",
         "ai-studio"
       ],
-      "notes": "Limited usage with access to Gemini and Google AI Studio free tier."
+      "notes": "32K token context window. Standard usage limits. US users have access to Pro for advanced thinking with daily limits."
     },
     {
       "plan": "Google AI Plus",
-      "monthlyPrice": 5,
+      "monthlyPrice": 4.99,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "google/gemini-3.5-flash",
+        "google/gemini-3.1-flash",
+        "google/gemini-3.1-flash-lite",
         "google/nano-banana"
       ],
       "products": [
@@ -233,19 +310,23 @@
         "gems",
         "canvas",
         "flow",
-        "notebooklm"
+        "notebooklm",
+        "daily-brief",
+        "google-pics"
       ],
-      "notes": "Includes higher limits than Free and 400 GB cloud storage."
+      "notes": "2x higher usage limits than Free. 128K token context window. 400GB cloud storage. Daily Brief feature. Redo images with Nano Banana Pro. Video generation with Omni Flash."
     },
     {
       "plan": "Google AI Pro",
-      "monthlyPrice": 20,
+      "monthlyPrice": 19.99,
+      "annualPrice": 199.99,
       "verified": true,
       "models": [
         "google/gemini-3.5-pro",
         "google/gemini-3.5-flash",
         "google/gemini-3.1-pro",
         "google/gemini-3.1-flash",
+        "google/gemini-3.1-flash-lite",
         "google/nano-banana",
         "google/veo-3",
         "google/imagen-4"
@@ -262,13 +343,16 @@
         "notebooklm",
         "jules",
         "android-studio-ai",
-        "workspace-ai"
+        "antigravity",
+        "workspace-ai",
+        "google-pics"
       ],
-      "notes": "Higher usage limits, 5 TB cloud storage, Google Cloud credits, expanded AI Studio access."
+      "notes": "4x higher usage limits than Free. 1M token context window (1,500 pages of text or 30,000 lines of code). 5TB cloud storage. YouTube Premium Lite included. Google Home Premium and Health Premium included. Higher AI Studio limits."
     },
     {
-      "plan": "Google AI Ultra",
+      "plan": "Google AI Ultra (100)",
       "monthlyPrice": 100,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "google/gemini-3.5-pro",
@@ -300,11 +384,50 @@
         "workspace-ai",
         "antigravity"
       ],
-      "notes": "Highest consumer tier with early access to newest Gemini capabilities, highest limits, AI Studio expansion, Google Cloud credits, and 20 TB cloud storage."
+      "notes": "5x higher usage limit than Pro. 20TB cloud storage. YouTube Premium individual plan. Priority access to Google Antigravity. Access to Gemini Spark. Introduced at Google I/O 2026 for developers and power users."
+    },
+    {
+      "plan": "Google AI Ultra (200)",
+      "monthlyPrice": 200,
+      "annualPrice": null,
+      "verified": true,
+      "models": [
+        "google/gemini-3.5-pro",
+        "google/gemini-3.5-flash",
+        "google/gemini-3.1-pro",
+        "google/gemini-3.1-flash",
+        "google/gemini-live",
+        "google/gemini-omni",
+        "google/nano-banana",
+        "google/imagen-4",
+        "google/veo-3",
+        "google/lyria-3"
+      ],
+      "products": [
+        "gemini",
+        "gemini-live",
+        "gems",
+        "deep-search",
+        "canvas",
+        "flow",
+        "ai-studio",
+        "developer-api",
+        "vertex-ai",
+        "notebooklm",
+        "whisk",
+        "jules",
+        "android-studio-ai",
+        "spark",
+        "workspace-ai",
+        "antigravity",
+        "project-genie"
+      ],
+      "notes": "20x higher usage limit than Pro. 30TB cloud storage. All features of the $100 Ultra plan plus Project Genie (experimental world-building with Street View-powered capabilities). Previously $250/month, reduced to $200 at I/O 2026."
     },
     {
       "plan": "Gemini Developer API",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "google/gemini-3.5-pro",
@@ -323,11 +446,12 @@
         "developer-api",
         "ai-studio"
       ],
-      "notes": "Pay-as-you-go token pricing with billing tiers."
+      "notes": "Pay-as-you-go token pricing. Free tier available with generous limits. Minimum credit purchase: $10. Maximum prepay: $5,000. Auto-reload available."
     },
     {
       "plan": "Vertex AI",
       "monthlyPrice": null,
+      "annualPrice": null,
       "verified": true,
       "models": [
         "google/gemini-3.5-pro",
@@ -343,7 +467,70 @@
       "products": [
         "vertex-ai"
       ],
-      "notes": "Enterprise pay-as-you-go deployment through Google Cloud."
+      "notes": "Enterprise pay-as-you-go deployment through Google Cloud. New accounts receive $300 credit over 90 days."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "google/gemini-3.5-pro",
+        "inputPricePerMTok": 15.0,
+        "outputPricePerMTok": 60.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Full general availability expected June 2026. 2M token context window. Deep Think reasoning mode exclusive to $250/month Ultra subscription."
+      },
+      {
+        "model": "google/gemini-3.5-flash",
+        "inputPricePerMTok": 1.5,
+        "outputPricePerMTok": 9.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": 0.15,
+        "notes": "1.05M token context window. Dynamic thinking on by default. Cached input: $0.15/MTok."
+      },
+      {
+        "model": "google/gemini-3.1-pro",
+        "inputPricePerMTok": 2.0,
+        "outputPricePerMTok": 12.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Input: $2.00/MTok up to 200K context, $4.00/MTok above 200K. Output: $12.00/MTok."
+      },
+      {
+        "model": "google/gemini-3.1-flash-lite",
+        "inputPricePerMTok": 0.1,
+        "outputPricePerMTok": 0.4,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Most cost-efficient model for high-volume work."
+      },
+      {
+        "model": "google/gemini-2.5-pro",
+        "inputPricePerMTok": 1.25,
+        "outputPricePerMTok": 10.0,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "Vertex AI pricing. 1.05M token context window."
+      }
+    ],
+    "features": {
+      "contextCaching": {
+        "displayName": "Context Caching",
+        "description": "Reduced pricing for cached input tokens. Gemini 3.5 Flash: $0.15/MTok cache hit. Available on select models.",
+        "verified": true
+      },
+      "freeTier": {
+        "displayName": "Free Tier",
+        "description": "Generous free usage limits for development and testing. 5,000 search queries per month for Gemini 3 users.",
+        "verified": true
+      },
+      "prepaidCredits": {
+        "displayName": "Prepaid Credits",
+        "description": "Minimum credit purchase: $10. Maximum prepay: $5,000. Auto-reload available.",
+        "verified": true
+      }
+    },
+    "notes": "All prices in USD per 1M tokens. Gemini 3.5 Pro pricing is approximately ten times the cost of Gemini 3.5 Flash. API access available through Google AI Studio and Vertex AI."
+  },
+  "notes": "Google's AI subscriptions include AI Plus ($4.99/mo), AI Pro ($19.99/mo), and two AI Ultra tiers ($100/mo and $200/mo). The Ultra plans were introduced at Google I/O 2026, with the $200 tier reduced from $250. All paid plans include cloud storage, YouTube Premium (select plans), and access to Gemini models. Google moved from daily prompt caps to compute-based usage limits that refresh every 5 hours up to a weekly cap."
 }

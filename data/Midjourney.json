@@ -1,8 +1,8 @@
 {
   "provider": "Midjourney",
   "status": "verified",
-  "version": "2.0.0",
-  "lastVerified": "2026-06-29",
+  "version": "3.1.0",
+  "lastVerified": "2026-06-30",
   "verificationMethod": "Official Midjourney Documentation",
   "officialSources": [
     {
@@ -10,7 +10,7 @@
       "url": "https://www.midjourney.com/"
     },
     {
-      "title": "Midjourney Pricing",
+      "title": "Midjourney Account Plans",
       "url": "https://www.midjourney.com/account/plans/"
     },
     {
@@ -18,98 +18,153 @@
       "url": "https://docs.midjourney.com/"
     },
     {
-      "title": "Midjourney Alpha",
-      "url": "https://alpha.midjourney.com/"
+      "title": "Midjourney News & Updates",
+      "url": "https://www.midjourney.com/news"
     }
   ],
   "modelCatalog": {
+    "midjourney/v8.1": {
+      "displayName": "Midjourney V8.1",
+      "officialNames": ["V8.1"],
+      "description": "Latest flagship image generation model. Entered alpha in April 2026, reached general availability across web and Discord on April 30, 2026, and became the default model on June 10, 2026. Delivers high-resolution image generation and improved coherence in complex scenes. Supports video generation.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Omni Reference replaces Character Reference in V7. Draft mode generates images at reduced resolution and quality, using half the GPU time of standard prompts."
+    },
+    "midjourney/v8": {
+      "displayName": "Midjourney V8",
+      "officialNames": ["V8"],
+      "description": "Released March 2026 with faster generation speed, native high-resolution image support, improved text rendering, and better prompt understanding.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Superseded by V8.1 for most use cases."
+    },
     "midjourney/v7": {
       "displayName": "Midjourney V7",
-      "officialNames": [
-        "V7"
-      ],
+      "officialNames": ["V7"],
+      "description": "Released April 2025; became default on June 17, 2025. Handles text and image prompts with precision, with richer textures and more coherent details—especially in bodies, hands, and objects.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Latest flagship image generation model."
+      "notes": "Pan still utilizes V6.1 when using V7. Omni Reference is available."
     },
     "midjourney/v6.1": {
       "displayName": "Midjourney V6.1",
-      "officialNames": [
-        "V6.1"
-      ],
+      "officialNames": ["V6.1"],
+      "description": "Production-quality image generation model.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Production-quality image generation model."
+      "notes": "Legacy model. Superseded by V7 and V8 models."
     },
-    "midjourney/v6": {
-      "displayName": "Midjourney V6",
-      "officialNames": [
-        "V6"
-      ],
-      "verified": true
+    "midjourney/niji-7": {
+      "displayName": "Niji 7",
+      "officialNames": ["Niji Journey 7"],
+      "description": "Anime and illustration-focused model developed with Spellbrush. Features improved anime coherence, prompt understanding, text rendering, and style reference performance. Enhanced line art and silhouette control for distinct artistic styles.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
+      "verified": true,
+      "notes": "Latest Niji model. Released January 2026. Character reference (cref) is not currently supported in Niji 7."
     },
     "midjourney/niji-6": {
       "displayName": "Niji 6",
-      "officialNames": [
-        "Niji Journey 6"
-      ],
+      "officialNames": ["Niji Journey 6"],
+      "description": "Anime model with improved rendering of Japanese text, handling short kana text effectively and rendering simple Chinese characters. Better image detail.",
+      "inputPricePerMTok": null,
+      "outputPricePerMTok": null,
+      "promptCachingWrite": null,
+      "promptCachingRead": null,
       "verified": true,
-      "notes": "Anime and illustration-focused model developed with Spellbrush."
+      "notes": "Legacy model. Superseded by Niji 7."
     }
   },
   "productCatalog": {
     "image-generation": {
       "displayName": "Image Generation",
+      "description": "AI-powered image generation from text prompts.",
       "verified": true
     },
     "image-editing": {
       "displayName": "Image Editing",
+      "description": "Edit and refine generated images.",
       "verified": true
     },
     "editor": {
       "displayName": "Midjourney Editor",
+      "description": "Full-featured image editor on the web platform.",
       "verified": true
     },
     "web-app": {
       "displayName": "Midjourney Web App",
+      "description": "Access Midjourney through the web interface (alpha.midjourney.com).",
       "verified": true
     },
     "discord": {
       "displayName": "Discord Bot",
+      "description": "Access Midjourney through Discord commands.",
       "verified": true
     },
     "personalization": {
       "displayName": "Personalization",
-      "verified": true
-    },
-    "style-reference": {
-      "displayName": "Style Reference",
-      "verified": true
-    },
-    "character-reference": {
-      "displayName": "Character Reference",
+      "description": "Create personalized styles based on your preferences. Compatible with V6, V7, and V8 models.",
       "verified": true
     },
     "moodboards": {
       "displayName": "Moodboards",
+      "description": "Create styles using a specific collection of images.",
+      "verified": true
+    },
+    "style-reference": {
+      "displayName": "Style Reference (sref)",
+      "description": "Reference a style from an image for consistent aesthetic output.",
+      "verified": true
+    },
+    "character-reference": {
+      "displayName": "Character Reference (cref)",
+      "description": "Recreate a specific character in multiple images.",
+      "verified": true,
+      "notes": "In V7, Omni Reference provides enhanced character consistency."
+    },
+    "omni-reference": {
+      "displayName": "Omni Reference",
+      "description": "Advanced reference feature that automatically runs the prompt in V7, providing improved style and character consistency. May consume additional GPU time.",
       "verified": true
     },
     "draft-mode": {
       "displayName": "Draft Mode",
+      "description": "Generate draft images at half the GPU time of standard prompts. Generates 4 images at lower resolution and quality. Use 'Enhance' to regenerate at higher quality.",
       "verified": true
     },
     "relax-mode": {
       "displayName": "Relax Mode",
+      "description": "Queued processing, typically 1-10 minutes. Free and unlimited on Standard and above plans. Ideal for users who prefer quality over speed.",
       "verified": true
     },
     "turbo-mode": {
       "displayName": "Turbo Mode",
+      "description": "Fastest available generation speed, roughly 15-30 seconds. Consumes GPU time at twice the rate of Fast Mode.",
       "verified": true
     },
     "stealth-mode": {
       "displayName": "Stealth Mode",
+      "description": "Make your creations private on the Midjourney website. Available on Pro and Mega plans.",
       "verified": true
     },
     "video-generation": {
       "displayName": "Video Generation",
+      "description": "Turn static images into short animated videos using AI motion generation. Available on Pro and Mega plans.",
       "verified": true
     }
   },
@@ -117,10 +172,14 @@
     {
       "plan": "Basic",
       "monthlyPrice": 10,
+      "annualPrice": 96,
       "verified": true,
       "models": [
+        "midjourney/v8.1",
+        "midjourney/v8",
         "midjourney/v7",
         "midjourney/v6.1",
+        "midjourney/niji-7",
         "midjourney/niji-6"
       ],
       "products": [
@@ -130,19 +189,25 @@
         "web-app",
         "discord",
         "personalization",
+        "moodboards",
         "style-reference",
         "character-reference",
+        "omni-reference",
         "draft-mode"
       ],
-      "notes": "Includes limited Fast GPU hours. Relax Mode not included."
+      "notes": "Approximately 3.3 Fast GPU hours/month. No Relax Mode. No Turbo Mode. Annual billing saves approximately 17% (effective $8/month)."
     },
     {
       "plan": "Standard",
       "monthlyPrice": 30,
+      "annualPrice": 288,
       "verified": true,
       "models": [
+        "midjourney/v8.1",
+        "midjourney/v8",
         "midjourney/v7",
         "midjourney/v6.1",
+        "midjourney/niji-7",
         "midjourney/niji-6"
       ],
       "products": [
@@ -152,21 +217,26 @@
         "web-app",
         "discord",
         "personalization",
+        "moodboards",
         "style-reference",
         "character-reference",
-        "moodboards",
+        "omni-reference",
         "draft-mode",
         "relax-mode"
       ],
-      "notes": "Unlimited Relax Mode with monthly Fast GPU hours."
+      "notes": "Approximately 15 Fast GPU hours/month. Unlimited Relax Mode. Annual billing saves approximately 20% (effective $24/month)."
     },
     {
       "plan": "Pro",
       "monthlyPrice": 60,
+      "annualPrice": 576,
       "verified": true,
       "models": [
+        "midjourney/v8.1",
+        "midjourney/v8",
         "midjourney/v7",
         "midjourney/v6.1",
+        "midjourney/niji-7",
         "midjourney/niji-6"
       ],
       "products": [
@@ -176,24 +246,29 @@
         "web-app",
         "discord",
         "personalization",
+        "moodboards",
         "style-reference",
         "character-reference",
-        "moodboards",
+        "omni-reference",
         "draft-mode",
         "relax-mode",
         "turbo-mode",
         "stealth-mode",
         "video-generation"
       ],
-      "notes": "Includes Stealth Mode and increased Fast GPU hours."
+      "notes": "Increased Fast GPU hours. Includes Stealth Mode and Turbo Mode. Video generation available. Annual billing saves approximately 20% (effective $48/month)."
     },
     {
       "plan": "Mega",
       "monthlyPrice": 120,
+      "annualPrice": 1152,
       "verified": true,
       "models": [
+        "midjourney/v8.1",
+        "midjourney/v8",
         "midjourney/v7",
         "midjourney/v6.1",
+        "midjourney/niji-7",
         "midjourney/niji-6"
       ],
       "products": [
@@ -203,16 +278,73 @@
         "web-app",
         "discord",
         "personalization",
+        "moodboards",
         "style-reference",
         "character-reference",
-        "moodboards",
+        "omni-reference",
         "draft-mode",
         "relax-mode",
         "turbo-mode",
         "stealth-mode",
         "video-generation"
       ],
-      "notes": "Highest Fast GPU allocation with unlimited Relax Mode and Stealth Mode."
+      "notes": "60 Fast GPU hours/month. Unlimited Relax Mode. Highest concurrency. Designed for enterprises and power users. Annual billing saves approximately 20% (effective $96/month)."
     }
-  ]
+  ],
+  "apiPricing": {
+    "models": [
+      {
+        "model": "midjourney/v8.1",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "No official public API. Access through subscription plans only."
+      },
+      {
+        "model": "midjourney/v8",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "No official public API. Access through subscription plans only."
+      },
+      {
+        "model": "midjourney/v7",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "No official public API. Access through subscription plans only."
+      },
+      {
+        "model": "midjourney/niji-7",
+        "inputPricePerMTok": null,
+        "outputPricePerMTok": null,
+        "promptCachingWrite": null,
+        "promptCachingRead": null,
+        "notes": "No official public API. Access through subscription plans only."
+      }
+    ],
+    "features": {
+      "subscriptionModel": {
+        "displayName": "Subscription Model",
+        "description": "Midjourney does not offer a public API. Access is provided through monthly subscriptions with GPU-hour allocations. Third-party providers may offer API access at additional cost.",
+        "verified": true
+      },
+      "gpuHours": {
+        "displayName": "GPU Hours",
+        "description": "Usage is measured in GPU hours. Fast Mode consumes 1 GPU hour per hour of generation. Turbo Mode consumes 2× GPU time. Draft Mode consumes half the GPU time.",
+        "verified": true
+      },
+      "annualDiscount": {
+        "displayName": "Annual Discount",
+        "price": "~20% off",
+        "description": "Annual billing provides a discount compared to monthly billing. The exact percentage may vary; typical savings are around 20%.",
+        "verified": true
+      }
+    },
+    "notes": "Midjourney does not publish per-token pricing. Access is subscription-based with GPU-hour allocations. Third-party providers may offer API access, but these are not official Midjourney offerings."
+  },
+  "notes": "Midjourney operates on a subscription model with four tiers: Basic ($10/mo), Standard ($30/mo), Pro ($60/mo), and Mega ($120/mo). Annual billing provides savings. V8.1 is the latest flagship model as of June 2026. Niji 7 is the latest anime-focused model. No official public API is available. Usage is measured in GPU hours with different modes (Draft, Fast, Relax, Turbo) affecting consumption rates. Video generation is available on Pro and Mega plans."
 }
