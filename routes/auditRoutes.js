@@ -469,6 +469,15 @@ router.post('/', optionalAuth, async (req, res) => {
       });
     });
 
+    // Inject currentCost, baselineModelId, and baselineModels into parsedAllocations so the frontend can read it
+    allocationDetails.forEach((detail, i) => {
+      if (parsedAllocations[i]) {
+        parsedAllocations[i].currentCost = detail.currentCost;
+        parsedAllocations[i].baselineModelId = detail.primaryBaselineModel ? detail.primaryBaselineModel._id : null;
+        parsedAllocations[i].baselineModels = detail.tier ? (detail.tier.rawModels || []) : [];
+      }
+    });
+
     let apiMonthlySavings = 0;
     let subMonthlySavings = 0;
 
@@ -560,13 +569,17 @@ router.post('/', optionalAuth, async (req, res) => {
             }
             const cost = calculateModelCost(dbModel, totalTokens, inputRatio);
             const score = Math.min(100, Math.round(item.final_score));
+            const contextStr = dbModel.context_length ? (dbModel.context_length >= 1000000 ? `${(dbModel.context_length / 1000000).toFixed(0)}M` : `${(dbModel.context_length / 1000).toFixed(0)}K`) : 'N/A';
+            const limitsStr = `Pay-as-you-go rates: $${ep.input_cost_per_m.toFixed(2)}/1M input, $${ep.output_cost_per_m.toFixed(2)}/1M output. Context: ${contextStr}.`;
             apiCandidates.push({
               _id: dbModel._id,
               name: dbModel.name,
               rank: item.rank,
               performance_score: score,
               monthly_cost: cost,
-              isCurrent: dbModel._id === modelId
+              isCurrent: dbModel._id === modelId,
+              limits: limitsStr,
+              context_length: dbModel.context_length
             });
           }
         }
@@ -580,13 +593,18 @@ router.post('/', optionalAuth, async (req, res) => {
           .map((m, idx) => {
             const cost = calculateModelCost(m, totalTokens, inputRatio);
             const score = m.capabilities?.[capabilityField] || 0;
+            const ep = m.endpoints[0];
+            const contextStr = m.context_length ? (m.context_length >= 1000000 ? `${(m.context_length / 1000000).toFixed(0)}M` : `${(m.context_length / 1000).toFixed(0)}K`) : 'N/A';
+            const limitsStr = `Pay-as-you-go rates: $${ep.input_cost_per_m.toFixed(2)}/1M input, $${ep.output_cost_per_m.toFixed(2)}/1M output. Context: ${contextStr}.`;
             return {
               _id: m._id,
               name: m.name,
               rank: idx + 1,
               performance_score: score,
               monthly_cost: cost,
-              isCurrent: m._id === modelId
+              isCurrent: m._id === modelId,
+              limits: limitsStr,
+              context_length: m.context_length
             };
           });
       }
@@ -603,13 +621,13 @@ router.post('/', optionalAuth, async (req, res) => {
           }
         }
       } else if (optimizationGoal === 'performance') {
-        let compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && (c.rank <= baselineRank || c.performance_score >= computedBaselineScore));
+        let compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.performance_score >= computedBaselineScore);
         if (compatible.length > 0) {
           compatible.sort((a, b) => a.rank - b.rank);
           selectedApi = compatible[0];
         } else {
           apiCandidates.sort((a, b) => a.rank - b.rank);
-          if (apiCandidates[0] && (apiCandidates[0]._id === modelId || baselineRank === 1)) {
+          if (apiCandidates[0] && (apiCandidates[0]._id === modelId || (type === 'api' && baselineRank === 1))) {
             apiStatusText = "Best model API already used.";
           }
         }
@@ -757,13 +775,13 @@ router.post('/', optionalAuth, async (req, res) => {
           }
         }
       } else if (optimizationGoal === 'performance') {
-        let compatible = subCandidates.filter(c => c.cost < currentCost);
+        let compatible = subCandidates.filter(c => c.cost < currentCost && c.performance_score >= computedBaselineScore);
         if (compatible.length > 0) {
           compatible.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
           selectedSub = compatible[0];
         } else {
           subCandidates.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
-          if (subCandidates[0] && (subCandidates[0].isCurrent || baselineRank <= subCandidates[0].rank)) {
+          if (subCandidates[0] && (subCandidates[0].isCurrent || (type === 'subscription' && baselineRank <= subCandidates[0].rank))) {
             subStatusText = "Best subscription already used.";
           }
         }
@@ -782,17 +800,25 @@ router.post('/', optionalAuth, async (req, res) => {
         savings: currentCost - selectedApi.monthly_cost,
         name: selectedApi.name,
         modelId: selectedApi._id,
-        action: selectedApi.isCurrent 
+        action: (type === 'api' && selectedApi.isCurrent)
           ? "Your current model API is already the best choice. Keep using it."
           : `Transition active users to direct API keys using ${selectedApi.name}.`,
-        statusText: apiStatusText || (selectedApi.isCurrent ? "Optimized" : "")
+        statusText: (type === 'api' && selectedApi.isCurrent) ? (apiStatusText || "Optimized") : "",
+        limits: selectedApi.limits,
+        includedModels: [selectedApi.name]
       } : {
         cost: currentCost,
         savings: 0,
         name: primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Free Model"),
         modelId: modelId,
-        action: "Your current model API is already the best choice. Keep using it.",
-        statusText: apiStatusText || "Optimized"
+        action: (type === 'api')
+          ? "Your current model API is already the best choice. Keep using it."
+          : `Transition active users to direct API keys using ${primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Free Model")}.`,
+        statusText: (type === 'api') ? (apiStatusText || "Optimized") : "",
+        limits: primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints.length > 0
+          ? `Pay-as-you-go rates: $${primaryBaselineModel.endpoints[0].input_cost_per_m.toFixed(2)}/1M input, $${primaryBaselineModel.endpoints[0].output_cost_per_m.toFixed(2)}/1M output. Context: ${primaryBaselineModel.context_length ? (primaryBaselineModel.context_length >= 1000000 ? `${(primaryBaselineModel.context_length / 1000000).toFixed(0)}M` : `${(primaryBaselineModel.context_length / 1000).toFixed(0)}K`) : 'N/A'}.`
+          : "Pay-as-you-go token consumption limits.",
+        includedModels: primaryBaselineModel ? [primaryBaselineModel.name] : (modelId ? [modelId] : [])
       };
 
       const subscriptionOption = selectedSub ? {
@@ -800,17 +826,23 @@ router.post('/', optionalAuth, async (req, res) => {
         cost: selectedSub.cost,
         savings: currentCost - selectedSub.cost,
         limits: selectedSub.tier.limits,
-        action: selectedSub.isCurrent
+        includedModels: selectedSub.tier.rawModels || [],
+        modelId: selectedSub.tier.models?.[0] || null,
+        action: (type === 'subscription' && selectedSub.isCurrent)
           ? "Your current subscription is already the best choice. Keep using it."
           : `Migrate to the ${selectedSub.tier.provider} ${selectedSub.tier.plan} subscription.`,
-        statusText: subStatusText || (selectedSub.isCurrent ? "Optimized" : "")
+        statusText: (type === 'subscription' && selectedSub.isCurrent) ? (subStatusText || "Optimized") : ""
       } : {
         planName: `${toolName} ${plan || "Free"}`,
         cost: currentCost,
         savings: 0,
         limits: tier ? tier.limits : "Free plan limits",
-        action: "Your current subscription is already the best choice. Keep using it.",
-        statusText: subStatusText || "Optimized"
+        includedModels: tier ? (tier.rawModels || []) : [],
+        modelId: tier?.models?.[0] || null,
+        action: (type === 'subscription')
+          ? "Your current subscription is already the best choice. Keep using it."
+          : `Migrate to the ${toolName} ${plan || "Free"} subscription.`,
+        statusText: (type === 'subscription') ? (subStatusText || "Optimized") : ""
       };
 
       if (apiOption) {
@@ -882,7 +914,22 @@ router.post('/', optionalAuth, async (req, res) => {
 router.get('/', auth, async (req, res) => {
   try {
     const audits = await Audit.find({ userId: req.user.id }).sort({ createdAt: -1 });
-    return res.json(audits);
+    
+    // Hydrate baselineModels for all audits returned in the list
+    const auditsObj = audits.map(audit => {
+      const auditObj = audit.toObject();
+      if (auditObj.allocations && Array.isArray(auditObj.allocations)) {
+        auditObj.allocations.forEach(alloc => {
+          if (alloc.type === 'subscription' && (!alloc.baselineModels || alloc.baselineModels.length === 0)) {
+            const tier = findSubscriptionTier(alloc.toolName, alloc.plan);
+            alloc.baselineModels = tier ? (tier.rawModels || []) : [];
+          }
+        });
+      }
+      return auditObj;
+    });
+
+    return res.json(auditsObj);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
@@ -903,7 +950,20 @@ router.get('/:id', auth, async (req, res) => {
       return res.status(403).json({ error: 'Access denied. You do not own this audit report.' });
     }
 
-    return res.json(audit);
+    const auditObj = audit.toObject();
+    if (auditObj.allocations && Array.isArray(auditObj.allocations)) {
+      auditObj.allocations.forEach((alloc, index) => {
+        console.log(`[Hydration GET] alloc #${index}: type=${alloc.type}, toolName=${alloc.toolName}, plan=${alloc.plan}`);
+        if (alloc.type === 'subscription' && (!alloc.baselineModels || alloc.baselineModels.length === 0)) {
+          const tier = findSubscriptionTier(alloc.toolName, alloc.plan);
+          console.log(`[Hydration GET] findSubscriptionTier resolved tier:`, tier ? tier.plan : 'null');
+          alloc.baselineModels = tier ? (tier.rawModels || []) : [];
+          console.log(`[Hydration GET] hydrated baselineModels:`, alloc.baselineModels);
+        }
+      });
+    }
+
+    return res.json(auditObj);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
@@ -1195,6 +1255,91 @@ router.get('/analysis/raw-data', (req, res) => {
   } catch (error) {
     console.error('Error fetching raw analysis data:', error);
     res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
+});
+
+// Route to fetch grouped and formatted subscription tools dynamically from local subscription_tiers.json
+router.get('/subscription-tiers/list', (req, res) => {
+  try {
+    if (!subscriptionTiers || subscriptionTiers.length === 0) {
+      return res.json([]);
+    }
+
+    const getEmojiForProvider = (name) => {
+      const n = name.toLowerCase();
+      if (n.includes('openai') || n.includes('chatgpt')) return '🟢';
+      if (n.includes('claude') || n.includes('anthropic')) return '🟧';
+      if (n.includes('google') || n.includes('gemini')) return '🔷';
+      if (n.includes('github') || n.includes('copilot')) return '🤖';
+      if (n.includes('cursor')) return '💻';
+      if (n.includes('windsurf') || n.includes('codeium')) return '⛵';
+      if (n.includes('perplexity')) return '🔍';
+      if (n.includes('deepseek')) return '🐳';
+      if (n.includes('mistral')) return '🍊';
+      if (n.includes('meta')) return '♾️';
+      if (n.includes('xai') || n.includes('grok')) return '🐦';
+      if (n.includes('v0')) return '▲';
+      if (n.includes('gamma')) return '✨';
+      if (n.includes('midjourney')) return '🎨';
+      if (n.includes('runway')) return '🎬';
+      if (n.includes('elevenlabs')) return '🗣️';
+      if (n.includes('suno')) return '🎵';
+      return '🔧';
+    };
+
+    const getDescriptionForProvider = (name) => {
+      const n = name.toLowerCase();
+      if (n.includes('openai') || n.includes('chatgpt')) return 'OpenAI ChatGPT';
+      if (n.includes('claude') || n.includes('anthropic')) return 'Anthropic assistant';
+      if (n.includes('google') || n.includes('gemini')) return "Google's AI model";
+      if (n.includes('github') || n.includes('copilot')) return 'GitHub AI assistant';
+      if (n.includes('cursor')) return 'AI code editor';
+      if (n.includes('windsurf')) return 'AI-powered IDE';
+      if (n.includes('perplexity')) return 'AI search companion';
+      if (n.includes('deepseek')) return 'DeepSeek assistant';
+      if (n.includes('mistral')) return 'Mistral Le Chat';
+      if (n.includes('meta')) return 'Meta AI assistant';
+      if (n.includes('xai')) return 'xAI Grok search';
+      if (n.includes('v0')) return 'Vercel UI generator';
+      if (n.includes('gamma')) return 'AI presentation generator';
+      if (n.includes('midjourney')) return 'AI image generator';
+      if (n.includes('runway')) return 'AI video generator';
+      if (n.includes('elevenlabs')) return 'AI voice generator';
+      if (n.includes('suno')) return 'AI music generator';
+      return `${name} AI integration`;
+    };
+
+    const grouped = {};
+    subscriptionTiers.forEach(tier => {
+      const prov = tier.provider || 'Other';
+      const key = prov.toLowerCase();
+      if (!grouped[key]) {
+        grouped[key] = {
+          id: prov,
+          name: prov,
+          desc: getDescriptionForProvider(prov),
+          icon: getEmojiForProvider(prov),
+          type: 'subscription',
+          plans: [],
+          defaultPlan: '',
+          defaultSeats: (prov.toLowerCase().includes('github') || prov.toLowerCase().includes('cursor') || prov.toLowerCase().includes('anthropic') || prov.toLowerCase().includes('claude')) ? 5 : 1
+        };
+      }
+      if (!grouped[key].plans.includes(tier.plan)) {
+        grouped[key].plans.push(tier.plan);
+      }
+    });
+
+    Object.keys(grouped).forEach(key => {
+      const item = grouped[key];
+      const proPlan = item.plans.find(p => p.toLowerCase().includes('pro') || p.toLowerCase().includes('plus'));
+      item.defaultPlan = proPlan || item.plans[0] || 'Free';
+    });
+
+    return res.json(Object.values(grouped));
+  } catch (error) {
+    console.error('Error serving subscription-tiers list:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

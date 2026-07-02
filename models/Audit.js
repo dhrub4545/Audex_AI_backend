@@ -9,7 +9,8 @@ const AllocationSchema = new mongoose.Schema({
   modelId: { type: String },
   inputTokens: { type: Number },
   outputTokens: { type: Number },
-  pricePerSeat: { type: Number }
+  pricePerSeat: { type: Number },
+  baselineModels: [{ type: String }]
 });
 
 const OptionSchema = new mongoose.Schema({
@@ -20,7 +21,8 @@ const OptionSchema = new mongoose.Schema({
   limits: { type: String },
   name: { type: String },
   modelId: { type: String },
-  statusText: { type: String }
+  statusText: { type: String },
+  includedModels: [{ type: String }]
 });
 
 const RecommendationSchema = new mongoose.Schema({
