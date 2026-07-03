@@ -136,13 +136,11 @@ function getCategoryRankData(purpose) {
 }
 
 function getEvaluationScore(item, purpose, dbModel, capabilityField) {
-  if (item && item.final_score !== undefined && item.final_score !== null) {
-    return Math.min(100, Math.round(item.final_score));
-  }
-
   const p = purpose ? purpose.toLowerCase() : 'mixed';
   const evals = item?.evaluations || {};
   let val = null;
+
+  // 1. Try category-specific evaluations first for high-fidelity scores
   if (p === 'coding') {
     val = evals.artificial_analysis_coding_index;
   } else if (p === 'math') {
@@ -155,11 +153,45 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
     val = evals.artificial_analysis_intelligence_index;
   }
   
-  if (val === undefined || val === null) {
-    return dbModel?.capabilities?.[capabilityField] || 0;
+  if (val !== undefined && val !== null && !isNaN(val)) {
+    return Math.min(100, Math.round(val));
+  }
+
+  // 2. If no category-specific evaluations, check Mongoose database capabilities score (synced from overall.json or other files)
+  const dbScore = dbModel?.capabilities?.[capabilityField];
+  if (dbScore !== undefined && dbScore !== null && dbScore > 0) {
+    return dbScore;
+  }
+
+  // 3. Fallback to final_score if available
+  if (item && item.final_score !== undefined && item.final_score !== null) {
+    return Math.min(100, Math.round(item.final_score));
   }
   
-  return Math.min(100, Math.round(val));
+  return 0;
+}
+
+function findRankEntry(rankData, baselineSlug) {
+  if (!baselineSlug || !rankData || rankData.length === 0) return null;
+  const clean = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const targetClean = clean(baselineSlug);
+
+  // 1. Try exact match
+  let match = rankData.find(item => item.slug === baselineSlug);
+  if (match) return match;
+
+  // 2. Try exact clean match
+  match = rankData.find(item => clean(item.slug || '') === targetClean);
+  if (match) return match;
+
+  // 3. Try clean substring match
+  match = rankData.find(item => {
+    const itemClean = clean(item.slug || '');
+    return itemClean.includes(targetClean) || targetClean.includes(itemClean);
+  });
+  if (match) return match;
+
+  return null;
 }
 
 // Shared helper to calculate cost
@@ -422,8 +454,7 @@ router.post('/', optionalAuth, async (req, res) => {
 
             const rankData = getCategoryRankData(purpose);
             const baselineSlug = primaryBaselineModel._id.split('/')[1] || '';
-            const baselineRankEntry = rankData.find(item => item.slug === baselineSlug) || 
-                                      rankData.find(item => item.slug && (item.slug.toLowerCase().includes(baselineSlug.toLowerCase()) || baselineSlug.toLowerCase().includes(item.slug.toLowerCase())));
+            const baselineRankEntry = findRankEntry(rankData, baselineSlug);
             baselineScore = baselineRankEntry ? getEvaluationScore(baselineRankEntry, purpose, primaryBaselineModel, capabilityField) : (primaryBaselineModel.capabilities?.[capabilityField] || 0);
           }
         }
@@ -455,8 +486,7 @@ router.post('/', optionalAuth, async (req, res) => {
           currentCost = calculateModelCost(currentModel, totalTokens, inputRatio);
           const rankData = getCategoryRankData(purpose);
           const currentSlug = currentModel._id.split('/')[1] || '';
-          const currentRankEntry = rankData.find(item => item.slug === currentSlug) || 
-                                   rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
+          const currentRankEntry = findRankEntry(rankData, currentSlug);
           baselineScore = currentRankEntry ? getEvaluationScore(currentRankEntry, purpose, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || 0);
         }
       }
@@ -1077,8 +1107,7 @@ router.post('/audit-recommendation', async (req, res) => {
     const rankData = getCategoryRankData(targetUseCase);
     
     const currentSlug = currentModel._id.split('/')[1] || '';
-    const currentRankEntry = rankData.find(item => item.slug === currentSlug) || 
-                             rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
+    const currentRankEntry = findRankEntry(rankData, currentSlug);
     const currentRank = currentRankEntry ? (parseInt(currentRankEntry.rank) || 999) : 999;
     const currentScore = currentRankEntry ? getEvaluationScore(currentRankEntry, targetUseCase, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || 0);
     const currentCost = calculateModelCost(currentModel, monthlyTokens, inputRatio);
