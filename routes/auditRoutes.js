@@ -261,6 +261,20 @@ function findContainingSubscriptions(modelId, modelName, seats, currentCost) {
   return matchingSubs;
 }
 
+function getCleanProviderName(providerId) {
+  if (!providerId) return '';
+  const p = providerId.toLowerCase();
+  if (p.includes('openai') || p.includes('chatgpt')) return 'OpenAI';
+  if (p.includes('anthropic') || p.includes('claude')) return 'Anthropic';
+  if (p.includes('google') || p.includes('gemini')) return 'Google';
+  if (p.includes('github') || p.includes('copilot')) return 'GitHub';
+  if (p.includes('perplexity')) return 'Perplexity';
+  if (p.includes('xai') || p.includes('grok')) return 'xAI';
+  if (p.includes('cursor')) return 'Cursor';
+  if (p.includes('windsurf') || p.includes('codeium')) return 'Windsurf';
+  return providerId.charAt(0).toUpperCase() + providerId.slice(1);
+}
+
 function getSubscriptionPrice(toolName, plan) {
   const tier = findSubscriptionTier(toolName, plan);
   if (tier) {
@@ -805,7 +819,9 @@ router.post('/', optionalAuth, async (req, res) => {
           : `Transition active users to direct API keys using ${selectedApi.name}.`,
         statusText: (type === 'api' && selectedApi.isCurrent) ? (apiStatusText || "Optimized") : "",
         limits: selectedApi.limits,
-        includedModels: [selectedApi.name]
+        includedModels: [selectedApi.name],
+        recommendedModel: selectedApi.name,
+        recommendedProvider: getCleanProviderName(selectedApi._id.split('/')[0])
       } : {
         cost: currentCost,
         savings: 0,
@@ -818,7 +834,9 @@ router.post('/', optionalAuth, async (req, res) => {
         limits: primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints.length > 0
           ? `Pay-as-you-go rates: $${primaryBaselineModel.endpoints[0].input_cost_per_m.toFixed(2)}/1M input, $${primaryBaselineModel.endpoints[0].output_cost_per_m.toFixed(2)}/1M output. Context: ${primaryBaselineModel.context_length ? (primaryBaselineModel.context_length >= 1000000 ? `${(primaryBaselineModel.context_length / 1000000).toFixed(0)}M` : `${(primaryBaselineModel.context_length / 1000).toFixed(0)}K`) : 'N/A'}.`
           : "Pay-as-you-go token consumption limits.",
-        includedModels: primaryBaselineModel ? [primaryBaselineModel.name] : (modelId ? [modelId] : [])
+        includedModels: primaryBaselineModel ? [primaryBaselineModel.name] : (modelId ? [modelId] : []),
+        recommendedModel: primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Free Model"),
+        recommendedProvider: primaryBaselineModel ? getCleanProviderName(primaryBaselineModel._id.split('/')[0]) : getCleanProviderName(toolName)
       };
 
       const subscriptionOption = selectedSub ? {
@@ -831,7 +849,9 @@ router.post('/', optionalAuth, async (req, res) => {
         action: (type === 'subscription' && selectedSub.isCurrent)
           ? "Your current subscription is already the best choice. Keep using it."
           : `Migrate to the ${selectedSub.tier.provider} ${selectedSub.tier.plan} subscription.`,
-        statusText: (type === 'subscription' && selectedSub.isCurrent) ? (subStatusText || "Optimized") : ""
+        statusText: (type === 'subscription' && selectedSub.isCurrent) ? (subStatusText || "Optimized") : "",
+        recommendedModel: selectedSub.tier.plan,
+        recommendedProvider: getCleanProviderName(selectedSub.tier.provider)
       } : {
         planName: `${toolName} ${plan || "Free"}`,
         cost: currentCost,
@@ -842,7 +862,9 @@ router.post('/', optionalAuth, async (req, res) => {
         action: (type === 'subscription')
           ? "Your current subscription is already the best choice. Keep using it."
           : `Migrate to the ${toolName} ${plan || "Free"} subscription.`,
-        statusText: (type === 'subscription') ? (subStatusText || "Optimized") : ""
+        statusText: (type === 'subscription') ? (subStatusText || "Optimized") : "",
+        recommendedModel: plan || "Free",
+        recommendedProvider: getCleanProviderName(toolName)
       };
 
       if (apiOption) {
@@ -860,13 +882,27 @@ router.post('/', optionalAuth, async (req, res) => {
         ? `Paying $${currentCost.toFixed(2)}/mo for ${seats} active ${purpose} user${seats > 1 ? 's' : ''}`
         : `Paying $${currentCost.toFixed(2)}/mo for API usage (${((totalTokens)/1000000).toFixed(1)}M tokens)`;
 
+      const currentProvider = getCleanProviderName(toolName);
+      const currentModelName = primaryBaselineModel ? primaryBaselineModel.name : (modelId || (type === 'subscription' ? plan : 'GPT-4o'));
+
       recommendations.push({
         tool: toolDesc,
         issue: issueDesc,
         action: "Select the most suitable option below.",
         monthlySavings: Math.max(apiOption ? apiOption.savings : 0, subscriptionOption ? subscriptionOption.savings : 0),
         apiOption,
-        subscriptionOption
+        subscriptionOption,
+        originalAlloc: {
+          type,
+          toolName,
+          plan,
+          seats,
+          purpose,
+          currentCost,
+          modelId,
+          provider: currentProvider,
+          modelName: currentModelName
+        }
       });
     });
 
@@ -965,6 +1001,32 @@ router.get('/:id', auth, async (req, res) => {
 
     return res.json(auditObj);
   } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Route to update an audit's selected options (requires authentication)
+router.put('/:id/options', auth, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { selectedOptions } = req.body;
+    
+    const audit = await Audit.findById(id);
+    if (!audit) {
+      return res.status(404).json({ error: 'Audit not found' });
+    }
+
+    // Verify ownership
+    if (audit.userId && audit.userId.toString() !== req.user.id) {
+      return res.status(403).json({ error: 'Access denied.' });
+    }
+
+    audit.selectedOptions = selectedOptions || {};
+    await audit.save();
+
+    return res.json({ success: true, selectedOptions: audit.selectedOptions });
+  } catch (error) {
+    console.error('Error saving selected options:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

@@ -10,7 +10,9 @@ const AllocationSchema = new mongoose.Schema({
   inputTokens: { type: Number },
   outputTokens: { type: Number },
   pricePerSeat: { type: Number },
-  baselineModels: [{ type: String }]
+  baselineModels: [{ type: String }],
+  currentCost: { type: Number },
+  baselineModelId: { type: String }
 });
 
 const OptionSchema = new mongoose.Schema({
@@ -22,7 +24,9 @@ const OptionSchema = new mongoose.Schema({
   name: { type: String },
   modelId: { type: String },
   statusText: { type: String },
-  includedModels: [{ type: String }]
+  includedModels: [{ type: String }],
+  recommendedModel: { type: String },
+  recommendedProvider: { type: String }
 });
 
 const RecommendationSchema = new mongoose.Schema({
@@ -31,7 +35,18 @@ const RecommendationSchema = new mongoose.Schema({
   action: { type: String, required: true },
   monthlySavings: { type: Number, required: true },
   apiOption: { type: OptionSchema, required: false },
-  subscriptionOption: { type: OptionSchema, required: false }
+  subscriptionOption: { type: OptionSchema, required: false },
+  originalAlloc: {
+    type: { type: String },
+    toolName: { type: String },
+    plan: { type: String },
+    seats: { type: Number },
+    purpose: { type: String },
+    currentCost: { type: Number },
+    modelId: { type: String },
+    provider: { type: String },
+    modelName: { type: String }
+  }
 });
 
 const AuditSchema = new mongoose.Schema({
@@ -51,7 +66,8 @@ const AuditSchema = new mongoose.Schema({
     subAnnual: { type: Number },
     recommendations: [RecommendationSchema]
   },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  selectedOptions: { type: mongoose.Schema.Types.Mixed, default: {} }
 });
 
 // Optimize user audits lookup and sorting queries
