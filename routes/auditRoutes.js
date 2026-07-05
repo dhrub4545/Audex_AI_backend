@@ -276,7 +276,7 @@ function findContainingSubscriptions(modelId, modelName, seats, currentCost) {
     }
 
     if (includesModel) {
-      const altCost = tier.isPerSeat ? (seats * tier.monthlyPrice) : tier.monthlyPrice;
+      const altCost = seats * tier.monthlyPrice;
       if (altCost < currentCost) {
         matchingSubs.push({
           provider: tier.provider,
@@ -564,7 +564,7 @@ router.post('/', optionalAuth, async (req, res) => {
         if (matchingTier) {
           const models = matchingTier.models || [];
           for (const mid of models) {
-            const resolved = allModels.find(m => m._id === mid || (m._id && m._id.toLowerCase().includes(mid.toLowerCase())));
+            const resolved = resolveBaselineModel(mid, allModels, toolName);
             if (resolved) {
               const currentSlug = resolved._id.split('/')[1] || '';
               const rankEntry = rankData.find(item => item.slug === currentSlug) ||
@@ -623,7 +623,9 @@ router.post('/', optionalAuth, async (req, res) => {
               monthly_cost: cost,
               isCurrent: dbModel._id === modelId,
               limits: limitsStr,
-              context_length: dbModel.context_length
+              context_length: dbModel.context_length,
+              inputCostPerM: ep.input_cost_per_m || 0,
+              outputCostPerM: ep.output_cost_per_m || 0
             });
           }
         }
@@ -648,7 +650,9 @@ router.post('/', optionalAuth, async (req, res) => {
               monthly_cost: cost,
               isCurrent: m._id === modelId,
               limits: limitsStr,
-              context_length: m.context_length
+              context_length: m.context_length,
+              inputCostPerM: ep.input_cost_per_m || 0,
+              outputCostPerM: ep.output_cost_per_m || 0
             };
           });
       }
@@ -665,7 +669,12 @@ router.post('/', optionalAuth, async (req, res) => {
           }
         }
       } else if (optimizationGoal === 'performance') {
-        let compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.performance_score >= computedBaselineScore);
+        let compatible = [];
+        if (baselineRank !== 9999) {
+          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.rank <= baselineRank);
+        } else {
+          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.performance_score >= computedBaselineScore);
+        }
         if (compatible.length > 0) {
           compatible.sort((a, b) => a.rank - b.rank);
           selectedApi = compatible[0];
@@ -759,7 +768,7 @@ router.post('/', optionalAuth, async (req, res) => {
       }
 
       subMatchTiers.forEach(t => {
-        const cost = t.isPerSeat ? (seats * t.monthlyPrice) : t.monthlyPrice;
+        const cost = seats * t.monthlyPrice;
         let bestRank = 9999;
         let bestScore = 0;
 
@@ -767,7 +776,7 @@ router.post('/', optionalAuth, async (req, res) => {
         const rawModels = t.rawModels || [];
 
         for (const mid of models) {
-          const resolved = allModels.find(m => m._id === mid || (m._id && m._id.toLowerCase().includes(mid.toLowerCase())));
+          const resolved = resolveBaselineModel(mid, allModels, t.provider);
           if (resolved) {
             const currentSlug = resolved._id.split('/')[1] || '';
             const rankEntry = rankData.find(item => item.slug === currentSlug) ||
@@ -819,7 +828,12 @@ router.post('/', optionalAuth, async (req, res) => {
           }
         }
       } else if (optimizationGoal === 'performance') {
-        let compatible = subCandidates.filter(c => c.cost < currentCost && c.performance_score >= computedBaselineScore);
+        let compatible = [];
+        if (baselineRank !== 9999) {
+          compatible = subCandidates.filter(c => c.cost < currentCost && c.rank <= baselineRank);
+        } else {
+          compatible = subCandidates.filter(c => c.cost < currentCost && c.performance_score >= computedBaselineScore);
+        }
         if (compatible.length > 0) {
           compatible.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
           selectedSub = compatible[0];
@@ -851,7 +865,11 @@ router.post('/', optionalAuth, async (req, res) => {
         limits: selectedApi.limits,
         includedModels: [selectedApi.name],
         recommendedModel: selectedApi.name,
-        recommendedProvider: getCleanProviderName(selectedApi._id.split('/')[0])
+        recommendedProvider: getCleanProviderName(selectedApi._id.split('/')[0]),
+        inputCostPerM: selectedApi.inputCostPerM,
+        outputCostPerM: selectedApi.outputCostPerM,
+        defaultInputTokens: (type === 'subscription') ? (seats * (purpose === 'Coding' ? 10000000 : 5000000)) : inputTokens,
+        defaultOutputTokens: (type === 'subscription') ? (seats * (purpose === 'Coding' ? 2500000 : 1250000)) : outputTokens
       } : {
         cost: currentCost,
         savings: 0,
@@ -866,7 +884,11 @@ router.post('/', optionalAuth, async (req, res) => {
           : "Pay-as-you-go token consumption limits.",
         includedModels: primaryBaselineModel ? [primaryBaselineModel.name] : (modelId ? [modelId] : []),
         recommendedModel: primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Free Model"),
-        recommendedProvider: primaryBaselineModel ? getCleanProviderName(primaryBaselineModel._id.split('/')[0]) : getCleanProviderName(toolName)
+        recommendedProvider: primaryBaselineModel ? getCleanProviderName(primaryBaselineModel._id.split('/')[0]) : getCleanProviderName(toolName),
+        inputCostPerM: (primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints[0]) ? (primaryBaselineModel.endpoints[0].input_cost_per_m || 0) : 0,
+        outputCostPerM: (primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints[0]) ? (primaryBaselineModel.endpoints[0].output_cost_per_m || 0) : 0,
+        defaultInputTokens: (type === 'subscription') ? (seats * (purpose === 'Coding' ? 10000000 : 5000000)) : inputTokens,
+        defaultOutputTokens: (type === 'subscription') ? (seats * (purpose === 'Coding' ? 2500000 : 1250000)) : outputTokens
       };
 
       const subscriptionOption = selectedSub ? {
@@ -1035,6 +1057,29 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
+// Route to delete a single audit by ID (requires authentication)
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const audit = await Audit.findById(id);
+
+    if (!audit) {
+      return res.status(404).json({ error: 'Audit not found' });
+    }
+
+    // Verify ownership
+    if (audit.userId && audit.userId.toString() !== req.user.id) {
+      return res.status(403).json({ error: 'Access denied. You do not own this audit report.' });
+    }
+
+    await Audit.deleteOne({ _id: id });
+    return res.json({ message: 'Audit deleted successfully', id });
+  } catch (error) {
+    console.error('Error deleting audit:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 // Route to update an audit's selected options (requires authentication)
 router.put('/:id/options', auth, async (req, res) => {
   try {
@@ -1073,6 +1118,14 @@ router.post('/audit-recommendation', async (req, res) => {
     const inputRatio = parseFloat(req.body.inputTokenRatio) || 0.8;
     const optimizationGoal = req.body.optimizationGoal || 'performance';
     const costCutPercentage = parseFloat(req.body.costCutPercentage) || 50;
+    console.log('[DEBUG] /audit-recommendation:', {
+      currentModelId,
+      targetUseCase,
+      monthlyTokens,
+      inputRatio,
+      optimizationGoal,
+      costCutPercentage
+    });
 
     const capabilityField = {
       'Coding': 'coding_score',
@@ -1184,7 +1237,11 @@ router.post('/audit-recommendation', async (req, res) => {
     let filteredAlternatives = [];
     if (optimizationGoal === 'performance') {
       // Mode 1: Performance Preservation
-      filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+      if (currentRank !== 999) {
+        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+      } else {
+        filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+      }
       filteredAlternatives.forEach(alt => {
         const qualityScore = alt.performance_score / bestCategoryScore;
         const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
@@ -1225,7 +1282,11 @@ router.post('/audit-recommendation', async (req, res) => {
       }
     } else {
       // Fallback: Mode 1 (Performance Preservation)
-      filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+      if (currentRank !== 999) {
+        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+      } else {
+        filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+      }
       filteredAlternatives.forEach(alt => {
         const qualityScore = alt.performance_score / bestCategoryScore;
         const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;

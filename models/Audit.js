@@ -26,7 +26,11 @@ const OptionSchema = new mongoose.Schema({
   statusText: { type: String },
   includedModels: [{ type: String }],
   recommendedModel: { type: String },
-  recommendedProvider: { type: String }
+  recommendedProvider: { type: String },
+  inputCostPerM: { type: Number },
+  outputCostPerM: { type: Number },
+  defaultInputTokens: { type: Number },
+  defaultOutputTokens: { type: Number }
 });
 
 const RecommendationSchema = new mongoose.Schema({
