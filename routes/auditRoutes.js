@@ -567,10 +567,11 @@ router.post('/', optionalAuth, async (req, res) => {
             const resolved = resolveBaselineModel(mid, allModels, toolName);
             if (resolved) {
               const currentSlug = resolved._id.split('/')[1] || '';
-              const rankEntry = rankData.find(item => item.slug === currentSlug) ||
-                                rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
+              const rankEntry = findRankEntry(rankData, currentSlug);
               if (rankEntry) {
-                baselineRank = Math.min(baselineRank, rankEntry.rank);
+                const entryIndex = rankData.indexOf(rankEntry);
+                const resolvedRank = typeof rankEntry.rank === 'number' ? rankEntry.rank : (entryIndex !== -1 ? (entryIndex + 1) : 9999);
+                baselineRank = Math.min(baselineRank, resolvedRank);
                 computedBaselineScore = Math.max(computedBaselineScore, Math.min(100, Math.round(rankEntry.final_score)));
               } else {
                 computedBaselineScore = Math.max(computedBaselineScore, resolved.capabilities?.[capabilityField] || 0);
@@ -582,10 +583,11 @@ router.post('/', optionalAuth, async (req, res) => {
         // api
         if (currentModel) {
           const currentSlug = currentModel._id.split('/')[1] || '';
-          const rankEntry = rankData.find(item => item.slug === currentSlug) ||
-                            rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
+          const rankEntry = findRankEntry(rankData, currentSlug);
           if (rankEntry) {
-            baselineRank = rankEntry.rank;
+            const entryIndex = rankData.indexOf(rankEntry);
+            const resolvedRank = typeof rankEntry.rank === 'number' ? rankEntry.rank : (entryIndex !== -1 ? (entryIndex + 1) : 9999);
+            baselineRank = resolvedRank;
             computedBaselineScore = Math.min(100, Math.round(rankEntry.final_score));
           } else {
             computedBaselineScore = currentModel.capabilities?.[capabilityField] || 0;
@@ -593,14 +595,11 @@ router.post('/', optionalAuth, async (req, res) => {
         }
       }
 
-      if (baselineRank === 9999) {
-        baselineRank = 500;
-      }
-
       // OPTION A: Best Model API Candidates
       let apiCandidates = [];
       if (rankData.length > 0) {
-        for (const item of rankData) {
+        for (let i = 0; i < rankData.length; i++) {
+          const item = rankData[i];
           if (!item.slug) continue;
           let dbModel = allModels.find(m => m._id && m._id.split && m._id.split('/')[1] === item.slug);
           if (!dbModel) {
@@ -615,10 +614,11 @@ router.post('/', optionalAuth, async (req, res) => {
             const score = Math.min(100, Math.round(item.final_score));
             const contextStr = dbModel.context_length ? (dbModel.context_length >= 1000000 ? `${(dbModel.context_length / 1000000).toFixed(0)}M` : `${(dbModel.context_length / 1000).toFixed(0)}K`) : 'N/A';
             const limitsStr = `Pay-as-you-go rates: $${ep.input_cost_per_m.toFixed(2)}/1M input, $${ep.output_cost_per_m.toFixed(2)}/1M output. Context: ${contextStr}.`;
+            const resolvedRank = typeof item.rank === 'number' ? item.rank : (i + 1);
             apiCandidates.push({
               _id: dbModel._id,
               name: dbModel.name,
-              rank: item.rank,
+              rank: resolvedRank,
               performance_score: score,
               monthly_cost: cost,
               isCurrent: dbModel._id === modelId,
@@ -671,7 +671,7 @@ router.post('/', optionalAuth, async (req, res) => {
       } else if (optimizationGoal === 'performance') {
         let compatible = [];
         if (baselineRank !== 9999) {
-          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.rank <= baselineRank);
+          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.rank < baselineRank);
         } else {
           compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.performance_score >= computedBaselineScore);
         }
@@ -779,10 +779,11 @@ router.post('/', optionalAuth, async (req, res) => {
           const resolved = resolveBaselineModel(mid, allModels, t.provider);
           if (resolved) {
             const currentSlug = resolved._id.split('/')[1] || '';
-            const rankEntry = rankData.find(item => item.slug === currentSlug) ||
-                              rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
+            const rankEntry = findRankEntry(rankData, currentSlug);
             if (rankEntry) {
-              bestRank = Math.min(bestRank, rankEntry.rank);
+              const entryIndex = rankData.indexOf(rankEntry);
+              const resolvedRank = typeof rankEntry.rank === 'number' ? rankEntry.rank : (entryIndex !== -1 ? (entryIndex + 1) : 9999);
+              bestRank = Math.min(bestRank, resolvedRank);
               bestScore = Math.max(bestScore, Math.min(100, Math.round(rankEntry.final_score)));
             } else {
               bestScore = Math.max(bestScore, resolved.capabilities?.[capabilityField] || 0);
@@ -793,7 +794,9 @@ router.post('/', optionalAuth, async (req, res) => {
         for (const rm of rawModels) {
           const rankEntry = rankData.find(item => item.name.toLowerCase().includes(rm.toLowerCase()) || rm.toLowerCase().includes(item.name.toLowerCase()));
           if (rankEntry) {
-            bestRank = Math.min(bestRank, rankEntry.rank);
+            const entryIndex = rankData.indexOf(rankEntry);
+            const resolvedRank = typeof rankEntry.rank === 'number' ? rankEntry.rank : (entryIndex !== -1 ? (entryIndex + 1) : 9999);
+            bestRank = Math.min(bestRank, resolvedRank);
             bestScore = Math.max(bestScore, Math.min(100, Math.round(rankEntry.final_score)));
           }
         }
@@ -1161,7 +1164,8 @@ router.post('/audit-recommendation', async (req, res) => {
     
     const currentSlug = currentModel._id.split('/')[1] || '';
     const currentRankEntry = findRankEntry(rankData, currentSlug);
-    const currentRank = currentRankEntry ? (parseInt(currentRankEntry.rank) || 999) : 999;
+    const currentRankIndex = rankData.indexOf(currentRankEntry);
+    const currentRank = currentRankEntry ? (typeof currentRankEntry.rank === 'number' ? currentRankEntry.rank : (currentRankIndex !== -1 ? (currentRankIndex + 1) : 999)) : 999;
     const currentScore = currentRankEntry ? getEvaluationScore(currentRankEntry, targetUseCase, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || 0);
     const currentCost = calculateModelCost(currentModel, monthlyTokens, inputRatio);
 
@@ -1185,6 +1189,8 @@ router.post('/audit-recommendation', async (req, res) => {
           const cost = calculateModelCost(dbModel, monthlyTokens, inputRatio);
           const score = getEvaluationScore(item, targetUseCase, dbModel, capabilityField);
           const valScore = cost > 0 ? (score / cost) : 0;
+          const itemIndex = rankData.indexOf(item);
+          const resolvedRank = typeof item.rank === 'number' ? item.rank : (itemIndex !== -1 ? (itemIndex + 1) : 999);
           
           alternatives.push({
             _id: dbModel._id,
@@ -1199,7 +1205,7 @@ router.post('/audit-recommendation', async (req, res) => {
             cache_read_cost_per_m: dbModel.endpoints[0].cache_read_cost_per_m || 0,
             monthly_cost: cost,
             value_score: valScore,
-            category_rank: parseInt(item.rank) || 999
+            category_rank: resolvedRank
           });
         }
       }
@@ -1238,7 +1244,7 @@ router.post('/audit-recommendation', async (req, res) => {
     if (optimizationGoal === 'performance') {
       // Mode 1: Performance Preservation
       if (currentRank !== 999) {
-        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+        filteredAlternatives = alternatives.filter(alt => alt.category_rank < currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
       } else {
         filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
       }
@@ -1283,7 +1289,7 @@ router.post('/audit-recommendation', async (req, res) => {
     } else {
       // Fallback: Mode 1 (Performance Preservation)
       if (currentRank !== 999) {
-        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+        filteredAlternatives = alternatives.filter(alt => alt.category_rank < currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
       } else {
         filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
       }
