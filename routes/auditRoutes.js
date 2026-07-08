@@ -317,7 +317,7 @@ function getSubscriptionPrice(toolName, plan) {
 
 
 // Route to run and save a new audit
-router.post('/', optionalAuth, async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
     const { optimizationGoal = 'performance', costCutPercentage = 50, qualityThreshold = 90, allocations } = req.body;
 
@@ -325,53 +325,57 @@ router.post('/', optionalAuth, async (req, res) => {
       return res.status(400).json({ error: 'Missing required allocations data' });
     }
 
-    let user;
-    if (req.user) {
-      user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id);
 
-      if (!user) {
-        return res.status(404).json({ error: 'Authenticated user not found.' });
-      }
-
-      if (!user.credits) {
-        user.credits = { starter: 0, pro: 0, proMax: 0 };
-      }
-
-      // Count unique tools configured
-      const uniqueTools = [...new Set(allocations.map(a => a.toolName))];
-      const numTools = uniqueTools.length;
-
-      if (numTools > 4) {
-        // Requires Pro or Pro Max
-        if (user.credits.pro > 0) {
-          user.credits.pro -= 1;
-        } else if (user.credits.proMax > 0) {
-          user.credits.proMax -= 1;
-        } else {
-          return res.status(402).json({
-            error: 'Insufficient premium credits. Auditing more than 4 models requires Pro or Pro Max credits.',
-            credits: user.credits
-          });
-        }
-      } else {
-        // Can use Starter, Pro, or Pro Max
-        if (user.credits.starter > 0) {
-          user.credits.starter -= 1;
-        } else if (user.credits.pro > 0) {
-          user.credits.pro -= 1;
-        } else if (user.credits.proMax > 0) {
-          user.credits.proMax -= 1;
-        } else {
-          return res.status(402).json({
-            error: 'No credits remaining. Please buy credits or subscribe.',
-            credits: user.credits
-          });
-        }
-      }
-
-      user.markModified('credits');
-      await user.save();
+    if (!user) {
+      return res.status(404).json({ error: 'Authenticated user not found.' });
     }
+
+    if (!user.credits) {
+      user.credits = { starter: 0, pro: 0, proMax: 0 };
+    }
+
+    // Count unique tools configured
+    const uniqueTools = [...new Set(allocations.map(a => a.toolName))];
+    const numTools = uniqueTools.length;
+
+    let tierUsed = 'starter';
+
+    if (numTools > 4) {
+      // Requires Pro or Pro Max
+      if (user.credits.pro > 0) {
+        user.credits.pro -= 1;
+        tierUsed = 'pro';
+      } else if (user.credits.proMax > 0) {
+        user.credits.proMax -= 1;
+        tierUsed = 'proMax';
+      } else {
+        return res.status(402).json({
+          error: 'Insufficient premium credits. Auditing more than 4 models requires Pro or Pro Max credits.',
+          credits: user.credits
+        });
+      }
+    } else {
+      // Can use Starter, Pro, or Pro Max - Prioritize Pro/ProMax first to ensure the best premium experience is unlocked
+      if (user.credits.pro > 0) {
+        user.credits.pro -= 1;
+        tierUsed = 'pro';
+      } else if (user.credits.proMax > 0) {
+        user.credits.proMax -= 1;
+        tierUsed = 'proMax';
+      } else if (user.credits.starter > 0) {
+        user.credits.starter -= 1;
+        tierUsed = 'starter';
+      } else {
+        return res.status(402).json({
+          error: 'No credits remaining. Please buy credits or subscribe.',
+          credits: user.credits
+        });
+      }
+    }
+
+    user.markModified('credits');
+    await user.save();
 
     // Fetch all models for API routing recommendations
     const docs = await Model.find({});
@@ -507,6 +511,8 @@ router.post('/', optionalAuth, async (req, res) => {
         baselineModelIds,
         tier,
         isMedia,
+        inputTokens,
+        outputTokens,
         totalTokens,
         inputRatio,
         capabilityField
@@ -540,6 +546,8 @@ router.post('/', optionalAuth, async (req, res) => {
         baselineModelIds,
         tier,
         isMedia,
+        inputTokens,
+        outputTokens,
         totalTokens,
         inputRatio,
         capabilityField
@@ -567,11 +575,10 @@ router.post('/', optionalAuth, async (req, res) => {
             const resolved = resolveBaselineModel(mid, allModels, toolName);
             if (resolved) {
               const currentSlug = resolved._id.split('/')[1] || '';
-              const rankEntry = findRankEntry(rankData, currentSlug);
+              const rankEntry = rankData.find(item => item.slug === currentSlug) ||
+                                rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
               if (rankEntry) {
-                const entryIndex = rankData.indexOf(rankEntry);
-                const resolvedRank = typeof rankEntry.rank === 'number' ? rankEntry.rank : (entryIndex !== -1 ? (entryIndex + 1) : 9999);
-                baselineRank = Math.min(baselineRank, resolvedRank);
+                baselineRank = Math.min(baselineRank, rankEntry.rank);
                 computedBaselineScore = Math.max(computedBaselineScore, Math.min(100, Math.round(rankEntry.final_score)));
               } else {
                 computedBaselineScore = Math.max(computedBaselineScore, resolved.capabilities?.[capabilityField] || 0);
@@ -583,11 +590,10 @@ router.post('/', optionalAuth, async (req, res) => {
         // api
         if (currentModel) {
           const currentSlug = currentModel._id.split('/')[1] || '';
-          const rankEntry = findRankEntry(rankData, currentSlug);
+          const rankEntry = rankData.find(item => item.slug === currentSlug) ||
+                            rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
           if (rankEntry) {
-            const entryIndex = rankData.indexOf(rankEntry);
-            const resolvedRank = typeof rankEntry.rank === 'number' ? rankEntry.rank : (entryIndex !== -1 ? (entryIndex + 1) : 9999);
-            baselineRank = resolvedRank;
+            baselineRank = rankEntry.rank;
             computedBaselineScore = Math.min(100, Math.round(rankEntry.final_score));
           } else {
             computedBaselineScore = currentModel.capabilities?.[capabilityField] || 0;
@@ -595,11 +601,14 @@ router.post('/', optionalAuth, async (req, res) => {
         }
       }
 
+      if (baselineRank === 9999) {
+        baselineRank = 500;
+      }
+
       // OPTION A: Best Model API Candidates
       let apiCandidates = [];
       if (rankData.length > 0) {
-        for (let i = 0; i < rankData.length; i++) {
-          const item = rankData[i];
+        for (const item of rankData) {
           if (!item.slug) continue;
           let dbModel = allModels.find(m => m._id && m._id.split && m._id.split('/')[1] === item.slug);
           if (!dbModel) {
@@ -614,11 +623,10 @@ router.post('/', optionalAuth, async (req, res) => {
             const score = Math.min(100, Math.round(item.final_score));
             const contextStr = dbModel.context_length ? (dbModel.context_length >= 1000000 ? `${(dbModel.context_length / 1000000).toFixed(0)}M` : `${(dbModel.context_length / 1000).toFixed(0)}K`) : 'N/A';
             const limitsStr = `Pay-as-you-go rates: $${ep.input_cost_per_m.toFixed(2)}/1M input, $${ep.output_cost_per_m.toFixed(2)}/1M output. Context: ${contextStr}.`;
-            const resolvedRank = typeof item.rank === 'number' ? item.rank : (i + 1);
             apiCandidates.push({
               _id: dbModel._id,
               name: dbModel.name,
-              rank: resolvedRank,
+              rank: item.rank,
               performance_score: score,
               monthly_cost: cost,
               isCurrent: dbModel._id === modelId,
@@ -671,7 +679,7 @@ router.post('/', optionalAuth, async (req, res) => {
       } else if (optimizationGoal === 'performance') {
         let compatible = [];
         if (baselineRank !== 9999) {
-          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.rank < baselineRank);
+          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.rank <= baselineRank);
         } else {
           compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.performance_score >= computedBaselineScore);
         }
@@ -779,11 +787,10 @@ router.post('/', optionalAuth, async (req, res) => {
           const resolved = resolveBaselineModel(mid, allModels, t.provider);
           if (resolved) {
             const currentSlug = resolved._id.split('/')[1] || '';
-            const rankEntry = findRankEntry(rankData, currentSlug);
+            const rankEntry = rankData.find(item => item.slug === currentSlug) ||
+                              rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
             if (rankEntry) {
-              const entryIndex = rankData.indexOf(rankEntry);
-              const resolvedRank = typeof rankEntry.rank === 'number' ? rankEntry.rank : (entryIndex !== -1 ? (entryIndex + 1) : 9999);
-              bestRank = Math.min(bestRank, resolvedRank);
+              bestRank = Math.min(bestRank, rankEntry.rank);
               bestScore = Math.max(bestScore, Math.min(100, Math.round(rankEntry.final_score)));
             } else {
               bestScore = Math.max(bestScore, resolved.capabilities?.[capabilityField] || 0);
@@ -794,9 +801,7 @@ router.post('/', optionalAuth, async (req, res) => {
         for (const rm of rawModels) {
           const rankEntry = rankData.find(item => item.name.toLowerCase().includes(rm.toLowerCase()) || rm.toLowerCase().includes(item.name.toLowerCase()));
           if (rankEntry) {
-            const entryIndex = rankData.indexOf(rankEntry);
-            const resolvedRank = typeof rankEntry.rank === 'number' ? rankEntry.rank : (entryIndex !== -1 ? (entryIndex + 1) : 9999);
-            bestRank = Math.min(bestRank, resolvedRank);
+            bestRank = Math.min(bestRank, rankEntry.rank);
             bestScore = Math.max(bestScore, Math.min(100, Math.round(rankEntry.final_score)));
           }
         }
@@ -968,7 +973,7 @@ router.post('/', optionalAuth, async (req, res) => {
     const primaryUseCase = allocations[0]?.purpose || 'Mixed';
 
     const auditData = {
-      userId: req.user ? req.user.id : null,
+      userId: req.user.id,
       teamSize: totalSeats,
       useCase: primaryUseCase,
       optimizationGoal,
@@ -984,6 +989,7 @@ router.post('/', optionalAuth, async (req, res) => {
         subAnnual: subMonthlySavings * 12,
         recommendations
       },
+      tierUsed: tierUsed,
       createdAt: new Date()
     };
 
@@ -993,7 +999,7 @@ router.post('/', optionalAuth, async (req, res) => {
     return res.status(201).json({
       ...audit.toObject(),
       totalCurrentCost: totalCurrentBudget,
-      updatedCredits: req.user ? user.credits : null
+      updatedCredits: user.credits
     });
   } catch (error) {
     console.error('Audit Save Error:', error);
@@ -1164,8 +1170,7 @@ router.post('/audit-recommendation', async (req, res) => {
     
     const currentSlug = currentModel._id.split('/')[1] || '';
     const currentRankEntry = findRankEntry(rankData, currentSlug);
-    const currentRankIndex = rankData.indexOf(currentRankEntry);
-    const currentRank = currentRankEntry ? (typeof currentRankEntry.rank === 'number' ? currentRankEntry.rank : (currentRankIndex !== -1 ? (currentRankIndex + 1) : 999)) : 999;
+    const currentRank = currentRankEntry ? (parseInt(currentRankEntry.rank) || 999) : 999;
     const currentScore = currentRankEntry ? getEvaluationScore(currentRankEntry, targetUseCase, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || 0);
     const currentCost = calculateModelCost(currentModel, monthlyTokens, inputRatio);
 
@@ -1189,8 +1194,6 @@ router.post('/audit-recommendation', async (req, res) => {
           const cost = calculateModelCost(dbModel, monthlyTokens, inputRatio);
           const score = getEvaluationScore(item, targetUseCase, dbModel, capabilityField);
           const valScore = cost > 0 ? (score / cost) : 0;
-          const itemIndex = rankData.indexOf(item);
-          const resolvedRank = typeof item.rank === 'number' ? item.rank : (itemIndex !== -1 ? (itemIndex + 1) : 999);
           
           alternatives.push({
             _id: dbModel._id,
@@ -1205,7 +1208,7 @@ router.post('/audit-recommendation', async (req, res) => {
             cache_read_cost_per_m: dbModel.endpoints[0].cache_read_cost_per_m || 0,
             monthly_cost: cost,
             value_score: valScore,
-            category_rank: resolvedRank
+            category_rank: parseInt(item.rank) || 999
           });
         }
       }
@@ -1242,61 +1245,64 @@ router.post('/audit-recommendation', async (req, res) => {
     // Apply filtering and compute recommendation score
     let filteredAlternatives = [];
     if (optimizationGoal === 'performance') {
-      // Mode 1: Performance Preservation
+      // Mode 1: Performance Preservation (equal or better performance / rank, lower cost)
       if (currentRank !== 999) {
-        filteredAlternatives = alternatives.filter(alt => alt.category_rank < currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
       } else {
         filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
       }
       filteredAlternatives.forEach(alt => {
-        const qualityScore = alt.performance_score / bestCategoryScore;
-        const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        alt.recommendation_score = 0.80 * qualityScore + 0.20 * costEfficiency;
+        if (alt.category_rank !== 999) {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
+        } else {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
+        }
       });
     } else if (optimizationGoal === 'cost') {
-      // Mode 2: Target Cost Reduction
+      // Mode 3: Target Cost Reduction (Cost Cutting Mode: satisfies cost demand, best rank recommended)
       const maxAllowedCost = currentCost * (1 - (costCutPercentage / 100));
       filteredAlternatives = alternatives.filter(alt => 
         alt.monthly_cost <= maxAllowedCost && 
-        alt.performance_score >= currentScore * (qualityThreshold / 100) && 
         alt._id !== currentModelId
       );
       filteredAlternatives.forEach(alt => {
-        const qualityScore = alt.performance_score / bestCategoryScore;
-        const savingsScore = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        alt.recommendation_score = 0.70 * savingsScore + 0.30 * qualityScore;
+        if (alt.category_rank !== 999) {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
+        } else {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
+        }
       });
     } else if (optimizationGoal === 'quality') {
-      // Mode 3: Quality Focus
-      if (rankData && rankData.length > 0) {
-        // Recommend according to rank in the loaded category file (e.g. math.json)
-        filteredAlternatives = alternatives.filter(alt => alt._id !== currentModelId);
-        filteredAlternatives.forEach(alt => {
-          // Smaller category_rank is better (Rank 1 is best)
-          // Cost efficiency is secondary to resolve ties
+      // Mode 2: Quality Focus (Top ranked models recommended)
+      filteredAlternatives = alternatives.filter(alt => alt._id !== currentModelId);
+      filteredAlternatives.forEach(alt => {
+        if (alt.category_rank !== 999) {
           const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = (10000 - alt.category_rank) * 10 + costEfficiency;
-        });
-      } else {
-        // Fallback to performance_score if no rank data is available
-        filteredAlternatives = alternatives.filter(alt => (alt.performance_score > currentScore || (alt.performance_score === currentScore && alt.monthly_cost < currentCost)) && alt._id !== currentModelId);
-        filteredAlternatives.forEach(alt => {
-          const qualityScore = alt.performance_score / bestCategoryScore;
+          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
+        } else {
           const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = qualityScore * 1000 + costEfficiency;
-        });
-      }
+          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
+        }
+      });
     } else {
       // Fallback: Mode 1 (Performance Preservation)
       if (currentRank !== 999) {
-        filteredAlternatives = alternatives.filter(alt => alt.category_rank < currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
       } else {
         filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
       }
       filteredAlternatives.forEach(alt => {
-        const qualityScore = alt.performance_score / bestCategoryScore;
-        const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        alt.recommendation_score = 0.80 * qualityScore + 0.20 * costEfficiency;
+        if (alt.category_rank !== 999) {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
+        } else {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
+        }
       });
     }
 
@@ -1413,6 +1419,16 @@ router.get('/analysis/raw-data', (req, res) => {
   } catch (error) {
     console.error('Error fetching raw analysis data:', error);
     res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
+});
+
+// Route to fetch raw subscription tiers list (with prices)
+router.get('/subscription-tiers/raw', (req, res) => {
+  try {
+    res.json(subscriptionTiers || []);
+  } catch (error) {
+    console.error('Error serving raw subscription tiers:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

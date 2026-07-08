@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { auth } = require('../middleware/auth');
+const axios = require('axios');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'audex-ai-jwt-secret-key-12345';
 
@@ -152,6 +153,223 @@ router.post('/purchase', auth, async (req, res) => {
   } catch (error) {
     console.error('Purchase error:', error);
     res.status(500).json({ error: 'Internal Server Error during purchase.' });
+  }
+});
+
+// Route: Initiate Google OAuth (GET /google)
+router.get('/google', (req, res) => {
+  const googleClientId = process.env.GOOGLE_CLIENT_ID;
+  const redirectUri = process.env.GOOGLE_REDIRECT_URI;
+  
+  if (!googleClientId || !redirectUri) {
+    return res.status(500).json({ error: 'Google OAuth is not configured on the server. Missing GOOGLE_CLIENT_ID or GOOGLE_REDIRECT_URI.' });
+  }
+
+  const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${encodeURIComponent(googleClientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=openid%20email%20profile&prompt=select_account`;
+  res.redirect(authUrl);
+});
+
+// Route: Google Callback (GET /google/callback)
+router.get('/google/callback', async (req, res) => {
+  try {
+    const { code } = req.query;
+    if (!code) {
+      return res.status(400).json({ error: 'Authorization code is missing.' });
+    }
+
+    const googleClientId = process.env.GOOGLE_CLIENT_ID;
+    const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
+    const redirectUri = process.env.GOOGLE_REDIRECT_URI;
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+
+    // 1. Exchange auth code for tokens
+    const tokenResponse = await axios.post('https://oauth2.googleapis.com/token', {
+      code,
+      client_id: googleClientId,
+      client_secret: googleClientSecret,
+      redirect_uri: redirectUri,
+      grant_type: 'authorization_code'
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const { access_token } = tokenResponse.data;
+
+    // 2. Fetch user profile info using the access token
+    const userResponse = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+      headers: {
+        Authorization: `Bearer ${access_token}`
+      }
+    });
+
+    const { sub, email, name, picture } = userResponse.data;
+
+    if (!email) {
+      return res.status(400).json({ error: 'Google did not return an email address.' });
+    }
+
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // 3. Find or create user in MongoDB
+    let user = await User.findOne({ googleId: sub });
+    
+    if (!user) {
+      // Check if user exists by email (local signup previously)
+      user = await User.findOne({ email: normalizedEmail });
+      if (user) {
+        // Link Google ID to existing account
+        user.googleId = sub;
+        await user.save();
+      } else {
+        // Create new account (Google signup)
+        user = new User({
+          name: name || 'Google User',
+          email: normalizedEmail,
+          googleId: sub,
+          credits: { starter: 1, pro: 0, proMax: 0 } // Give starter credits
+        });
+        await user.save();
+        console.log('Created new user via Google OAuth:', user._id);
+      }
+    }
+
+    // 4. Generate local application JWT token
+    const token = generateToken(user._id, user.email);
+
+    // 5. Redirect browser back to the frontend with query parameters
+    const redirectUrl = `${frontendUrl}/?google_token=${token}&google_user_id=${user._id}&google_user_name=${encodeURIComponent(user.name)}&google_user_email=${encodeURIComponent(user.email)}`;
+    res.redirect(redirectUrl);
+
+  } catch (error) {
+    console.error('Google OAuth error:', error.response ? error.response.data : error.message);
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    // Redirect back to frontend login with error message
+    res.redirect(`${frontendUrl}/?google_error=${encodeURIComponent(error.response ? JSON.stringify(error.response.data) : error.message)}`);
+  }
+});
+
+// Route: Initiate GitHub OAuth (GET /github)
+router.get('/github', (req, res) => {
+  const githubClientId = process.env.GITHUB_CLIENT_ID;
+  const redirectUri = process.env.GITHUB_REDIRECT_URI;
+
+  if (!githubClientId || !redirectUri) {
+    return res.status(500).json({ error: 'GitHub OAuth is not configured on the server. Missing GITHUB_CLIENT_ID or GITHUB_REDIRECT_URI.' });
+  }
+
+  const authUrl = `https://github.com/login/oauth/authorize?client_id=${encodeURIComponent(githubClientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=user:email`;
+  res.redirect(authUrl);
+});
+
+// Route: GitHub Callback (GET /github/callback)
+router.get('/github/callback', async (req, res) => {
+  try {
+    const { code } = req.query;
+    if (!code) {
+      return res.status(400).json({ error: 'Authorization code is missing.' });
+    }
+
+    const githubClientId = process.env.GITHUB_CLIENT_ID;
+    const githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
+    const redirectUri = process.env.GITHUB_REDIRECT_URI;
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+
+    // 1. Exchange authorization code for access token
+    const tokenResponse = await axios.post('https://github.com/login/oauth/access_token', {
+      client_id: githubClientId,
+      client_secret: githubClientSecret,
+      code,
+      redirect_uri: redirectUri
+    }, {
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+
+    const { access_token, error: tokenError, error_description } = tokenResponse.data;
+    if (tokenError) {
+      throw new Error(error_description || tokenError);
+    }
+
+    if (!access_token) {
+      throw new Error('No access token returned from GitHub.');
+    }
+
+    // 2. Fetch user profile from GitHub
+    const userResponse = await axios.get('https://api.github.com/user', {
+      headers: {
+        Authorization: `token ${access_token}`,
+        'User-Agent': 'Audex-AI-Backend'
+      }
+    });
+
+    const githubProfile = userResponse.data;
+    const githubId = String(githubProfile.id);
+    let email = githubProfile.email;
+
+    // 3. Fetch user emails if primary email is private / null in profile
+    if (!email) {
+      try {
+        const emailsResponse = await axios.get('https://api.github.com/user/emails', {
+          headers: {
+            Authorization: `token ${access_token}`,
+            'User-Agent': 'Audex-AI-Backend'
+          }
+        });
+        
+        if (Array.isArray(emailsResponse.data) && emailsResponse.data.length > 0) {
+          const primaryEmailObj = emailsResponse.data.find(e => e.primary && e.verified) || 
+                                  emailsResponse.data.find(e => e.primary) ||
+                                  emailsResponse.data[0];
+          email = primaryEmailObj.email;
+        }
+      } catch (emailErr) {
+        console.error('Failed to fetch user emails from GitHub:', emailErr.message);
+      }
+    }
+
+    if (!email) {
+      return res.status(400).json({ error: 'GitHub did not return a valid email address.' });
+    }
+
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // 4. Find or create user in MongoDB
+    let user = await User.findOne({ githubId });
+
+    if (!user) {
+      // Check if user exists by email (local signup previously)
+      user = await User.findOne({ email: normalizedEmail });
+      if (user) {
+        // Link GitHub ID to existing account
+        user.githubId = githubId;
+        await user.save();
+      } else {
+        // Create new account (GitHub signup)
+        user = new User({
+          name: githubProfile.name || githubProfile.login || 'GitHub User',
+          email: normalizedEmail,
+          githubId,
+          credits: { starter: 1, pro: 0, proMax: 0 } // Give starter credits
+        });
+        await user.save();
+        console.log('Created new user via GitHub OAuth:', user._id);
+      }
+    }
+
+    // 5. Generate local JWT token
+    const token = generateToken(user._id, user.email);
+
+    // 6. Redirect back to frontend with session query parameters
+    const redirectUrl = `${frontendUrl}/?github_token=${token}&github_user_id=${user._id}&github_user_name=${encodeURIComponent(user.name)}&github_user_email=${encodeURIComponent(user.email)}`;
+    res.redirect(redirectUrl);
+
+  } catch (error) {
+    console.error('GitHub OAuth error:', error.response ? error.response.data : error.message);
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    res.redirect(`${frontendUrl}/?github_error=${encodeURIComponent(error.message)}`);
   }
 });
 

@@ -71,7 +71,8 @@ const AuditSchema = new mongoose.Schema({
     recommendations: [RecommendationSchema]
   },
   createdAt: { type: Date, default: Date.now },
-  selectedOptions: { type: mongoose.Schema.Types.Mixed, default: {} }
+  selectedOptions: { type: mongoose.Schema.Types.Mixed, default: {} },
+  tierUsed: { type: String, enum: ['starter', 'pro', 'proMax'], default: 'starter' }
 });
 
 // Optimize user audits lookup and sorting queries
