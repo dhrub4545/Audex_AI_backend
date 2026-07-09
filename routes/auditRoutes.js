@@ -1033,7 +1033,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // Route to get single audit by ID (requires authentication)
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', optionalAuth, async (req, res) => {
   try {
     const id = req.params.id;
     const audit = await Audit.findById(id);
@@ -1042,9 +1042,12 @@ router.get('/:id', auth, async (req, res) => {
       return res.status(404).json({ error: 'Audit not found' });
     }
 
-    // Verify ownership
-    if (audit.userId && audit.userId.toString() !== req.user.id) {
-      return res.status(403).json({ error: 'Access denied. You do not own this audit report.' });
+    // Verify ownership (except for the sample audit)
+    const isSampleAudit = id === '6a4fb719471a97ae89e88f49';
+    if (!isSampleAudit && audit.userId) {
+      if (!req.user || audit.userId.toString() !== req.user.id) {
+        return res.status(403).json({ error: 'Access denied. You do not own this audit report.' });
+      }
     }
 
     const auditObj = audit.toObject();

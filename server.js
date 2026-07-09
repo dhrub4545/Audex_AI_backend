@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const auditRoutes = require('./routes/auditRoutes');
 const authRoutes = require('./routes/authRoutes');
+const chatRoutes = require('./routes/chatRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -31,6 +32,7 @@ mongoose.connect(MONGODB_URI)
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/audits', auditRoutes);
+app.use('/api/chats', chatRoutes);
 
 app.get('/', (req, res) => {
   res.json({
