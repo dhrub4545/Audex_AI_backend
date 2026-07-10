@@ -2,6 +2,11 @@ const cron = require('node-cron');
 const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
 
 function initScheduler() {
+  if (process.env.VERCEL) {
+    console.log('⏰ Ingestion Scheduler: Running on Vercel. Disabling startup sync and background cron to fit Serverless constraints.');
+    return;
+  }
+
   console.log('⏰ Ingestion Scheduler: Initializing background cron jobs...');
 
   // 1. Run Artificial Analysis sync hourly

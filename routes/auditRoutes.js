@@ -1148,10 +1148,18 @@ router.post('/audit-recommendation', async (req, res) => {
     }[targetUseCase] || 'aa_index_score';
 
     // 1. Fetch models
-    const docs = await Model.find({});
-    const allModels = docs.map(d => d.toObject());
+    let docs = await Model.find({});
+    let allModels = docs.map(d => d.toObject());
 
-    // If no models at all, return error
+    // If no models at all, try syncing first
+    if (allModels.length === 0) {
+      console.log('🔄 Database is empty, auto-triggering local sync/seeding in recommendation route...');
+      const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
+      await syncArtificialAnalysis();
+      docs = await Model.find({});
+      allModels = docs.map(d => d.toObject());
+    }
+
     if (allModels.length === 0) {
       return res.status(503).json({ error: 'Database is empty. Please wait for the initial synchronization pipeline to complete, or check backend logs.' });
     }
@@ -1523,7 +1531,14 @@ router.get('/subscription-tiers/list', (req, res) => {
 // Route to get list of all models for dropdown baselines
 router.get('/models/list', async (req, res) => {
   try {
-    const allModels = await Model.find({}).sort({ name: 1 });
+    let allModels = await Model.find({}).sort({ name: 1 });
+
+    if (allModels.length === 0) {
+      console.log('🔄 Database is empty, auto-triggering local sync/seeding in models list route...');
+      const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
+      await syncArtificialAnalysis();
+      allModels = await Model.find({}).sort({ name: 1 });
+    }
 
     // Format models
     const formatted = allModels.map(m => ({
@@ -1675,6 +1690,18 @@ Return ONLY a valid JSON object matching the following structure (no markdown wr
       error: 'Failed to generate comparison report with Gemini', 
       details: error.response ? error.response.data : error.message 
     });
+  }
+});
+
+// Admin Route to manually trigger data synchronization/seeding
+router.post('/admin/sync', async (req, res) => {
+  try {
+    const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
+    await syncArtificialAnalysis();
+    res.json({ message: 'Synchronization and seeding completed successfully.' });
+  } catch (err) {
+    console.error('Manual synchronization failed:', err);
+    res.status(500).json({ error: 'Manual synchronization failed', details: err.message });
   }
 });
 
