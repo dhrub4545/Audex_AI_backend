@@ -17,7 +17,7 @@ app.use(express.json());
 // Database connection
 const MONGODB_URI = process.env.MONGODB_URI || process.env.mongo_db || 'mongodb://localhost:27017/audit-ai';
 
-mongoose.connect(MONGODB_URI)
+let connectionPromise = mongoose.connect(MONGODB_URI)
 .then(() => {
   console.log('MongoDB successfully connected.');
   // Start scheduler
@@ -28,6 +28,26 @@ mongoose.connect(MONGODB_URI)
   console.error('❌ MongoDB connection failed:', err.message);
   if (!process.env.VERCEL) {
     process.exit(1);
+  }
+  throw err; // Propagate error for serverless requests
+});
+
+// Middleware to guarantee MongoDB is connected before handling routes
+app.use(async (req, res, next) => {
+  if (mongoose.connection.readyState !== 1) {
+    try {
+      console.log('⏳ Database connection is in state', mongoose.connection.readyState, '- awaiting connectionPromise...');
+      await connectionPromise;
+      next();
+    } catch (err) {
+      console.error('❌ Request blocked by database connection failure:', err.message);
+      res.status(500).json({ 
+        error: 'Database connection failed. Please check backend logs and MongoDB Atlas Network IP access settings.',
+        details: err.message 
+      });
+    }
+  } else {
+    next();
   }
 });
 
