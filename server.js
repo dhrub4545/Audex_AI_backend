@@ -25,8 +25,10 @@ mongoose.connect(MONGODB_URI)
   initScheduler();
 })
 .catch((err) => {
-  console.error('❌ MongoDB connection failed. Server shutting down:', err.message);
-  process.exit(1);
+  console.error('❌ MongoDB connection failed:', err.message);
+  if (!process.env.VERCEL) {
+    process.exit(1);
+  }
 });
 
 // Routes
