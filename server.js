@@ -37,9 +37,11 @@ app.use('/api/audits', auditRoutes);
 app.use('/api/chats', chatRoutes);
 
 app.get('/', (req, res) => {
+  const isConnected = mongoose.connection.readyState === 1;
   res.json({
     message: 'AudMint API Server is running',
-    dbMode: 'MongoDB (Connected)'
+    dbMode: isConnected ? 'MongoDB (Connected)' : 'MongoDB (Disconnected)',
+    dbState: mongoose.connection.readyState
   });
 });
 
