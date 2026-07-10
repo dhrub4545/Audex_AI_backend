@@ -19,7 +19,7 @@ const MONGODB_URI = process.env.MONGODB_URI || process.env.mongo_db || 'mongodb:
 
 mongoose.connect(MONGODB_URI)
 .then(() => {
-  console.log('MongoDB successfully connected to:', MONGODB_URI);
+  console.log('MongoDB successfully connected.');
   // Start scheduler
   const { initScheduler } = require('./jobs/scheduler');
   initScheduler();
