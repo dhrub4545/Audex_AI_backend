@@ -7,6 +7,43 @@ const { auth, optionalAuth } = require('../middleware/auth');
 const fs = require('fs');
 const path = require('path');
 
+function redactAuditRecommendations(recommendations) {
+  if (!recommendations || !Array.isArray(recommendations)) return recommendations;
+
+  return recommendations.map(rec => {
+    const redactedRec = rec.toObject ? rec.toObject() : { ...rec };
+    redactedRec.action = '•••••••• (Locked)';
+    
+    if (redactedRec.apiOption) {
+      redactedRec.apiOption = {
+        ...redactedRec.apiOption,
+        action: '••••••••',
+        planName: '••••••••',
+        name: '••••••••',
+        limits: '••••••••',
+        recommendedModel: '••••••••',
+        recommendedProvider: '••••••••',
+        statusText: 'Locked'
+      };
+    }
+    
+    if (redactedRec.subscriptionOption) {
+      redactedRec.subscriptionOption = {
+        ...redactedRec.subscriptionOption,
+        action: '••••••••',
+        planName: '••••••••',
+        name: '••••••••',
+        limits: '••••••••',
+        recommendedModel: '••••••••',
+        recommendedProvider: '••••••••',
+        statusText: 'Locked'
+      };
+    }
+    
+    return redactedRec;
+  });
+}
+
 // Load subscription pricing tiers from JSON file
 let subscriptionTiers = [];
 try {
@@ -317,7 +354,7 @@ function getSubscriptionPrice(toolName, plan) {
 
 
 // Route to run and save a new audit
-router.post('/', auth, async (req, res) => {
+router.post('/', optionalAuth, async (req, res) => {
   try {
     const { optimizationGoal = 'performance', costCutPercentage = 50, qualityThreshold = 90, allocations } = req.body;
 
@@ -325,57 +362,44 @@ router.post('/', auth, async (req, res) => {
       return res.status(400).json({ error: 'Missing required allocations data' });
     }
 
-    const user = await User.findById(req.user.id);
-
-    if (!user) {
-      return res.status(404).json({ error: 'Authenticated user not found.' });
-    }
-
-    if (!user.credits) {
-      user.credits = { starter: 0, pro: 0, proMax: 0 };
+    let user = null;
+    if (req.user) {
+      user = await User.findById(req.user.id);
     }
 
     // Count unique tools configured
     const uniqueTools = [...new Set(allocations.map(a => a.toolName))];
     const numTools = uniqueTools.length;
 
-    let tierUsed = 'starter';
-
-    if (numTools > 4) {
-      // Requires Pro or Pro Max
-      if (user.credits.pro > 0) {
-        user.credits.pro -= 1;
-        tierUsed = 'pro';
-      } else if (user.credits.proMax > 0) {
-        user.credits.proMax -= 1;
-        tierUsed = 'proMax';
-      } else {
-        return res.status(402).json({
-          error: 'Insufficient premium credits. Auditing more than 4 models requires Pro or Pro Max credits.',
-          credits: user.credits
-        });
-      }
-    } else {
-      // Can use Starter, Pro, or Pro Max - Prioritize Pro/ProMax first to ensure the best premium experience is unlocked
-      if (user.credits.pro > 0) {
-        user.credits.pro -= 1;
-        tierUsed = 'pro';
-      } else if (user.credits.proMax > 0) {
-        user.credits.proMax -= 1;
-        tierUsed = 'proMax';
-      } else if (user.credits.starter > 0) {
-        user.credits.starter -= 1;
-        tierUsed = 'starter';
-      } else {
-        return res.status(402).json({
-          error: 'No credits remaining. Please buy credits or subscribe.',
-          credits: user.credits
-        });
+    // Enforce backend tool limits based on user plan / tier
+    let maxAllowedTools = 2; // Default for Free tier or unauthenticated users
+    if (user) {
+      if (user.plan === 'enterprise' || (user.credits && user.credits.proMax > 0)) {
+        maxAllowedTools = Infinity;
+      } else if (user.plan === 'pro' || (user.credits && user.credits.pro > 0)) {
+        maxAllowedTools = 15;
       }
     }
 
-    user.markModified('credits');
-    await user.save();
+    if (numTools > maxAllowedTools) {
+      const isFree = maxAllowedTools === 2;
+      const errorMsg = isFree
+        ? `Maximum 2 tools allowed per audit analysis on the Free plan. Please upgrade your subscription to analyze more tools.`
+        : `Maximum 15 tools allowed per audit analysis on the Pro plan. Please upgrade to Enterprise for unlimited tools.`;
+      return res.status(403).json({
+        error: errorMsg,
+        code: 'TOOL_LIMIT_EXCEEDED',
+        maxAllowed: maxAllowedTools,
+        upgradeRequired: true
+      });
+    }
+
+    let tierUsed = 'starter';
+    if (numTools > 15) {
+      tierUsed = 'proMax';
+    } else if (numTools > 2) {
+      tierUsed = 'pro';
+    }
 
     // Fetch all models for API routing recommendations
     const docs = await Model.find({});
@@ -973,7 +997,7 @@ router.post('/', auth, async (req, res) => {
     const primaryUseCase = allocations[0]?.purpose || 'Mixed';
 
     const auditData = {
-      userId: req.user.id,
+      userId: user ? user._id : null,
       teamSize: totalSeats,
       useCase: primaryUseCase,
       optimizationGoal,
@@ -996,10 +1020,32 @@ router.post('/', auth, async (req, res) => {
     const audit = new Audit(auditData);
     await audit.save();
     console.log('Saved audit in MongoDB:', audit._id);
+
+    // Calculate isUnlocked dynamically
+    let isUnlocked = false;
+    if (numTools <= 2) {
+      isUnlocked = true;
+    } else if (user) {
+      if (user.plan === 'enterprise') {
+        isUnlocked = true;
+      } else if (user.plan === 'pro' && numTools <= 15) {
+        isUnlocked = true;
+      }
+    }
+
+    const returnedAudit = audit.toObject();
+    returnedAudit.isUnlocked = isUnlocked;
+
+    if (!isUnlocked) {
+      if (returnedAudit.savings && returnedAudit.savings.recommendations) {
+        returnedAudit.savings.recommendations = redactAuditRecommendations(returnedAudit.savings.recommendations);
+      }
+    }
+
     return res.status(201).json({
-      ...audit.toObject(),
+      ...returnedAudit,
       totalCurrentCost: totalCurrentBudget,
-      updatedCredits: user.credits
+      updatedCredits: user ? user.credits : null
     });
   } catch (error) {
     console.error('Audit Save Error:', error);
@@ -1011,10 +1057,29 @@ router.post('/', auth, async (req, res) => {
 router.get('/', auth, async (req, res) => {
   try {
     const audits = await Audit.find({ userId: req.user.id }).sort({ createdAt: -1 });
+    const user = await User.findById(req.user.id);
     
     // Hydrate baselineModels for all audits returned in the list
     const auditsObj = audits.map(audit => {
       const auditObj = audit.toObject();
+      const uniqueTools = [...new Set((auditObj.allocations || []).map(a => a.toolName))];
+      const numTools = uniqueTools.length;
+
+      let isUnlocked = false;
+      if (numTools <= 2) {
+        isUnlocked = true;
+      } else if (user) {
+        if (user.plan === 'enterprise') {
+          isUnlocked = true;
+        } else if (user.plan === 'pro' && numTools <= 15) {
+          isUnlocked = true;
+        } else if (user.unlockedAudits && user.unlockedAudits.some(aid => aid.toString() === auditObj._id.toString())) {
+          isUnlocked = true;
+        }
+      }
+      
+      auditObj.isUnlocked = isUnlocked;
+
       if (auditObj.allocations && Array.isArray(auditObj.allocations)) {
         auditObj.allocations.forEach(alloc => {
           if (alloc.type === 'subscription' && (!alloc.baselineModels || alloc.baselineModels.length === 0)) {
@@ -1050,15 +1115,41 @@ router.get('/:id', optionalAuth, async (req, res) => {
       }
     }
 
+    let user = null;
+    if (req.user) {
+      user = await User.findById(req.user.id);
+    }
+
+    const uniqueTools = [...new Set((audit.allocations || []).map(a => a.toolName))];
+    const numTools = uniqueTools.length;
+
+    let isUnlocked = false;
+    if (numTools <= 2) {
+      isUnlocked = true;
+    } else if (user) {
+      if (user.plan === 'enterprise') {
+        isUnlocked = true;
+      } else if (user.plan === 'pro' && numTools <= 15) {
+        isUnlocked = true;
+      } else if (user.unlockedAudits && user.unlockedAudits.some(aid => aid.toString() === audit._id.toString())) {
+        isUnlocked = true;
+      }
+    }
+
     const auditObj = audit.toObject();
+    auditObj.isUnlocked = isUnlocked;
+
+    if (!isUnlocked) {
+      if (auditObj.savings && auditObj.savings.recommendations) {
+        auditObj.savings.recommendations = redactAuditRecommendations(auditObj.savings.recommendations);
+      }
+    }
+
     if (auditObj.allocations && Array.isArray(auditObj.allocations)) {
       auditObj.allocations.forEach((alloc, index) => {
-        console.log(`[Hydration GET] alloc #${index}: type=${alloc.type}, toolName=${alloc.toolName}, plan=${alloc.plan}`);
         if (alloc.type === 'subscription' && (!alloc.baselineModels || alloc.baselineModels.length === 0)) {
           const tier = findSubscriptionTier(alloc.toolName, alloc.plan);
-          console.log(`[Hydration GET] findSubscriptionTier resolved tier:`, tier ? tier.plan : 'null');
           alloc.baselineModels = tier ? (tier.rawModels || []) : [];
-          console.log(`[Hydration GET] hydrated baselineModels:`, alloc.baselineModels);
         }
       });
     }

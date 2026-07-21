@@ -58,7 +58,9 @@ router.post('/register', async (req, res) => {
         id: newUser._id,
         name: newUser.name,
         email: newUser.email,
-        credits: newUser.credits
+        credits: newUser.credits,
+        plan: newUser.plan || 'free',
+        unlockedAudits: newUser.unlockedAudits || []
       }
     });
 
@@ -98,7 +100,9 @@ router.post('/login', async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        credits: user.credits || { starter: 0, pro: 0, proMax: 0 }
+        credits: user.credits || { starter: 0, pro: 0, proMax: 0 },
+        plan: user.plan || 'free',
+        unlockedAudits: user.unlockedAudits || []
       }
     });
 
@@ -121,7 +125,9 @@ router.get('/me', auth, async (req, res) => {
       id: user._id,
       name: user.name,
       email: user.email,
-      credits: user.credits || { starter: 0, pro: 0, proMax: 0 }
+      credits: user.credits || { starter: 0, pro: 0, proMax: 0 },
+      plan: user.plan || 'free',
+      unlockedAudits: user.unlockedAudits || []
     });
   } catch (error) {
     console.error('Fetch me error:', error);
@@ -153,6 +159,67 @@ router.post('/purchase', auth, async (req, res) => {
   } catch (error) {
     console.error('Purchase error:', error);
     res.status(500).json({ error: 'Internal Server Error during purchase.' });
+  }
+});
+
+// Route: Subscribe to a plan (POST /subscribe)
+router.post('/subscribe', auth, async (req, res) => {
+  try {
+    const { plan } = req.body;
+    if (!plan || !['free', 'pro', 'enterprise'].includes(plan)) {
+      return res.status(400).json({ error: 'Invalid plan selection.' });
+    }
+
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ error: 'User not found.' });
+
+    user.plan = plan;
+    await user.save();
+
+    res.json({
+      message: `Successfully subscribed to ${plan} plan.`,
+      plan: user.plan,
+      unlockedAudits: user.unlockedAudits || [],
+      credits: user.credits
+    });
+  } catch (error) {
+    console.error('Subscribe error:', error);
+    res.status(500).json({ error: 'Internal Server Error during subscription.' });
+  }
+});
+
+// Route: Unlock a specific audit report (POST /unlock-audit)
+router.post('/unlock-audit', auth, async (req, res) => {
+  try {
+    const { auditId } = req.body;
+    if (!auditId) {
+      return res.status(400).json({ error: 'Missing audit ID.' });
+    }
+
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ error: 'User not found.' });
+
+    if (!user.unlockedAudits) {
+      user.unlockedAudits = [];
+    }
+
+    const auditIdStr = auditId.toString();
+    const isAlreadyUnlocked = user.unlockedAudits.some(id => id.toString() === auditIdStr);
+
+    if (!isAlreadyUnlocked) {
+      user.unlockedAudits.push(auditId);
+      await user.save();
+    }
+
+    res.json({
+      message: 'Audit report unlocked successfully.',
+      plan: user.plan,
+      unlockedAudits: user.unlockedAudits,
+      credits: user.credits
+    });
+  } catch (error) {
+    console.error('Unlock audit error:', error);
+    res.status(500).json({ error: 'Internal Server Error during report unlock.' });
   }
 });
 
@@ -239,7 +306,7 @@ router.get('/google/callback', async (req, res) => {
     const token = generateToken(user._id, user.email);
 
     // 5. Redirect browser back to the frontend with query parameters
-    const redirectUrl = `${frontendUrl}/?google_token=${token}&google_user_id=${user._id}&google_user_name=${encodeURIComponent(user.name)}&google_user_email=${encodeURIComponent(user.email)}`;
+    const redirectUrl = `${frontendUrl}/?google_token=${token}&google_user_id=${user._id}&google_user_name=${encodeURIComponent(user.name)}&google_user_email=${encodeURIComponent(user.email)}&google_user_plan=${user.plan || 'free'}&google_user_unlocked_audits=${(user.unlockedAudits || []).map(id => id.toString()).join(',')}`;
     res.redirect(redirectUrl);
 
   } catch (error) {
@@ -363,7 +430,7 @@ router.get('/github/callback', async (req, res) => {
     const token = generateToken(user._id, user.email);
 
     // 6. Redirect back to frontend with session query parameters
-    const redirectUrl = `${frontendUrl}/?github_token=${token}&github_user_id=${user._id}&github_user_name=${encodeURIComponent(user.name)}&github_user_email=${encodeURIComponent(user.email)}`;
+    const redirectUrl = `${frontendUrl}/?github_token=${token}&github_user_id=${user._id}&github_user_name=${encodeURIComponent(user.name)}&github_user_email=${encodeURIComponent(user.email)}&github_user_plan=${user.plan || 'free'}&github_user_unlocked_audits=${(user.unlockedAudits || []).map(id => id.toString()).join(',')}`;
     res.redirect(redirectUrl);
 
   } catch (error) {

@@ -1,0 +1,42 @@
+{
+  "category_weights": {
+    "coding": {
+      "livecodebench": 0.35,
+      "swebench": 0.25,
+      "humaneval": 0.20,
+      "terminalbench": 0.20
+    },
+    "math": {
+      "aime": 0.50,
+      "math500": 0.30,
+      "gsm8k": 0.20
+    },
+    "reasoning": {
+      "gpqa": 0.45,
+      "mmlu_pro": 0.35,
+      "hle": 0.20
+    },
+    "research": {
+      "browsecomp": 0.40,
+      "simpleqa": 0.30,
+      "gpqa": 0.30
+    },
+    "instruction": {
+      "ifbench": 1.0
+    }
+  },
+  "arena_fusion": {
+    "benchmark_weight": 0.65,
+    "arena_weight": 0.35
+  },
+  "overall_weights": {
+    "coding": 0.18,
+    "math": 0.15,
+    "reasoning": 0.15,
+    "research": 0.12,
+    "writing": 0.10,
+    "instruction": 0.10,
+    "knowledge": 0.10,
+    "multilingual": 0.10
+  }
+}

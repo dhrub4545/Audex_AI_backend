@@ -44,7 +44,16 @@ const UserSchema = new mongoose.Schema({
       type: Number,
       default: 0
     }
-  }
+  },
+  plan: {
+    type: String,
+    enum: ['free', 'pro', 'enterprise'],
+    default: 'free'
+  },
+  unlockedAudits: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Audit'
+  }]
 });
 
 module.exports = mongoose.model('User', UserSchema);

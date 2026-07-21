@@ -1,5 +1,6 @@
 const cron = require('node-cron');
 const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
+const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
 
 function initScheduler() {
   if (process.env.VERCEL) {
@@ -9,7 +10,17 @@ function initScheduler() {
 
   console.log('⏰ Ingestion Scheduler: Initializing background cron jobs...');
 
-  // 1. Run Artificial Analysis sync hourly
+  // 1. Run Daily Automated AI Ranking Pipeline at 00:00 UTC
+  cron.schedule('0 0 * * *', async () => {
+    console.log('⏰ Ingestion Scheduler: Starting daily AI ranking pipeline run...');
+    try {
+      await runDailyRankingPipeline();
+    } catch (err) {
+      console.error('⏰ Ingestion Scheduler: Daily AI ranking pipeline failed:', err.message);
+    }
+  });
+
+  // 2. Run Artificial Analysis sync hourly
   cron.schedule('0 * * * *', async () => {
     console.log('⏰ Ingestion Scheduler: Starting hourly Artificial Analysis sync...');
     try {
@@ -19,18 +30,18 @@ function initScheduler() {
     }
   });
 
-
-
-  // 3. Trigger initial sync in the background on startup
+  // 3. Trigger initial synchronization and ranking pipeline on startup
   (async () => {
     console.log('🚀 Ingestion Scheduler: Triggering initial synchronization on startup...');
     try {
-      // Sync live pricing and capabilities from Artificial Analysis
-      await syncArtificialAnalysis();
+      // Sync live pricing, missing value imputer, and v1.2 rankings
+      await runDailyRankingPipeline();
       
       console.log('🚀 Ingestion Scheduler: Initial synchronization completed successfully!');
     } catch (err) {
       console.error('🚀 Ingestion Scheduler: Initial synchronization encountered an error:', err.message);
+      // Fallback sync if pipeline run fails
+      await syncArtificialAnalysis().catch(() => {});
     }
   })();
 }

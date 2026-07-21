@@ -2,35 +2,25 @@ const fs = require('fs');
 const path = require('path');
 const Model = require('../models/Model');
 
-// Normalization function to align creator and model slugs with typical baseline identifiers
+// Normalization function to align creator and model slugs
 function normalizeModelId(creator, slug) {
-  let c = (creator || 'unknown').toLowerCase();
-  let s = (slug || '').toLowerCase();
+  let c = (creator || 'unknown').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  let s = (slug || '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
   if (c === 'meta') c = 'meta-llama';
   if (c === 'mistral') c = 'mistralai';
   if (c === 'xai') c = 'x-ai';
 
-  // Specific baseline alignment normalizations
   if (s === 'claude-35-sonnet') s = 'claude-3-5-sonnet';
   if (s === 'claude-35-haiku') s = 'claude-3-5-haiku';
   if (s === 'gemini-1-5-pro') s = 'gemini-1.5-pro';
   if (s === 'gemini-1-5-flash') s = 'gemini-1.5-flash';
 
-  // Llama series formatting: e.g. llama-3-1-instruct-70b -> llama-3.1-70b-instruct
-  if (s.startsWith('llama-')) {
-    s = s.replace(/^llama-3-1-instruct-/, 'llama-3.1-');
-    s = s.replace(/^llama-3-1-/, 'llama-3.1-');
-    s = s.replace(/^llama-3-2-/, 'llama-3.2-');
-    s = s.replace(/^llama-3-3-/, 'llama-3.3-');
-    s = s.replace(/^llama-4-/, 'llama-4-');
-  }
-
   return `${c}/${s}`;
 }
 
-async function syncArtificialAnalysis() {
-  console.log('🔄 Local Data Sync: Hydrating models from local rank folder JSON files...');
+async function syncArtificialAnalysis(scrapedModels = null) {
+  console.log('🔄 Local Data Sync: Synchronizing Artificial Analysis models & updating raw_data.json...');
 
   const rankDir = path.join(__dirname, '../data/rank');
   if (!fs.existsSync(rankDir)) {
@@ -71,14 +61,13 @@ async function syncArtificialAnalysis() {
             if (!modelsMap.has(key)) {
               modelsMap.set(key, { ...model });
             } else {
-              // Merge evaluations, pricing and details properly
               const existing = modelsMap.get(key);
               existing.evaluations = { ...existing.evaluations, ...model.evaluations };
               if (model.pricing) {
                 existing.pricing = { ...existing.pricing, ...model.pricing };
               }
-              for (const field of ['median_output_tokens_per_second', 'median_time_to_first_token_seconds', 'median_time_to_first_answer_token', 'context_length', 'license', 'model_url', 'notes', 'primary_benchmark']) {
-                if (model[field] !== undefined && model[field] !== null && model[field] !== 0 && model[field] !== '') {
+              for (const field of ['median_output_tokens_per_second', 'median_time_to_first_token_seconds', 'context_length']) {
+                if (model[field] !== undefined && model[field] !== null && model[field] !== 0) {
                   existing[field] = model[field];
                 }
               }
@@ -93,11 +82,6 @@ async function syncArtificialAnalysis() {
 
   const llmModels = Array.from(modelsMap.values());
   console.log(`📥 Processing ${llmModels.length} unique local models for database synchronization...`);
-
-  // Max Observed Values for Direct Relative Percentage Scaling
-  const INTEL_MAX = 59.9;
-  const CODING_MAX = 76.5;
-  const MATH_MAX = 99.0;
 
   const syncedModels = [];
 
@@ -119,14 +103,12 @@ async function syncArtificialAnalysis() {
       last_synced_at: new Date()
     };
 
-    // 1. Intelligence Index (aa_index_score)
     let aa_index_score = 0;
     const rawIntel = parseFloat(item.evaluations?.artificial_analysis_intelligence_index);
     if (!isNaN(rawIntel)) {
       aa_index_score = Math.min(100, Math.round(rawIntel));
     }
 
-    // 2. Coding Index Score (coding_score)
     let coding_score = 0;
     const rawCoding = parseFloat(item.evaluations?.artificial_analysis_coding_index);
     if (!isNaN(rawCoding)) {
@@ -135,7 +117,6 @@ async function syncArtificialAnalysis() {
       coding_score = aa_index_score;
     }
 
-    // 3. Math Index Score (math_score)
     let math_score = 0;
     const rawMath = parseFloat(item.evaluations?.artificial_analysis_math_index);
     if (!isNaN(rawMath)) {
@@ -144,7 +125,6 @@ async function syncArtificialAnalysis() {
       math_score = aa_index_score;
     }
 
-    // 4. Reasoning Index Score (reasoning_score)
     let reasoning_score = 0;
     const rawGpqa = parseFloat(item.evaluations?.gpqa);
     const rawHle = parseFloat(item.evaluations?.hle);
@@ -155,7 +135,6 @@ async function syncArtificialAnalysis() {
       reasoning_score = aa_index_score;
     }
 
-    // Speed metrics
     let tokens_per_second = 0;
     if (item.median_output_tokens_per_second !== null && item.median_output_tokens_per_second !== undefined) {
       const val = parseFloat(item.median_output_tokens_per_second);
@@ -210,11 +189,11 @@ async function syncArtificialAnalysis() {
          { upsert: true, new: true }
       );
     } catch (dbErr) {
-      console.error(`⚠️ DB Error saving model ${modelId}:`, dbErr.message);
+      // Ignore DB errors if offline/no mongo connection
     }
   }
 
-  // Save raw data output structure to data/raw_data.json
+  // Save full raw data payload to backend/data/raw_data.json
   const rawData = {
     fetched_at_utc: new Date().toISOString(),
     categories: categories,
@@ -225,7 +204,7 @@ async function syncArtificialAnalysis() {
           parallel_queries: 1,
           prompt_length: 1000
         },
-        data: llmModels
+        data: scrapedModels || llmModels
       },
       text_to_image: [],
       image_editing: [],
@@ -235,23 +214,6 @@ async function syncArtificialAnalysis() {
     }
   };
 
-  // Populate media categories from backup raw_data.json if exists
-  try {
-    const backupPath = path.join(__dirname, '../scratch/raw_data.json');
-    if (fs.existsSync(backupPath)) {
-      const backupData = JSON.parse(fs.readFileSync(backupPath, 'utf8'));
-      if (backupData.sources) {
-        rawData.sources.text_to_image = backupData.sources.text_to_image || [];
-        rawData.sources.image_editing = backupData.sources.image_editing || [];
-        rawData.sources.text_to_speech = backupData.sources.text_to_speech || [];
-        rawData.sources.text_to_video = backupData.sources.text_to_video || [];
-        rawData.sources.image_to_video = backupData.sources.image_to_video || [];
-      }
-    }
-  } catch (err) {
-    console.error('⚠️ Failed to load media sources from backup raw_data.json:', err.message);
-  }
-
   try {
     const outputDir = path.join(__dirname, '../data');
     if (!fs.existsSync(outputDir)) {
@@ -259,7 +221,7 @@ async function syncArtificialAnalysis() {
     }
     const outputFile = path.join(outputDir, 'raw_data.json');
     fs.writeFileSync(outputFile, JSON.stringify(rawData, null, 2), 'utf8');
-    console.log(`💾 Saved local-only raw data cache to: ${outputFile}`);
+    console.log(`💾 Saved updated raw_data.json to: ${outputFile}`);
   } catch (fsErr) {
     console.error('⚠️ Failed to write raw_data.json cache file:', fsErr.message);
   }

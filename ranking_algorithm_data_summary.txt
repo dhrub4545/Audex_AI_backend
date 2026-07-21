@@ -1,0 +1,106 @@
+================================================================================
+  AUDEX AI / AUDIT AI: ARTIFICIAL ANALYSIS DATA & RANKING ALGORITHM SPECIFICATION
+================================================================================
+
+--------------------------------------------------------------------------------
+SECTION 1: DATA RETRIEVED FROM ARTIFICIAL ANALYSIS (DECRYPTED PAYLOAD)
+--------------------------------------------------------------------------------
+
+From artificialanalysis.ai, our scraper decrypts the live Next.js Flight stream
+payload and extracts 579+ AI models with the following raw data fields:
+
+1. Model Identification & Metadata:
+   - id: Unique model UUID string
+   - slug: Normalized URL slug (e.g. "gpt-5-6-sol", "claude-fable-5")
+   - name: Display name (e.g. "GPT-5.6 Sol (max)")
+   - shortName: Abbreviated model name
+   - releaseDate: Model release timestamp string (YYYY-MM-DD)
+   - isReasoning: Boolean indicating if reasoning/thinking tokens are enabled
+   - isOpenWeights: Boolean indicating open-source / open-weights availability
+   - contextWindowTokens: Context window token limit (e.g. 128,000 - 1,000,000)
+   - creator: Object containing creator metadata { id, slug, name, color, logo, url }
+   - inputModalityText / inputModalityImage / inputModalitySpeech / inputModalityVideo: Input capability booleans
+   - outputModalityText / outputModalityImage / outputModalitySpeech / outputModalityVideo: Output capability booleans
+
+2. Official Composite Index Metrics (Artificial Analysis 0-100 Scale):
+   - intelligenceIndex: Official General Intelligence Index score
+   - codingIndex: Official Composite Coding Index score
+   - agenticIndex: Official Composite Agentic / Coding Agent Index score
+
+3. Raw Individual Benchmark Evaluation Metrics (0.0 to 1.0 or 0-100 Scale):
+   - gpqa: GPQA Diamond graduate-level Q&A reasoning benchmark
+   - hle: Humanity's Last Exam benchmark
+   - ifbench: IFBench instruction-following benchmark
+   - livecodebench: LiveCodeBench pass@1 code generation score
+   - aime25: AIME 2025 competition math benchmark
+   - scicode: SciCode scientific coding benchmark
+   - mmmuPro: MMMU Pro multimodal reasoning & knowledge benchmark
+   - tau2: Tau2 multilingual benchmark
+   - gdpvalNormalized: GDPval data analysis benchmark
+   - tauBanking: Tau-Banking financial benchmark
+   - terminalbenchV21 & terminalbenchHard: Terminal-Bench agentic coding benchmarks
+
+4. Performance, Latency & Speed Metrics:
+   - medianOutputSpeed: Output token generation speed in tokens/second (e.g. 50.0 to 1000.0 tok/s)
+   - medianTimeToFirstAnswerToken / medianTimeToFirstChunk: Interactive Time-To-First-Token (TTFT) latency in seconds (e.g. 0.8s to 3.5s)
+
+5. Pricing Metrics:
+   - price1mInputTokens: Cost per 1,000,000 input tokens in USD (e.g. $0.15 - $10.00)
+   - price1mOutputTokens: Cost per 1,000,000 output tokens in USD (e.g. $0.60 - $50.00)
+   - cacheHitPrice / cacheWritePrice: Caching pricing per 1M tokens
+
+
+--------------------------------------------------------------------------------
+SECTION 2: RANKING ALGORITHM SPECIFICATION FOR ALL 30 CATEGORIES
+--------------------------------------------------------------------------------
+
+The ranking algorithm in `backend/audex-ai/algorithms/overall_score.js` ranks models
+strictly on official Artificial Analysis metrics without synthetic fallback substitutions:
+
+1. Category Metric Mapping:
+
+   Category Name       Primary Metric Used from Artificial Analysis Data
+   ------------------  -------------------------------------------------------------
+   overall             intelligenceIndex (General Intelligence Index)
+   coding              codingIndex (Composite Coding Index)
+   math                mathIndex / aime25 / scicode
+   reasoning           gpqa / hle
+   research            lcr (Long Context Reasoning)
+   instruction         ifbench (Instruction Following)
+   writing             intelligenceIndex
+   knowledge           mmmuPro (MMMU Pro Knowledge)
+   multilingual        tau2 (Multilingual Index)
+   agents              agenticIndex / terminalbenchV21 (Coding Agent Index)
+   data-analysis       gdpvalNormalized / tauBanking (Data Analysis Index)
+   fast                medianOutputSpeed (Output Tokens/Second)
+   cheap               price1mInputTokens + price1mOutputTokens (Cheapest First)
+   frontier            intelligenceIndex
+   vision              inputModalityImage ? intelligenceIndex : null
+   audio               inputModalitySpeech ? intelligenceIndex : null
+   open-weights        isOpenWeights ? intelligenceIndex : null
+   long-context        contextWindowTokens (Largest Context First)
+   enterprise          gdpvalNormalized / intelligenceIndex
+   legal               gpqa / ifbench / intelligenceIndex
+   medical             mmmuPro / gpqa / intelligenceIndex
+   finance             tauBanking / gdpvalNormalized / intelligenceIndex
+   scientific          scicode / gpqa / mmmuPro
+   creative-writing    intelligenceIndex
+   roleplay            ifbench / intelligenceIndex
+   translation         tau2 / instruction
+   summarization       lcr / ifbench
+   extraction          ifbench / gdpvalNormalized
+   tool-use            agenticIndex / ifbench
+   function-calling    agenticIndex / codingIndex
+
+2. Sorting & Integer Rank Assignment:
+   - Step 1: For each category file (e.g. coding.json, data-analysis.json), models containing valid metric values are separated from models missing the metric.
+   - Step 2: Models with valid metrics are sorted in DESCENDING order of their category metric value (except `cheap` which is sorted in ASCENDING order of total price).
+   - Step 3: Tie-Breaker: If two models have identical metric values, they are sorted alphabetically by model name.
+   - Step 4: Models missing the metric appear at the bottom with category_score = null.
+   - Step 5: Integer 1-indexed rank (1..N) is assigned according to final position in the sorted list (rank: 1, rank: 2, ..., rank: N).
+
+3. File Output:
+   - Output Directory: backend/data/rank/
+   - Category Files: 30 JSON files (overall.json, coding.json, math.json, data-analysis.json, etc.)
+   - Raw Data Cache: backend/data/raw_data.json
+================================================================================
