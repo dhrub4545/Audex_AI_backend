@@ -212,8 +212,21 @@ async function syncArtificialAnalysis(scrapedModels = null) {
         slug: item.slug,
         modelId: item.modelId,
         name: item.name,
-        organization: item.organization,
-        rating: item.rating
+        organization: item.organization || item.model_creator?.name || 'Unknown',
+        rating: item.rating || item.arena_elo || 0,
+        pricing: item.pricing || {
+          price_1m_input_tokens: item.price1mInputTokens || 0,
+          price_1m_output_tokens: item.price1mOutputTokens || 0
+        },
+        evaluations: item.evaluations || {
+          artificial_analysis_intelligence_index: item.category_scores?.[catName] || item.final_score || null,
+          artificial_analysis_coding_index: item.category_scores?.coding || null,
+          artificial_analysis_math_index: item.category_scores?.math || null,
+          gpqa: item.evaluations?.gpqa || null,
+          hle: item.evaluations?.hle || null
+        },
+        median_output_tokens_per_second: item.median_output_tokens_per_second || null,
+        median_time_to_first_token_seconds: item.median_time_to_first_token_seconds || null
       }));
     }
   }
