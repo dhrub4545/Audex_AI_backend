@@ -1529,7 +1529,17 @@ router.post('/cron/sync', handleCronSync);
 // Route to fetch raw Artificial Analysis API data for the home page analysis dashboard
 router.get('/analysis/raw-data', async (req, res) => {
   try {
-    let rawData = await getRawData();
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    let rawData = null;
+    if (req.query.refresh === 'true') {
+      console.log('🔄 Forced refresh requested on raw-data endpoint: Triggering ranking pipeline...');
+      await runDailyRankingPipeline();
+    }
+    
+    rawData = await getRawData();
 
     if (!rawData) {
       console.log('🔄 Raw data empty in DB & disk. Auto-triggering initial pipeline sync...');
