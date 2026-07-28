@@ -6,7 +6,7 @@ const Model = require('../models/Model');
 const { auth, optionalAuth } = require('../middleware/auth');
 const fs = require('fs');
 const path = require('path');
-const { getRawData } = require('../services/rankStorage');
+const { getRawData, getRankCategory } = require('../services/rankStorage');
 const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
 
 function redactAuditRecommendations(recommendations) {
@@ -161,17 +161,46 @@ function getRankFileName(purpose) {
   return 'overall.json';
 }
 
-function getCategoryRankData(purpose) {
-  const filename = getRankFileName(purpose);
-  const filePath = path.join(__dirname, '../data/rank', filename);
-  if (fs.existsSync(filePath)) {
-    try {
-      return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    } catch (e) {
-      console.error(`Error reading rank file ${filename}:`, e);
-    }
-  }
-  return [];
+function getRankCategoryKey(purpose) {
+  const p = purpose ? purpose.toLowerCase() : 'mixed';
+
+  if (p === 'coding' || p.includes('code') || p.includes('dev')) return 'coding';
+  if (p === 'math' || p.includes('math')) return 'math';
+  if (p === 'writing' || p.includes('write')) return 'writing';
+  if (p === 'reasoning' || p.includes('logic')) return 'reasoning';
+  if (p === 'research' || p.includes('research')) return 'research';
+  if (p === 'instruction' || p.includes('instruction')) return 'instruction';
+  if (p === 'knowledge') return 'knowledge';
+  if (p === 'multilingual' || p.includes('language')) return 'multilingual';
+  if (p === 'cheap' || p.includes('cost')) return 'cheap';
+  if (p === 'fast' || p.includes('speed')) return 'fast';
+  if (p === 'frontier') return 'frontier';
+  if (p === 'vision') return 'vision';
+  if (p === 'audio') return 'audio';
+  if (p === 'open-weights' || p.includes('open')) return 'open-weights';
+  if (p === 'agents' || p.includes('agent')) return 'agents';
+  if (p === 'long-context' || p.includes('context')) return 'long-context';
+  if (p === 'enterprise' || p.includes('business')) return 'enterprise';
+  if (p === 'legal' || p.includes('law')) return 'legal';
+  if (p === 'medical' || p.includes('healthcare') || p.includes('health')) return 'medical';
+  if (p === 'finance' || p.includes('finance')) return 'finance';
+  if (p === 'scientific' || p.includes('science')) return 'scientific';
+  if (p === 'creative-writing') return 'creative-writing';
+  if (p === 'data-analysis') return 'data-analysis';
+  if (p === 'roleplay') return 'roleplay';
+  if (p === 'translation') return 'translation';
+  if (p === 'summarization') return 'summarization';
+  if (p === 'extraction') return 'extraction';
+  if (p === 'tool-use') return 'tool-use';
+  if (p === 'function-calling') return 'function-calling';
+
+  return 'overall';
+}
+
+async function getCategoryRankData(purpose) {
+  const catKey = getRankCategoryKey(purpose);
+  const data = await getRankCategory(catKey);
+  return Array.isArray(data) ? data : [];
 }
 
 function getEvaluationScore(item, purpose, dbModel, capabilityField) {
@@ -415,7 +444,8 @@ router.post('/', optionalAuth, async (req, res) => {
     let totalCurrentBudget = 0;
     const allocationDetails = [];
 
-    allocations.forEach((alloc, allocIndex) => {
+    for (let allocIndex = 0; allocIndex < allocations.length; allocIndex++) {
+      const alloc = allocations[allocIndex];
       const type = alloc.type || 'subscription';
       const toolName = alloc.toolName;
       const purpose = alloc.purpose || 'Mixed';
@@ -482,7 +512,7 @@ router.post('/', optionalAuth, async (req, res) => {
             totalTokens = totalPromptTokens + totalCompletionTokens;
             inputRatio = totalTokens > 0 ? (totalPromptTokens / totalTokens) : 0.8;
 
-            const rankData = getCategoryRankData(purpose);
+            const rankData = await getCategoryRankData(purpose);
             const baselineSlug = primaryBaselineModel._id.split('/')[1] || '';
             const baselineRankEntry = findRankEntry(rankData, baselineSlug);
             baselineScore = baselineRankEntry ? getEvaluationScore(baselineRankEntry, purpose, primaryBaselineModel, capabilityField) : (primaryBaselineModel.capabilities?.[capabilityField] || 0);
@@ -514,7 +544,7 @@ router.post('/', optionalAuth, async (req, res) => {
         if (currentModel) {
           primaryBaselineModel = currentModel;
           currentCost = calculateModelCost(currentModel, totalTokens, inputRatio);
-          const rankData = getCategoryRankData(purpose);
+          const rankData = await getCategoryRankData(purpose);
           const currentSlug = currentModel._id.split('/')[1] || '';
           const currentRankEntry = findRankEntry(rankData, currentSlug);
           baselineScore = currentRankEntry ? getEvaluationScore(currentRankEntry, purpose, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || 0);
@@ -543,7 +573,7 @@ router.post('/', optionalAuth, async (req, res) => {
         inputRatio,
         capabilityField
       });
-    });
+    }
 
     // Inject currentCost, baselineModelId, and baselineModels into parsedAllocations so the frontend can read it
     allocationDetails.forEach((detail, i) => {
@@ -557,7 +587,8 @@ router.post('/', optionalAuth, async (req, res) => {
     let apiMonthlySavings = 0;
     let subMonthlySavings = 0;
 
-    allocationDetails.forEach((detail) => {
+    for (let detailIndex = 0; detailIndex < allocationDetails.length; detailIndex++) {
+      const detail = allocationDetails[detailIndex];
       const {
         allocIndex,
         type,
@@ -581,7 +612,7 @@ router.post('/', optionalAuth, async (req, res) => {
 
       // Process all allocations including $0/mo free ones
 
-      const rankData = getCategoryRankData(purpose);
+      const rankData = await getCategoryRankData(purpose);
 
       // Resolve the API model for this allocation (needed for both baseline calc and target model below)
       const currentModel = (type === 'api' && modelId)
@@ -990,7 +1021,7 @@ router.post('/', optionalAuth, async (req, res) => {
           modelName: currentModelName
         }
       });
-    });
+    }
 
     totalMonthlySavings = Math.max(apiMonthlySavings, subMonthlySavings);
     const totalAnnualSavings = totalMonthlySavings * 12;
@@ -1270,7 +1301,7 @@ router.post('/audit-recommendation', async (req, res) => {
       return res.status(404).json({ error: 'Baseline model data not found in database.' });
     }
 
-    const rankData = getCategoryRankData(targetUseCase);
+    const rankData = await getCategoryRankData(targetUseCase);
     
     const currentSlug = currentModel._id.split('/')[1] || '';
     const currentRankEntry = findRankEntry(rankData, currentSlug);
