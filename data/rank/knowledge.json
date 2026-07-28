@@ -30,7 +30,7 @@
       "agents": 55.3,
       "data-analysis": 68.1,
       "cheap": 30,
-      "fast": 62,
+      "fast": 62.2,
       "frontier": 60.7,
       "vision": 60.7,
       "audio": null,
@@ -68,8 +68,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 62,
-    "median_time_to_first_token_seconds": 30.17,
+    "median_output_tokens_per_second": 62.2,
+    "median_time_to_first_token_seconds": 29.79,
     "context_length": 1000000,
     "rank": 1
   },
@@ -178,7 +178,7 @@
       "agents": 54.5,
       "data-analysis": 66.4,
       "cheap": 30,
-      "fast": 56.9,
+      "fast": 55.7,
       "frontier": 60.1,
       "vision": 60.1,
       "audio": null,
@@ -216,8 +216,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 56.9,
-    "median_time_to_first_token_seconds": 22.36,
+    "median_output_tokens_per_second": 55.7,
+    "median_time_to_first_token_seconds": 21.92,
     "context_length": 1000000,
     "rank": 3
   },
@@ -326,7 +326,7 @@
       "agents": 54,
       "data-analysis": 61.8,
       "cheap": 35,
-      "fast": 83.9,
+      "fast": 80.7,
       "frontier": 58.9,
       "vision": 58.9,
       "audio": null,
@@ -364,8 +364,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 83.9,
-    "median_time_to_first_token_seconds": 66.81,
+    "median_output_tokens_per_second": 80.7,
+    "median_time_to_first_token_seconds": 66.05,
     "context_length": 1000000,
     "rank": 5
   },
@@ -474,7 +474,7 @@
       "agents": 51.8,
       "data-analysis": 59.5,
       "cheap": 35,
-      "fast": 81.3,
+      "fast": 80.3,
       "frontier": 57.7,
       "vision": 57.7,
       "audio": null,
@@ -512,8 +512,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 81.3,
-    "median_time_to_first_token_seconds": 35.38,
+    "median_output_tokens_per_second": 80.3,
+    "median_time_to_first_token_seconds": 28.05,
     "context_length": 1000000,
     "rank": 7
   },
@@ -587,7 +587,7 @@
       "price_1m_output_tokens": 25
     },
     "median_output_tokens_per_second": 59.1,
-    "median_time_to_first_token_seconds": 14.56,
+    "median_time_to_first_token_seconds": 14,
     "context_length": 1000000,
     "rank": 8
   },
@@ -696,7 +696,7 @@
       "agents": 48.5,
       "data-analysis": 56.3,
       "cheap": 35,
-      "fast": 76.9,
+      "fast": 76.1,
       "frontier": 55.9,
       "vision": 55.9,
       "audio": null,
@@ -734,8 +734,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 76.9,
-    "median_time_to_first_token_seconds": 8.65,
+    "median_output_tokens_per_second": 76.1,
+    "median_time_to_first_token_seconds": 8.46,
     "context_length": 1000000,
     "rank": 10
   },
@@ -809,7 +809,7 @@
       "price_1m_output_tokens": 25
     },
     "median_output_tokens_per_second": 59.3,
-    "median_time_to_first_token_seconds": 9.5,
+    "median_time_to_first_token_seconds": 9.19,
     "context_length": 1000000,
     "rank": 11
   },
@@ -844,7 +844,7 @@
       "agents": 44.5,
       "data-analysis": 52.7,
       "cheap": 35,
-      "fast": 74.4,
+      "fast": 74.2,
       "frontier": 53.6,
       "vision": 53.6,
       "audio": null,
@@ -882,8 +882,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 74.4,
-    "median_time_to_first_token_seconds": 5.55,
+    "median_output_tokens_per_second": 74.2,
+    "median_time_to_first_token_seconds": 4.82,
     "context_length": 1000000,
     "rank": 12
   },
@@ -918,7 +918,7 @@
       "agents": 37.8,
       "data-analysis": 43.6,
       "cheap": 35,
-      "fast": 79.8,
+      "fast": 79.4,
       "frontier": 50.4,
       "vision": 50.4,
       "audio": null,
@@ -956,8 +956,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 79.8,
-    "median_time_to_first_token_seconds": 8.12,
+    "median_output_tokens_per_second": 79.4,
+    "median_time_to_first_token_seconds": 7.83,
     "context_length": 922000,
     "rank": 13
   },
@@ -1066,7 +1066,7 @@
       "agents": 40,
       "data-analysis": 47.1,
       "cheap": 35,
-      "fast": 68.3,
+      "fast": 68.1,
       "frontier": 49.4,
       "vision": 49.4,
       "audio": null,
@@ -1104,8 +1104,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 68.3,
-    "median_time_to_first_token_seconds": 2.49,
+    "median_output_tokens_per_second": 68.1,
+    "median_time_to_first_token_seconds": 2.36,
     "context_length": 1000000,
     "rank": 15
   },
@@ -1140,7 +1140,7 @@
       "agents": 47.4,
       "data-analysis": 54.1,
       "cheap": 17.5,
-      "fast": 156.3,
+      "fast": 155.5,
       "frontier": 55,
       "vision": 55,
       "audio": null,
@@ -1178,8 +1178,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 156.3,
-    "median_time_to_first_token_seconds": 113.37,
+    "median_output_tokens_per_second": 155.5,
+    "median_time_to_first_token_seconds": 107.09,
     "context_length": 1000000,
     "rank": 16
   },
@@ -1214,7 +1214,7 @@
       "agents": 50.1,
       "data-analysis": 59.4,
       "cheap": 18,
-      "fast": 32.1,
+      "fast": 31.7,
       "frontier": 57.1,
       "vision": 57.1,
       "audio": null,
@@ -1252,8 +1252,8 @@
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 32.1,
-    "median_time_to_first_token_seconds": 169.88,
+    "median_output_tokens_per_second": 31.7,
+    "median_time_to_first_token_seconds": 173.37,
     "context_length": 1048576,
     "rank": 17
   },
@@ -1362,7 +1362,7 @@
       "agents": 20.8,
       "data-analysis": 22.1,
       "cheap": 2,
-      "fast": 52.4,
+      "fast": 52.5,
       "frontier": 39,
       "vision": 39,
       "audio": null,
@@ -1400,8 +1400,8 @@
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 1.6
     },
-    "median_output_tokens_per_second": 52.4,
-    "median_time_to_first_token_seconds": 40.12,
+    "median_output_tokens_per_second": 52.5,
+    "median_time_to_first_token_seconds": 40.09,
     "context_length": 1000000,
     "rank": 19
   },
@@ -1658,7 +1658,7 @@
       "agents": null,
       "data-analysis": 17.5,
       "cheap": 3.5,
-      "fast": 199,
+      "fast": 197.7,
       "frontier": 37.8,
       "vision": 37.8,
       "audio": 37.8,
@@ -1696,8 +1696,8 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 199,
-    "median_time_to_first_token_seconds": 7.24,
+    "median_output_tokens_per_second": 197.7,
+    "median_time_to_first_token_seconds": 7.14,
     "context_length": 1000000,
     "rank": 23
   },
@@ -1845,7 +1845,7 @@
       "price_1m_output_tokens": 25
     },
     "median_output_tokens_per_second": 59.7,
-    "median_time_to_first_token_seconds": 2.79,
+    "median_time_to_first_token_seconds": 2.93,
     "context_length": 1000000,
     "rank": 25
   },
@@ -1880,7 +1880,7 @@
       "agents": 44.7,
       "data-analysis": 53.7,
       "cheap": 17.5,
-      "fast": 125.9,
+      "fast": 124,
       "frontier": 51.6,
       "vision": 51.6,
       "audio": null,
@@ -1918,8 +1918,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 125.9,
-    "median_time_to_first_token_seconds": 7.97,
+    "median_output_tokens_per_second": 124,
+    "median_time_to_first_token_seconds": 7.57,
     "context_length": 1000000,
     "rank": 26
   },
@@ -1993,7 +1993,7 @@
       "price_1m_output_tokens": 4
     },
     "median_output_tokens_per_second": 46.5,
-    "median_time_to_first_token_seconds": 2.85,
+    "median_time_to_first_token_seconds": 2.81,
     "context_length": 256000,
     "rank": 27
   },
@@ -2028,7 +2028,7 @@
       "agents": 41.3,
       "data-analysis": 50.5,
       "cheap": 17.5,
-      "fast": 126.5,
+      "fast": 125.7,
       "frontier": 49,
       "vision": 49,
       "audio": null,
@@ -2066,8 +2066,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 126.5,
-    "median_time_to_first_token_seconds": 3.26,
+    "median_output_tokens_per_second": 125.7,
+    "median_time_to_first_token_seconds": 3.03,
     "context_length": 1000000,
     "rank": 28
   },
@@ -2176,7 +2176,7 @@
       "agents": 30.4,
       "data-analysis": 34.3,
       "cheap": 35,
-      "fast": 80.1,
+      "fast": 79.5,
       "frontier": 43.5,
       "vision": 43.5,
       "audio": null,
@@ -2214,8 +2214,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 80.1,
-    "median_time_to_first_token_seconds": 1.7,
+    "median_output_tokens_per_second": 79.5,
+    "median_time_to_first_token_seconds": 1.66,
     "context_length": 922000,
     "rank": 30
   },
@@ -2250,7 +2250,7 @@
       "agents": 44.4,
       "data-analysis": 49.7,
       "cheap": 30,
-      "fast": 50.4,
+      "fast": 49.9,
       "frontier": 53.5,
       "vision": 53.5,
       "audio": null,
@@ -2288,8 +2288,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 50.4,
-    "median_time_to_first_token_seconds": 20.55,
+    "median_output_tokens_per_second": 49.9,
+    "median_time_to_first_token_seconds": 20.1,
     "context_length": 1000000,
     "rank": 31
   },
@@ -2324,7 +2324,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 3.5,
-      "fast": 194.3,
+      "fast": 192.2,
       "frontier": 27.4,
       "vision": 27.4,
       "audio": 27.4,
@@ -2362,8 +2362,8 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 194.3,
-    "median_time_to_first_token_seconds": 0.75,
+    "median_output_tokens_per_second": 192.2,
+    "median_time_to_first_token_seconds": 0.76,
     "context_length": 1000000,
     "rank": 32
   },
@@ -2398,7 +2398,7 @@
       "agents": 45.6,
       "data-analysis": 54.1,
       "cheap": 7,
-      "fast": 207.4,
+      "fast": 204.9,
       "frontier": 51.2,
       "vision": 51.2,
       "audio": null,
@@ -2436,8 +2436,8 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 207.4,
-    "median_time_to_first_token_seconds": 73.7,
+    "median_output_tokens_per_second": 204.9,
+    "median_time_to_first_token_seconds": 72.51,
     "context_length": 1000000,
     "rank": 33
   },
@@ -2472,7 +2472,7 @@
       "agents": 42.9,
       "data-analysis": 51.5,
       "cheap": 7,
-      "fast": 200.7,
+      "fast": 198.2,
       "frontier": 49.1,
       "vision": 49.1,
       "audio": null,
@@ -2510,8 +2510,8 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 200.7,
-    "median_time_to_first_token_seconds": 25.88,
+    "median_output_tokens_per_second": 198.2,
+    "median_time_to_first_token_seconds": 21.96,
     "context_length": 1000000,
     "rank": 34
   },
@@ -2546,7 +2546,7 @@
       "agents": 35.4,
       "data-analysis": 44.5,
       "cheap": 1.5,
-      "fast": 81.8,
+      "fast": 88,
       "frontier": 44.4,
       "vision": 44.4,
       "audio": null,
@@ -2584,8 +2584,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 81.8,
-    "median_time_to_first_token_seconds": 25.68,
+    "median_output_tokens_per_second": 88,
+    "median_time_to_first_token_seconds": 23.93,
     "context_length": 1000000,
     "rank": 35
   },
@@ -2620,7 +2620,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 15.8,
-      "fast": 139.5,
+      "fast": 134.5,
       "frontier": 44.3,
       "vision": 44.3,
       "audio": null,
@@ -2658,8 +2658,8 @@
       "price_1m_input_tokens": 1.75,
       "price_1m_output_tokens": 14
     },
-    "median_output_tokens_per_second": 139.5,
-    "median_time_to_first_token_seconds": 50.41,
+    "median_output_tokens_per_second": 134.5,
+    "median_time_to_first_token_seconds": 52.31,
     "context_length": 400000,
     "rank": 36
   },
@@ -2694,7 +2694,7 @@
       "agents": 41.1,
       "data-analysis": 44.6,
       "cheap": 17.5,
-      "fast": 145.2,
+      "fast": 144.8,
       "frontier": 51.4,
       "vision": 51.4,
       "audio": null,
@@ -2732,8 +2732,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 145.2,
-    "median_time_to_first_token_seconds": 107.83,
+    "median_output_tokens_per_second": 144.8,
+    "median_time_to_first_token_seconds": 114.76,
     "context_length": 1050000,
     "rank": 37
   },
@@ -2768,7 +2768,7 @@
       "agents": 24.1,
       "data-analysis": 29.2,
       "cheap": 3.8,
-      "fast": 124.4,
+      "fast": 123,
       "frontier": 37.6,
       "vision": 37.6,
       "audio": null,
@@ -2806,8 +2806,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 124.4,
-    "median_time_to_first_token_seconds": 27.88,
+    "median_output_tokens_per_second": 123,
+    "median_time_to_first_token_seconds": 27.19,
     "context_length": 1000000,
     "rank": 38
   },
@@ -2842,7 +2842,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 17.5,
-      "fast": 109.5,
+      "fast": 109.3,
       "frontier": 39.1,
       "vision": 39.1,
       "audio": null,
@@ -2880,8 +2880,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 109.5,
-    "median_time_to_first_token_seconds": 1.62,
+    "median_output_tokens_per_second": 109.3,
+    "median_time_to_first_token_seconds": 1.59,
     "context_length": 1050000,
     "rank": 39
   },
@@ -2916,7 +2916,7 @@
       "agents": 27.6,
       "data-analysis": 31.9,
       "cheap": 3.5,
-      "fast": 52.5,
+      "fast": 52.8,
       "frontier": 39.6,
       "vision": 39.6,
       "audio": null,
@@ -2954,8 +2954,8 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 52.5,
-    "median_time_to_first_token_seconds": 107.29,
+    "median_output_tokens_per_second": 52.8,
+    "median_time_to_first_token_seconds": 106.78,
     "context_length": 1000000,
     "rank": 40
   },
@@ -3064,7 +3064,7 @@
       "agents": 46.7,
       "data-analysis": 55.2,
       "cheap": 12,
-      "fast": 85.1,
+      "fast": 85.7,
       "frontier": 53.4,
       "vision": 53.4,
       "audio": null,
@@ -3102,8 +3102,8 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 85.1,
-    "median_time_to_first_token_seconds": 103.45,
+    "median_output_tokens_per_second": 85.7,
+    "median_time_to_first_token_seconds": 109.53,
     "context_length": 1000000,
     "rank": 42
   },
@@ -3212,7 +3212,7 @@
       "agents": 37,
       "data-analysis": 45.1,
       "cheap": 17.5,
-      "fast": 132,
+      "fast": 126.8,
       "frontier": 45.6,
       "vision": 45.6,
       "audio": null,
@@ -3250,8 +3250,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 132,
-    "median_time_to_first_token_seconds": 1.59,
+    "median_output_tokens_per_second": 126.8,
+    "median_time_to_first_token_seconds": 1.53,
     "context_length": 1000000,
     "rank": 44
   },
@@ -3360,7 +3360,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 30,
-      "fast": 56.7,
+      "fast": 57.1,
       "frontier": 42.7,
       "vision": 42.7,
       "audio": null,
@@ -3398,8 +3398,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 56.7,
-    "median_time_to_first_token_seconds": 1.73,
+    "median_output_tokens_per_second": 57.1,
+    "median_time_to_first_token_seconds": 1.75,
     "context_length": 1000000,
     "rank": 46
   },
@@ -3508,7 +3508,7 @@
       "agents": 30.6,
       "data-analysis": 37.7,
       "cheap": 17.5,
-      "fast": 124.9,
+      "fast": 123.5,
       "frontier": 40.5,
       "vision": 40.5,
       "audio": null,
@@ -3546,7 +3546,7 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 124.9,
+    "median_output_tokens_per_second": 123.5,
     "median_time_to_first_token_seconds": 1.27,
     "context_length": 1000000,
     "rank": 48
@@ -3582,7 +3582,7 @@
       "agents": 31,
       "data-analysis": 38.8,
       "cheap": 7,
-      "fast": 192.4,
+      "fast": 192.1,
       "frontier": 38.1,
       "vision": 38.1,
       "audio": null,
@@ -3620,8 +3620,8 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 192.4,
-    "median_time_to_first_token_seconds": 2.13,
+    "median_output_tokens_per_second": 192.1,
+    "median_time_to_first_token_seconds": 1.94,
     "context_length": 1000000,
     "rank": 49
   },
@@ -3656,7 +3656,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 3.8,
-      "fast": 121.9,
+      "fast": 123.3,
       "frontier": 36,
       "vision": 36,
       "audio": null,
@@ -3694,8 +3694,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 121.9,
-    "median_time_to_first_token_seconds": 19.91,
+    "median_output_tokens_per_second": 123.3,
+    "median_time_to_first_token_seconds": 20.04,
     "context_length": 1000000,
     "rank": 50
   },
@@ -3730,7 +3730,7 @@
       "agents": 6.2,
       "data-analysis": 7.4,
       "cheap": 1.8,
-      "fast": 314.8,
+      "fast": 313.1,
       "frontier": 25,
       "vision": 25,
       "audio": 25,
@@ -3768,7 +3768,7 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 1.5
     },
-    "median_output_tokens_per_second": 314.8,
+    "median_output_tokens_per_second": 313.1,
     "median_time_to_first_token_seconds": 5.03,
     "context_length": 1000000,
     "rank": 51
@@ -4213,7 +4213,7 @@
       "price_1m_output_tokens": 3.2
     },
     "median_output_tokens_per_second": 145.2,
-    "median_time_to_first_token_seconds": 14.8,
+    "median_time_to_first_token_seconds": 14.79,
     "context_length": 262144,
     "rank": 57
   },
@@ -4248,7 +4248,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.7,
-      "fast": 78.2,
+      "fast": 77.8,
       "frontier": 33.8,
       "vision": 33.8,
       "audio": null,
@@ -4286,7 +4286,7 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.4
     },
-    "median_output_tokens_per_second": 78.2,
+    "median_output_tokens_per_second": 77.8,
     "median_time_to_first_token_seconds": 5.68,
     "context_length": 262144,
     "rank": 58
@@ -4322,7 +4322,7 @@
       "agents": 21.4,
       "data-analysis": 27.6,
       "cheap": 1.7,
-      "fast": 103.8,
+      "fast": 108.5,
       "frontier": 31.6,
       "vision": 31.6,
       "audio": null,
@@ -4360,8 +4360,8 @@
       "price_1m_input_tokens": 0.248,
       "price_1m_output_tokens": 1.485
     },
-    "median_output_tokens_per_second": 103.8,
-    "median_time_to_first_token_seconds": 53.33,
+    "median_output_tokens_per_second": 108.5,
+    "median_time_to_first_token_seconds": 51.1,
     "context_length": 262144,
     "rank": 59
   },
@@ -4435,7 +4435,7 @@
       "price_1m_output_tokens": 10
     },
     "median_output_tokens_per_second": 150.4,
-    "median_time_to_first_token_seconds": 19.8,
+    "median_time_to_first_token_seconds": 20.09,
     "context_length": 1000000,
     "rank": 60
   },
@@ -4544,7 +4544,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 8,
-      "fast": 195.9,
+      "fast": 191,
       "frontier": 37,
       "vision": 37,
       "audio": null,
@@ -4582,8 +4582,8 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 195.9,
-    "median_time_to_first_token_seconds": 11.62,
+    "median_output_tokens_per_second": 191,
+    "median_time_to_first_token_seconds": 11.53,
     "context_length": 2000000,
     "rank": 62
   },
@@ -4692,7 +4692,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 11.3,
-      "fast": 105.9,
+      "fast": 105.2,
       "frontier": 33.7,
       "vision": 33.7,
       "audio": null,
@@ -4730,8 +4730,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 105.9,
-    "median_time_to_first_token_seconds": 36.69,
+    "median_output_tokens_per_second": 105.2,
+    "median_time_to_first_token_seconds": 35.46,
     "context_length": 400000,
     "rank": 64
   },
@@ -4840,7 +4840,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 30,
-      "fast": 52.6,
+      "fast": 51.5,
       "frontier": 40.8,
       "vision": 40.8,
       "audio": null,
@@ -4878,8 +4878,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 52.6,
-    "median_time_to_first_token_seconds": 14.82,
+    "median_output_tokens_per_second": 51.5,
+    "median_time_to_first_token_seconds": 13.8,
     "context_length": 200000,
     "rank": 66
   },
@@ -4914,7 +4914,7 @@
       "agents": 25.4,
       "data-analysis": 32.7,
       "cheap": 7,
-      "fast": 198.9,
+      "fast": 198.4,
       "frontier": 33.3,
       "vision": 33.3,
       "audio": null,
@@ -4952,8 +4952,8 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 198.9,
-    "median_time_to_first_token_seconds": 1.57,
+    "median_output_tokens_per_second": 198.4,
+    "median_time_to_first_token_seconds": 1.52,
     "context_length": 1000000,
     "rank": 67
   },
@@ -5062,7 +5062,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 11.3,
-      "fast": 95.4,
+      "fast": 94.9,
       "frontier": 31.2,
       "vision": 31.2,
       "audio": null,
@@ -5100,8 +5100,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 95.4,
-    "median_time_to_first_token_seconds": 9.52,
+    "median_output_tokens_per_second": 94.9,
+    "median_time_to_first_token_seconds": 10.13,
     "context_length": 400000,
     "rank": 69
   },
@@ -5210,7 +5210,7 @@
       "agents": 32.3,
       "data-analysis": 36.8,
       "cheap": 6.6,
-      "fast": 86.3,
+      "fast": 86.8,
       "frontier": 40.7,
       "vision": 40.7,
       "audio": 40.7,
@@ -5248,8 +5248,8 @@
       "price_1m_input_tokens": 1.87,
       "price_1m_output_tokens": 4.68
     },
-    "median_output_tokens_per_second": 86.3,
-    "median_time_to_first_token_seconds": 25.33,
+    "median_output_tokens_per_second": 86.8,
+    "median_time_to_first_token_seconds": 25.2,
     "context_length": 1000000,
     "rank": 71
   },
@@ -5284,7 +5284,7 @@
       "agents": 14.4,
       "data-analysis": 15.5,
       "cheap": 0,
-      "fast": 35.5,
+      "fast": 35.6,
       "frontier": 29.4,
       "vision": 29.4,
       "audio": null,
@@ -5322,8 +5322,8 @@
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 35.5,
-    "median_time_to_first_token_seconds": 49.93,
+    "median_output_tokens_per_second": 35.6,
+    "median_time_to_first_token_seconds": 49.85,
     "context_length": 256000,
     "rank": 72
   },
@@ -5358,7 +5358,7 @@
       "agents": 40.8,
       "data-analysis": 43.9,
       "cheap": 18,
-      "fast": 55.7,
+      "fast": 54.7,
       "frontier": 47.2,
       "vision": 47.2,
       "audio": null,
@@ -5396,8 +5396,8 @@
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 55.7,
-    "median_time_to_first_token_seconds": 124.45,
+    "median_output_tokens_per_second": 54.7,
+    "median_time_to_first_token_seconds": 116.01,
     "context_length": 1000000,
     "rank": 73
   },
@@ -5654,7 +5654,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 3.6,
-      "fast": 56.6,
+      "fast": 55.9,
       "frontier": 29.4,
       "vision": 29.4,
       "audio": null,
@@ -5692,8 +5692,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 56.6,
-    "median_time_to_first_token_seconds": 2.79,
+    "median_output_tokens_per_second": 55.9,
+    "median_time_to_first_token_seconds": 2.83,
     "context_length": 256000,
     "rank": 77
   },
@@ -6172,7 +6172,7 @@
       "agents": 34.9,
       "data-analysis": 43.8,
       "cheap": 35,
-      "fast": 72.2,
+      "fast": 71.3,
       "frontier": 41.2,
       "vision": 41.2,
       "audio": null,
@@ -6210,8 +6210,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 72.2,
-    "median_time_to_first_token_seconds": 0.88,
+    "median_output_tokens_per_second": 71.3,
+    "median_time_to_first_token_seconds": 0.89,
     "context_length": 1000000,
     "rank": 84
   },
@@ -6285,7 +6285,7 @@
       "price_1m_output_tokens": 3.6
     },
     "median_output_tokens_per_second": 57.8,
-    "median_time_to_first_token_seconds": 1.4,
+    "median_time_to_first_token_seconds": 1.41,
     "context_length": 262144,
     "rank": 85
   },
@@ -6320,7 +6320,7 @@
       "agents": 25.8,
       "data-analysis": 31.1,
       "cheap": 35,
-      "fast": 78.9,
+      "fast": 77.7,
       "frontier": 35.4,
       "vision": 35.4,
       "audio": null,
@@ -6358,8 +6358,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 78.9,
-    "median_time_to_first_token_seconds": 0.97,
+    "median_output_tokens_per_second": 77.7,
+    "median_time_to_first_token_seconds": 0.91,
     "context_length": 922000,
     "rank": 86
   },
@@ -6803,7 +6803,7 @@
       "price_1m_output_tokens": 4.8
     },
     "median_output_tokens_per_second": 55,
-    "median_time_to_first_token_seconds": 1.25,
+    "median_time_to_first_token_seconds": 1.24,
     "context_length": 256000,
     "rank": 92
   },
@@ -6838,7 +6838,7 @@
       "agents": 11,
       "data-analysis": 12.7,
       "cheap": 0.5,
-      "fast": 75.2,
+      "fast": 79.4,
       "frontier": 21.8,
       "vision": 21.8,
       "audio": null,
@@ -6876,8 +6876,8 @@
       "price_1m_input_tokens": 0.14,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 75.2,
-    "median_time_to_first_token_seconds": 1.22,
+    "median_output_tokens_per_second": 79.4,
+    "median_time_to_first_token_seconds": 1.24,
     "context_length": 256000,
     "rank": 93
   },
@@ -7060,7 +7060,7 @@
       "agents": 19.4,
       "data-analysis": 21.6,
       "cheap": 2.3,
-      "fast": 97.6,
+      "fast": 100.5,
       "frontier": 25.3,
       "vision": 25.3,
       "audio": null,
@@ -7098,8 +7098,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 2
     },
-    "median_output_tokens_per_second": 97.6,
-    "median_time_to_first_token_seconds": 108.19,
+    "median_output_tokens_per_second": 100.5,
+    "median_time_to_first_token_seconds": 96.1,
     "context_length": 400000,
     "rank": 96
   },
@@ -7134,7 +7134,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 10,
-      "fast": 154,
+      "fast": 142.6,
       "frontier": 30.4,
       "vision": 30.4,
       "audio": null,
@@ -7172,8 +7172,8 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 8
     },
-    "median_output_tokens_per_second": 154,
-    "median_time_to_first_token_seconds": 5.92,
+    "median_output_tokens_per_second": 142.6,
+    "median_time_to_first_token_seconds": 5.85,
     "context_length": 200000,
     "rank": 97
   },
@@ -7208,7 +7208,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.7,
-      "fast": 81.2,
+      "fast": 81.6,
       "frontier": 29.3,
       "vision": 29.3,
       "audio": null,
@@ -7246,8 +7246,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.4
     },
-    "median_output_tokens_per_second": 81.2,
-    "median_time_to_first_token_seconds": 5.71,
+    "median_output_tokens_per_second": 81.6,
+    "median_time_to_first_token_seconds": 5.68,
     "context_length": 262144,
     "rank": 98
   },
@@ -7356,7 +7356,7 @@
       "agents": 7.9,
       "data-analysis": 7.6,
       "cheap": 0.4,
-      "fast": 117,
+      "fast": 116.1,
       "frontier": 21.8,
       "vision": 21.8,
       "audio": 21.8,
@@ -7394,8 +7394,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 117,
-    "median_time_to_first_token_seconds": 18.55,
+    "median_output_tokens_per_second": 116.1,
+    "median_time_to_first_token_seconds": 18.68,
     "context_length": 256000,
     "rank": 100
   },
@@ -7726,7 +7726,7 @@
       "agents": 7.4,
       "data-analysis": 7.5,
       "cheap": 0.3,
-      "fast": 67.2,
+      "fast": 70.1,
       "frontier": 21.4,
       "vision": 21.4,
       "audio": null,
@@ -7764,8 +7764,8 @@
       "price_1m_input_tokens": 0.135,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 67.2,
-    "median_time_to_first_token_seconds": 30.69,
+    "median_output_tokens_per_second": 70.1,
+    "median_time_to_first_token_seconds": 29.23,
     "context_length": 262144,
     "rank": 105
   },
@@ -8096,7 +8096,7 @@
       "agents": 24.6,
       "data-analysis": 27.6,
       "cheap": 18,
-      "fast": 49.9,
+      "fast": 48.5,
       "frontier": 36.4,
       "vision": 36.4,
       "audio": null,
@@ -8134,8 +8134,8 @@
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 49.9,
-    "median_time_to_first_token_seconds": 15,
+    "median_output_tokens_per_second": 48.5,
+    "median_time_to_first_token_seconds": 13.76,
     "context_length": 1000000,
     "rank": 110
   },
@@ -8614,7 +8614,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.5,
-      "fast": 61.3,
+      "fast": 61.6,
       "frontier": 20.1,
       "vision": 20.1,
       "audio": null,
@@ -8652,8 +8652,8 @@
       "price_1m_input_tokens": 0.13,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 61.3,
-    "median_time_to_first_token_seconds": 0.54,
+    "median_output_tokens_per_second": 61.6,
+    "median_time_to_first_token_seconds": 0.57,
     "context_length": 256000,
     "rank": 117
   },
@@ -8688,7 +8688,7 @@
       "agents": 29.3,
       "data-analysis": 37.1,
       "cheap": 17.5,
-      "fast": 124.4,
+      "fast": 122.4,
       "frontier": 34,
       "vision": 34,
       "audio": null,
@@ -8726,8 +8726,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 124.4,
-    "median_time_to_first_token_seconds": 0.67,
+    "median_output_tokens_per_second": 122.4,
+    "median_time_to_first_token_seconds": 0.69,
     "context_length": 1000000,
     "rank": 118
   },
@@ -8836,7 +8836,7 @@
       "agents": null,
       "data-analysis": 12,
       "cheap": 15.8,
-      "fast": 77.6,
+      "fast": 77.5,
       "frontier": 26,
       "vision": 26,
       "audio": null,
@@ -8874,7 +8874,7 @@
       "price_1m_input_tokens": 1.75,
       "price_1m_output_tokens": 14
     },
-    "median_output_tokens_per_second": 77.6,
+    "median_output_tokens_per_second": 77.5,
     "median_time_to_first_token_seconds": 0.88,
     "context_length": 400000,
     "rank": 120
@@ -8910,7 +8910,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.8,
-      "fast": 224.1,
+      "fast": 222.1,
       "frontier": 14.1,
       "vision": 14.1,
       "audio": 14.1,
@@ -8948,8 +8948,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 224.1,
-    "median_time_to_first_token_seconds": 0.5,
+    "median_output_tokens_per_second": 222.1,
+    "median_time_to_first_token_seconds": 0.51,
     "context_length": 1000000,
     "rank": 121
   },
@@ -9058,7 +9058,7 @@
       "agents": 25.8,
       "data-analysis": 8.2,
       "cheap": 0.2,
-      "fast": 33.8,
+      "fast": 32.8,
       "frontier": 20.1,
       "vision": 20.1,
       "audio": null,
@@ -9096,8 +9096,8 @@
       "price_1m_input_tokens": 0.03,
       "price_1m_output_tokens": 0.15
     },
-    "median_output_tokens_per_second": 33.8,
-    "median_time_to_first_token_seconds": 59.64,
+    "median_output_tokens_per_second": 32.8,
+    "median_time_to_first_token_seconds": 61.46,
     "context_length": 262144,
     "rank": 123
   },
@@ -9428,7 +9428,7 @@
       "agents": 22.8,
       "data-analysis": 29.9,
       "cheap": 3.8,
-      "fast": 114.1,
+      "fast": 118,
       "frontier": 24.8,
       "vision": 24.8,
       "audio": null,
@@ -9466,7 +9466,7 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 114.1,
+    "median_output_tokens_per_second": 118,
     "median_time_to_first_token_seconds": 0.92,
     "context_length": 1000000,
     "rank": 128
@@ -9724,7 +9724,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 3.5,
-      "fast": 36.5,
+      "fast": 36.6,
       "frontier": 11.1,
       "vision": 11.1,
       "audio": null,
@@ -9762,8 +9762,8 @@
       "price_1m_input_tokens": 0.7,
       "price_1m_output_tokens": 2.8
     },
-    "median_output_tokens_per_second": 36.5,
-    "median_time_to_first_token_seconds": 3.16,
+    "median_output_tokens_per_second": 36.6,
+    "median_time_to_first_token_seconds": 3.15,
     "context_length": 256000,
     "rank": 132
   },
@@ -10059,7 +10059,7 @@
       "price_1m_output_tokens": 2.5
     },
     "median_output_tokens_per_second": 213.1,
-    "median_time_to_first_token_seconds": 23.83,
+    "median_time_to_first_token_seconds": 23.04,
     "context_length": 1000000,
     "rank": 136
   },
@@ -10168,7 +10168,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 9.1,
-      "fast": 87.9,
+      "fast": 88.1,
       "frontier": 17.9,
       "vision": 17.9,
       "audio": null,
@@ -10206,8 +10206,8 @@
       "price_1m_input_tokens": 0.7,
       "price_1m_output_tokens": 8.4
     },
-    "median_output_tokens_per_second": 87.9,
-    "median_time_to_first_token_seconds": 2.65,
+    "median_output_tokens_per_second": 88.1,
+    "median_time_to_first_token_seconds": 2.64,
     "context_length": 256000,
     "rank": 138
   },
@@ -10316,7 +10316,7 @@
       "agents": 9.2,
       "data-analysis": 10.9,
       "cheap": 0,
-      "fast": 198.6,
+      "fast": 197.3,
       "frontier": 22.5,
       "vision": 22.5,
       "audio": null,
@@ -10354,8 +10354,8 @@
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 198.6,
-    "median_time_to_first_token_seconds": 10.25,
+    "median_output_tokens_per_second": 197.3,
+    "median_time_to_first_token_seconds": 10.31,
     "context_length": 192000,
     "rank": 140
   },
@@ -10464,7 +10464,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.8,
-      "fast": 194.2,
+      "fast": 186.5,
       "frontier": 19,
       "vision": 19,
       "audio": null,
@@ -10502,8 +10502,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 194.2,
-    "median_time_to_first_token_seconds": 25.61,
+    "median_output_tokens_per_second": 186.5,
+    "median_time_to_first_token_seconds": 26.04,
     "context_length": 1000000,
     "rank": 142
   },
@@ -10686,7 +10686,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 11.3,
-      "fast": 95.2,
+      "fast": 94.3,
       "frontier": 17.2,
       "vision": 17.2,
       "audio": null,
@@ -10724,8 +10724,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 95.2,
-    "median_time_to_first_token_seconds": 1.15,
+    "median_output_tokens_per_second": 94.3,
+    "median_time_to_first_token_seconds": 1.14,
     "context_length": 400000,
     "rank": 145
   },
@@ -10760,7 +10760,7 @@
       "agents": 1.3,
       "data-analysis": 3.9,
       "cheap": 1.1,
-      "fast": 119.6,
+      "fast": 120.3,
       "frontier": 14.3,
       "vision": 14.3,
       "audio": null,
@@ -10798,8 +10798,8 @@
       "price_1m_input_tokens": 0.27,
       "price_1m_output_tokens": 0.85
     },
-    "median_output_tokens_per_second": 119.6,
-    "median_time_to_first_token_seconds": 0.6,
+    "median_output_tokens_per_second": 120.3,
+    "median_time_to_first_token_seconds": 0.61,
     "context_length": 1000000,
     "rank": 146
   },
@@ -10908,7 +10908,7 @@
       "agents": 21.3,
       "data-analysis": 3.1,
       "cheap": 0.2,
-      "fast": 22.1,
+      "fast": 20.1,
       "frontier": 16,
       "vision": 16,
       "audio": null,
@@ -10946,7 +10946,7 @@
       "price_1m_input_tokens": 0.03,
       "price_1m_output_tokens": 0.15
     },
-    "median_output_tokens_per_second": 22.1,
+    "median_output_tokens_per_second": 20.1,
     "median_time_to_first_token_seconds": 0.43,
     "context_length": 262144,
     "rank": 148
@@ -11056,7 +11056,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.4,
-      "fast": 108.9,
+      "fast": 98.4,
       "frontier": 13.2,
       "vision": 13.2,
       "audio": 13.2,
@@ -11094,8 +11094,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 108.9,
-    "median_time_to_first_token_seconds": 1.35,
+    "median_output_tokens_per_second": 98.4,
+    "median_time_to_first_token_seconds": 1.36,
     "context_length": 262144,
     "rank": 150
   },
@@ -11352,7 +11352,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.6,
-      "fast": 106.5,
+      "fast": 107.1,
       "frontier": 13.3,
       "vision": 13.3,
       "audio": null,
@@ -11390,8 +11390,8 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 2.4
     },
-    "median_output_tokens_per_second": 106.5,
-    "median_time_to_first_token_seconds": 2.18,
+    "median_output_tokens_per_second": 107.1,
+    "median_time_to_first_token_seconds": 2.19,
     "context_length": 256000,
     "rank": 154
   },
@@ -11500,7 +11500,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.5,
-      "fast": 184.5,
+      "fast": 183.4,
       "frontier": 19.9,
       "vision": 19.9,
       "audio": null,
@@ -11538,8 +11538,8 @@
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 184.5,
-    "median_time_to_first_token_seconds": 93.97,
+    "median_output_tokens_per_second": 183.4,
+    "median_time_to_first_token_seconds": 89.72,
     "context_length": 400000,
     "rank": 156
   },
@@ -11648,7 +11648,7 @@
       "agents": 22,
       "data-analysis": 28.6,
       "cheap": 7,
-      "fast": 201.8,
+      "fast": 199.7,
       "frontier": 26.6,
       "vision": 26.6,
       "audio": null,
@@ -11686,7 +11686,7 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 201.8,
+    "median_output_tokens_per_second": 199.7,
     "median_time_to_first_token_seconds": 0.63,
     "context_length": 1000000,
     "rank": 158
@@ -11722,7 +11722,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.2,
-      "fast": 106.7,
+      "fast": 107.4,
       "frontier": 9.6,
       "vision": 9.6,
       "audio": 9.6,
@@ -11760,8 +11760,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 0.97
     },
-    "median_output_tokens_per_second": 106.7,
-    "median_time_to_first_token_seconds": 19.79,
+    "median_output_tokens_per_second": 107.4,
+    "median_time_to_first_token_seconds": 19.6,
     "context_length": 65536,
     "rank": 159
   },
@@ -11983,7 +11983,7 @@
       "price_1m_output_tokens": 5
     },
     "median_output_tokens_per_second": 46.3,
-    "median_time_to_first_token_seconds": 43.75,
+    "median_time_to_first_token_seconds": 43.78,
     "context_length": 128000,
     "rank": 162
   },
@@ -12314,7 +12314,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.5,
-      "fast": 357.2,
+      "fast": 367.6,
       "frontier": 11.4,
       "vision": 11.4,
       "audio": 11.4,
@@ -12352,8 +12352,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 357.2,
-    "median_time_to_first_token_seconds": 29.79,
+    "median_output_tokens_per_second": 367.6,
+    "median_time_to_first_token_seconds": 27.7,
     "context_length": 1000000,
     "rank": 167
   },
@@ -12462,7 +12462,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.8,
-      "fast": 181.3,
+      "fast": 185,
       "frontier": 17.8,
       "vision": 17.8,
       "audio": null,
@@ -12500,8 +12500,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 181.3,
-    "median_time_to_first_token_seconds": 15.57,
+    "median_output_tokens_per_second": 185,
+    "median_time_to_first_token_seconds": 15.71,
     "context_length": 1000000,
     "rank": 169
   },
@@ -12684,7 +12684,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.3,
-      "fast": 108.4,
+      "fast": 109.1,
       "frontier": 10.6,
       "vision": 10.6,
       "audio": null,
@@ -12722,8 +12722,8 @@
       "price_1m_input_tokens": 0.18,
       "price_1m_output_tokens": 2.1
     },
-    "median_output_tokens_per_second": 108.4,
-    "median_time_to_first_token_seconds": 2.43,
+    "median_output_tokens_per_second": 109.1,
+    "median_time_to_first_token_seconds": 2.47,
     "context_length": 256000,
     "rank": 172
   },
@@ -12871,7 +12871,7 @@
       "price_1m_output_tokens": 1.5
     },
     "median_output_tokens_per_second": 64.6,
-    "median_time_to_first_token_seconds": 0.72,
+    "median_time_to_first_token_seconds": 0.73,
     "context_length": 256000,
     "rank": 174
   },
@@ -12945,7 +12945,7 @@
       "price_1m_output_tokens": 1.5
     },
     "median_output_tokens_per_second": 91.6,
-    "median_time_to_first_token_seconds": 22.28,
+    "median_time_to_first_token_seconds": 22.27,
     "context_length": 128000,
     "rank": 175
   },
@@ -12980,7 +12980,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.2,
-      "fast": 107.5,
+      "fast": 108.5,
       "frontier": 5.1,
       "vision": 5.1,
       "audio": 5.1,
@@ -13018,8 +13018,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 0.97
     },
-    "median_output_tokens_per_second": 107.5,
-    "median_time_to_first_token_seconds": 0.91,
+    "median_output_tokens_per_second": 108.5,
+    "median_time_to_first_token_seconds": 0.92,
     "context_length": 65536,
     "rank": 176
   },
@@ -13202,7 +13202,7 @@
       "agents": 6.2,
       "data-analysis": 5.5,
       "cheap": 2.4,
-      "fast": 95.6,
+      "fast": 93.4,
       "frontier": 14.7,
       "vision": 14.7,
       "audio": null,
@@ -13240,7 +13240,7 @@
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 2
     },
-    "median_output_tokens_per_second": 95.6,
+    "median_output_tokens_per_second": 93.4,
     "median_time_to_first_token_seconds": 1.52,
     "context_length": 128000,
     "rank": 179
@@ -13276,7 +13276,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.5,
-      "fast": 268.3,
+      "fast": 267.2,
       "frontier": 6.9,
       "vision": 6.9,
       "audio": 6.9,
@@ -13314,7 +13314,7 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 268.3,
+    "median_output_tokens_per_second": 267.2,
     "median_time_to_first_token_seconds": 0.36,
     "context_length": 1000000,
     "rank": 180
@@ -13350,7 +13350,7 @@
       "agents": 6.7,
       "data-analysis": null,
       "cheap": 0.4,
-      "fast": 321.4,
+      "fast": 322.2,
       "frontier": 14.9,
       "vision": 14.9,
       "audio": 14.9,
@@ -13388,8 +13388,8 @@
       "price_1m_input_tokens": 0.075,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 321.4,
-    "median_time_to_first_token_seconds": 6.74,
+    "median_output_tokens_per_second": 322.2,
+    "median_time_to_first_token_seconds": 6.73,
     "context_length": 256000,
     "rank": 181
   },
@@ -13572,7 +13572,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.8,
-      "fast": 78.8,
+      "fast": 79.1,
       "frontier": 9,
       "vision": 9,
       "audio": null,
@@ -13610,8 +13610,8 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 78.8,
-    "median_time_to_first_token_seconds": 29.97,
+    "median_output_tokens_per_second": 79.1,
+    "median_time_to_first_token_seconds": 29.73,
     "context_length": 128000,
     "rank": 184
   },
@@ -13685,7 +13685,7 @@
       "price_1m_output_tokens": 3.6
     },
     "median_output_tokens_per_second": 70.2,
-    "median_time_to_first_token_seconds": 1.45,
+    "median_time_to_first_token_seconds": 1.44,
     "context_length": 262144,
     "rank": 185
   },
@@ -13794,7 +13794,7 @@
       "agents": 1.8,
       "data-analysis": 5.4,
       "cheap": 0.1,
-      "fast": 107.9,
+      "fast": 107.8,
       "frontier": 11.9,
       "vision": 11.9,
       "audio": 11.9,
@@ -13832,8 +13832,8 @@
       "price_1m_input_tokens": 0.02,
       "price_1m_output_tokens": 0.1
     },
-    "median_output_tokens_per_second": 107.9,
-    "median_time_to_first_token_seconds": 18.86,
+    "median_output_tokens_per_second": 107.8,
+    "median_time_to_first_token_seconds": 18.88,
     "context_length": 128000,
     "rank": 187
   },
@@ -14016,7 +14016,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.4,
-      "fast": 88.4,
+      "fast": 88.1,
       "frontier": 9.1,
       "vision": 9.1,
       "audio": null,
@@ -14054,8 +14054,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 1.8
     },
-    "median_output_tokens_per_second": 88.4,
-    "median_time_to_first_token_seconds": 1.87,
+    "median_output_tokens_per_second": 88.1,
+    "median_time_to_first_token_seconds": 1.9,
     "context_length": 64000,
     "rank": 190
   },
@@ -14164,7 +14164,7 @@
       "agents": 2.2,
       "data-analysis": 6.6,
       "cheap": 0.4,
-      "fast": 72.6,
+      "fast": 72.8,
       "frontier": 11.1,
       "vision": 11.1,
       "audio": null,
@@ -14202,7 +14202,7 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 72.6,
+    "median_output_tokens_per_second": 72.8,
     "median_time_to_first_token_seconds": 0.46,
     "context_length": 256000,
     "rank": 192
@@ -14312,7 +14312,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.2,
-      "fast": 62,
+      "fast": 64.1,
       "frontier": 16.8,
       "vision": 16.8,
       "audio": null,
@@ -14350,8 +14350,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 0.9
     },
-    "median_output_tokens_per_second": 62,
-    "median_time_to_first_token_seconds": 3.92,
+    "median_output_tokens_per_second": 64.1,
+    "median_time_to_first_token_seconds": 3.95,
     "context_length": 128000,
     "rank": 194
   },
@@ -14682,7 +14682,7 @@
       "agents": 2,
       "data-analysis": 6,
       "cheap": 0.4,
-      "fast": 137.3,
+      "fast": 138.7,
       "frontier": 10.6,
       "vision": 10.6,
       "audio": null,
@@ -14720,7 +14720,7 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 137.3,
+    "median_output_tokens_per_second": 138.7,
     "median_time_to_first_token_seconds": 0.67,
     "context_length": 128000,
     "rank": 199
@@ -14756,7 +14756,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.9,
-      "fast": 111.2,
+      "fast": 111.1,
       "frontier": 8.4,
       "vision": 8.4,
       "audio": null,
@@ -14794,7 +14794,7 @@
       "price_1m_input_tokens": 0.18,
       "price_1m_output_tokens": 0.7
     },
-    "median_output_tokens_per_second": 111.2,
+    "median_output_tokens_per_second": 111.1,
     "median_time_to_first_token_seconds": 2.27,
     "context_length": 256000,
     "rank": 200
@@ -14830,7 +14830,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.8,
-      "fast": 165.8,
+      "fast": 166.2,
       "frontier": 12.4,
       "vision": 12.4,
       "audio": null,
@@ -14868,7 +14868,7 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 165.8,
+    "median_output_tokens_per_second": 166.2,
     "median_time_to_first_token_seconds": 0.55,
     "context_length": 256000,
     "rank": 201
@@ -14904,7 +14904,7 @@
       "agents": 1.2,
       "data-analysis": 3.7,
       "cheap": 0.3,
-      "fast": 127.6,
+      "fast": 128.4,
       "frontier": 9,
       "vision": 9,
       "audio": null,
@@ -14942,7 +14942,7 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.15
     },
-    "median_output_tokens_per_second": 127.6,
+    "median_output_tokens_per_second": 128.4,
     "median_time_to_first_token_seconds": 0.57,
     "context_length": 256000,
     "rank": 202
@@ -15091,7 +15091,7 @@
       "price_1m_output_tokens": 0
     },
     "median_output_tokens_per_second": 47.1,
-    "median_time_to_first_token_seconds": 0.78,
+    "median_time_to_first_token_seconds": 0.75,
     "context_length": 256000,
     "rank": 204
   },
@@ -15239,7 +15239,7 @@
       "price_1m_output_tokens": 0.6
     },
     "median_output_tokens_per_second": 163.9,
-    "median_time_to_first_token_seconds": 2.51,
+    "median_time_to_first_token_seconds": 2.48,
     "context_length": 128000,
     "rank": 206
   },
@@ -15422,7 +15422,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.5,
-      "fast": 157.2,
+      "fast": 155.2,
       "frontier": 17.6,
       "vision": 17.6,
       "audio": null,
@@ -15460,8 +15460,8 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 1.25
     },
-    "median_output_tokens_per_second": 157.2,
-    "median_time_to_first_token_seconds": 0.65,
+    "median_output_tokens_per_second": 155.2,
+    "median_time_to_first_token_seconds": 0.66,
     "context_length": 400000,
     "rank": 209
   },
@@ -15570,7 +15570,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.4,
-      "fast": 101.5,
+      "fast": 93.3,
       "frontier": 7,
       "vision": 7,
       "audio": null,
@@ -15608,7 +15608,7 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 1.8
     },
-    "median_output_tokens_per_second": 101.5,
+    "median_output_tokens_per_second": 93.3,
     "median_time_to_first_token_seconds": 1.78,
     "context_length": 64000,
     "rank": 211
@@ -15718,7 +15718,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.2,
-      "fast": 64.3,
+      "fast": 67.4,
       "frontier": 11,
       "vision": 11,
       "audio": null,
@@ -15756,8 +15756,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 0.9
     },
-    "median_output_tokens_per_second": 64.3,
-    "median_time_to_first_token_seconds": 3.95,
+    "median_output_tokens_per_second": 67.4,
+    "median_time_to_first_token_seconds": 3.93,
     "context_length": 128000,
     "rank": 213
   },
@@ -15866,7 +15866,7 @@
       "agents": 1,
       "data-analysis": 2.9,
       "cheap": 0.8,
-      "fast": 89.3,
+      "fast": 91.4,
       "frontier": 6.9,
       "vision": 6.9,
       "audio": null,
@@ -15904,8 +15904,8 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 89.3,
-    "median_time_to_first_token_seconds": 1.05,
+    "median_output_tokens_per_second": 91.4,
+    "median_time_to_first_token_seconds": 1.06,
     "context_length": 128000,
     "rank": 215
   },
@@ -16088,7 +16088,7 @@
       "agents": 1.6,
       "data-analysis": 4.7,
       "cheap": 0.2,
-      "fast": 263.3,
+      "fast": 266.4,
       "frontier": 6.3,
       "vision": 6.3,
       "audio": null,
@@ -16126,8 +16126,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.1
     },
-    "median_output_tokens_per_second": 263.3,
-    "median_time_to_first_token_seconds": 0.43,
+    "median_output_tokens_per_second": 266.4,
+    "median_time_to_first_token_seconds": 0.42,
     "context_length": 256000,
     "rank": 218
   },
@@ -16236,7 +16236,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.3,
-      "fast": 155,
+      "fast": 155.5,
       "frontier": 6.9,
       "vision": 6.9,
       "audio": null,
@@ -16274,7 +16274,7 @@
       "price_1m_input_tokens": 0.06,
       "price_1m_output_tokens": 0.24
     },
-    "median_output_tokens_per_second": 155,
+    "median_output_tokens_per_second": 155.5,
     "median_time_to_first_token_seconds": 0.92,
     "context_length": 300000,
     "rank": 220
@@ -16532,7 +16532,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.5,
-      "fast": 166.1,
+      "fast": 165.7,
       "frontier": 8,
       "vision": 8,
       "audio": null,
@@ -16570,8 +16570,8 @@
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 166.1,
-    "median_time_to_first_token_seconds": 0.87,
+    "median_output_tokens_per_second": 165.7,
+    "median_time_to_first_token_seconds": 0.86,
     "context_length": 400000,
     "rank": 224
   },
@@ -16754,7 +16754,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.7,
-      "fast": 5.6,
+      "fast": 6.5,
       "frontier": 3.3,
       "vision": 3.3,
       "audio": null,
@@ -16792,8 +16792,8 @@
       "price_1m_input_tokens": 0.3575,
       "price_1m_output_tokens": 0.3575
     },
-    "median_output_tokens_per_second": 5.6,
-    "median_time_to_first_token_seconds": 1.88,
+    "median_output_tokens_per_second": 6.5,
+    "median_time_to_first_token_seconds": 1.87,
     "context_length": 128000,
     "rank": 227
   },
@@ -17237,7 +17237,7 @@
       "price_1m_output_tokens": 0
     },
     "median_output_tokens_per_second": 26.5,
-    "median_time_to_first_token_seconds": 0.36,
+    "median_time_to_first_token_seconds": 0.37,
     "context_length": 128000,
     "rank": 233
   },
@@ -17272,7 +17272,7 @@
       "agents": 25.2,
       "data-analysis": 33.4,
       "cheap": 1.4,
-      "fast": 121.8,
+      "fast": 121.4,
       "frontier": 38.8,
       "vision": 38.8,
       "audio": null,
@@ -17310,8 +17310,8 @@
       "price_1m_input_tokens": 0.45,
       "price_1m_output_tokens": 0.9
     },
-    "median_output_tokens_per_second": 121.8,
-    "median_time_to_first_token_seconds": 17.48,
+    "median_output_tokens_per_second": 121.4,
+    "median_time_to_first_token_seconds": 17.57,
     "context_length": 1000000,
     "rank": 234
   },
@@ -18382,7 +18382,7 @@
       "agents": 52.8,
       "data-analysis": 62.3,
       "cheap": 60,
-      "fast": 71.2,
+      "fast": 71.3,
       "frontier": 59.9,
       "vision": 59.9,
       "audio": null,
@@ -18420,8 +18420,8 @@
       "price_1m_input_tokens": 10,
       "price_1m_output_tokens": 50
     },
-    "median_output_tokens_per_second": 71.2,
-    "median_time_to_first_token_seconds": 69.61,
+    "median_output_tokens_per_second": 71.3,
+    "median_time_to_first_token_seconds": 74.84,
     "context_length": 1000000,
     "rank": 249
   },
@@ -18528,7 +18528,7 @@
       "knowledge": null,
       "multilingual": 94.4,
       "agents": 47.2,
-      "data-analysis": 54.6,
+      "data-analysis": 54.7,
       "cheap": 30,
       "fast": 65,
       "frontier": 55.7,
@@ -18536,7 +18536,7 @@
       "audio": null,
       "open-weights": null,
       "long-context": 1000000,
-      "enterprise": 54.6,
+      "enterprise": 54.7,
       "legal": 92,
       "medical": 92,
       "finance": 53.5,
@@ -18562,7 +18562,7 @@
       "mmlu_pro": null,
       "agentic_index": 47.2,
       "coding_agent_index": 47.2,
-      "gdpval": 54.6
+      "gdpval": 54.7
     },
     "pricing": {
       "price_1m_input_tokens": 5,
@@ -18604,7 +18604,7 @@
       "agents": null,
       "data-analysis": 45,
       "cheap": 12,
-      "fast": 79.3,
+      "fast": 79.9,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -18642,8 +18642,8 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 79.3,
-    "median_time_to_first_token_seconds": 3.76,
+    "median_output_tokens_per_second": 79.9,
+    "median_time_to_first_token_seconds": 4.48,
     "context_length": 1000000,
     "rank": 252
   },
@@ -18717,7 +18717,7 @@
       "price_1m_output_tokens": 10
     },
     "median_output_tokens_per_second": 72.7,
-    "median_time_to_first_token_seconds": 1.46,
+    "median_time_to_first_token_seconds": 1.51,
     "context_length": 1000000,
     "rank": 253
   },
@@ -18791,7 +18791,7 @@
       "price_1m_output_tokens": 10
     },
     "median_output_tokens_per_second": 75.6,
-    "median_time_to_first_token_seconds": 1.61,
+    "median_time_to_first_token_seconds": 1.58,
     "context_length": 1000000,
     "rank": 254
   },
@@ -18974,7 +18974,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 12.5,
-      "fast": 64,
+      "fast": 61.6,
       "frontier": 7.7,
       "vision": null,
       "audio": null,
@@ -19012,8 +19012,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 64,
-    "median_time_to_first_token_seconds": 0.42,
+    "median_output_tokens_per_second": 61.6,
+    "median_time_to_first_token_seconds": 0.38,
     "context_length": 256000,
     "rank": 257
   },
@@ -19788,7 +19788,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.8,
-      "fast": 26.6,
+      "fast": 28.2,
       "frontier": 9.9,
       "vision": null,
       "audio": null,
@@ -19826,7 +19826,7 @@
       "price_1m_input_tokens": 0.7,
       "price_1m_output_tokens": 1.05
     },
-    "median_output_tokens_per_second": 26.6,
+    "median_output_tokens_per_second": 28.2,
     "median_time_to_first_token_seconds": 0.63,
     "context_length": 128000,
     "rank": 268
@@ -21011,7 +21011,7 @@
       "price_1m_output_tokens": 0.28
     },
     "median_output_tokens_per_second": 127.7,
-    "median_time_to_first_token_seconds": 0.8,
+    "median_time_to_first_token_seconds": 0.81,
     "context_length": 1000000,
     "rank": 284
   },
@@ -21159,7 +21159,7 @@
       "price_1m_output_tokens": 0.28
     },
     "median_output_tokens_per_second": 122.7,
-    "median_time_to_first_token_seconds": 46.71,
+    "median_time_to_first_token_seconds": 46.68,
     "context_length": 1000000,
     "rank": 286
   },
@@ -21712,7 +21712,7 @@
       "agents": 10.6,
       "data-analysis": 12.3,
       "cheap": 0,
-      "fast": 42.4,
+      "fast": 47.2,
       "frontier": 19.2,
       "vision": null,
       "audio": null,
@@ -21750,7 +21750,7 @@
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 42.4,
+    "median_output_tokens_per_second": 47.2,
     "median_time_to_first_token_seconds": 0.68,
     "context_length": 256000,
     "rank": 294
@@ -24154,7 +24154,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.2,
-      "fast": 78.5,
+      "fast": 76.8,
       "frontier": 16.5,
       "vision": null,
       "audio": null,
@@ -24192,7 +24192,7 @@
       "price_1m_input_tokens": 0.17,
       "price_1m_output_tokens": 0.98
     },
-    "median_output_tokens_per_second": 78.5,
+    "median_output_tokens_per_second": 76.8,
     "median_time_to_first_token_seconds": 2.64,
     "context_length": 128000,
     "rank": 327
@@ -24302,7 +24302,7 @@
       "agents": 17.7,
       "data-analysis": 21.5,
       "cheap": 2.8,
-      "fast": 50.7,
+      "fast": 51.9,
       "frontier": 28.7,
       "vision": null,
       "audio": null,
@@ -24340,7 +24340,7 @@
       "price_1m_input_tokens": 0.55,
       "price_1m_output_tokens": 2.2
     },
-    "median_output_tokens_per_second": 50.7,
+    "median_output_tokens_per_second": 51.9,
     "median_time_to_first_token_seconds": 2.49,
     "context_length": 200000,
     "rank": 329
@@ -24376,7 +24376,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.8,
-      "fast": 101.6,
+      "fast": 99.4,
       "frontier": 26.6,
       "vision": null,
       "audio": null,
@@ -24414,8 +24414,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 2.2
     },
-    "median_output_tokens_per_second": 101.6,
-    "median_time_to_first_token_seconds": 0.93,
+    "median_output_tokens_per_second": 99.4,
+    "median_time_to_first_token_seconds": 0.94,
     "context_length": 200000,
     "rank": 330
   },
@@ -24450,7 +24450,7 @@
       "agents": 25.4,
       "data-analysis": 33.3,
       "cheap": 2.8,
-      "fast": 106,
+      "fast": 101.6,
       "frontier": 33.7,
       "vision": null,
       "audio": null,
@@ -24488,8 +24488,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 2.2
     },
-    "median_output_tokens_per_second": 106,
-    "median_time_to_first_token_seconds": 1,
+    "median_output_tokens_per_second": 101.6,
+    "median_time_to_first_token_seconds": 1.06,
     "context_length": 200000,
     "rank": 331
   },
@@ -24524,7 +24524,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.5,
-      "fast": 108.9,
+      "fast": 106.9,
       "frontier": 15.5,
       "vision": null,
       "audio": null,
@@ -24562,7 +24562,7 @@
       "price_1m_input_tokens": 0.07,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 108.9,
+    "median_output_tokens_per_second": 106.9,
     "median_time_to_first_token_seconds": 1.56,
     "context_length": 200000,
     "rank": 332
@@ -24598,7 +24598,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.5,
-      "fast": 93.7,
+      "fast": 92.1,
       "frontier": 22.9,
       "vision": null,
       "audio": null,
@@ -24636,8 +24636,8 @@
       "price_1m_input_tokens": 0.07,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 93.7,
-    "median_time_to_first_token_seconds": 1.26,
+    "median_output_tokens_per_second": 92.1,
+    "median_time_to_first_token_seconds": 1.33,
     "context_length": 200000,
     "rank": 333
   },
@@ -24711,7 +24711,7 @@
       "price_1m_output_tokens": 3.2
     },
     "median_output_tokens_per_second": 39.3,
-    "median_time_to_first_token_seconds": 1.8,
+    "median_time_to_first_token_seconds": 1.82,
     "context_length": 200000,
     "rank": 334
   },
@@ -24746,7 +24746,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 4.2,
-      "fast": 42.8,
+      "fast": 42.4,
       "frontier": 39.5,
       "vision": null,
       "audio": null,
@@ -24784,8 +24784,8 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 3.2
     },
-    "median_output_tokens_per_second": 42.8,
-    "median_time_to_first_token_seconds": 1.56,
+    "median_output_tokens_per_second": 42.4,
+    "median_time_to_first_token_seconds": 1.55,
     "context_length": 200000,
     "rank": 335
   },
@@ -24894,7 +24894,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 5.8,
-      "fast": 64.3,
+      "fast": 64.5,
       "frontier": 35.4,
       "vision": null,
       "audio": null,
@@ -24932,8 +24932,8 @@
       "price_1m_input_tokens": 1.38,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 64.3,
-    "median_time_to_first_token_seconds": 1.78,
+    "median_output_tokens_per_second": 64.5,
+    "median_time_to_first_token_seconds": 1.76,
     "context_length": 200000,
     "rank": 337
   },
@@ -24968,7 +24968,7 @@
       "agents": 29.9,
       "data-analysis": 37.8,
       "cheap": 5.8,
-      "fast": 76.9,
+      "fast": 76.8,
       "frontier": 40.2,
       "vision": null,
       "audio": null,
@@ -25006,8 +25006,8 @@
       "price_1m_input_tokens": 1.38,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 76.9,
-    "median_time_to_first_token_seconds": 1.69,
+    "median_output_tokens_per_second": 76.8,
+    "median_time_to_first_token_seconds": 1.66,
     "context_length": 200000,
     "rank": 338
   },
@@ -25042,7 +25042,7 @@
       "agents": 43.1,
       "data-analysis": 50.5,
       "cheap": 5.8,
-      "fast": 214.4,
+      "fast": 216,
       "frontier": 51.1,
       "vision": null,
       "audio": null,
@@ -25080,8 +25080,8 @@
       "price_1m_input_tokens": 1.4,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 214.4,
-    "median_time_to_first_token_seconds": 10.16,
+    "median_output_tokens_per_second": 216,
+    "median_time_to_first_token_seconds": 10.09,
     "context_length": 1000000,
     "rank": 339
   },
@@ -25116,7 +25116,7 @@
       "agents": 34.8,
       "data-analysis": 44.4,
       "cheap": 5.6,
-      "fast": 117.2,
+      "fast": 108.1,
       "frontier": 34.1,
       "vision": null,
       "audio": null,
@@ -25154,8 +25154,8 @@
       "price_1m_input_tokens": 1.351,
       "price_1m_output_tokens": 4.25
     },
-    "median_output_tokens_per_second": 117.2,
-    "median_time_to_first_token_seconds": 1.02,
+    "median_output_tokens_per_second": 108.1,
+    "median_time_to_first_token_seconds": 1.03,
     "context_length": 1000000,
     "rank": 340
   },
@@ -26522,7 +26522,7 @@
       "agents": 1,
       "data-analysis": 2.9,
       "cheap": 0.8,
-      "fast": 305.7,
+      "fast": 305.3,
       "frontier": 14.9,
       "vision": null,
       "audio": null,
@@ -26560,8 +26560,8 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 305.7,
-    "median_time_to_first_token_seconds": 7.07,
+    "median_output_tokens_per_second": 305.3,
+    "median_time_to_first_token_seconds": 7.08,
     "context_length": 131072,
     "rank": 359
   },
@@ -26596,7 +26596,7 @@
       "agents": 3.1,
       "data-analysis": 3.4,
       "cheap": 0.3,
-      "fast": 212.6,
+      "fast": 219.1,
       "frontier": 14.9,
       "vision": null,
       "audio": null,
@@ -26634,8 +26634,8 @@
       "price_1m_input_tokens": 0.060000000000000005,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 212.6,
-    "median_time_to_first_token_seconds": 9.85,
+    "median_output_tokens_per_second": 219.1,
+    "median_time_to_first_token_seconds": 9.57,
     "context_length": 131072,
     "rank": 360
   },
@@ -26744,7 +26744,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.3,
-      "fast": 333,
+      "fast": 333.1,
       "frontier": 1.8,
       "vision": null,
       "audio": null,
@@ -26782,8 +26782,8 @@
       "price_1m_input_tokens": 0.03,
       "price_1m_output_tokens": 0.25
     },
-    "median_output_tokens_per_second": 333,
-    "median_time_to_first_token_seconds": 27.67,
+    "median_output_tokens_per_second": 333.1,
+    "median_time_to_first_token_seconds": 27.64,
     "context_length": 128000,
     "rank": 362
   },
@@ -27114,7 +27114,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.3,
-      "fast": 502,
+      "fast": 482.8,
       "frontier": 5.2,
       "vision": null,
       "audio": null,
@@ -27152,8 +27152,8 @@
       "price_1m_input_tokens": 0.06,
       "price_1m_output_tokens": 0.25
     },
-    "median_output_tokens_per_second": 502,
-    "median_time_to_first_token_seconds": 8.87,
+    "median_output_tokens_per_second": 482.8,
+    "median_time_to_first_token_seconds": 8.97,
     "context_length": 128000,
     "rank": 367
   },
@@ -28150,7 +28150,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 4,
-      "fast": 40.4,
+      "fast": 40.7,
       "frontier": 9,
       "vision": null,
       "audio": null,
@@ -28188,8 +28188,8 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 40.4,
-    "median_time_to_first_token_seconds": 50.21,
+    "median_output_tokens_per_second": 40.7,
+    "median_time_to_first_token_seconds": 49.85,
     "context_length": 128000,
     "rank": 381
   },
@@ -28224,7 +28224,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.5,
-      "fast": 98.5,
+      "fast": 98.1,
       "frontier": 6.9,
       "vision": null,
       "audio": null,
@@ -28262,7 +28262,7 @@
       "price_1m_input_tokens": 0.13,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 98.5,
+    "median_output_tokens_per_second": 98.1,
     "median_time_to_first_token_seconds": 0.6,
     "context_length": 128000,
     "rank": 382
@@ -28372,7 +28372,7 @@
       "agents": 30.7,
       "data-analysis": 35.8,
       "cheap": 0.7,
-      "fast": 57.6,
+      "fast": 65.2,
       "frontier": 41.2,
       "vision": null,
       "audio": null,
@@ -28410,8 +28410,8 @@
       "price_1m_input_tokens": 0.136,
       "price_1m_output_tokens": 0.5568
     },
-    "median_output_tokens_per_second": 57.6,
-    "median_time_to_first_token_seconds": 36.11,
+    "median_output_tokens_per_second": 65.2,
+    "median_time_to_first_token_seconds": 32.39,
     "context_length": 256000,
     "rank": 384
   },
@@ -28485,7 +28485,7 @@
       "price_1m_output_tokens": 0.235
     },
     "median_output_tokens_per_second": 180.6,
-    "median_time_to_first_token_seconds": 1.99,
+    "median_time_to_first_token_seconds": 2,
     "context_length": 256000,
     "rank": 385
   },
@@ -28964,7 +28964,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 10,
-      "fast": 52.4,
+      "fast": 52.5,
       "frontier": 5,
       "vision": null,
       "audio": null,
@@ -29002,8 +29002,8 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 8
     },
-    "median_output_tokens_per_second": 52.4,
-    "median_time_to_first_token_seconds": 1.36,
+    "median_output_tokens_per_second": 52.5,
+    "median_time_to_first_token_seconds": 1.35,
     "context_length": 256000,
     "rank": 392
   },
@@ -29038,7 +29038,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.6,
-      "fast": 177.5,
+      "fast": 177.8,
       "frontier": 2.6,
       "vision": null,
       "audio": null,
@@ -29076,8 +29076,8 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 177.5,
-    "median_time_to_first_token_seconds": 0.81,
+    "median_output_tokens_per_second": 177.8,
+    "median_time_to_first_token_seconds": 0.8,
     "context_length": 256000,
     "rank": 393
   },
@@ -29112,7 +29112,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 10,
-      "fast": 59.2,
+      "fast": 59.3,
       "frontier": 5.3,
       "vision": null,
       "audio": null,
@@ -29150,8 +29150,8 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 8
     },
-    "median_output_tokens_per_second": 59.2,
-    "median_time_to_first_token_seconds": 0.86,
+    "median_output_tokens_per_second": 59.3,
+    "median_time_to_first_token_seconds": 0.84,
     "context_length": 256000,
     "rank": 394
   },
@@ -29926,7 +29926,7 @@
       "agents": 15.5,
       "data-analysis": 20.3,
       "cheap": 1.5,
-      "fast": 104.3,
+      "fast": 104.7,
       "frontier": 33.7,
       "vision": null,
       "audio": null,
@@ -29964,7 +29964,7 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 104.3,
+    "median_output_tokens_per_second": 104.7,
     "median_time_to_first_token_seconds": 1.37,
     "context_length": 256000,
     "rank": 405
@@ -30148,7 +30148,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 3.1,
-      "fast": 37.4,
+      "fast": 38,
       "frontier": 23.5,
       "vision": null,
       "audio": null,
@@ -30186,7 +30186,7 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 37.4,
+    "median_output_tokens_per_second": 38,
     "median_time_to_first_token_seconds": 1.44,
     "context_length": 256000,
     "rank": 408
@@ -30222,7 +30222,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 3.1,
-      "fast": 119.7,
+      "fast": 120.3,
       "frontier": 32.7,
       "vision": null,
       "audio": null,
@@ -30260,7 +30260,7 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 119.7,
+    "median_output_tokens_per_second": 120.3,
     "median_time_to_first_token_seconds": 1.44,
     "context_length": 256000,
     "rank": 409
@@ -30296,7 +30296,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 5,
-      "fast": 35.2,
+      "fast": 35.7,
       "frontier": 34.6,
       "vision": 34.6,
       "audio": null,
@@ -30334,7 +30334,7 @@
       "price_1m_input_tokens": 0.95,
       "price_1m_output_tokens": 4
     },
-    "median_output_tokens_per_second": 35.2,
+    "median_output_tokens_per_second": 35.7,
     "median_time_to_first_token_seconds": 1.29,
     "context_length": 256000,
     "rank": 410
@@ -30409,7 +30409,7 @@
       "price_1m_output_tokens": 4
     },
     "median_output_tokens_per_second": 43.4,
-    "median_time_to_first_token_seconds": 52.64,
+    "median_time_to_first_token_seconds": 52.72,
     "context_length": 256000,
     "rank": 411
   },
@@ -31075,7 +31075,7 @@
       "price_1m_output_tokens": 0
     },
     "median_output_tokens_per_second": 344.3,
-    "median_time_to_first_token_seconds": 9.19,
+    "median_time_to_first_token_seconds": 7.28,
     "context_length": 32768,
     "rank": 420
   },
@@ -31110,7 +31110,7 @@
       "agents": 2.3,
       "data-analysis": 2.5,
       "cheap": 0.4,
-      "fast": 140.9,
+      "fast": 139.7,
       "frontier": 14.1,
       "vision": null,
       "audio": null,
@@ -31148,8 +31148,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 140.9,
-    "median_time_to_first_token_seconds": 0.62,
+    "median_output_tokens_per_second": 139.7,
+    "median_time_to_first_token_seconds": 0.63,
     "context_length": 262144,
     "rank": 421
   },
@@ -31924,7 +31924,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.1,
-      "fast": 60.1,
+      "fast": 68.7,
       "frontier": 6.8,
       "vision": null,
       "audio": null,
@@ -31962,7 +31962,7 @@
       "price_1m_input_tokens": 0.56,
       "price_1m_output_tokens": 0.56
     },
-    "median_output_tokens_per_second": 60.1,
+    "median_output_tokens_per_second": 68.7,
     "median_time_to_first_token_seconds": 1.38,
     "context_length": 128000,
     "rank": 432
@@ -32072,7 +32072,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.4,
-      "fast": 73.8,
+      "fast": 75.5,
       "frontier": 7.6,
       "vision": null,
       "audio": null,
@@ -32110,8 +32110,8 @@
       "price_1m_input_tokens": 1.2,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 73.8,
-    "median_time_to_first_token_seconds": 5.35,
+    "median_output_tokens_per_second": 75.5,
+    "median_time_to_first_token_seconds": 5,
     "context_length": 128000,
     "rank": 434
   },
@@ -32516,7 +32516,7 @@
       "agents": 0.3,
       "data-analysis": 1,
       "cheap": 1.3,
-      "fast": 87.3,
+      "fast": 86.6,
       "frontier": 9.4,
       "vision": null,
       "audio": null,
@@ -32554,8 +32554,8 @@
       "price_1m_input_tokens": 0.59,
       "price_1m_output_tokens": 0.72
     },
-    "median_output_tokens_per_second": 87.3,
-    "median_time_to_first_token_seconds": 0.62,
+    "median_output_tokens_per_second": 86.6,
+    "median_time_to_first_token_seconds": 0.63,
     "context_length": 128000,
     "rank": 440
   },
@@ -32812,7 +32812,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.8,
-      "fast": 59.4,
+      "fast": 62.9,
       "frontier": 8.7,
       "vision": null,
       "audio": null,
@@ -32850,8 +32850,8 @@
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 59.4,
-    "median_time_to_first_token_seconds": 6.29,
+    "median_output_tokens_per_second": 62.9,
+    "median_time_to_first_token_seconds": 5.19,
     "context_length": 128000,
     "rank": 444
   },
@@ -32886,7 +32886,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.8,
-      "fast": 90,
+      "fast": 84,
       "frontier": 12.4,
       "vision": null,
       "audio": null,
@@ -32924,8 +32924,8 @@
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 90,
-    "median_time_to_first_token_seconds": 27.62,
+    "median_output_tokens_per_second": 84,
+    "median_time_to_first_token_seconds": 28.99,
     "context_length": 128000,
     "rank": 445
   },
@@ -32960,7 +32960,7 @@
       "agents": 21.8,
       "data-analysis": 26.3,
       "cheap": 3.7,
-      "fast": null,
+      "fast": 44.4,
       "frontier": 33.5,
       "vision": null,
       "audio": null,
@@ -32998,8 +32998,8 @@
       "price_1m_input_tokens": 0.75,
       "price_1m_output_tokens": 2.95
     },
-    "median_output_tokens_per_second": null,
-    "median_time_to_first_token_seconds": null,
+    "median_output_tokens_per_second": 44.4,
+    "median_time_to_first_token_seconds": 46.72,
     "context_length": 1000000,
     "rank": 446
   },
@@ -33813,7 +33813,7 @@
       "price_1m_output_tokens": 0.87
     },
     "median_output_tokens_per_second": 68.5,
-    "median_time_to_first_token_seconds": 31.1,
+    "median_time_to_first_token_seconds": 31.13,
     "context_length": 1000000,
     "rank": 457
   },
@@ -33848,7 +33848,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.3,
-      "fast": 68.1,
+      "fast": 68.3,
       "frontier": 27.9,
       "vision": null,
       "audio": null,
@@ -33886,7 +33886,7 @@
       "price_1m_input_tokens": 0.435,
       "price_1m_output_tokens": 0.87
     },
-    "median_output_tokens_per_second": 68.1,
+    "median_output_tokens_per_second": 68.3,
     "median_time_to_first_token_seconds": 2.29,
     "context_length": 1000000,
     "rank": 458
@@ -34218,7 +34218,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.5,
-      "fast": 92.1,
+      "fast": 90.4,
       "frontier": 28.3,
       "vision": null,
       "audio": null,
@@ -34256,8 +34256,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 92.1,
-    "median_time_to_first_token_seconds": 1.78,
+    "median_output_tokens_per_second": 90.4,
+    "median_time_to_first_token_seconds": 1.86,
     "context_length": 204800,
     "rank": 463
   },
@@ -34292,7 +34292,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.5,
-      "fast": 83.8,
+      "fast": 83,
       "frontier": 31.4,
       "vision": null,
       "audio": null,
@@ -34330,7 +34330,7 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 83.8,
+    "median_output_tokens_per_second": 83,
     "median_time_to_first_token_seconds": 1.73,
     "context_length": 204800,
     "rank": 464
@@ -34366,7 +34366,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.5,
-      "fast": 80.2,
+      "fast": 80.3,
       "frontier": 33.7,
       "vision": null,
       "audio": null,
@@ -34404,8 +34404,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 80.2,
-    "median_time_to_first_token_seconds": 1.78,
+    "median_output_tokens_per_second": 80.3,
+    "median_time_to_first_token_seconds": 1.77,
     "context_length": 204800,
     "rank": 465
   },
@@ -34440,7 +34440,7 @@
       "agents": 25.6,
       "data-analysis": 32.9,
       "cheap": 1.5,
-      "fast": 57,
+      "fast": 55.9,
       "frontier": 38.1,
       "vision": null,
       "audio": null,
@@ -34478,8 +34478,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 57,
-    "median_time_to_first_token_seconds": 1.79,
+    "median_output_tokens_per_second": 55.9,
+    "median_time_to_first_token_seconds": 1.77,
     "context_length": 204800,
     "rank": 466
   },
@@ -34514,7 +34514,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.5,
-      "fast": 123.5,
+      "fast": 124.6,
       "frontier": 2.1,
       "vision": null,
       "audio": null,
@@ -34552,8 +34552,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 0.25
     },
-    "median_output_tokens_per_second": 123.5,
-    "median_time_to_first_token_seconds": 0.75,
+    "median_output_tokens_per_second": 124.6,
+    "median_time_to_first_token_seconds": 0.77,
     "context_length": 8192,
     "rank": 467
   },
@@ -34810,7 +34810,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 9,
-      "fast": 67.2,
+      "fast": 64.4,
       "frontier": 3.6,
       "vision": null,
       "audio": null,
@@ -34848,7 +34848,7 @@
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 7.5
     },
-    "median_output_tokens_per_second": 67.2,
+    "median_output_tokens_per_second": 64.4,
     "median_time_to_first_token_seconds": 2.07,
     "context_length": 32768,
     "rank": 471
@@ -35032,7 +35032,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.8,
-      "fast": 162.4,
+      "fast": 152.4,
       "frontier": 4.7,
       "vision": null,
       "audio": null,
@@ -35070,7 +35070,7 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 162.4,
+    "median_output_tokens_per_second": 152.4,
     "median_time_to_first_token_seconds": 0.71,
     "context_length": 32768,
     "rank": 474
@@ -35106,7 +35106,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.4,
-      "fast": 165.8,
+      "fast": 160.3,
       "frontier": 6.9,
       "vision": null,
       "audio": null,
@@ -35144,7 +35144,7 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 165.8,
+    "median_output_tokens_per_second": 160.3,
     "median_time_to_first_token_seconds": 0.73,
     "context_length": 32000,
     "rank": 475
@@ -35180,7 +35180,7 @@
       "agents": 5.2,
       "data-analysis": 5.1,
       "cheap": 0.4,
-      "fast": 158.7,
+      "fast": 155.2,
       "frontier": 14.7,
       "vision": 14.7,
       "audio": null,
@@ -35218,8 +35218,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 158.7,
-    "median_time_to_first_token_seconds": 0.77,
+    "median_output_tokens_per_second": 155.2,
+    "median_time_to_first_token_seconds": 0.76,
     "context_length": 128000,
     "rank": 476
   },
@@ -35550,7 +35550,7 @@
       "agents": 37.5,
       "data-analysis": 43.8,
       "cheap": 5.5,
-      "fast": 134.6,
+      "fast": 135.8,
       "frontier": 50.6,
       "vision": 50.6,
       "audio": null,
@@ -35588,8 +35588,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 4.25
     },
-    "median_output_tokens_per_second": 134.6,
-    "median_time_to_first_token_seconds": 15.87,
+    "median_output_tokens_per_second": 135.8,
+    "median_time_to_first_token_seconds": 15.81,
     "context_length": 1048576,
     "rank": 481
   },
@@ -35920,7 +35920,7 @@
       "agents": 3.1,
       "data-analysis": 2,
       "cheap": 0,
-      "fast": 46.4,
+      "fast": 43.4,
       "frontier": 19.8,
       "vision": null,
       "audio": null,
@@ -35958,8 +35958,8 @@
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 46.4,
-    "median_time_to_first_token_seconds": 43.36,
+    "median_output_tokens_per_second": 43.4,
+    "median_time_to_first_token_seconds": 46.38,
     "context_length": 256000,
     "rank": 486
   },
@@ -36033,7 +36033,7 @@
       "price_1m_output_tokens": 10
     },
     "median_output_tokens_per_second": 136.7,
-    "median_time_to_first_token_seconds": 0.65,
+    "median_time_to_first_token_seconds": 0.68,
     "context_length": 256000,
     "rank": 487
   },
@@ -36068,7 +36068,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.2,
-      "fast": 298.9,
+      "fast": 306.7,
       "frontier": 4.7,
       "vision": null,
       "audio": null,
@@ -36106,7 +36106,7 @@
       "price_1m_input_tokens": 0.035,
       "price_1m_output_tokens": 0.14
     },
-    "median_output_tokens_per_second": 298.9,
+    "median_output_tokens_per_second": 306.7,
     "median_time_to_first_token_seconds": 0.58,
     "context_length": 130000,
     "rank": 488
@@ -36181,7 +36181,7 @@
       "price_1m_output_tokens": 12.5
     },
     "median_output_tokens_per_second": 70.7,
-    "median_time_to_first_token_seconds": 1.11,
+    "median_time_to_first_token_seconds": 1.1,
     "context_length": 1000000,
     "rank": 489
   },
@@ -36290,7 +36290,7 @@
       "agents": 2,
       "data-analysis": 6,
       "cheap": 0.3,
-      "fast": 156.6,
+      "fast": 161.7,
       "frontier": 14.2,
       "vision": null,
       "audio": null,
@@ -36328,8 +36328,8 @@
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 156.6,
-    "median_time_to_first_token_seconds": 13.54,
+    "median_output_tokens_per_second": 161.7,
+    "median_time_to_first_token_seconds": 13.14,
     "context_length": 1000000,
     "rank": 491
   },
@@ -36438,7 +36438,7 @@
       "agents": 8.7,
       "data-analysis": 9.9,
       "cheap": 1,
-      "fast": 147.9,
+      "fast": 147.1,
       "frontier": 25.4,
       "vision": null,
       "audio": null,
@@ -36476,8 +36476,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 0.775
     },
-    "median_output_tokens_per_second": 147.9,
-    "median_time_to_first_token_seconds": 14.54,
+    "median_output_tokens_per_second": 147.1,
+    "median_time_to_first_token_seconds": 14.61,
     "context_length": 1000000,
     "rank": 493
   },
@@ -36512,7 +36512,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.2,
-      "fast": 141.1,
+      "fast": 159.7,
       "frontier": 7.4,
       "vision": null,
       "audio": null,
@@ -36550,7 +36550,7 @@
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.195
     },
-    "median_output_tokens_per_second": 141.1,
+    "median_output_tokens_per_second": 159.7,
     "median_time_to_first_token_seconds": 1.57,
     "context_length": 131072,
     "rank": 494
@@ -36956,7 +36956,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 5.5,
-      "fast": 231.4,
+      "fast": 227.8,
       "frontier": 19,
       "vision": null,
       "audio": null,
@@ -36994,8 +36994,8 @@
       "price_1m_input_tokens": 1.1,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 231.4,
-    "median_time_to_first_token_seconds": 7.54,
+    "median_output_tokens_per_second": 227.8,
+    "median_time_to_first_token_seconds": 7.43,
     "context_length": 200000,
     "rank": 500
   },
@@ -37030,7 +37030,7 @@
       "agents": 1.7,
       "data-analysis": 5.2,
       "cheap": 5.5,
-      "fast": 227.7,
+      "fast": 223.1,
       "frontier": 15.6,
       "vision": null,
       "audio": null,
@@ -37068,8 +37068,8 @@
       "price_1m_input_tokens": 1.1,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 227.7,
-    "median_time_to_first_token_seconds": 23.4,
+    "median_output_tokens_per_second": 223.1,
+    "median_time_to_first_token_seconds": 22.99,
     "context_length": 200000,
     "rank": 501
   },
@@ -39102,7 +39102,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.8,
-      "fast": 59,
+      "fast": 58.9,
       "frontier": 7,
       "vision": null,
       "audio": null,
@@ -39140,8 +39140,8 @@
       "price_1m_input_tokens": 0.35,
       "price_1m_output_tokens": 1.4
     },
-    "median_output_tokens_per_second": 59,
-    "median_time_to_first_token_seconds": 2.73,
+    "median_output_tokens_per_second": 58.9,
+    "median_time_to_first_token_seconds": 2.74,
     "context_length": 32768,
     "rank": 529
   },
@@ -39585,7 +39585,7 @@
       "price_1m_output_tokens": 0.8
     },
     "median_output_tokens_per_second": 102,
-    "median_time_to_first_token_seconds": 2.27,
+    "median_time_to_first_token_seconds": 2.26,
     "context_length": 32768,
     "rank": 535
   },
@@ -39620,7 +39620,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.6,
-      "fast": 103.8,
+      "fast": 103.2,
       "frontier": 9.3,
       "vision": null,
       "audio": null,
@@ -39658,8 +39658,8 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 2.4
     },
-    "median_output_tokens_per_second": 103.8,
-    "median_time_to_first_token_seconds": 2.25,
+    "median_output_tokens_per_second": 103.2,
+    "median_time_to_first_token_seconds": 2.26,
     "context_length": 32768,
     "rank": 536
   },
@@ -39842,7 +39842,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 3.5,
-      "fast": 91.9,
+      "fast": 92.1,
       "frontier": 8.6,
       "vision": null,
       "audio": null,
@@ -39880,7 +39880,7 @@
       "price_1m_input_tokens": 0.7,
       "price_1m_output_tokens": 2.8
     },
-    "median_output_tokens_per_second": 91.9,
+    "median_output_tokens_per_second": 92.1,
     "median_time_to_first_token_seconds": 2.48,
     "context_length": 32768,
     "rank": 539
@@ -40360,7 +40360,7 @@
       "agents": 1.5,
       "data-analysis": 4.5,
       "cheap": 2.3,
-      "fast": 37.8,
+      "fast": 38.2,
       "frontier": 8.3,
       "vision": null,
       "audio": null,
@@ -40398,7 +40398,7 @@
       "price_1m_input_tokens": 0.18,
       "price_1m_output_tokens": 2.1
     },
-    "median_output_tokens_per_second": 37.8,
+    "median_output_tokens_per_second": 38.2,
     "median_time_to_first_token_seconds": 3.73,
     "context_length": 131072,
     "rank": 546
@@ -40434,7 +40434,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.7,
-      "fast": 91.9,
+      "fast": 91.6,
       "frontier": 13.6,
       "vision": null,
       "audio": null,
@@ -40472,7 +40472,7 @@
       "price_1m_input_tokens": 0.45,
       "price_1m_output_tokens": 2.25
     },
-    "median_output_tokens_per_second": 91.9,
+    "median_output_tokens_per_second": 91.6,
     "median_time_to_first_token_seconds": 2.58,
     "context_length": 262144,
     "rank": 547
@@ -40508,7 +40508,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 9,
-      "fast": 58.6,
+      "fast": 58.4,
       "frontier": 18,
       "vision": null,
       "audio": null,
@@ -40546,8 +40546,8 @@
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 7.5
     },
-    "median_output_tokens_per_second": 58.6,
-    "median_time_to_first_token_seconds": 3.2,
+    "median_output_tokens_per_second": 58.4,
+    "median_time_to_first_token_seconds": 3.17,
     "context_length": 262144,
     "rank": 548
   },
@@ -40582,7 +40582,7 @@
       "agents": 8.8,
       "data-analysis": 10.9,
       "cheap": 1.5,
-      "fast": 144.7,
+      "fast": 143.8,
       "frontier": 21.1,
       "vision": null,
       "audio": null,
@@ -40620,7 +40620,7 @@
       "price_1m_input_tokens": 0.35,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 144.7,
+    "median_output_tokens_per_second": 143.8,
     "median_time_to_first_token_seconds": 0.86,
     "context_length": 256000,
     "rank": 549
@@ -40952,7 +40952,7 @@
       "agents": 2.1,
       "data-analysis": 6.2,
       "cheap": 6.5,
-      "fast": 217.7,
+      "fast": 216.8,
       "frontier": 16.7,
       "vision": null,
       "audio": null,
@@ -40990,8 +40990,8 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 217.7,
-    "median_time_to_first_token_seconds": 10.29,
+    "median_output_tokens_per_second": 216.8,
+    "median_time_to_first_token_seconds": 10.34,
     "context_length": 262144,
     "rank": 554
   },
@@ -41026,7 +41026,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 2.5,
-      "fast": 202.4,
+      "fast": 204.7,
       "frontier": 13.7,
       "vision": null,
       "audio": null,
@@ -41064,8 +41064,8 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 2
     },
-    "median_output_tokens_per_second": 202.4,
-    "median_time_to_first_token_seconds": 1.02,
+    "median_output_tokens_per_second": 204.7,
+    "median_time_to_first_token_seconds": 1.03,
     "context_length": 262144,
     "rank": 555
   },
@@ -41213,7 +41213,7 @@
       "price_1m_output_tokens": 7.5
     },
     "median_output_tokens_per_second": 203.1,
-    "median_time_to_first_token_seconds": 13.6,
+    "median_time_to_first_token_seconds": 13.5,
     "context_length": 1000000,
     "rank": 557
   },
@@ -41248,7 +41248,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 1.7,
-      "fast": 29.4,
+      "fast": 29.8,
       "frontier": 13.4,
       "vision": null,
       "audio": null,
@@ -41286,8 +41286,8 @@
       "price_1m_input_tokens": 0.66,
       "price_1m_output_tokens": 1
     },
-    "median_output_tokens_per_second": 29.4,
-    "median_time_to_first_token_seconds": 2.11,
+    "median_output_tokens_per_second": 29.8,
+    "median_time_to_first_token_seconds": 2.12,
     "context_length": 131072,
     "rank": 558
   },
@@ -41583,7 +41583,7 @@
       "price_1m_output_tokens": 0.8
     },
     "median_output_tokens_per_second": 93.9,
-    "median_time_to_first_token_seconds": 23.45,
+    "median_time_to_first_token_seconds": 23.17,
     "context_length": 128000,
     "rank": 562
   },
@@ -41731,7 +41731,7 @@
       "price_1m_output_tokens": 2.5
     },
     "median_output_tokens_per_second": 136.7,
-    "median_time_to_first_token_seconds": 16.47,
+    "median_time_to_first_token_seconds": 16.44,
     "context_length": 262144,
     "rank": 564
   },
@@ -42062,7 +42062,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.8,
-      "fast": 34.3,
+      "fast": 34.6,
       "frontier": 18.3,
       "vision": null,
       "audio": null,
@@ -42100,7 +42100,7 @@
       "price_1m_input_tokens": 0.21,
       "price_1m_output_tokens": 0.57
     },
-    "median_output_tokens_per_second": 34.3,
+    "median_output_tokens_per_second": 34.6,
     "median_time_to_first_token_seconds": 3.01,
     "context_length": 512000,
     "rank": 569
@@ -42989,7 +42989,7 @@
       "price_1m_output_tokens": 0.3
     },
     "median_output_tokens_per_second": 268.1,
-    "median_time_to_first_token_seconds": 1.05,
+    "median_time_to_first_token_seconds": 1.06,
     "context_length": 256000,
     "rank": 581
   },
@@ -43024,7 +43024,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.4,
-      "fast": 290,
+      "fast": 289.4,
       "frontier": 26,
       "vision": null,
       "audio": null,
@@ -43062,8 +43062,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 290,
-    "median_time_to_first_token_seconds": 7.7,
+    "median_output_tokens_per_second": 289.4,
+    "median_time_to_first_token_seconds": 7.72,
     "context_length": 256000,
     "rank": 582
   },

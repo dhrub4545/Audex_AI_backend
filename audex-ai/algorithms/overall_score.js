@@ -77,13 +77,22 @@ async function generateAllRankFiles(inputModels = null) {
     const slug = m.slug || (m.name ? m.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') : 'unknown');
 
     // Strict official Artificial Analysis metrics directly matching the website
-    const intel = typeof m.intelligenceIndex === 'number' ? m.intelligenceIndex : null;
-    const codingIndexScore = typeof m.codingIndex === 'number' ? m.codingIndex : null;
+    const rawIntel = m.intelligenceIndex !== undefined && m.intelligenceIndex !== null ? m.intelligenceIndex : parseFloat(m.evaluations?.artificial_analysis_intelligence_index);
+    const intel = !isNaN(rawIntel) && rawIntel !== null ? rawIntel : null;
+
+    const rawCodingIndex = m.codingIndex !== undefined && m.codingIndex !== null ? m.codingIndex : parseFloat(m.evaluations?.artificial_analysis_coding_index);
+    const codingIndexScore = !isNaN(rawCodingIndex) && rawCodingIndex !== null ? rawCodingIndex : null;
     const codingAgentScore = typeof m.codingAgentsIndex === 'number' ? m.codingAgentsIndex : (typeof m.agenticIndex === 'number' ? m.agenticIndex : (m.terminalbenchV21 ? m.terminalbenchV21 * 100 : null));
     const coding = codingIndexScore !== null ? codingIndexScore : codingAgentScore;
 
-    const math = typeof m.mathIndex === 'number' ? m.mathIndex : (m.aime25 !== null && m.aime25 !== undefined ? m.aime25 * 100 : (m.scicode ? m.scicode * 100 : null));
-    const reasoning = m.gpqa !== null && m.gpqa !== undefined ? m.gpqa * 100 : (m.hle ? m.hle * 100 : null);
+    const rawMathIndex = m.mathIndex !== undefined && m.mathIndex !== null ? m.mathIndex : parseFloat(m.evaluations?.artificial_analysis_math_index);
+    const math = !isNaN(rawMathIndex) && rawMathIndex !== null ? rawMathIndex : (m.aime25 !== null && m.aime25 !== undefined ? m.aime25 * 100 : (m.scicode ? m.scicode * 100 : null));
+
+    const rawGpqa = m.gpqa !== undefined && m.gpqa !== null ? m.gpqa : parseFloat(m.evaluations?.gpqa);
+    const gpqaVal = !isNaN(rawGpqa) && rawGpqa !== null ? (rawGpqa <= 1 ? rawGpqa * 100 : rawGpqa) : null;
+    const rawHle = m.hle !== undefined && m.hle !== null ? m.hle : parseFloat(m.evaluations?.hle);
+    const hleVal = !isNaN(rawHle) && rawHle !== null ? (rawHle <= 1 ? rawHle * 100 : rawHle) : null;
+    const reasoning = gpqaVal !== null ? gpqaVal : hleVal;
     const research = m.lcr !== null && m.lcr !== undefined ? m.lcr * 100 : null;
     const instruction = m.ifbench !== null && m.ifbench !== undefined ? m.ifbench * 100 : null;
     const writing = intel;
