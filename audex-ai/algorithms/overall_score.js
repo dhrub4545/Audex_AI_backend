@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { saveRankCategory } = require('../../services/rankStorage');
 
 const ALL_30_CATEGORIES = [
   "overall", "coding", "math", "reasoning", "research", "instruction",
@@ -23,9 +24,9 @@ function round2(val) {
 /**
  * Normalizes and builds rank JSON files for all 30 categories strictly matching Artificial Analysis website structure & ordering.
  * @param {Array<Object>} [inputModels] Scraped models list
- * @returns {number} Number of rank files written
+ * @returns {Promise<number>} Number of rank files written
  */
-function generateAllRankFiles(inputModels = null) {
+async function generateAllRankFiles(inputModels = null) {
   console.log('📊 Audex AI Rank File Generator: Building all 30 category rank files strictly matching Artificial Analysis website...');
 
   let modelsList = inputModels;
@@ -54,15 +55,19 @@ function generateAllRankFiles(inputModels = null) {
   }
 
   const rankDir = path.join(__dirname, '../../data/rank');
-  if (!fs.existsSync(rankDir)) {
-    fs.mkdirSync(rankDir, { recursive: true });
-  } else {
-    const existing = fs.readdirSync(rankDir);
-    for (const f of existing) {
-      if (f.endsWith('.json')) {
-        try { fs.unlinkSync(path.join(rankDir, f)); } catch (_) {}
+  try {
+    if (!fs.existsSync(rankDir)) {
+      fs.mkdirSync(rankDir, { recursive: true });
+    } else {
+      const existing = fs.readdirSync(rankDir);
+      for (const f of existing) {
+        if (f.endsWith('.json')) {
+          try { fs.unlinkSync(path.join(rankDir, f)); } catch (_) {}
+        }
       }
     }
+  } catch (fsErr) {
+    // Read-only filesystem warning ignored on serverless
   }
 
   // Transform raw Artificial Analysis models into unified ranking objects
@@ -202,8 +207,7 @@ function generateAllRankFiles(inputModels = null) {
       rank: idx + 1
     }));
 
-    const filePath = path.join(rankDir, `${catName}.json`);
-    fs.writeFileSync(filePath, JSON.stringify(rankedList, null, 2), 'utf8');
+    await saveRankCategory(catName, rankedList);
     filesCount++;
   }
 

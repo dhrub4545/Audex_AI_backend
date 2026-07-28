@@ -19,7 +19,7 @@ async function runAudexPipeline() {
 
     // Phase 2: Category Scoring & Rank File Generation
     console.log('\n--- Phase 2: Generating 30 Category Rank Files ---');
-    const totalRankFiles = generateAllRankFiles(scrapedModels);
+    const totalRankFiles = await generateAllRankFiles(scrapedModels);
 
     // Phase 3: Synchronize raw_data.json & Local Database
     console.log('\n--- Phase 3: Generating raw_data.json & Local Database Sync ---');

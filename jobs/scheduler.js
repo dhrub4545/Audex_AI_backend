@@ -4,7 +4,7 @@ const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
 
 function initScheduler() {
   if (process.env.VERCEL) {
-    console.log('⏰ Ingestion Scheduler: Running on Vercel. Disabling startup sync and background cron to fit Serverless constraints.');
+    console.log('⏰ Ingestion Scheduler: Running on Vercel. Background node-cron disabled in favor of Vercel Crons (/api/audits/cron/sync).');
     return;
   }
 

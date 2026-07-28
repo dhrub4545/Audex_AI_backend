@@ -6,10 +6,21 @@
       "use": "@vercel/node"
     }
   ],
+  "functions": {
+    "server.js": {
+      "maxDuration": 60
+    }
+  },
   "routes": [
     {
       "src": "/(.*)",
       "dest": "server.js"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/audits/cron/sync",
+      "schedule": "0 0 * * *"
     }
   ]
 }

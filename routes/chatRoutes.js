@@ -7,6 +7,7 @@ const { searchWeb } = require('../services/webSearch');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+const { getRankCategory } = require('../services/rankStorage');
 
 // Route: Get chat history for a specific audit
 router.get('/:auditId', optionalAuth, async (req, res) => {
@@ -91,9 +92,8 @@ router.post('/:auditId', optionalAuth, async (req, res) => {
     // 4. Load overall.json model rankings & stats
     let modelReferenceText = '';
     try {
-      const overallPath = path.join(__dirname, '../data/rank/overall.json');
-      if (fs.existsSync(overallPath)) {
-        const overallModels = JSON.parse(fs.readFileSync(overallPath, 'utf8'));
+      const overallModels = await getRankCategory('overall');
+      if (overallModels && Array.isArray(overallModels)) {
         
         // Extract model keys involved in this audit
         const modelKeysToFind = new Set();

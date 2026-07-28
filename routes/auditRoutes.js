@@ -6,6 +6,8 @@ const Model = require('../models/Model');
 const { auth, optionalAuth } = require('../middleware/auth');
 const fs = require('fs');
 const path = require('path');
+const { getRawData } = require('../services/rankStorage');
+const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
 
 function redactAuditRecommendations(recommendations) {
   if (!recommendations || !Array.isArray(recommendations)) return recommendations;
@@ -1456,16 +1458,58 @@ router.post('/audit-recommendation', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
 });
-// Route to fetch raw Artificial Analysis API data for the home page analysis dashboard
-router.get('/analysis/raw-data', (req, res) => {
+// Vercel Cron & Manual Trigger Endpoint for Daily Artificial Analysis Sync
+const handleCronSync = async (req, res) => {
   try {
-    const rawPath = path.join(__dirname, '../data/raw_data.json');
-    if (!fs.existsSync(rawPath)) {
+    const cronSecret = process.env.CRON_SECRET;
+    const authHeader = req.headers['authorization'];
+    const isVercelCron = Boolean(req.headers['x-vercel-cron']);
+    
+    // Validate secret if configured
+    if (cronSecret && !isVercelCron) {
+      const providedSecret = req.query.secret || (authHeader ? authHeader.replace('Bearer ', '') : null);
+      if (providedSecret !== cronSecret) {
+        return res.status(401).json({ error: 'Unauthorized: Invalid CRON_SECRET token.' });
+      }
+    }
+
+    console.log('⏰ Vercel Cron / Manual Sync triggered: Running daily ranking pipeline...');
+    const result = await runDailyRankingPipeline();
+
+    return res.json({
+      success: true,
+      message: 'Daily Artificial Analysis sync and ranking pipeline executed successfully.',
+      timestamp: new Date().toISOString(),
+      result
+    });
+  } catch (error) {
+    console.error('❌ Vercel Cron / Manual Sync Error:', error.message);
+    return res.status(500).json({
+      success: false,
+      error: 'Daily sync pipeline execution failed.',
+      details: error.message
+    });
+  }
+};
+
+router.get('/cron/sync', handleCronSync);
+router.post('/cron/sync', handleCronSync);
+
+// Route to fetch raw Artificial Analysis API data for the home page analysis dashboard
+router.get('/analysis/raw-data', async (req, res) => {
+  try {
+    let rawData = await getRawData();
+
+    if (!rawData) {
+      console.log('🔄 Raw data empty in DB & disk. Auto-triggering initial pipeline sync...');
+      await runDailyRankingPipeline();
+      rawData = await getRawData();
+    }
+
+    if (!rawData) {
       return res.status(404).json({ error: 'Raw analysis data not found. Please run database synchronization first.' });
     }
 
-    const rawContent = fs.readFileSync(rawPath, 'utf8');
-    const rawData = JSON.parse(rawContent);
     const sources = rawData.sources || {};
 
     // 1. Process LLMs

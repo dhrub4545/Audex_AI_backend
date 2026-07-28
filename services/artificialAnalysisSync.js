@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const Model = require('../models/Model');
+const { saveRawData, getRankCategory } = require('./rankStorage');
+const { ALL_30_CATEGORIES } = require('../audex-ai/algorithms/overall_score');
 
 // Normalization function to align creator and model slugs
 function normalizeModelId(creator, slug) {
@@ -22,25 +24,14 @@ function normalizeModelId(creator, slug) {
 async function syncArtificialAnalysis(scrapedModels = null) {
   console.log('🔄 Local Data Sync: Synchronizing Artificial Analysis models & updating raw_data.json...');
 
-  const rankDir = path.join(__dirname, '../data/rank');
-  if (!fs.existsSync(rankDir)) {
-    throw new Error(`Local rank directory not found at: ${rankDir}`);
-  }
-
-  const files = fs.readdirSync(rankDir).filter(f => f.endsWith('.json'));
-  console.log(`📂 Found ${files.length} JSON files in the rank folder.`);
-
   const modelsMap = new Map();
   const categories = {};
 
-  // Load and merge models from all JSON files in the rank folder
-  for (const file of files) {
-    const filePath = path.join(rankDir, file);
+  // Load and merge models from all 30 rank categories via rankStorage (MongoDB Atlas / local disk fallback)
+  for (const categoryName of ALL_30_CATEGORIES) {
     try {
-      const content = fs.readFileSync(filePath, 'utf8');
-      const data = JSON.parse(content);
+      const data = await getRankCategory(categoryName);
       if (Array.isArray(data)) {
-        const categoryName = file.replace('.json', '');
         categories[categoryName] = data.map(item => {
           const creatorSlug = item.model_creator?.slug || 'unknown';
           const modelId = normalizeModelId(creatorSlug, item.slug);
@@ -76,7 +67,7 @@ async function syncArtificialAnalysis(scrapedModels = null) {
         }
       }
     } catch (err) {
-      console.error(`⚠️ Error reading or parsing ${file}:`, err.message);
+      console.error(`⚠️ Error loading rank data for [${categoryName}]:`, err.message);
     }
   }
 
@@ -193,10 +184,44 @@ async function syncArtificialAnalysis(scrapedModels = null) {
     }
   }
 
-  // Save full raw data payload to backend/data/raw_data.json
+  const prunedLlms = (scrapedModels || llmModels).map(m => ({
+    slug: m.slug,
+    name: m.name,
+    model_creator: m.model_creator || { name: m.creator?.name || m.organization || 'Unknown', slug: m.creator?.slug || '' },
+    release_date: m.release_date,
+    pricing: m.pricing || {
+      price_1m_input_tokens: m.price1mInputTokens || 0,
+      price_1m_output_tokens: m.price1mOutputTokens || 0
+    },
+    evaluations: m.evaluations || {
+      artificial_analysis_intelligence_index: m.intelligenceIndex || null,
+      artificial_analysis_coding_index: m.codingIndex || null,
+      artificial_analysis_math_index: m.mathIndex || null,
+      gpqa: m.gpqa || null,
+      hle: m.hle || null
+    },
+    median_output_tokens_per_second: m.median_output_tokens_per_second || m.performanceByPromptType?.medium?.medianOutputSpeed || null,
+    median_time_to_first_token_seconds: m.median_time_to_first_token_seconds || m.performanceByPromptType?.medium?.medianTimeToFirstAnswerToken || null
+  }));
+
+  const trimmedCategories = {};
+  for (const [catName, catItems] of Object.entries(categories)) {
+    if (Array.isArray(catItems)) {
+      trimmedCategories[catName] = catItems.map(item => ({
+        rank: item.rank,
+        slug: item.slug,
+        modelId: item.modelId,
+        name: item.name,
+        organization: item.organization,
+        rating: item.rating
+      }));
+    }
+  }
+
+  // Save full raw data payload to backend/data/raw_data.json & MongoDB
   const rawData = {
     fetched_at_utc: new Date().toISOString(),
-    categories: categories,
+    categories: trimmedCategories,
     sources: {
       llms: {
         status: 200,
@@ -204,7 +229,7 @@ async function syncArtificialAnalysis(scrapedModels = null) {
           parallel_queries: 1,
           prompt_length: 1000
         },
-        data: scrapedModels || llmModels
+        data: prunedLlms
       },
       text_to_image: [],
       image_editing: [],
@@ -214,17 +239,7 @@ async function syncArtificialAnalysis(scrapedModels = null) {
     }
   };
 
-  try {
-    const outputDir = path.join(__dirname, '../data');
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
-    }
-    const outputFile = path.join(outputDir, 'raw_data.json');
-    fs.writeFileSync(outputFile, JSON.stringify(rawData, null, 2), 'utf8');
-    console.log(`💾 Saved updated raw_data.json to: ${outputFile}`);
-  } catch (fsErr) {
-    console.error('⚠️ Failed to write raw_data.json cache file:', fsErr.message);
-  }
+  await saveRawData(rawData);
 
   console.log(`✅ Local Data Sync: Successfully synchronized ${syncedModels.length} models and capabilities.`);
   return syncedModels;
