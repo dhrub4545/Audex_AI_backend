@@ -1564,22 +1564,34 @@ router.get('/analysis/raw-data', async (req, res) => {
       // Blended price assumes a standard 3:1 input:output tokens ratio
       const blendedPrice = (inputCost * 0.75) + (outputCost * 0.25);
 
+      const rawIntel = evaluations.artificial_analysis_intelligence_index !== undefined ? evaluations.artificial_analysis_intelligence_index : (item.intelligenceIndex !== undefined ? item.intelligenceIndex : item.category_scores?.overall);
+      const rawCoding = evaluations.artificial_analysis_coding_index !== undefined ? evaluations.artificial_analysis_coding_index : (item.codingIndex !== undefined ? item.codingIndex : item.category_scores?.coding);
+      const rawMath = evaluations.artificial_analysis_math_index !== undefined ? evaluations.artificial_analysis_math_index : (item.mathIndex !== undefined ? item.mathIndex : item.category_scores?.math);
+
+      const parsedIntel = !isNaN(parseFloat(rawIntel)) ? parseFloat(rawIntel) : null;
+      const parsedCoding = !isNaN(parseFloat(rawCoding)) ? parseFloat(rawCoding) : null;
+      const parsedMath = !isNaN(parseFloat(rawMath)) ? parseFloat(rawMath) : null;
+
       return {
         slug: item.slug,
         name: item.name,
-        creator: item.model_creator?.name || 'Unknown',
+        creator: item.model_creator?.name || item.organization || 'Unknown',
         release_date: item.release_date,
-        intelligence_index: parseFloat(evaluations.artificial_analysis_intelligence_index) || null,
-        coding_index: parseFloat(evaluations.artificial_analysis_coding_index) || null,
-        math_index: parseFloat(evaluations.artificial_analysis_math_index) || null,
-        gpqa: parseFloat(evaluations.gpqa) || null,
-        hle: parseFloat(evaluations.hle) || null,
+        intelligence_index: parsedIntel,
+        coding_index: parsedCoding,
+        math_index: parsedMath,
+        gpqa: parseFloat(evaluations.gpqa || item.gpqa) || null,
+        hle: parseFloat(evaluations.hle || item.hle) || null,
         throughput: parseFloat(item.median_output_tokens_per_second) || null,
         ttft: parseFloat(item.median_time_to_first_token_seconds) || null,
         inputCost,
         outputCost,
         blendedPrice
       };
+    }).sort((a, b) => {
+      const valA = typeof a.intelligence_index === 'number' ? a.intelligence_index : -1;
+      const valB = typeof b.intelligence_index === 'number' ? b.intelligence_index : -1;
+      return valB - valA;
     });
 
     // 2. Process Media categories

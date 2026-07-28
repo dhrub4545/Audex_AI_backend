@@ -1,5 +1,5 @@
 {
-  "fetched_at_utc": "2026-07-28T11:10:53.562Z",
+  "fetched_at_utc": "2026-07-28T11:17:14.044Z",
   "categories": {
     "overall": [
       {
@@ -518114,7 +518114,7 @@
           },
           "evaluations": {
             "artificial_analysis_intelligence_index": 5.34697483900728,
-            "artificial_analysis_coding_index": null,
+            "artificial_analysis_coding_index": 0,
             "artificial_analysis_math_index": null,
             "gpqa": 0.12020202020202,
             "hle": 0.0120481927710843

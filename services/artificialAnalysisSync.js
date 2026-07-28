@@ -184,25 +184,31 @@ async function syncArtificialAnalysis(scrapedModels = null) {
     }
   }
 
-  const prunedLlms = (scrapedModels || llmModels).map(m => ({
-    slug: m.slug,
-    name: m.name,
-    model_creator: m.model_creator || { name: m.creator?.name || m.organization || 'Unknown', slug: m.creator?.slug || '' },
-    release_date: m.release_date,
-    pricing: m.pricing || {
-      price_1m_input_tokens: m.price1mInputTokens || 0,
-      price_1m_output_tokens: m.price1mOutputTokens || 0
-    },
-    evaluations: m.evaluations || {
-      artificial_analysis_intelligence_index: m.intelligenceIndex || null,
-      artificial_analysis_coding_index: m.codingIndex || null,
-      artificial_analysis_math_index: m.mathIndex || null,
-      gpqa: m.gpqa || null,
-      hle: m.hle || null
-    },
-    median_output_tokens_per_second: m.median_output_tokens_per_second || m.performanceByPromptType?.medium?.medianOutputSpeed || null,
-    median_time_to_first_token_seconds: m.median_time_to_first_token_seconds || m.performanceByPromptType?.medium?.medianTimeToFirstAnswerToken || null
-  }));
+  const prunedLlms = (scrapedModels || llmModels).map(m => {
+    const intel = m.evaluations?.artificial_analysis_intelligence_index !== undefined ? m.evaluations.artificial_analysis_intelligence_index : (m.intelligenceIndex !== undefined ? m.intelligenceIndex : m.category_scores?.overall);
+    const coding = m.evaluations?.artificial_analysis_coding_index !== undefined ? m.evaluations.artificial_analysis_coding_index : (m.codingIndex !== undefined ? m.codingIndex : m.category_scores?.coding);
+    const math = m.evaluations?.artificial_analysis_math_index !== undefined ? m.evaluations.artificial_analysis_math_index : (m.mathIndex !== undefined ? m.mathIndex : m.category_scores?.math);
+
+    return {
+      slug: m.slug,
+      name: m.name,
+      model_creator: m.model_creator || { name: m.creator?.name || m.organization || 'Unknown', slug: m.creator?.slug || '' },
+      release_date: m.release_date,
+      pricing: m.pricing || {
+        price_1m_input_tokens: m.price1mInputTokens || 0,
+        price_1m_output_tokens: m.price1mOutputTokens || 0
+      },
+      evaluations: {
+        artificial_analysis_intelligence_index: intel !== undefined ? intel : null,
+        artificial_analysis_coding_index: coding !== undefined ? coding : null,
+        artificial_analysis_math_index: math !== undefined ? math : null,
+        gpqa: m.evaluations?.gpqa ?? m.gpqa ?? null,
+        hle: m.evaluations?.hle ?? m.hle ?? null
+      },
+      median_output_tokens_per_second: m.median_output_tokens_per_second || m.performanceByPromptType?.medium?.medianOutputSpeed || null,
+      median_time_to_first_token_seconds: m.median_time_to_first_token_seconds || m.performanceByPromptType?.medium?.medianTimeToFirstAnswerToken || null
+    };
+  });
 
   const trimmedCategories = {};
   for (const [catName, catItems] of Object.entries(categories)) {
