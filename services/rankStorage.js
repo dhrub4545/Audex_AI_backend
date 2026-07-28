@@ -6,7 +6,7 @@ const RANK_DIR = path.join(__dirname, '../data/rank');
 const RAW_DATA_PATH = path.join(__dirname, '../data/raw_data.json');
 
 /**
- * Save rank category data to MongoDB Atlas and attempt local file write.
+ * Save rank category data to MongoDB Atlas.
  */
 async function saveRankCategory(categoryKey, data) {
   // 1. Save to MongoDB Atlas
@@ -20,25 +20,16 @@ async function saveRankCategory(categoryKey, data) {
     console.warn(`⚠️ MongoDB RankData save warning for [${categoryKey}]:`, err.message);
   }
 
-  // 2. Attempt local file system write (if writable)
+  // 2. Cache in /tmp (ephemeral)
   try {
-    if (!fs.existsSync(RANK_DIR)) {
-      fs.mkdirSync(RANK_DIR, { recursive: true });
-    }
-    const targetFile = path.join(RANK_DIR, `${categoryKey}.json`);
-    fs.writeFileSync(targetFile, JSON.stringify(data, null, 2), 'utf8');
-  } catch (fsErr) {
-    // Expected on Vercel read-only filesystem
-    try {
-      const tmpDir = path.join('/tmp', 'rank');
-      if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
-      fs.writeFileSync(path.join(tmpDir, `${categoryKey}.json`), JSON.stringify(data, null, 2), 'utf8');
-    } catch (_) {}
-  }
+    const tmpDir = path.join('/tmp', 'rank');
+    if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
+    fs.writeFileSync(path.join(tmpDir, `${categoryKey}.json`), JSON.stringify(data, null, 2), 'utf8');
+  } catch (_) {}
 }
 
 /**
- * Get rank category data from MongoDB Atlas first, fallback to disk / /tmp.
+ * Get rank category data from MongoDB Atlas first, fallback to /tmp.
  */
 async function getRankCategory(categoryKey) {
   // 1. Check MongoDB Atlas
@@ -51,16 +42,7 @@ async function getRankCategory(categoryKey) {
     console.warn(`⚠️ MongoDB RankData read warning for [${categoryKey}]:`, err.message);
   }
 
-  // 2. Fallback to local file system
-  const localPath = path.join(RANK_DIR, `${categoryKey}.json`);
-  if (fs.existsSync(localPath)) {
-    try {
-      const content = fs.readFileSync(localPath, 'utf8');
-      return JSON.parse(content);
-    } catch (_) {}
-  }
-
-  // 3. Fallback to /tmp
+  // 2. Fallback to /tmp
   const tmpPath = path.join('/tmp/rank', `${categoryKey}.json`);
   if (fs.existsSync(tmpPath)) {
     try {

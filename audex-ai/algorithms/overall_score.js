@@ -54,22 +54,6 @@ async function generateAllRankFiles(inputModels = null) {
     throw new Error('No Artificial Analysis models available to generate rank files.');
   }
 
-  const rankDir = path.join(__dirname, '../../data/rank');
-  try {
-    if (!fs.existsSync(rankDir)) {
-      fs.mkdirSync(rankDir, { recursive: true });
-    } else {
-      const existing = fs.readdirSync(rankDir);
-      for (const f of existing) {
-        if (f.endsWith('.json')) {
-          try { fs.unlinkSync(path.join(rankDir, f)); } catch (_) {}
-        }
-      }
-    }
-  } catch (fsErr) {
-    // Read-only filesystem warning ignored on serverless
-  }
-
   // Transform raw Artificial Analysis models into unified ranking objects
   const processedModels = modelsList.map(m => {
     const creatorName = m.creator?.name || m.organization || 'Independent';
