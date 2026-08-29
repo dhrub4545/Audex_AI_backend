@@ -23,30 +23,58 @@ app.use((req, res, next) => {
   next();
 });
 
-// Database connection
+// Database connection management (supports persistent server and serverless environments)
 const MONGODB_URI = process.env.MONGODB_URI || process.env.mongo_db || 'mongodb://localhost:27017/audit-ai';
 
-let connectionPromise = mongoose.connect(MONGODB_URI)
-.then(() => {
-  console.log('MongoDB successfully connected.');
-  // Start scheduler
-  const { initScheduler } = require('./jobs/scheduler');
-  initScheduler();
-})
-.catch((err) => {
-  console.error('❌ MongoDB connection failed:', err.message);
-  if (!process.env.VERCEL) {
-    process.exit(1);
+let cachedConnection = global.mongooseConnection;
+if (!cachedConnection) {
+  cachedConnection = global.mongooseConnection = { conn: null, promise: null };
+}
+
+async function connectToDatabase() {
+  if (cachedConnection.conn && mongoose.connection.readyState === 1) {
+    return cachedConnection.conn;
   }
-  throw err; // Propagate error for serverless requests
-});
+
+  if (!cachedConnection.promise) {
+    const opts = {
+      bufferCommands: false,
+      serverSelectionTimeoutMS: 10000,
+    };
+
+    cachedConnection.promise = mongoose.connect(MONGODB_URI, opts)
+      .then((mongooseInstance) => {
+        console.log('MongoDB successfully connected.');
+        // Initialize scheduler once when running in standalone server mode
+        if (!process.env.VERCEL) {
+          const { initScheduler } = require('./jobs/scheduler');
+          initScheduler();
+        }
+        return mongooseInstance;
+      })
+      .catch((err) => {
+        console.error('❌ MongoDB connection failed:', err.message);
+        cachedConnection.promise = null;
+        if (!process.env.VERCEL) {
+          process.exit(1);
+        }
+        throw err;
+      });
+  }
+
+  cachedConnection.conn = await cachedConnection.promise;
+  return cachedConnection.conn;
+}
+
+// Initial connection attempt on server startup
+connectToDatabase().catch(() => {});
 
 // Middleware to guarantee MongoDB is connected before handling routes
 app.use(async (req, res, next) => {
   if (mongoose.connection.readyState !== 1) {
     try {
-      console.log('⏳ Database connection is in state', mongoose.connection.readyState, '- awaiting connectionPromise...');
-      await connectionPromise;
+      console.log('⏳ Database connection is in state', mongoose.connection.readyState, '- reconnecting to database...');
+      await connectToDatabase();
       next();
     } catch (err) {
       console.error('❌ Request blocked by database connection failure:', err.message);

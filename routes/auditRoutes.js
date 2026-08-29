@@ -6,8 +6,10 @@ const Model = require('../models/Model');
 const { auth, optionalAuth } = require('../middleware/auth');
 const fs = require('fs');
 const path = require('path');
-const { getRawData, getRankCategory } = require('../services/rankStorage');
+const axios = require('axios');
+const { getRawData, getRankCategory, getSubscriptionTiers, saveSubscriptionTiers } = require('../services/rankStorage');
 const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
+const { syncSubscriptionTiers } = require('../services/subscriptionTierSync');
 
 function redactAuditRecommendations(recommendations) {
   if (!recommendations || !Array.isArray(recommendations)) return recommendations;
@@ -46,18 +48,21 @@ function redactAuditRecommendations(recommendations) {
   });
 }
 
-// Load subscription pricing tiers from JSON file
+// Load initial subscription pricing tiers from rankStorage (MongoDB Atlas / disk fallback)
 let subscriptionTiers = [];
-try {
-  const tiersPath = path.join(__dirname, '../data/subscription_tiers.json');
-  if (fs.existsSync(tiersPath)) {
-    subscriptionTiers = JSON.parse(fs.readFileSync(tiersPath, 'utf8'));
-  } else {
-    console.warn('subscription_tiers.json not found at:', tiersPath);
+(async () => {
+  try {
+    subscriptionTiers = await getSubscriptionTiers();
+    if (!subscriptionTiers || subscriptionTiers.length === 0) {
+      const tiersPath = path.join(__dirname, '../data/subscription_tiers.json');
+      if (fs.existsSync(tiersPath)) {
+        subscriptionTiers = JSON.parse(fs.readFileSync(tiersPath, 'utf8'));
+      }
+    }
+  } catch (err) {
+    console.error('Error loading subscription_tiers in auditRoutes:', err);
   }
-} catch (err) {
-  console.error('Error loading subscription_tiers.json:', err);
-}
+})();
 
 // Find matching subscription tier from the database
 function findSubscriptionTier(toolName, planName) {
@@ -632,10 +637,9 @@ router.post('/', optionalAuth, async (req, res) => {
             const resolved = resolveBaselineModel(mid, allModels, toolName);
             if (resolved) {
               const currentSlug = resolved._id.split('/')[1] || '';
-              const rankEntry = rankData.find(item => item.slug === currentSlug) ||
-                                rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
+              const rankEntry = findRankEntry(rankData, currentSlug);
               if (rankEntry) {
-                baselineRank = Math.min(baselineRank, rankEntry.rank);
+                baselineRank = Math.min(baselineRank, parseInt(rankEntry.rank) || 9999);
                 computedBaselineScore = Math.max(computedBaselineScore, Math.min(100, Math.round(rankEntry.final_score)));
               } else {
                 computedBaselineScore = Math.max(computedBaselineScore, resolved.capabilities?.[capabilityField] || 0);
@@ -647,19 +651,14 @@ router.post('/', optionalAuth, async (req, res) => {
         // api
         if (currentModel) {
           const currentSlug = currentModel._id.split('/')[1] || '';
-          const rankEntry = rankData.find(item => item.slug === currentSlug) ||
-                            rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
+          const rankEntry = findRankEntry(rankData, currentSlug);
           if (rankEntry) {
-            baselineRank = rankEntry.rank;
+            baselineRank = parseInt(rankEntry.rank) || 9999;
             computedBaselineScore = Math.min(100, Math.round(rankEntry.final_score));
           } else {
             computedBaselineScore = currentModel.capabilities?.[capabilityField] || 0;
           }
         }
-      }
-
-      if (baselineRank === 9999) {
-        baselineRank = 500;
       }
 
       // OPTION A: Best Model API Candidates
@@ -727,7 +726,7 @@ router.post('/', optionalAuth, async (req, res) => {
 
       if (optimizationGoal === 'quality') {
         if (apiCandidates.length > 0) {
-          apiCandidates.sort((a, b) => a.rank - b.rank);
+          apiCandidates.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score);
           selectedApi = apiCandidates[0];
           if (selectedApi.isCurrent) {
             apiStatusText = "Best model API already used.";
@@ -741,11 +740,11 @@ router.post('/', optionalAuth, async (req, res) => {
           compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.performance_score >= computedBaselineScore);
         }
         if (compatible.length > 0) {
-          compatible.sort((a, b) => a.rank - b.rank);
+          compatible.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score || a.monthly_cost - b.monthly_cost);
           selectedApi = compatible[0];
         } else {
           apiCandidates.sort((a, b) => a.rank - b.rank);
-          if (apiCandidates[0] && (apiCandidates[0]._id === modelId || (type === 'api' && baselineRank === 1))) {
+          if (apiCandidates[0] && (apiCandidates[0]._id === modelId || (type === 'api' && baselineRank <= apiCandidates[0].rank))) {
             apiStatusText = "Best model API already used.";
           }
         }
@@ -753,7 +752,7 @@ router.post('/', optionalAuth, async (req, res) => {
         const maxAllowedCost = currentCost * (1 - costCutPercentage / 100);
         let compatible = apiCandidates.filter(c => c.monthly_cost <= maxAllowedCost);
         if (compatible.length > 0) {
-          compatible.sort((a, b) => a.rank - b.rank);
+          compatible.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score || a.monthly_cost - b.monthly_cost);
           selectedApi = compatible[0];
         }
       }
@@ -886,7 +885,7 @@ router.post('/', optionalAuth, async (req, res) => {
 
       if (optimizationGoal === 'quality') {
         if (subCandidates.length > 0) {
-          subCandidates.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
+          subCandidates.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score);
           selectedSub = subCandidates[0];
           if (selectedSub.isCurrent) {
             subStatusText = "Best subscription already used.";
@@ -900,10 +899,10 @@ router.post('/', optionalAuth, async (req, res) => {
           compatible = subCandidates.filter(c => c.cost < currentCost && c.performance_score >= computedBaselineScore);
         }
         if (compatible.length > 0) {
-          compatible.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
+          compatible.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score || a.cost - b.cost);
           selectedSub = compatible[0];
         } else {
-          subCandidates.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
+          subCandidates.sort((a, b) => a.rank - b.rank);
           if (subCandidates[0] && (subCandidates[0].isCurrent || (type === 'subscription' && baselineRank <= subCandidates[0].rank))) {
             subStatusText = "Best subscription already used.";
           }
@@ -912,7 +911,7 @@ router.post('/', optionalAuth, async (req, res) => {
         const maxAllowedCost = currentCost * (1 - costCutPercentage / 100);
         let compatible = subCandidates.filter(c => c.cost <= maxAllowedCost);
         if (compatible.length > 0) {
-          compatible.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
+          compatible.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score || a.cost - b.cost);
           selectedSub = compatible[0];
         }
       }
@@ -1303,11 +1302,21 @@ router.post('/audit-recommendation', async (req, res) => {
 
     const rankData = await getCategoryRankData(targetUseCase);
     
-    const currentSlug = currentModel._id.split('/')[1] || '';
+    const currentSlug = (currentModel._id.split('/')[1] || currentModel._id).toLowerCase();
     const currentRankEntry = findRankEntry(rankData, currentSlug);
     const currentRank = currentRankEntry ? (parseInt(currentRankEntry.rank) || 999) : 999;
     const currentScore = currentRankEntry ? getEvaluationScore(currentRankEntry, targetUseCase, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || 0);
-    const currentCost = calculateModelCost(currentModel, monthlyTokens, inputRatio);
+    const currentRating = currentRankEntry?.rating || 0;
+    
+    const currentInputCost = (currentRankEntry?.pricing?.price_1m_input_tokens !== undefined && currentRankEntry?.pricing?.price_1m_input_tokens !== null)
+      ? parseFloat(currentRankEntry.pricing.price_1m_input_tokens)
+      : (currentModel.endpoints?.[0]?.input_cost_per_m || 0);
+
+    const currentOutputCost = (currentRankEntry?.pricing?.price_1m_output_tokens !== undefined && currentRankEntry?.pricing?.price_1m_output_tokens !== null)
+      ? parseFloat(currentRankEntry.pricing.price_1m_output_tokens)
+      : (currentModel.endpoints?.[0]?.output_cost_per_m || 0);
+
+    const currentCost = ((currentInputCost * inputRatio) + (currentOutputCost * (1 - inputRatio))) * (monthlyTokens / 1000000);
 
     // 3. Map alternatives
     let alternatives = [];
@@ -1320,27 +1329,48 @@ router.post('/audit-recommendation', async (req, res) => {
           dbModel = allModels.find(m => m._id.toLowerCase().includes(item.slug.toLowerCase()) || item.slug.toLowerCase().includes(m._id.toLowerCase().split('/')[1] || ''));
         }
         
-        if (dbModel && dbModel.endpoints && dbModel.endpoints.length > 0) {
-          // De-duplicate: skip if this model is already mapped in alternatives
-          if (alternatives.some(alt => alt._id === dbModel._id)) {
+        const inputCost = (item.pricing?.price_1m_input_tokens !== undefined && item.pricing?.price_1m_input_tokens !== null)
+          ? parseFloat(item.pricing.price_1m_input_tokens)
+          : (dbModel?.endpoints?.[0]?.input_cost_per_m || 0);
+
+        const outputCost = (item.pricing?.price_1m_output_tokens !== undefined && item.pricing?.price_1m_output_tokens !== null)
+          ? parseFloat(item.pricing.price_1m_output_tokens)
+          : (dbModel?.endpoints?.[0]?.output_cost_per_m || 0);
+
+        const cacheReadCost = (item.pricing?.price_1m_cache_read_tokens !== undefined && item.pricing?.price_1m_cache_read_tokens !== null)
+          ? parseFloat(item.pricing.price_1m_cache_read_tokens)
+          : (dbModel?.endpoints?.[0]?.cache_read_cost_per_m || 0);
+
+        if (inputCost > 0 || outputCost > 0) {
+          const modelId = item.modelId || dbModel?._id || (item.slug ? `${(item.organization || item.creator || 'ai').toLowerCase()}/${item.slug}` : '');
+          if (!modelId) continue;
+
+          // De-duplicate: skip if already mapped
+          if (alternatives.some(alt => alt._id === modelId || alt.slug === item.slug)) {
             continue;
           }
 
-          const cost = calculateModelCost(dbModel, monthlyTokens, inputRatio);
           const score = getEvaluationScore(item, targetUseCase, dbModel, capabilityField);
+          const rating = item.rating || 0;
+          const tokens_per_second = item.median_output_tokens_per_second || item.tokens_per_second || dbModel?.capabilities?.tokens_per_second || 0;
+          const time_to_first_token_ms = item.median_time_to_first_token_seconds ? Math.round(item.median_time_to_first_token_seconds * 1000) : (dbModel?.capabilities?.time_to_first_token_ms || 0);
+
+          const cost = ((inputCost * inputRatio) + (outputCost * (1 - inputRatio))) * (monthlyTokens / 1000000);
           const valScore = cost > 0 ? (score / cost) : 0;
-          
+
           alternatives.push({
-            _id: dbModel._id,
-            name: dbModel.name,
-            developer: dbModel.developer,
-            context_length: dbModel.context_length,
+            _id: modelId,
+            slug: item.slug,
+            name: item.name || dbModel?.name || item.slug,
+            developer: item.organization || item.creator || dbModel?.developer || 'Unknown',
+            context_length: item.context_length || dbModel?.context_length || 128000,
+            rating: rating,
             performance_score: score,
-            tokens_per_second: dbModel.capabilities?.tokens_per_second || 0,
-            time_to_first_token_ms: dbModel.capabilities?.time_to_first_token_ms || 0,
-            cost_per_m_input: dbModel.endpoints[0].input_cost_per_m,
-            cost_per_m_output: dbModel.endpoints[0].output_cost_per_m,
-            cache_read_cost_per_m: dbModel.endpoints[0].cache_read_cost_per_m || 0,
+            tokens_per_second: tokens_per_second,
+            time_to_first_token_ms: time_to_first_token_ms,
+            cost_per_m_input: inputCost,
+            cost_per_m_output: outputCost,
+            cache_read_cost_per_m: cacheReadCost,
             monthly_cost: cost,
             value_score: valScore,
             category_rank: parseInt(item.rank) || 999
@@ -1356,9 +1386,11 @@ router.post('/audit-recommendation', async (req, res) => {
           const valScore = cost > 0 ? (score / cost) : 0;
           return {
             _id: m._id,
+            slug: m._id.split('/')[1] || m._id,
             name: m.name,
             developer: m.developer,
             context_length: m.context_length,
+            rating: 0,
             performance_score: score,
             tokens_per_second: m.capabilities.tokens_per_second || 0,
             time_to_first_token_ms: m.capabilities.time_to_first_token_ms || 0,
@@ -1374,70 +1406,79 @@ router.post('/audit-recommendation', async (req, res) => {
     
     alternatives = alternatives.filter(alt => alt.monthly_cost > 0 && alt.cost_per_m_input >= 0 && alt.cost_per_m_output >= 0);
 
-    const bestCategoryScore = Math.max(...alternatives.map(alt => alt.performance_score), currentScore) || 100;
-    const qualityThreshold = parseFloat(req.body.qualityThreshold) || 90; // Default to 90% quality threshold
-
-    // Apply filtering and compute recommendation score
+    // Apply filtering and compute recommendation score according to user optimizationGoal
     let filteredAlternatives = [];
     if (optimizationGoal === 'performance') {
-      // Mode 1: Performance Preservation (equal or better performance / rank, lower cost)
-      if (currentRank !== 999) {
-        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
-      } else {
-        filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
-      }
-      filteredAlternatives.forEach(alt => {
-        if (alt.category_rank !== 999) {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
-        } else {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
+      // Mode 1: Performance Preservation
+      // The model with the better rank and the low cost than current selected model in selected category
+      filteredAlternatives = alternatives.filter(alt => {
+        if (alt.slug === currentSlug || alt._id === currentModelId) return false;
+        if (alt.monthly_cost >= currentCost) return false;
+
+        if (currentRank !== 999 && alt.category_rank !== 999) {
+          return alt.category_rank <= currentRank;
         }
+        if (currentRating > 0 && alt.rating > 0) {
+          return alt.rating >= currentRating;
+        }
+        return alt.performance_score >= currentScore;
       });
+
+      filteredAlternatives.forEach(alt => {
+        const rankScore = alt.category_rank !== 999 ? (10000 - alt.category_rank) * 10000 : 0;
+        const qualityVal = alt.rating > 0 ? alt.rating : (alt.performance_score * 20);
+        const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+        alt.recommendation_score = rankScore + (qualityVal * 1000) + costEfficiency;
+      });
+
     } else if (optimizationGoal === 'cost') {
-      // Mode 3: Target Cost Reduction (Cost Cutting Mode: satisfies cost demand, best rank recommended)
+      // Mode 2: Cost Reduction
+      // Suggest the model with low cost (user percentage selection) and the best rank within low cost models
       const maxAllowedCost = currentCost * (1 - (costCutPercentage / 100));
       filteredAlternatives = alternatives.filter(alt => 
-        alt.monthly_cost <= maxAllowedCost && 
-        alt._id !== currentModelId
+        alt.slug !== currentSlug &&
+        alt._id !== currentModelId &&
+        alt.monthly_cost <= maxAllowedCost
+      );
+
+      filteredAlternatives.forEach(alt => {
+        const rankScore = alt.category_rank !== 999 ? (10000 - alt.category_rank) * 10000 : 0;
+        const qualityVal = alt.rating > 0 ? alt.rating : (alt.performance_score * 20);
+        const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+        alt.recommendation_score = rankScore + (qualityVal * 1000) + costEfficiency;
+      });
+
+    } else if (optimizationGoal === 'quality') {
+      // Mode 3: Quality Focus
+      // Only suggest the model which is at the top rank at the selected category, ignoring cost
+      filteredAlternatives = alternatives.filter(alt => {
+        if (alt.slug === currentSlug || alt._id === currentModelId) return false;
+        
+        if (currentRank !== 999 && alt.category_rank !== 999) {
+          return alt.category_rank < currentRank;
+        }
+        if (currentRating > 0 && alt.rating > 0) {
+          return alt.rating > currentRating;
+        }
+        return alt.performance_score > currentScore;
+      });
+
+      filteredAlternatives.forEach(alt => {
+        const rankScore = alt.category_rank !== 999 ? (10000 - alt.category_rank) * 10000 : 0;
+        const qualityVal = alt.rating > 0 ? alt.rating : (alt.performance_score * 20);
+        alt.recommendation_score = rankScore + (qualityVal * 1000);
+      });
+
+    } else {
+      // Fallback
+      filteredAlternatives = alternatives.filter(alt => 
+        alt.slug !== currentSlug &&
+        alt._id !== currentModelId &&
+        alt.monthly_cost < currentCost
       );
       filteredAlternatives.forEach(alt => {
-        if (alt.category_rank !== 999) {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
-        } else {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
-        }
-      });
-    } else if (optimizationGoal === 'quality') {
-      // Mode 2: Quality Focus (Top ranked models recommended)
-      filteredAlternatives = alternatives.filter(alt => alt._id !== currentModelId);
-      filteredAlternatives.forEach(alt => {
-        if (alt.category_rank !== 999) {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
-        } else {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
-        }
-      });
-    } else {
-      // Fallback: Mode 1 (Performance Preservation)
-      if (currentRank !== 999) {
-        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
-      } else {
-        filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
-      }
-      filteredAlternatives.forEach(alt => {
-        if (alt.category_rank !== 999) {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
-        } else {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
-        }
+        const qualityVal = alt.rating > 0 ? alt.rating : (alt.performance_score * 20);
+        alt.recommendation_score = qualityVal * 1000;
       });
     }
 
@@ -1450,7 +1491,7 @@ router.post('/audit-recommendation', async (req, res) => {
     // 4. Construct reports
     const recommendations = topAlternatives.map(alt => {
       const savings = currentCost - alt.monthly_cost;
-      const performanceRetained = (alt.performance_score / currentScore) * 100;
+      const performanceRetained = currentScore > 0 ? (alt.performance_score / currentScore) * 100 : 100;
 
       return {
         modelId: alt._id,
@@ -1631,10 +1672,13 @@ router.get('/subscription-tiers/raw', (req, res) => {
   }
 });
 
-// Route to fetch grouped and formatted subscription tools dynamically from local subscription_tiers.json
-router.get('/subscription-tiers/list', (req, res) => {
+// Route to fetch grouped and formatted subscription tools dynamically from rankStorage / MongoDB
+router.get('/subscription-tiers/list', async (req, res) => {
   try {
-    if (!subscriptionTiers || subscriptionTiers.length === 0) {
+    const liveTiers = await getSubscriptionTiers();
+    const activeTiers = (liveTiers && liveTiers.length > 0) ? liveTiers : subscriptionTiers;
+
+    if (!activeTiers || activeTiers.length === 0) {
       return res.json([]);
     }
 
@@ -1683,7 +1727,7 @@ router.get('/subscription-tiers/list', (req, res) => {
     };
 
     const grouped = {};
-    subscriptionTiers.forEach(tier => {
+    activeTiers.forEach(tier => {
       const prov = tier.provider || 'Other';
       const key = prov.toLowerCase();
       if (!grouped[key]) {
@@ -1716,26 +1760,144 @@ router.get('/subscription-tiers/list', (req, res) => {
   }
 });
 
-// Route to get list of all models for dropdown baselines
-router.get('/models/list', async (req, res) => {
+// Route to manually or remotely trigger subscription tier synchronization
+router.post('/subscription-tiers/sync', async (req, res) => {
   try {
-    let allModels = await Model.find({}).sort({ name: 1 });
-
-    if (allModels.length === 0) {
-      console.log('🔄 Database is empty, auto-triggering local sync/seeding in models list route...');
-      const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
-      await syncArtificialAnalysis();
-      allModels = await Model.find({}).sort({ name: 1 });
+    const adminSecret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
+    const authHeader = req.headers['authorization'];
+    if (adminSecret) {
+      const providedSecret = req.query.secret || (authHeader ? authHeader.replace('Bearer ', '') : null);
+      if (providedSecret !== adminSecret) {
+        return res.status(401).json({ error: 'Unauthorized: Invalid administrative sync secret token.' });
+      }
     }
 
-    // Format models
-    const formatted = allModels.map(m => ({
-      id: m._id,
-      name: m.name || m._id
-    }));
+    console.log('⚡ Manual / Webhook trigger: Starting subscription tier synchronization...');
+    const updatedTiers = await syncSubscriptionTiers();
+    subscriptionTiers = updatedTiers;
+    return res.json({
+      success: true,
+      message: `Successfully synchronized ${updatedTiers.length} subscription tiers.`,
+      updated_at: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Error executing subscription-tiers sync route:', error);
+    return res.status(500).json({ error: 'Failed to synchronize subscription tiers', details: error.message });
+  }
+});
 
-    // Sort alphabetically by name
-    formatted.sort((a, b) => a.name.localeCompare(b.name));
+// Route to get list of all models for dropdown baselines and Direct API Models panel
+router.get('/models/list', async (req, res) => {
+  try {
+    const rawData = await getRawData();
+    const modelsMap = new Map();
+
+    // 1. Ingest from rawData category ranks (where live ELO ratings and rankings reside)
+    if (rawData?.categories) {
+      for (const catKey of Object.keys(rawData.categories)) {
+        const catList = rawData.categories[catKey];
+        if (Array.isArray(catList)) {
+          for (const m of catList) {
+            if (!m.slug && !m.modelId) continue;
+            const slug = m.slug || m.modelId?.split('/')[1] || m.modelId;
+            const creator = m.organization || m.model_creator?.name || m.developer || 'Unknown';
+            let creatorPrefix = creator.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            if (creatorPrefix === 'meta') creatorPrefix = 'meta-llama';
+            if (creatorPrefix === 'mistral') creatorPrefix = 'mistralai';
+            if (creatorPrefix === 'xai' || creatorPrefix === 'spacexai') creatorPrefix = 'x-ai';
+            const modelId = m.modelId || `${creatorPrefix}/${slug}`;
+
+            const rawName = m.name || m.model_name || slug;
+            const cleanName = rawName.replace(/^[^:]+:\s*/, '');
+            const displayName = `${creator}: ${cleanName}`;
+
+            if (!modelsMap.has(slug)) {
+              modelsMap.set(slug, {
+                id: modelId,
+                slug: slug,
+                name: displayName,
+                rawName: cleanName,
+                developer: creator,
+                creator: creator,
+                rating: Number(m.rating || m.arena_elo || 0),
+                pricing: m.pricing || null,
+                evaluations: m.evaluations || null,
+                context_length: m.context_length || null,
+                tokens_per_second: m.median_output_tokens_per_second || null
+              });
+            } else {
+              const existing = modelsMap.get(slug);
+              if ((!existing.rating || existing.rating === 0) && m.rating) existing.rating = Number(m.rating);
+              if (!existing.pricing && m.pricing) existing.pricing = m.pricing;
+            }
+          }
+        }
+      }
+    }
+
+    // 2. Ingest from rawData sources.llms.data (620+ models) to catch any remaining models
+    const sourceLlms = rawData?.sources?.llms?.data || rawData?.llms || [];
+    for (const m of sourceLlms) {
+      if (!m.slug && !m.id) continue;
+      const slug = m.slug || m.id;
+      const creator = m.model_creator?.name || m.creator || m.organization || 'Unknown';
+      let creatorPrefix = creator.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      if (creatorPrefix === 'meta') creatorPrefix = 'meta-llama';
+      if (creatorPrefix === 'mistral') creatorPrefix = 'mistralai';
+      if (creatorPrefix === 'xai' || creatorPrefix === 'spacexai') creatorPrefix = 'x-ai';
+      const modelId = `${creatorPrefix}/${slug}`;
+
+      const rawName = m.name || m.model_name || slug;
+      const cleanName = rawName.replace(/^[^:]+:\s*/, '');
+      const displayName = `${creator}: ${cleanName}`;
+
+      if (!modelsMap.has(slug)) {
+        modelsMap.set(slug, {
+          id: modelId,
+          slug: slug,
+          name: displayName,
+          rawName: cleanName,
+          developer: creator,
+          creator: creator,
+          rating: Number(m.rating || m.arena_elo || 0),
+          pricing: m.pricing || null,
+          evaluations: m.evaluations || null,
+          context_length: m.context_length || null,
+          tokens_per_second: m.median_output_tokens_per_second || null
+        });
+      } else {
+        const existing = modelsMap.get(slug);
+        if (!existing.evaluations && m.evaluations) existing.evaluations = m.evaluations;
+        if (!existing.pricing && m.pricing) existing.pricing = m.pricing;
+        if (!existing.context_length && m.context_length) existing.context_length = m.context_length;
+      }
+    }
+
+    // 3. Fallback to MongoDB Model collection if empty
+    if (modelsMap.size === 0) {
+      const allModels = await Model.find({}).sort({ name: 1 });
+      for (const m of allModels) {
+        const dev = m.developer || m.name?.split(':')[0] || 'Unknown';
+        modelsMap.set(m._id, {
+          id: m._id,
+          slug: m._id.split('/')[1] || m._id,
+          name: m.name || m._id,
+          rawName: (m.name || m._id).replace(/^[^:]+:\s*/, ''),
+          developer: dev,
+          creator: dev,
+          rating: 1200
+        });
+      }
+    }
+
+    const formatted = Array.from(modelsMap.values());
+
+    // Sort by rating descending (highest capability latest models first)
+    formatted.sort((a, b) => {
+      const diff = (b.rating || 0) - (a.rating || 0);
+      if (diff !== 0) return diff;
+      return a.name.localeCompare(b.name);
+    });
 
     res.json(formatted);
   } catch (error) {
@@ -1780,7 +1942,7 @@ router.post('/compare/report', optionalAuth, async (req, res) => {
     await user.save();
   }
 
-  const geminiKey = process.env.Gemini_Api_key;
+  const geminiKey = process.env.GEMINI_API_KEY || process.env.Gemini_Api_key;
   if (!geminiKey) {
     return res.status(500).json({ error: 'Gemini API Key is not configured on the server.' });
   }
@@ -1846,7 +2008,6 @@ Return ONLY a valid JSON object matching the following structure (no markdown wr
 }`;
 
   try {
-    const axios = require('axios');
     const response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
       contents: [
         {
@@ -1884,6 +2045,15 @@ Return ONLY a valid JSON object matching the following structure (no markdown wr
 // Admin Route to manually trigger data synchronization/seeding
 router.post('/admin/sync', async (req, res) => {
   try {
+    const adminSecret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
+    const authHeader = req.headers['authorization'];
+    if (adminSecret) {
+      const providedSecret = req.query.secret || (authHeader ? authHeader.replace('Bearer ', '') : null);
+      if (providedSecret !== adminSecret) {
+        return res.status(401).json({ error: 'Unauthorized: Invalid admin secret token.' });
+      }
+    }
+
     const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
     await syncArtificialAnalysis();
     res.json({ message: 'Synchronization and seeding completed successfully.' });

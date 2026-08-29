@@ -3,12 +3,16 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Audit = require('../models/Audit');
 const { auth } = require('../middleware/auth');
 const axios = require('axios');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'audex-ai-jwt-secret-key-12345';
 
 
+
+// Email regex validator
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Helper to generate JWT token
 const generateToken = (userId, email) => {
@@ -21,12 +25,20 @@ router.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
 
     // Validate inputs
-    if (!name || !email || !password) {
-      return res.status(400).json({ error: 'Please provide all required fields (name, email, password).' });
+    if (!name || typeof name !== 'string' || !name.trim()) {
+      return res.status(400).json({ error: 'Please provide a valid name.' });
     }
 
-    if (password.length < 6) {
+    if (!email || typeof email !== 'string' || !EMAIL_REGEX.test(email.trim())) {
+      return res.status(400).json({ error: 'Please provide a valid email address.' });
+    }
+
+    if (!password || typeof password !== 'string' || password.length < 6) {
       return res.status(400).json({ error: 'Password must be at least 6 characters long.' });
+    }
+
+    if (password.length > 128) {
+      return res.status(400).json({ error: 'Password cannot exceed 128 characters.' });
     }
 
     const normalizedEmail = email.toLowerCase().trim();
@@ -75,14 +87,14 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (!email || !password) {
+    if (!email || !password || typeof email !== 'string' || typeof password !== 'string') {
       return res.status(400).json({ error: 'Please provide email and password.' });
     }
 
     const normalizedEmail = email.toLowerCase().trim();
     const user = await User.findOne({ email: normalizedEmail });
 
-    if (!user) {
+    if (!user || !user.password) {
       return res.status(400).json({ error: 'Invalid email or password.' });
     }
 
@@ -194,6 +206,11 @@ router.post('/unlock-audit', auth, async (req, res) => {
     const { auditId } = req.body;
     if (!auditId) {
       return res.status(400).json({ error: 'Missing audit ID.' });
+    }
+
+    const audit = await Audit.findById(auditId);
+    if (!audit) {
+      return res.status(404).json({ error: 'Audit report not found.' });
     }
 
     const user = await User.findById(req.user.id);
@@ -312,8 +329,9 @@ router.get('/google/callback', async (req, res) => {
   } catch (error) {
     console.error('Google OAuth error:', error.response ? error.response.data : error.message);
     const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-    // Redirect back to frontend login with error message
-    res.redirect(`${frontendUrl}/?google_error=${encodeURIComponent(error.response ? JSON.stringify(error.response.data) : error.message)}`);
+    // Redirect back to frontend login with user-safe error message
+    const userMessage = error.response?.data?.error_description || error.response?.data?.error || 'Authentication with Google failed. Please try again.';
+    res.redirect(`${frontendUrl}/?google_error=${encodeURIComponent(userMessage)}`);
   }
 });
 
@@ -436,7 +454,8 @@ router.get('/github/callback', async (req, res) => {
   } catch (error) {
     console.error('GitHub OAuth error:', error.response ? error.response.data : error.message);
     const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-    res.redirect(`${frontendUrl}/?github_error=${encodeURIComponent(error.message)}`);
+    const userMessage = error.response?.data?.error_description || error.message || 'Authentication with GitHub failed. Please try again.';
+    res.redirect(`${frontendUrl}/?github_error=${encodeURIComponent(userMessage)}`);
   }
 });
 

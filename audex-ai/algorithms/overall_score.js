@@ -67,7 +67,7 @@ async function generateAllRankFiles(inputModels = null) {
     const rawCodingIndex = m.codingIndex !== undefined && m.codingIndex !== null ? m.codingIndex : parseFloat(m.evaluations?.artificial_analysis_coding_index);
     const codingIndexScore = !isNaN(rawCodingIndex) && rawCodingIndex !== null ? rawCodingIndex : null;
     const codingAgentScore = typeof m.codingAgentsIndex === 'number' ? m.codingAgentsIndex : (typeof m.agenticIndex === 'number' ? m.agenticIndex : (m.terminalbenchV21 ? m.terminalbenchV21 * 100 : null));
-    const coding = codingIndexScore !== null ? codingIndexScore : codingAgentScore;
+    const coding = codingIndexScore !== null ? codingIndexScore : (intel !== null ? intel : codingAgentScore);
 
     const rawMathIndex = m.mathIndex !== undefined && m.mathIndex !== null ? m.mathIndex : parseFloat(m.evaluations?.artificial_analysis_math_index);
     const math = !isNaN(rawMathIndex) && rawMathIndex !== null ? rawMathIndex : (m.aime25 !== null && m.aime25 !== undefined ? m.aime25 * 100 : (m.scicode ? m.scicode * 100 : null));

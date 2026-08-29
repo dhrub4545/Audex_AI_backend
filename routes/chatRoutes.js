@@ -17,6 +17,18 @@ router.get('/:auditId', optionalAuth, async (req, res) => {
     if (!isSampleAudit && !req.user) {
       return res.status(401).json({ error: 'Authentication required.' });
     }
+
+    // Verify audit exists and belongs to user
+    const audit = await Audit.findById(auditId);
+    if (!audit && !isSampleAudit) {
+      return res.status(404).json({ error: 'Audit report not found.' });
+    }
+
+    if (!isSampleAudit && audit && audit.userId) {
+      if (!req.user || audit.userId.toString() !== req.user.id) {
+        return res.status(403).json({ error: 'Access denied. You do not own this audit report.' });
+      }
+    }
     
     // Find chat associated with audit
     let chat = await Chat.findOne({ auditId });
@@ -58,10 +70,16 @@ router.post('/:auditId', optionalAuth, async (req, res) => {
       return res.status(401).json({ error: 'Authentication required.' });
     }
     
-    // 1. Fetch audit context
+    // 1. Fetch and verify audit context
     const audit = await Audit.findById(auditId);
     if (!audit) {
       return res.status(404).json({ error: 'Audit report not found.' });
+    }
+
+    if (!isSampleAudit && audit.userId) {
+      if (!req.user || audit.userId.toString() !== req.user.id) {
+        return res.status(403).json({ error: 'Access denied. You do not own this audit report.' });
+      }
     }
     
     // 2. Perform web search if toggled
@@ -227,7 +245,7 @@ INSTRUCTIONS:
         console.log(`[Chat API] Attempting to call model: ${currentModel}`);
         
         if (currentModel === 'gemini') {
-          const key = process.env.Gemini_Api_key || process.env.GEMINI_API_KEY;
+          const key = process.env.GEMINI_API_KEY || process.env.Gemini_Api_key;
           if (!key) throw new Error('Gemini API key is not configured.');
           
           // Map chat history to Gemini's content format
@@ -246,16 +264,16 @@ INSTRUCTIONS:
           
           let geminiResponse;
           try {
-            console.log(`[Gemini API] Attempting to call flagship model: gemini-3.5-flash`);
+            console.log(`[Gemini API] Attempting to call model: gemini-2.5-flash`);
             geminiResponse = await axios.post(
-              `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${key}`,
+              `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`,
               bodyPayload,
               { headers: { 'Content-Type': 'application/json' }, timeout: 15000 }
             );
           } catch (geminiErr) {
-            console.warn(`[Gemini API Warning] Flagship gemini-3.5-flash failed: ${geminiErr.message}. Attempting sub-fallback to gemini-2.5-flash...`);
+            console.warn(`[Gemini API Warning] gemini-2.5-flash failed: ${geminiErr.message}. Attempting sub-fallback to gemini-2.0-flash...`);
             geminiResponse = await axios.post(
-              `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`,
+              `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`,
               bodyPayload,
               { headers: { 'Content-Type': 'application/json' }, timeout: 15000 }
             );
@@ -280,27 +298,10 @@ INSTRUCTIONS:
             ...contextMessages
           ];
           
-          let groqResponse;
+          let grokResponse;
           try {
-            console.log(`[xAI API] Attempting to call flagship model: grok-4.5`);
-            groqResponse = await axios.post(
-              'https://api.x.ai/v1/chat/completions',
-              {
-                model: 'grok-4.5',
-                messages,
-                temperature: 0.7
-              },
-              {
-                headers: {
-                  'Authorization': `Bearer ${key}`,
-                  'Content-Type': 'application/json'
-                },
-                timeout: 15000
-              }
-            );
-          } catch (grokErr) {
-            console.warn(`[xAI API Warning] Flagship grok-4.5 failed: ${grokErr.message}. Attempting sub-fallback to grok-2...`);
-            groqResponse = await axios.post(
+            console.log(`[xAI API] Attempting to call model: grok-2`);
+            grokResponse = await axios.post(
               'https://api.x.ai/v1/chat/completions',
               {
                 model: 'grok-2',
@@ -315,9 +316,26 @@ INSTRUCTIONS:
                 timeout: 15000
               }
             );
+          } catch (grokErr) {
+            console.warn(`[xAI API Warning] grok-2 failed: ${grokErr.message}. Attempting sub-fallback to grok-beta...`);
+            grokResponse = await axios.post(
+              'https://api.x.ai/v1/chat/completions',
+              {
+                model: 'grok-beta',
+                messages,
+                temperature: 0.7
+              },
+              {
+                headers: {
+                  'Authorization': `Bearer ${key}`,
+                  'Content-Type': 'application/json'
+                },
+                timeout: 15000
+              }
+            );
           }
           
-          const text = groqResponse.data?.choices?.[0]?.message?.content;
+          const text = grokResponse.data?.choices?.[0]?.message?.content;
           if (!text) {
             throw new Error('xAI Grok API returned an empty response structure.');
           }
@@ -401,7 +419,7 @@ INSTRUCTIONS:
               headers: {
                 'Authorization': `Bearer ${key}`,
                 'Content-Type': 'application/json',
-                'HTTP-Referer': 'http://localhost:3000',
+                'HTTP-Referer': 'https://audex.ai',
                 'X-Title': 'Audex AI'
               },
               timeout: 15000
@@ -418,9 +436,9 @@ INSTRUCTIONS:
           break; // Success! Exit fallback loop.
           
         } else if (currentModel === 'groq') {
-          const key = process.env.GROK_API_KEY;
-          if (!key) throw new Error('Groq API key is not configured in GROK_API_KEY.');
-          if (!key.startsWith('gsk_')) throw new Error('Key in GROK_API_KEY is not a valid Groq key.');
+          const key = process.env.GROQ_API_KEY || process.env.GROK_API_KEY;
+          if (!key) throw new Error('Groq API key is not configured in GROQ_API_KEY.');
+          if (!key.startsWith('gsk_') && !key.startsWith('gsk-')) throw new Error('Provided key is not a valid Groq API key (must start with gsk_).');
           
           const messages = [
             { role: 'system', content: systemPrompt },
@@ -515,6 +533,20 @@ INSTRUCTIONS:
 router.delete('/:auditId', auth, async (req, res) => {
   try {
     const { auditId } = req.params;
+    const isSampleAudit = auditId === '6a4fb719471a97ae89e88f49';
+
+    // Verify audit exists and user owns it
+    const audit = await Audit.findById(auditId);
+    if (!audit && !isSampleAudit) {
+      return res.status(404).json({ error: 'Audit report not found.' });
+    }
+
+    if (!isSampleAudit && audit && audit.userId) {
+      if (audit.userId.toString() !== req.user.id) {
+        return res.status(403).json({ error: 'Access denied. You do not own this audit report.' });
+      }
+    }
+
     let chat = await Chat.findOne({ auditId });
     if (chat) {
       chat.messages = [

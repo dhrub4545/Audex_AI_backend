@@ -1,6 +1,7 @@
 const { runAllCollectors } = require('../collectors/runCollectors');
 const { generateAllRankFiles } = require('../algorithms/overall_score');
 const { syncArtificialAnalysis } = require('../../services/artificialAnalysisSync');
+const { syncSubscriptionTiers } = require('../../services/subscriptionTierSync');
 
 /**
  * Complete Audex AI Benchmark Automation Pipeline
@@ -25,11 +26,16 @@ async function runAudexPipeline() {
     console.log('\n--- Phase 3: Generating raw_data.json & Local Database Sync ---');
     await syncArtificialAnalysis(scrapedModels);
 
+    // Phase 4: Synchronize subscription_tiers.json & SaaS Plans
+    console.log('\n--- Phase 4: Auto-syncing Subscription Tiers & SaaS Plans ---');
+    await syncSubscriptionTiers(scrapedModels);
+
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
     console.log('\n====================================================');
     console.log(`🎉 Audex AI Pipeline completed successfully in ${elapsed}s!`);
     console.log(`📊 Models Scraped & Processed: ${scrapedModels.length}`);
     console.log(`💾 Rank Files Updated in backend/data/rank/: ${totalRankFiles}`);
+    console.log(`💳 Subscription Tiers Synchronized: Active`);
     console.log('====================================================\n');
 
     return {
