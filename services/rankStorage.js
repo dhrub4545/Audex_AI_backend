@@ -5,11 +5,28 @@ const RankData = require('../models/RankData');
 
 const RANK_DIR = path.join(__dirname, '../data/rank');
 const RAW_DATA_PATH = path.join(__dirname, '../data/raw_data.json');
+const SUBSCRIPTION_TIERS_PATH = path.join(__dirname, '../data/subscription_tiers.json');
+
+// In-memory runtime cache with TTL (5 minutes) to avoid repeated disk reads / JSON parses
+const memoryCache = {
+  categories: new Map(),
+  rawData: null,
+  rawDataExpires: 0,
+  subTiers: null,
+  subTiersExpires: 0
+};
+const CACHE_TTL_MS = 5 * 60 * 1000;
 
 /**
- * Save rank category data to MongoDB Atlas.
+ * Save rank category data to MongoDB Atlas and ephemeral disk cache asynchronously.
  */
 async function saveRankCategory(categoryKey, data) {
+  // Update in-memory cache
+  memoryCache.categories.set(categoryKey, {
+    data,
+    expiresAt: Date.now() + CACHE_TTL_MS
+  });
+
   // 1. Save to MongoDB Atlas if connected
   if (mongoose.connection.readyState === 1) {
     try {
@@ -23,23 +40,33 @@ async function saveRankCategory(categoryKey, data) {
     }
   }
 
-  // 2. Cache in /tmp (ephemeral)
+  // 2. Cache in /tmp asynchronously
   try {
     const tmpDir = path.join('/tmp', 'rank');
-    if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
-    fs.writeFileSync(path.join(tmpDir, `${categoryKey}.json`), JSON.stringify(data, null, 2), 'utf8');
+    await fs.promises.mkdir(tmpDir, { recursive: true }).catch(() => {});
+    await fs.promises.writeFile(path.join(tmpDir, `${categoryKey}.json`), JSON.stringify(data, null, 2), 'utf8').catch(() => {});
   } catch (_) {}
 }
 
 /**
- * Get rank category data from MongoDB Atlas first, fallback to /tmp.
+ * Get rank category data: In-memory cache -> MongoDB Atlas -> /tmp asynchronous fallback.
  */
 async function getRankCategory(categoryKey) {
+  // Check in-memory cache
+  const cached = memoryCache.categories.get(categoryKey);
+  if (cached && cached.expiresAt > Date.now()) {
+    return cached.data;
+  }
+
   // 1. Check MongoDB Atlas if connected
   if (mongoose.connection.readyState === 1) {
     try {
       const doc = await RankData.findOne({ key: categoryKey }).lean();
       if (doc && doc.data) {
+        memoryCache.categories.set(categoryKey, {
+          data: doc.data,
+          expiresAt: Date.now() + CACHE_TTL_MS
+        });
         return doc.data;
       }
     } catch (err) {
@@ -47,14 +74,17 @@ async function getRankCategory(categoryKey) {
     }
   }
 
-  // 2. Fallback to /tmp
+  // 2. Fallback to /tmp asynchronously
   const tmpPath = path.join('/tmp/rank', `${categoryKey}.json`);
-  if (fs.existsSync(tmpPath)) {
-    try {
-      const content = fs.readFileSync(tmpPath, 'utf8');
-      return JSON.parse(content);
-    } catch (_) {}
-  }
+  try {
+    const content = await fs.promises.readFile(tmpPath, 'utf8');
+    const parsed = JSON.parse(content);
+    memoryCache.categories.set(categoryKey, {
+      data: parsed,
+      expiresAt: Date.now() + CACHE_TTL_MS
+    });
+    return parsed;
+  } catch (_) {}
 
   return null;
 }
@@ -104,9 +134,13 @@ function pruneRawDataForDb(rawData) {
 }
 
 /**
- * Save raw_data JSON payload to MongoDB Atlas and attempt local file write.
+ * Save raw_data JSON payload to MongoDB Atlas and local disk asynchronously.
  */
 async function saveRawData(rawData) {
+  // Update in-memory cache
+  memoryCache.rawData = rawData;
+  memoryCache.rawDataExpires = Date.now() + CACHE_TTL_MS;
+
   // 1. Save to MongoDB Atlas if connected
   if (mongoose.connection.readyState === 1) {
     try {
@@ -121,32 +155,37 @@ async function saveRawData(rawData) {
     }
   }
 
-  // 2. Attempt local file system write
+  // 2. Attempt asynchronous local file system write
   try {
     const outputDir = path.join(__dirname, '../data');
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
-    }
-    fs.writeFileSync(RAW_DATA_PATH, JSON.stringify(rawData, null, 2), 'utf8');
-    console.log(`💾 Saved raw_data.json to local disk: ${RAW_DATA_PATH}`);
+    await fs.promises.mkdir(outputDir, { recursive: true }).catch(() => {});
+    await fs.promises.writeFile(RAW_DATA_PATH, JSON.stringify(rawData, null, 2), 'utf8');
+    console.log(`💾 Saved raw_data.json to local disk (async): ${RAW_DATA_PATH}`);
   } catch (fsErr) {
-    // Read-only filesystem on Vercel
+    // Read-only filesystem on Vercel fallback
     try {
-      fs.writeFileSync('/tmp/raw_data.json', JSON.stringify(rawData, null, 2), 'utf8');
-      console.log('💾 Saved raw_data.json to /tmp/raw_data.json');
+      await fs.promises.writeFile('/tmp/raw_data.json', JSON.stringify(rawData, null, 2), 'utf8');
+      console.log('💾 Saved raw_data.json to /tmp/raw_data.json (async)');
     } catch (_) {}
   }
 }
 
 /**
- * Get raw_data JSON payload from MongoDB Atlas first, fallback to disk / /tmp.
+ * Get raw_data JSON payload: Memory cache -> MongoDB Atlas -> Async disk -> /tmp.
  */
 async function getRawData() {
+  // Check memory cache first
+  if (memoryCache.rawData && memoryCache.rawDataExpires > Date.now()) {
+    return memoryCache.rawData;
+  }
+
   // 1. Check MongoDB Atlas if connected
   if (mongoose.connection.readyState === 1) {
     try {
       const doc = await RankData.findOne({ key: 'raw_data' }).lean();
       if (doc && doc.data) {
+        memoryCache.rawData = doc.data;
+        memoryCache.rawDataExpires = Date.now() + CACHE_TTL_MS;
         return doc.data;
       }
     } catch (err) {
@@ -154,31 +193,34 @@ async function getRawData() {
     }
   }
 
-  // 2. Fallback to local file system
-  if (fs.existsSync(RAW_DATA_PATH)) {
-    try {
-      const content = fs.readFileSync(RAW_DATA_PATH, 'utf8');
-      return JSON.parse(content);
-    } catch (_) {}
-  }
+  // 2. Fallback to local file system asynchronously
+  try {
+    const content = await fs.promises.readFile(RAW_DATA_PATH, 'utf8');
+    const parsed = JSON.parse(content);
+    memoryCache.rawData = parsed;
+    memoryCache.rawDataExpires = Date.now() + CACHE_TTL_MS;
+    return parsed;
+  } catch (_) {}
 
-  // 3. Fallback to /tmp
-  if (fs.existsSync('/tmp/raw_data.json')) {
-    try {
-      const content = fs.readFileSync('/tmp/raw_data.json', 'utf8');
-      return JSON.parse(content);
-    } catch (_) {}
-  }
+  // 3. Fallback to /tmp asynchronously
+  try {
+    const content = await fs.promises.readFile('/tmp/raw_data.json', 'utf8');
+    const parsed = JSON.parse(content);
+    memoryCache.rawData = parsed;
+    memoryCache.rawDataExpires = Date.now() + CACHE_TTL_MS;
+    return parsed;
+  } catch (_) {}
 
   return null;
 }
 
-const SUBSCRIPTION_TIERS_PATH = path.join(__dirname, '../data/subscription_tiers.json');
-
 /**
- * Save subscription_tiers JSON payload to MongoDB Atlas and attempt local file write.
+ * Save subscription_tiers JSON payload to MongoDB Atlas and local disk asynchronously.
  */
 async function saveSubscriptionTiers(tiersData) {
+  memoryCache.subTiers = tiersData;
+  memoryCache.subTiersExpires = Date.now() + CACHE_TTL_MS;
+
   // 1. Save to MongoDB Atlas if connected
   if (mongoose.connection.readyState === 1) {
     try {
@@ -192,32 +234,36 @@ async function saveSubscriptionTiers(tiersData) {
     }
   }
 
-  // 2. Attempt local file system write
+  // 2. Attempt local file system write asynchronously
   try {
     const outputDir = path.join(__dirname, '../data');
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
-    }
-    fs.writeFileSync(SUBSCRIPTION_TIERS_PATH, JSON.stringify(tiersData, null, 2), 'utf8');
-    console.log(`💾 Saved subscription_tiers.json to local disk: ${SUBSCRIPTION_TIERS_PATH}`);
+    await fs.promises.mkdir(outputDir, { recursive: true }).catch(() => {});
+    await fs.promises.writeFile(SUBSCRIPTION_TIERS_PATH, JSON.stringify(tiersData, null, 2), 'utf8');
+    console.log(`💾 Saved subscription_tiers.json to local disk (async): ${SUBSCRIPTION_TIERS_PATH}`);
   } catch (fsErr) {
-    // Read-only filesystem on Vercel /tmp fallback
+    // Read-only filesystem on Vercel fallback
     try {
-      fs.writeFileSync('/tmp/subscription_tiers.json', JSON.stringify(tiersData, null, 2), 'utf8');
-      console.log('💾 Saved subscription_tiers.json to /tmp/subscription_tiers.json');
+      await fs.promises.writeFile('/tmp/subscription_tiers.json', JSON.stringify(tiersData, null, 2), 'utf8');
+      console.log('💾 Saved subscription_tiers.json to /tmp/subscription_tiers.json (async)');
     } catch (_) {}
   }
 }
 
 /**
- * Get subscription_tiers JSON payload from MongoDB Atlas first, fallback to disk / /tmp.
+ * Get subscription_tiers JSON payload: Memory cache -> MongoDB Atlas -> Async disk -> /tmp.
  */
 async function getSubscriptionTiers() {
+  if (memoryCache.subTiers && memoryCache.subTiersExpires > Date.now() && Array.isArray(memoryCache.subTiers)) {
+    return memoryCache.subTiers;
+  }
+
   // 1. Check MongoDB Atlas if connected
   if (mongoose.connection.readyState === 1) {
     try {
       const doc = await RankData.findOne({ key: 'subscription_tiers' }).lean();
       if (doc && doc.data && Array.isArray(doc.data) && doc.data.length > 0) {
+        memoryCache.subTiers = doc.data;
+        memoryCache.subTiersExpires = Date.now() + CACHE_TTL_MS;
         return doc.data;
       }
     } catch (err) {
@@ -225,27 +271,27 @@ async function getSubscriptionTiers() {
     }
   }
 
-  // 2. Fallback to local file system
-  if (fs.existsSync(SUBSCRIPTION_TIERS_PATH)) {
-    try {
-      const content = fs.readFileSync(SUBSCRIPTION_TIERS_PATH, 'utf8');
-      const parsed = JSON.parse(content);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
-      }
-    } catch (_) {}
-  }
+  // 2. Fallback to local file system asynchronously
+  try {
+    const content = await fs.promises.readFile(SUBSCRIPTION_TIERS_PATH, 'utf8');
+    const parsed = JSON.parse(content);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      memoryCache.subTiers = parsed;
+      memoryCache.subTiersExpires = Date.now() + CACHE_TTL_MS;
+      return parsed;
+    }
+  } catch (_) {}
 
-  // 3. Fallback to /tmp
-  if (fs.existsSync('/tmp/subscription_tiers.json')) {
-    try {
-      const content = fs.readFileSync('/tmp/subscription_tiers.json', 'utf8');
-      const parsed = JSON.parse(content);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
-      }
-    } catch (_) {}
-  }
+  // 3. Fallback to /tmp asynchronously
+  try {
+    const content = await fs.promises.readFile('/tmp/subscription_tiers.json', 'utf8');
+    const parsed = JSON.parse(content);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      memoryCache.subTiers = parsed;
+      memoryCache.subTiersExpires = Date.now() + CACHE_TTL_MS;
+      return parsed;
+    }
+  } catch (_) {}
 
   return [];
 }

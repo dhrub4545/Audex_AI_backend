@@ -227,8 +227,9 @@ INSTRUCTIONS:
 5. If referring to web search results, reference the URLs or titles directly (e.g. "According to Google AI documentation...").
 6. Keep markdown formatting neat, readable, and structured.`;
 
-    // Gather past messages (excluding the last welcome system message if necessary, let's keep all messages for context)
-    const contextMessages = chat.messages.map(msg => ({
+    // Gather past messages (windowed to last 20 messages to prevent token overflow and high latency)
+    const recentMessages = (chat.messages || []).slice(-20);
+    const contextMessages = recentMessages.map(msg => ({
       role: msg.sender === 'user' ? 'user' : 'assistant',
       content: msg.text
     }));
@@ -249,7 +250,7 @@ INSTRUCTIONS:
           if (!key) throw new Error('Gemini API key is not configured.');
           
           // Map chat history to Gemini's content format
-          const contents = chat.messages.map(msg => ({
+          const contents = recentMessages.map(msg => ({
             role: msg.sender === 'user' ? 'user' : 'model',
             parts: [{ text: msg.text }]
           }));
@@ -436,7 +437,7 @@ INSTRUCTIONS:
           break; // Success! Exit fallback loop.
           
         } else if (currentModel === 'groq') {
-          const key = process.env.GROQ_API_KEY || process.env.GROK_API_KEY;
+          const key = process.env.GROQ_API_KEY;
           if (!key) throw new Error('Groq API key is not configured in GROQ_API_KEY.');
           if (!key.startsWith('gsk_') && !key.startsWith('gsk-')) throw new Error('Provided key is not a valid Groq API key (must start with gsk_).');
           

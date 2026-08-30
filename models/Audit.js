@@ -24,6 +24,7 @@ const OptionSchema = new mongoose.Schema({
   name: { type: String },
   modelId: { type: String },
   statusText: { type: String },
+  isAlreadyOptimized: { type: Boolean, default: false },
   includedModels: [{ type: String }],
   recommendedModel: { type: String },
   recommendedProvider: { type: String },
@@ -38,6 +39,8 @@ const RecommendationSchema = new mongoose.Schema({
   issue: { type: String, required: true },
   action: { type: String, required: true },
   monthlySavings: { type: Number, required: true },
+  statusText: { type: String },
+  isAlreadyOptimized: { type: Boolean, default: false },
   apiOption: { type: OptionSchema, required: false },
   subscriptionOption: { type: OptionSchema, required: false },
   originalAlloc: {

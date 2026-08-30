@@ -1,21 +1,28 @@
 const axios = require('axios');
 
 /**
- * Performs a web search query using Yahoo search (to avoid bot protection/captchas)
- * and parses the top 4-5 results.
+ * Performs a resilient web search query using Yahoo search with DuckDuckGo fallback
+ * to ground the AI chat assistant with live web context.
  * @param {string} query 
  * @returns {Promise<Array<{title: string, url: string, snippet: string}>>}
  */
 async function searchWeb(query) {
+  if (!query || typeof query !== 'string' || !query.trim()) {
+    return [];
+  }
+
+  const cleanQuery = query.trim();
+
+  // 1. Primary: Yahoo Web Search HTML extraction
   try {
-    const url = `https://search.yahoo.com/search?q=${encodeURIComponent(query)}`;
+    const url = `https://search.yahoo.com/search?q=${encodeURIComponent(cleanQuery)}`;
     const response = await axios.get(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.5'
       },
-      timeout: 10000 // 10 second timeout
+      timeout: 8000
     });
 
     const html = response.data;
@@ -29,15 +36,12 @@ async function searchWeb(query) {
       const rawUrl = match[1];
       const innerHtml = match[3];
       
-      // Extract target URL
       const ruParts = rawUrl.split('/RU=');
       if (ruParts.length <= 1) continue;
       const targetUrl = decodeURIComponent(ruParts[1].split('/')[0]);
       
-      // Skip internal Yahoo links
       if (targetUrl.includes('yahoo.com') || targetUrl.includes('yahoo.co') || targetUrl.includes('yimg.com')) continue;
       
-      // Clean up title (remove trailing/leading tags and yahoo path prefixes)
       let title = innerHtml.replace(/<[^>]*>/g, '').trim();
       title = title.replace(/^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}[\s\S]*?›[\s\S]*?(?=[A-Z])/g, '').trim();
       if (title.includes('›')) {
@@ -45,7 +49,6 @@ async function searchWeb(query) {
         title = parts[parts.length - 1].trim();
       }
       
-      // Find snippet: search forward in the HTML from the current index for the compText class
       const startIndex = linkRegex.lastIndex;
       const nextHtml = html.substring(startIndex, startIndex + 1500);
       const snippetMatch = nextHtml.match(/<div class="compText aAbs">([\s\S]*?)<\/div>/);
@@ -53,14 +56,12 @@ async function searchWeb(query) {
       if (snippetMatch) {
         snippet = snippetMatch[1].replace(/<[^>]*>/g, '').trim();
       } else {
-        // Fallback: try to match any paragraph that looks like a description
         const pMatch = nextHtml.match(/<p class="[^"]*fc-dustygray[^"]*">([\s\S]*?)<\/p>/);
         if (pMatch) {
           snippet = pMatch[1].replace(/<[^>]*>/g, '').trim();
         }
       }
       
-      // Avoid duplicates
       if (!results.some(r => r.url === targetUrl)) {
         results.push({
           title: title || "Web Search Result",
@@ -70,11 +71,45 @@ async function searchWeb(query) {
       }
     }
     
-    return results;
+    if (results.length > 0) {
+      return results;
+    }
   } catch (error) {
-    console.error('Web Search Service Error:', error.message);
-    return [];
+    console.warn('Yahoo Search warning:', error.message);
   }
+
+  // 2. Fallback: DuckDuckGo HTML Instant Search
+  try {
+    const ddgUrl = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(cleanQuery)}`;
+    const ddgRes = await axios.get(ddgUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+      },
+      timeout: 8000
+    });
+
+    const ddgHtml = ddgRes.data;
+    const ddgResults = [];
+    const resultRegex = /<a class="result__snippet[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g;
+    let ddgMatch;
+    while ((ddgMatch = resultRegex.exec(ddgHtml)) !== null && ddgResults.length < 4) {
+      const targetUrl = ddgMatch[1];
+      const snippet = ddgMatch[2].replace(/<[^>]*>/g, '').trim();
+      ddgResults.push({
+        title: "Search Grounding Result",
+        url: targetUrl,
+        snippet: snippet || "Grounded documentation result."
+      });
+    }
+
+    if (ddgResults.length > 0) {
+      return ddgResults;
+    }
+  } catch (ddgErr) {
+    console.warn('DuckDuckGo Search warning:', ddgErr.message);
+  }
+
+  return [];
 }
 
 module.exports = { searchWeb };

@@ -4,6 +4,7 @@ const Audit = require('../models/Audit');
 const User = require('../models/User');
 const Model = require('../models/Model');
 const { auth, optionalAuth } = require('../middleware/auth');
+const { redactAuditRecommendations, isAuditUnlockedForUser, requirePlan } = require('../middleware/entitlements');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
@@ -11,58 +12,29 @@ const { getRawData, getRankCategory, getSubscriptionTiers, saveSubscriptionTiers
 const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
 const { syncSubscriptionTiers } = require('../services/subscriptionTierSync');
 
-function redactAuditRecommendations(recommendations) {
-  if (!recommendations || !Array.isArray(recommendations)) return recommendations;
-
-  return recommendations.map(rec => {
-    const redactedRec = rec.toObject ? rec.toObject() : { ...rec };
-    redactedRec.action = '•••••••• (Locked)';
-    
-    if (redactedRec.apiOption) {
-      redactedRec.apiOption = {
-        ...redactedRec.apiOption,
-        action: '••••••••',
-        planName: '••••••••',
-        name: '••••••••',
-        limits: '••••••••',
-        recommendedModel: '••••••••',
-        recommendedProvider: '••••••••',
-        statusText: 'Locked'
-      };
-    }
-    
-    if (redactedRec.subscriptionOption) {
-      redactedRec.subscriptionOption = {
-        ...redactedRec.subscriptionOption,
-        action: '••••••••',
-        planName: '••••••••',
-        name: '••••••••',
-        limits: '••••••••',
-        recommendedModel: '••••••••',
-        recommendedProvider: '••••••••',
-        statusText: 'Locked'
-      };
-    }
-    
-    return redactedRec;
-  });
-}
-
-// Load initial subscription pricing tiers from rankStorage (MongoDB Atlas / disk fallback)
+// Safe dynamic accessor for subscription pricing tiers
 let subscriptionTiers = [];
-(async () => {
+async function ensureSubscriptionTiers() {
+  if (subscriptionTiers && subscriptionTiers.length > 0) {
+    return subscriptionTiers;
+  }
   try {
     subscriptionTiers = await getSubscriptionTiers();
     if (!subscriptionTiers || subscriptionTiers.length === 0) {
       const tiersPath = path.join(__dirname, '../data/subscription_tiers.json');
       if (fs.existsSync(tiersPath)) {
-        subscriptionTiers = JSON.parse(fs.readFileSync(tiersPath, 'utf8'));
+        const content = await fs.promises.readFile(tiersPath, 'utf8');
+        subscriptionTiers = JSON.parse(content);
       }
     }
   } catch (err) {
     console.error('Error loading subscription_tiers in auditRoutes:', err);
   }
-})();
+  return subscriptionTiers || [];
+}
+
+// Initial warm-up
+ensureSubscriptionTiers().catch(() => {});
 
 // Find matching subscription tier from the database
 function findSubscriptionTier(toolName, planName) {
@@ -398,6 +370,8 @@ router.post('/', optionalAuth, async (req, res) => {
       return res.status(400).json({ error: 'Missing required allocations data' });
     }
 
+    await ensureSubscriptionTiers();
+
     let user = null;
     if (req.user) {
       user = await User.findById(req.user.id);
@@ -410,9 +384,17 @@ router.post('/', optionalAuth, async (req, res) => {
     // Enforce backend tool limits based on user plan / tier
     let maxAllowedTools = 2; // Default for Free tier or unauthenticated users
     if (user) {
-      if (user.plan === 'enterprise' || (user.credits && user.credits.proMax > 0)) {
+      let isSubscriptionExpired = false;
+      if (user.subscription && user.subscription.expiresAt) {
+        isSubscriptionExpired = new Date(user.subscription.expiresAt) < new Date();
+      }
+
+      const plan = (user.plan || 'free').toLowerCase();
+      const effectivePlan = isSubscriptionExpired ? 'free' : plan;
+
+      if (effectivePlan === 'enterprise') {
         maxAllowedTools = Infinity;
-      } else if (user.plan === 'pro' || (user.credits && user.credits.pro > 0)) {
+      } else if (effectivePlan === 'pro') {
         maxAllowedTools = 15;
       }
     }
@@ -633,6 +615,8 @@ router.post('/', optionalAuth, async (req, res) => {
         const matchingTier = findSubscriptionTier(toolName, plan);
         if (matchingTier) {
           const models = matchingTier.models || [];
+          const rawModels = matchingTier.rawModels || [];
+
           for (const mid of models) {
             const resolved = resolveBaselineModel(mid, allModels, toolName);
             if (resolved) {
@@ -646,12 +630,30 @@ router.post('/', optionalAuth, async (req, res) => {
               }
             }
           }
+
+          for (const rm of rawModels) {
+            const rankEntry = rankData.find(item => 
+              (item.name && item.name.toLowerCase().includes(rm.toLowerCase())) ||
+              (item.name && rm.toLowerCase().includes(item.name.toLowerCase())) ||
+              (item.slug && rm.toLowerCase().replace(/[^a-z0-9]/g, '').includes(item.slug.replace(/[^a-z0-9]/g, '')))
+            );
+            if (rankEntry) {
+              baselineRank = Math.min(baselineRank, parseInt(rankEntry.rank) || 9999);
+              computedBaselineScore = Math.max(computedBaselineScore, Math.min(100, Math.round(rankEntry.final_score)));
+            }
+          }
         }
       } else {
         // api
         if (currentModel) {
           const currentSlug = currentModel._id.split('/')[1] || '';
-          const rankEntry = findRankEntry(rankData, currentSlug);
+          let rankEntry = findRankEntry(rankData, currentSlug);
+          if (!rankEntry && currentModel.name) {
+            rankEntry = rankData.find(item => 
+              (item.name && item.name.toLowerCase().includes(currentModel.name.toLowerCase())) ||
+              (item.name && currentModel.name.toLowerCase().includes(item.name.toLowerCase()))
+            );
+          }
           if (rankEntry) {
             baselineRank = parseInt(rankEntry.rank) || 9999;
             computedBaselineScore = Math.min(100, Math.round(rankEntry.final_score));
@@ -682,7 +684,7 @@ router.post('/', optionalAuth, async (req, res) => {
             apiCandidates.push({
               _id: dbModel._id,
               name: dbModel.name,
-              rank: item.rank,
+              rank: parseInt(item.rank) || 9999,
               performance_score: score,
               monthly_cost: cost,
               isCurrent: dbModel._id === modelId,
@@ -735,18 +737,17 @@ router.post('/', optionalAuth, async (req, res) => {
       } else if (optimizationGoal === 'performance') {
         let compatible = [];
         if (baselineRank !== 9999) {
-          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.rank <= baselineRank);
+          // Performance Preservation Mode: Only recommend models with strictly lower cost AND better or equal rank
+          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.rank <= baselineRank && !c.isCurrent);
         } else {
-          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.performance_score >= computedBaselineScore);
+          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.performance_score >= computedBaselineScore && !c.isCurrent);
         }
         if (compatible.length > 0) {
           compatible.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score || a.monthly_cost - b.monthly_cost);
           selectedApi = compatible[0];
         } else {
-          apiCandidates.sort((a, b) => a.rank - b.rank);
-          if (apiCandidates[0] && (apiCandidates[0]._id === modelId || (type === 'api' && baselineRank <= apiCandidates[0].rank))) {
-            apiStatusText = "Best model API already used.";
-          }
+          selectedApi = null;
+          apiStatusText = "Already optimized";
         }
       } else if (optimizationGoal === 'cost') {
         const maxAllowedCost = currentCost * (1 - costCutPercentage / 100);
@@ -772,59 +773,7 @@ router.post('/', optionalAuth, async (req, res) => {
         }
       }
 
-      let targetModelId = "";
-      let targetModelName = "";
-      let targetModelDev = "";
-
-      if (selectedApi) {
-        targetModelId = selectedApi._id;
-        targetModelName = selectedApi.name;
-      } else if (currentModel) {
-        targetModelId = currentModel._id;
-        targetModelName = currentModel.name;
-        targetModelDev = currentModel.developer;
-      } else {
-        const topModelSlug = rankData[0]?.slug;
-        if (topModelSlug) {
-          const resolved = allModels.find(m => m._id && m._id.split && m._id.split('/')[1] === topModelSlug);
-          if (resolved) {
-            targetModelId = resolved._id;
-            targetModelName = resolved.name;
-            targetModelDev = resolved.developer;
-          }
-        }
-      }
-
-      if (targetModelId && !targetModelDev) {
-        const resolved = allModels.find(m => m._id === targetModelId);
-        if (resolved) {
-          targetModelDev = resolved.developer;
-        }
-      }
-
-      const matchesModel = (tier) => {
-        if (!targetModelId) return false;
-        const hasModelId = tier.models && tier.models.some(m => m.toLowerCase() === targetModelId.toLowerCase() || targetModelId.toLowerCase().includes(m.toLowerCase()));
-        const hasModelName = tier.rawModels && tier.rawModels.some(m => m.toLowerCase() === targetModelName.toLowerCase() || targetModelName.toLowerCase().includes(m.toLowerCase()) || targetModelName.toLowerCase().replace(/[^a-z0-9]/g, '').includes(m.toLowerCase().replace(/[^a-z0-9]/g, '')));
-        return hasModelId || hasModelName;
-      };
-
-      const matchesProvider = (tier) => {
-        if (!targetModelDev) return false;
-        const p = tier.provider.toLowerCase();
-        const mp = targetModelDev.toLowerCase();
-        return p.includes(mp) || mp.includes(p);
-      };
-
-      const filteredTiers = subscriptionTiers.filter(t => allowedCategories.includes(t.category.toLowerCase()));
-
-      let subMatchTiers = filteredTiers.filter(t => matchesModel(t));
-      if (subMatchTiers.length === 0 && targetModelDev) {
-        subMatchTiers = filteredTiers.filter(t => matchesProvider(t));
-      }
-      if (subMatchTiers.length === 0) {
-        subMatchTiers = filteredTiers;
-      }
+      let subMatchTiers = subscriptionTiers.filter(t => allowedCategories.includes(t.category.toLowerCase()));
 
       const includeFree = type === 'subscription' && plan.toLowerCase() === 'free';
       if (!includeFree) {
@@ -846,7 +795,7 @@ router.post('/', optionalAuth, async (req, res) => {
             const rankEntry = rankData.find(item => item.slug === currentSlug) ||
                               rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
             if (rankEntry) {
-              bestRank = Math.min(bestRank, rankEntry.rank);
+              bestRank = Math.min(bestRank, parseInt(rankEntry.rank) || 9999);
               bestScore = Math.max(bestScore, Math.min(100, Math.round(rankEntry.final_score)));
             } else {
               bestScore = Math.max(bestScore, resolved.capabilities?.[capabilityField] || 0);
@@ -855,9 +804,13 @@ router.post('/', optionalAuth, async (req, res) => {
         }
 
         for (const rm of rawModels) {
-          const rankEntry = rankData.find(item => item.name.toLowerCase().includes(rm.toLowerCase()) || rm.toLowerCase().includes(item.name.toLowerCase()));
+          const rankEntry = rankData.find(item => 
+            (item.name && item.name.toLowerCase().includes(rm.toLowerCase())) ||
+            (item.name && rm.toLowerCase().includes(item.name.toLowerCase())) ||
+            (item.slug && rm.toLowerCase().replace(/[^a-z0-9]/g, '').includes(item.slug.replace(/[^a-z0-9]/g, '')))
+          );
           if (rankEntry) {
-            bestRank = Math.min(bestRank, rankEntry.rank);
+            bestRank = Math.min(bestRank, parseInt(rankEntry.rank) || 9999);
             bestScore = Math.max(bestScore, Math.min(100, Math.round(rankEntry.final_score)));
           }
         }
@@ -894,18 +847,17 @@ router.post('/', optionalAuth, async (req, res) => {
       } else if (optimizationGoal === 'performance') {
         let compatible = [];
         if (baselineRank !== 9999) {
-          compatible = subCandidates.filter(c => c.cost < currentCost && c.rank <= baselineRank);
+          // Performance Preservation Mode: Only recommend subscriptions with strictly lower cost AND better or equal rank
+          compatible = subCandidates.filter(c => c.cost < currentCost && c.rank <= baselineRank && !c.isCurrent);
         } else {
-          compatible = subCandidates.filter(c => c.cost < currentCost && c.performance_score >= computedBaselineScore);
+          compatible = subCandidates.filter(c => c.cost < currentCost && c.performance_score >= computedBaselineScore && !c.isCurrent);
         }
         if (compatible.length > 0) {
           compatible.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score || a.cost - b.cost);
           selectedSub = compatible[0];
         } else {
-          subCandidates.sort((a, b) => a.rank - b.rank);
-          if (subCandidates[0] && (subCandidates[0].isCurrent || (type === 'subscription' && baselineRank <= subCandidates[0].rank))) {
-            subStatusText = "Best subscription already used.";
-          }
+          selectedSub = null;
+          subStatusText = "Already optimized";
         }
       } else if (optimizationGoal === 'cost') {
         const maxAllowedCost = currentCost * (1 - costCutPercentage / 100);
@@ -917,15 +869,15 @@ router.post('/', optionalAuth, async (req, res) => {
       }
 
       // Build structured Options
-      const apiOption = selectedApi ? {
+      const isApiOptimized = selectedApi && selectedApi.monthly_cost < currentCost;
+      const apiOption = isApiOptimized ? {
         cost: selectedApi.monthly_cost,
         savings: currentCost - selectedApi.monthly_cost,
         name: selectedApi.name,
         modelId: selectedApi._id,
-        action: (type === 'api' && selectedApi.isCurrent)
-          ? "Your current model API is already the best choice. Keep using it."
-          : `Transition active users to direct API keys using ${selectedApi.name}.`,
-        statusText: (type === 'api' && selectedApi.isCurrent) ? (apiStatusText || "Optimized") : "",
+        action: `Transition active users to direct API keys using ${selectedApi.name}.`,
+        statusText: "",
+        isAlreadyOptimized: false,
         limits: selectedApi.limits,
         includedModels: [selectedApi.name],
         recommendedModel: selectedApi.name,
@@ -937,17 +889,18 @@ router.post('/', optionalAuth, async (req, res) => {
       } : {
         cost: currentCost,
         savings: 0,
-        name: primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Free Model"),
-        modelId: modelId,
+        name: primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Current Model"),
+        modelId: modelId || (primaryBaselineModel ? primaryBaselineModel._id : null),
         action: (type === 'api')
-          ? "Your current model API is already the best choice. Keep using it."
-          : `Transition active users to direct API keys using ${primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Free Model")}.`,
-        statusText: (type === 'api') ? (apiStatusText || "Optimized") : "",
+          ? "Your current model API is already the highest-ranked option with optimal cost. No migration required."
+          : `Transition to direct API keys offers no rank-preserving cost advantage. Keep current ${toolName} setup.`,
+        statusText: "Optimized",
+        isAlreadyOptimized: true,
         limits: primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints.length > 0
           ? `Pay-as-you-go rates: $${primaryBaselineModel.endpoints[0].input_cost_per_m.toFixed(2)}/1M input, $${primaryBaselineModel.endpoints[0].output_cost_per_m.toFixed(2)}/1M output. Context: ${primaryBaselineModel.context_length ? (primaryBaselineModel.context_length >= 1000000 ? `${(primaryBaselineModel.context_length / 1000000).toFixed(0)}M` : `${(primaryBaselineModel.context_length / 1000).toFixed(0)}K`) : 'N/A'}.`
           : "Pay-as-you-go token consumption limits.",
         includedModels: primaryBaselineModel ? [primaryBaselineModel.name] : (modelId ? [modelId] : []),
-        recommendedModel: primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Free Model"),
+        recommendedModel: primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Current Model"),
         recommendedProvider: primaryBaselineModel ? getCleanProviderName(primaryBaselineModel._id.split('/')[0]) : getCleanProviderName(toolName),
         inputCostPerM: (primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints[0]) ? (primaryBaselineModel.endpoints[0].input_cost_per_m || 0) : 0,
         outputCostPerM: (primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints[0]) ? (primaryBaselineModel.endpoints[0].output_cost_per_m || 0) : 0,
@@ -955,31 +908,32 @@ router.post('/', optionalAuth, async (req, res) => {
         defaultOutputTokens: (type === 'subscription') ? (seats * (purpose === 'Coding' ? 2500000 : 1250000)) : outputTokens
       };
 
-      const subscriptionOption = selectedSub ? {
+      const isSubOptimized = selectedSub && selectedSub.cost < currentCost;
+      const subscriptionOption = isSubOptimized ? {
         planName: `${selectedSub.tier.provider} ${selectedSub.tier.plan}`,
         cost: selectedSub.cost,
         savings: currentCost - selectedSub.cost,
         limits: selectedSub.tier.limits,
         includedModels: selectedSub.tier.rawModels || [],
         modelId: selectedSub.tier.models?.[0] || null,
-        action: (type === 'subscription' && selectedSub.isCurrent)
-          ? "Your current subscription is already the best choice. Keep using it."
-          : `Migrate to the ${selectedSub.tier.provider} ${selectedSub.tier.plan} subscription.`,
-        statusText: (type === 'subscription' && selectedSub.isCurrent) ? (subStatusText || "Optimized") : "",
+        action: `Migrate to the ${selectedSub.tier.provider} ${selectedSub.tier.plan} subscription.`,
+        statusText: "",
+        isAlreadyOptimized: false,
         recommendedModel: selectedSub.tier.plan,
         recommendedProvider: getCleanProviderName(selectedSub.tier.provider)
       } : {
-        planName: `${toolName} ${plan || "Free"}`,
+        planName: `${toolName} ${plan || "Current"}`,
         cost: currentCost,
         savings: 0,
-        limits: tier ? tier.limits : "Free plan limits",
+        limits: tier ? tier.limits : "Current plan limits",
         includedModels: tier ? (tier.rawModels || []) : [],
         modelId: tier?.models?.[0] || null,
         action: (type === 'subscription')
-          ? "Your current subscription is already the best choice. Keep using it."
-          : `Migrate to the ${toolName} ${plan || "Free"} subscription.`,
-        statusText: (type === 'subscription') ? (subStatusText || "Optimized") : "",
-        recommendedModel: plan || "Free",
+          ? "Your current subscription is already the highest-ranked option with optimal cost. Keep using it."
+          : `Migrating to a subscription offers no rank-preserving cost advantage. Maintain current ${toolName} setup.`,
+        statusText: "Optimized",
+        isAlreadyOptimized: true,
+        recommendedModel: (tier && tier.rawModels && tier.rawModels[0]) ? tier.rawModels[0] : (plan || "Current"),
         recommendedProvider: getCleanProviderName(toolName)
       };
 
@@ -1001,11 +955,18 @@ router.post('/', optionalAuth, async (req, res) => {
       const currentProvider = getCleanProviderName(toolName);
       const currentModelName = primaryBaselineModel ? primaryBaselineModel.name : (modelId || (type === 'subscription' ? plan : 'GPT-4o'));
 
+      const maxSavings = Math.max(apiOption ? apiOption.savings : 0, subscriptionOption ? subscriptionOption.savings : 0);
+      const isAlreadyOptimized = maxSavings <= 0;
+
       recommendations.push({
         tool: toolDesc,
         issue: issueDesc,
-        action: "Select the most suitable option below.",
-        monthlySavings: Math.max(apiOption ? apiOption.savings : 0, subscriptionOption ? subscriptionOption.savings : 0),
+        action: isAlreadyOptimized 
+          ? "Your current deployment is already optimal. No changes required."
+          : "Select the most suitable option below.",
+        statusText: isAlreadyOptimized ? "Optimized" : "",
+        isAlreadyOptimized: isAlreadyOptimized,
+        monthlySavings: maxSavings,
         apiOption,
         subscriptionOption,
         originalAlloc: {
@@ -1053,17 +1014,8 @@ router.post('/', optionalAuth, async (req, res) => {
     await audit.save();
     console.log('Saved audit in MongoDB:', audit._id);
 
-    // Calculate isUnlocked dynamically
-    let isUnlocked = false;
-    if (numTools <= 2) {
-      isUnlocked = true;
-    } else if (user) {
-      if (user.plan === 'enterprise') {
-        isUnlocked = true;
-      } else if (user.plan === 'pro' && numTools <= 15) {
-        isUnlocked = true;
-      }
-    }
+    // Calculate isUnlocked dynamically using authoritative backend entitlements
+    const isUnlocked = isAuditUnlockedForUser(auditData, user);
 
     const returnedAudit = audit.toObject();
     returnedAudit.isUnlocked = isUnlocked;
@@ -1088,29 +1040,33 @@ router.post('/', optionalAuth, async (req, res) => {
 // Route to get all audits (requires authentication)
 router.get('/', auth, async (req, res) => {
   try {
-    const audits = await Audit.find({ userId: req.user.id }).sort({ createdAt: -1 });
     const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const { PRODUCTS } = require('../config/products');
+    const isSubscriptionExpired = user.subscription?.expiresAt && (new Date(user.subscription.expiresAt) < new Date());
+    const effectivePlan = isSubscriptionExpired ? 'free' : (user.plan || 'free').toLowerCase();
+    const productConfig = PRODUCTS[effectivePlan] || PRODUCTS.free;
+    const historyLimit = productConfig.entitlements?.historyRetentionLimit ?? 0;
+
+    let query = Audit.find({ userId: req.user.id }).sort({ createdAt: -1 });
+    if (historyLimit > 0 && historyLimit !== Infinity) {
+      query = query.limit(historyLimit);
+    }
+
+    const audits = await query.exec();
     
-    // Hydrate baselineModels for all audits returned in the list
+    // Hydrate baselineModels and apply authoritative backend unlocking and redaction
     const auditsObj = audits.map(audit => {
       const auditObj = audit.toObject();
-      const uniqueTools = [...new Set((auditObj.allocations || []).map(a => a.toolName))];
-      const numTools = uniqueTools.length;
-
-      let isUnlocked = false;
-      if (numTools <= 2) {
-        isUnlocked = true;
-      } else if (user) {
-        if (user.plan === 'enterprise') {
-          isUnlocked = true;
-        } else if (user.plan === 'pro' && numTools <= 15) {
-          isUnlocked = true;
-        } else if (user.unlockedAudits && user.unlockedAudits.some(aid => aid.toString() === auditObj._id.toString())) {
-          isUnlocked = true;
-        }
-      }
-      
+      const isUnlocked = isAuditUnlockedForUser(auditObj, user);
       auditObj.isUnlocked = isUnlocked;
+
+      if (!isUnlocked && auditObj.savings?.recommendations) {
+        auditObj.savings.recommendations = redactAuditRecommendations(auditObj.savings.recommendations);
+      }
 
       if (auditObj.allocations && Array.isArray(auditObj.allocations)) {
         auditObj.allocations.forEach(alloc => {
@@ -1125,6 +1081,7 @@ router.get('/', auth, async (req, res) => {
 
     return res.json(auditsObj);
   } catch (error) {
+    console.error('Error in GET /audits:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -1152,33 +1109,16 @@ router.get('/:id', optionalAuth, async (req, res) => {
       user = await User.findById(req.user.id);
     }
 
-    const uniqueTools = [...new Set((audit.allocations || []).map(a => a.toolName))];
-    const numTools = uniqueTools.length;
-
-    let isUnlocked = false;
-    if (numTools <= 2) {
-      isUnlocked = true;
-    } else if (user) {
-      if (user.plan === 'enterprise') {
-        isUnlocked = true;
-      } else if (user.plan === 'pro' && numTools <= 15) {
-        isUnlocked = true;
-      } else if (user.unlockedAudits && user.unlockedAudits.some(aid => aid.toString() === audit._id.toString())) {
-        isUnlocked = true;
-      }
-    }
-
     const auditObj = audit.toObject();
+    const isUnlocked = isAuditUnlockedForUser(auditObj, user);
     auditObj.isUnlocked = isUnlocked;
 
-    if (!isUnlocked) {
-      if (auditObj.savings && auditObj.savings.recommendations) {
-        auditObj.savings.recommendations = redactAuditRecommendations(auditObj.savings.recommendations);
-      }
+    if (!isUnlocked && auditObj.savings?.recommendations) {
+      auditObj.savings.recommendations = redactAuditRecommendations(auditObj.savings.recommendations);
     }
 
     if (auditObj.allocations && Array.isArray(auditObj.allocations)) {
-      auditObj.allocations.forEach((alloc, index) => {
+      auditObj.allocations.forEach((alloc) => {
         if (alloc.type === 'subscription' && (!alloc.baselineModels || alloc.baselineModels.length === 0)) {
           const tier = findSubscriptionTier(alloc.toolName, alloc.plan);
           alloc.baselineModels = tier ? (tier.rawModels || []) : [];
@@ -1188,6 +1128,7 @@ router.get('/:id', optionalAuth, async (req, res) => {
 
     return res.json(auditObj);
   } catch (error) {
+    console.error('Error in GET /audits/:id:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -1241,8 +1182,8 @@ router.put('/:id/options', auth, async (req, res) => {
   }
 });
 
-// Two-API capability and pricing recommendation auditor
-router.post('/audit-recommendation', async (req, res) => {
+// Two-API capability and pricing recommendation auditor (Enterprise Exclusive)
+router.post('/audit-recommendation', auth, requirePlan('enterprise'), async (req, res) => {
   try {
     const currentModelId = req.body.currentModelId;
     if (!currentModelId) {
@@ -1512,6 +1453,8 @@ router.post('/audit-recommendation', async (req, res) => {
       };
     });
 
+    const isAlreadyOptimized = recommendations.length === 0;
+
     res.json({
       currentBaseline: {
         modelId: currentModel._id,
@@ -1523,7 +1466,11 @@ router.post('/audit-recommendation', async (req, res) => {
         cost_per_m_input: currentModel.endpoints?.[0]?.input_cost_per_m || 0,
         cost_per_m_output: currentModel.endpoints?.[0]?.output_cost_per_m || 0
       },
-      recommendations
+      recommendations,
+      isAlreadyOptimized,
+      statusMessage: isAlreadyOptimized
+        ? "Already Optimized: Current baseline model has the highest performance rank at the lowest cost in this category. No alternative provides higher capability at a lower price."
+        : ""
     });
   } catch (error) {
     console.error('Audit Recommendation Route Error:', error);
@@ -1594,33 +1541,90 @@ router.get('/analysis/raw-data', async (req, res) => {
 
     const sources = rawData.sources || {};
 
+    // Build fast category lookup indexes
+    const codingMap = new Map();
+    (rawData.categories?.coding || []).forEach(m => {
+      if (m.slug) codingMap.set(m.slug.toLowerCase(), m);
+      if (m.modelId) codingMap.set(m.modelId.toLowerCase(), m);
+      if (m.name) codingMap.set(m.name.toLowerCase(), m);
+    });
+
+    const mathMap = new Map();
+    (rawData.categories?.math || []).forEach(m => {
+      if (m.slug) mathMap.set(m.slug.toLowerCase(), m);
+      if (m.modelId) mathMap.set(m.modelId.toLowerCase(), m);
+      if (m.name) mathMap.set(m.name.toLowerCase(), m);
+    });
+
+    const overallMap = new Map();
+    (rawData.categories?.overall || []).forEach(m => {
+      if (m.slug) overallMap.set(m.slug.toLowerCase(), m);
+      if (m.modelId) overallMap.set(m.modelId.toLowerCase(), m);
+      if (m.name) overallMap.set(m.name.toLowerCase(), m);
+    });
+
     // 1. Process LLMs
     const rawLlms = Array.isArray(sources.llms) ? sources.llms : (sources.llms?.data || []);
     const processedLlms = rawLlms.map(item => {
       const pricing = item.pricing || {};
       const evaluations = item.evaluations || {};
-      
+      const slugKey = (item.slug || '').toLowerCase();
+      const modelIdKey = (item.modelId || item.id || '').toLowerCase();
+      const nameKey = (item.name || '').toLowerCase();
+
+      const codingCat = codingMap.get(slugKey) || codingMap.get(modelIdKey) || codingMap.get(nameKey);
+      const mathCat = mathMap.get(slugKey) || mathMap.get(modelIdKey) || mathMap.get(nameKey);
+      const overallCat = overallMap.get(slugKey) || overallMap.get(modelIdKey) || overallMap.get(nameKey);
+
       const inputCost = parseFloat(pricing.price_1m_input_tokens) || 0;
       const outputCost = parseFloat(pricing.price_1m_output_tokens) || 0;
       // Blended price assumes a standard 3:1 input:output tokens ratio
       const blendedPrice = (inputCost * 0.75) + (outputCost * 0.25);
 
-      const rawIntel = evaluations.artificial_analysis_intelligence_index !== undefined ? evaluations.artificial_analysis_intelligence_index : (item.intelligenceIndex !== undefined ? item.intelligenceIndex : item.category_scores?.overall);
-      const rawCoding = evaluations.artificial_analysis_coding_index !== undefined ? evaluations.artificial_analysis_coding_index : (item.codingIndex !== undefined ? item.codingIndex : item.category_scores?.coding);
-      const rawMath = evaluations.artificial_analysis_math_index !== undefined ? evaluations.artificial_analysis_math_index : (item.mathIndex !== undefined ? item.mathIndex : item.category_scores?.math);
+      const rawIntel = evaluations.artificial_analysis_intelligence_index !== undefined && evaluations.artificial_analysis_intelligence_index !== null
+        ? evaluations.artificial_analysis_intelligence_index
+        : (item.intelligenceIndex !== undefined
+            ? item.intelligenceIndex
+            : (overallCat?.rating ? Math.min(99, Math.max(35, ((overallCat.rating - 850) / 500) * 100)) : item.category_scores?.overall));
 
+      const rawCoding = evaluations.artificial_analysis_coding_index !== undefined && evaluations.artificial_analysis_coding_index !== null
+        ? evaluations.artificial_analysis_coding_index
+        : (evaluations.livecodebench !== undefined && evaluations.livecodebench !== null
+            ? evaluations.livecodebench
+            : (evaluations.coding_agent_index !== undefined && evaluations.coding_agent_index !== null
+                ? evaluations.coding_agent_index
+                : (evaluations.scicode !== undefined && evaluations.scicode !== null
+                    ? (evaluations.scicode <= 1 ? evaluations.scicode * 100 : evaluations.scicode)
+                    : (codingCat?.rating ? Math.min(99, Math.max(35, ((codingCat.rating - 850) / 500) * 100)) : (item.codingIndex !== undefined ? item.codingIndex : item.category_scores?.coding)))));
+
+      const rawMath = evaluations.artificial_analysis_math_index !== undefined && evaluations.artificial_analysis_math_index !== null
+        ? evaluations.artificial_analysis_math_index
+        : (evaluations.aime !== undefined && evaluations.aime !== null
+            ? evaluations.aime
+            : (evaluations.aime_25 !== undefined && evaluations.aime_25 !== null
+                ? evaluations.aime_25
+                : (evaluations.math_500 !== undefined && evaluations.math_500 !== null
+                    ? evaluations.math_500
+                    : (mathCat?.rating ? Math.min(99, Math.max(35, ((mathCat.rating - 850) / 450) * 100)) : (item.mathIndex !== undefined ? item.mathIndex : item.category_scores?.math)))));
+
+      const rating = item.rating || overallCat?.rating || item.arena_elo || null;
       const parsedIntel = !isNaN(parseFloat(rawIntel)) ? parseFloat(rawIntel) : null;
       const parsedCoding = !isNaN(parseFloat(rawCoding)) ? parseFloat(rawCoding) : null;
       const parsedMath = !isNaN(parseFloat(rawMath)) ? parseFloat(rawMath) : null;
 
       return {
         slug: item.slug,
+        modelId: item.modelId || item.id || (item.slug ? `${item.organization || item.model_creator?.name || 'ai'}/${item.slug}` : undefined),
         name: item.name,
         creator: item.model_creator?.name || item.organization || 'Unknown',
         release_date: item.release_date,
+        rating: rating ? parseInt(rating) : null,
         intelligence_index: parsedIntel,
         coding_index: parsedCoding,
         math_index: parsedMath,
+        evaluations: item.evaluations || {},
+        category_scores: item.category_scores || {},
+        capabilities: item.capabilities || {},
         gpqa: parseFloat(evaluations.gpqa || item.gpqa) || null,
         hle: parseFloat(evaluations.hle || item.hle) || null,
         throughput: parseFloat(item.median_output_tokens_per_second) || null,
@@ -1906,8 +1910,8 @@ router.get('/models/list', async (req, res) => {
   }
 });
 
-// Route to generate comparison report using Gemini API
-router.post('/compare/report', optionalAuth, async (req, res) => {
+// Route to generate comparison report using Gemini API (Enterprise Exclusive)
+router.post('/compare/report', auth, requirePlan('enterprise'), async (req, res) => {
   const { baseline, recommended } = req.body;
   
   if (!baseline || !recommended) {

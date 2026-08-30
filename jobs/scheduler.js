@@ -30,20 +30,21 @@ function initScheduler() {
     }
   });
 
-  // 3. Trigger initial synchronization and ranking pipeline on startup
-  (async () => {
-    console.log('🚀 Ingestion Scheduler: Triggering initial synchronization on startup...');
-    try {
-      // Sync live pricing, missing value imputer, and v1.2 rankings
-      await runDailyRankingPipeline();
-      
-      console.log('🚀 Ingestion Scheduler: Initial synchronization completed successfully!');
-    } catch (err) {
-      console.error('🚀 Ingestion Scheduler: Initial synchronization encountered an error:', err.message);
-      // Fallback sync if pipeline run fails
-      await syncArtificialAnalysis().catch(() => {});
-    }
-  })();
+  // 3. Trigger initial synchronization if explicitly enabled via environment variable
+  if (process.env.RUN_INITIAL_SYNC === 'true') {
+    (async () => {
+      console.log('🚀 Ingestion Scheduler: Triggering initial synchronization on startup (RUN_INITIAL_SYNC=true)...');
+      try {
+        await runDailyRankingPipeline();
+        console.log('🚀 Ingestion Scheduler: Initial synchronization completed successfully!');
+      } catch (err) {
+        console.error('🚀 Ingestion Scheduler: Initial synchronization encountered an error:', err.message);
+        await syncArtificialAnalysis().catch(() => {});
+      }
+    })();
+  } else {
+    console.log('ℹ️ Ingestion Scheduler: Startup scraping skipped (RUN_INITIAL_SYNC!=true). Scheduled cron jobs are active.');
+  }
 }
 
 module.exports = { initScheduler };

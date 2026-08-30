@@ -7,16 +7,23 @@ const Audit = require('../models/Audit');
 const { auth } = require('../middleware/auth');
 const axios = require('axios');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'audex-ai-jwt-secret-key-12345';
-
-
+const getJwtSecret = () => {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('FATAL SECURITY ERROR: JWT_SECRET environment variable is missing in production.');
+    }
+    return 'audex-ai-jwt-dev-secret-key-change-in-production-4f8b9e';
+  }
+  return secret;
+};
 
 // Email regex validator
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Helper to generate JWT token
 const generateToken = (userId, email) => {
-  return jwt.sign({ id: userId, email }, JWT_SECRET, { expiresIn: '7d' });
+  return jwt.sign({ id: userId, email }, getJwtSecret(), { expiresIn: '7d' });
 };
 
 // Route: User Registration (POST /register)
@@ -72,6 +79,7 @@ router.post('/register', async (req, res) => {
         email: newUser.email,
         credits: newUser.credits,
         plan: newUser.plan || 'free',
+        subscription: newUser.subscription,
         unlockedAudits: newUser.unlockedAudits || []
       }
     });
@@ -114,6 +122,7 @@ router.post('/login', async (req, res) => {
         email: user.email,
         credits: user.credits || { starter: 0, pro: 0, proMax: 0 },
         plan: user.plan || 'free',
+        subscription: user.subscription,
         unlockedAudits: user.unlockedAudits || []
       }
     });
@@ -124,22 +133,54 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Route: Get current user profile details (GET /me)
+// Route: Get current user profile and authoritative plan entitlements (GET /me)
 router.get('/me', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
-
     if (!user) {
       return res.status(404).json({ error: 'User not found.' });
     }
 
-    res.json({
+    const { PRODUCTS } = require('../config/products');
+
+    let isSubscriptionExpired = false;
+    if (user.subscription && user.subscription.expiresAt) {
+      isSubscriptionExpired = new Date(user.subscription.expiresAt) < new Date();
+    }
+
+    const plan = (user.plan || 'free').toLowerCase();
+    const effectivePlan = isSubscriptionExpired ? 'free' : plan;
+
+    const productConfig = PRODUCTS[effectivePlan] || PRODUCTS.free;
+
+    const subscriptionObj = user.subscription || {
+      plan: effectivePlan,
+      status: effectivePlan !== 'free' ? 'active' : 'none',
+      startedAt: user.createdAt || new Date(),
+      expiresAt: null
+    };
+
+    if (!subscriptionObj.status || subscriptionObj.status === 'none') {
+      subscriptionObj.status = effectivePlan !== 'free' ? (isSubscriptionExpired ? 'expired' : 'active') : 'none';
+    }
+
+    const userObj = {
       id: user._id,
       name: user.name,
       email: user.email,
       credits: user.credits || { starter: 0, pro: 0, proMax: 0 },
-      plan: user.plan || 'free',
+      plan: effectivePlan,
+      rawPlan: user.plan,
+      subscription: subscriptionObj,
+      isSubscriptionExpired,
       unlockedAudits: user.unlockedAudits || []
+    };
+
+    res.json({
+      ...userObj,
+      user: userObj,
+      entitlements: productConfig.entitlements,
+      features: productConfig.features
     });
   } catch (error) {
     console.error('Fetch me error:', error);
@@ -158,6 +199,16 @@ router.post('/purchase', auth, async (req, res) => {
       return res.status(400).json({ error: 'Invalid credit type.' });
     }
 
+    const adminSecret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
+    const providedSecret = req.headers['x-admin-secret'] || req.query.adminSecret;
+
+    if (!adminSecret || providedSecret !== adminSecret) {
+      return res.status(402).json({
+        error: 'Credit purchases require a verified payment transaction. Please use /api/payment/create-upi-order to buy credits.',
+        paymentRequired: true
+      });
+    }
+
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ error: 'User not found.' });
     if (!user.credits) user.credits = { starter: 0, pro: 0, proMax: 0 };
@@ -165,7 +216,7 @@ router.post('/purchase', auth, async (req, res) => {
     await user.save();
 
     res.json({
-      message: 'Purchase successful.',
+      message: 'Purchase successful (Admin verified).',
       credits: user.credits
     });
   } catch (error) {
@@ -185,11 +236,37 @@ router.post('/subscribe', auth, async (req, res) => {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ error: 'User not found.' });
 
+    // Switching to free is always allowed
+    if (plan === 'free') {
+      user.plan = 'free';
+      if (user.subscription) {
+        user.subscription.status = 'none';
+      }
+      await user.save();
+      return res.json({
+        message: 'Switched to free plan.',
+        plan: user.plan,
+        unlockedAudits: user.unlockedAudits || [],
+        credits: user.credits
+      });
+    }
+
+    // Upgrading to paid tiers requires payment or admin verification
+    const adminSecret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
+    const providedSecret = req.headers['x-admin-secret'] || req.query.adminSecret;
+
+    if (!adminSecret || providedSecret !== adminSecret) {
+      return res.status(402).json({
+        error: `Upgrading to ${plan.toUpperCase()} requires an active verified payment. Please initiate payment via /api/payment/create-upi-order.`,
+        paymentRequired: true
+      });
+    }
+
     user.plan = plan;
     await user.save();
 
     res.json({
-      message: `Successfully subscribed to ${plan} plan.`,
+      message: `Successfully updated to ${plan} plan (Admin verified).`,
       plan: user.plan,
       unlockedAudits: user.unlockedAudits || [],
       credits: user.credits
@@ -215,6 +292,19 @@ router.post('/unlock-audit', auth, async (req, res) => {
 
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ error: 'User not found.' });
+
+    // Allow unlock if user is Enterprise or report has <= 2 tools or with admin secret
+    const numTools = new Set((audit.allocations || []).map(a => a.toolName)).size;
+    const adminSecret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
+    const providedSecret = req.headers['x-admin-secret'] || req.query.adminSecret;
+    const isFreeEligible = numTools <= 2 || user.plan === 'enterprise' || (adminSecret && providedSecret === adminSecret);
+
+    if (!isFreeEligible) {
+      return res.status(402).json({
+        error: 'Unlocking this report requires a Single Report Unlock payment. Please initiate via /api/payment/create-upi-order.',
+        paymentRequired: true
+      });
+    }
 
     if (!user.unlockedAudits) {
       user.unlockedAudits = [];
@@ -457,6 +547,14 @@ router.get('/github/callback', async (req, res) => {
     const userMessage = error.response?.data?.error_description || error.message || 'Authentication with GitHub failed. Please try again.';
     res.redirect(`${frontendUrl}/?github_error=${encodeURIComponent(userMessage)}`);
   }
+});
+
+// Route: Get public catalog of subscription tiers and feature matrix (GET /entitlements)
+router.get('/entitlements', (req, res) => {
+  const { PRODUCTS } = require('../config/products');
+  res.json({
+    tiers: PRODUCTS
+  });
 });
 
 module.exports = router;

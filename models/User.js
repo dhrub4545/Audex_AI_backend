@@ -50,6 +50,34 @@ const UserSchema = new mongoose.Schema({
     enum: ['free', 'pro', 'enterprise'],
     default: 'free'
   },
+  subscription: {
+    plan: {
+      type: String,
+      enum: ['free', 'pro', 'enterprise'],
+      default: 'free'
+    },
+    status: {
+      type: String,
+      enum: ['active', 'trialing', 'canceled', 'expired', 'none'],
+      default: 'none'
+    },
+    startedAt: {
+      type: Date,
+      default: null
+    },
+    expiresAt: {
+      type: Date,
+      default: null
+    },
+    paymentMethod: {
+      type: String,
+      default: 'UPI'
+    },
+    lastOrderId: {
+      type: String,
+      default: null
+    }
+  },
   unlockedAudits: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Audit'

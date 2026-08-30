@@ -191,7 +191,7 @@ async function scrapeArtificialAnalysis() {
     for (const fallbackPath of fallbackPaths) {
       if (fs.existsSync(fallbackPath)) {
         try {
-          const content = fs.readFileSync(fallbackPath, 'utf8');
+          const content = await fs.promises.readFile(fallbackPath, 'utf8');
           const parsed = JSON.parse(content);
           if (Array.isArray(parsed)) mainModels = parsed;
           else if (parsed?.sources?.llms?.data) mainModels = parsed.sources.llms.data;
