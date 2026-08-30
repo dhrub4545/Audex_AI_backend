@@ -330,13 +330,35 @@ router.post('/unlock-audit', auth, async (req, res) => {
   }
 });
 
+// Helper to resolve OAuth redirect URIs safely
+const getOAuthRedirectUri = (req, explicitUri, defaultPath) => {
+  if (explicitUri && explicitUri.trim() !== '') {
+    return explicitUri.trim();
+  }
+  const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+  const host = req.headers['x-forwarded-host'] || req.get('host') || 'www.audexai.in';
+  return `${protocol}://${host}${defaultPath}`;
+};
+
+// Helper to resolve Frontend URL for OAuth browser callback
+const getFrontendCallbackUrl = (req) => {
+  if (process.env.FRONTEND_URL && process.env.FRONTEND_URL.trim() !== '') {
+    return process.env.FRONTEND_URL.trim().replace(/\/+$/, '');
+  }
+  const host = req.headers['x-forwarded-host'] || req.get('host') || '';
+  if (host.includes('localhost') || host.includes('127.0.0.1')) {
+    return 'http://localhost:5173';
+  }
+  return 'https://www.audexai.in';
+};
+
 // Route: Initiate Google OAuth (GET /google)
 router.get('/google', (req, res) => {
   const googleClientId = process.env.GOOGLE_CLIENT_ID;
-  const redirectUri = process.env.GOOGLE_REDIRECT_URI;
+  const redirectUri = getOAuthRedirectUri(req, process.env.GOOGLE_REDIRECT_URI, '/api/auth/google/callback');
   
-  if (!googleClientId || !redirectUri) {
-    return res.status(500).json({ error: 'Google OAuth is not configured on the server. Missing GOOGLE_CLIENT_ID or GOOGLE_REDIRECT_URI.' });
+  if (!googleClientId) {
+    return res.status(500).json({ error: 'Google OAuth is not configured on the server. Missing GOOGLE_CLIENT_ID.' });
   }
 
   const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${encodeURIComponent(googleClientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=openid%20email%20profile&prompt=select_account`;
@@ -345,16 +367,20 @@ router.get('/google', (req, res) => {
 
 // Route: Google Callback (GET /google/callback)
 router.get('/google/callback', async (req, res) => {
+  const frontendUrl = getFrontendCallbackUrl(req);
   try {
     const { code } = req.query;
     if (!code) {
-      return res.status(400).json({ error: 'Authorization code is missing.' });
+      return res.redirect(`${frontendUrl}/?google_error=${encodeURIComponent('Authorization code is missing from Google.')}&view=signin`);
     }
 
     const googleClientId = process.env.GOOGLE_CLIENT_ID;
     const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
-    const redirectUri = process.env.GOOGLE_REDIRECT_URI;
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    const redirectUri = getOAuthRedirectUri(req, process.env.GOOGLE_REDIRECT_URI, '/api/auth/google/callback');
+
+    if (!googleClientId || !googleClientSecret) {
+      return res.redirect(`${frontendUrl}/?google_error=${encodeURIComponent('Server missing Google Client ID or Secret.')}&view=signin`);
+    }
 
     // 1. Exchange auth code for tokens
     const tokenResponse = await axios.post('https://oauth2.googleapis.com/token', {
@@ -381,7 +407,7 @@ router.get('/google/callback', async (req, res) => {
     const { sub, email, name, picture } = userResponse.data;
 
     if (!email) {
-      return res.status(400).json({ error: 'Google did not return an email address.' });
+      return res.redirect(`${frontendUrl}/?google_error=${encodeURIComponent('Google did not return a verified email address.')}&view=signin`);
     }
 
     const normalizedEmail = email.toLowerCase().trim();
@@ -418,20 +444,18 @@ router.get('/google/callback', async (req, res) => {
 
   } catch (error) {
     console.error('Google OAuth error:', error.response ? error.response.data : error.message);
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-    // Redirect back to frontend login with user-safe error message
-    const userMessage = error.response?.data?.error_description || error.response?.data?.error || 'Authentication with Google failed. Please try again.';
-    res.redirect(`${frontendUrl}/?google_error=${encodeURIComponent(userMessage)}`);
+    const userMessage = error.response?.data?.error_description || error.response?.data?.error || error.message || 'Authentication with Google failed. Please try again.';
+    res.redirect(`${frontendUrl}/?google_error=${encodeURIComponent(userMessage)}&view=signin`);
   }
 });
 
 // Route: Initiate GitHub OAuth (GET /github)
 router.get('/github', (req, res) => {
   const githubClientId = process.env.GITHUB_CLIENT_ID;
-  const redirectUri = process.env.GITHUB_REDIRECT_URI;
+  const redirectUri = getOAuthRedirectUri(req, process.env.GITHUB_REDIRECT_URI, '/api/auth/github/callback');
 
-  if (!githubClientId || !redirectUri) {
-    return res.status(500).json({ error: 'GitHub OAuth is not configured on the server. Missing GITHUB_CLIENT_ID or GITHUB_REDIRECT_URI.' });
+  if (!githubClientId) {
+    return res.status(500).json({ error: 'GitHub OAuth is not configured on the server. Missing GITHUB_CLIENT_ID.' });
   }
 
   const authUrl = `https://github.com/login/oauth/authorize?client_id=${encodeURIComponent(githubClientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=user:email`;
@@ -440,16 +464,20 @@ router.get('/github', (req, res) => {
 
 // Route: GitHub Callback (GET /github/callback)
 router.get('/github/callback', async (req, res) => {
+  const frontendUrl = getFrontendCallbackUrl(req);
   try {
     const { code } = req.query;
     if (!code) {
-      return res.status(400).json({ error: 'Authorization code is missing.' });
+      return res.redirect(`${frontendUrl}/?github_error=${encodeURIComponent('Authorization code is missing from GitHub.')}&view=signin`);
     }
 
     const githubClientId = process.env.GITHUB_CLIENT_ID;
     const githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
-    const redirectUri = process.env.GITHUB_REDIRECT_URI;
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    const redirectUri = getOAuthRedirectUri(req, process.env.GITHUB_REDIRECT_URI, '/api/auth/github/callback');
+
+    if (!githubClientId || !githubClientSecret) {
+      return res.redirect(`${frontendUrl}/?github_error=${encodeURIComponent('Server missing GitHub Client ID or Secret.')}&view=signin`);
+    }
 
     // 1. Exchange authorization code for access token
     const tokenResponse = await axios.post('https://github.com/login/oauth/access_token', {
@@ -506,7 +534,7 @@ router.get('/github/callback', async (req, res) => {
     }
 
     if (!email) {
-      return res.status(400).json({ error: 'GitHub did not return a valid email address.' });
+      return res.redirect(`${frontendUrl}/?github_error=${encodeURIComponent('GitHub did not return a valid email address.')}&view=signin`);
     }
 
     const normalizedEmail = email.toLowerCase().trim();
@@ -543,9 +571,8 @@ router.get('/github/callback', async (req, res) => {
 
   } catch (error) {
     console.error('GitHub OAuth error:', error.response ? error.response.data : error.message);
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-    const userMessage = error.response?.data?.error_description || error.message || 'Authentication with GitHub failed. Please try again.';
-    res.redirect(`${frontendUrl}/?github_error=${encodeURIComponent(userMessage)}`);
+    const userMessage = error.response?.data?.error_description || error.response?.data?.error || error.message || 'Authentication with GitHub failed. Please try again.';
+    res.redirect(`${frontendUrl}/?github_error=${encodeURIComponent(userMessage)}&view=signin`);
   }
 });
 
