@@ -2,30 +2,20 @@ const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
 const RankData = require('../models/RankData');
+const cache = require('./cacheService');
 
 const RANK_DIR = path.join(__dirname, '../data/rank');
 const RAW_DATA_PATH = path.join(__dirname, '../data/raw_data.json');
 const SUBSCRIPTION_TIERS_PATH = path.join(__dirname, '../data/subscription_tiers.json');
 
-// In-memory runtime cache with TTL (5 minutes) to avoid repeated disk reads / JSON parses
-const memoryCache = {
-  categories: new Map(),
-  rawData: null,
-  rawDataExpires: 0,
-  subTiers: null,
-  subTiersExpires: 0
-};
-const CACHE_TTL_MS = 5 * 60 * 1000;
+const CACHE_TTL_SECONDS = 30 * 60; // 30 minutes TTL in L1 Memory / L2 Redis
 
 /**
- * Save rank category data to MongoDB Atlas and ephemeral disk cache asynchronously.
+ * Save rank category data to Cache, MongoDB Atlas and ephemeral disk cache.
  */
 async function saveRankCategory(categoryKey, data) {
-  // Update in-memory cache
-  memoryCache.categories.set(categoryKey, {
-    data,
-    expiresAt: Date.now() + CACHE_TTL_MS
-  });
+  // Update multi-tier cache
+  await cache.set(`audex:rank:${categoryKey}`, data, CACHE_TTL_SECONDS);
 
   // 1. Save to MongoDB Atlas if connected
   if (mongoose.connection.readyState === 1) {
@@ -49,13 +39,13 @@ async function saveRankCategory(categoryKey, data) {
 }
 
 /**
- * Get rank category data: In-memory cache -> MongoDB Atlas -> /tmp asynchronous fallback.
+ * Get rank category data: Multi-tier Cache -> MongoDB Atlas -> local data/rank -> /tmp.
  */
 async function getRankCategory(categoryKey) {
-  // Check in-memory cache
-  const cached = memoryCache.categories.get(categoryKey);
-  if (cached && cached.expiresAt > Date.now()) {
-    return cached.data;
+  // Check multi-tier cache (L1 Memory -> L2 Redis)
+  const cached = await cache.get(`audex:rank:${categoryKey}`);
+  if (cached) {
+    return cached;
   }
 
   // 1. Check MongoDB Atlas if connected
@@ -63,10 +53,7 @@ async function getRankCategory(categoryKey) {
     try {
       const doc = await RankData.findOne({ key: categoryKey }).lean();
       if (doc && doc.data) {
-        memoryCache.categories.set(categoryKey, {
-          data: doc.data,
-          expiresAt: Date.now() + CACHE_TTL_MS
-        });
+        await cache.set(`audex:rank:${categoryKey}`, doc.data, CACHE_TTL_SECONDS);
         return doc.data;
       }
     } catch (err) {
@@ -80,10 +67,7 @@ async function getRankCategory(categoryKey) {
     const content = await fs.promises.readFile(localRankPath, 'utf8');
     const parsed = JSON.parse(content);
     if (Array.isArray(parsed) && parsed.length > 0) {
-      memoryCache.categories.set(categoryKey, {
-        data: parsed,
-        expiresAt: Date.now() + CACHE_TTL_MS
-      });
+      await cache.set(`audex:rank:${categoryKey}`, parsed, CACHE_TTL_SECONDS);
       return parsed;
     }
   } catch (_) {}
@@ -93,10 +77,7 @@ async function getRankCategory(categoryKey) {
   try {
     const content = await fs.promises.readFile(tmpPath, 'utf8');
     const parsed = JSON.parse(content);
-    memoryCache.categories.set(categoryKey, {
-      data: parsed,
-      expiresAt: Date.now() + CACHE_TTL_MS
-    });
+    await cache.set(`audex:rank:${categoryKey}`, parsed, CACHE_TTL_SECONDS);
     return parsed;
   } catch (_) {}
 
@@ -148,12 +129,11 @@ function pruneRawDataForDb(rawData) {
 }
 
 /**
- * Save raw_data JSON payload to MongoDB Atlas and local disk asynchronously.
+ * Save raw_data JSON payload to Cache, MongoDB Atlas and local disk asynchronously.
  */
 async function saveRawData(rawData) {
-  // Update in-memory cache
-  memoryCache.rawData = rawData;
-  memoryCache.rawDataExpires = Date.now() + CACHE_TTL_MS;
+  // Update multi-tier cache
+  await cache.set('audex:raw_data', rawData, CACHE_TTL_SECONDS);
 
   // 1. Save to MongoDB Atlas if connected
   if (mongoose.connection.readyState === 1) {
@@ -185,12 +165,13 @@ async function saveRawData(rawData) {
 }
 
 /**
- * Get raw_data JSON payload: Memory cache -> MongoDB Atlas -> Async disk -> /tmp.
+ * Get raw_data JSON payload: Multi-tier Cache -> MongoDB Atlas -> local disk -> /tmp.
  */
 async function getRawData() {
-  // Check memory cache first
-  if (memoryCache.rawData && memoryCache.rawDataExpires > Date.now()) {
-    return memoryCache.rawData;
+  // Check multi-tier cache (L1 Memory -> L2 Redis)
+  const cached = await cache.get('audex:raw_data');
+  if (cached) {
+    return cached;
   }
 
   // 1. Check MongoDB Atlas if connected
@@ -198,8 +179,7 @@ async function getRawData() {
     try {
       const doc = await RankData.findOne({ key: 'raw_data' }).lean();
       if (doc && doc.data) {
-        memoryCache.rawData = doc.data;
-        memoryCache.rawDataExpires = Date.now() + CACHE_TTL_MS;
+        await cache.set('audex:raw_data', doc.data, CACHE_TTL_SECONDS);
         return doc.data;
       }
     } catch (err) {
@@ -211,8 +191,7 @@ async function getRawData() {
   try {
     const content = await fs.promises.readFile(RAW_DATA_PATH, 'utf8');
     const parsed = JSON.parse(content);
-    memoryCache.rawData = parsed;
-    memoryCache.rawDataExpires = Date.now() + CACHE_TTL_MS;
+    await cache.set('audex:raw_data', parsed, CACHE_TTL_SECONDS);
     return parsed;
   } catch (_) {}
 
@@ -220,8 +199,7 @@ async function getRawData() {
   try {
     const content = await fs.promises.readFile('/tmp/raw_data.json', 'utf8');
     const parsed = JSON.parse(content);
-    memoryCache.rawData = parsed;
-    memoryCache.rawDataExpires = Date.now() + CACHE_TTL_MS;
+    await cache.set('audex:raw_data', parsed, CACHE_TTL_SECONDS);
     return parsed;
   } catch (_) {}
 
@@ -229,11 +207,11 @@ async function getRawData() {
 }
 
 /**
- * Save subscription_tiers JSON payload to MongoDB Atlas and local disk asynchronously.
+ * Save subscription_tiers JSON payload to Cache, MongoDB Atlas and local disk asynchronously.
  */
 async function saveSubscriptionTiers(tiersData) {
-  memoryCache.subTiers = tiersData;
-  memoryCache.subTiersExpires = Date.now() + CACHE_TTL_MS;
+  await cache.set('audex:tiers:raw', tiersData, CACHE_TTL_SECONDS);
+  await cache.del('audex:tiers:list'); // Invalidate grouped tiers cache
 
   // 1. Save to MongoDB Atlas if connected
   if (mongoose.connection.readyState === 1) {
@@ -264,11 +242,12 @@ async function saveSubscriptionTiers(tiersData) {
 }
 
 /**
- * Get subscription_tiers JSON payload: Memory cache -> MongoDB Atlas -> Async disk -> /tmp.
+ * Get subscription_tiers JSON payload: Multi-tier Cache -> MongoDB Atlas -> local disk -> /tmp.
  */
 async function getSubscriptionTiers() {
-  if (memoryCache.subTiers && memoryCache.subTiersExpires > Date.now() && Array.isArray(memoryCache.subTiers)) {
-    return memoryCache.subTiers;
+  const cached = await cache.get('audex:tiers:raw');
+  if (cached && Array.isArray(cached) && cached.length > 0) {
+    return cached;
   }
 
   // 1. Check MongoDB Atlas if connected
@@ -276,8 +255,7 @@ async function getSubscriptionTiers() {
     try {
       const doc = await RankData.findOne({ key: 'subscription_tiers' }).lean();
       if (doc && doc.data && Array.isArray(doc.data) && doc.data.length > 0) {
-        memoryCache.subTiers = doc.data;
-        memoryCache.subTiersExpires = Date.now() + CACHE_TTL_MS;
+        await cache.set('audex:tiers:raw', doc.data, CACHE_TTL_SECONDS);
         return doc.data;
       }
     } catch (err) {
@@ -290,8 +268,7 @@ async function getSubscriptionTiers() {
     const content = await fs.promises.readFile(SUBSCRIPTION_TIERS_PATH, 'utf8');
     const parsed = JSON.parse(content);
     if (Array.isArray(parsed) && parsed.length > 0) {
-      memoryCache.subTiers = parsed;
-      memoryCache.subTiersExpires = Date.now() + CACHE_TTL_MS;
+      await cache.set('audex:tiers:raw', parsed, CACHE_TTL_SECONDS);
       return parsed;
     }
   } catch (_) {}
@@ -301,8 +278,7 @@ async function getSubscriptionTiers() {
     const content = await fs.promises.readFile('/tmp/subscription_tiers.json', 'utf8');
     const parsed = JSON.parse(content);
     if (Array.isArray(parsed) && parsed.length > 0) {
-      memoryCache.subTiers = parsed;
-      memoryCache.subTiersExpires = Date.now() + CACHE_TTL_MS;
+      await cache.set('audex:tiers:raw', parsed, CACHE_TTL_SECONDS);
       return parsed;
     }
   } catch (_) {}

@@ -165,10 +165,12 @@ app.use('/api/payment', paymentLimiter, paymentRoutes);
 
 app.get('/', (req, res) => {
   const isConnected = mongoose.connection.readyState === 1;
+  const cacheStats = require('./services/cacheService').getStats();
   res.json({
     message: 'Audex AI API Server is running',
     dbMode: isConnected ? 'MongoDB (Connected)' : 'MongoDB (Disconnected)',
-    dbState: mongoose.connection.readyState
+    dbState: mongoose.connection.readyState,
+    caching: cacheStats
   });
 });
 

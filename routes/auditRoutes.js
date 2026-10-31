@@ -12,17 +12,13 @@ const { getRawData, getRankCategory, getSubscriptionTiers, saveSubscriptionTiers
 const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
 const { syncSubscriptionTiers } = require('../services/subscriptionTierSync');
 
-// In-memory model cache for high performance
-let cachedModelsList = null;
-let cachedModelsExpires = 0;
+const cache = require('../services/cacheService');
+
+// Multi-tier model cache for high performance (L1 Memory + L2 Redis)
 async function getCachedAllModels() {
-  if (cachedModelsList && cachedModelsExpires > Date.now()) {
-    return cachedModelsList;
-  }
-  const docs = await Model.find({}).lean();
-  cachedModelsList = docs;
-  cachedModelsExpires = Date.now() + 5 * 60 * 1000;
-  return docs;
+  return await cache.getOrSet('audex:models:all_docs', async () => {
+    return await Model.find({}).lean();
+  }, 600); // 10 minutes TTL
 }
 
 // Fallback report generator for Model Comparison
@@ -194,12 +190,22 @@ function getRankFileName(purpose) {
   return 'overall.json';
 }
 
+const rankCategoryMemoryCache = new Map();
+
 function getCategoryRankData(purpose) {
+  const normPurpose = (purpose || 'mixed').toLowerCase();
+  if (rankCategoryMemoryCache.has(normPurpose)) {
+    return rankCategoryMemoryCache.get(normPurpose);
+  }
   const filename = getRankFileName(purpose);
   const filePath = path.join(__dirname, '../data/rank', filename);
   if (fs.existsSync(filePath)) {
     try {
-      return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      if (Array.isArray(data) && data.length > 0) {
+        rankCategoryMemoryCache.set(normPurpose, data);
+      }
+      return data;
     } catch (e) {
       console.error(`Error reading rank file ${filename}:`, e);
     }
@@ -1088,21 +1094,30 @@ router.get('/:id', optionalAuth, async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id) && id !== '6a4fb719471a97ae89e88f49') {
       return res.status(400).json({ error: 'Invalid audit ID format.' });
     }
-    const audit = await Audit.findById(id);
 
-    if (!audit) {
-      return res.status(404).json({ error: 'Audit not found' });
+    const cacheKey = `audex:audit:doc:${id}`;
+    let auditObj = await cache.get(cacheKey);
+
+    if (!auditObj) {
+      const audit = await Audit.findById(id).lean();
+      if (!audit) {
+        return res.status(404).json({ error: 'Audit not found' });
+      }
+      auditObj = audit;
+      await cache.set(cacheKey, auditObj, 300); // 5 minutes TTL
     }
 
     // Verify ownership (except for the sample audit)
     const isSampleAudit = id === '6a4fb719471a97ae89e88f49';
-    if (!isSampleAudit && audit.userId) {
-      if (!req.user || audit.userId.toString() !== req.user.id) {
+    if (!isSampleAudit && auditObj.userId) {
+      const ownerId = auditObj.userId._id ? auditObj.userId._id.toString() : auditObj.userId.toString();
+      if (!req.user || ownerId !== req.user.id) {
         return res.status(403).json({ error: 'Access denied. You do not own this audit report.' });
       }
     }
 
-    const auditObj = audit.toObject();
+    // Create a mutable copy for response hydration
+    auditObj = JSON.parse(JSON.stringify(auditObj));
       auditObj.isUnlocked = true;
     if (auditObj.allocations && Array.isArray(auditObj.allocations)) {
       auditObj.allocations.forEach((alloc, index) => {
@@ -1141,6 +1156,7 @@ router.delete('/:id', auth, async (req, res) => {
     }
 
     await Audit.deleteOne({ _id: id });
+    await cache.del(`audex:audit:doc:${id}`);
     return res.json({ message: 'Audit deleted successfully', id });
   } catch (error) {
     console.error('Error deleting audit:', error);
@@ -1166,6 +1182,7 @@ router.put('/:id/options', auth, async (req, res) => {
 
     audit.selectedOptions = selectedOptions || {};
     await audit.save();
+    await cache.del(`audex:audit:doc:${id}`);
 
     return res.json({ success: true, selectedOptions: audit.selectedOptions });
   } catch (error) {
@@ -1195,6 +1212,12 @@ router.post('/audit-recommendation', async (req, res) => {
       costCutPercentage
     });
 
+    const recCacheKey = `audex:rec:${currentModelId}:${targetUseCase}:${monthlyTokens}:${inputRatio}:${optimizationGoal}:${costCutPercentage}`;
+    const cachedRecommendation = await cache.get(recCacheKey);
+    if (cachedRecommendation) {
+      return res.json(cachedRecommendation);
+    }
+
     const capabilityField = {
       'Coding': 'coding_score',
       'Writing': 'reasoning_score',
@@ -1203,17 +1226,16 @@ router.post('/audit-recommendation', async (req, res) => {
       'Mixed': 'aa_index_score'
     }[targetUseCase] || 'aa_index_score';
 
-    // 1. Fetch models
-    let docs = await Model.find({});
-    let allModels = docs.map(d => d.toObject ? d.toObject() : d);
+    // 1. Fetch models (Multi-Tier Cached)
+    let allModels = await getCachedAllModels();
 
     // If no models at all, try syncing first
-    if (allModels.length === 0) {
+    if (!allModels || allModels.length === 0) {
       console.log('🔄 Database is empty, auto-triggering local sync/seeding in recommendation route...');
       const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
       await syncArtificialAnalysis();
-      docs = await Model.find({});
-      allModels = docs.map(d => d.toObject ? d.toObject() : d);
+      await cache.del('audex:models:all_docs');
+      allModels = await getCachedAllModels();
     }
 
     if (allModels.length === 0) {
@@ -1403,7 +1425,7 @@ router.post('/audit-recommendation', async (req, res) => {
       };
     });
 
-    res.json({
+    const recResponse = {
       currentBaseline: {
         modelId: currentModel._id,
         name: currentModel.name,
@@ -1415,15 +1437,21 @@ router.post('/audit-recommendation', async (req, res) => {
         cost_per_m_output: currentModel.endpoints?.[0]?.output_cost_per_m || 0
       },
       recommendations
-    });
+    };
+    await cache.set(recCacheKey, recResponse, 300); // 5 minutes TTL
+    return res.json(recResponse);
   } catch (error) {
     console.error('Audit Recommendation Route Error:', error);
     res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
 });
 // Route to fetch raw Artificial Analysis API data for the home page analysis dashboard
-router.get('/analysis/raw-data', (req, res) => {
+router.get('/analysis/raw-data', async (req, res) => {
   try {
+    const cachedData = await cache.get('audex:analysis:raw_data');
+    if (cachedData) {
+      return res.json(cachedData);
+    }
     const rawPath = path.join(__dirname, '../data/raw_data.json');
     if (!fs.existsSync(rawPath)) {
       return res.status(404).json({ error: 'Raw analysis data not found. Please run database synchronization first.' });
@@ -1477,12 +1505,14 @@ router.get('/analysis/raw-data', (req, res) => {
       })).sort((a, b) => (a.rank || Infinity) - (b.rank || Infinity));
     });
 
-    res.json({
+    const responseData = {
       fetched_at: rawData.fetched_at_utc,
       categories: rawData.categories || {},
       llms: processedLlms,
       media: mediaCategories
-    });
+    };
+    await cache.set('audex:analysis:raw_data', responseData, 1800); // 30 minutes TTL
+    return res.json(responseData);
   } catch (error) {
     console.error('Error fetching raw analysis data:', error);
     res.status(500).json({ error: 'Internal Server Error', details: error.message });
@@ -1500,8 +1530,12 @@ router.get('/subscription-tiers/raw', (req, res) => {
 });
 
 // Route to fetch grouped and formatted subscription tools dynamically from local subscription_tiers.json
-router.get('/subscription-tiers/list', (req, res) => {
+router.get('/subscription-tiers/list', async (req, res) => {
   try {
+    const cachedTiers = await cache.get('audex:tiers:list');
+    if (cachedTiers) {
+      return res.json(cachedTiers);
+    }
     if (!subscriptionTiers || subscriptionTiers.length === 0) {
       return res.json([]);
     }
@@ -1577,7 +1611,9 @@ router.get('/subscription-tiers/list', (req, res) => {
       item.defaultPlan = proPlan || item.plans[0] || 'Free';
     });
 
-    return res.json(Object.values(grouped));
+    const result = Object.values(grouped);
+    await cache.set('audex:tiers:list', result, 1800); // 30 minutes TTL
+    return res.json(result);
   } catch (error) {
     console.error('Error serving subscription-tiers list:', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -1587,13 +1623,19 @@ router.get('/subscription-tiers/list', (req, res) => {
 // Route to get list of all models for dropdown baselines
 router.get('/models/list', async (req, res) => {
   try {
-    let allModels = await Model.find({}).sort({ name: 1 });
+    const cachedList = await cache.get('audex:models:list');
+    if (cachedList) {
+      return res.json(cachedList);
+    }
 
-    if (allModels.length === 0) {
+    let allModels = await getCachedAllModels();
+
+    if (!allModels || allModels.length === 0) {
       console.log('🔄 Database is empty, auto-triggering local sync/seeding in models list route...');
       const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
       await syncArtificialAnalysis();
-      allModels = await Model.find({}).sort({ name: 1 });
+      await cache.del('audex:models:all_docs');
+      allModels = await getCachedAllModels();
     }
 
     // Format models
@@ -1603,8 +1645,9 @@ router.get('/models/list', async (req, res) => {
     }));
 
     // Sort alphabetically by name
-    formatted.sort((a, b) => a.name.localeCompare(b.name));
+    formatted.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
 
+    await cache.set('audex:models:list', formatted, 900); // 15 minutes TTL
     res.json(formatted);
   } catch (error) {
     console.error('Audit Models List Error:', error);
@@ -1744,6 +1787,13 @@ const handleCronSync = async (req, res) => {
 
     console.log('🔄 Triggering automated ranking sync via /cron/sync...');
     const result = await runDailyRankingPipeline();
+    await cache.del('audex:models:all_docs');
+    await cache.del('audex:models:list');
+    await cache.del('audex:tiers:list');
+    await cache.del('audex:tiers:raw');
+    await cache.del('audex:analysis:raw_data');
+    await cache.delByPrefix('audex:rec:');
+    await cache.delByPrefix('audex:rank:');
     res.json({ success: true, result });
   } catch (err) {
     console.error('Cron sync error:', err);
@@ -1757,6 +1807,8 @@ router.post('/cron/sync', handleCronSync);
 router.post('/subscription-tiers/sync', async (req, res) => {
   try {
     const tiers = await syncSubscriptionTiers();
+    await cache.del('audex:tiers:list');
+    await cache.del('audex:tiers:raw');
     res.json({ success: true, count: (tiers || []).length });
   } catch (err) {
     console.error('Subscription tiers sync failed:', err);
@@ -1778,10 +1830,36 @@ router.post('/admin/sync', async (req, res) => {
 
     const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
     await syncArtificialAnalysis();
+    await cache.del('audex:models:all_docs');
+    await cache.del('audex:models:list');
+    await cache.del('audex:tiers:list');
+    await cache.del('audex:tiers:raw');
+    await cache.del('audex:analysis:raw_data');
+    await cache.delByPrefix('audex:rec:');
+    await cache.delByPrefix('audex:rank:');
     res.json({ message: 'Synchronization and seeding completed successfully.' });
   } catch (err) {
     console.error('Manual synchronization failed:', err);
     res.status(500).json({ error: 'Manual synchronization failed', details: err.message });
+  }
+});
+
+// Route: Get cache performance stats and system health
+router.get('/cache/stats', (req, res) => {
+  try {
+    res.json(cache.getStats());
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to retrieve cache stats' });
+  }
+});
+
+// Route: Clear cache manually
+router.post('/cache/clear', async (req, res) => {
+  try {
+    await cache.clear();
+    res.json({ message: 'Multi-tier cache cleared successfully', stats: cache.getStats() });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to clear cache' });
   }
 });
 
