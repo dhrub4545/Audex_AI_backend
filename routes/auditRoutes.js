@@ -154,9 +154,9 @@ function findSubscriptionTier(toolName, planName) {
 }
 
 function getRankFileName(purpose) {
-  const p = purpose ? purpose.toLowerCase() : 'mixed';
+  const p = purpose ? purpose.toLowerCase().trim().replace(/\s+/g, '-') : 'mixed';
   if (p === 'coding') return 'coding.json';
-  if (p === 'writing') return 'creative-writing.json';
+  if (p === 'writing' || p === 'creative-writing') return 'creative-writing.json';
   if (p === 'research') return 'research.json';
   if (p === 'math') return 'math.json';
   if (p === 'data') return 'overall.json';
@@ -204,6 +204,22 @@ function getCategoryRankData(purpose) {
       console.error(`Error reading rank file ${filename}:`, e);
     }
   }
+
+  // Fallback to raw_data.json categories
+  try {
+    const rawPath = path.join(__dirname, '../data/raw_data.json');
+    if (fs.existsSync(rawPath)) {
+      const raw = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
+      const catKey = filename.replace('.json', '');
+      if (raw.categories && Array.isArray(raw.categories[catKey])) {
+        return raw.categories[catKey];
+      }
+      if (raw.categories && Array.isArray(raw.categories['overall'])) {
+        return raw.categories['overall'];
+      }
+    }
+  } catch (_) {}
+
   return [];
 }
 

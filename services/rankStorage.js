@@ -74,7 +74,21 @@ async function getRankCategory(categoryKey) {
     }
   }
 
-  // 2. Fallback to /tmp asynchronously
+  // 2. Check local data/rank directory
+  const localRankPath = path.join(RANK_DIR, `${categoryKey}.json`);
+  try {
+    const content = await fs.promises.readFile(localRankPath, 'utf8');
+    const parsed = JSON.parse(content);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      memoryCache.categories.set(categoryKey, {
+        data: parsed,
+        expiresAt: Date.now() + CACHE_TTL_MS
+      });
+      return parsed;
+    }
+  } catch (_) {}
+
+  // 3. Fallback to /tmp asynchronously
   const tmpPath = path.join('/tmp/rank', `${categoryKey}.json`);
   try {
     const content = await fs.promises.readFile(tmpPath, 'utf8');

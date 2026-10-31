@@ -94,34 +94,44 @@ async function syncArtificialAnalysis(scrapedModels = null) {
       last_synced_at: new Date()
     };
 
+    // 1. Intelligence / Overall index
     let aa_index_score = 0;
-    const rawIntel = parseFloat(item.evaluations?.artificial_analysis_intelligence_index);
-    if (!isNaN(rawIntel)) {
+    const rawIntel = parseFloat(item.evaluations?.artificial_analysis_intelligence_index ?? item.category_scores?.overall ?? item.intelligenceIndex);
+    if (!isNaN(rawIntel) && rawIntel > 0) {
       aa_index_score = Math.min(100, Math.round(rawIntel));
+    } else if (item.rating && item.rating > 800) {
+      aa_index_score = Math.min(100, Math.max(10, Math.round((item.rating - 900) / 5)));
+    } else if (item.final_score && item.final_score > 0) {
+      aa_index_score = Math.min(100, Math.round(item.final_score));
     }
 
+    // 2. Coding index
     let coding_score = 0;
-    const rawCoding = parseFloat(item.evaluations?.artificial_analysis_coding_index);
-    if (!isNaN(rawCoding)) {
+    const rawCoding = parseFloat(item.evaluations?.artificial_analysis_coding_index ?? item.category_scores?.coding ?? item.codingIndex);
+    if (!isNaN(rawCoding) && rawCoding > 0) {
       coding_score = Math.min(100, Math.round(rawCoding));
+    } else if (item.evaluations?.livecodebench && item.evaluations.livecodebench > 0) {
+      coding_score = Math.min(100, Math.round(item.evaluations.livecodebench * 2));
     } else {
       coding_score = aa_index_score;
     }
 
+    // 3. Math index
     let math_score = 0;
-    const rawMath = parseFloat(item.evaluations?.artificial_analysis_math_index);
-    if (!isNaN(rawMath)) {
+    const rawMath = parseFloat(item.evaluations?.artificial_analysis_math_index ?? item.category_scores?.math ?? item.mathIndex);
+    if (!isNaN(rawMath) && rawMath > 0) {
       math_score = Math.min(100, Math.round(rawMath));
     } else {
       math_score = aa_index_score;
     }
 
+    // 4. Reasoning index
     let reasoning_score = 0;
     const rawGpqa = parseFloat(item.evaluations?.gpqa);
     const rawHle = parseFloat(item.evaluations?.hle);
-    const rawReasoning = !isNaN(rawGpqa) ? rawGpqa : (!isNaN(rawHle) ? rawHle : null);
+    const rawReasoning = !isNaN(rawGpqa) && rawGpqa > 0 ? (rawGpqa <= 1 ? rawGpqa * 100 : rawGpqa) : (!isNaN(rawHle) && rawHle > 0 ? (rawHle <= 1 ? rawHle * 100 : rawHle) : null);
     if (rawReasoning !== null) {
-      reasoning_score = Math.min(100, Math.round(rawReasoning * 100));
+      reasoning_score = Math.min(100, Math.round(rawReasoning));
     } else {
       reasoning_score = aa_index_score;
     }
