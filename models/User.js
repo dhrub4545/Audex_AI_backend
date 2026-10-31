@@ -11,7 +11,8 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
     lowercase: true,
-    trim: true
+    trim: true,
+    index: true
   },
   password: {
     type: String,
@@ -34,36 +35,36 @@ const UserSchema = new mongoose.Schema({
   credits: {
     starter: {
       type: Number,
-      default: 0
+      default: 999
     },
     pro: {
       type: Number,
-      default: 0
+      default: 999
     },
     proMax: {
       type: Number,
-      default: 0
+      default: 999
     }
   },
   plan: {
     type: String,
     enum: ['free', 'pro', 'enterprise'],
-    default: 'free'
+    default: 'enterprise'
   },
   subscription: {
     plan: {
       type: String,
       enum: ['free', 'pro', 'enterprise'],
-      default: 'free'
+      default: 'enterprise'
     },
     status: {
       type: String,
       enum: ['active', 'trialing', 'canceled', 'expired', 'none'],
-      default: 'none'
+      default: 'active'
     },
     startedAt: {
       type: Date,
-      default: null
+      default: Date.now
     },
     expiresAt: {
       type: Date,
@@ -71,7 +72,7 @@ const UserSchema = new mongoose.Schema({
     },
     paymentMethod: {
       type: String,
-      default: 'UPI'
+      default: 'Included / Free Access'
     },
     lastOrderId: {
       type: String,

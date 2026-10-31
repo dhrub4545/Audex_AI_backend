@@ -1,4 +1,10 @@
-// Audex AI API Server - Deployed 2026-07-28
+// Audex AI API Server
+const dns = require('dns');
+// Ensure reliable DNS resolution for MongoDB Atlas SRV connection strings
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1', '8.8.4.4']);
+} catch (_) {}
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -17,7 +23,7 @@ const PORT = process.env.PORT || 5000;
 // Rate limiting configurations
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 30, // 30 attempts per window
+  max: 60, // 60 attempts per window
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many authentication attempts. Please try again in 15 minutes.' }
@@ -33,10 +39,18 @@ const chatLimiter = rateLimit({
 
 const paymentLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 30, // 30 requests per minute
+  max: 60, // 60 requests per minute
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many payment requests. Please try again shortly.' }
+});
+
+const auditLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 120, // 120 requests per minute
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many audit requests. Please try again shortly.' }
 });
 
 // Configure CORS
@@ -60,6 +74,7 @@ app.use(cors({
 }));
 
 app.use(express.json({
+  limit: '10mb',
   verify: (req, res, buf) => {
     req.rawBody = buf;
   }
@@ -70,6 +85,7 @@ app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'SAMEORIGIN');
   res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
   res.setHeader('Pragma', 'no-cache');
   res.setHeader('Expires', '0');
@@ -143,14 +159,14 @@ app.use(async (req, res, next) => {
 
 // Routes with dedicated rate limits
 app.use('/api/auth', authLimiter, authRoutes);
-app.use('/api/audits', auditRoutes);
+app.use('/api/audits', auditLimiter, auditRoutes);
 app.use('/api/chats', chatLimiter, chatRoutes);
 app.use('/api/payment', paymentLimiter, paymentRoutes);
 
 app.get('/', (req, res) => {
   const isConnected = mongoose.connection.readyState === 1;
   res.json({
-    message: 'AudMint API Server is running',
+    message: 'Audex AI API Server is running',
     dbMode: isConnected ? 'MongoDB (Connected)' : 'MongoDB (Disconnected)',
     dbState: mongoose.connection.readyState
   });
@@ -158,7 +174,7 @@ app.get('/', (req, res) => {
 
 // Centralized error handling middleware
 app.use((err, req, res, next) => {
-  console.error('Unhandled server error:', err);
+  console.error('Unhandled server error:', err.message);
   const status = err.status || 500;
   res.status(status).json({
     error: err.message || 'An internal server error occurred.',

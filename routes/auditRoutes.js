@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const Audit = require('../models/Audit');
 const User = require('../models/User');
 const Model = require('../models/Model');
 const { auth, optionalAuth } = require('../middleware/auth');
-const { redactAuditRecommendations, isAuditUnlockedForUser, requirePlan } = require('../middleware/entitlements');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
@@ -12,29 +12,85 @@ const { getRawData, getRankCategory, getSubscriptionTiers, saveSubscriptionTiers
 const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
 const { syncSubscriptionTiers } = require('../services/subscriptionTierSync');
 
-// Safe dynamic accessor for subscription pricing tiers
-let subscriptionTiers = [];
-async function ensureSubscriptionTiers() {
-  if (subscriptionTiers && subscriptionTiers.length > 0) {
-    return subscriptionTiers;
+// In-memory model cache for high performance
+let cachedModelsList = null;
+let cachedModelsExpires = 0;
+async function getCachedAllModels() {
+  if (cachedModelsList && cachedModelsExpires > Date.now()) {
+    return cachedModelsList;
   }
-  try {
-    subscriptionTiers = await getSubscriptionTiers();
-    if (!subscriptionTiers || subscriptionTiers.length === 0) {
-      const tiersPath = path.join(__dirname, '../data/subscription_tiers.json');
-      if (fs.existsSync(tiersPath)) {
-        const content = await fs.promises.readFile(tiersPath, 'utf8');
-        subscriptionTiers = JSON.parse(content);
-      }
-    }
-  } catch (err) {
-    console.error('Error loading subscription_tiers in auditRoutes:', err);
-  }
-  return subscriptionTiers || [];
+  const docs = await Model.find({}).lean();
+  cachedModelsList = docs;
+  cachedModelsExpires = Date.now() + 5 * 60 * 1000;
+  return docs;
 }
 
-// Initial warm-up
-ensureSubscriptionTiers().catch(() => {});
+// Fallback report generator for Model Comparison
+function generateFallbackCompareReport(baseline, recommended) {
+  const baseInput = baseline.cost_per_m_input ?? baseline.pricing?.price_1m_input_tokens ?? 3;
+  const baseOutput = baseline.cost_per_m_output ?? baseline.pricing?.price_1m_output_tokens ?? 15;
+  const recInput = recommended.cost_per_m_input ?? recommended.pricing?.price_1m_input_tokens ?? 0.5;
+  const recOutput = recommended.cost_per_m_output ?? recommended.pricing?.price_1m_output_tokens ?? 1.5;
+  
+  const inputSavingsPct = baseInput > 0 ? Math.max(0, Math.round(((baseInput - recInput) / baseInput) * 100)) : 0;
+  const outputSavingsPct = baseOutput > 0 ? Math.max(0, Math.round(((baseOutput - recOutput) / baseOutput) * 100)) : 0;
+  const avgSavingsPct = Math.max(0, Math.round((inputSavingsPct + outputSavingsPct) / 2));
+  
+  const recSpeed = recommended.tokens_per_second ?? recommended.throughput ?? '110+';
+
+  return {
+    architectural_insight: {
+      title: '🧠 Architectural Spend Decision Insight',
+      paragraphs: [
+        'Transitioning from ' + baseline.name + ' to ' + recommended.name + ' offers substantial cost and operational efficiencies. With ' + recommended.name + ' priced at $' + recInput + '/1M input and $' + recOutput + '/1M output compared to ' + baseline.name + ' ($' + baseInput + '/1M input and $' + baseOutput + '/1M output), your workload achieves an estimated ' + avgSavingsPct + '% direct unit token cost reduction.',
+        'Beyond raw pricing, ' + recommended.name + ' delivers high inference throughput (' + recSpeed + ' tokens/sec), preserving capability thresholds for production workloads while slashing AI API budget overhead.'
+      ],
+      quality_analysis_box: 'Quality Analysis: ' + recommended.name + ' retains approximately ' + (recommended.coding_index && baseline.coding_index ? Math.round((recommended.coding_index / baseline.coding_index) * 100) : 92) + '% of baseline capability while running on an optimized inference route.'
+    },
+    route_migration_checklist: {
+      title: '🚀 Route Migration Checklist',
+      steps: [
+        {
+          bold_text: 'API Credentials',
+          detail: 'Configure your API key for ' + (recommended.creator || recommended.developer || 'the recommended provider') + ' in your secure environment variables.'
+        },
+        {
+          bold_text: 'Model Parameter Target',
+          detail: 'Set the target model ID parameter in your SDK configuration to "' + (recommended.modelId || recommended.name) + '".'
+        },
+        {
+          bold_text: 'Fallback Routing Buffer',
+          detail: 'Implement retry routers to gracefully fall back to ' + baseline.name + ' if rate limits or latency thresholds are exceeded.'
+        },
+        {
+          bold_text: 'Telemetry & Cost Monitoring',
+          detail: 'Establish prompt-level token logging to monitor realized spend reductions across production traffic.'
+        }
+      ],
+      migration_script: '// Node.js / Python SDK migration example\nconst client = new AIClient({ apiKey: process.env.RECOMMENDED_API_KEY });\n\nconst response = await client.chat.completions.create({\n  model: "' + (recommended.modelId || 'recommended-model') + '",\n  messages: [{ role: "user", content: prompt }],\n  temperature: 0.7\n});'
+    }
+  };
+}
+
+
+// Load subscription pricing tiers from JSON file or rankStorage
+let subscriptionTiers = [];
+try {
+  const tiersPath = path.join(__dirname, '../data/subscription_tiers.json');
+  if (fs.existsSync(tiersPath)) {
+    subscriptionTiers = JSON.parse(fs.readFileSync(tiersPath, 'utf8'));
+  }
+} catch (err) {
+  console.error('Error loading subscription_tiers.json:', err);
+}
+
+async function refreshSubscriptionTiers() {
+  try {
+    const tiers = await getSubscriptionTiers();
+    if (tiers && tiers.length > 0) subscriptionTiers = tiers;
+  } catch (_) {}
+}
+refreshSubscriptionTiers().catch(() => {});
 
 // Find matching subscription tier from the database
 function findSubscriptionTier(toolName, planName) {
@@ -138,46 +194,17 @@ function getRankFileName(purpose) {
   return 'overall.json';
 }
 
-function getRankCategoryKey(purpose) {
-  const p = purpose ? purpose.toLowerCase() : 'mixed';
-
-  if (p === 'coding' || p.includes('code') || p.includes('dev')) return 'coding';
-  if (p === 'math' || p.includes('math')) return 'math';
-  if (p === 'writing' || p.includes('write')) return 'writing';
-  if (p === 'reasoning' || p.includes('logic')) return 'reasoning';
-  if (p === 'research' || p.includes('research')) return 'research';
-  if (p === 'instruction' || p.includes('instruction')) return 'instruction';
-  if (p === 'knowledge') return 'knowledge';
-  if (p === 'multilingual' || p.includes('language')) return 'multilingual';
-  if (p === 'cheap' || p.includes('cost')) return 'cheap';
-  if (p === 'fast' || p.includes('speed')) return 'fast';
-  if (p === 'frontier') return 'frontier';
-  if (p === 'vision') return 'vision';
-  if (p === 'audio') return 'audio';
-  if (p === 'open-weights' || p.includes('open')) return 'open-weights';
-  if (p === 'agents' || p.includes('agent')) return 'agents';
-  if (p === 'long-context' || p.includes('context')) return 'long-context';
-  if (p === 'enterprise' || p.includes('business')) return 'enterprise';
-  if (p === 'legal' || p.includes('law')) return 'legal';
-  if (p === 'medical' || p.includes('healthcare') || p.includes('health')) return 'medical';
-  if (p === 'finance' || p.includes('finance')) return 'finance';
-  if (p === 'scientific' || p.includes('science')) return 'scientific';
-  if (p === 'creative-writing') return 'creative-writing';
-  if (p === 'data-analysis') return 'data-analysis';
-  if (p === 'roleplay') return 'roleplay';
-  if (p === 'translation') return 'translation';
-  if (p === 'summarization') return 'summarization';
-  if (p === 'extraction') return 'extraction';
-  if (p === 'tool-use') return 'tool-use';
-  if (p === 'function-calling') return 'function-calling';
-
-  return 'overall';
-}
-
-async function getCategoryRankData(purpose) {
-  const catKey = getRankCategoryKey(purpose);
-  const data = await getRankCategory(catKey);
-  return Array.isArray(data) ? data : [];
+function getCategoryRankData(purpose) {
+  const filename = getRankFileName(purpose);
+  const filePath = path.join(__dirname, '../data/rank', filename);
+  if (fs.existsSync(filePath)) {
+    try {
+      return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    } catch (e) {
+      console.error(`Error reading rank file ${filename}:`, e);
+    }
+  }
+  return [];
 }
 
 function getEvaluationScore(item, purpose, dbModel, capabilityField) {
@@ -370,58 +397,17 @@ router.post('/', optionalAuth, async (req, res) => {
       return res.status(400).json({ error: 'Missing required allocations data' });
     }
 
-    await ensureSubscriptionTiers();
-
     let user = null;
     if (req.user) {
       user = await User.findById(req.user.id);
     }
 
-    // Count unique tools configured
     const uniqueTools = [...new Set(allocations.map(a => a.toolName))];
     const numTools = uniqueTools.length;
+    let tierUsed = numTools > 15 ? 'proMax' : (numTools > 2 ? 'pro' : 'starter');
 
-    // Enforce backend tool limits based on user plan / tier
-    let maxAllowedTools = 2; // Default for Free tier or unauthenticated users
-    if (user) {
-      let isSubscriptionExpired = false;
-      if (user.subscription && user.subscription.expiresAt) {
-        isSubscriptionExpired = new Date(user.subscription.expiresAt) < new Date();
-      }
-
-      const plan = (user.plan || 'free').toLowerCase();
-      const effectivePlan = isSubscriptionExpired ? 'free' : plan;
-
-      if (effectivePlan === 'enterprise') {
-        maxAllowedTools = Infinity;
-      } else if (effectivePlan === 'pro') {
-        maxAllowedTools = 15;
-      }
-    }
-
-    if (numTools > maxAllowedTools) {
-      const isFree = maxAllowedTools === 2;
-      const errorMsg = isFree
-        ? `Maximum 2 tools allowed per audit analysis on the Free plan. Please upgrade your subscription to analyze more tools.`
-        : `Maximum 15 tools allowed per audit analysis on the Pro plan. Please upgrade to Enterprise for unlimited tools.`;
-      return res.status(403).json({
-        error: errorMsg,
-        code: 'TOOL_LIMIT_EXCEEDED',
-        maxAllowed: maxAllowedTools,
-        upgradeRequired: true
-      });
-    }
-
-    let tierUsed = 'starter';
-    if (numTools > 15) {
-      tierUsed = 'proMax';
-    } else if (numTools > 2) {
-      tierUsed = 'pro';
-    }
-
-    // Fetch all models for API routing recommendations
-    const docs = await Model.find({});
-    const allModels = docs.map(d => d.toObject());
+    const docs = await getCachedAllModels();
+    const allModels = docs.map(d => d.toObject ? d.toObject() : d);
 
     const recommendations = [];
     let totalMonthlySavings = 0;
@@ -431,8 +417,7 @@ router.post('/', optionalAuth, async (req, res) => {
     let totalCurrentBudget = 0;
     const allocationDetails = [];
 
-    for (let allocIndex = 0; allocIndex < allocations.length; allocIndex++) {
-      const alloc = allocations[allocIndex];
+    allocations.forEach((alloc, allocIndex) => {
       const type = alloc.type || 'subscription';
       const toolName = alloc.toolName;
       const purpose = alloc.purpose || 'Mixed';
@@ -499,7 +484,7 @@ router.post('/', optionalAuth, async (req, res) => {
             totalTokens = totalPromptTokens + totalCompletionTokens;
             inputRatio = totalTokens > 0 ? (totalPromptTokens / totalTokens) : 0.8;
 
-            const rankData = await getCategoryRankData(purpose);
+            const rankData = getCategoryRankData(purpose);
             const baselineSlug = primaryBaselineModel._id.split('/')[1] || '';
             const baselineRankEntry = findRankEntry(rankData, baselineSlug);
             baselineScore = baselineRankEntry ? getEvaluationScore(baselineRankEntry, purpose, primaryBaselineModel, capabilityField) : (primaryBaselineModel.capabilities?.[capabilityField] || 0);
@@ -531,7 +516,7 @@ router.post('/', optionalAuth, async (req, res) => {
         if (currentModel) {
           primaryBaselineModel = currentModel;
           currentCost = calculateModelCost(currentModel, totalTokens, inputRatio);
-          const rankData = await getCategoryRankData(purpose);
+          const rankData = getCategoryRankData(purpose);
           const currentSlug = currentModel._id.split('/')[1] || '';
           const currentRankEntry = findRankEntry(rankData, currentSlug);
           baselineScore = currentRankEntry ? getEvaluationScore(currentRankEntry, purpose, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || 0);
@@ -560,7 +545,7 @@ router.post('/', optionalAuth, async (req, res) => {
         inputRatio,
         capabilityField
       });
-    }
+    });
 
     // Inject currentCost, baselineModelId, and baselineModels into parsedAllocations so the frontend can read it
     allocationDetails.forEach((detail, i) => {
@@ -574,8 +559,7 @@ router.post('/', optionalAuth, async (req, res) => {
     let apiMonthlySavings = 0;
     let subMonthlySavings = 0;
 
-    for (let detailIndex = 0; detailIndex < allocationDetails.length; detailIndex++) {
-      const detail = allocationDetails[detailIndex];
+    allocationDetails.forEach((detail) => {
       const {
         allocIndex,
         type,
@@ -599,7 +583,7 @@ router.post('/', optionalAuth, async (req, res) => {
 
       // Process all allocations including $0/mo free ones
 
-      const rankData = await getCategoryRankData(purpose);
+      const rankData = getCategoryRankData(purpose);
 
       // Resolve the API model for this allocation (needed for both baseline calc and target model below)
       const currentModel = (type === 'api' && modelId)
@@ -615,31 +599,18 @@ router.post('/', optionalAuth, async (req, res) => {
         const matchingTier = findSubscriptionTier(toolName, plan);
         if (matchingTier) {
           const models = matchingTier.models || [];
-          const rawModels = matchingTier.rawModels || [];
-
           for (const mid of models) {
             const resolved = resolveBaselineModel(mid, allModels, toolName);
             if (resolved) {
               const currentSlug = resolved._id.split('/')[1] || '';
-              const rankEntry = findRankEntry(rankData, currentSlug);
+              const rankEntry = rankData.find(item => item.slug === currentSlug) ||
+                                rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
               if (rankEntry) {
-                baselineRank = Math.min(baselineRank, parseInt(rankEntry.rank) || 9999);
+                baselineRank = Math.min(baselineRank, rankEntry.rank);
                 computedBaselineScore = Math.max(computedBaselineScore, Math.min(100, Math.round(rankEntry.final_score)));
               } else {
                 computedBaselineScore = Math.max(computedBaselineScore, resolved.capabilities?.[capabilityField] || 0);
               }
-            }
-          }
-
-          for (const rm of rawModels) {
-            const rankEntry = rankData.find(item => 
-              (item.name && item.name.toLowerCase().includes(rm.toLowerCase())) ||
-              (item.name && rm.toLowerCase().includes(item.name.toLowerCase())) ||
-              (item.slug && rm.toLowerCase().replace(/[^a-z0-9]/g, '').includes(item.slug.replace(/[^a-z0-9]/g, '')))
-            );
-            if (rankEntry) {
-              baselineRank = Math.min(baselineRank, parseInt(rankEntry.rank) || 9999);
-              computedBaselineScore = Math.max(computedBaselineScore, Math.min(100, Math.round(rankEntry.final_score)));
             }
           }
         }
@@ -647,20 +618,19 @@ router.post('/', optionalAuth, async (req, res) => {
         // api
         if (currentModel) {
           const currentSlug = currentModel._id.split('/')[1] || '';
-          let rankEntry = findRankEntry(rankData, currentSlug);
-          if (!rankEntry && currentModel.name) {
-            rankEntry = rankData.find(item => 
-              (item.name && item.name.toLowerCase().includes(currentModel.name.toLowerCase())) ||
-              (item.name && currentModel.name.toLowerCase().includes(item.name.toLowerCase()))
-            );
-          }
+          const rankEntry = rankData.find(item => item.slug === currentSlug) ||
+                            rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
           if (rankEntry) {
-            baselineRank = parseInt(rankEntry.rank) || 9999;
+            baselineRank = rankEntry.rank;
             computedBaselineScore = Math.min(100, Math.round(rankEntry.final_score));
           } else {
             computedBaselineScore = currentModel.capabilities?.[capabilityField] || 0;
           }
         }
+      }
+
+      if (baselineRank === 9999) {
+        baselineRank = 500;
       }
 
       // OPTION A: Best Model API Candidates
@@ -684,7 +654,7 @@ router.post('/', optionalAuth, async (req, res) => {
             apiCandidates.push({
               _id: dbModel._id,
               name: dbModel.name,
-              rank: parseInt(item.rank) || 9999,
+              rank: item.rank,
               performance_score: score,
               monthly_cost: cost,
               isCurrent: dbModel._id === modelId,
@@ -728,7 +698,7 @@ router.post('/', optionalAuth, async (req, res) => {
 
       if (optimizationGoal === 'quality') {
         if (apiCandidates.length > 0) {
-          apiCandidates.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score);
+          apiCandidates.sort((a, b) => a.rank - b.rank);
           selectedApi = apiCandidates[0];
           if (selectedApi.isCurrent) {
             apiStatusText = "Best model API already used.";
@@ -737,23 +707,24 @@ router.post('/', optionalAuth, async (req, res) => {
       } else if (optimizationGoal === 'performance') {
         let compatible = [];
         if (baselineRank !== 9999) {
-          // Performance Preservation Mode: Only recommend models with strictly lower cost AND better or equal rank
-          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.rank <= baselineRank && !c.isCurrent);
+          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.rank <= baselineRank);
         } else {
-          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.performance_score >= computedBaselineScore && !c.isCurrent);
+          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.performance_score >= computedBaselineScore);
         }
         if (compatible.length > 0) {
-          compatible.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score || a.monthly_cost - b.monthly_cost);
+          compatible.sort((a, b) => a.rank - b.rank);
           selectedApi = compatible[0];
         } else {
-          selectedApi = null;
-          apiStatusText = "Already optimized";
+          apiCandidates.sort((a, b) => a.rank - b.rank);
+          if (apiCandidates[0] && (apiCandidates[0]._id === modelId || (type === 'api' && baselineRank === 1))) {
+            apiStatusText = "Best model API already used.";
+          }
         }
       } else if (optimizationGoal === 'cost') {
         const maxAllowedCost = currentCost * (1 - costCutPercentage / 100);
         let compatible = apiCandidates.filter(c => c.monthly_cost <= maxAllowedCost);
         if (compatible.length > 0) {
-          compatible.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score || a.monthly_cost - b.monthly_cost);
+          compatible.sort((a, b) => a.rank - b.rank);
           selectedApi = compatible[0];
         }
       }
@@ -773,7 +744,59 @@ router.post('/', optionalAuth, async (req, res) => {
         }
       }
 
-      let subMatchTiers = subscriptionTiers.filter(t => allowedCategories.includes(t.category.toLowerCase()));
+      let targetModelId = "";
+      let targetModelName = "";
+      let targetModelDev = "";
+
+      if (selectedApi) {
+        targetModelId = selectedApi._id;
+        targetModelName = selectedApi.name;
+      } else if (currentModel) {
+        targetModelId = currentModel._id;
+        targetModelName = currentModel.name;
+        targetModelDev = currentModel.developer;
+      } else {
+        const topModelSlug = rankData[0]?.slug;
+        if (topModelSlug) {
+          const resolved = allModels.find(m => m._id && m._id.split && m._id.split('/')[1] === topModelSlug);
+          if (resolved) {
+            targetModelId = resolved._id;
+            targetModelName = resolved.name;
+            targetModelDev = resolved.developer;
+          }
+        }
+      }
+
+      if (targetModelId && !targetModelDev) {
+        const resolved = allModels.find(m => m._id === targetModelId);
+        if (resolved) {
+          targetModelDev = resolved.developer;
+        }
+      }
+
+      const matchesModel = (tier) => {
+        if (!targetModelId) return false;
+        const hasModelId = tier.models && tier.models.some(m => m.toLowerCase() === targetModelId.toLowerCase() || targetModelId.toLowerCase().includes(m.toLowerCase()));
+        const hasModelName = tier.rawModels && tier.rawModels.some(m => m.toLowerCase() === targetModelName.toLowerCase() || targetModelName.toLowerCase().includes(m.toLowerCase()) || targetModelName.toLowerCase().replace(/[^a-z0-9]/g, '').includes(m.toLowerCase().replace(/[^a-z0-9]/g, '')));
+        return hasModelId || hasModelName;
+      };
+
+      const matchesProvider = (tier) => {
+        if (!targetModelDev) return false;
+        const p = tier.provider.toLowerCase();
+        const mp = targetModelDev.toLowerCase();
+        return p.includes(mp) || mp.includes(p);
+      };
+
+      const filteredTiers = subscriptionTiers.filter(t => allowedCategories.includes(t.category.toLowerCase()));
+
+      let subMatchTiers = filteredTiers.filter(t => matchesModel(t));
+      if (subMatchTiers.length === 0 && targetModelDev) {
+        subMatchTiers = filteredTiers.filter(t => matchesProvider(t));
+      }
+      if (subMatchTiers.length === 0) {
+        subMatchTiers = filteredTiers;
+      }
 
       const includeFree = type === 'subscription' && plan.toLowerCase() === 'free';
       if (!includeFree) {
@@ -795,7 +818,7 @@ router.post('/', optionalAuth, async (req, res) => {
             const rankEntry = rankData.find(item => item.slug === currentSlug) ||
                               rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
             if (rankEntry) {
-              bestRank = Math.min(bestRank, parseInt(rankEntry.rank) || 9999);
+              bestRank = Math.min(bestRank, rankEntry.rank);
               bestScore = Math.max(bestScore, Math.min(100, Math.round(rankEntry.final_score)));
             } else {
               bestScore = Math.max(bestScore, resolved.capabilities?.[capabilityField] || 0);
@@ -804,13 +827,9 @@ router.post('/', optionalAuth, async (req, res) => {
         }
 
         for (const rm of rawModels) {
-          const rankEntry = rankData.find(item => 
-            (item.name && item.name.toLowerCase().includes(rm.toLowerCase())) ||
-            (item.name && rm.toLowerCase().includes(item.name.toLowerCase())) ||
-            (item.slug && rm.toLowerCase().replace(/[^a-z0-9]/g, '').includes(item.slug.replace(/[^a-z0-9]/g, '')))
-          );
+          const rankEntry = rankData.find(item => item.name.toLowerCase().includes(rm.toLowerCase()) || rm.toLowerCase().includes(item.name.toLowerCase()));
           if (rankEntry) {
-            bestRank = Math.min(bestRank, parseInt(rankEntry.rank) || 9999);
+            bestRank = Math.min(bestRank, rankEntry.rank);
             bestScore = Math.max(bestScore, Math.min(100, Math.round(rankEntry.final_score)));
           }
         }
@@ -838,7 +857,7 @@ router.post('/', optionalAuth, async (req, res) => {
 
       if (optimizationGoal === 'quality') {
         if (subCandidates.length > 0) {
-          subCandidates.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score);
+          subCandidates.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
           selectedSub = subCandidates[0];
           if (selectedSub.isCurrent) {
             subStatusText = "Best subscription already used.";
@@ -847,37 +866,38 @@ router.post('/', optionalAuth, async (req, res) => {
       } else if (optimizationGoal === 'performance') {
         let compatible = [];
         if (baselineRank !== 9999) {
-          // Performance Preservation Mode: Only recommend subscriptions with strictly lower cost AND better or equal rank
-          compatible = subCandidates.filter(c => c.cost < currentCost && c.rank <= baselineRank && !c.isCurrent);
+          compatible = subCandidates.filter(c => c.cost < currentCost && c.rank <= baselineRank);
         } else {
-          compatible = subCandidates.filter(c => c.cost < currentCost && c.performance_score >= computedBaselineScore && !c.isCurrent);
+          compatible = subCandidates.filter(c => c.cost < currentCost && c.performance_score >= computedBaselineScore);
         }
         if (compatible.length > 0) {
-          compatible.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score || a.cost - b.cost);
+          compatible.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
           selectedSub = compatible[0];
         } else {
-          selectedSub = null;
-          subStatusText = "Already optimized";
+          subCandidates.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
+          if (subCandidates[0] && (subCandidates[0].isCurrent || (type === 'subscription' && baselineRank <= subCandidates[0].rank))) {
+            subStatusText = "Best subscription already used.";
+          }
         }
       } else if (optimizationGoal === 'cost') {
         const maxAllowedCost = currentCost * (1 - costCutPercentage / 100);
         let compatible = subCandidates.filter(c => c.cost <= maxAllowedCost);
         if (compatible.length > 0) {
-          compatible.sort((a, b) => a.rank - b.rank || b.performance_score - a.performance_score || a.cost - b.cost);
+          compatible.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
           selectedSub = compatible[0];
         }
       }
 
       // Build structured Options
-      const isApiOptimized = selectedApi && selectedApi.monthly_cost < currentCost;
-      const apiOption = isApiOptimized ? {
+      const apiOption = selectedApi ? {
         cost: selectedApi.monthly_cost,
         savings: currentCost - selectedApi.monthly_cost,
         name: selectedApi.name,
         modelId: selectedApi._id,
-        action: `Transition active users to direct API keys using ${selectedApi.name}.`,
-        statusText: "",
-        isAlreadyOptimized: false,
+        action: (type === 'api' && selectedApi.isCurrent)
+          ? "Your current model API is already the best choice. Keep using it."
+          : `Transition active users to direct API keys using ${selectedApi.name}.`,
+        statusText: (type === 'api' && selectedApi.isCurrent) ? (apiStatusText || "Optimized") : "",
         limits: selectedApi.limits,
         includedModels: [selectedApi.name],
         recommendedModel: selectedApi.name,
@@ -889,18 +909,17 @@ router.post('/', optionalAuth, async (req, res) => {
       } : {
         cost: currentCost,
         savings: 0,
-        name: primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Current Model"),
-        modelId: modelId || (primaryBaselineModel ? primaryBaselineModel._id : null),
+        name: primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Free Model"),
+        modelId: modelId,
         action: (type === 'api')
-          ? "Your current model API is already the highest-ranked option with optimal cost. No migration required."
-          : `Transition to direct API keys offers no rank-preserving cost advantage. Keep current ${toolName} setup.`,
-        statusText: "Optimized",
-        isAlreadyOptimized: true,
+          ? "Your current model API is already the best choice. Keep using it."
+          : `Transition active users to direct API keys using ${primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Free Model")}.`,
+        statusText: (type === 'api') ? (apiStatusText || "Optimized") : "",
         limits: primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints.length > 0
           ? `Pay-as-you-go rates: $${primaryBaselineModel.endpoints[0].input_cost_per_m.toFixed(2)}/1M input, $${primaryBaselineModel.endpoints[0].output_cost_per_m.toFixed(2)}/1M output. Context: ${primaryBaselineModel.context_length ? (primaryBaselineModel.context_length >= 1000000 ? `${(primaryBaselineModel.context_length / 1000000).toFixed(0)}M` : `${(primaryBaselineModel.context_length / 1000).toFixed(0)}K`) : 'N/A'}.`
           : "Pay-as-you-go token consumption limits.",
         includedModels: primaryBaselineModel ? [primaryBaselineModel.name] : (modelId ? [modelId] : []),
-        recommendedModel: primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Current Model"),
+        recommendedModel: primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Free Model"),
         recommendedProvider: primaryBaselineModel ? getCleanProviderName(primaryBaselineModel._id.split('/')[0]) : getCleanProviderName(toolName),
         inputCostPerM: (primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints[0]) ? (primaryBaselineModel.endpoints[0].input_cost_per_m || 0) : 0,
         outputCostPerM: (primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints[0]) ? (primaryBaselineModel.endpoints[0].output_cost_per_m || 0) : 0,
@@ -908,32 +927,31 @@ router.post('/', optionalAuth, async (req, res) => {
         defaultOutputTokens: (type === 'subscription') ? (seats * (purpose === 'Coding' ? 2500000 : 1250000)) : outputTokens
       };
 
-      const isSubOptimized = selectedSub && selectedSub.cost < currentCost;
-      const subscriptionOption = isSubOptimized ? {
+      const subscriptionOption = selectedSub ? {
         planName: `${selectedSub.tier.provider} ${selectedSub.tier.plan}`,
         cost: selectedSub.cost,
         savings: currentCost - selectedSub.cost,
         limits: selectedSub.tier.limits,
         includedModels: selectedSub.tier.rawModels || [],
         modelId: selectedSub.tier.models?.[0] || null,
-        action: `Migrate to the ${selectedSub.tier.provider} ${selectedSub.tier.plan} subscription.`,
-        statusText: "",
-        isAlreadyOptimized: false,
+        action: (type === 'subscription' && selectedSub.isCurrent)
+          ? "Your current subscription is already the best choice. Keep using it."
+          : `Migrate to the ${selectedSub.tier.provider} ${selectedSub.tier.plan} subscription.`,
+        statusText: (type === 'subscription' && selectedSub.isCurrent) ? (subStatusText || "Optimized") : "",
         recommendedModel: selectedSub.tier.plan,
         recommendedProvider: getCleanProviderName(selectedSub.tier.provider)
       } : {
-        planName: `${toolName} ${plan || "Current"}`,
+        planName: `${toolName} ${plan || "Free"}`,
         cost: currentCost,
         savings: 0,
-        limits: tier ? tier.limits : "Current plan limits",
+        limits: tier ? tier.limits : "Free plan limits",
         includedModels: tier ? (tier.rawModels || []) : [],
         modelId: tier?.models?.[0] || null,
         action: (type === 'subscription')
-          ? "Your current subscription is already the highest-ranked option with optimal cost. Keep using it."
-          : `Migrating to a subscription offers no rank-preserving cost advantage. Maintain current ${toolName} setup.`,
-        statusText: "Optimized",
-        isAlreadyOptimized: true,
-        recommendedModel: (tier && tier.rawModels && tier.rawModels[0]) ? tier.rawModels[0] : (plan || "Current"),
+          ? "Your current subscription is already the best choice. Keep using it."
+          : `Migrate to the ${toolName} ${plan || "Free"} subscription.`,
+        statusText: (type === 'subscription') ? (subStatusText || "Optimized") : "",
+        recommendedModel: plan || "Free",
         recommendedProvider: getCleanProviderName(toolName)
       };
 
@@ -955,18 +973,11 @@ router.post('/', optionalAuth, async (req, res) => {
       const currentProvider = getCleanProviderName(toolName);
       const currentModelName = primaryBaselineModel ? primaryBaselineModel.name : (modelId || (type === 'subscription' ? plan : 'GPT-4o'));
 
-      const maxSavings = Math.max(apiOption ? apiOption.savings : 0, subscriptionOption ? subscriptionOption.savings : 0);
-      const isAlreadyOptimized = maxSavings <= 0;
-
       recommendations.push({
         tool: toolDesc,
         issue: issueDesc,
-        action: isAlreadyOptimized 
-          ? "Your current deployment is already optimal. No changes required."
-          : "Select the most suitable option below.",
-        statusText: isAlreadyOptimized ? "Optimized" : "",
-        isAlreadyOptimized: isAlreadyOptimized,
-        monthlySavings: maxSavings,
+        action: "Select the most suitable option below.",
+        monthlySavings: Math.max(apiOption ? apiOption.savings : 0, subscriptionOption ? subscriptionOption.savings : 0),
         apiOption,
         subscriptionOption,
         originalAlloc: {
@@ -981,7 +992,7 @@ router.post('/', optionalAuth, async (req, res) => {
           modelName: currentModelName
         }
       });
-    }
+    });
 
     totalMonthlySavings = Math.max(apiMonthlySavings, subMonthlySavings);
     const totalAnnualSavings = totalMonthlySavings * 12;
@@ -990,7 +1001,7 @@ router.post('/', optionalAuth, async (req, res) => {
     const primaryUseCase = allocations[0]?.purpose || 'Mixed';
 
     const auditData = {
-      userId: user ? user._id : null,
+      userId: req.user.id,
       teamSize: totalSeats,
       useCase: primaryUseCase,
       optimizationGoal,
@@ -1014,22 +1025,13 @@ router.post('/', optionalAuth, async (req, res) => {
     await audit.save();
     console.log('Saved audit in MongoDB:', audit._id);
 
-    // Calculate isUnlocked dynamically using authoritative backend entitlements
-    const isUnlocked = isAuditUnlockedForUser(auditData, user);
-
     const returnedAudit = audit.toObject();
-    returnedAudit.isUnlocked = isUnlocked;
-
-    if (!isUnlocked) {
-      if (returnedAudit.savings && returnedAudit.savings.recommendations) {
-        returnedAudit.savings.recommendations = redactAuditRecommendations(returnedAudit.savings.recommendations);
-      }
-    }
+    returnedAudit.isUnlocked = true;
 
     return res.status(201).json({
       ...returnedAudit,
       totalCurrentCost: totalCurrentBudget,
-      updatedCredits: user ? user.credits : null
+      updatedCredits: user ? (user.credits || { starter: 999, pro: 999, proMax: 999 }) : null
     });
   } catch (error) {
     console.error('Audit Save Error:', error);
@@ -1040,34 +1042,12 @@ router.post('/', optionalAuth, async (req, res) => {
 // Route to get all audits (requires authentication)
 router.get('/', auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    const { PRODUCTS } = require('../config/products');
-    const isSubscriptionExpired = user.subscription?.expiresAt && (new Date(user.subscription.expiresAt) < new Date());
-    const effectivePlan = isSubscriptionExpired ? 'free' : (user.plan || 'free').toLowerCase();
-    const productConfig = PRODUCTS[effectivePlan] || PRODUCTS.free;
-    const historyLimit = productConfig.entitlements?.historyRetentionLimit ?? 0;
-
-    let query = Audit.find({ userId: req.user.id }).sort({ createdAt: -1 });
-    if (historyLimit > 0 && historyLimit !== Infinity) {
-      query = query.limit(historyLimit);
-    }
-
-    const audits = await query.exec();
+    const audits = await Audit.find({ userId: req.user.id }).sort({ createdAt: -1 });
     
-    // Hydrate baselineModels and apply authoritative backend unlocking and redaction
+    // Hydrate baselineModels for all audits returned in the list
     const auditsObj = audits.map(audit => {
       const auditObj = audit.toObject();
-      const isUnlocked = isAuditUnlockedForUser(auditObj, user);
-      auditObj.isUnlocked = isUnlocked;
-
-      if (!isUnlocked && auditObj.savings?.recommendations) {
-        auditObj.savings.recommendations = redactAuditRecommendations(auditObj.savings.recommendations);
-      }
-
+      auditObj.isUnlocked = true;
       if (auditObj.allocations && Array.isArray(auditObj.allocations)) {
         auditObj.allocations.forEach(alloc => {
           if (alloc.type === 'subscription' && (!alloc.baselineModels || alloc.baselineModels.length === 0)) {
@@ -1081,7 +1061,6 @@ router.get('/', auth, async (req, res) => {
 
     return res.json(auditsObj);
   } catch (error) {
-    console.error('Error in GET /audits:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -1090,6 +1069,9 @@ router.get('/', auth, async (req, res) => {
 router.get('/:id', optionalAuth, async (req, res) => {
   try {
     const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id) && id !== '6a4fb719471a97ae89e88f49') {
+      return res.status(400).json({ error: 'Invalid audit ID format.' });
+    }
     const audit = await Audit.findById(id);
 
     if (!audit) {
@@ -1104,31 +1086,22 @@ router.get('/:id', optionalAuth, async (req, res) => {
       }
     }
 
-    let user = null;
-    if (req.user) {
-      user = await User.findById(req.user.id);
-    }
-
     const auditObj = audit.toObject();
-    const isUnlocked = isAuditUnlockedForUser(auditObj, user);
-    auditObj.isUnlocked = isUnlocked;
-
-    if (!isUnlocked && auditObj.savings?.recommendations) {
-      auditObj.savings.recommendations = redactAuditRecommendations(auditObj.savings.recommendations);
-    }
-
+      auditObj.isUnlocked = true;
     if (auditObj.allocations && Array.isArray(auditObj.allocations)) {
-      auditObj.allocations.forEach((alloc) => {
+      auditObj.allocations.forEach((alloc, index) => {
+        console.log(`[Hydration GET] alloc #${index}: type=${alloc.type}, toolName=${alloc.toolName}, plan=${alloc.plan}`);
         if (alloc.type === 'subscription' && (!alloc.baselineModels || alloc.baselineModels.length === 0)) {
           const tier = findSubscriptionTier(alloc.toolName, alloc.plan);
+          console.log(`[Hydration GET] findSubscriptionTier resolved tier:`, tier ? tier.plan : 'null');
           alloc.baselineModels = tier ? (tier.rawModels || []) : [];
+          console.log(`[Hydration GET] hydrated baselineModels:`, alloc.baselineModels);
         }
       });
     }
 
     return res.json(auditObj);
   } catch (error) {
-    console.error('Error in GET /audits/:id:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -1137,6 +1110,9 @@ router.get('/:id', optionalAuth, async (req, res) => {
 router.delete('/:id', auth, async (req, res) => {
   try {
     const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid audit ID format.' });
+    }
     const audit = await Audit.findById(id);
 
     if (!audit) {
@@ -1182,8 +1158,8 @@ router.put('/:id/options', auth, async (req, res) => {
   }
 });
 
-// Two-API capability and pricing recommendation auditor (Enterprise Exclusive)
-router.post('/audit-recommendation', auth, requirePlan('enterprise'), async (req, res) => {
+// Two-API capability and pricing recommendation auditor
+router.post('/audit-recommendation', async (req, res) => {
   try {
     const currentModelId = req.body.currentModelId;
     if (!currentModelId) {
@@ -1213,7 +1189,7 @@ router.post('/audit-recommendation', auth, requirePlan('enterprise'), async (req
 
     // 1. Fetch models
     let docs = await Model.find({});
-    let allModels = docs.map(d => d.toObject());
+    let allModels = docs.map(d => d.toObject ? d.toObject() : d);
 
     // If no models at all, try syncing first
     if (allModels.length === 0) {
@@ -1221,7 +1197,7 @@ router.post('/audit-recommendation', auth, requirePlan('enterprise'), async (req
       const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
       await syncArtificialAnalysis();
       docs = await Model.find({});
-      allModels = docs.map(d => d.toObject());
+      allModels = docs.map(d => d.toObject ? d.toObject() : d);
     }
 
     if (allModels.length === 0) {
@@ -1241,23 +1217,13 @@ router.post('/audit-recommendation', auth, requirePlan('enterprise'), async (req
       return res.status(404).json({ error: 'Baseline model data not found in database.' });
     }
 
-    const rankData = await getCategoryRankData(targetUseCase);
+    const rankData = getCategoryRankData(targetUseCase);
     
-    const currentSlug = (currentModel._id.split('/')[1] || currentModel._id).toLowerCase();
+    const currentSlug = currentModel._id.split('/')[1] || '';
     const currentRankEntry = findRankEntry(rankData, currentSlug);
     const currentRank = currentRankEntry ? (parseInt(currentRankEntry.rank) || 999) : 999;
     const currentScore = currentRankEntry ? getEvaluationScore(currentRankEntry, targetUseCase, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || 0);
-    const currentRating = currentRankEntry?.rating || 0;
-    
-    const currentInputCost = (currentRankEntry?.pricing?.price_1m_input_tokens !== undefined && currentRankEntry?.pricing?.price_1m_input_tokens !== null)
-      ? parseFloat(currentRankEntry.pricing.price_1m_input_tokens)
-      : (currentModel.endpoints?.[0]?.input_cost_per_m || 0);
-
-    const currentOutputCost = (currentRankEntry?.pricing?.price_1m_output_tokens !== undefined && currentRankEntry?.pricing?.price_1m_output_tokens !== null)
-      ? parseFloat(currentRankEntry.pricing.price_1m_output_tokens)
-      : (currentModel.endpoints?.[0]?.output_cost_per_m || 0);
-
-    const currentCost = ((currentInputCost * inputRatio) + (currentOutputCost * (1 - inputRatio))) * (monthlyTokens / 1000000);
+    const currentCost = calculateModelCost(currentModel, monthlyTokens, inputRatio);
 
     // 3. Map alternatives
     let alternatives = [];
@@ -1270,48 +1236,27 @@ router.post('/audit-recommendation', auth, requirePlan('enterprise'), async (req
           dbModel = allModels.find(m => m._id.toLowerCase().includes(item.slug.toLowerCase()) || item.slug.toLowerCase().includes(m._id.toLowerCase().split('/')[1] || ''));
         }
         
-        const inputCost = (item.pricing?.price_1m_input_tokens !== undefined && item.pricing?.price_1m_input_tokens !== null)
-          ? parseFloat(item.pricing.price_1m_input_tokens)
-          : (dbModel?.endpoints?.[0]?.input_cost_per_m || 0);
-
-        const outputCost = (item.pricing?.price_1m_output_tokens !== undefined && item.pricing?.price_1m_output_tokens !== null)
-          ? parseFloat(item.pricing.price_1m_output_tokens)
-          : (dbModel?.endpoints?.[0]?.output_cost_per_m || 0);
-
-        const cacheReadCost = (item.pricing?.price_1m_cache_read_tokens !== undefined && item.pricing?.price_1m_cache_read_tokens !== null)
-          ? parseFloat(item.pricing.price_1m_cache_read_tokens)
-          : (dbModel?.endpoints?.[0]?.cache_read_cost_per_m || 0);
-
-        if (inputCost > 0 || outputCost > 0) {
-          const modelId = item.modelId || dbModel?._id || (item.slug ? `${(item.organization || item.creator || 'ai').toLowerCase()}/${item.slug}` : '');
-          if (!modelId) continue;
-
-          // De-duplicate: skip if already mapped
-          if (alternatives.some(alt => alt._id === modelId || alt.slug === item.slug)) {
+        if (dbModel && dbModel.endpoints && dbModel.endpoints.length > 0) {
+          // De-duplicate: skip if this model is already mapped in alternatives
+          if (alternatives.some(alt => alt._id === dbModel._id)) {
             continue;
           }
 
+          const cost = calculateModelCost(dbModel, monthlyTokens, inputRatio);
           const score = getEvaluationScore(item, targetUseCase, dbModel, capabilityField);
-          const rating = item.rating || 0;
-          const tokens_per_second = item.median_output_tokens_per_second || item.tokens_per_second || dbModel?.capabilities?.tokens_per_second || 0;
-          const time_to_first_token_ms = item.median_time_to_first_token_seconds ? Math.round(item.median_time_to_first_token_seconds * 1000) : (dbModel?.capabilities?.time_to_first_token_ms || 0);
-
-          const cost = ((inputCost * inputRatio) + (outputCost * (1 - inputRatio))) * (monthlyTokens / 1000000);
           const valScore = cost > 0 ? (score / cost) : 0;
-
+          
           alternatives.push({
-            _id: modelId,
-            slug: item.slug,
-            name: item.name || dbModel?.name || item.slug,
-            developer: item.organization || item.creator || dbModel?.developer || 'Unknown',
-            context_length: item.context_length || dbModel?.context_length || 128000,
-            rating: rating,
+            _id: dbModel._id,
+            name: dbModel.name,
+            developer: dbModel.developer,
+            context_length: dbModel.context_length,
             performance_score: score,
-            tokens_per_second: tokens_per_second,
-            time_to_first_token_ms: time_to_first_token_ms,
-            cost_per_m_input: inputCost,
-            cost_per_m_output: outputCost,
-            cache_read_cost_per_m: cacheReadCost,
+            tokens_per_second: dbModel.capabilities?.tokens_per_second || 0,
+            time_to_first_token_ms: dbModel.capabilities?.time_to_first_token_ms || 0,
+            cost_per_m_input: dbModel.endpoints[0].input_cost_per_m,
+            cost_per_m_output: dbModel.endpoints[0].output_cost_per_m,
+            cache_read_cost_per_m: dbModel.endpoints[0].cache_read_cost_per_m || 0,
             monthly_cost: cost,
             value_score: valScore,
             category_rank: parseInt(item.rank) || 999
@@ -1327,11 +1272,9 @@ router.post('/audit-recommendation', auth, requirePlan('enterprise'), async (req
           const valScore = cost > 0 ? (score / cost) : 0;
           return {
             _id: m._id,
-            slug: m._id.split('/')[1] || m._id,
             name: m.name,
             developer: m.developer,
             context_length: m.context_length,
-            rating: 0,
             performance_score: score,
             tokens_per_second: m.capabilities.tokens_per_second || 0,
             time_to_first_token_ms: m.capabilities.time_to_first_token_ms || 0,
@@ -1347,79 +1290,70 @@ router.post('/audit-recommendation', auth, requirePlan('enterprise'), async (req
     
     alternatives = alternatives.filter(alt => alt.monthly_cost > 0 && alt.cost_per_m_input >= 0 && alt.cost_per_m_output >= 0);
 
-    // Apply filtering and compute recommendation score according to user optimizationGoal
+    const bestCategoryScore = Math.max(...alternatives.map(alt => alt.performance_score), currentScore) || 100;
+    const qualityThreshold = parseFloat(req.body.qualityThreshold) || 90; // Default to 90% quality threshold
+
+    // Apply filtering and compute recommendation score
     let filteredAlternatives = [];
     if (optimizationGoal === 'performance') {
-      // Mode 1: Performance Preservation
-      // The model with the better rank and the low cost than current selected model in selected category
-      filteredAlternatives = alternatives.filter(alt => {
-        if (alt.slug === currentSlug || alt._id === currentModelId) return false;
-        if (alt.monthly_cost >= currentCost) return false;
-
-        if (currentRank !== 999 && alt.category_rank !== 999) {
-          return alt.category_rank <= currentRank;
-        }
-        if (currentRating > 0 && alt.rating > 0) {
-          return alt.rating >= currentRating;
-        }
-        return alt.performance_score >= currentScore;
-      });
-
+      // Mode 1: Performance Preservation (equal or better performance / rank, lower cost)
+      if (currentRank !== 999) {
+        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+      } else {
+        filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+      }
       filteredAlternatives.forEach(alt => {
-        const rankScore = alt.category_rank !== 999 ? (10000 - alt.category_rank) * 10000 : 0;
-        const qualityVal = alt.rating > 0 ? alt.rating : (alt.performance_score * 20);
-        const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        alt.recommendation_score = rankScore + (qualityVal * 1000) + costEfficiency;
+        if (alt.category_rank !== 999) {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
+        } else {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
+        }
       });
-
     } else if (optimizationGoal === 'cost') {
-      // Mode 2: Cost Reduction
-      // Suggest the model with low cost (user percentage selection) and the best rank within low cost models
+      // Mode 3: Target Cost Reduction (Cost Cutting Mode: satisfies cost demand, best rank recommended)
       const maxAllowedCost = currentCost * (1 - (costCutPercentage / 100));
       filteredAlternatives = alternatives.filter(alt => 
-        alt.slug !== currentSlug &&
-        alt._id !== currentModelId &&
-        alt.monthly_cost <= maxAllowedCost
+        alt.monthly_cost <= maxAllowedCost && 
+        alt._id !== currentModelId
       );
-
       filteredAlternatives.forEach(alt => {
-        const rankScore = alt.category_rank !== 999 ? (10000 - alt.category_rank) * 10000 : 0;
-        const qualityVal = alt.rating > 0 ? alt.rating : (alt.performance_score * 20);
-        const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        alt.recommendation_score = rankScore + (qualityVal * 1000) + costEfficiency;
+        if (alt.category_rank !== 999) {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
+        } else {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
+        }
       });
-
     } else if (optimizationGoal === 'quality') {
-      // Mode 3: Quality Focus
-      // Only suggest the model which is at the top rank at the selected category, ignoring cost
-      filteredAlternatives = alternatives.filter(alt => {
-        if (alt.slug === currentSlug || alt._id === currentModelId) return false;
-        
-        if (currentRank !== 999 && alt.category_rank !== 999) {
-          return alt.category_rank < currentRank;
-        }
-        if (currentRating > 0 && alt.rating > 0) {
-          return alt.rating > currentRating;
-        }
-        return alt.performance_score > currentScore;
-      });
-
+      // Mode 2: Quality Focus (Top ranked models recommended)
+      filteredAlternatives = alternatives.filter(alt => alt._id !== currentModelId);
       filteredAlternatives.forEach(alt => {
-        const rankScore = alt.category_rank !== 999 ? (10000 - alt.category_rank) * 10000 : 0;
-        const qualityVal = alt.rating > 0 ? alt.rating : (alt.performance_score * 20);
-        alt.recommendation_score = rankScore + (qualityVal * 1000);
+        if (alt.category_rank !== 999) {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
+        } else {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
+        }
       });
-
     } else {
-      // Fallback
-      filteredAlternatives = alternatives.filter(alt => 
-        alt.slug !== currentSlug &&
-        alt._id !== currentModelId &&
-        alt.monthly_cost < currentCost
-      );
+      // Fallback: Mode 1 (Performance Preservation)
+      if (currentRank !== 999) {
+        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+      } else {
+        filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
+      }
       filteredAlternatives.forEach(alt => {
-        const qualityVal = alt.rating > 0 ? alt.rating : (alt.performance_score * 20);
-        alt.recommendation_score = qualityVal * 1000;
+        if (alt.category_rank !== 999) {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
+        } else {
+          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
+        }
       });
     }
 
@@ -1432,7 +1366,7 @@ router.post('/audit-recommendation', auth, requirePlan('enterprise'), async (req
     // 4. Construct reports
     const recommendations = topAlternatives.map(alt => {
       const savings = currentCost - alt.monthly_cost;
-      const performanceRetained = currentScore > 0 ? (alt.performance_score / currentScore) * 100 : 100;
+      const performanceRetained = (alt.performance_score / currentScore) * 100;
 
       return {
         modelId: alt._id,
@@ -1453,8 +1387,6 @@ router.post('/audit-recommendation', auth, requirePlan('enterprise'), async (req
       };
     });
 
-    const isAlreadyOptimized = recommendations.length === 0;
-
     res.json({
       currentBaseline: {
         modelId: currentModel._id,
@@ -1466,177 +1398,52 @@ router.post('/audit-recommendation', auth, requirePlan('enterprise'), async (req
         cost_per_m_input: currentModel.endpoints?.[0]?.input_cost_per_m || 0,
         cost_per_m_output: currentModel.endpoints?.[0]?.output_cost_per_m || 0
       },
-      recommendations,
-      isAlreadyOptimized,
-      statusMessage: isAlreadyOptimized
-        ? "Already Optimized: Current baseline model has the highest performance rank at the lowest cost in this category. No alternative provides higher capability at a lower price."
-        : ""
+      recommendations
     });
   } catch (error) {
     console.error('Audit Recommendation Route Error:', error);
     res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
 });
-// Vercel Cron & Manual Trigger Endpoint for Daily Artificial Analysis Sync
-const handleCronSync = async (req, res) => {
-  try {
-    const cronSecret = process.env.CRON_SECRET;
-    const authHeader = req.headers['authorization'];
-    const isVercelCron = Boolean(req.headers['x-vercel-cron']);
-    
-    // Validate secret if configured
-    if (cronSecret && !isVercelCron) {
-      const providedSecret = req.query.secret || (authHeader ? authHeader.replace('Bearer ', '') : null);
-      if (providedSecret !== cronSecret) {
-        return res.status(401).json({ error: 'Unauthorized: Invalid CRON_SECRET token.' });
-      }
-    }
-
-    console.log('⏰ Vercel Cron / Manual Sync triggered: Running daily ranking pipeline...');
-    const result = await runDailyRankingPipeline();
-
-    return res.json({
-      success: true,
-      message: 'Daily Artificial Analysis sync and ranking pipeline executed successfully.',
-      timestamp: new Date().toISOString(),
-      result
-    });
-  } catch (error) {
-    console.error('❌ Vercel Cron / Manual Sync Error:', error.message);
-    return res.status(500).json({
-      success: false,
-      error: 'Daily sync pipeline execution failed.',
-      details: error.message
-    });
-  }
-};
-
-router.get('/cron/sync', handleCronSync);
-router.post('/cron/sync', handleCronSync);
-
 // Route to fetch raw Artificial Analysis API data for the home page analysis dashboard
-router.get('/analysis/raw-data', async (req, res) => {
+router.get('/analysis/raw-data', (req, res) => {
   try {
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-
-    let rawData = null;
-    if (req.query.refresh === 'true') {
-      console.log('🔄 Forced refresh requested on raw-data endpoint: Triggering ranking pipeline...');
-      await runDailyRankingPipeline();
-    }
-    
-    rawData = await getRawData();
-
-    if (!rawData) {
-      console.log('🔄 Raw data empty in DB & disk. Auto-triggering initial pipeline sync...');
-      await runDailyRankingPipeline();
-      rawData = await getRawData();
-    }
-
-    if (!rawData) {
+    const rawPath = path.join(__dirname, '../data/raw_data.json');
+    if (!fs.existsSync(rawPath)) {
       return res.status(404).json({ error: 'Raw analysis data not found. Please run database synchronization first.' });
     }
 
+    const rawContent = fs.readFileSync(rawPath, 'utf8');
+    const rawData = JSON.parse(rawContent);
     const sources = rawData.sources || {};
-
-    // Build fast category lookup indexes
-    const codingMap = new Map();
-    (rawData.categories?.coding || []).forEach(m => {
-      if (m.slug) codingMap.set(m.slug.toLowerCase(), m);
-      if (m.modelId) codingMap.set(m.modelId.toLowerCase(), m);
-      if (m.name) codingMap.set(m.name.toLowerCase(), m);
-    });
-
-    const mathMap = new Map();
-    (rawData.categories?.math || []).forEach(m => {
-      if (m.slug) mathMap.set(m.slug.toLowerCase(), m);
-      if (m.modelId) mathMap.set(m.modelId.toLowerCase(), m);
-      if (m.name) mathMap.set(m.name.toLowerCase(), m);
-    });
-
-    const overallMap = new Map();
-    (rawData.categories?.overall || []).forEach(m => {
-      if (m.slug) overallMap.set(m.slug.toLowerCase(), m);
-      if (m.modelId) overallMap.set(m.modelId.toLowerCase(), m);
-      if (m.name) overallMap.set(m.name.toLowerCase(), m);
-    });
 
     // 1. Process LLMs
     const rawLlms = Array.isArray(sources.llms) ? sources.llms : (sources.llms?.data || []);
     const processedLlms = rawLlms.map(item => {
       const pricing = item.pricing || {};
       const evaluations = item.evaluations || {};
-      const slugKey = (item.slug || '').toLowerCase();
-      const modelIdKey = (item.modelId || item.id || '').toLowerCase();
-      const nameKey = (item.name || '').toLowerCase();
-
-      const codingCat = codingMap.get(slugKey) || codingMap.get(modelIdKey) || codingMap.get(nameKey);
-      const mathCat = mathMap.get(slugKey) || mathMap.get(modelIdKey) || mathMap.get(nameKey);
-      const overallCat = overallMap.get(slugKey) || overallMap.get(modelIdKey) || overallMap.get(nameKey);
-
+      
       const inputCost = parseFloat(pricing.price_1m_input_tokens) || 0;
       const outputCost = parseFloat(pricing.price_1m_output_tokens) || 0;
       // Blended price assumes a standard 3:1 input:output tokens ratio
       const blendedPrice = (inputCost * 0.75) + (outputCost * 0.25);
 
-      const rawIntel = evaluations.artificial_analysis_intelligence_index !== undefined && evaluations.artificial_analysis_intelligence_index !== null
-        ? evaluations.artificial_analysis_intelligence_index
-        : (item.intelligenceIndex !== undefined
-            ? item.intelligenceIndex
-            : (overallCat?.rating ? Math.min(99, Math.max(35, ((overallCat.rating - 850) / 500) * 100)) : item.category_scores?.overall));
-
-      const rawCoding = evaluations.artificial_analysis_coding_index !== undefined && evaluations.artificial_analysis_coding_index !== null
-        ? evaluations.artificial_analysis_coding_index
-        : (evaluations.livecodebench !== undefined && evaluations.livecodebench !== null
-            ? evaluations.livecodebench
-            : (evaluations.coding_agent_index !== undefined && evaluations.coding_agent_index !== null
-                ? evaluations.coding_agent_index
-                : (evaluations.scicode !== undefined && evaluations.scicode !== null
-                    ? (evaluations.scicode <= 1 ? evaluations.scicode * 100 : evaluations.scicode)
-                    : (codingCat?.rating ? Math.min(99, Math.max(35, ((codingCat.rating - 850) / 500) * 100)) : (item.codingIndex !== undefined ? item.codingIndex : item.category_scores?.coding)))));
-
-      const rawMath = evaluations.artificial_analysis_math_index !== undefined && evaluations.artificial_analysis_math_index !== null
-        ? evaluations.artificial_analysis_math_index
-        : (evaluations.aime !== undefined && evaluations.aime !== null
-            ? evaluations.aime
-            : (evaluations.aime_25 !== undefined && evaluations.aime_25 !== null
-                ? evaluations.aime_25
-                : (evaluations.math_500 !== undefined && evaluations.math_500 !== null
-                    ? evaluations.math_500
-                    : (mathCat?.rating ? Math.min(99, Math.max(35, ((mathCat.rating - 850) / 450) * 100)) : (item.mathIndex !== undefined ? item.mathIndex : item.category_scores?.math)))));
-
-      const rating = item.rating || overallCat?.rating || item.arena_elo || null;
-      const parsedIntel = !isNaN(parseFloat(rawIntel)) ? parseFloat(rawIntel) : null;
-      const parsedCoding = !isNaN(parseFloat(rawCoding)) ? parseFloat(rawCoding) : null;
-      const parsedMath = !isNaN(parseFloat(rawMath)) ? parseFloat(rawMath) : null;
-
       return {
         slug: item.slug,
-        modelId: item.modelId || item.id || (item.slug ? `${item.organization || item.model_creator?.name || 'ai'}/${item.slug}` : undefined),
         name: item.name,
-        creator: item.model_creator?.name || item.organization || 'Unknown',
+        creator: item.model_creator?.name || 'Unknown',
         release_date: item.release_date,
-        rating: rating ? parseInt(rating) : null,
-        intelligence_index: parsedIntel,
-        coding_index: parsedCoding,
-        math_index: parsedMath,
-        evaluations: item.evaluations || {},
-        category_scores: item.category_scores || {},
-        capabilities: item.capabilities || {},
-        gpqa: parseFloat(evaluations.gpqa || item.gpqa) || null,
-        hle: parseFloat(evaluations.hle || item.hle) || null,
+        intelligence_index: parseFloat(evaluations.artificial_analysis_intelligence_index) || null,
+        coding_index: parseFloat(evaluations.artificial_analysis_coding_index) || null,
+        math_index: parseFloat(evaluations.artificial_analysis_math_index) || null,
+        gpqa: parseFloat(evaluations.gpqa) || null,
+        hle: parseFloat(evaluations.hle) || null,
         throughput: parseFloat(item.median_output_tokens_per_second) || null,
         ttft: parseFloat(item.median_time_to_first_token_seconds) || null,
         inputCost,
         outputCost,
         blendedPrice
       };
-    }).sort((a, b) => {
-      const valA = typeof a.intelligence_index === 'number' ? a.intelligence_index : -1;
-      const valB = typeof b.intelligence_index === 'number' ? b.intelligence_index : -1;
-      return valB - valA;
     });
 
     // 2. Process Media categories
@@ -1676,13 +1483,10 @@ router.get('/subscription-tiers/raw', (req, res) => {
   }
 });
 
-// Route to fetch grouped and formatted subscription tools dynamically from rankStorage / MongoDB
-router.get('/subscription-tiers/list', async (req, res) => {
+// Route to fetch grouped and formatted subscription tools dynamically from local subscription_tiers.json
+router.get('/subscription-tiers/list', (req, res) => {
   try {
-    const liveTiers = await getSubscriptionTiers();
-    const activeTiers = (liveTiers && liveTiers.length > 0) ? liveTiers : subscriptionTiers;
-
-    if (!activeTiers || activeTiers.length === 0) {
+    if (!subscriptionTiers || subscriptionTiers.length === 0) {
       return res.json([]);
     }
 
@@ -1731,7 +1535,7 @@ router.get('/subscription-tiers/list', async (req, res) => {
     };
 
     const grouped = {};
-    activeTiers.forEach(tier => {
+    subscriptionTiers.forEach(tier => {
       const prov = tier.provider || 'Other';
       const key = prov.toLowerCase();
       if (!grouped[key]) {
@@ -1764,144 +1568,26 @@ router.get('/subscription-tiers/list', async (req, res) => {
   }
 });
 
-// Route to manually or remotely trigger subscription tier synchronization
-router.post('/subscription-tiers/sync', async (req, res) => {
-  try {
-    const adminSecret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
-    const authHeader = req.headers['authorization'];
-    if (adminSecret) {
-      const providedSecret = req.query.secret || (authHeader ? authHeader.replace('Bearer ', '') : null);
-      if (providedSecret !== adminSecret) {
-        return res.status(401).json({ error: 'Unauthorized: Invalid administrative sync secret token.' });
-      }
-    }
-
-    console.log('⚡ Manual / Webhook trigger: Starting subscription tier synchronization...');
-    const updatedTiers = await syncSubscriptionTiers();
-    subscriptionTiers = updatedTiers;
-    return res.json({
-      success: true,
-      message: `Successfully synchronized ${updatedTiers.length} subscription tiers.`,
-      updated_at: new Date().toISOString()
-    });
-  } catch (error) {
-    console.error('Error executing subscription-tiers sync route:', error);
-    return res.status(500).json({ error: 'Failed to synchronize subscription tiers', details: error.message });
-  }
-});
-
-// Route to get list of all models for dropdown baselines and Direct API Models panel
+// Route to get list of all models for dropdown baselines
 router.get('/models/list', async (req, res) => {
   try {
-    const rawData = await getRawData();
-    const modelsMap = new Map();
+    let allModels = await Model.find({}).sort({ name: 1 });
 
-    // 1. Ingest from rawData category ranks (where live ELO ratings and rankings reside)
-    if (rawData?.categories) {
-      for (const catKey of Object.keys(rawData.categories)) {
-        const catList = rawData.categories[catKey];
-        if (Array.isArray(catList)) {
-          for (const m of catList) {
-            if (!m.slug && !m.modelId) continue;
-            const slug = m.slug || m.modelId?.split('/')[1] || m.modelId;
-            const creator = m.organization || m.model_creator?.name || m.developer || 'Unknown';
-            let creatorPrefix = creator.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-            if (creatorPrefix === 'meta') creatorPrefix = 'meta-llama';
-            if (creatorPrefix === 'mistral') creatorPrefix = 'mistralai';
-            if (creatorPrefix === 'xai' || creatorPrefix === 'spacexai') creatorPrefix = 'x-ai';
-            const modelId = m.modelId || `${creatorPrefix}/${slug}`;
-
-            const rawName = m.name || m.model_name || slug;
-            const cleanName = rawName.replace(/^[^:]+:\s*/, '');
-            const displayName = `${creator}: ${cleanName}`;
-
-            if (!modelsMap.has(slug)) {
-              modelsMap.set(slug, {
-                id: modelId,
-                slug: slug,
-                name: displayName,
-                rawName: cleanName,
-                developer: creator,
-                creator: creator,
-                rating: Number(m.rating || m.arena_elo || 0),
-                pricing: m.pricing || null,
-                evaluations: m.evaluations || null,
-                context_length: m.context_length || null,
-                tokens_per_second: m.median_output_tokens_per_second || null
-              });
-            } else {
-              const existing = modelsMap.get(slug);
-              if ((!existing.rating || existing.rating === 0) && m.rating) existing.rating = Number(m.rating);
-              if (!existing.pricing && m.pricing) existing.pricing = m.pricing;
-            }
-          }
-        }
-      }
+    if (allModels.length === 0) {
+      console.log('🔄 Database is empty, auto-triggering local sync/seeding in models list route...');
+      const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
+      await syncArtificialAnalysis();
+      allModels = await Model.find({}).sort({ name: 1 });
     }
 
-    // 2. Ingest from rawData sources.llms.data (620+ models) to catch any remaining models
-    const sourceLlms = rawData?.sources?.llms?.data || rawData?.llms || [];
-    for (const m of sourceLlms) {
-      if (!m.slug && !m.id) continue;
-      const slug = m.slug || m.id;
-      const creator = m.model_creator?.name || m.creator || m.organization || 'Unknown';
-      let creatorPrefix = creator.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      if (creatorPrefix === 'meta') creatorPrefix = 'meta-llama';
-      if (creatorPrefix === 'mistral') creatorPrefix = 'mistralai';
-      if (creatorPrefix === 'xai' || creatorPrefix === 'spacexai') creatorPrefix = 'x-ai';
-      const modelId = `${creatorPrefix}/${slug}`;
+    // Format models
+    const formatted = allModels.map(m => ({
+      id: m._id,
+      name: m.name || m._id
+    }));
 
-      const rawName = m.name || m.model_name || slug;
-      const cleanName = rawName.replace(/^[^:]+:\s*/, '');
-      const displayName = `${creator}: ${cleanName}`;
-
-      if (!modelsMap.has(slug)) {
-        modelsMap.set(slug, {
-          id: modelId,
-          slug: slug,
-          name: displayName,
-          rawName: cleanName,
-          developer: creator,
-          creator: creator,
-          rating: Number(m.rating || m.arena_elo || 0),
-          pricing: m.pricing || null,
-          evaluations: m.evaluations || null,
-          context_length: m.context_length || null,
-          tokens_per_second: m.median_output_tokens_per_second || null
-        });
-      } else {
-        const existing = modelsMap.get(slug);
-        if (!existing.evaluations && m.evaluations) existing.evaluations = m.evaluations;
-        if (!existing.pricing && m.pricing) existing.pricing = m.pricing;
-        if (!existing.context_length && m.context_length) existing.context_length = m.context_length;
-      }
-    }
-
-    // 3. Fallback to MongoDB Model collection if empty
-    if (modelsMap.size === 0) {
-      const allModels = await Model.find({}).sort({ name: 1 });
-      for (const m of allModels) {
-        const dev = m.developer || m.name?.split(':')[0] || 'Unknown';
-        modelsMap.set(m._id, {
-          id: m._id,
-          slug: m._id.split('/')[1] || m._id,
-          name: m.name || m._id,
-          rawName: (m.name || m._id).replace(/^[^:]+:\s*/, ''),
-          developer: dev,
-          creator: dev,
-          rating: 1200
-        });
-      }
-    }
-
-    const formatted = Array.from(modelsMap.values());
-
-    // Sort by rating descending (highest capability latest models first)
-    formatted.sort((a, b) => {
-      const diff = (b.rating || 0) - (a.rating || 0);
-      if (diff !== 0) return diff;
-      return a.name.localeCompare(b.name);
-    });
+    // Sort alphabetically by name
+    formatted.sort((a, b) => a.name.localeCompare(b.name));
 
     res.json(formatted);
   } catch (error) {
@@ -1910,8 +1596,8 @@ router.get('/models/list', async (req, res) => {
   }
 });
 
-// Route to generate comparison report using Gemini API (Enterprise Exclusive)
-router.post('/compare/report', auth, requirePlan('enterprise'), async (req, res) => {
+// Route to generate comparison report using Gemini API
+router.post('/compare/report', optionalAuth, async (req, res) => {
   const { baseline, recommended } = req.body;
   
   if (!baseline || !recommended) {
@@ -1921,34 +1607,22 @@ router.post('/compare/report', auth, requirePlan('enterprise'), async (req, res)
   let user = null;
   if (req.user) {
     user = await User.findById(req.user.id);
-    if (!user) {
-      return res.status(404).json({ error: 'Authenticated user not found.' });
+    if (user) {
+      if (!user.credits) {
+        user.credits = { starter: 999, pro: 999, proMax: 999 };
+      }
+      user.markModified('credits');
+      await user.save();
     }
-    if (!user.credits) {
-      user.credits = { starter: 0, pro: 0, proMax: 0 };
-    }
-    
-    // Deduct 1 credit (any type: starter, pro, proMax)
-    if (user.credits.starter > 0) {
-      user.credits.starter -= 1;
-    } else if (user.credits.pro > 0) {
-      user.credits.pro -= 1;
-    } else if (user.credits.proMax > 0) {
-      user.credits.proMax -= 1;
-    } else {
-      return res.status(402).json({
-        error: 'No credits remaining to generate this report. Please buy credits or subscribe.',
-        credits: user.credits
-      });
-    }
-    
-    user.markModified('credits');
-    await user.save();
   }
 
   const geminiKey = process.env.GEMINI_API_KEY || process.env.Gemini_Api_key;
   if (!geminiKey) {
-    return res.status(500).json({ error: 'Gemini API Key is not configured on the server.' });
+    const fallbackReport = generateFallbackCompareReport(baseline, recommended);
+    return res.json({
+      report: fallbackReport,
+      updatedCredits: user ? user.credits : null
+    });
   }
 
   const prompt = `You are an expert AI subscription auditor and spend optimizer. 
@@ -1958,8 +1632,8 @@ Baseline Model:
 - Name: ${baseline.name}
 - Creator: ${baseline.creator || baseline.developer || 'Unknown'}
 - Model ID: ${baseline.modelId || 'Unknown'}
-- Cost per 1M Input Tokens: $${baseline.cost_per_m_input ?? baseline.pricing?.price_1m_input_tokens ?? 0}
-- Cost per 1M Output Tokens: $${baseline.cost_per_m_output ?? baseline.pricing?.price_1m_output_tokens ?? 0}
+- Cost per 1M Input Tokens: ${baseline.cost_per_m_input ?? baseline.pricing?.price_1m_input_tokens ?? 0}
+- Cost per 1M Output Tokens: ${baseline.cost_per_m_output ?? baseline.pricing?.price_1m_output_tokens ?? 0}
 - Tokens Per Second (Speed): ${baseline.tokens_per_second ?? baseline.throughput ?? 'N/A'}
 - Coding Index: ${baseline.coding_index ?? 'N/A'}
 - Intelligence Index: ${baseline.intelligence_index ?? 'N/A'}
@@ -1969,8 +1643,8 @@ Recommended Model:
 - Name: ${recommended.name}
 - Creator: ${recommended.creator || recommended.developer || 'Unknown'}
 - Model ID: ${recommended.modelId || 'Unknown'}
-- Cost per 1M Input Tokens: $${recommended.cost_per_m_input ?? recommended.pricing?.price_1m_input_tokens ?? 0}
-- Cost per 1M Output Tokens: $${recommended.cost_per_m_output ?? recommended.pricing?.price_1m_output_tokens ?? 0}
+- Cost per 1M Input Tokens: ${recommended.cost_per_m_input ?? recommended.pricing?.price_1m_input_tokens ?? 0}
+- Cost per 1M Output Tokens: ${recommended.cost_per_m_output ?? recommended.pricing?.price_1m_output_tokens ?? 0}
 - Tokens Per Second (Speed): ${recommended.tokens_per_second ?? recommended.throughput ?? 'N/A'}
 - Coding Index: ${recommended.coding_index ?? 'N/A'}
 - Intelligence Index: ${recommended.intelligence_index ?? 'N/A'}
@@ -1986,10 +1660,10 @@ Return ONLY a valid JSON object matching the following structure (no markdown wr
   "architectural_insight": {
     "title": "🧠 Architectural Spend Decision Insight",
     "paragraphs": [
-      "A detailed paragraph explaining why switching from the baseline model to the recommended model makes architectural and financial sense...",
-      "Another paragraph detailing the quality analysis and comparing capabilities..."
+      "A detailed paragraph explaining why switching makes architectural and financial sense...",
+      "Another paragraph detailing quality analysis..."
     ],
-    "quality_analysis_box": "Quality Analysis: The recommended alternative retains approximately X% of the baseline capability score while running on a more efficient inference infrastructure."
+    "quality_analysis_box": "Quality Analysis: The recommended alternative retains approximately X% of baseline capability while running on an optimized inference route."
   },
   "route_migration_checklist": {
     "title": "🚀 Route Migration Checklist",
@@ -2007,7 +1681,7 @@ Return ONLY a valid JSON object matching the following structure (no markdown wr
         "detail": "Implement retry routers to fall back to Baseline Model Name if rate limits are exceeded."
       }
     ],
-    "migration_script": "The custom migration script or command sequence..."
+    "migration_script": "The custom migration script..."
   }
 }`;
 
@@ -2015,34 +1689,62 @@ Return ONLY a valid JSON object matching the following structure (no markdown wr
     const response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
       contents: [
         {
-          parts: [
-            {
-              text: prompt
-            }
-          ]
+          parts: [{ text: prompt }]
         }
       ],
       generationConfig: {
         responseMimeType: "application/json"
       }
-    });
+    }, { timeout: 15000 });
 
     const text = response.data?.candidates?.[0]?.content?.parts?.[0]?.text;
     if (!text) {
-      return res.status(500).json({ error: 'Received empty response from Gemini API' });
+      throw new Error('Received empty response from Gemini API');
     }
 
     const report = JSON.parse(text.trim());
     res.json({
       report,
-      updatedCredits: req.user ? user.credits : null
+      updatedCredits: req.user ? user?.credits : null
     });
   } catch (error) {
-    console.error('Error generating Gemini report:', error.response ? error.response.data : error.message);
-    res.status(500).json({ 
-      error: 'Failed to generate comparison report with Gemini', 
-      details: error.response ? error.response.data : error.message 
+    console.warn('Gemini report generation warning, using fallback algorithm:', error.message);
+    const fallbackReport = generateFallbackCompareReport(baseline, recommended);
+    res.json({
+      report: fallbackReport,
+      updatedCredits: req.user ? user?.credits : null
     });
+  }
+});
+
+// Route: Cron synchronization endpoint
+const handleCronSync = async (req, res) => {
+  try {
+    const cronSecret = process.env.CRON_SECRET || process.env.ADMIN_SECRET;
+    const providedSecret = req.query.secret || req.headers['x-cron-secret'];
+    if (cronSecret && providedSecret !== cronSecret) {
+      return res.status(401).json({ error: 'Unauthorized: Invalid cron secret.' });
+    }
+
+    console.log('🔄 Triggering automated ranking sync via /cron/sync...');
+    const result = await runDailyRankingPipeline();
+    res.json({ success: true, result });
+  } catch (err) {
+    console.error('Cron sync error:', err);
+    res.status(500).json({ error: 'Cron sync failed', details: err.message });
+  }
+};
+router.get('/cron/sync', handleCronSync);
+router.post('/cron/sync', handleCronSync);
+
+// Route: Sync subscription tiers dynamically
+router.post('/subscription-tiers/sync', async (req, res) => {
+  try {
+    const tiers = await syncSubscriptionTiers();
+    res.json({ success: true, count: (tiers || []).length });
+  } catch (err) {
+    console.error('Subscription tiers sync failed:', err);
+    res.status(500).json({ error: 'Sync failed', details: err.message });
   }
 });
 

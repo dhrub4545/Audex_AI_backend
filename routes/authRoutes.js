@@ -6,6 +6,7 @@ const User = require('../models/User');
 const Audit = require('../models/Audit');
 const { auth } = require('../middleware/auth');
 const axios = require('axios');
+const { PRODUCTS } = require('../config/products');
 
 const getJwtSecret = () => {
   const secret = process.env.JWT_SECRET;
@@ -58,14 +59,23 @@ router.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    // Default user is granted full enterprise privileges with payment bypassed
     const newUser = new User({
       name: name.trim(),
       email: normalizedEmail,
       password: hashedPassword,
-      credits: { starter: 1, pro: 0, proMax: 0 }
+      credits: { starter: 999, pro: 999, proMax: 999 },
+      plan: 'enterprise',
+      subscription: {
+        plan: 'enterprise',
+        status: 'active',
+        startedAt: new Date(),
+        expiresAt: null,
+        paymentMethod: 'Free Enterprise Access'
+      }
     });
     await newUser.save();
-    console.log('Saved user in MongoDB:', newUser._id);
+    console.log('Saved user in MongoDB with Enterprise access:', newUser._id);
 
     // Generate token and return success details
     const token = generateToken(newUser._id, newUser.email);
@@ -76,7 +86,7 @@ router.post('/register', async (req, res) => {
         name: newUser.name,
         email: newUser.email,
         credits: newUser.credits,
-        plan: newUser.plan || 'free',
+        plan: 'enterprise',
         subscription: newUser.subscription,
         unlockedAudits: newUser.unlockedAudits || []
       }
@@ -84,7 +94,7 @@ router.post('/register', async (req, res) => {
 
   } catch (error) {
     console.error('Registration error:', error);
-    res.status(500).json({ error: 'Internal Server Error during registration.', details: error.message });
+    res.status(500).json({ error: 'Internal Server Error during registration.' });
   }
 });
 
@@ -110,6 +120,22 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ error: 'Invalid email or password.' });
     }
 
+    // Ensure user has enterprise plan & generous credits
+    if (user.plan !== 'enterprise' || !user.subscription || user.subscription.status !== 'active') {
+      user.plan = 'enterprise';
+      user.subscription = {
+        plan: 'enterprise',
+        status: 'active',
+        startedAt: user.createdAt || new Date(),
+        expiresAt: null,
+        paymentMethod: 'Free Enterprise Access'
+      };
+      if (!user.credits || user.credits.starter < 10) {
+        user.credits = { starter: 999, pro: 999, proMax: 999 };
+      }
+      await user.save();
+    }
+
     // Generate token
     const token = generateToken(user._id, user.email);
     res.json({
@@ -118,8 +144,8 @@ router.post('/login', async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        credits: user.credits || { starter: 0, pro: 0, proMax: 0 },
-        plan: user.plan || 'free',
+        credits: user.credits || { starter: 999, pro: 999, proMax: 999 },
+        plan: 'enterprise',
         subscription: user.subscription,
         unlockedAudits: user.unlockedAudits || []
       }
@@ -127,7 +153,7 @@ router.post('/login', async (req, res) => {
 
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ error: 'Internal Server Error during login.', details: error.message });
+    res.status(500).json({ error: 'Internal Server Error during login.' });
   }
 });
 
@@ -139,38 +165,25 @@ router.get('/me', auth, async (req, res) => {
       return res.status(404).json({ error: 'User not found.' });
     }
 
-    const { PRODUCTS } = require('../config/products');
+    const productConfig = PRODUCTS.enterprise || PRODUCTS.free;
 
-    let isSubscriptionExpired = false;
-    if (user.subscription && user.subscription.expiresAt) {
-      isSubscriptionExpired = new Date(user.subscription.expiresAt) < new Date();
-    }
-
-    const plan = (user.plan || 'free').toLowerCase();
-    const effectivePlan = isSubscriptionExpired ? 'free' : plan;
-
-    const productConfig = PRODUCTS[effectivePlan] || PRODUCTS.free;
-
-    const subscriptionObj = user.subscription || {
-      plan: effectivePlan,
-      status: effectivePlan !== 'free' ? 'active' : 'none',
+    const subscriptionObj = {
+      plan: 'enterprise',
+      status: 'active',
       startedAt: user.createdAt || new Date(),
-      expiresAt: null
+      expiresAt: null,
+      paymentMethod: 'Free Enterprise Access'
     };
-
-    if (!subscriptionObj.status || subscriptionObj.status === 'none') {
-      subscriptionObj.status = effectivePlan !== 'free' ? (isSubscriptionExpired ? 'expired' : 'active') : 'none';
-    }
 
     const userObj = {
       id: user._id,
       name: user.name,
       email: user.email,
-      credits: user.credits || { starter: 0, pro: 0, proMax: 0 },
-      plan: effectivePlan,
-      rawPlan: user.plan,
+      credits: user.credits || { starter: 999, pro: 999, proMax: 999 },
+      plan: 'enterprise',
+      rawPlan: 'enterprise',
       subscription: subscriptionObj,
-      isSubscriptionExpired,
+      isSubscriptionExpired: false,
       unlockedAudits: user.unlockedAudits || []
     };
 
@@ -186,35 +199,21 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
-// Route: Purchase credits (POST /purchase)
+// Route: Purchase credits (POST /purchase) - Payment bypassed
 router.post('/purchase', auth, async (req, res) => {
   try {
     const { creditType, amount } = req.body;
-    if (!creditType || !amount || amount <= 0) {
-      return res.status(400).json({ error: 'Invalid purchase details.' });
-    }
-    if (!['starter', 'pro', 'proMax'].includes(creditType)) {
-      return res.status(400).json({ error: 'Invalid credit type.' });
-    }
-
-    const adminSecret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
-    const providedSecret = req.headers['x-admin-secret'] || req.query.adminSecret;
-
-    if (!adminSecret || providedSecret !== adminSecret) {
-      return res.status(402).json({
-        error: 'Credit purchases require a verified payment transaction. Please use /api/payment/create-upi-order to buy credits.',
-        paymentRequired: true
-      });
-    }
-
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ error: 'User not found.' });
-    if (!user.credits) user.credits = { starter: 0, pro: 0, proMax: 0 };
-    user.credits[creditType] = (user.credits[creditType] || 0) + amount;
+
+    if (!user.credits) user.credits = { starter: 999, pro: 999, proMax: 999 };
+    const validKey = ['starter', 'pro', 'proMax'].includes(creditType) ? creditType : 'pro';
+    const addAmt = Number.isInteger(amount) && amount > 0 ? amount : 50;
+    user.credits[validKey] = (user.credits[validKey] || 0) + addAmt;
     await user.save();
 
     res.json({
-      message: 'Purchase successful (Admin verified).',
+      message: 'Credits added successfully (Free Access Mode).',
       credits: user.credits
     });
   } catch (error) {
@@ -223,49 +222,30 @@ router.post('/purchase', auth, async (req, res) => {
   }
 });
 
-// Route: Subscribe to a plan (POST /subscribe)
+// Route: Subscribe to a plan (POST /subscribe) - Payment bypassed
 router.post('/subscribe', auth, async (req, res) => {
   try {
-    const { plan } = req.body;
-    if (!plan || !['free', 'pro', 'enterprise'].includes(plan)) {
-      return res.status(400).json({ error: 'Invalid plan selection.' });
-    }
-
+    const { plan = 'enterprise' } = req.body;
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ error: 'User not found.' });
 
-    // Switching to free is always allowed
-    if (plan === 'free') {
-      user.plan = 'free';
-      if (user.subscription) {
-        user.subscription.status = 'none';
-      }
-      await user.save();
-      return res.json({
-        message: 'Switched to free plan.',
-        plan: user.plan,
-        unlockedAudits: user.unlockedAudits || [],
-        credits: user.credits
-      });
+    user.plan = plan || 'enterprise';
+    user.subscription = {
+      plan: user.plan,
+      status: 'active',
+      startedAt: user.subscription?.startedAt || new Date(),
+      expiresAt: null,
+      paymentMethod: 'Free Enterprise Access'
+    };
+    if (!user.credits) {
+      user.credits = { starter: 999, pro: 999, proMax: 999 };
     }
-
-    // Upgrading to paid tiers requires payment or admin verification
-    const adminSecret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
-    const providedSecret = req.headers['x-admin-secret'] || req.query.adminSecret;
-
-    if (!adminSecret || providedSecret !== adminSecret) {
-      return res.status(402).json({
-        error: `Upgrading to ${plan.toUpperCase()} requires an active verified payment. Please initiate payment via /api/payment/create-upi-order.`,
-        paymentRequired: true
-      });
-    }
-
-    user.plan = plan;
     await user.save();
 
     res.json({
-      message: `Successfully updated to ${plan} plan (Admin verified).`,
+      message: `Successfully switched to ${user.plan} plan (All features unlocked).`,
       plan: user.plan,
+      subscription: user.subscription,
       unlockedAudits: user.unlockedAudits || [],
       credits: user.credits
     });
@@ -275,7 +255,7 @@ router.post('/subscribe', auth, async (req, res) => {
   }
 });
 
-// Route: Unlock a specific audit report (POST /unlock-audit)
+// Route: Unlock a specific audit report (POST /unlock-audit) - Always allowed
 router.post('/unlock-audit', auth, async (req, res) => {
   try {
     const { auditId } = req.body;
@@ -291,19 +271,6 @@ router.post('/unlock-audit', auth, async (req, res) => {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ error: 'User not found.' });
 
-    // Allow unlock if user is Enterprise or report has <= 2 tools or with admin secret
-    const numTools = new Set((audit.allocations || []).map(a => a.toolName)).size;
-    const adminSecret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
-    const providedSecret = req.headers['x-admin-secret'] || req.query.adminSecret;
-    const isFreeEligible = numTools <= 2 || user.plan === 'enterprise' || (adminSecret && providedSecret === adminSecret);
-
-    if (!isFreeEligible) {
-      return res.status(402).json({
-        error: 'Unlocking this report requires a Single Report Unlock payment. Please initiate via /api/payment/create-upi-order.',
-        paymentRequired: true
-      });
-    }
-
     if (!user.unlockedAudits) {
       user.unlockedAudits = [];
     }
@@ -318,9 +285,9 @@ router.post('/unlock-audit', auth, async (req, res) => {
 
     res.json({
       message: 'Audit report unlocked successfully.',
-      plan: user.plan,
+      plan: user.plan || 'enterprise',
       unlockedAudits: user.unlockedAudits,
-      credits: user.credits
+      credits: user.credits || { starter: 999, pro: 999, proMax: 999 }
     });
   } catch (error) {
     console.error('Unlock audit error:', error);
@@ -338,28 +305,35 @@ const getOAuthRedirectUri = (req, explicitUri, defaultPath) => {
   return `${protocol}://${host}${defaultPath}`;
 };
 
-// Helper to resolve Frontend URL for OAuth browser callback
+// Helper to get sanitized frontend callback URL
 const getFrontendCallbackUrl = (req) => {
-  if (process.env.FRONTEND_URL && process.env.FRONTEND_URL.trim() !== '') {
-    return process.env.FRONTEND_URL.trim().replace(/\/+$/, '');
+  let frontendUrl = process.env.FRONTEND_URL?.trim();
+  if (!frontendUrl) {
+    const origin = req.headers['origin'] || req.headers['referer'];
+    if (origin) {
+      try {
+        const parsed = new URL(origin);
+        frontendUrl = `${parsed.protocol}//${parsed.host}`;
+      } catch (_) {
+        frontendUrl = 'http://localhost:5173';
+      }
+    } else {
+      frontendUrl = 'http://localhost:5173';
+    }
   }
-  const host = req.headers['x-forwarded-host'] || req.get('host') || '';
-  if (host.includes('localhost') || host.includes('127.0.0.1')) {
-    return 'http://localhost:5173';
-  }
-  return 'https://www.audexai.in';
+  return frontendUrl.replace(/\/+$/, '');
 };
 
 // Route: Initiate Google OAuth (GET /google)
 router.get('/google', (req, res) => {
   const googleClientId = process.env.GOOGLE_CLIENT_ID;
   const redirectUri = getOAuthRedirectUri(req, process.env.GOOGLE_REDIRECT_URI, '/api/auth/google/callback');
-  
+
   if (!googleClientId) {
     return res.status(500).json({ error: 'Google OAuth is not configured on the server. Missing GOOGLE_CLIENT_ID.' });
   }
 
-  const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${encodeURIComponent(googleClientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=openid%20email%20profile&prompt=select_account`;
+  const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${encodeURIComponent(googleClientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=openid%20email%20profile&access_type=offline&prompt=consent`;
   res.redirect(authUrl);
 });
 
@@ -402,7 +376,7 @@ router.get('/google/callback', async (req, res) => {
       }
     });
 
-    const { sub, email, name, picture } = userResponse.data;
+    const { sub, email, name } = userResponse.data;
 
     if (!email) {
       return res.redirect(`${frontendUrl}/?google_error=${encodeURIComponent('Google did not return a verified email address.')}&view=signin`);
@@ -414,30 +388,48 @@ router.get('/google/callback', async (req, res) => {
     let user = await User.findOne({ googleId: sub });
     
     if (!user) {
-      // Check if user exists by email (local signup previously)
       user = await User.findOne({ email: normalizedEmail });
       if (user) {
-        // Link Google ID to existing account
         user.googleId = sub;
+        user.plan = 'enterprise';
         await user.save();
       } else {
-        // Create new account (Google signup)
         user = new User({
           name: name || 'Google User',
           email: normalizedEmail,
           googleId: sub,
-          credits: { starter: 1, pro: 0, proMax: 0 } // Give starter credits
+          plan: 'enterprise',
+          credits: { starter: 999, pro: 999, proMax: 999 },
+          subscription: {
+            plan: 'enterprise',
+            status: 'active',
+            startedAt: new Date(),
+            expiresAt: null,
+            paymentMethod: 'Free Enterprise Access'
+          }
         });
         await user.save();
         console.log('Created new user via Google OAuth:', user._id);
       }
+    } else {
+      user.plan = 'enterprise';
+      if (!user.subscription || user.subscription.status !== 'active') {
+        user.subscription = {
+          plan: 'enterprise',
+          status: 'active',
+          startedAt: user.createdAt || new Date(),
+          expiresAt: null,
+          paymentMethod: 'Free Enterprise Access'
+        };
+      }
+      await user.save();
     }
 
     // 4. Generate local application JWT token
     const token = generateToken(user._id, user.email);
 
-    // 5. Redirect browser back to the frontend with query parameters
-    const redirectUrl = `${frontendUrl}/?google_token=${token}&google_user_id=${user._id}&google_user_name=${encodeURIComponent(user.name)}&google_user_email=${encodeURIComponent(user.email)}&google_user_plan=${user.plan || 'free'}&google_user_unlocked_audits=${(user.unlockedAudits || []).map(id => id.toString()).join(',')}`;
+    // 5. Redirect browser back to frontend with session parameters
+    const redirectUrl = `${frontendUrl}/?google_token=${token}&google_user_id=${user._id}&google_user_name=${encodeURIComponent(user.name)}&google_user_email=${encodeURIComponent(user.email)}&google_user_plan=enterprise&google_user_unlocked_audits=${(user.unlockedAudits || []).map(id => id.toString()).join(',')}`;
     res.redirect(redirectUrl);
 
   } catch (error) {
@@ -510,7 +502,7 @@ router.get('/github/callback', async (req, res) => {
     const githubId = String(githubProfile.id);
     let email = githubProfile.email;
 
-    // 3. Fetch user emails if primary email is private / null in profile
+    // 3. Fetch user emails if primary email is private
     if (!email) {
       try {
         const emailsResponse = await axios.get('https://api.github.com/user/emails', {
@@ -541,30 +533,48 @@ router.get('/github/callback', async (req, res) => {
     let user = await User.findOne({ githubId });
 
     if (!user) {
-      // Check if user exists by email (local signup previously)
       user = await User.findOne({ email: normalizedEmail });
       if (user) {
-        // Link GitHub ID to existing account
         user.githubId = githubId;
+        user.plan = 'enterprise';
         await user.save();
       } else {
-        // Create new account (GitHub signup)
         user = new User({
           name: githubProfile.name || githubProfile.login || 'GitHub User',
           email: normalizedEmail,
           githubId,
-          credits: { starter: 1, pro: 0, proMax: 0 } // Give starter credits
+          plan: 'enterprise',
+          credits: { starter: 999, pro: 999, proMax: 999 },
+          subscription: {
+            plan: 'enterprise',
+            status: 'active',
+            startedAt: new Date(),
+            expiresAt: null,
+            paymentMethod: 'Free Enterprise Access'
+          }
         });
         await user.save();
         console.log('Created new user via GitHub OAuth:', user._id);
       }
+    } else {
+      user.plan = 'enterprise';
+      if (!user.subscription || user.subscription.status !== 'active') {
+        user.subscription = {
+          plan: 'enterprise',
+          status: 'active',
+          startedAt: user.createdAt || new Date(),
+          expiresAt: null,
+          paymentMethod: 'Free Enterprise Access'
+        };
+      }
+      await user.save();
     }
 
     // 5. Generate local JWT token
     const token = generateToken(user._id, user.email);
 
     // 6. Redirect back to frontend with session query parameters
-    const redirectUrl = `${frontendUrl}/?github_token=${token}&github_user_id=${user._id}&github_user_name=${encodeURIComponent(user.name)}&github_user_email=${encodeURIComponent(user.email)}&github_user_plan=${user.plan || 'free'}&github_user_unlocked_audits=${(user.unlockedAudits || []).map(id => id.toString()).join(',')}`;
+    const redirectUrl = `${frontendUrl}/?github_token=${token}&github_user_id=${user._id}&github_user_name=${encodeURIComponent(user.name)}&github_user_email=${encodeURIComponent(user.email)}&github_user_plan=enterprise&github_user_unlocked_audits=${(user.unlockedAudits || []).map(id => id.toString()).join(',')}`;
     res.redirect(redirectUrl);
 
   } catch (error) {
@@ -576,7 +586,6 @@ router.get('/github/callback', async (req, res) => {
 
 // Route: Get public catalog of subscription tiers and feature matrix (GET /entitlements)
 router.get('/entitlements', (req, res) => {
-  const { PRODUCTS } = require('../config/products');
   res.json({
     tiers: PRODUCTS
   });
