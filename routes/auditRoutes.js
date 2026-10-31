@@ -198,33 +198,37 @@ function getCategoryRankData(purpose) {
     return rankCategoryMemoryCache.get(normPurpose);
   }
   const filename = getRankFileName(purpose);
+  const catKey = filename.replace('.json', '');
+
+  // 1. Check raw_data.json categories first (fully synchronized with Market Intel)
+  try {
+    const rawPath = path.join(__dirname, '../data/raw_data.json');
+    if (fs.existsSync(rawPath)) {
+      const raw = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
+      if (raw.categories && Array.isArray(raw.categories[catKey]) && raw.categories[catKey].length > 0) {
+        rankCategoryMemoryCache.set(normPurpose, raw.categories[catKey]);
+        return raw.categories[catKey];
+      }
+      if (raw.categories && Array.isArray(raw.categories['overall']) && raw.categories['overall'].length > 0) {
+        rankCategoryMemoryCache.set(normPurpose, raw.categories['overall']);
+        return raw.categories['overall'];
+      }
+    }
+  } catch (_) {}
+
+  // 2. Fallback to rank file
   const filePath = path.join(__dirname, '../data/rank', filename);
   if (fs.existsSync(filePath)) {
     try {
       const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
       if (Array.isArray(data) && data.length > 0) {
         rankCategoryMemoryCache.set(normPurpose, data);
+        return data;
       }
-      return data;
     } catch (e) {
       console.error(`Error reading rank file ${filename}:`, e);
     }
   }
-
-  // Fallback to raw_data.json categories
-  try {
-    const rawPath = path.join(__dirname, '../data/raw_data.json');
-    if (fs.existsSync(rawPath)) {
-      const raw = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
-      const catKey = filename.replace('.json', '');
-      if (raw.categories && Array.isArray(raw.categories[catKey])) {
-        return raw.categories[catKey];
-      }
-      if (raw.categories && Array.isArray(raw.categories['overall'])) {
-        return raw.categories['overall'];
-      }
-    }
-  } catch (_) {}
 
   return [];
 }
@@ -265,25 +269,34 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
   return 0;
 }
 
-function findRankEntry(rankData, baselineSlug) {
-  if (!baselineSlug || !rankData || rankData.length === 0) return null;
-  const clean = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+function findRankEntry(rankData, baselineSlug, baselineModelId) {
+  if (!rankData || rankData.length === 0) return null;
+  const clean = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   const targetClean = clean(baselineSlug);
+  const modelIdClean = clean(baselineModelId);
 
-  // 1. Try exact match
-  let match = rankData.find(item => item.slug === baselineSlug);
-  if (match) return match;
+  // 1. Try exact modelId match if item has modelId
+  if (baselineModelId) {
+    let match = rankData.find(item => item.modelId && (item.modelId.toLowerCase() === baselineModelId.toLowerCase() || clean(item.modelId) === modelIdClean));
+    if (match) return match;
+  }
 
-  // 2. Try exact clean match
-  match = rankData.find(item => clean(item.slug || '') === targetClean);
-  if (match) return match;
+  // 2. Try exact match by slug
+  if (baselineSlug) {
+    let match = rankData.find(item => item.slug === baselineSlug);
+    if (match) return match;
 
-  // 3. Try clean substring match
-  match = rankData.find(item => {
-    const itemClean = clean(item.slug || '');
-    return itemClean.includes(targetClean) || targetClean.includes(itemClean);
-  });
-  if (match) return match;
+    // 3. Try exact clean match
+    match = rankData.find(item => clean(item.slug || '') === targetClean);
+    if (match) return match;
+
+    // 4. Try clean substring match
+    match = rankData.find(item => {
+      const itemClean = clean(item.slug || '');
+      return (itemClean && targetClean) && (itemClean.includes(targetClean) || targetClean.includes(itemClean));
+    });
+    if (match) return match;
+  }
 
   return null;
 }
@@ -1258,7 +1271,7 @@ router.post('/audit-recommendation', async (req, res) => {
     const rankData = getCategoryRankData(targetUseCase);
     
     const currentSlug = currentModel._id.split('/')[1] || '';
-    const currentRankEntry = findRankEntry(rankData, currentSlug);
+    const currentRankEntry = findRankEntry(rankData, currentSlug, currentModel._id);
     const currentRank = currentRankEntry ? (parseInt(currentRankEntry.rank) || 999) : 999;
     const currentScore = currentRankEntry ? getEvaluationScore(currentRankEntry, targetUseCase, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || 0);
     const currentCost = calculateModelCost(currentModel, monthlyTokens, inputRatio);
@@ -1268,15 +1281,21 @@ router.post('/audit-recommendation', async (req, res) => {
     let alternatives = [];
     if (rankData.length > 0) {
       for (const item of rankData) {
-        if (!item.slug) continue;
+        if (!item.slug && !item.modelId) continue;
         
-        const itemClean = cleanSlug(item.slug);
-        let dbModel = allModels.find(m => cleanSlug(m._id.split('/')[1] || '') === itemClean);
-        if (!dbModel) {
-          dbModel = allModels.find(m => {
-            const mClean = cleanSlug(m._id.split('/')[1] || '');
-            return mClean.includes(itemClean) || itemClean.includes(mClean);
-          });
+        let dbModel = null;
+        if (item.modelId) {
+          dbModel = allModels.find(m => m._id === item.modelId || m._id.toLowerCase() === item.modelId.toLowerCase());
+        }
+        if (!dbModel && item.slug) {
+          const itemClean = cleanSlug(item.slug);
+          dbModel = allModels.find(m => cleanSlug(m._id.split('/')[1] || '') === itemClean);
+          if (!dbModel) {
+            dbModel = allModels.find(m => {
+              const mClean = cleanSlug(m._id.split('/')[1] || '');
+              return mClean.includes(itemClean) || itemClean.includes(mClean);
+            });
+          }
         }
         
         if (dbModel && dbModel.endpoints && dbModel.endpoints.length > 0) {
@@ -1353,8 +1372,9 @@ router.post('/audit-recommendation', async (req, res) => {
       filteredAlternatives.forEach(alt => {
         const perfRatio = currentScore > 0 ? (alt.performance_score / currentScore) : 1;
         const savingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        // Balance performance preservation (70% weight) and cost efficiency (30% weight)
-        alt.recommendation_score = (perfRatio * 70) + (savingsRatio * 30);
+        const rankBonus = alt.category_rank && alt.category_rank <= 100 ? (100 - alt.category_rank) * 0.15 : 0;
+        // Balance performance preservation (60% weight), cost efficiency (30% weight), and rank bonus (10% weight)
+        alt.recommendation_score = (perfRatio * 60) + (savingsRatio * 30) + rankBonus;
       });
     } else if (optimizationGoal === 'cost') {
       // Mode 2: Target Cost Reduction (Satisfies cost demand, best rank/performance recommended)
@@ -1366,7 +1386,8 @@ router.post('/audit-recommendation', async (req, res) => {
       filteredAlternatives.forEach(alt => {
         const perfScore = alt.performance_score || 0;
         const costSavingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        alt.recommendation_score = perfScore + (costSavingsRatio * 20);
+        const rankBonus = alt.category_rank && alt.category_rank <= 100 ? (100 - alt.category_rank) * 0.2 : 0;
+        alt.recommendation_score = perfScore + (costSavingsRatio * 20) + rankBonus;
       });
     } else if (optimizationGoal === 'quality') {
       // Mode 3: Quality Focus (Top ranked models recommended)
@@ -1374,7 +1395,8 @@ router.post('/audit-recommendation', async (req, res) => {
       filteredAlternatives.forEach(alt => {
         const perfScore = alt.performance_score || 0;
         const costSavingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        alt.recommendation_score = (perfScore * 2) + Math.max(-50, costSavingsRatio * 20);
+        const rankBonus = alt.category_rank && alt.category_rank <= 100 ? (100 - alt.category_rank) * 0.5 : 0;
+        alt.recommendation_score = (perfScore * 2) + Math.max(-50, costSavingsRatio * 20) + rankBonus;
       });
     } else {
       // Fallback: Mode 1 (Performance Preservation)
@@ -1391,7 +1413,8 @@ router.post('/audit-recommendation', async (req, res) => {
       filteredAlternatives.forEach(alt => {
         const perfRatio = currentScore > 0 ? (alt.performance_score / currentScore) : 1;
         const savingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        alt.recommendation_score = (perfRatio * 70) + (savingsRatio * 30);
+        const rankBonus = alt.category_rank && alt.category_rank <= 100 ? (100 - alt.category_rank) * 0.15 : 0;
+        alt.recommendation_score = (perfRatio * 60) + (savingsRatio * 30) + rankBonus;
       });
     }
 
