@@ -31,7 +31,9 @@ const OptionSchema = new mongoose.Schema({
   inputCostPerM: { type: Number },
   outputCostPerM: { type: Number },
   defaultInputTokens: { type: Number },
-  defaultOutputTokens: { type: Number }
+  defaultOutputTokens: { type: Number },
+  performance_score: { type: Number },
+  category_rank: { type: Number }
 });
 
 const RecommendationSchema = new mongoose.Schema({

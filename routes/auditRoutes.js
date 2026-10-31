@@ -234,39 +234,49 @@ function getCategoryRankData(purpose) {
 }
 
 function getEvaluationScore(item, purpose, dbModel, capabilityField) {
-  const p = purpose ? purpose.toLowerCase() : 'mixed';
+  if (!item && !dbModel) return 50;
+
   const evals = item?.evaluations || {};
-  let val = null;
+  const p = purpose ? purpose.toLowerCase() : 'mixed';
 
-  // 1. Try category-specific evaluations first for high-fidelity scores
-  if (p === 'coding') {
-    val = evals.artificial_analysis_coding_index;
-  } else if (p === 'math') {
-    val = evals.artificial_analysis_math_index;
-  } else if (p === 'writing' || p === 'research') {
-    val = evals.gpqa !== undefined ? evals.gpqa * 100 : (evals.hle !== undefined ? evals.hle * 100 : null);
+  // 1. Direct verified category benchmark (0-100) if available
+  if (p === 'coding' && typeof evals.artificial_analysis_coding_index === 'number' && evals.artificial_analysis_coding_index > 0) {
+    return Math.min(100, Math.round(evals.artificial_analysis_coding_index));
   }
-  
-  if (val === undefined || val === null) {
-    val = evals.artificial_analysis_intelligence_index;
-  }
-  
-  if (val !== undefined && val !== null && !isNaN(val)) {
-    return Math.min(100, Math.round(val));
+  if (p === 'math' && typeof evals.artificial_analysis_math_index === 'number' && evals.artificial_analysis_math_index > 0) {
+    return Math.min(100, Math.round(evals.artificial_analysis_math_index));
   }
 
-  // 2. If no category-specific evaluations, check Mongoose database capabilities score (synced from overall.json or other files)
+  // 2. High-precision rank-based capability scoring derived from live Artificial Analysis Category Rankings
+  if (item && typeof item.rank === 'number' && item.rank > 0) {
+    const rank = item.rank;
+    let score;
+    if (rank === 1) score = 99;
+    else if (rank <= 3) score = 98;
+    else if (rank <= 5) score = 97;
+    else if (rank <= 10) score = 95 - (rank - 6);
+    else if (rank <= 25) score = 90 - Math.round(((rank - 11) / 14) * 5); // 90 to 85
+    else if (rank <= 50) score = 84 - Math.round(((rank - 26) / 24) * 4); // 84 to 80
+    else if (rank <= 100) score = 79 - Math.round(((rank - 51) / 49) * 9); // 79 to 70
+    else if (rank <= 250) score = 69 - Math.round(((rank - 101) / 149) * 9); // 69 to 60
+    else if (rank <= 500) score = 59 - Math.round(((rank - 251) / 249) * 9); // 59 to 50
+    else score = Math.max(25, 49 - Math.round(((rank - 501) / 218) * 24)); // 49 to 25
+
+    return score;
+  }
+
+  // 3. Fallback to database capability score
   const dbScore = dbModel?.capabilities?.[capabilityField];
-  if (dbScore !== undefined && dbScore !== null && dbScore > 0) {
-    return dbScore;
+  if (typeof dbScore === 'number' && dbScore > 0) {
+    return Math.min(100, Math.round(dbScore));
   }
 
-  // 3. Fallback to final_score if available
-  if (item && item.final_score !== undefined && item.final_score !== null) {
+  // 4. Fallback to final_score if available
+  if (item && typeof item.final_score === 'number' && item.final_score > 0) {
     return Math.min(100, Math.round(item.final_score));
   }
-  
-  return 0;
+
+  return 50;
 }
 
 function findRankEntry(rankData, baselineSlug, baselineModelId) {
@@ -638,11 +648,10 @@ router.post('/', optionalAuth, async (req, res) => {
             const resolved = resolveBaselineModel(mid, allModels, toolName);
             if (resolved) {
               const currentSlug = resolved._id.split('/')[1] || '';
-              const rankEntry = rankData.find(item => item.slug === currentSlug) ||
-                                rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
+              const rankEntry = findRankEntry(rankData, currentSlug, resolved._id);
               if (rankEntry) {
                 baselineRank = Math.min(baselineRank, rankEntry.rank);
-                computedBaselineScore = Math.max(computedBaselineScore, Math.min(100, Math.round(rankEntry.final_score)));
+                computedBaselineScore = Math.max(computedBaselineScore, getEvaluationScore(rankEntry, purpose, resolved, capabilityField));
               } else {
                 computedBaselineScore = Math.max(computedBaselineScore, resolved.capabilities?.[capabilityField] || 0);
               }
@@ -653,11 +662,10 @@ router.post('/', optionalAuth, async (req, res) => {
         // api
         if (currentModel) {
           const currentSlug = currentModel._id.split('/')[1] || '';
-          const rankEntry = rankData.find(item => item.slug === currentSlug) ||
-                            rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
+          const rankEntry = findRankEntry(rankData, currentSlug, currentModel._id);
           if (rankEntry) {
             baselineRank = rankEntry.rank;
-            computedBaselineScore = Math.min(100, Math.round(rankEntry.final_score));
+            computedBaselineScore = getEvaluationScore(rankEntry, purpose, currentModel, capabilityField);
           } else {
             computedBaselineScore = currentModel.capabilities?.[capabilityField] || 0;
           }
@@ -672,18 +680,27 @@ router.post('/', optionalAuth, async (req, res) => {
       let apiCandidates = [];
       if (rankData.length > 0) {
         for (const item of rankData) {
-          if (!item.slug) continue;
-          let dbModel = allModels.find(m => m._id && m._id.split && m._id.split('/')[1] === item.slug);
-          if (!dbModel) {
-            dbModel = allModels.find(m => m._id && (m._id.toLowerCase().includes(item.slug.toLowerCase()) || item.slug.toLowerCase().includes((m._id.split && m._id.split('/')[1] || '').toLowerCase())));
+          if (!item.slug && !item.modelId) continue;
+          let dbModel = null;
+          if (item.modelId) {
+            dbModel = allModels.find(m => m._id === item.modelId || m._id.toLowerCase() === item.modelId.toLowerCase());
+          }
+          if (!dbModel && item.slug) {
+            dbModel = allModels.find(m => m._id && m._id.split && m._id.split('/')[1] === item.slug);
+            if (!dbModel) {
+              dbModel = allModels.find(m => m._id && (m._id.toLowerCase().includes(item.slug.toLowerCase()) || item.slug.toLowerCase().includes((m._id.split && m._id.split('/')[1] || '').toLowerCase())));
+            }
           }
           if (dbModel && dbModel.endpoints && dbModel.endpoints.length > 0) {
             const ep = dbModel.endpoints[0];
-            if ((ep.input_cost_per_m || 0) === 0 && (ep.output_cost_per_m || 0) === 0) {
+            if ((ep.input_cost_per_m || 0) <= 0 || (ep.output_cost_per_m || 0) <= 0) {
+              continue;
+            }
+            if (apiCandidates.some(c => c._id === dbModel._id)) {
               continue;
             }
             const cost = calculateModelCost(dbModel, totalTokens, inputRatio);
-            const score = Math.min(100, Math.round(item.final_score));
+            const score = getEvaluationScore(item, purpose, dbModel, capabilityField);
             const contextStr = dbModel.context_length ? (dbModel.context_length >= 1000000 ? `${(dbModel.context_length / 1000000).toFixed(0)}M` : `${(dbModel.context_length / 1000).toFixed(0)}K`) : 'N/A';
             const limitsStr = `Pay-as-you-go rates: $${ep.input_cost_per_m.toFixed(2)}/1M input, $${ep.output_cost_per_m.toFixed(2)}/1M output. Context: ${contextStr}.`;
             apiCandidates.push({
@@ -705,7 +722,7 @@ router.post('/', optionalAuth, async (req, res) => {
           .filter(m => {
             if (!m.endpoints || m.endpoints.length === 0) return false;
             const ep = m.endpoints[0];
-            return (ep.input_cost_per_m || 0) > 0 || (ep.output_cost_per_m || 0) > 0;
+            return (ep.input_cost_per_m || 0) > 0 && (ep.output_cost_per_m || 0) > 0;
           })
           .map((m, idx) => {
             const cost = calculateModelCost(m, totalTokens, inputRatio);
@@ -732,22 +749,36 @@ router.post('/', optionalAuth, async (req, res) => {
       let apiStatusText = "";
 
       if (optimizationGoal === 'quality') {
-        if (apiCandidates.length > 0) {
-          apiCandidates.sort((a, b) => a.rank - b.rank);
+        let candidates = apiCandidates.filter(c => !c.isCurrent);
+        if (candidates.length > 0) {
+          candidates.forEach(c => {
+            const rankBonus = c.rank && c.rank <= 100 ? (100 - c.rank) * 1.0 : 0;
+            c.recommendation_score = (c.performance_score * 2) + rankBonus;
+          });
+          candidates.sort((a, b) => b.recommendation_score - a.recommendation_score);
+          selectedApi = candidates[0];
+        } else if (apiCandidates.length > 0) {
           selectedApi = apiCandidates[0];
-          if (selectedApi.isCurrent) {
-            apiStatusText = "Best model API already used.";
-          }
+          apiStatusText = "Best model API already used.";
         }
       } else if (optimizationGoal === 'performance') {
-        let compatible = [];
-        if (baselineRank !== 9999) {
-          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.rank <= baselineRank);
-        } else {
-          compatible = apiCandidates.filter(c => c.monthly_cost < currentCost && c.performance_score >= computedBaselineScore);
-        }
+        const minAcceptableScore = computedBaselineScore > 0 ? (computedBaselineScore * 0.85) : 0;
+        let compatible = apiCandidates.filter(c => {
+          if (c.isCurrent) return false;
+          if (c.monthly_cost >= currentCost) return false;
+          const preservesQuality = c.performance_score >= minAcceptableScore;
+          const isBetterOrEqualRank = baselineRank !== 9999 && c.rank <= baselineRank;
+          return isBetterOrEqualRank || preservesQuality;
+        });
+
         if (compatible.length > 0) {
-          compatible.sort((a, b) => a.rank - b.rank);
+          compatible.forEach(c => {
+            const perfRatio = computedBaselineScore > 0 ? (c.performance_score / computedBaselineScore) : 1;
+            const savingsRatio = currentCost > 0 ? (currentCost - c.monthly_cost) / currentCost : 0;
+            const rankBonus = c.rank && c.rank <= 100 ? (100 - c.rank) * 0.15 : 0;
+            c.recommendation_score = (perfRatio * 60) + (savingsRatio * 30) + rankBonus;
+          });
+          compatible.sort((a, b) => b.recommendation_score - a.recommendation_score);
           selectedApi = compatible[0];
         } else {
           apiCandidates.sort((a, b) => a.rank - b.rank);
@@ -757,9 +788,14 @@ router.post('/', optionalAuth, async (req, res) => {
         }
       } else if (optimizationGoal === 'cost') {
         const maxAllowedCost = currentCost * (1 - costCutPercentage / 100);
-        let compatible = apiCandidates.filter(c => c.monthly_cost <= maxAllowedCost);
+        let compatible = apiCandidates.filter(c => c.monthly_cost <= maxAllowedCost && !c.isCurrent);
         if (compatible.length > 0) {
-          compatible.sort((a, b) => a.rank - b.rank);
+          compatible.forEach(c => {
+            const costSavingsRatio = currentCost > 0 ? (currentCost - c.monthly_cost) / currentCost : 0;
+            const rankBonus = c.rank && c.rank <= 100 ? (100 - c.rank) * 0.2 : 0;
+            c.recommendation_score = (c.performance_score * 1.5) + (costSavingsRatio * 20) + rankBonus;
+          });
+          compatible.sort((a, b) => b.recommendation_score - a.recommendation_score);
           selectedApi = compatible[0];
         }
       }
@@ -929,6 +965,8 @@ router.post('/', optionalAuth, async (req, res) => {
         savings: currentCost - selectedApi.monthly_cost,
         name: selectedApi.name,
         modelId: selectedApi._id,
+        performance_score: selectedApi.performance_score,
+        category_rank: selectedApi.rank,
         action: (type === 'api' && selectedApi.isCurrent)
           ? "Your current model API is already the best choice. Keep using it."
           : `Transition active users to direct API keys using ${selectedApi.name}.`,
@@ -1036,7 +1074,7 @@ router.post('/', optionalAuth, async (req, res) => {
     const primaryUseCase = allocations[0]?.purpose || 'Mixed';
 
     const auditData = {
-      userId: req.user.id,
+      userId: req.user ? req.user.id : null,
       teamSize: totalSeats,
       useCase: primaryUseCase,
       optimizationGoal,
@@ -1350,7 +1388,7 @@ router.post('/audit-recommendation', async (req, res) => {
         });
     }
     
-    alternatives = alternatives.filter(alt => alt.monthly_cost > 0 && alt.cost_per_m_input >= 0 && alt.cost_per_m_output >= 0);
+    alternatives = alternatives.filter(alt => alt.monthly_cost > 0 && alt.cost_per_m_input > 0 && alt.cost_per_m_output > 0);
 
     const qualityThreshold = parseFloat(req.body.qualityThreshold) || 85; // Default to 85% quality retention threshold
     const minAcceptableScore = currentScore > 0 ? (currentScore * (qualityThreshold / 100)) : 0;
@@ -1387,16 +1425,15 @@ router.post('/audit-recommendation', async (req, res) => {
         const perfScore = alt.performance_score || 0;
         const costSavingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
         const rankBonus = alt.category_rank && alt.category_rank <= 100 ? (100 - alt.category_rank) * 0.2 : 0;
-        alt.recommendation_score = perfScore + (costSavingsRatio * 20) + rankBonus;
+        alt.recommendation_score = (perfScore * 1.5) + (costSavingsRatio * 20) + rankBonus;
       });
     } else if (optimizationGoal === 'quality') {
       // Mode 3: Quality Focus (Top ranked models recommended)
       filteredAlternatives = alternatives.filter(alt => alt._id !== currentModel._id);
       filteredAlternatives.forEach(alt => {
         const perfScore = alt.performance_score || 0;
-        const costSavingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        const rankBonus = alt.category_rank && alt.category_rank <= 100 ? (100 - alt.category_rank) * 0.5 : 0;
-        alt.recommendation_score = (perfScore * 2) + Math.max(-50, costSavingsRatio * 20) + rankBonus;
+        const rankBonus = alt.category_rank && alt.category_rank <= 100 ? (100 - alt.category_rank) * 1.0 : 0;
+        alt.recommendation_score = (perfScore * 2) + rankBonus;
       });
     } else {
       // Fallback: Mode 1 (Performance Preservation)
