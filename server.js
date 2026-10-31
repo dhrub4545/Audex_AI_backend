@@ -80,6 +80,30 @@ app.use(express.json({
   }
 }));
 
+// URL recovery middleware for serverless proxy and Vercel rewrites
+app.use((req, res, next) => {
+  // If Vercel rewrote the request to /server.js or /api, restore the original incoming path
+  if (req.url === '/server.js' || req.url.startsWith('/server.js?') || req.url === '/api' || req.url.startsWith('/api?')) {
+    const rawUrl = req.headers['x-forwarded-url'] ||
+                   req.headers['x-matched-path'] ||
+                   req.headers['x-invoke-path'] ||
+                   req.headers['x-original-url'] ||
+                   req.headers['x-rewrite-url'];
+    if (rawUrl && !rawUrl.startsWith('/server.js')) {
+      req.url = rawUrl;
+    } else if (req.headers['x-now-route-matches']) {
+      try {
+        const matches = new URLSearchParams(req.headers['x-now-route-matches']);
+        const captured = matches.get('1');
+        if (captured) {
+          req.url = '/' + captured.replace(/^\/+/, '');
+        }
+      } catch (_) {}
+    }
+  }
+  next();
+});
+
 // Security & Cache-Control headers
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -157,11 +181,18 @@ app.use(async (req, res, next) => {
   }
 });
 
-// Routes with dedicated rate limits
+// Routes with dedicated rate limits (supports both /api/* and /* for reverse proxy/rewrite resilience)
 app.use('/api/auth', authLimiter, authRoutes);
+app.use('/auth', authLimiter, authRoutes);
+
 app.use('/api/audits', auditLimiter, auditRoutes);
+app.use('/audits', auditLimiter, auditRoutes);
+
 app.use('/api/chats', chatLimiter, chatRoutes);
+app.use('/chats', chatLimiter, chatRoutes);
+
 app.use('/api/payment', paymentLimiter, paymentRoutes);
+app.use('/payment', paymentLimiter, paymentRoutes);
 
 app.get('/', (req, res) => {
   const isConnected = mongoose.connection.readyState === 1;

@@ -1,6 +1,9 @@
 {
   "version": 2,
   "functions": {
+    "api/index.js": {
+      "maxDuration": 60
+    },
     "server.js": {
       "maxDuration": 60
     }
@@ -8,7 +11,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/server.js"
+      "destination": "/api"
     }
   ],
   "crons": [
