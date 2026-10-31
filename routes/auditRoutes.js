@@ -1264,14 +1264,19 @@ router.post('/audit-recommendation', async (req, res) => {
     const currentCost = calculateModelCost(currentModel, monthlyTokens, inputRatio);
 
     // 3. Map alternatives
+    const cleanSlug = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     let alternatives = [];
     if (rankData.length > 0) {
       for (const item of rankData) {
         if (!item.slug) continue;
         
-        let dbModel = allModels.find(m => m._id.split('/')[1] === item.slug);
+        const itemClean = cleanSlug(item.slug);
+        let dbModel = allModels.find(m => cleanSlug(m._id.split('/')[1] || '') === itemClean);
         if (!dbModel) {
-          dbModel = allModels.find(m => m._id.toLowerCase().includes(item.slug.toLowerCase()) || item.slug.toLowerCase().includes(m._id.toLowerCase().split('/')[1] || ''));
+          dbModel = allModels.find(m => {
+            const mClean = cleanSlug(m._id.split('/')[1] || '');
+            return mClean.includes(itemClean) || itemClean.includes(mClean);
+          });
         }
         
         if (dbModel && dbModel.endpoints && dbModel.endpoints.length > 0) {
@@ -1328,70 +1333,65 @@ router.post('/audit-recommendation', async (req, res) => {
     
     alternatives = alternatives.filter(alt => alt.monthly_cost > 0 && alt.cost_per_m_input >= 0 && alt.cost_per_m_output >= 0);
 
-    const bestCategoryScore = Math.max(...alternatives.map(alt => alt.performance_score), currentScore) || 100;
-    const qualityThreshold = parseFloat(req.body.qualityThreshold) || 90; // Default to 90% quality threshold
+    const qualityThreshold = parseFloat(req.body.qualityThreshold) || 85; // Default to 85% quality retention threshold
+    const minAcceptableScore = currentScore > 0 ? (currentScore * (qualityThreshold / 100)) : 0;
 
     // Apply filtering and compute recommendation score
     let filteredAlternatives = [];
     if (optimizationGoal === 'performance') {
-      // Mode 1: Performance Preservation (equal or better performance / rank, lower cost)
-      if (currentRank !== 999) {
-        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
-      } else {
-        filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
-      }
+      // Mode 1: Performance Preservation (equal/better performance OR preserves >= quality threshold, with lower monthly cost)
+      filteredAlternatives = alternatives.filter(alt => {
+        if (alt._id === currentModel._id) return false;
+        if (alt.monthly_cost >= currentCost) return false;
+
+        const isBetterOrEqual = (currentRank !== 999 && alt.category_rank <= currentRank) || alt.performance_score >= currentScore;
+        const preservesQuality = alt.performance_score >= minAcceptableScore;
+
+        return isBetterOrEqual || preservesQuality;
+      });
+
       filteredAlternatives.forEach(alt => {
-        if (alt.category_rank !== 999) {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
-        } else {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
-        }
+        const perfRatio = currentScore > 0 ? (alt.performance_score / currentScore) : 1;
+        const savingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+        // Balance performance preservation (70% weight) and cost efficiency (30% weight)
+        alt.recommendation_score = (perfRatio * 70) + (savingsRatio * 30);
       });
     } else if (optimizationGoal === 'cost') {
-      // Mode 3: Target Cost Reduction (Cost Cutting Mode: satisfies cost demand, best rank recommended)
+      // Mode 2: Target Cost Reduction (Satisfies cost demand, best rank/performance recommended)
       const maxAllowedCost = currentCost * (1 - (costCutPercentage / 100));
       filteredAlternatives = alternatives.filter(alt => 
         alt.monthly_cost <= maxAllowedCost && 
-        alt._id !== currentModelId
+        alt._id !== currentModel._id
       );
       filteredAlternatives.forEach(alt => {
-        if (alt.category_rank !== 999) {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
-        } else {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
-        }
+        const perfScore = alt.performance_score || 0;
+        const costSavingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+        alt.recommendation_score = perfScore + (costSavingsRatio * 20);
       });
     } else if (optimizationGoal === 'quality') {
-      // Mode 2: Quality Focus (Top ranked models recommended)
-      filteredAlternatives = alternatives.filter(alt => alt._id !== currentModelId);
+      // Mode 3: Quality Focus (Top ranked models recommended)
+      filteredAlternatives = alternatives.filter(alt => alt._id !== currentModel._id);
       filteredAlternatives.forEach(alt => {
-        if (alt.category_rank !== 999) {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
-        } else {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
-        }
+        const perfScore = alt.performance_score || 0;
+        const costSavingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+        alt.recommendation_score = (perfScore * 2) + Math.max(-50, costSavingsRatio * 20);
       });
     } else {
       // Fallback: Mode 1 (Performance Preservation)
-      if (currentRank !== 999) {
-        filteredAlternatives = alternatives.filter(alt => alt.category_rank <= currentRank && alt.monthly_cost < currentCost && alt._id !== currentModelId);
-      } else {
-        filteredAlternatives = alternatives.filter(alt => alt.performance_score >= currentScore && alt.monthly_cost < currentCost && alt._id !== currentModelId);
-      }
+      filteredAlternatives = alternatives.filter(alt => {
+        if (alt._id === currentModel._id) return false;
+        if (alt.monthly_cost >= currentCost) return false;
+
+        const isBetterOrEqual = (currentRank !== 999 && alt.category_rank <= currentRank) || alt.performance_score >= currentScore;
+        const preservesQuality = alt.performance_score >= minAcceptableScore;
+
+        return isBetterOrEqual || preservesQuality;
+      });
+
       filteredAlternatives.forEach(alt => {
-        if (alt.category_rank !== 999) {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = (10000 - alt.category_rank) * 1000 + costEfficiency;
-        } else {
-          const costEfficiency = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-          alt.recommendation_score = alt.performance_score * 10 + costEfficiency;
-        }
+        const perfRatio = currentScore > 0 ? (alt.performance_score / currentScore) : 1;
+        const savingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
+        alt.recommendation_score = (perfRatio * 70) + (savingsRatio * 30);
       });
     }
 
@@ -1404,7 +1404,7 @@ router.post('/audit-recommendation', async (req, res) => {
     // 4. Construct reports
     const recommendations = topAlternatives.map(alt => {
       const savings = currentCost - alt.monthly_cost;
-      const performanceRetained = (alt.performance_score / currentScore) * 100;
+      const performanceRetained = currentScore > 0 ? (alt.performance_score / currentScore) * 100 : 100;
 
       return {
         modelId: alt._id,

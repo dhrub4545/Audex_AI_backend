@@ -257,3 +257,4 @@ module.exports = {
   getStats,
   isRedisConnected: () => stats.redisConnected
 };
+
