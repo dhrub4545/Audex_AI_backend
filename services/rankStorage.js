@@ -30,12 +30,17 @@ async function saveRankCategory(categoryKey, data) {
     }
   }
 
-  // 2. Cache in /tmp asynchronously
+  // 2. Save to local data/rank if writable, otherwise fallback to /tmp/rank
   try {
-    const tmpDir = path.join('/tmp', 'rank');
-    await fs.promises.mkdir(tmpDir, { recursive: true }).catch(() => {});
-    await fs.promises.writeFile(path.join(tmpDir, `${categoryKey}.json`), JSON.stringify(data, null, 2), 'utf8').catch(() => {});
-  } catch (_) {}
+    await fs.promises.mkdir(RANK_DIR, { recursive: true }).catch(() => {});
+    await fs.promises.writeFile(path.join(RANK_DIR, `${categoryKey}.json`), JSON.stringify(data, null, 2), 'utf8');
+  } catch (_) {
+    try {
+      const tmpDir = path.join('/tmp', 'rank');
+      await fs.promises.mkdir(tmpDir, { recursive: true }).catch(() => {});
+      await fs.promises.writeFile(path.join(tmpDir, `${categoryKey}.json`), JSON.stringify(data, null, 2), 'utf8').catch(() => {});
+    } catch (_) {}
+  }
 }
 
 /**
