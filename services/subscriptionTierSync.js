@@ -84,6 +84,69 @@ function isUltraModel(slug, name) {
 }
 
 /**
+ * Check if a model is deprecated, outdated, or discontinued from active subscriptions
+ */
+function isDiscontinuedModel(name = '', slug = '') {
+  const s = `${name} ${slug}`.toLowerCase();
+  // Deprecated date-stamped models that have been superseded
+  if (s.includes("dec '24") || s.includes("dec 24") || s.includes("apr '24") || s.includes("apr 24") || s.includes("mar '25") || s.includes("may '25")) return true;
+  
+  // Explicitly discontinued / deprecated older generations
+  if (s.includes('gpt-3') || s.includes('gpt-3.5') || s.includes('gpt-4-0') || s.includes('o1-preview') || s.includes('o1-mini')) return true;
+  if (s.includes('claude-1') || s.includes('claude-2') || s.includes('claude 1') || s.includes('claude 2') || s.includes('claude-instant')) return true;
+  if (s.includes('gemini-1.0') || s.includes('gemini 1.0') || s.includes('pro-vision')) return true;
+  if (s.includes('grok 2') || s.includes('grok-2') || s.includes('grok-1') || s.includes('grok 1')) return true;
+  if (s.includes('midjourney v6') || s.includes('midjourney v5') || s.includes('niji 6') || s.includes('niji 5')) return true;
+  if (s.includes('suno v4.5+') || s.includes('suno v4.5 ') || s.includes('suno v3')) return true;
+  if (s.trim() === 'gen-4' || s.includes('gen-3') || s.includes('gen-2')) return true;
+  if (s.includes('command-r+') && s.includes('24')) return true;
+  return false;
+}
+
+let globalDateMap = {};
+
+function initDateMap(models = []) {
+  globalDateMap = {};
+  models.forEach(m => {
+    if (m.release_date) {
+      if (m.name) globalDateMap[m.name.toLowerCase().trim()] = m.release_date;
+      if (m.slug) globalDateMap[m.slug.toLowerCase().trim()] = m.release_date;
+    }
+  });
+}
+
+/**
+ * Calculates a recency score for sorting models with the latest models first.
+ */
+function getModelRecencyScore(name = '', slug = '', releaseDate = null) {
+  const s = `${name} ${slug}`.toLowerCase();
+  if (releaseDate) return new Date(releaseDate).getTime();
+  const cleanName = (name || '').toLowerCase().trim();
+  const cleanSlug = (slug || '').toLowerCase().trim();
+  if (globalDateMap[cleanName] || globalDateMap[cleanSlug]) {
+    return new Date(globalDateMap[cleanName] || globalDateMap[cleanSlug]).getTime();
+  }
+  let score = new Date('2025-01-01').getTime();
+  const versionMatch = s.match(/(?:v|version|gpt-|claude |gemini |grok |deepseek v|qwen|suno v|midjourney v|gen-)(\d+(?:\.\d+)?)/i);
+  if (versionMatch) {
+    const v = parseFloat(versionMatch[1]);
+    score += v * 10000000000;
+  }
+  if (s.includes('terra') || s.includes('sol (max)') || s.includes('opus 5') || s.includes('carbon') || s.includes('grok 4.7')) {
+    score += 5000000000;
+  } else if (s.includes('xhigh') || s.includes('ultra') || s.includes('max')) {
+    score += 2000000000;
+  } else if (s.includes('high') || s.includes('pro')) {
+    score += 1000000000;
+  } else if (s.includes('medium') || s.includes('plus')) {
+    score += 500000000;
+  } else if (s.includes('mini') || s.includes('flash') || s.includes('haiku') || s.includes('low') || s.includes('small') || s.includes('nano')) {
+    score -= 1000000000;
+  }
+  return score;
+}
+
+/**
  * Synchronize subscription_tiers.json with live models from raw_data.json and Artificial Analysis.
  */
 async function syncSubscriptionTiers(freshModels = null) {
@@ -99,8 +162,17 @@ async function syncSubscriptionTiers(freshModels = null) {
 
   console.log(`📊 Processing ${allModels.length} models across all AI providers...`);
 
-  // Sort all models by capability rating descending
-  allModels.sort((a, b) => (b.rating || b.arena_elo || 0) - (a.rating || a.arena_elo || 0));
+  // Initialize date mapping for accurate recency resolution
+  initDateMap(allModels);
+
+  // Filter out any discontinued models and sort all models LATEST FIRST
+  allModels = allModels.filter(m => !isDiscontinuedModel(m.name, m.slug));
+  allModels.sort((a, b) => {
+    const scoreA = getModelRecencyScore(a.name, a.slug, a.release_date);
+    const scoreB = getModelRecencyScore(b.name, b.slug, b.release_date);
+    if (scoreB !== scoreA) return scoreB - scoreA;
+    return (b.rating || b.arena_elo || 0) - (a.rating || a.arena_elo || 0);
+  });
 
   // Helper to filter models by organization
   const getModelsByOrg = (orgKey) => {
@@ -315,8 +387,17 @@ async function syncSubscriptionTiers(freshModels = null) {
 
     // Apply the newly resolved models if matches were found
     if (selectedModels.length > 0) {
-      const modelSlugs = selectedModels.map(m => m.modelId || `${normalizeProvider(m.organization || provKey)}/${m.slug}`);
-      const rawNames = selectedModels.map(m => m.name || m.slug);
+      // Filter out discontinued models and sort latest-first
+      const activeSelected = selectedModels.filter(m => !isDiscontinuedModel(m.name, m.slug));
+      activeSelected.sort((a, b) => {
+        const scoreA = getModelRecencyScore(a.name, a.slug, a.release_date);
+        const scoreB = getModelRecencyScore(b.name, b.slug, b.release_date);
+        if (scoreB !== scoreA) return scoreB - scoreA;
+        return (b.rating || b.arena_elo || 0) - (a.rating || a.arena_elo || 0);
+      });
+
+      const modelSlugs = activeSelected.map(m => m.modelId || `${normalizeProvider(m.organization || provKey)}/${m.slug}`);
+      const rawNames = activeSelected.map(m => m.name || m.slug);
 
       totalUpdated++;
       return {
@@ -327,9 +408,16 @@ async function syncSubscriptionTiers(freshModels = null) {
       };
     }
 
-    // Keep tier as is if no custom dynamic rule matched (e.g. Media/Audio tools)
+    // For any tier without custom dynamic rule (e.g. Media/Audio tools), clean up discontinued and sort latest-first
+    const filteredRaw = (tier.rawModels || []).filter(m => !isDiscontinuedModel(m));
+    filteredRaw.sort((a, b) => getModelRecencyScore(b) - getModelRecencyScore(a));
+    const filteredSlugs = (tier.models || []).filter(m => !isDiscontinuedModel(m));
+    filteredSlugs.sort((a, b) => getModelRecencyScore(b) - getModelRecencyScore(a));
+
     return {
       ...tier,
+      rawModels: filteredRaw,
+      models: filteredSlugs,
       last_synced_at: tier.last_synced_at || new Date().toISOString()
     };
   });
@@ -341,4 +429,9 @@ async function syncSubscriptionTiers(freshModels = null) {
   return updatedTiers;
 }
 
-module.exports = { syncSubscriptionTiers };
+module.exports = { 
+  syncSubscriptionTiers,
+  isDiscontinuedModel,
+  getModelRecencyScore,
+  initDateMap
+};

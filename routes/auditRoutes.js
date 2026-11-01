@@ -10,7 +10,7 @@ const path = require('path');
 const axios = require('axios');
 const { getRawData, getRankCategory, getSubscriptionTiers, saveSubscriptionTiers } = require('../services/rankStorage');
 const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
-const { syncSubscriptionTiers } = require('../services/subscriptionTierSync');
+const { syncSubscriptionTiers, isDiscontinuedModel, getModelRecencyScore } = require('../services/subscriptionTierSync');
 
 const cache = require('../services/cacheService');
 
@@ -233,6 +233,7 @@ function findTopModelOfSubscription(tier, rankData, allModels, purpose = 'mixed'
   let bestRank = 99999;
 
   for (const mid of models) {
+    if (isDiscontinuedModel(mid)) continue;
     const slug = mid.includes('/') ? mid.split('/')[1] : mid;
     const entry = findRankEntry(rankData, slug, mid);
     const dbModel = allModels?.find(m => m._id === mid || (m._id && m._id.toLowerCase() === mid.toLowerCase()) || (m._id && m._id.split('/')[1] === slug));
@@ -262,6 +263,7 @@ function findTopModelOfSubscription(tier, rankData, allModels, purpose = 'mixed'
   // Also check rawModels names if models list did not resolve
   if (rawModels.length > 0) {
     for (const rm of rawModels) {
+      if (isDiscontinuedModel(rm)) continue;
       const entry = rankData?.find(m => m.name && (m.name.toLowerCase().includes(rm.toLowerCase()) || rm.toLowerCase().includes(m.name.toLowerCase())));
       if (entry) {
         const dbModel = allModels?.find(m => m.name && m.name.toLowerCase() === entry.name.toLowerCase());
@@ -285,10 +287,12 @@ function findTopModelOfSubscription(tier, rankData, allModels, purpose = 'mixed'
     }
   }
 
-  // Fallback to the first available model in the tier if none matched rankData
-  if (!bestModel && (rawModels.length > 0 || models.length > 0)) {
-    const firstRaw = rawModels[0];
-    const firstMid = models[0];
+  // Fallback to the first available non-discontinued model in the tier if none matched rankData
+  const activeRaw = (rawModels || []).filter(m => !isDiscontinuedModel(m));
+  const activeMid = (models || []).filter(m => !isDiscontinuedModel(m));
+  if (!bestModel && (activeRaw.length > 0 || activeMid.length > 0)) {
+    const firstRaw = activeRaw[0];
+    const firstMid = activeMid[0];
     const dbModel = allModels?.find(m => 
       (firstMid && (m._id === firstMid || m._id.toLowerCase() === firstMid.toLowerCase())) || 
       (firstRaw && m.name && m.name.toLowerCase() === firstRaw.toLowerCase())
@@ -1959,15 +1963,18 @@ router.get('/subscription-tiers/list', async (req, res) => {
         grouped[key].plans.push(tier.plan);
       }
 
-      const tierModels = (tier.rawModels && tier.rawModels.length > 0) ? tier.rawModels : (tier.models || []);
+      const rawList = (tier.rawModels && tier.rawModels.length > 0) ? tier.rawModels : (tier.models || []);
+      const tierModels = rawList.filter(m => !isDiscontinuedModel(m));
+      tierModels.sort((a, b) => getModelRecencyScore(b) - getModelRecencyScore(a));
+
       grouped[key].planModels[tier.plan] = tierModels;
       grouped[key].planDetails[tier.plan] = {
         monthlyPrice: tier.monthlyPrice,
         annualPrice: tier.annualPrice,
         limits: tier.limits || '',
         models: tierModels,
-        rawModels: tier.rawModels || [],
-        slugModels: tier.models || []
+        rawModels: tierModels,
+        slugModels: (tier.models || []).filter(m => !isDiscontinuedModel(m))
       };
       grouped[key].tiers.push(tier);
       tierModels.forEach(m => {
@@ -1981,6 +1988,9 @@ router.get('/subscription-tiers/list', async (req, res) => {
       const item = grouped[key];
       const proPlan = item.plans.find(p => p.toLowerCase().includes('pro') || p.toLowerCase().includes('plus'));
       item.defaultPlan = proPlan || item.plans[0] || 'Free';
+      // Ensure allModels has the latest models first and no discontinued models
+      item.allModels = item.allModels.filter(m => !isDiscontinuedModel(m));
+      item.allModels.sort((a, b) => getModelRecencyScore(b) - getModelRecencyScore(a));
     });
 
     const result = Object.values(grouped);
