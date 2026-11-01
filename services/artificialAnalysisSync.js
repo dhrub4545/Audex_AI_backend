@@ -318,6 +318,15 @@ async function syncArtificialAnalysis(scrapedModels = null) {
 
   await saveRawData(rawData);
 
+  // Automatically keep SaaS subscription tiers synchronized with the freshly ingested models
+  try {
+    const { syncSubscriptionTiers } = require('./subscriptionTierSync');
+    await syncSubscriptionTiers(syncedModels);
+    console.log('💳 Local Data Sync: Auto-synchronized SaaS subscription tiers with live models.');
+  } catch (tierErr) {
+    console.warn('⚠️ Local Data Sync: Subscription tier auto-sync warning:', tierErr.message);
+  }
+
   console.log(`✅ Local Data Sync: Successfully synchronized ${syncedModels.length} models and ${Object.keys(trimmedCategories).length} categories.`);
   return syncedModels;
 }

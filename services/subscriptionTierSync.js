@@ -56,6 +56,10 @@ function normalizeProvider(name) {
   if (n.includes('meta')) return 'meta';
   if (n.includes('xai') || n.includes('grok') || n.includes('spacexai')) return 'xai';
   if (n.includes('perplexity')) return 'perplexity';
+  if (n.includes('alibaba') || n.includes('qwen')) return 'alibaba';
+  if (n.includes('cohere')) return 'cohere';
+  if (n.includes('amazon') || n.includes('bedrock') || n.includes('nova')) return 'amazon';
+  if (n.includes('microsoft')) return 'microsoft';
   return 'other';
 }
 
@@ -117,6 +121,8 @@ async function syncSubscriptionTiers(freshModels = null) {
   const mistralModels = getModelsByOrg('mistral');
   const metaModels = getModelsByOrg('meta');
   const xaiModels = getModelsByOrg('xai');
+  const alibabaModels = getModelsByOrg('alibaba');
+  const cohereModels = getModelsByOrg('cohere');
 
   // Load current tiers
   let currentTiers = await getSubscriptionTiers();
@@ -134,6 +140,43 @@ async function syncSubscriptionTiers(freshModels = null) {
   if (!currentTiers || currentTiers.length === 0) {
     console.warn('⚠️ No subscription tiers found to sync.');
     return [];
+  }
+
+  // Auto-discover and ensure prominent AI providers exist in subscription list
+  const existingProviders = new Set(currentTiers.map(t => normalizeProvider(t.provider)));
+  if (!existingProviders.has('alibaba') && alibabaModels.length > 0) {
+    currentTiers.push({
+      category: 'Chat & Reasoning',
+      provider: 'Alibaba (Qwen)',
+      plan: 'Qwen Chat Pro',
+      monthlyPrice: 15,
+      annualPrice: 150,
+      annualPriceEquiv: 12.5,
+      annualDiscount: true,
+      isPerSeat: false,
+      models: alibabaModels.slice(0, 4).map(m => m.modelId || `alibaba/${m.slug}`),
+      rawModels: alibabaModels.slice(0, 4).map(m => m.name || m.slug),
+      limits: 'Access to flagship Qwen models with fast inference.',
+      last_synced_at: new Date().toISOString()
+    });
+    existingProviders.add('alibaba');
+  }
+  if (!existingProviders.has('cohere') && cohereModels.length > 0) {
+    currentTiers.push({
+      category: 'Chat & Reasoning',
+      provider: 'Cohere',
+      plan: 'Cohere Platform',
+      monthlyPrice: 20,
+      annualPrice: 200,
+      annualPriceEquiv: 16.6,
+      annualDiscount: true,
+      isPerSeat: false,
+      models: cohereModels.slice(0, 4).map(m => m.modelId || `cohere/${m.slug}`),
+      rawModels: cohereModels.slice(0, 4).map(m => m.name || m.slug),
+      limits: 'Access to Command R and R+ models with enterprise grounding.',
+      last_synced_at: new Date().toISOString()
+    });
+    existingProviders.add('cohere');
   }
 
   let totalUpdated = 0;
@@ -254,6 +297,20 @@ async function syncSubscriptionTiers(freshModels = null) {
         const topGPT = openAIModels.slice(0, 1);
         selectedModels = [...topSonar, ...topOpus, ...topGPT];
       }
+    }
+
+    // --- 10. ALIBABA (Qwen) ---
+    else if (provKey === 'alibaba') {
+      if (planName.includes('free')) {
+        selectedModels = alibabaModels.filter(m => isLightweightModel(m.slug, m.name)).slice(0, 3);
+      } else {
+        selectedModels = alibabaModels.slice(0, 4);
+      }
+    }
+
+    // --- 11. COHERE ---
+    else if (provKey === 'cohere') {
+      selectedModels = cohereModels.slice(0, 4);
     }
 
     // Apply the newly resolved models if matches were found

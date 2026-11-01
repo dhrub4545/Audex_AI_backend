@@ -1812,9 +1812,15 @@ router.get('/analysis/raw-data', async (req, res) => {
 });
 
 // Route to fetch raw subscription tiers list (with prices)
-router.get('/subscription-tiers/raw', (req, res) => {
+router.get('/subscription-tiers/raw', async (req, res) => {
   try {
-    res.json(subscriptionTiers || []);
+    let tiers = await getSubscriptionTiers();
+    if (!tiers || tiers.length === 0) {
+      tiers = subscriptionTiers;
+    } else {
+      subscriptionTiers = tiers;
+    }
+    res.json(tiers || []);
   } catch (error) {
     console.error('Error serving raw subscription tiers:', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -1824,16 +1830,30 @@ router.get('/subscription-tiers/raw', (req, res) => {
 // Route to fetch grouped and formatted subscription tools dynamically from local subscription_tiers.json
 router.get('/subscription-tiers/list', async (req, res) => {
   try {
-    const cachedTiers = await cache.get('audex:tiers:list');
-    if (cachedTiers) {
-      return res.json(cachedTiers);
+    const force = req.query.refresh === 'true';
+    if (!force) {
+      const cachedTiers = await cache.get('audex:tiers:list');
+      if (cachedTiers && Array.isArray(cachedTiers) && cachedTiers.length > 0) {
+        return res.json(cachedTiers);
+      }
     }
-    if (!subscriptionTiers || subscriptionTiers.length === 0) {
+
+    let liveTiers = await getSubscriptionTiers();
+    if (!liveTiers || liveTiers.length === 0) {
+      liveTiers = await syncSubscriptionTiers();
+    }
+    if (liveTiers && liveTiers.length > 0) {
+      subscriptionTiers = liveTiers;
+    } else if (subscriptionTiers && subscriptionTiers.length > 0) {
+      liveTiers = subscriptionTiers;
+    }
+
+    if (!liveTiers || liveTiers.length === 0) {
       return res.json([]);
     }
 
     const getEmojiForProvider = (name) => {
-      const n = name.toLowerCase();
+      const n = (name || '').toLowerCase();
       if (n.includes('openai') || n.includes('chatgpt')) return '🟢';
       if (n.includes('claude') || n.includes('anthropic')) return '🟧';
       if (n.includes('google') || n.includes('gemini')) return '🔷';
@@ -1845,6 +1865,8 @@ router.get('/subscription-tiers/list', async (req, res) => {
       if (n.includes('mistral')) return '🍊';
       if (n.includes('meta')) return '♾️';
       if (n.includes('xai') || n.includes('grok')) return '🐦';
+      if (n.includes('alibaba') || n.includes('qwen')) return '☁️';
+      if (n.includes('cohere')) return '🌿';
       if (n.includes('v0')) return '▲';
       if (n.includes('gamma')) return '✨';
       if (n.includes('midjourney')) return '🎨';
@@ -1855,7 +1877,7 @@ router.get('/subscription-tiers/list', async (req, res) => {
     };
 
     const getDescriptionForProvider = (name) => {
-      const n = name.toLowerCase();
+      const n = (name || '').toLowerCase();
       if (n.includes('openai') || n.includes('chatgpt')) return 'OpenAI ChatGPT';
       if (n.includes('claude') || n.includes('anthropic')) return 'Anthropic assistant';
       if (n.includes('google') || n.includes('gemini')) return "Google's AI model";
@@ -1867,6 +1889,8 @@ router.get('/subscription-tiers/list', async (req, res) => {
       if (n.includes('mistral')) return 'Mistral Le Chat';
       if (n.includes('meta')) return 'Meta AI assistant';
       if (n.includes('xai')) return 'xAI Grok search';
+      if (n.includes('alibaba') || n.includes('qwen')) return 'Alibaba Qwen Chat';
+      if (n.includes('cohere')) return 'Cohere enterprise model platform';
       if (n.includes('v0')) return 'Vercel UI generator';
       if (n.includes('gamma')) return 'AI presentation generator';
       if (n.includes('midjourney')) return 'AI image generator';
@@ -1876,20 +1900,34 @@ router.get('/subscription-tiers/list', async (req, res) => {
       return `${name} AI integration`;
     };
 
+    const getFriendlyToolName = (prov) => {
+      const p = (prov || '').toLowerCase();
+      if (p === 'openai') return 'ChatGPT';
+      if (p === 'anthropic') return 'Claude';
+      if (p === 'google') return 'Gemini';
+      if (p === 'github') return 'GitHub Copilot';
+      if (p === 'xai') return 'xAI';
+      if (p === 'alibaba') return 'Alibaba (Qwen)';
+      return prov;
+    };
+
     const grouped = {};
-    subscriptionTiers.forEach(tier => {
+    liveTiers.forEach(tier => {
       const prov = tier.provider || 'Other';
       const key = prov.toLowerCase();
+      const toolId = getFriendlyToolName(prov);
+
       if (!grouped[key]) {
         grouped[key] = {
-          id: prov,
-          name: prov,
+          id: toolId,
+          name: toolId,
+          provider: prov,
           desc: getDescriptionForProvider(prov),
           icon: getEmojiForProvider(prov),
           type: 'subscription',
           plans: [],
           defaultPlan: '',
-          defaultSeats: (prov.toLowerCase().includes('github') || prov.toLowerCase().includes('cursor') || prov.toLowerCase().includes('anthropic') || prov.toLowerCase().includes('claude')) ? 5 : 1
+          defaultSeats: (key.includes('github') || key.includes('copilot') || key.includes('cursor') || key.includes('anthropic') || key.includes('claude')) ? 5 : 1
         };
       }
       if (!grouped[key].plans.includes(tier.plan)) {
@@ -1904,7 +1942,7 @@ router.get('/subscription-tiers/list', async (req, res) => {
     });
 
     const result = Object.values(grouped);
-    await cache.set('audex:tiers:list', result, 1800); // 30 minutes TTL
+    await cache.set('audex:tiers:list', result, 900); // 15 minutes TTL
     return res.json(result);
   } catch (error) {
     console.error('Error serving subscription-tiers list:', error);
@@ -2099,6 +2137,9 @@ router.post('/cron/sync', handleCronSync);
 router.post('/subscription-tiers/sync', async (req, res) => {
   try {
     const tiers = await syncSubscriptionTiers();
+    if (tiers && tiers.length > 0) {
+      subscriptionTiers = tiers;
+    }
     await cache.del('audex:tiers:list');
     await cache.del('audex:tiers:raw');
     res.json({ success: true, count: (tiers || []).length });

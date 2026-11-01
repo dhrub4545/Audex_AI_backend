@@ -1,6 +1,7 @@
 const cron = require('node-cron');
 const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
 const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
+const { syncSubscriptionTiers } = require('../services/subscriptionTierSync');
 
 function initScheduler() {
   if (process.env.VERCEL) {
@@ -20,17 +21,29 @@ function initScheduler() {
     }
   });
 
-  // 2. Run Artificial Analysis sync hourly
+  // 2. Run Artificial Analysis sync hourly and auto-sync SaaS subscription tiers
   cron.schedule('0 * * * *', async () => {
     console.log('⏰ Ingestion Scheduler: Starting hourly Artificial Analysis sync...');
     try {
       await syncArtificialAnalysis();
+      console.log('⏰ Ingestion Scheduler: Auto-syncing subscription tiers with latest models...');
+      await syncSubscriptionTiers();
     } catch (err) {
       console.error('⏰ Ingestion Scheduler: Artificial Analysis hourly sync failed:', err.message);
     }
   });
 
-  // 3. Trigger initial synchronization if explicitly enabled via environment variable
+  // 3. Immediately verify and auto-sync subscription tiers with live models on boot
+  (async () => {
+    try {
+      console.log('🔄 Ingestion Scheduler: Auto-syncing SaaS subscription tiers on server boot...');
+      await syncSubscriptionTiers();
+    } catch (err) {
+      console.warn('⚠️ Ingestion Scheduler: Startup subscription tier auto-sync warning:', err.message);
+    }
+  })();
+
+  // 4. Trigger initial synchronization if explicitly enabled via environment variable
   if (process.env.RUN_INITIAL_SYNC === 'true') {
     (async () => {
       console.log('🚀 Ingestion Scheduler: Triggering initial synchronization on startup (RUN_INITIAL_SYNC=true)...');
