@@ -349,17 +349,15 @@
     "models": [
       "google/gemini-4-argon",
       "google/gemini-3-8-flash",
-      "google/gemini-3-1-pro-preview",
-      "google/gemini-3-pro"
+      "google/gemini-3-8-flash-medium"
     ],
     "rawModels": [
       "Gemini 4 Argon (High)",
       "Gemini 3.8 Flash (High)",
-      "Gemini 3.1 Pro Preview",
-      "Gemini 3 Pro Preview (High)"
+      "Gemini 3.8 Flash (Medium)"
     ],
     "limits": "4x higher usage limits than Free. 1M token context window (1,500 pages of text or 30,000 lines of code). 5TB cloud storage. YouTube Premium Lite included. Google Home Premium and Health Premium included. Higher AI Studio limits.",
-    "last_synced_at": "2026-11-01T12:04:32.853Z"
+    "last_synced_at": "2026-11-01T13:48:30.459Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -373,17 +371,17 @@
     "models": [
       "google/gemini-4-carbon",
       "google/gemini-4-argon",
-      "google/gemini-3-1-pro-preview",
+      "google/gemini-3-8-flash",
       "google/gemini-3-deep-think"
     ],
     "rawModels": [
       "Gemini 4 Carbon (High)",
       "Gemini 4 Argon (High)",
-      "Gemini 3.1 Pro Preview",
+      "Gemini 3.8 Flash (High)",
       "Gemini 3 Deep Think"
     ],
     "limits": "5x higher usage limit than Pro. 20TB cloud storage. YouTube Premium individual plan. Priority access to Google Antigravity. Access to Gemini Spark. Introduced at Google I/O 2026 for developers and power users.",
-    "last_synced_at": "2026-11-01T12:04:32.853Z"
+    "last_synced_at": "2026-11-01T13:48:30.477Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -397,17 +395,17 @@
     "models": [
       "google/gemini-4-carbon",
       "google/gemini-4-argon",
-      "google/gemini-3-1-pro-preview",
+      "google/gemini-3-8-flash",
       "google/gemini-3-deep-think"
     ],
     "rawModels": [
       "Gemini 4 Carbon (High)",
       "Gemini 4 Argon (High)",
-      "Gemini 3.1 Pro Preview",
+      "Gemini 3.8 Flash (High)",
       "Gemini 3 Deep Think"
     ],
     "limits": "20x higher usage limit than Pro. 30TB cloud storage. All features of the $100 Ultra plan plus Project Genie (experimental world-building with Street View-powered capabilities). Previously $250/month, reduced to $200 at I/O 2026.",
-    "last_synced_at": "2026-11-01T12:04:32.853Z"
+    "last_synced_at": "2026-11-01T13:48:30.477Z"
   },
   {
     "category": "Chat & Reasoning",

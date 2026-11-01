@@ -131,7 +131,7 @@ function isDiscontinuedModel(name = '', slug = '') {
   // Explicitly discontinued / deprecated older generations
   if (s.includes('gpt-3') || s.includes('gpt-3.5') || s.includes('gpt-4-0') || s.includes('o1-preview') || s.includes('o1-mini')) return true;
   if (s.includes('claude-1') || s.includes('claude-2') || s.includes('claude 1') || s.includes('claude 2') || s.includes('claude-instant')) return true;
-  if (s.includes('gemini-1.0') || s.includes('gemini 1.0') || s.includes('pro-vision')) return true;
+  if (s.includes('gemini-1.0') || s.includes('gemini 1.0') || s.includes('pro-vision') || s.includes('gemini-3-pro') || s.includes('gemini 3 pro') || s.includes('gemini-3-1-pro') || s.includes('gemini 3.1 pro')) return true;
   if (s.includes('grok 2') || s.includes('grok-2') || s.includes('grok-1') || s.includes('grok 1')) return true;
   if (s.includes('midjourney v6') || s.includes('midjourney v5') || s.includes('niji 6') || s.includes('niji 5')) return true;
   if (s.includes('suno v4.5+') || s.includes('suno v4.5 ') || s.includes('suno v3')) return true;
