@@ -17,7 +17,60 @@ const cache = require('../services/cacheService');
 // Multi-tier model cache for high performance (L1 Memory + L2 Redis)
 async function getCachedAllModels() {
   return await cache.getOrSet('audex:models:all_docs', async () => {
-    return await Model.find({}).lean();
+    try {
+      const docs = await Model.find({}).lean();
+      if (docs && docs.length > 0) return docs;
+    } catch (_) {}
+    try {
+      const rawPath = path.join(__dirname, '../data/raw_data.json');
+      if (fs.existsSync(rawPath)) {
+        const raw = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
+        const sources = raw.sources || {};
+        const llms = Array.isArray(sources.llms) ? sources.llms : (sources.llms?.data || []);
+        if (llms && llms.length > 0) {
+          return llms.map(item => {
+            const inputCost = parseFloat(item.pricing?.price_1m_input_tokens || 0);
+            const outputCost = parseFloat(item.pricing?.price_1m_output_tokens || 0);
+            const evaluations = item.evaluations || {};
+            const creatorName = item.model_creator?.name || item.organization || 'Unknown';
+            let creatorSlug = (item.model_creator?.slug || creatorName).toLowerCase().replace(/[^a-z0-9]/g, '');
+            if (!creatorSlug || creatorSlug === 'unknown') {
+              const n = (item.name || '').toLowerCase();
+              if (n.includes('gpt') || n.includes('openai')) creatorSlug = 'openai';
+              else if (n.includes('claude') || n.includes('anthropic')) creatorSlug = 'anthropic';
+              else if (n.includes('gemini') || n.includes('google')) creatorSlug = 'google';
+              else if (n.includes('deepseek')) creatorSlug = 'deepseek';
+              else if (n.includes('mistral') || n.includes('pixtral')) creatorSlug = 'mistralai';
+              else if (n.includes('llama') || n.includes('meta')) creatorSlug = 'meta';
+              else creatorSlug = 'ai';
+            }
+            const cleanSlug = (item.slug || '').toLowerCase().trim();
+            const modelId = cleanSlug.includes('/') ? cleanSlug : `${creatorSlug}/${cleanSlug}`;
+            return {
+              _id: item.modelId || modelId,
+              slug: item.slug,
+              name: item.name,
+              developer: creatorName,
+              context_length: item.context_length || 128000,
+              endpoints: [{
+                input_cost_per_m: inputCost,
+                output_cost_per_m: outputCost,
+                cache_read_cost_per_m: 0
+              }],
+              capabilities: {
+                aa_index_score: parseFloat(evaluations.artificial_analysis_intelligence_index) || 50,
+                coding_score: parseFloat(evaluations.artificial_analysis_coding_index) || 50,
+                reasoning_score: parseFloat(evaluations.gpqa) || 50,
+                math_score: parseFloat(evaluations.artificial_analysis_math_index) || 50,
+                tokens_per_second: parseFloat(item.median_output_tokens_per_second) || 50,
+                time_to_first_token_ms: item.median_time_to_first_token_seconds ? Math.round(item.median_time_to_first_token_seconds * 1000) : 500
+              }
+            };
+          });
+        }
+      }
+    } catch (_) {}
+    return [];
   }, 600); // 10 minutes TTL
 }
 
@@ -1113,9 +1166,14 @@ router.get('/', auth, async (req, res) => {
 });
 
 // Route to get single audit by ID (requires authentication)
-router.get('/:id', optionalAuth, async (req, res) => {
+router.get('/:id', optionalAuth, async (req, res, next) => {
   try {
     const id = req.params.id;
+    // Guard: Do not intercept named sub-routes
+    const reservedWords = ['models', 'analysis', 'subscription-tiers', 'cron', 'cache', 'compare-report', 'audit-recommendation'];
+    if (reservedWords.includes(id)) {
+      return next();
+    }
     if (!mongoose.Types.ObjectId.isValid(id) && id !== '6a4fb719471a97ae89e88f49') {
       return res.status(400).json({ error: 'Invalid audit ID format.' });
     }
@@ -1499,9 +1557,12 @@ router.get('/analysis/raw-data', async (req, res) => {
 
       return {
         slug: item.slug,
+        modelId: item.modelId || item.id || `unknown/${item.slug}`,
         name: item.name,
-        creator: item.model_creator?.name || 'Unknown',
+        creator: item.model_creator?.name || item.organization || 'Unknown',
         release_date: item.release_date,
+        rating: item.rating || item.arena_elo || null,
+        rank: item.rank || null,
         intelligence_index: parseFloat(evaluations.artificial_analysis_intelligence_index) || null,
         coding_index: parseFloat(evaluations.artificial_analysis_coding_index) || null,
         math_index: parseFloat(evaluations.artificial_analysis_math_index) || null,
@@ -1511,7 +1572,9 @@ router.get('/analysis/raw-data', async (req, res) => {
         ttft: parseFloat(item.median_time_to_first_token_seconds) || null,
         inputCost,
         outputCost,
-        blendedPrice
+        blendedPrice,
+        pricing: item.pricing || { price_1m_input_tokens: inputCost, price_1m_output_tokens: outputCost },
+        evaluations: evaluations
       };
     });
 

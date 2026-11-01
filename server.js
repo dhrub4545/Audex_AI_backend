@@ -56,6 +56,8 @@ const auditLimiter = rateLimit({
 // Configure CORS
 const allowedOrigins = [
   process.env.FRONTEND_URL || 'http://localhost:5173',
+  'https://www.audexai.in',
+  'https://audexai.in',
   'http://localhost:5173',
   'http://localhost:3000',
   'http://127.0.0.1:5173'
@@ -193,6 +195,14 @@ app.use('/chats', chatLimiter, chatRoutes);
 
 app.use('/api/payment', paymentLimiter, paymentRoutes);
 app.use('/payment', paymentLimiter, paymentRoutes);
+
+app.get(['/api/health', '/health'], (req, res) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    dbConnected: mongoose.connection.readyState === 1
+  });
+});
 
 app.get('/', (req, res) => {
   const isConnected = mongoose.connection.readyState === 1;
