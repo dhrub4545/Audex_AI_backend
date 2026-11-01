@@ -699,6 +699,47 @@ function getCleanProviderName(providerId) {
   return providerId.charAt(0).toUpperCase() + providerId.slice(1);
 }
 
+function formatSubscriptionPlanName(provider = '', plan = '') {
+  const p = (provider || '').toLowerCase();
+  const pl = (plan || '').trim();
+  if (p.includes('google') || p.includes('gemini')) {
+    if (pl.toLowerCase().startsWith('gemini')) return pl;
+    return `Gemini ${pl}`;
+  }
+  if (p.includes('openai') || p.includes('chatgpt')) {
+    if (pl.toLowerCase().startsWith('chatgpt')) return pl;
+    return `ChatGPT ${pl}`;
+  }
+  if (p.includes('anthropic') || p.includes('claude')) {
+    if (pl.toLowerCase().startsWith('claude')) return pl;
+    return `Claude ${pl}`;
+  }
+  if (p.includes('github') || p.includes('copilot')) {
+    if (pl.toLowerCase().startsWith('github') || pl.toLowerCase().startsWith('copilot')) return pl;
+    return `GitHub Copilot ${pl}`;
+  }
+  if (p.includes('cursor')) {
+    if (pl.toLowerCase().startsWith('cursor')) return pl;
+    return `Cursor ${pl}`;
+  }
+  if (p.includes('windsurf')) {
+    if (pl.toLowerCase().startsWith('windsurf')) return pl;
+    return `Windsurf ${pl}`;
+  }
+  if (p.includes('xai') || p.includes('grok')) {
+    if (pl.toLowerCase().startsWith('grok') || pl.toLowerCase().startsWith('supergrok') || pl.toLowerCase().startsWith('x ')) return pl;
+    return `Grok ${pl}`;
+  }
+  if (p.includes('perplexity')) {
+    if (pl.toLowerCase().startsWith('perplexity')) return pl;
+    return `Perplexity ${pl}`;
+  }
+  if (pl.toLowerCase().startsWith(p)) {
+    return pl;
+  }
+  return `${provider} ${pl}`;
+}
+
 function getSubscriptionPrice(toolName, plan) {
   const tier = findSubscriptionTier(toolName, plan);
   if (tier) {
@@ -1184,8 +1225,10 @@ router.post('/', optionalAuth, async (req, res) => {
       };
 
       const recommendedSubTopModel = selectedSub?.topModel || (selectedSub?.tier ? findTopModelOfSubscription(selectedSub.tier, rankData, allModels, purpose)?.model : null);
+      const subFormattedPlan = selectedSub?.tier ? formatSubscriptionPlanName(selectedSub.tier.provider, selectedSub.tier.plan) : '';
+      const fallbackFormattedPlan = formatSubscriptionPlanName(toolName, plan || "Free");
       const subscriptionOption = selectedSub ? {
-        planName: `${selectedSub.tier.provider} ${selectedSub.tier.plan}`,
+        planName: subFormattedPlan,
         cost: selectedSub.cost,
         savings: currentCost - selectedSub.cost,
         limits: selectedSub.tier.limits,
@@ -1197,13 +1240,13 @@ router.post('/', optionalAuth, async (req, res) => {
         performance_score: selectedSub.performance_score,
         action: (type === 'subscription' && selectedSub.isCurrent)
           ? "Your current subscription is already the best choice. Keep using it."
-          : `Migrate to the ${selectedSub.tier.provider} ${selectedSub.tier.plan} subscription.`,
+          : `Migrate to the ${subFormattedPlan} subscription.`,
         statusText: (type === 'subscription' && selectedSub.isCurrent) ? (subStatusText || "Optimized") : "",
         alreadyOptimized: false,
-        recommendedModel: recommendedSubTopModel ? recommendedSubTopModel.name : selectedSub.tier.plan,
+        recommendedModel: subFormattedPlan,
         recommendedProvider: getCleanProviderName(selectedSub.tier.provider)
       } : {
-        planName: `${toolName} ${plan || "Free"}`,
+        planName: fallbackFormattedPlan,
         cost: currentCost,
         savings: 0,
         limits: tier ? tier.limits : "Free plan limits",
@@ -1215,10 +1258,10 @@ router.post('/', optionalAuth, async (req, res) => {
         performance_score: computedBaselineScore,
         action: (type === 'subscription')
           ? "Your current subscription is already the best choice. Keep using it."
-          : `Migrate to the ${toolName} ${plan || "Free"} subscription.`,
+          : `Migrate to the ${fallbackFormattedPlan} subscription.`,
         statusText: "Already optimized in this category.",
         alreadyOptimized: true,
-        recommendedModel: primaryBaselineModel ? primaryBaselineModel.name : (plan || "Free"),
+        recommendedModel: fallbackFormattedPlan,
         recommendedProvider: getCleanProviderName(toolName)
       };
 

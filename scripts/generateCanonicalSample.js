@@ -294,6 +294,47 @@ function getCleanProviderName(providerId) {
   return providerId.charAt(0).toUpperCase() + providerId.slice(1);
 }
 
+function formatSubscriptionPlanName(provider = '', plan = '') {
+  const p = (provider || '').toLowerCase();
+  const pl = (plan || '').trim();
+  if (p.includes('google') || p.includes('gemini')) {
+    if (pl.toLowerCase().startsWith('gemini')) return pl;
+    return `Gemini ${pl}`;
+  }
+  if (p.includes('openai') || p.includes('chatgpt')) {
+    if (pl.toLowerCase().startsWith('chatgpt')) return pl;
+    return `ChatGPT ${pl}`;
+  }
+  if (p.includes('anthropic') || p.includes('claude')) {
+    if (pl.toLowerCase().startsWith('claude')) return pl;
+    return `Claude ${pl}`;
+  }
+  if (p.includes('github') || p.includes('copilot')) {
+    if (pl.toLowerCase().startsWith('github') || pl.toLowerCase().startsWith('copilot')) return pl;
+    return `GitHub Copilot ${pl}`;
+  }
+  if (p.includes('cursor')) {
+    if (pl.toLowerCase().startsWith('cursor')) return pl;
+    return `Cursor ${pl}`;
+  }
+  if (p.includes('windsurf')) {
+    if (pl.toLowerCase().startsWith('windsurf')) return pl;
+    return `Windsurf ${pl}`;
+  }
+  if (p.includes('xai') || p.includes('grok')) {
+    if (pl.toLowerCase().startsWith('grok') || pl.toLowerCase().startsWith('supergrok') || pl.toLowerCase().startsWith('x ')) return pl;
+    return `Grok ${pl}`;
+  }
+  if (p.includes('perplexity')) {
+    if (pl.toLowerCase().startsWith('perplexity')) return pl;
+    return `Perplexity ${pl}`;
+  }
+  if (pl.toLowerCase().startsWith(p)) {
+    return pl;
+  }
+  return `${provider} ${pl}`;
+}
+
 // 7 Canonical enterprise allocations
 const inputAllocations = [
   {
@@ -725,9 +766,11 @@ allocationDetails.forEach((detail, idx) => {
 
   // Build subscriptionOption
   const recommendedSubTopModel = selectedSub?.topModel || (selectedSub?.tier ? findTopModelOfSubscription(selectedSub.tier, rankData, allModels)?.model : null);
+  const subFormattedPlan = selectedSub?.tier ? formatSubscriptionPlanName(selectedSub.tier.provider, selectedSub.tier.plan) : '';
+  const fallbackFormattedPlan = formatSubscriptionPlanName(toolName, plan || "Free");
   const subscriptionOption = selectedSub ? {
     _id: `rec_sub_${idx}`,
-    planName: `${selectedSub.tier.provider} ${selectedSub.tier.plan}`,
+    planName: subFormattedPlan,
     cost: parseFloat(selectedSub.cost.toFixed(2)),
     savings: parseFloat((currentCost - selectedSub.cost).toFixed(2)),
     limits: selectedSub.tier.limits,
@@ -737,14 +780,14 @@ allocationDetails.forEach((detail, idx) => {
     topModelName: recommendedSubTopModel ? recommendedSubTopModel.name : null,
     performance_score: selectedSub.performance_score,
     category_rank: selectedSub.rank,
-    action: `Migrate to the ${selectedSub.tier.provider} ${selectedSub.tier.plan} subscription.`,
+    action: `Migrate to the ${subFormattedPlan} subscription.`,
     statusText: "",
-    isAlreadyOptimized: false,
-    recommendedModel: recommendedSubTopModel ? recommendedSubTopModel.name : selectedSub.tier.plan,
+    alreadyOptimized: false,
+    recommendedModel: subFormattedPlan,
     recommendedProvider: getCleanProviderName(selectedSub.tier.provider)
   } : {
     _id: `rec_sub_${idx}`,
-    planName: `${toolName} ${plan || "Free"}`,
+    planName: fallbackFormattedPlan,
     cost: parseFloat(currentCost.toFixed(2)),
     savings: 0,
     limits: tier ? tier.limits : "Free plan limits",
@@ -756,10 +799,10 @@ allocationDetails.forEach((detail, idx) => {
     category_rank: baselineRank,
     action: (type === 'subscription')
       ? "Your current subscription is already the best choice. Keep using it."
-      : `Migrate to the ${toolName} ${plan || "Free"} subscription.`,
+      : `Migrate to the ${fallbackFormattedPlan} subscription.`,
     statusText: (type === 'subscription') ? (subStatusText || "Optimized") : "",
-    isAlreadyOptimized: type === 'subscription' && !selectedSub,
-    recommendedModel: primaryBaselineModel ? primaryBaselineModel.name : (plan || "Free"),
+    alreadyOptimized: type === 'subscription' && !selectedSub,
+    recommendedModel: fallbackFormattedPlan,
     recommendedProvider: getCleanProviderName(toolName)
   };
 
