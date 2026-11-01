@@ -149,6 +149,61 @@ function findSubscriptionTier(toolName, planName) {
   return null;
 }
 
+// Finds the top-ranked model of a subscription tier for a specific category
+function findTopModelOfSubscription(tier, rankData, allModels) {
+  if (!tier) return null;
+  const models = tier.models || [];
+  const rawModels = tier.rawModels || [];
+  let bestEntry = null;
+  let bestModel = null;
+  let bestRank = 99999;
+
+  for (const mid of models) {
+    const slug = mid.includes('/') ? mid.split('/')[1] : mid;
+    const entry = findRankEntry(rankData, slug, mid);
+    const dbModel = allModels?.find(m => m._id === mid || (m._id && m._id.toLowerCase() === mid.toLowerCase()) || (m._id && m._id.split('/')[1] === slug));
+    const rank = entry ? (parseInt(entry.rank) || 9999) : 9999;
+    if (rank < bestRank) {
+      bestRank = rank;
+      bestEntry = entry;
+      bestModel = dbModel || (entry ? {
+        _id: entry.modelId || mid,
+        name: entry.name,
+        developer: entry.organization || tier.provider,
+        endpoints: entry.pricing ? [{
+          input_cost_per_m: entry.pricing.price_1m_input_tokens,
+          output_cost_per_m: entry.pricing.price_1m_output_tokens
+        }] : []
+      } : dbModel);
+    }
+  }
+
+  // Also check rawModels names if models list did not resolve
+  if (bestRank === 99999 && rawModels.length > 0) {
+    for (const rm of rawModels) {
+      const entry = rankData?.find(m => m.name && (m.name.toLowerCase().includes(rm.toLowerCase()) || rm.toLowerCase().includes(m.name.toLowerCase())));
+      if (entry && (parseInt(entry.rank) || 9999) < bestRank) {
+        bestRank = parseInt(entry.rank) || 9999;
+        bestEntry = entry;
+        bestModel = allModels?.find(m => m.name && m.name.toLowerCase() === entry.name.toLowerCase()) || {
+          _id: entry.modelId || `unknown/${entry.slug}`,
+          name: entry.name,
+          developer: entry.organization || tier.provider
+        };
+      }
+    }
+  }
+
+  const score = bestEntry ? Math.round(50 + (((bestEntry.rating || 1200) - 1000) / 327) * 49) : (bestModel?.capabilities?.aa_index_score || 75);
+
+  return {
+    model: bestModel,
+    rankEntry: bestEntry,
+    rank: bestRank !== 99999 ? bestRank : 999,
+    score
+  };
+}
+
 function getRankFileName(purpose) {
   const p = purpose ? purpose.toLowerCase().trim().replace(/\s+/g, '-') : 'mixed';
   if (p === 'coding') return 'coding.json';
@@ -279,11 +334,12 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
   return 50;
 }
 
-function findRankEntry(rankData, baselineSlug, baselineModelId) {
+function findRankEntry(rankData, baselineSlug, baselineModelId, baselineName) {
   if (!rankData || rankData.length === 0) return null;
   const clean = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   const targetClean = clean(baselineSlug);
   const modelIdClean = clean(baselineModelId);
+  const nameClean = clean(baselineName);
 
   // 1. Try exact modelId match if item has modelId
   if (baselineModelId) {
@@ -291,19 +347,34 @@ function findRankEntry(rankData, baselineSlug, baselineModelId) {
     if (match) return match;
   }
 
-  // 2. Try exact match by slug
+  // 2. Try match by model name if provided
+  if (baselineName) {
+    let match = rankData.find(item => item.name && (item.name.toLowerCase() === baselineName.toLowerCase() || clean(item.name) === nameClean));
+    if (match) return match;
+  }
+
+  // 3. Try exact match by slug
   if (baselineSlug) {
     let match = rankData.find(item => item.slug === baselineSlug);
     if (match) return match;
 
-    // 3. Try exact clean match
+    // 4. Try exact clean match
     match = rankData.find(item => clean(item.slug || '') === targetClean);
     if (match) return match;
 
-    // 4. Try clean substring match
+    // 5. Try clean substring match
     match = rankData.find(item => {
       const itemClean = clean(item.slug || '');
       return (itemClean && targetClean) && (itemClean.includes(targetClean) || targetClean.includes(itemClean));
+    });
+    if (match) return match;
+  }
+
+  // 6. Substring match by name
+  if (nameClean && nameClean.length >= 4) {
+    let match = rankData.find(item => {
+      const itemClean = clean(item.name || '');
+      return (itemClean && nameClean) && (itemClean.includes(nameClean) || nameClean.includes(itemClean));
     });
     if (match) return match;
   }
@@ -313,11 +384,13 @@ function findRankEntry(rankData, baselineSlug, baselineModelId) {
 
 // Shared helper to calculate cost
 function calculateModelCost(model, tokens, ratio) {
-  const endpoint = model.endpoints?.[0] || { input_cost_per_m: 0, output_cost_per_m: 0 };
+  const endpoint = model?.endpoints?.[0];
+  const inPrice = endpoint?.input_cost_per_m ?? model?.pricing?.price_1m_input_tokens ?? 0;
+  const outPrice = endpoint?.output_cost_per_m ?? model?.pricing?.price_1m_output_tokens ?? 0;
   const inputTokens = tokens * ratio;
   const outputTokens = tokens * (1 - ratio);
-  const inputCost = (inputTokens / 1000000) * (endpoint.input_cost_per_m || 0);
-  const outputCost = (outputTokens / 1000000) * (endpoint.output_cost_per_m || 0);
+  const inputCost = (inputTokens / 1000000) * inPrice;
+  const outputCost = (outputTokens / 1000000) * outPrice;
   return inputCost + outputCost;
 }
 
@@ -508,33 +581,20 @@ router.post('/', optionalAuth, async (req, res) => {
         const category = tier ? tier.category : 'Chat & Reasoning';
         isMedia = ['media (image)', 'media (video)', 'media (audio)', 'ui & layouts'].includes(category.toLowerCase());
 
-        if (!isMedia) {
-          baselineModelIds = (tier && tier.models && tier.models.length > 0) ? tier.models : [];
-          let maxBaselineScore = -1;
-          for (const mid of baselineModelIds) {
-            const resolved = resolveBaselineModel(mid, allModels, toolName);
-            if (resolved) {
-              const score = resolved.capabilities?.[capabilityField] || 0;
-              if (score > maxBaselineScore) {
-                maxBaselineScore = score;
-                primaryBaselineModel = resolved;
-              }
-            }
-          }
-          if (primaryBaselineModel) {
-            const promptTokensPerSeat = purpose === 'Coding' ? 10000000 : 5000000;
-            const completionTokensPerSeat = purpose === 'Coding' ? 2500000 : 1250000;
-            const totalPromptTokens = seats * promptTokensPerSeat;
-            const totalCompletionTokens = seats * completionTokensPerSeat;
-            totalTokens = totalPromptTokens + totalCompletionTokens;
-            inputRatio = totalTokens > 0 ? (totalPromptTokens / totalTokens) : 0.8;
+        const rankData = getCategoryRankData(purpose);
+        const topSub = findTopModelOfSubscription(tier, rankData, allModels);
 
-            const rankData = getCategoryRankData(purpose);
-            const baselineSlug = primaryBaselineModel._id.split('/')[1] || '';
-            const baselineRankEntry = findRankEntry(rankData, baselineSlug);
-            baselineScore = baselineRankEntry ? getEvaluationScore(baselineRankEntry, purpose, primaryBaselineModel, capabilityField) : (primaryBaselineModel.capabilities?.[capabilityField] || 0);
-          }
+        if (topSub && topSub.model) {
+          primaryBaselineModel = topSub.model;
+          baselineScore = topSub.score;
         }
+
+        const promptTokensPerSeat = purpose === 'Coding' ? 10000000 : 5000000;
+        const completionTokensPerSeat = purpose === 'Coding' ? 2500000 : 1250000;
+        const totalPromptTokens = seats * promptTokensPerSeat;
+        const totalCompletionTokens = seats * completionTokensPerSeat;
+        totalTokens = totalPromptTokens + totalCompletionTokens;
+        inputRatio = totalTokens > 0 ? (totalPromptTokens / totalTokens) : 0.8;
       } else if (type === 'api') {
         modelId = alloc.modelId;
         inputTokens = parseFloat(alloc.inputTokens) || 10000000;
@@ -563,7 +623,7 @@ router.post('/', optionalAuth, async (req, res) => {
           currentCost = calculateModelCost(currentModel, totalTokens, inputRatio);
           const rankData = getCategoryRankData(purpose);
           const currentSlug = currentModel._id.split('/')[1] || '';
-          const currentRankEntry = findRankEntry(rankData, currentSlug);
+          const currentRankEntry = findRankEntry(rankData, currentSlug, currentModel._id, currentModel.name);
           baselineScore = currentRankEntry ? getEvaluationScore(currentRankEntry, purpose, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || 0);
         }
       }
@@ -592,11 +652,14 @@ router.post('/', optionalAuth, async (req, res) => {
       });
     });
 
-    // Inject currentCost, baselineModelId, and baselineModels into parsedAllocations so the frontend can read it
+    // Inject currentCost, baselineModelId, topModelId, and baselineModels into parsedAllocations so the frontend can read it
     allocationDetails.forEach((detail, i) => {
       if (parsedAllocations[i]) {
         parsedAllocations[i].currentCost = detail.currentCost;
+        parsedAllocations[i].topModelId = detail.primaryBaselineModel ? detail.primaryBaselineModel._id : null;
+        parsedAllocations[i].topModelName = detail.primaryBaselineModel ? detail.primaryBaselineModel.name : null;
         parsedAllocations[i].baselineModelId = detail.primaryBaselineModel ? detail.primaryBaselineModel._id : null;
+        parsedAllocations[i].baselineModelName = detail.primaryBaselineModel ? detail.primaryBaselineModel.name : null;
         parsedAllocations[i].baselineModels = detail.tier ? (detail.tier.rawModels || []) : [];
       }
     });
@@ -605,7 +668,7 @@ router.post('/', optionalAuth, async (req, res) => {
     let subMonthlySavings = 0;
 
     allocationDetails.forEach((detail) => {
-      const {
+      let {
         allocIndex,
         type,
         toolName,
@@ -642,29 +705,21 @@ router.post('/', optionalAuth, async (req, res) => {
 
       if (type === 'subscription') {
         const matchingTier = findSubscriptionTier(toolName, plan);
-        if (matchingTier) {
-          const models = matchingTier.models || [];
-          for (const mid of models) {
-            const resolved = resolveBaselineModel(mid, allModels, toolName);
-            if (resolved) {
-              const currentSlug = resolved._id.split('/')[1] || '';
-              const rankEntry = findRankEntry(rankData, currentSlug, resolved._id);
-              if (rankEntry) {
-                baselineRank = Math.min(baselineRank, rankEntry.rank);
-                computedBaselineScore = Math.max(computedBaselineScore, getEvaluationScore(rankEntry, purpose, resolved, capabilityField));
-              } else {
-                computedBaselineScore = Math.max(computedBaselineScore, resolved.capabilities?.[capabilityField] || 0);
-              }
-            }
+        const topSub = findTopModelOfSubscription(matchingTier, rankData, allModels);
+        if (topSub && topSub.rankEntry) {
+          baselineRank = topSub.rank;
+          computedBaselineScore = topSub.score;
+          if (topSub.model) {
+            primaryBaselineModel = topSub.model;
           }
         }
       } else {
         // api
         if (currentModel) {
           const currentSlug = currentModel._id.split('/')[1] || '';
-          const rankEntry = findRankEntry(rankData, currentSlug, currentModel._id);
+          const rankEntry = findRankEntry(rankData, currentSlug, currentModel._id, currentModel.name);
           if (rankEntry) {
-            baselineRank = rankEntry.rank;
+            baselineRank = parseInt(rankEntry.rank) || 999;
             computedBaselineScore = getEvaluationScore(rankEntry, purpose, currentModel, capabilityField);
           } else {
             computedBaselineScore = currentModel.capabilities?.[capabilityField] || 0;
@@ -686,36 +741,41 @@ router.post('/', optionalAuth, async (req, res) => {
             dbModel = allModels.find(m => m._id === item.modelId || m._id.toLowerCase() === item.modelId.toLowerCase());
           }
           if (!dbModel && item.slug) {
-            dbModel = allModels.find(m => m._id && m._id.split && m._id.split('/')[1] === item.slug);
-            if (!dbModel) {
-              dbModel = allModels.find(m => m._id && (m._id.toLowerCase().includes(item.slug.toLowerCase()) || item.slug.toLowerCase().includes((m._id.split && m._id.split('/')[1] || '').toLowerCase())));
-            }
+            const cleanSlug = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            const itemClean = cleanSlug(item.slug);
+            dbModel = allModels.find(m => cleanSlug(m._id.split('/')[1] || '') === itemClean);
           }
-          if (dbModel && dbModel.endpoints && dbModel.endpoints.length > 0) {
-            const ep = dbModel.endpoints[0];
-            if ((ep.input_cost_per_m || 0) <= 0 || (ep.output_cost_per_m || 0) <= 0) {
-              continue;
-            }
-            if (apiCandidates.some(c => c._id === dbModel._id)) {
-              continue;
-            }
-            const cost = calculateModelCost(dbModel, totalTokens, inputRatio);
-            const score = getEvaluationScore(item, purpose, dbModel, capabilityField);
-            const contextStr = dbModel.context_length ? (dbModel.context_length >= 1000000 ? `${(dbModel.context_length / 1000000).toFixed(0)}M` : `${(dbModel.context_length / 1000).toFixed(0)}K`) : 'N/A';
-            const limitsStr = `Pay-as-you-go rates: $${ep.input_cost_per_m.toFixed(2)}/1M input, $${ep.output_cost_per_m.toFixed(2)}/1M output. Context: ${contextStr}.`;
-            apiCandidates.push({
-              _id: dbModel._id,
-              name: dbModel.name,
-              rank: item.rank,
-              performance_score: score,
-              monthly_cost: cost,
-              isCurrent: dbModel._id === modelId,
-              limits: limitsStr,
-              context_length: dbModel.context_length,
-              inputCostPerM: ep.input_cost_per_m || 0,
-              outputCostPerM: ep.output_cost_per_m || 0
-            });
+          if (!dbModel && item.name) {
+            const cleanSlug = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            const itemCleanName = cleanSlug(item.name);
+            dbModel = allModels.find(m => cleanSlug(m.name || '') === itemCleanName);
           }
+
+          const inP = item.pricing?.price_1m_input_tokens || dbModel?.endpoints?.[0]?.input_cost_per_m || 0;
+          const outP = item.pricing?.price_1m_output_tokens || dbModel?.endpoints?.[0]?.output_cost_per_m || 0;
+          if (inP <= 0 || outP <= 0) continue;
+
+          const candidateId = dbModel?._id || item.modelId || `unknown/${item.slug}`;
+          if (apiCandidates.some(c => c._id === candidateId)) continue;
+
+          const cost = (totalTokens * inputRatio / 1000000 * inP) + (totalTokens * (1 - inputRatio) / 1000000 * outP);
+          const score = getEvaluationScore(item, purpose, dbModel, capabilityField);
+          const contextLength = dbModel?.context_length || 128000;
+          const contextStr = contextLength >= 1000000 ? `${(contextLength / 1000000).toFixed(0)}M` : `${(contextLength / 1000).toFixed(0)}K`;
+          const limitsStr = `Pay-as-you-go rates: $${inP.toFixed(2)}/1M input, $${outP.toFixed(2)}/1M output. Context: ${contextStr}.`;
+
+          apiCandidates.push({
+            _id: candidateId,
+            name: item.name || dbModel?.name,
+            rank: parseInt(item.rank) || 999,
+            performance_score: score,
+            monthly_cost: cost,
+            isCurrent: (candidateId === modelId) || (dbModel && dbModel._id === modelId),
+            limits: limitsStr,
+            context_length: contextLength,
+            inputCostPerM: inP,
+            outputCostPerM: outP
+          });
         }
       } else {
         apiCandidates = allModels
@@ -749,55 +809,21 @@ router.post('/', optionalAuth, async (req, res) => {
       let apiStatusText = "";
 
       if (optimizationGoal === 'quality') {
-        let candidates = apiCandidates.filter(c => !c.isCurrent);
-        if (candidates.length > 0) {
-          candidates.forEach(c => {
-            const rankBonus = c.rank && c.rank <= 100 ? (100 - c.rank) * 1.0 : 0;
-            c.recommendation_score = (c.performance_score * 2) + rankBonus;
-          });
-          candidates.sort((a, b) => b.recommendation_score - a.recommendation_score);
-          selectedApi = candidates[0];
-        } else if (apiCandidates.length > 0) {
-          selectedApi = apiCandidates[0];
-          apiStatusText = "Best model API already used.";
-        }
+        let compatible = apiCandidates.filter(c => !c.isCurrent);
+        compatible.sort((a, b) => a.rank - b.rank);
+        selectedApi = compatible[0] || null;
       } else if (optimizationGoal === 'performance') {
-        const minAcceptableScore = computedBaselineScore > 0 ? (computedBaselineScore * 0.85) : 0;
-        let compatible = apiCandidates.filter(c => {
-          if (c.isCurrent) return false;
-          if (c.monthly_cost >= currentCost) return false;
-          const preservesQuality = c.performance_score >= minAcceptableScore;
-          const isBetterOrEqualRank = baselineRank !== 9999 && c.rank <= baselineRank;
-          return isBetterOrEqualRank || preservesQuality;
-        });
-
-        if (compatible.length > 0) {
-          compatible.forEach(c => {
-            const perfRatio = computedBaselineScore > 0 ? (c.performance_score / computedBaselineScore) : 1;
-            const savingsRatio = currentCost > 0 ? (currentCost - c.monthly_cost) / currentCost : 0;
-            const rankBonus = c.rank && c.rank <= 100 ? (100 - c.rank) * 0.15 : 0;
-            c.recommendation_score = (perfRatio * 60) + (savingsRatio * 30) + rankBonus;
-          });
-          compatible.sort((a, b) => b.recommendation_score - a.recommendation_score);
-          selectedApi = compatible[0];
-        } else {
-          apiCandidates.sort((a, b) => a.rank - b.rank);
-          if (apiCandidates[0] && (apiCandidates[0]._id === modelId || (type === 'api' && baselineRank === 1))) {
-            apiStatusText = "Best model API already used.";
-          }
+        let compatible = apiCandidates.filter(c => !c.isCurrent && c.monthly_cost < currentCost && (baselineRank !== 9999 ? c.rank < baselineRank : true));
+        compatible.sort((a, b) => (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
+        selectedApi = compatible[0] || null;
+        if (!selectedApi) {
+          apiStatusText = "Already optimized in this category.";
         }
       } else if (optimizationGoal === 'cost') {
         const maxAllowedCost = currentCost * (1 - costCutPercentage / 100);
-        let compatible = apiCandidates.filter(c => c.monthly_cost <= maxAllowedCost && !c.isCurrent);
-        if (compatible.length > 0) {
-          compatible.forEach(c => {
-            const costSavingsRatio = currentCost > 0 ? (currentCost - c.monthly_cost) / currentCost : 0;
-            const rankBonus = c.rank && c.rank <= 100 ? (100 - c.rank) * 0.2 : 0;
-            c.recommendation_score = (c.performance_score * 1.5) + (costSavingsRatio * 20) + rankBonus;
-          });
-          compatible.sort((a, b) => b.recommendation_score - a.recommendation_score);
-          selectedApi = compatible[0];
-        }
+        let compatible = apiCandidates.filter(c => !c.isCurrent && c.monthly_cost <= maxAllowedCost);
+        compatible.sort((a, b) => (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
+        selectedApi = compatible[0] || null;
       }
 
       // OPTION B: Subscriptions
@@ -826,23 +852,10 @@ router.post('/', optionalAuth, async (req, res) => {
         targetModelId = currentModel._id;
         targetModelName = currentModel.name;
         targetModelDev = currentModel.developer;
-      } else {
-        const topModelSlug = rankData[0]?.slug;
-        if (topModelSlug) {
-          const resolved = allModels.find(m => m._id && m._id.split && m._id.split('/')[1] === topModelSlug);
-          if (resolved) {
-            targetModelId = resolved._id;
-            targetModelName = resolved.name;
-            targetModelDev = resolved.developer;
-          }
-        }
-      }
-
-      if (targetModelId && !targetModelDev) {
-        const resolved = allModels.find(m => m._id === targetModelId);
-        if (resolved) {
-          targetModelDev = resolved.developer;
-        }
+      } else if (primaryBaselineModel) {
+        targetModelId = primaryBaselineModel._id;
+        targetModelName = primaryBaselineModel.name;
+        targetModelDev = primaryBaselineModel.developer;
       }
 
       const matchesModel = (tier) => {
@@ -876,39 +889,9 @@ router.post('/', optionalAuth, async (req, res) => {
 
       subMatchTiers.forEach(t => {
         const cost = seats * t.monthlyPrice;
-        let bestRank = 9999;
-        let bestScore = 0;
-
-        const models = t.models || [];
-        const rawModels = t.rawModels || [];
-
-        for (const mid of models) {
-          const resolved = resolveBaselineModel(mid, allModels, t.provider);
-          if (resolved) {
-            const currentSlug = resolved._id.split('/')[1] || '';
-            const rankEntry = rankData.find(item => item.slug === currentSlug) ||
-                              rankData.find(item => item.slug && (item.slug.toLowerCase().includes(currentSlug.toLowerCase()) || currentSlug.toLowerCase().includes(item.slug.toLowerCase())));
-            if (rankEntry) {
-              bestRank = Math.min(bestRank, rankEntry.rank);
-              bestScore = Math.max(bestScore, Math.min(100, Math.round(rankEntry.final_score)));
-            } else {
-              bestScore = Math.max(bestScore, resolved.capabilities?.[capabilityField] || 0);
-            }
-          }
-        }
-
-        for (const rm of rawModels) {
-          const rankEntry = rankData.find(item => item.name.toLowerCase().includes(rm.toLowerCase()) || rm.toLowerCase().includes(item.name.toLowerCase()));
-          if (rankEntry) {
-            bestRank = Math.min(bestRank, rankEntry.rank);
-            bestScore = Math.max(bestScore, Math.min(100, Math.round(rankEntry.final_score)));
-          }
-        }
-
-        if (bestRank === 9999) {
-          bestRank = 800;
-          bestScore = 20;
-        }
+        const topSub = findTopModelOfSubscription(t, rankData, allModels);
+        const bestRank = topSub ? topSub.rank : 999;
+        const bestScore = topSub ? topSub.score : 50;
 
         const isCurrent = type === 'subscription' && 
                           (t.provider.toLowerCase() === toolName.toLowerCase() || toolName.toLowerCase().includes(t.provider.toLowerCase())) &&
@@ -916,6 +899,7 @@ router.post('/', optionalAuth, async (req, res) => {
 
         subCandidates.push({
           tier: t,
+          topModel: topSub?.model,
           cost,
           rank: bestRank,
           performance_score: bestScore,
@@ -927,36 +911,21 @@ router.post('/', optionalAuth, async (req, res) => {
       let subStatusText = "";
 
       if (optimizationGoal === 'quality') {
-        if (subCandidates.length > 0) {
-          subCandidates.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
-          selectedSub = subCandidates[0];
-          if (selectedSub.isCurrent) {
-            subStatusText = "Best subscription already used.";
-          }
-        }
+        let compatible = subCandidates.filter(c => !c.isCurrent);
+        compatible.sort((a, b) => (a.rank - b.rank) || (a.cost - b.cost));
+        selectedSub = compatible[0] || null;
       } else if (optimizationGoal === 'performance') {
-        let compatible = [];
-        if (baselineRank !== 9999) {
-          compatible = subCandidates.filter(c => c.cost < currentCost && c.rank <= baselineRank);
-        } else {
-          compatible = subCandidates.filter(c => c.cost < currentCost && c.performance_score >= computedBaselineScore);
-        }
-        if (compatible.length > 0) {
-          compatible.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
-          selectedSub = compatible[0];
-        } else {
-          subCandidates.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
-          if (subCandidates[0] && (subCandidates[0].isCurrent || (type === 'subscription' && baselineRank <= subCandidates[0].rank))) {
-            subStatusText = "Best subscription already used.";
-          }
+        let compatible = subCandidates.filter(c => !c.isCurrent && c.cost < currentCost && (baselineRank !== 9999 ? c.rank < baselineRank : true));
+        compatible.sort((a, b) => (a.rank - b.rank) || (a.cost - b.cost));
+        selectedSub = compatible[0] || null;
+        if (!selectedSub) {
+          subStatusText = "Already optimized in this category.";
         }
       } else if (optimizationGoal === 'cost') {
         const maxAllowedCost = currentCost * (1 - costCutPercentage / 100);
-        let compatible = subCandidates.filter(c => c.cost <= maxAllowedCost);
-        if (compatible.length > 0) {
-          compatible.sort((a, b) => a.cost - b.cost || a.rank - b.rank);
-          selectedSub = compatible[0];
-        }
+        let compatible = subCandidates.filter(c => !c.isCurrent && c.cost <= maxAllowedCost);
+        compatible.sort((a, b) => (a.rank - b.rank) || (a.cost - b.cost));
+        selectedSub = compatible[0] || null;
       }
 
       // Build structured Options
@@ -1000,18 +969,21 @@ router.post('/', optionalAuth, async (req, res) => {
         defaultOutputTokens: (type === 'subscription') ? (seats * (purpose === 'Coding' ? 2500000 : 1250000)) : outputTokens
       };
 
+      const recommendedSubTopModel = selectedSub?.topModel || (selectedSub?.tier ? findTopModelOfSubscription(selectedSub.tier, rankData, allModels)?.model : null);
       const subscriptionOption = selectedSub ? {
         planName: `${selectedSub.tier.provider} ${selectedSub.tier.plan}`,
         cost: selectedSub.cost,
         savings: currentCost - selectedSub.cost,
         limits: selectedSub.tier.limits,
         includedModels: selectedSub.tier.rawModels || [],
-        modelId: selectedSub.tier.models?.[0] || null,
+        modelId: recommendedSubTopModel ? recommendedSubTopModel._id : (selectedSub.tier.models?.[0] || null),
+        topModelId: recommendedSubTopModel ? recommendedSubTopModel._id : null,
+        topModelName: recommendedSubTopModel ? recommendedSubTopModel.name : null,
         action: (type === 'subscription' && selectedSub.isCurrent)
           ? "Your current subscription is already the best choice. Keep using it."
           : `Migrate to the ${selectedSub.tier.provider} ${selectedSub.tier.plan} subscription.`,
         statusText: (type === 'subscription' && selectedSub.isCurrent) ? (subStatusText || "Optimized") : "",
-        recommendedModel: selectedSub.tier.plan,
+        recommendedModel: recommendedSubTopModel ? recommendedSubTopModel.name : selectedSub.tier.plan,
         recommendedProvider: getCleanProviderName(selectedSub.tier.provider)
       } : {
         planName: `${toolName} ${plan || "Free"}`,
@@ -1019,12 +991,14 @@ router.post('/', optionalAuth, async (req, res) => {
         savings: 0,
         limits: tier ? tier.limits : "Free plan limits",
         includedModels: tier ? (tier.rawModels || []) : [],
-        modelId: tier?.models?.[0] || null,
+        modelId: primaryBaselineModel ? primaryBaselineModel._id : (tier?.models?.[0] || null),
+        topModelId: primaryBaselineModel ? primaryBaselineModel._id : null,
+        topModelName: primaryBaselineModel ? primaryBaselineModel.name : null,
         action: (type === 'subscription')
           ? "Your current subscription is already the best choice. Keep using it."
           : `Migrate to the ${toolName} ${plan || "Free"} subscription.`,
         statusText: (type === 'subscription') ? (subStatusText || "Optimized") : "",
-        recommendedModel: plan || "Free",
+        recommendedModel: primaryBaselineModel ? primaryBaselineModel.name : (plan || "Free"),
         recommendedProvider: getCleanProviderName(toolName)
       };
 
@@ -1309,12 +1283,12 @@ router.post('/audit-recommendation', async (req, res) => {
     const rankData = getCategoryRankData(targetUseCase);
     
     const currentSlug = currentModel._id.split('/')[1] || '';
-    const currentRankEntry = findRankEntry(rankData, currentSlug, currentModel._id);
+    const currentRankEntry = findRankEntry(rankData, currentSlug, currentModel._id, currentModel.name);
     const currentRank = currentRankEntry ? (parseInt(currentRankEntry.rank) || 999) : 999;
     const currentScore = currentRankEntry ? getEvaluationScore(currentRankEntry, targetUseCase, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || 0);
     const currentCost = calculateModelCost(currentModel, monthlyTokens, inputRatio);
 
-    // 3. Map alternatives
+    // 3. Map alternatives strictly from actual Artificial Analysis rankings
     const cleanSlug = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     let alternatives = [];
     if (rankData.length > 0) {
@@ -1335,166 +1309,157 @@ router.post('/audit-recommendation', async (req, res) => {
             });
           }
         }
-        
-        if (dbModel && dbModel.endpoints && dbModel.endpoints.length > 0) {
-          // De-duplicate: skip if this model is already mapped in alternatives
-          if (alternatives.some(alt => alt._id === dbModel._id)) {
-            continue;
-          }
-
-          const cost = calculateModelCost(dbModel, monthlyTokens, inputRatio);
-          const score = getEvaluationScore(item, targetUseCase, dbModel, capabilityField);
-          const valScore = cost > 0 ? (score / cost) : 0;
-          
-          alternatives.push({
-            _id: dbModel._id,
-            name: dbModel.name,
-            developer: dbModel.developer,
-            context_length: dbModel.context_length,
-            performance_score: score,
-            tokens_per_second: dbModel.capabilities?.tokens_per_second || 0,
-            time_to_first_token_ms: dbModel.capabilities?.time_to_first_token_ms || 0,
-            cost_per_m_input: dbModel.endpoints[0].input_cost_per_m,
-            cost_per_m_output: dbModel.endpoints[0].output_cost_per_m,
-            cache_read_cost_per_m: dbModel.endpoints[0].cache_read_cost_per_m || 0,
-            monthly_cost: cost,
-            value_score: valScore,
-            category_rank: parseInt(item.rank) || 999
-          });
+        if (!dbModel && item.name) {
+          const itemCleanName = cleanSlug(item.name);
+          dbModel = allModels.find(m => cleanSlug(m.name || '') === itemCleanName);
         }
+
+        const inP = item.pricing?.price_1m_input_tokens || dbModel?.endpoints?.[0]?.input_cost_per_m || 0;
+        const outP = item.pricing?.price_1m_output_tokens || dbModel?.endpoints?.[0]?.output_cost_per_m || 0;
+        
+        // Skip models that do not have pay-as-you-go pricing published
+        if (inP <= 0 || outP <= 0) continue;
+
+        const candidateId = dbModel?._id || item.modelId || `unknown/${item.slug}`;
+        if (alternatives.some(alt => alt._id === candidateId || (alt.slug && alt.slug === item.slug))) {
+          continue;
+        }
+
+        const inputTokens = monthlyTokens * inputRatio;
+        const outputTokens = monthlyTokens * (1 - inputRatio);
+        const cost = (inputTokens / 1000000 * inP) + (outputTokens / 1000000 * outP);
+        const score = getEvaluationScore(item, targetUseCase, dbModel, capabilityField);
+        const tps = item.median_output_tokens_per_second || dbModel?.capabilities?.tokens_per_second || null;
+        const ttftMs = item.median_time_to_first_token_seconds ? Math.round(item.median_time_to_first_token_seconds * 1000) : (dbModel?.capabilities?.time_to_first_token_ms || null);
+
+        alternatives.push({
+          _id: candidateId,
+          slug: item.slug,
+          name: item.name || dbModel?.name,
+          developer: dbModel?.developer || item.organization || 'AI Provider',
+          context_length: dbModel?.context_length || null,
+          performance_score: score,
+          tokens_per_second: tps,
+          time_to_first_token_ms: ttftMs,
+          cost_per_m_input: inP,
+          cost_per_m_output: outP,
+          cache_read_cost_per_m: dbModel?.endpoints?.[0]?.cache_read_cost_per_m || 0,
+          monthly_cost: cost,
+          category_rank: parseInt(item.rank) || 999,
+          rating: item.rating || 1200
+        });
       }
     } else {
       alternatives = allModels
-        .filter(m => m.capabilities && m.capabilities[capabilityField] && m.endpoints && m.endpoints.length > 0)
-        .map(m => {
+        .filter(m => m.endpoints && m.endpoints.length > 0 && m.endpoints[0].input_cost_per_m > 0 && m.endpoints[0].output_cost_per_m > 0)
+        .map((m, idx) => {
           const cost = calculateModelCost(m, monthlyTokens, inputRatio);
-          const score = m.capabilities[capabilityField];
-          const valScore = cost > 0 ? (score / cost) : 0;
+          const score = m.capabilities?.[capabilityField] || 50;
           return {
             _id: m._id,
+            slug: m._id.split('/')[1] || 'model',
             name: m.name,
             developer: m.developer,
-            context_length: m.context_length,
+            context_length: m.context_length || null,
             performance_score: score,
-            tokens_per_second: m.capabilities.tokens_per_second || 0,
-            time_to_first_token_ms: m.capabilities.time_to_first_token_ms || 0,
+            tokens_per_second: m.capabilities?.tokens_per_second || null,
+            time_to_first_token_ms: m.capabilities?.time_to_first_token_ms || null,
             cost_per_m_input: m.endpoints[0].input_cost_per_m,
             cost_per_m_output: m.endpoints[0].output_cost_per_m,
             cache_read_cost_per_m: m.endpoints[0].cache_read_cost_per_m || 0,
             monthly_cost: cost,
-            value_score: valScore,
-            category_rank: 999
+            category_rank: idx + 1,
+            rating: 1200
           };
         });
     }
-    
-    alternatives = alternatives.filter(alt => alt.monthly_cost > 0 && alt.cost_per_m_input > 0 && alt.cost_per_m_output > 0);
 
-    const qualityThreshold = parseFloat(req.body.qualityThreshold) || 85; // Default to 85% quality retention threshold
-    const minAcceptableScore = currentScore > 0 ? (currentScore * (qualityThreshold / 100)) : 0;
-
-    // Apply filtering and compute recommendation score
+    // Apply strict filtering and ordering for the 3 modes
     let filteredAlternatives = [];
     if (optimizationGoal === 'performance') {
-      // Mode 1: Performance Preservation (equal/better performance OR preserves >= quality threshold, with lower monthly cost)
+      // Performance Preservation mode: models with better rank AND lower cost in the selected category
       filteredAlternatives = alternatives.filter(alt => {
-        if (alt._id === currentModel._id) return false;
+        if (alt._id === currentModel._id || (alt.slug && alt.slug === currentSlug)) return false;
         if (alt.monthly_cost >= currentCost) return false;
-
-        const isBetterOrEqual = (currentRank !== 999 && alt.category_rank <= currentRank) || alt.performance_score >= currentScore;
-        const preservesQuality = alt.performance_score >= minAcceptableScore;
-
-        return isBetterOrEqual || preservesQuality;
+        if (currentRank !== 999 && alt.category_rank >= currentRank) return false;
+        return true;
       });
-
-      filteredAlternatives.forEach(alt => {
-        const perfRatio = currentScore > 0 ? (alt.performance_score / currentScore) : 1;
-        const savingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        const rankBonus = alt.category_rank && alt.category_rank <= 100 ? (100 - alt.category_rank) * 0.15 : 0;
-        // Balance performance preservation (60% weight), cost efficiency (30% weight), and rank bonus (10% weight)
-        alt.recommendation_score = (perfRatio * 60) + (savingsRatio * 30) + rankBonus;
-      });
+      // Sort by best rank (ascending), then by lower monthly cost
+      filteredAlternatives.sort((a, b) => (a.category_rank - b.category_rank) || (a.monthly_cost - b.monthly_cost));
     } else if (optimizationGoal === 'cost') {
-      // Mode 2: Target Cost Reduction (Satisfies cost demand, best rank/performance recommended)
+      // Cost Reduction mode: models within user desired cost cut target, sorted by best rank
       const maxAllowedCost = currentCost * (1 - (costCutPercentage / 100));
-      filteredAlternatives = alternatives.filter(alt => 
-        alt.monthly_cost <= maxAllowedCost && 
-        alt._id !== currentModel._id
-      );
-      filteredAlternatives.forEach(alt => {
-        const perfScore = alt.performance_score || 0;
-        const costSavingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        const rankBonus = alt.category_rank && alt.category_rank <= 100 ? (100 - alt.category_rank) * 0.2 : 0;
-        alt.recommendation_score = (perfScore * 1.5) + (costSavingsRatio * 20) + rankBonus;
-      });
-    } else if (optimizationGoal === 'quality') {
-      // Mode 3: Quality Focus (Top ranked models recommended)
-      filteredAlternatives = alternatives.filter(alt => alt._id !== currentModel._id);
-      filteredAlternatives.forEach(alt => {
-        const perfScore = alt.performance_score || 0;
-        const rankBonus = alt.category_rank && alt.category_rank <= 100 ? (100 - alt.category_rank) * 1.0 : 0;
-        alt.recommendation_score = (perfScore * 2) + rankBonus;
-      });
-    } else {
-      // Fallback: Mode 1 (Performance Preservation)
       filteredAlternatives = alternatives.filter(alt => {
-        if (alt._id === currentModel._id) return false;
+        if (alt._id === currentModel._id || (alt.slug && alt.slug === currentSlug)) return false;
+        return alt.monthly_cost <= maxAllowedCost;
+      });
+      // Sort by best rank among desired cost, then by lower cost
+      filteredAlternatives.sort((a, b) => (a.category_rank - b.category_rank) || (a.monthly_cost - b.monthly_cost));
+    } else if (optimizationGoal === 'quality') {
+      // Quality Focus mode: ignore cost, only recommend top ranked models in the selected category
+      filteredAlternatives = alternatives.filter(alt => {
+        if (alt._id === currentModel._id || (alt.slug && alt.slug === currentSlug)) return false;
+        return true;
+      });
+      // Sort strictly by best rank in category
+      filteredAlternatives.sort((a, b) => a.category_rank - b.category_rank);
+    } else {
+      // Default: Performance Preservation
+      filteredAlternatives = alternatives.filter(alt => {
+        if (alt._id === currentModel._id || (alt.slug && alt.slug === currentSlug)) return false;
         if (alt.monthly_cost >= currentCost) return false;
-
-        const isBetterOrEqual = (currentRank !== 999 && alt.category_rank <= currentRank) || alt.performance_score >= currentScore;
-        const preservesQuality = alt.performance_score >= minAcceptableScore;
-
-        return isBetterOrEqual || preservesQuality;
+        if (currentRank !== 999 && alt.category_rank >= currentRank) return false;
+        return true;
       });
-
-      filteredAlternatives.forEach(alt => {
-        const perfRatio = currentScore > 0 ? (alt.performance_score / currentScore) : 1;
-        const savingsRatio = currentCost > 0 ? (currentCost - alt.monthly_cost) / currentCost : 0;
-        const rankBonus = alt.category_rank && alt.category_rank <= 100 ? (100 - alt.category_rank) * 0.15 : 0;
-        alt.recommendation_score = (perfRatio * 60) + (savingsRatio * 30) + rankBonus;
-      });
+      filteredAlternatives.sort((a, b) => (a.category_rank - b.category_rank) || (a.monthly_cost - b.monthly_cost));
     }
 
-    // Sort by recommendation score descending
-    filteredAlternatives.sort((a, b) => b.recommendation_score - a.recommendation_score);
-
-    // Limit to top 5
+    // Limit to at most 5 models
     const topAlternatives = filteredAlternatives.slice(0, 5);
 
-    // 4. Construct reports
+    // 4. Construct reports with accurate performance increase / decrease metrics
     const recommendations = topAlternatives.map(alt => {
       const savings = currentCost - alt.monthly_cost;
-      const performanceRetained = currentScore > 0 ? (alt.performance_score / currentScore) * 100 : 100;
+      const rankDelta = (currentRank !== 999 && alt.category_rank !== 999) ? (currentRank - alt.category_rank) : 0;
+      const perfDelta = currentScore > 0 ? parseFloat((((alt.performance_score - currentScore) / currentScore) * 100).toFixed(1)) : 0;
+      const performanceRetained = currentScore > 0 ? parseFloat(((alt.performance_score / currentScore) * 100).toFixed(1)) : 100;
 
       return {
         modelId: alt._id,
+        slug: alt.slug,
         name: alt.name,
         developer: alt.developer,
         context_length: alt.context_length,
         performance_score: alt.performance_score,
+        category_rank: alt.category_rank,
+        baseline_rank: currentRank,
+        rank_delta: rankDelta,
+        performance_delta_percentage: perfDelta,
         tokens_per_second: alt.tokens_per_second,
         time_to_first_token_ms: alt.time_to_first_token_ms,
         cost_per_m_input: alt.cost_per_m_input,
         cost_per_m_output: alt.cost_per_m_output,
         cache_read_cost_per_m: alt.cache_read_cost_per_m,
-        monthly_cost: alt.monthly_cost,
+        monthly_cost: parseFloat(alt.monthly_cost.toFixed(2)),
         projected_monthly_savings: parseFloat(savings.toFixed(2)),
         projected_annual_savings: parseFloat((savings * 12).toFixed(2)),
-        performance_retained_percentage: parseFloat(performanceRetained.toFixed(2)),
-        recommendation_score: parseFloat(alt.recommendation_score.toFixed(4))
+        performance_retained_percentage: performanceRetained,
+        recommendation_score: alt.category_rank
       };
     });
 
     const recResponse = {
       currentBaseline: {
         modelId: currentModel._id,
+        slug: currentSlug,
         name: currentModel.name,
         performance_score: currentScore,
+        category_rank: currentRank,
         monthly_cost: parseFloat(currentCost.toFixed(2)),
-        tokens_per_second: currentModel.capabilities?.tokens_per_second || 0,
-        time_to_first_token_ms: currentModel.capabilities?.time_to_first_token_ms || 0,
-        cost_per_m_input: currentModel.endpoints?.[0]?.input_cost_per_m || 0,
-        cost_per_m_output: currentModel.endpoints?.[0]?.output_cost_per_m || 0
+        tokens_per_second: currentRankEntry?.median_output_tokens_per_second || currentModel.capabilities?.tokens_per_second || null,
+        time_to_first_token_ms: currentRankEntry?.median_time_to_first_token_seconds ? Math.round(currentRankEntry.median_time_to_first_token_seconds * 1000) : (currentModel.capabilities?.time_to_first_token_ms || null),
+        cost_per_m_input: currentModel.endpoints?.[0]?.input_cost_per_m ?? currentRankEntry?.pricing?.price_1m_input_tokens ?? 0,
+        cost_per_m_output: currentModel.endpoints?.[0]?.output_cost_per_m ?? currentRankEntry?.pricing?.price_1m_output_tokens ?? 0
       },
       recommendations
     };

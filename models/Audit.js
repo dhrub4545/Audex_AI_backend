@@ -12,7 +12,10 @@ const AllocationSchema = new mongoose.Schema({
   pricePerSeat: { type: Number },
   baselineModels: [{ type: String }],
   currentCost: { type: Number },
-  baselineModelId: { type: String }
+  baselineModelId: { type: String },
+  baselineModelName: { type: String },
+  topModelId: { type: String },
+  topModelName: { type: String }
 });
 
 const OptionSchema = new mongoose.Schema({
@@ -23,6 +26,8 @@ const OptionSchema = new mongoose.Schema({
   limits: { type: String },
   name: { type: String },
   modelId: { type: String },
+  topModelId: { type: String },
+  topModelName: { type: String },
   statusText: { type: String },
   isAlreadyOptimized: { type: Boolean, default: false },
   includedModels: [{ type: String }],
@@ -53,6 +58,8 @@ const RecommendationSchema = new mongoose.Schema({
     purpose: { type: String },
     currentCost: { type: Number },
     modelId: { type: String },
+    topModelId: { type: String },
+    topModelName: { type: String },
     provider: { type: String },
     modelName: { type: String }
   }
