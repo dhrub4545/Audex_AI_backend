@@ -285,6 +285,24 @@ function findTopModelOfSubscription(tier, rankData, allModels, purpose = 'mixed'
     }
   }
 
+  // Fallback to the first available model in the tier if none matched rankData
+  if (!bestModel && (rawModels.length > 0 || models.length > 0)) {
+    const firstRaw = rawModels[0];
+    const firstMid = models[0];
+    const dbModel = allModels?.find(m => 
+      (firstMid && (m._id === firstMid || m._id.toLowerCase() === firstMid.toLowerCase())) || 
+      (firstRaw && m.name && m.name.toLowerCase() === firstRaw.toLowerCase())
+    );
+    bestModel = dbModel || {
+      _id: firstMid || `custom/${(firstRaw || 'model').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      name: firstRaw || firstMid || 'Model',
+      developer: tier.provider,
+      endpoints: []
+    };
+    if (bestScore === null) bestScore = 75;
+    if (bestRank === 99999) bestRank = 50;
+  }
+
   return {
     model: bestModel,
     rankEntry: bestEntry,
@@ -1234,7 +1252,10 @@ router.post('/', optionalAuth, async (req, res) => {
           currentCost,
           modelId,
           provider: currentProvider,
-          modelName: currentModelName
+          modelName: currentModelName,
+          baselineModels: (type === 'subscription' && detail.tier) ? (detail.tier.rawModels || []) : [],
+          topModelId: detail.primaryBaselineModel ? detail.primaryBaselineModel._id : null,
+          topModelName: detail.primaryBaselineModel ? detail.primaryBaselineModel.name : null
         }
       });
     });
@@ -1927,12 +1948,33 @@ router.get('/subscription-tiers/list', async (req, res) => {
           type: 'subscription',
           plans: [],
           defaultPlan: '',
-          defaultSeats: (key.includes('github') || key.includes('copilot') || key.includes('cursor') || key.includes('anthropic') || key.includes('claude')) ? 5 : 1
+          defaultSeats: (key.includes('github') || key.includes('copilot') || key.includes('cursor') || key.includes('anthropic') || key.includes('claude')) ? 5 : 1,
+          planModels: {},
+          planDetails: {},
+          allModels: [],
+          tiers: []
         };
       }
       if (!grouped[key].plans.includes(tier.plan)) {
         grouped[key].plans.push(tier.plan);
       }
+
+      const tierModels = (tier.rawModels && tier.rawModels.length > 0) ? tier.rawModels : (tier.models || []);
+      grouped[key].planModels[tier.plan] = tierModels;
+      grouped[key].planDetails[tier.plan] = {
+        monthlyPrice: tier.monthlyPrice,
+        annualPrice: tier.annualPrice,
+        limits: tier.limits || '',
+        models: tierModels,
+        rawModels: tier.rawModels || [],
+        slugModels: tier.models || []
+      };
+      grouped[key].tiers.push(tier);
+      tierModels.forEach(m => {
+        if (!grouped[key].allModels.includes(m)) {
+          grouped[key].allModels.push(m);
+        }
+      });
     });
 
     Object.keys(grouped).forEach(key => {
