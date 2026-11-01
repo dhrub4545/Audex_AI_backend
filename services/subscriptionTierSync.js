@@ -30,6 +30,7 @@ function extractAllModels(rawData) {
               if (!existing.name && item.name) existing.name = item.name;
               if (!existing.organization && item.organization) existing.organization = item.organization;
               if (!existing.modelId && item.modelId) existing.modelId = item.modelId;
+              if (!existing.release_date && item.release_date) existing.release_date = item.release_date;
             }
           }
         });
@@ -64,23 +65,59 @@ function normalizeProvider(name) {
 }
 
 /**
- * Categorize a model into lightweight (mini/flash/haiku/small) vs flagship reasoning
+ * Categorize a model into lightweight (mini/flash/haiku/small) vs flagship reasoning.
+ * Uses strict token-based regex to avoid matching substrings like "gemini" with "mini".
  */
-function isLightweightModel(slug, name) {
+function isLightweightModel(slug = '', name = '') {
   const s = `${slug} ${name}`.toLowerCase();
-  return s.includes('mini') || s.includes('flash') || s.includes('haiku') || 
-         s.includes('small') || s.includes('nano') || s.includes('instant') || 
-         s.includes('lite') || s.includes('nemo') || s.includes('3b') || s.includes('8b');
+  
+  // Explicitly NEVER lightweight if it's a known flagship or ultra frontier model:
+  if (s.includes('carbon') || s.includes('argon') || s.includes('terra') || 
+      s.includes('opus') || s.includes('large') || s.includes('sol') || 
+      s.includes('grok 4.7') || s.includes('grok-4-7') || s.includes('405b') ||
+      s.includes('397b') || s.includes('480b')) {
+    return false;
+  }
+  
+  // Word boundary matching for 'mini' so 'gemini' does not match
+  const hasMini = /\bmini\b|-mini\b|\bmini-/.test(s);
+  const hasFlash = /\bflash\b|-flash\b|\bflash-/.test(s);
+  const hasHaiku = /\bhaiku\b/.test(s);
+  const hasNano = /\bnano\b/.test(s);
+  const hasSmall = /\bsmall\b/.test(s);
+  const hasLite = /\blite\b|-lite\b|\blite-/.test(s);
+  const hasInstant = /\binstant\b/.test(s);
+  const hasFast = /\bfast\b/.test(s);
+  const hasSmallParams = /\b(?:1b|2b|3b|4b|7b|8b|9b|12b|14b)\b/.test(s);
+
+  return hasMini || hasFlash || hasHaiku || hasNano || hasSmall || hasLite || hasInstant || hasFast || hasSmallParams;
 }
 
 /**
  * Categorize a model into max-effort / ultra / heavy reasoning
  */
-function isUltraModel(slug, name) {
+function isUltraModel(slug = '', name = '') {
   const s = `${slug} ${name}`.toLowerCase();
-  return s.includes('max') || s.includes('xhigh') || s.includes('ultra') || 
-         s.includes('pro-preview') || s.includes('fable') || s.includes('heavy') ||
-         s.includes('405b') || s.includes('terra') || s.includes('sol (max)');
+  if (isLightweightModel(slug, name)) return false;
+  return s.includes('carbon') || s.includes('terra') || 
+         s.includes('opus 5.5') || s.includes('opus 5') || s.includes('opus-5') ||
+         s.includes('grok 4.7') || s.includes('grok-4-7') ||
+         s.includes('heavy') || s.includes('405b') || s.includes('480b') ||
+         s.includes('397b') || (s.includes('sol') && s.includes('max')) ||
+         (s.includes('ultra') && !s.includes('1.0')) || s.includes('deep-think') ||
+         (s.includes('xhigh') && (s.includes('terra') || s.includes('opus') || s.includes('grok 4.7')));
+}
+
+/**
+ * Categorize a model into standard flagship tier (Pro / Plus / Sonnet / Sol / Large)
+ */
+function isFlagshipModel(slug = '', name = '') {
+  const s = `${slug} ${name}`.toLowerCase();
+  if (isLightweightModel(slug, name)) return false;
+  return s.includes('argon') || s.includes('sol') || s.includes('sonnet') || 
+         s.includes('pro') || s.includes('large') || s.includes('medium') ||
+         s.includes('grok 4.6') || s.includes('grok-4-6') || s.includes('v4-pro') ||
+         s.includes('command a') || s.includes('speciale') || isUltraModel(slug, name);
 }
 
 /**
@@ -147,6 +184,39 @@ function getModelRecencyScore(name = '', slug = '', releaseDate = null) {
 }
 
 /**
+ * Helper to pick distinct, diverse models across model families.
+ * Avoids returning 3 slight variations of the same model (e.g. High, Medium, Low).
+ */
+function pickDiverseModels(models, maxCount = 4) {
+  const result = [];
+  const seenFamilies = new Set();
+  
+  for (const m of models) {
+    const familyKey = (m.name || m.slug || '').toLowerCase()
+      .replace(/\s*\([^)]*\)/g, '')
+      .replace(/-high|-medium|-low|-preview|-reasoning|-non-reasoning/g, '')
+      .trim();
+    if (!seenFamilies.has(familyKey)) {
+      seenFamilies.add(familyKey);
+      result.push(m);
+      if (result.length >= maxCount) break;
+    }
+  }
+  
+  if (result.length < maxCount) {
+    const seenSlugs = new Set(result.map(m => m.slug));
+    for (const m of models) {
+      if (!seenSlugs.has(m.slug)) {
+        seenSlugs.add(m.slug);
+        result.push(m);
+        if (result.length >= maxCount) break;
+      }
+    }
+  }
+  return result;
+}
+
+/**
  * Synchronize subscription_tiers.json with live models from raw_data.json and Artificial Analysis.
  */
 async function syncSubscriptionTiers(freshModels = null) {
@@ -180,7 +250,7 @@ async function syncSubscriptionTiers(freshModels = null) {
       const org = (m.organization || m.model_creator?.name || m.model_creator?.slug || '').toLowerCase();
       const slug = (m.slug || '').toLowerCase();
       if (orgKey === 'xai') return org.includes('xai') || org.includes('spacexai') || slug.includes('grok');
-      if (orgKey === 'meta') return org.includes('meta') || slug.includes('llama');
+      if (orgKey === 'meta') return org.includes('meta') || slug.includes('llama') || slug.includes('muse');
       if (orgKey === 'mistral') return org.includes('mistral') || slug.includes('pixtral') || slug.includes('codestral');
       return org.includes(orgKey) || slug.startsWith(orgKey);
     });
@@ -262,98 +332,109 @@ async function syncSubscriptionTiers(freshModels = null) {
     // --- 1. OPENAI (ChatGPT) ---
     if (provKey === 'openai') {
       if (planName.includes('free')) {
-        selectedModels = openAIModels.filter(m => isLightweightModel(m.slug, m.name)).slice(0, 4);
+        selectedModels = pickDiverseModels(openAIModels.filter(m => isLightweightModel(m.slug, m.name)), 4);
       } else if (planName.includes('go')) {
-        const light = openAIModels.filter(m => isLightweightModel(m.slug, m.name)).slice(0, 3);
-        const flagship = openAIModels.filter(m => !isLightweightModel(m.slug, m.name)).slice(0, 2);
-        selectedModels = [...flagship, ...light];
-      } else if (planName.includes('plus') || planName.includes('business')) {
-        const flagship = openAIModels.filter(m => !isLightweightModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)).slice(0, 4);
-        const ultra = openAIModels.filter(m => isUltraModel(m.slug, m.name)).slice(0, 2);
-        selectedModels = [...flagship, ...ultra];
-      } else if (planName.includes('pro')) {
-        const ultra = openAIModels.filter(m => isUltraModel(m.slug, m.name)).slice(0, 4);
-        const flagship = openAIModels.filter(m => !isLightweightModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)).slice(0, 2);
-        selectedModels = [...ultra, ...flagship];
+        selectedModels = pickDiverseModels([
+          ...openAIModels.filter(m => isLightweightModel(m.slug, m.name)),
+          ...openAIModels.filter(m => m.slug.includes('5-2') || m.slug.includes('instant'))
+        ], 4);
+      } else if (planName.includes('plus')) {
+        selectedModels = pickDiverseModels(openAIModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 5);
+      } else if (planName.includes('pro') || planName.includes('business')) {
+        selectedModels = pickDiverseModels([
+          ...openAIModels.filter(m => isUltraModel(m.slug, m.name)),
+          ...openAIModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name))
+        ], 5);
       }
     }
 
     // --- 2. GOOGLE (Gemini & AI Plans) ---
     else if (provKey === 'google') {
       if (planName.includes('free')) {
-        selectedModels = googleModels.filter(m => isLightweightModel(m.slug, m.name)).slice(0, 3);
+        selectedModels = pickDiverseModels(googleModels.filter(m => isLightweightModel(m.slug, m.name) && (m.slug.includes('flash') || m.name.toLowerCase().includes('flash'))), 3);
       } else if (planName.includes('plus')) {
-        const light = googleModels.filter(m => isLightweightModel(m.slug, m.name)).slice(0, 3);
-        const flagship = googleModels.filter(m => !isLightweightModel(m.slug, m.name)).slice(0, 2);
-        selectedModels = [...light, ...flagship];
+        const lightFlash = pickDiverseModels(googleModels.filter(m => isLightweightModel(m.slug, m.name) && (m.slug.includes('flash') || m.name.toLowerCase().includes('flash'))), 2);
+        const reasoning = pickDiverseModels(googleModels.filter(m => m.slug.includes('flash-reasoning') || m.slug.includes('31b') || m.slug.includes('26b')), 2);
+        selectedModels = pickDiverseModels([...lightFlash, ...reasoning], 4);
       } else if (planName.includes('pro')) {
-        const lightFlash = googleModels.filter(m => m.slug.includes('3-7-flash') || m.slug.includes('flash')).slice(0, 2);
-        const proPreview = googleModels.filter(m => m.slug.includes('pro') || m.slug.includes('gemma-4')).slice(0, 4);
-        selectedModels = [...lightFlash, ...proPreview];
+        const flagship = pickDiverseModels(googleModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 3);
+        const flash = pickDiverseModels(googleModels.filter(m => m.slug.includes('3-8-flash') || m.slug.includes('3-7-flash')), 1);
+        selectedModels = pickDiverseModels([...flagship, ...flash], 4);
       } else if (planName.includes('ultra')) {
-        const ultra = googleModels.filter(m => isUltraModel(m.slug, m.name) || m.slug.includes('3-1-pro') || m.slug.includes('pro') || m.slug.includes('gemma-4')).slice(0, 5);
-        selectedModels = ultra;
+        const ultra = pickDiverseModels(googleModels.filter(m => isUltraModel(m.slug, m.name)), 2);
+        const flagship = pickDiverseModels(googleModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 2);
+        selectedModels = pickDiverseModels([...ultra, ...flagship], 4);
       }
     }
 
     // --- 3. ANTHROPIC (Claude) ---
     else if (provKey === 'anthropic') {
       if (planName.includes('free')) {
-        selectedModels = anthropicModels.filter(m => isLightweightModel(m.slug, m.name)).slice(0, 3);
+        selectedModels = pickDiverseModels(anthropicModels.filter(m => isLightweightModel(m.slug, m.name)), 3);
       } else if (planName.includes('pro') || planName.includes('standard')) {
-        const opusAndSonnet = anthropicModels.filter(m => !isLightweightModel(m.slug, m.name)).slice(0, 5);
-        selectedModels = opusAndSonnet;
+        selectedModels = pickDiverseModels(anthropicModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 4);
       } else if (planName.includes('max') || planName.includes('premium') || planName.includes('enterprise')) {
-        const ultraOpus = anthropicModels.filter(m => isUltraModel(m.slug, m.name) || m.slug.includes('opus') || m.slug.includes('fable')).slice(0, 5);
-        selectedModels = ultraOpus;
+        selectedModels = pickDiverseModels([
+          ...anthropicModels.filter(m => isUltraModel(m.slug, m.name)),
+          ...anthropicModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name))
+        ], 4);
       }
     }
 
     // --- 4. DEEPSEEK ---
     else if (provKey === 'deepseek') {
-      selectedModels = deepseekModels.slice(0, 5);
+      selectedModels = pickDiverseModels(deepseekModels, 5);
     }
 
     // --- 5. MISTRAL ---
     else if (provKey === 'mistral') {
       if (planName.includes('free')) {
-        selectedModels = mistralModels.filter(m => isLightweightModel(m.slug, m.name)).slice(0, 3);
+        selectedModels = pickDiverseModels(mistralModels.filter(m => isLightweightModel(m.slug, m.name)), 3);
       } else {
-        selectedModels = mistralModels.filter(m => !isLightweightModel(m.slug, m.name)).slice(0, 4);
+        selectedModels = pickDiverseModels(mistralModels.filter(m => !isLightweightModel(m.slug, m.name)), 4);
       }
     }
 
     // --- 6. META ---
     else if (provKey === 'meta') {
-      selectedModels = metaModels.slice(0, 4);
+      if (planName.includes('free')) {
+        selectedModels = pickDiverseModels(metaModels.filter(m => isLightweightModel(m.slug, m.name) || m.slug.includes('70b') || m.slug.includes('spark')), 3);
+      } else {
+        selectedModels = pickDiverseModels(metaModels.filter(m => isUltraModel(m.slug, m.name) || m.slug.includes('405b') || m.slug.includes('wonder')), 4);
+      }
     }
 
     // --- 7. xAI (Grok) ---
     else if (provKey === 'xai') {
       if (planName.includes('free')) {
-        selectedModels = xaiModels.filter(m => isLightweightModel(m.slug, m.name) || m.slug.includes('grok-2')).slice(0, 2);
-      } else if (planName.includes('heavy') || planName.includes('supergrok')) {
-        selectedModels = xaiModels.slice(0, 4);
+        selectedModels = pickDiverseModels(xaiModels.filter(m => isLightweightModel(m.slug, m.name)), 2);
+      } else if (planName.includes('heavy') || (planName.includes('supergrok') && !planName.includes('lite'))) {
+        selectedModels = pickDiverseModels([
+          ...xaiModels.filter(m => isUltraModel(m.slug, m.name)),
+          ...xaiModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name))
+        ], 4);
       } else {
-        selectedModels = xaiModels.slice(0, 3);
+        selectedModels = pickDiverseModels(xaiModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 3);
       }
     }
 
     // --- 8. DEVELOPER & IDE TOOLS (GitHub Copilot, Cursor, Windsurf) ---
     else if (provKey === 'github' || provKey === 'cursor' || provKey === 'windsurf') {
       if (planName.includes('free')) {
-        const topLightClaude = anthropicModels.filter(m => isLightweightModel(m.slug, m.name)).slice(0, 1);
-        const topLightGPT = openAIModels.filter(m => isLightweightModel(m.slug, m.name)).slice(0, 1);
-        selectedModels = [...topLightClaude, ...topLightGPT];
+        const topLightClaude = pickDiverseModels(anthropicModels.filter(m => isLightweightModel(m.slug, m.name)), 1);
+        const topLightGPT = pickDiverseModels(openAIModels.filter(m => isLightweightModel(m.slug, m.name)), 1);
+        const topLightGemini = pickDiverseModels(googleModels.filter(m => isLightweightModel(m.slug, m.name)), 1);
+        selectedModels = [...topLightClaude, ...topLightGPT, ...topLightGemini];
       } else if (planName.includes('pro+') || planName.includes('business')) {
-        const topOpus = anthropicModels.filter(m => isUltraModel(m.slug, m.name) || m.slug.includes('opus')).slice(0, 2);
-        const topGPT = openAIModels.filter(m => isUltraModel(m.slug, m.name) || m.slug.includes('sol')).slice(0, 2);
-        const topGemini = googleModels.filter(m => m.slug.includes('flash') || m.slug.includes('pro')).slice(0, 1);
-        selectedModels = [...topOpus, ...topGPT, ...topGemini];
+        const topOpus = pickDiverseModels(anthropicModels.filter(m => isUltraModel(m.slug, m.name)), 1);
+        const topGPT = pickDiverseModels(openAIModels.filter(m => isUltraModel(m.slug, m.name)), 1);
+        const topSonnet = pickDiverseModels(anthropicModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 1);
+        const topGemini = pickDiverseModels(googleModels.filter(m => isUltraModel(m.slug, m.name) || m.slug.includes('argon')), 1);
+        selectedModels = [...topOpus, ...topGPT, ...topSonnet, ...topGemini];
       } else {
-        const topClaude = anthropicModels.filter(m => !isLightweightModel(m.slug, m.name)).slice(0, 2);
-        const topGPT = openAIModels.filter(m => !isLightweightModel(m.slug, m.name)).slice(0, 2);
-        const topGemini = googleModels.filter(m => m.slug.includes('flash') || m.slug.includes('pro')).slice(0, 1);
+        const topClaude = pickDiverseModels(anthropicModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 1);
+        const topGPT = pickDiverseModels(openAIModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 1);
+        const topGemini = pickDiverseModels(googleModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 1);
         selectedModels = [...topClaude, ...topGPT, ...topGemini];
       }
     }
@@ -362,27 +443,37 @@ async function syncSubscriptionTiers(freshModels = null) {
     else if (provKey === 'perplexity') {
       const sonarModels = allModels.filter(m => m.slug.includes('sonar'));
       if (planName.includes('free')) {
-        selectedModels = sonarModels.length > 0 ? sonarModels.slice(0, 2) : openAIModels.filter(m => isLightweightModel(m.slug, m.name)).slice(0, 2);
+        const sLight = sonarModels.slice(0, 1);
+        const gLight = pickDiverseModels(googleModels.filter(m => isLightweightModel(m.slug, m.name)), 1);
+        const aLight = pickDiverseModels(anthropicModels.filter(m => isLightweightModel(m.slug, m.name)), 1);
+        selectedModels = [...sLight, ...gLight, ...aLight];
+      } else if (planName.includes('max')) {
+        const sTop = sonarModels.slice(0, 1);
+        const aOpus = pickDiverseModels(anthropicModels.filter(m => isUltraModel(m.slug, m.name)), 1);
+        const oTerra = pickDiverseModels(openAIModels.filter(m => isUltraModel(m.slug, m.name)), 1);
+        const gCarbon = pickDiverseModels(googleModels.filter(m => isUltraModel(m.slug, m.name)), 1);
+        selectedModels = [...sTop, ...aOpus, ...oTerra, ...gCarbon];
       } else {
-        const topSonar = sonarModels.slice(0, 2);
-        const topOpus = anthropicModels.slice(0, 1);
-        const topGPT = openAIModels.slice(0, 1);
-        selectedModels = [...topSonar, ...topOpus, ...topGPT];
+        const sTop = sonarModels.slice(0, 1);
+        const aSonnet = pickDiverseModels(anthropicModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 1);
+        const oSol = pickDiverseModels(openAIModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 1);
+        const gPro = pickDiverseModels(googleModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 1);
+        selectedModels = [...sTop, ...aSonnet, ...oSol, ...gPro];
       }
     }
 
     // --- 10. ALIBABA (Qwen) ---
     else if (provKey === 'alibaba') {
       if (planName.includes('free')) {
-        selectedModels = alibabaModels.filter(m => isLightweightModel(m.slug, m.name)).slice(0, 3);
+        selectedModels = pickDiverseModels(alibabaModels.filter(m => isLightweightModel(m.slug, m.name)), 3);
       } else {
-        selectedModels = alibabaModels.slice(0, 4);
+        selectedModels = pickDiverseModels(alibabaModels, 4);
       }
     }
 
     // --- 11. COHERE ---
     else if (provKey === 'cohere') {
-      selectedModels = cohereModels.slice(0, 4);
+      selectedModels = pickDiverseModels(cohereModels, 4);
     }
 
     // Apply the newly resolved models if matches were found
@@ -433,5 +524,11 @@ module.exports = {
   syncSubscriptionTiers,
   isDiscontinuedModel,
   getModelRecencyScore,
-  initDateMap
+  initDateMap,
+  isLightweightModel,
+  isUltraModel,
+  isFlagshipModel,
+  pickDiverseModels,
+  extractAllModels,
+  normalizeProvider
 };
