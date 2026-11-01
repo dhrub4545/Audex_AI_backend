@@ -2,9 +2,11 @@
   "version": 2,
   "functions": {
     "api/index.js": {
+      "includeFiles": "data/**",
       "maxDuration": 60
     },
     "server.js": {
+      "includeFiles": "data/**",
       "maxDuration": 60
     }
   },

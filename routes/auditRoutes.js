@@ -203,20 +203,23 @@ function findSubscriptionTier(toolName, planName) {
 }
 
 // Finds the top-ranked model of a subscription tier for a specific category
-function findTopModelOfSubscription(tier, rankData, allModels) {
+function findTopModelOfSubscription(tier, rankData, allModels, purpose = 'mixed') {
   if (!tier) return null;
   const models = tier.models || [];
   const rawModels = tier.rawModels || [];
   let bestEntry = null;
   let bestModel = null;
+  let bestScore = 0;
   let bestRank = 99999;
 
   for (const mid of models) {
     const slug = mid.includes('/') ? mid.split('/')[1] : mid;
     const entry = findRankEntry(rankData, slug, mid);
     const dbModel = allModels?.find(m => m._id === mid || (m._id && m._id.toLowerCase() === mid.toLowerCase()) || (m._id && m._id.split('/')[1] === slug));
+    const score = getEvaluationScore(entry, purpose, dbModel, 'aa_index_score');
     const rank = entry ? (parseInt(entry.rank) || 9999) : 9999;
-    if (rank < bestRank) {
+    if (score > bestScore || (score === bestScore && rank < bestRank)) {
+      bestScore = score;
       bestRank = rank;
       bestEntry = entry;
       bestModel = dbModel || (entry ? {
@@ -232,28 +235,32 @@ function findTopModelOfSubscription(tier, rankData, allModels) {
   }
 
   // Also check rawModels names if models list did not resolve
-  if (bestRank === 99999 && rawModels.length > 0) {
+  if (rawModels.length > 0) {
     for (const rm of rawModels) {
       const entry = rankData?.find(m => m.name && (m.name.toLowerCase().includes(rm.toLowerCase()) || rm.toLowerCase().includes(m.name.toLowerCase())));
-      if (entry && (parseInt(entry.rank) || 9999) < bestRank) {
-        bestRank = parseInt(entry.rank) || 9999;
-        bestEntry = entry;
-        bestModel = allModels?.find(m => m.name && m.name.toLowerCase() === entry.name.toLowerCase()) || {
-          _id: entry.modelId || `unknown/${entry.slug}`,
-          name: entry.name,
-          developer: entry.organization || tier.provider
-        };
+      if (entry) {
+        const dbModel = allModels?.find(m => m.name && m.name.toLowerCase() === entry.name.toLowerCase());
+        const score = getEvaluationScore(entry, purpose, dbModel, 'aa_index_score');
+        const rank = parseInt(entry.rank) || 9999;
+        if (score > bestScore || (score === bestScore && rank < bestRank)) {
+          bestScore = score;
+          bestRank = rank;
+          bestEntry = entry;
+          bestModel = dbModel || {
+            _id: entry.modelId || `unknown/${entry.slug}`,
+            name: entry.name,
+            developer: entry.organization || tier.provider
+          };
+        }
       }
     }
   }
-
-  const score = bestEntry ? Math.round(50 + (((bestEntry.rating || 1200) - 1000) / 327) * 49) : (bestModel?.capabilities?.aa_index_score || 75);
 
   return {
     model: bestModel,
     rankEntry: bestEntry,
     rank: bestRank !== 99999 ? bestRank : 999,
-    score
+    score: bestScore || 75
   };
 }
 
@@ -344,18 +351,77 @@ function getCategoryRankData(purpose) {
 function getEvaluationScore(item, purpose, dbModel, capabilityField) {
   if (!item && !dbModel) return 50;
 
-  const evals = item?.evaluations || {};
+  const evals = item?.evaluations || dbModel?.evaluations || {};
   const p = purpose ? purpose.toLowerCase() : 'mixed';
 
-  // 1. Direct verified category benchmark (0-100) if available
-  if (p === 'coding' && typeof evals.artificial_analysis_coding_index === 'number' && evals.artificial_analysis_coding_index > 0) {
-    return Math.min(100, Math.round(evals.artificial_analysis_coding_index));
-  }
-  if (p === 'math' && typeof evals.artificial_analysis_math_index === 'number' && evals.artificial_analysis_math_index > 0) {
-    return Math.min(100, Math.round(evals.artificial_analysis_math_index));
+  // 1. Direct verified category-specific benchmarks from Artificial Analysis
+  if (p === 'coding') {
+    if (typeof evals.livecodebench === 'number' && evals.livecodebench > 0) {
+      return Math.min(99, Math.round((evals.livecodebench / 90) * 100));
+    }
+    if (typeof evals.artificial_analysis_coding_index === 'number' && evals.artificial_analysis_coding_index > 0) {
+      const v = evals.artificial_analysis_coding_index;
+      return Math.min(99, Math.round(v <= 1 ? v * 100 : (v <= 60 ? (v / 60) * 100 : v)));
+    }
+    if (typeof evals.scicode === 'number' && evals.scicode > 0) {
+      return Math.min(99, Math.round((evals.scicode / 67) * 98));
+    }
   }
 
-  // 2. High-precision rank-based capability scoring derived from live Artificial Analysis Category Rankings
+  if (p === 'math') {
+    if (typeof evals.aime === 'number' && evals.aime > 0) {
+      return Math.min(99, Math.round(evals.aime));
+    }
+    if (typeof evals.artificial_analysis_math_index === 'number' && evals.artificial_analysis_math_index > 0) {
+      return Math.min(99, Math.round((evals.artificial_analysis_math_index / 67) * 98));
+    }
+  }
+
+  if (p === 'reasoning') {
+    if (typeof evals.gpqa === 'number' && evals.gpqa > 0) {
+      return Math.min(99, Math.round(evals.gpqa));
+    }
+    if (typeof evals.artificial_analysis_intelligence_index === 'number' && evals.artificial_analysis_intelligence_index > 0) {
+      return Math.min(99, Math.round((evals.artificial_analysis_intelligence_index / 60) * 100));
+    }
+  }
+
+  if (p === 'research') {
+    if (typeof evals.hle === 'number' && evals.hle > 0) {
+      return Math.min(99, Math.round((evals.hle / 58) * 98));
+    }
+    if (typeof evals.gpqa === 'number' && evals.gpqa > 0) {
+      return Math.min(99, Math.round(evals.gpqa));
+    }
+  }
+
+  // 2. Direct overall intelligence index
+  if (typeof evals.artificial_analysis_intelligence_index === 'number' && evals.artificial_analysis_intelligence_index > 0) {
+    const v = evals.artificial_analysis_intelligence_index;
+    return Math.min(99, Math.round(v <= 1 ? v * 100 : (v <= 60 ? (v / 60) * 100 : v)));
+  }
+
+  // 3. Composite of verified benchmark evaluations (GPQA, Math, MMLU-Pro, IFBench, LiveCodeBench, HLE)
+  const parts = [];
+  if (typeof evals.gpqa === 'number' && evals.gpqa > 0) parts.push(evals.gpqa);
+  if (typeof evals.mmlu_pro === 'number' && evals.mmlu_pro > 0) parts.push(evals.mmlu_pro);
+  if (typeof evals.artificial_analysis_math_index === 'number' && evals.artificial_analysis_math_index > 0) parts.push((evals.artificial_analysis_math_index / 67) * 98);
+  if (typeof evals.livecodebench === 'number' && evals.livecodebench > 0) parts.push((evals.livecodebench / 90) * 100);
+  if (typeof evals.ifbench === 'number' && evals.ifbench > 0) parts.push((evals.ifbench / 85) * 100);
+  if (typeof evals.hle === 'number' && evals.hle > 0) parts.push((evals.hle / 58) * 98);
+
+  if (parts.length > 0) {
+    const avg = parts.reduce((a, b) => a + b, 0) / parts.length;
+    return Math.min(99, Math.max(25, Math.round(avg)));
+  }
+
+  // 4. Fallback to database capability score
+  const dbScore = dbModel?.capabilities?.[capabilityField];
+  if (typeof dbScore === 'number' && dbScore > 0) {
+    return Math.min(100, Math.round(dbScore));
+  }
+
+  // 5. Rank-based capability scoring derived from live Artificial Analysis Category Rankings
   if (item && typeof item.rank === 'number' && item.rank > 0) {
     const rank = item.rank;
     let score;
@@ -373,13 +439,7 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
     return score;
   }
 
-  // 3. Fallback to database capability score
-  const dbScore = dbModel?.capabilities?.[capabilityField];
-  if (typeof dbScore === 'number' && dbScore > 0) {
-    return Math.min(100, Math.round(dbScore));
-  }
-
-  // 4. Fallback to final_score if available
+  // 6. Fallback to final_score if available
   if (item && typeof item.final_score === 'number' && item.final_score > 0) {
     return Math.min(100, Math.round(item.final_score));
   }
@@ -866,7 +926,8 @@ router.post('/', optionalAuth, async (req, res) => {
         compatible.sort((a, b) => a.rank - b.rank);
         selectedApi = compatible[0] || null;
       } else if (optimizationGoal === 'performance') {
-        let compatible = apiCandidates.filter(c => !c.isCurrent && c.monthly_cost < currentCost && (baselineRank !== 9999 ? c.rank < baselineRank : true));
+        const minAllowedScore = computedBaselineScore > 0 ? Math.round(computedBaselineScore * 0.95) : 0;
+        let compatible = apiCandidates.filter(c => !c.isCurrent && c.monthly_cost < currentCost && (baselineRank !== 9999 ? c.rank < baselineRank : true) && c.performance_score >= minAllowedScore);
         compatible.sort((a, b) => (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
         selectedApi = compatible[0] || null;
         if (!selectedApi) {
@@ -942,7 +1003,7 @@ router.post('/', optionalAuth, async (req, res) => {
 
       subMatchTiers.forEach(t => {
         const cost = seats * t.monthlyPrice;
-        const topSub = findTopModelOfSubscription(t, rankData, allModels);
+        const topSub = findTopModelOfSubscription(t, rankData, allModels, purpose);
         const bestRank = topSub ? topSub.rank : 999;
         const bestScore = topSub ? topSub.score : 50;
 
@@ -968,7 +1029,8 @@ router.post('/', optionalAuth, async (req, res) => {
         compatible.sort((a, b) => (a.rank - b.rank) || (a.cost - b.cost));
         selectedSub = compatible[0] || null;
       } else if (optimizationGoal === 'performance') {
-        let compatible = subCandidates.filter(c => !c.isCurrent && c.cost < currentCost && (baselineRank !== 9999 ? c.rank < baselineRank : true));
+        const minAllowedScore = computedBaselineScore > 0 ? Math.round(computedBaselineScore * 0.95) : 0;
+        let compatible = subCandidates.filter(c => !c.isCurrent && c.cost <= (currentCost - 1.00) && (baselineRank !== 9999 ? c.rank < baselineRank : true) && c.performance_score >= minAllowedScore);
         compatible.sort((a, b) => (a.rank - b.rank) || (a.cost - b.cost));
         selectedSub = compatible[0] || null;
         if (!selectedSub) {
@@ -1332,7 +1394,37 @@ router.post('/audit-recommendation', async (req, res) => {
     if (!currentModel) {
       // Try fuzzy matching
       const targetBase = (currentModelId.split('/')[1] || currentModelId).toLowerCase();
-      currentModel = allModels.find(m => m._id.toLowerCase().includes(targetBase)) || null;
+      currentModel = allModels.find(m => m._id.toLowerCase().includes(targetBase) || (m.slug && m.slug.toLowerCase() === targetBase)) || null;
+    }
+    if (!currentModel) {
+      const cleanStr = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const targetClean = cleanStr(currentModelId);
+      currentModel = allModels.find(m => cleanStr(m._id) === targetClean || cleanStr(m.name || '') === targetClean || cleanStr(m.slug || '') === targetClean) || null;
+    }
+    if (!currentModel) {
+      // Direct lookup from rankData/raw_data if DB didn't resolve it
+      const rawRankData = getCategoryRankData(targetUseCase);
+      const entry = findRankEntry(rawRankData, currentModelId.split('/')[1] || currentModelId, currentModelId);
+      if (entry) {
+        currentModel = {
+          _id: entry.modelId || currentModelId,
+          slug: entry.slug || currentModelId.split('/')[1] || currentModelId,
+          name: entry.name,
+          developer: entry.organization || 'AI Provider',
+          context_length: 128000,
+          endpoints: [{
+            input_cost_per_m: entry.pricing?.price_1m_input_tokens || 3,
+            output_cost_per_m: entry.pricing?.price_1m_output_tokens || 15
+          }],
+          capabilities: {
+            aa_index_score: 80,
+            coding_score: 80,
+            reasoning_score: 80,
+            math_score: 80,
+            tokens_per_second: entry.median_output_tokens_per_second || 75
+          }
+        };
+      }
     }
     if (!currentModel) {
       return res.status(404).json({ error: 'Baseline model data not found in database.' });
@@ -1436,10 +1528,13 @@ router.post('/audit-recommendation', async (req, res) => {
     let filteredAlternatives = [];
     if (optimizationGoal === 'performance') {
       // Performance Preservation mode: models with better rank AND lower cost in the selected category
+      // CRITICAL: NEVER recommend a model that degrades performance (must be >= 95% of baseline score)
+      const minAllowedScore = currentScore > 0 ? Math.round(currentScore * 0.95) : 0;
       filteredAlternatives = alternatives.filter(alt => {
         if (alt._id === currentModel._id || (alt.slug && alt.slug === currentSlug)) return false;
         if (alt.monthly_cost >= currentCost) return false;
         if (currentRank !== 999 && alt.category_rank >= currentRank) return false;
+        if (alt.performance_score < minAllowedScore) return false;
         return true;
       });
       // Sort by best rank (ascending), then by lower monthly cost
@@ -1463,10 +1558,12 @@ router.post('/audit-recommendation', async (req, res) => {
       filteredAlternatives.sort((a, b) => a.category_rank - b.category_rank);
     } else {
       // Default: Performance Preservation
+      const minAllowedScore = currentScore > 0 ? Math.round(currentScore * 0.95) : 0;
       filteredAlternatives = alternatives.filter(alt => {
         if (alt._id === currentModel._id || (alt.slug && alt.slug === currentSlug)) return false;
         if (alt.monthly_cost >= currentCost) return false;
         if (currentRank !== 999 && alt.category_rank >= currentRank) return false;
+        if (alt.performance_score < minAllowedScore) return false;
         return true;
       });
       filteredAlternatives.sort((a, b) => (a.category_rank - b.category_rank) || (a.monthly_cost - b.monthly_cost));
@@ -1507,6 +1604,7 @@ router.post('/audit-recommendation', async (req, res) => {
     });
 
     const recResponse = {
+      selectedCategory: targetUseCase,
       currentBaseline: {
         modelId: currentModel._id,
         slug: currentSlug,
