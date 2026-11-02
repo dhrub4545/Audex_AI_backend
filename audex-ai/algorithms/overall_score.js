@@ -41,6 +41,8 @@ function normalizeModelId(creator, slug) {
   if (s === 'gemini-1-5-flash') s = 'gemini-1.5-flash';
   if (s === 'gemini-2-5-pro') s = 'gemini-2.5-pro';
   if (s === 'gemini-2-5-flash') s = 'gemini-2.5-flash';
+  if (s === 'gemini-3-8-flash') s = 'gemini-3.8-flash';
+  if (s === 'gemini-4-argon') s = 'gemini-4-argon';
   return `${c}/${s}`;
 }
 

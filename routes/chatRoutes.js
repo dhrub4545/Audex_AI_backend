@@ -276,14 +276,14 @@ INSTRUCTIONS:
           
           let geminiResponse;
           try {
-            console.log(`[Gemini API] Attempting to call model: gemini-2.5-flash`);
+            console.log(`[Gemini API] Attempting to call model: gemini-3.8-flash`);
             geminiResponse = await axios.post(
-              `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`,
+              `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${key}`,
               bodyPayload,
               { headers: { 'Content-Type': 'application/json' }, timeout: 15000 }
             );
           } catch (geminiErr) {
-            console.warn(`[Gemini API Warning] gemini-2.5-flash failed: ${geminiErr.message}. Attempting sub-fallback to gemini-2.0-flash...`);
+            console.warn(`[Gemini API Warning] gemini-3.8-flash failed: ${geminiErr.message}. Attempting sub-fallback to gemini-2.0-flash...`);
             geminiResponse = await axios.post(
               `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`,
               bodyPayload,
@@ -419,11 +419,11 @@ INSTRUCTIONS:
             ...contextMessages
           ];
           
-          console.log(`[OpenRouter API] Attempting to call model: google/gemini-2.5-flash`);
+          console.log(`[OpenRouter API] Attempting to call model: google/gemini-3.8-flash`);
           const openrouterResponse = await axios.post(
             'https://openrouter.ai/api/v1/chat/completions',
             {
-              model: 'google/gemini-2.5-flash',
+              model: 'google/gemini-3.8-flash',
               messages,
               temperature: 0.7
             },
