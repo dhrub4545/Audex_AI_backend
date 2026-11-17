@@ -81,10 +81,12 @@ async function syncArtificialAnalysis(scrapedModels = null) {
   }
 
   const llmModels = Array.from(modelsMap.values());
-  const sourceModels = (scrapedModels && Array.isArray(scrapedModels) && scrapedModels.length > 0)
+  const rawSource = (scrapedModels && Array.isArray(scrapedModels) && scrapedModels.length > 0)
     ? scrapedModels
     : llmModels;
-  console.log(`📥 Processing ${sourceModels.length} models from Artificial Analysis for database synchronization...`);
+  // Use latest version data only: filter out deprecated / superseded models
+  const sourceModels = rawSource.filter(m => !m.deprecated);
+  console.log(`📥 Processing ${sourceModels.length} active models (latest version data) from Artificial Analysis for database synchronization...`);
 
   const syncedModels = [];
   const seenModelIds = new Set();
@@ -115,30 +117,39 @@ async function syncArtificialAnalysis(scrapedModels = null) {
       last_synced_at: new Date()
     };
 
-    // 100% actual benchmark metrics - NO FAKE FALLBACK TO INTEL IF BENCHMARK IS MISSING!
-    // 1. Intelligence / Overall index
+    // 100% actual benchmark metrics - Index v5
+    // 1. Intelligence / Overall index (v5)
     let aa_index_score = null;
-    const rawIntel = parseFloat(item.evaluations?.artificial_analysis_intelligence_index ?? item.category_scores?.overall ?? item.intelligenceIndex ?? rankedInfo?.category_scores?.overall ?? rankedInfo?.final_score);
+    const rawIntel = parseFloat(item.intelligenceIndex ?? item.evaluations?.artificial_analysis_intelligence_index ?? item.category_scores?.overall ?? rankedInfo?.category_scores?.overall ?? rankedInfo?.final_score);
     if (!isNaN(rawIntel) && rawIntel > 0) {
       aa_index_score = Math.min(100, Math.round(rawIntel));
     } else if (item.final_score && item.final_score > 0) {
       aa_index_score = Math.min(100, Math.round(item.final_score));
     }
 
-    // 2. Coding index (LiveCodeBench, Coding Index, Coding Agents)
+    // 2. Coding index v5 (FrontierCode 2.0: 60% + Terminal-Bench 4.0: 40%)
     let coding_score = null;
-    const rawLcb = parseFloat(item.evaluations?.livecodebench ?? item.livecodebench ?? rankedInfo?.evaluations?.livecodebench);
-    const rawCoding = parseFloat(item.evaluations?.artificial_analysis_coding_index ?? item.category_scores?.coding ?? item.codingIndex ?? rankedInfo?.category_scores?.coding);
-    const rawAgents = parseFloat(item.evaluations?.coding_agent_index ?? item.codingAgentsIndex ?? rankedInfo?.evaluations?.coding_agent_index);
-    if (!isNaN(rawLcb) && rawLcb > 0) {
-      coding_score = Math.min(100, Math.round(rawLcb <= 1 ? rawLcb * 100 : rawLcb));
-    } else if (!isNaN(rawCoding) && rawCoding > 0) {
-      coding_score = Math.min(100, Math.round(rawCoding));
-    } else if (!isNaN(rawAgents) && rawAgents > 0) {
+    const rawFc = typeof item.frontierCode20 === 'number' ? item.frontierCode20 : (typeof item.frontierCode === 'number' ? item.frontierCode : null);
+    const rawTb = typeof item.terminalBench40 === 'number' ? item.terminalBench40 : (typeof item.terminalBench21 === 'number' ? item.terminalBench21 : (typeof item.terminalbenchHard === 'number' ? item.terminalbenchHard : null));
+    const rawAgents = typeof item.codingAgentsIndex === 'number' ? item.codingAgentsIndex : (typeof item.evaluations?.coding_agent_index === 'number' ? item.evaluations.coding_agent_index : null);
+
+    if (rawFc !== null && rawTb !== null) {
+      const fcNorm = rawFc <= 1 ? rawFc * 100 : rawFc;
+      const tbNorm = rawTb <= 1 ? rawTb * 100 : rawTb;
+      coding_score = Math.min(100, Math.round(fcNorm * 0.6 + tbNorm * 0.4));
+    } else if (rawFc !== null) {
+      const fcNorm = rawFc <= 1 ? rawFc * 100 : rawFc;
+      coding_score = Math.min(100, Math.round(fcNorm));
+    } else if (rawTb !== null) {
+      const tbNorm = rawTb <= 1 ? rawTb * 100 : rawTb;
+      coding_score = Math.min(100, Math.round(tbNorm));
+    } else if (rawAgents !== null) {
       coding_score = Math.min(100, Math.round(rawAgents));
+    } else if (rankedInfo?.category_scores?.coding) {
+      coding_score = Math.min(100, Math.round(rankedInfo.category_scores.coding));
     }
 
-    // 3. Math index (AIME, Math Index, SciCode)
+    // 3. Math index (AIME 2025, SciCode)
     let math_score = null;
     const rawAime = parseFloat(item.evaluations?.aime ?? item.aime25 ?? rankedInfo?.evaluations?.aime);
     const rawMath = parseFloat(item.evaluations?.artificial_analysis_math_index ?? item.category_scores?.math ?? item.mathIndex ?? rankedInfo?.category_scores?.math);
@@ -151,11 +162,14 @@ async function syncArtificialAnalysis(scrapedModels = null) {
       math_score = Math.min(100, Math.round(rawSci <= 1 ? rawSci * 100 : rawSci));
     }
 
-    // 4. Reasoning index (GPQA Diamond, HLE)
+    // 4. Reasoning index (v5: HLE-Diamond, GPQA Diamond, HLE)
     let reasoning_score = null;
+    const rawHleDiamond = parseFloat(item.hleDiamond ?? rankedInfo?.evaluations?.hle_diamond);
     const rawGpqa = parseFloat(item.evaluations?.gpqa ?? item.gpqa ?? rankedInfo?.evaluations?.gpqa);
     const rawHle = parseFloat(item.evaluations?.hle ?? item.hle ?? rankedInfo?.evaluations?.hle);
-    if (!isNaN(rawGpqa) && rawGpqa > 0) {
+    if (!isNaN(rawHleDiamond) && rawHleDiamond > 0) {
+      reasoning_score = Math.min(100, Math.round(rawHleDiamond <= 1 ? rawHleDiamond * 100 : rawHleDiamond));
+    } else if (!isNaN(rawGpqa) && rawGpqa > 0) {
       reasoning_score = Math.min(100, Math.round(rawGpqa <= 1 ? rawGpqa * 100 : rawGpqa));
     } else if (!isNaN(rawHle) && rawHle > 0) {
       reasoning_score = Math.min(100, Math.round(rawHle <= 1 ? rawHle * 100 : rawHle));
@@ -206,7 +220,9 @@ async function syncArtificialAnalysis(scrapedModels = null) {
         artificial_analysis_math_index: math_score,
         gpqa: rawGpqa !== null && !isNaN(rawGpqa) ? (rawGpqa <= 1 ? rawGpqa * 100 : rawGpqa) : (rankedInfo?.evaluations?.gpqa || null),
         hle: rawHle !== null && !isNaN(rawHle) ? (rawHle <= 1 ? rawHle * 100 : rawHle) : (rankedInfo?.evaluations?.hle || null),
-        livecodebench: rawLcb !== null && !isNaN(rawLcb) ? (rawLcb <= 1 ? rawLcb * 100 : rawLcb) : (rankedInfo?.evaluations?.livecodebench || null),
+        frontier_code_20: rawFc !== null ? Math.round(rawFc <= 1 ? rawFc * 100 : rawFc) : (rankedInfo?.evaluations?.frontier_code_20 || null),
+        terminal_bench_40: rawTb !== null ? Math.round(rawTb <= 1 ? rawTb * 100 : rawTb) : (rankedInfo?.evaluations?.terminal_bench_40 || null),
+        livecodebench: item.livecodebench ? Math.round(item.livecodebench <= 1 ? item.livecodebench * 100 : item.livecodebench) : (rankedInfo?.evaluations?.livecodebench || null),
         aime: rawAime !== null && !isNaN(rawAime) ? (rawAime <= 1 ? rawAime * 100 : rawAime) : (rankedInfo?.evaluations?.aime || null),
         coding_agent_index: rawAgents !== null && !isNaN(rawAgents) ? rawAgents : (rankedInfo?.evaluations?.coding_agent_index || null)
       },

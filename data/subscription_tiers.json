@@ -431,7 +431,7 @@
       "DeepSeek V4 Pro 0424 (Max)"
     ],
     "limits": "Completely free on web and app with no ads. No paid consumer plans available.",
-    "last_synced_at": "2026-11-17T13:26:55.705Z"
+    "last_synced_at": "2026-11-17T14:48:20.775Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -471,7 +471,7 @@
       "Pixtral Large"
     ],
     "limits": "Higher limits across chat, more messages and web searches, more extended thinking and deep research reports, expanded Mistral Vibe capacity, chat and email support. Student discount available.",
-    "last_synced_at": "2026-11-17T13:26:55.705Z"
+    "last_synced_at": "2026-11-17T14:48:20.776Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -493,7 +493,7 @@
       "Muse Spark Open (Xhigh)"
     ],
     "limits": "Meta AI is free across all Meta apps with unlimited conversational chat. Image generation, video creation, and Thinking mode are capped for free users. Available in 200+ countries with multi-language support.",
-    "last_synced_at": "2026-11-17T13:26:55.706Z"
+    "last_synced_at": "2026-11-17T14:48:20.777Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -517,7 +517,7 @@
       "Llama 3.1 Instruct 405B"
     ],
     "limits": "Includes Facebook Plus, Instagram Plus, and WhatsApp Plus benefits at a discounted price[reference:8]. More monthly AI usage allowance for eligible AI features[reference:9]. More advanced reasoning with Thinking mode[reference:10]. Currently in limited testing in select locations[reference:11][reference:12].",
-    "last_synced_at": "2026-11-17T13:26:55.707Z"
+    "last_synced_at": "2026-11-17T14:48:20.777Z"
   },
   {
     "category": "Search & Research",
@@ -537,7 +537,7 @@
       "Grok 4 Fast (Non-reasoning)"
     ],
     "limits": "Limited daily usage with access to Grok and basic multimodal features.",
-    "last_synced_at": "2026-11-17T13:26:55.707Z"
+    "last_synced_at": "2026-11-17T14:48:20.778Z"
   },
   {
     "category": "Search & Research",
@@ -559,7 +559,7 @@
       "Grok 4.3 (Medium)"
     ],
     "limits": "Basic Grok access inside X app.",
-    "last_synced_at": "2026-11-17T13:26:55.707Z"
+    "last_synced_at": "2026-11-17T14:48:20.778Z"
   },
   {
     "category": "Search & Research",
@@ -581,7 +581,7 @@
       "Grok 4.3 (Medium)"
     ],
     "limits": "2x longer context window; basic image/video generation; 1 AI agent in Expert mode.",
-    "last_synced_at": "2026-11-17T13:26:55.708Z"
+    "last_synced_at": "2026-11-17T14:48:20.778Z"
   },
   {
     "category": "Search & Research",
@@ -605,7 +605,7 @@
       "Grok 4.3 (Medium)"
     ],
     "limits": "Higher rate limits, Grok 4 access, frontier models, image/video generation, connectors, and Expert mode.[reference:27]",
-    "last_synced_at": "2026-11-17T13:26:55.708Z"
+    "last_synced_at": "2026-11-17T14:48:20.779Z"
   },
   {
     "category": "Search & Research",
@@ -629,7 +629,7 @@
       "Grok 4.3 (Medium)"
     ],
     "limits": "Highest consumer/business tier with maximum rate limits and access to advanced Grok capabilities.[reference:28]",
-    "last_synced_at": "2026-11-17T13:26:55.709Z"
+    "last_synced_at": "2026-11-17T14:48:20.779Z"
   },
   {
     "category": "Search & Research",
@@ -647,7 +647,7 @@
       "Sonar Reasoning Pro"
     ],
     "limits": "Free AI search with limited Pro searches per day.",
-    "last_synced_at": "2026-11-17T13:26:55.709Z"
+    "last_synced_at": "2026-11-17T14:48:20.780Z"
   },
   {
     "category": "Search & Research",
@@ -665,7 +665,7 @@
       "Sonar Reasoning Pro"
     ],
     "limits": "Includes unlimited Quick searches, daily Pro searches, Labs, Deep Research, and access to premium AI models. Annual billing: $200/year (save ~17%).",
-    "last_synced_at": "2026-11-17T13:26:55.709Z"
+    "last_synced_at": "2026-11-17T14:48:20.780Z"
   },
   {
     "category": "Search & Research",
@@ -683,7 +683,7 @@
       "Sonar Reasoning Pro"
     ],
     "limits": "Highest consumer tier with significantly increased usage limits and priority access. Includes Computer access, 10,000 monthly credits.",
-    "last_synced_at": "2026-11-17T13:26:55.709Z"
+    "last_synced_at": "2026-11-17T14:48:20.780Z"
   },
   {
     "category": "Code & Agents",

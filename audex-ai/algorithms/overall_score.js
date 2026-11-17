@@ -81,39 +81,44 @@ async function generateAllRankFiles(inputModels = null) {
     throw new Error('No Artificial Analysis models available to generate rank files.');
   }
 
+  // Use latest version data only: filter out deprecated / superseded models
+  const latestModelsList = modelsList.filter(m => !m.deprecated);
+  console.log(`📊 Filtered ${modelsList.length} total models down to ${latestModelsList.length} active (non-deprecated) models for Index v5 ranking.`);
+
   // Transform raw Artificial Analysis models into unified ranking objects with 100% actual metrics
-  const processedModels = modelsList.map(m => {
+  const processedModels = latestModelsList.map(m => {
     const creatorName = m.creator?.name || m.model_creator?.name || m.organization || 'Independent';
     const creatorSlug = normalizeCreatorSlug(creatorName, m.creator?.slug || m.model_creator?.slug);
     const slug = m.slug || (m.name ? m.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') : 'unknown');
     const modelId = `${creatorSlug}/${slug}`;
 
-    // 1. Intelligence / Overall Index (0-100 scale)
+    // 1. Intelligence / Overall Index (Index v5, 0-100 scale)
     const rawIntel = typeof m.intelligenceIndex === 'number' 
       ? m.intelligenceIndex 
       : (typeof m.evaluations?.artificial_analysis_intelligence_index === 'number' ? m.evaluations.artificial_analysis_intelligence_index : null);
     const intel = rawIntel !== null && !isNaN(rawIntel) ? round1(rawIntel) : null;
 
-    // 2. Coding (LiveCodeBench, FrontierCode, TerminalBench, Coding Agents Index)
-    const rawLcb = typeof m.livecodebench === 'number' ? m.livecodebench : (typeof m.evaluations?.livecodebench === 'number' ? m.evaluations.livecodebench : null);
-    const lcb = rawLcb !== null && !isNaN(rawLcb) ? round1(rawLcb <= 1 ? rawLcb * 100 : rawLcb) : null;
-
-    const rawCodingIndex = typeof m.codingIndex === 'number' ? m.codingIndex : (typeof m.evaluations?.artificial_analysis_coding_index === 'number' ? m.evaluations.artificial_analysis_coding_index : null);
-    const codingIndexScore = rawCodingIndex !== null && !isNaN(rawCodingIndex) ? round1(rawCodingIndex) : null;
-
+    // 2. Coding Index v5 (FrontierCode 2.0: 60% + Terminal-Bench 4.0: 40%)
+    const rawFc20 = typeof m.frontierCode20 === 'number' ? m.frontierCode20 : (typeof m.frontierCode === 'number' ? m.frontierCode : null);
+    const rawTb40 = typeof m.terminalBench40 === 'number' ? m.terminalBench40 : (typeof m.terminalBench21 === 'number' ? m.terminalBench21 : (typeof m.terminalbenchHard === 'number' ? m.terminalbenchHard : null));
     const rawCodingAgents = typeof m.codingAgentsIndex === 'number' ? m.codingAgentsIndex : null;
-    const codingAgentScore = rawCodingAgents !== null ? round1(rawCodingAgents) : null;
 
-    const rawTb = typeof m.terminalBench21 === 'number' ? m.terminalBench21 : (typeof m.terminalbenchHard === 'number' ? m.terminalbenchHard : null);
-    const tbScore = rawTb !== null && !isNaN(rawTb) ? round1(rawTb <= 1 ? rawTb * 100 : rawTb) : null;
+    let coding = null;
+    if (rawFc20 !== null && rawTb40 !== null) {
+      const fcNorm = rawFc20 <= 1 ? rawFc20 * 100 : rawFc20;
+      const tbNorm = rawTb40 <= 1 ? rawTb40 * 100 : rawTb40;
+      coding = round1((fcNorm * 0.6) + (tbNorm * 0.4));
+    } else if (rawFc20 !== null) {
+      const fcNorm = rawFc20 <= 1 ? rawFc20 * 100 : rawFc20;
+      coding = round1(fcNorm);
+    } else if (rawTb40 !== null) {
+      const tbNorm = rawTb40 <= 1 ? rawTb40 * 100 : rawTb40;
+      coding = round1(tbNorm);
+    } else if (rawCodingAgents !== null) {
+      coding = round1(rawCodingAgents);
+    }
 
-    const rawFrontierCode = typeof m.frontierCode === 'number' ? m.frontierCode : (typeof m.frontierCode20 === 'number' ? m.frontierCode20 : null);
-    const frontierCodeScore = rawFrontierCode !== null && !isNaN(rawFrontierCode) ? round1(rawFrontierCode <= 1 ? rawFrontierCode * 100 : rawFrontierCode) : null;
-
-    // 100% actual coding metric - NO FALLBACK TO INTEL!
-    const coding = lcb !== null ? lcb : (codingIndexScore !== null ? codingIndexScore : (codingAgentScore !== null ? codingAgentScore : (frontierCodeScore !== null ? frontierCodeScore : (tbScore !== null ? tbScore : null))));
-
-    // 3. Math (AIME, SciCode, Math Index)
+    // 3. Math (AIME 2025, SciCode, Math Index)
     const rawAime = typeof m.aime25 === 'number' ? m.aime25 : (typeof m.evaluations?.aime === 'number' ? m.evaluations.aime : null);
     const aime = rawAime !== null && !isNaN(rawAime) ? round1(rawAime <= 1 ? rawAime * 100 : rawAime) : null;
 
@@ -123,22 +128,28 @@ async function generateAllRankFiles(inputModels = null) {
     const rawMathIndex = typeof m.mathIndex === 'number' ? m.mathIndex : (typeof m.evaluations?.artificial_analysis_math_index === 'number' ? m.evaluations.artificial_analysis_math_index : null);
     const mathIndexScore = rawMathIndex !== null && !isNaN(rawMathIndex) ? round1(rawMathIndex) : null;
 
-    // 100% actual math metric - NO FALLBACK TO INTEL!
+    // 100% actual math metric
     const math = aime !== null ? aime : (mathIndexScore !== null ? mathIndexScore : (scicode !== null ? scicode : null));
 
-    // 4. Reasoning (GPQA Diamond, Humanity's Last Exam, Intelligence Index)
+    // 4. Reasoning / General (v5: HLE-Diamond, GPQA Diamond, Omniscience)
+    const rawHleDiamond = typeof m.hleDiamond === 'number' ? m.hleDiamond : null;
+    const hleDiamondScore = rawHleDiamond !== null && !isNaN(rawHleDiamond) ? round1(rawHleDiamond <= 1 ? rawHleDiamond * 100 : rawHleDiamond) : null;
+
     const rawGpqa = typeof m.gpqa === 'number' ? m.gpqa : (typeof m.evaluations?.gpqa === 'number' ? m.evaluations.gpqa : null);
     const gpqa = rawGpqa !== null && !isNaN(rawGpqa) ? round1(rawGpqa <= 1 ? rawGpqa * 100 : rawGpqa) : null;
+
+    const rawOmni = typeof m.omniscience === 'number' ? m.omniscience : null;
+    const omniScore = rawOmni !== null && !isNaN(rawOmni) ? round1(rawOmni <= 1 ? rawOmni * 100 : rawOmni) : null;
 
     const rawHle = typeof m.hle === 'number' ? m.hle : (typeof m.evaluations?.hle === 'number' ? m.evaluations.hle : null);
     const hle = rawHle !== null && !isNaN(rawHle) ? round1(rawHle <= 1 ? rawHle * 100 : rawHle) : null;
 
-    const reasoning = gpqa !== null ? gpqa : (hle !== null ? hle : (intel !== null ? intel : null));
+    const reasoning = hleDiamondScore !== null ? hleDiamondScore : (gpqa !== null ? gpqa : (hle !== null ? hle : (omniScore !== null ? omniScore : (intel !== null ? intel : null))));
 
     // 5. Research & Long Context
     const rawLcr = typeof m.lcr === 'number' ? m.lcr : null;
     const lcr = rawLcr !== null && !isNaN(rawLcr) && rawLcr > 0 ? round1(rawLcr <= 1 ? rawLcr * 100 : rawLcr) : null;
-    const research = hle !== null ? hle : (lcr !== null ? lcr : null);
+    const research = hleDiamondScore !== null ? hleDiamondScore : (hle !== null ? hle : (lcr !== null ? lcr : null));
 
     // 6. Instruction Following (IFBench)
     const rawIfbench = typeof m.ifbench === 'number' ? m.ifbench : (typeof m.evaluations?.ifbench === 'number' ? m.evaluations.ifbench : null);
@@ -148,23 +159,49 @@ async function generateAllRankFiles(inputModels = null) {
     const rawMmlu = typeof m.mmmuPro === 'number' ? m.mmmuPro : (typeof m.evaluations?.mmlu_pro === 'number' ? m.evaluations.mmlu_pro : null);
     const knowledge = rawMmlu !== null && !isNaN(rawMmlu) ? round1(rawMmlu <= 1 ? rawMmlu * 100 : rawMmlu) : null;
 
-    // 8. Agents & Function Calling
+    // 8. Agents & Function Calling (Terminal-Bench 4.0 / 2.1, Coding Agents)
+    const tbScore = rawTb40 !== null && !isNaN(rawTb40) ? round1(rawTb40 <= 1 ? rawTb40 * 100 : rawTb40) : null;
     const rawApex = typeof m.apexAgents === 'number' ? m.apexAgents : null;
     const apex = rawApex !== null && !isNaN(rawApex) ? round1(rawApex <= 1 ? rawApex * 100 : rawApex) : null;
-    const agents = codingAgentScore !== null ? codingAgentScore : (tbScore !== null ? tbScore : (apex !== null ? apex : null));
+    const agents = coding ? coding : (rawCodingAgents !== null ? round1(rawCodingAgents) : (tbScore !== null ? tbScore : (apex !== null ? apex : null)));
 
     // 9. Multilingual
     const rawTau2 = typeof m.tau2 === 'number' ? m.tau2 : null;
     const multilingual = rawTau2 !== null && !isNaN(rawTau2) ? round1(rawTau2 <= 1 ? rawTau2 * 100 : rawTau2) : null;
 
-    // 10. Data Analysis & Finance
+    // 10. Data Analysis, Finance & Enterprise Knowledge Work (v5: GDP.pdf, AutomationBench)
+    const rawGdpPdf = typeof m.gdpPdfAllPass === 'number' ? m.gdpPdfAllPass : null;
+    const gdpScore = rawGdpPdf !== null && !isNaN(rawGdpPdf) ? round1(rawGdpPdf <= 1 ? rawGdpPdf * 100 : rawGdpPdf) : null;
+
+    const rawAutoBench = typeof m.automationBenchPartialScore === 'number' ? m.automationBenchPartialScore : null;
+    const autoBenchScore = rawAutoBench !== null && !isNaN(rawAutoBench) ? round1(rawAutoBench <= 1 ? rawAutoBench * 100 : rawAutoBench) : null;
+
     const rawTauBanking = typeof m.tauBanking === 'number' ? m.tauBanking : null;
     const tauBanking = rawTauBanking !== null && !isNaN(rawTauBanking) ? round1(rawTauBanking <= 1 ? rawTauBanking * 100 : rawTauBanking) : null;
     const rawGdpval = typeof m.gdpval === 'number' ? m.gdpval : null;
     const gdpval = rawGdpval !== null && !isNaN(rawGdpval) ? round1(rawGdpval) : null;
-    const dataAnalysis = tauBanking !== null ? tauBanking : (gdpval !== null ? gdpval : null);
 
-    // 11. Throughput & Latency (100% actual)
+    const dataAnalysis = gdpScore !== null ? gdpScore : (autoBenchScore !== null ? autoBenchScore : (tauBanking !== null ? tauBanking : (gdpval !== null ? gdpval : null)));
+
+    // 11. Science (v5: Terminal-Bench-Science + CritPt v2 Hard)
+    const rawTbSci = typeof m.terminalBenchScience === 'number' ? m.terminalBenchScience : null;
+    const tbSciScore = rawTbSci !== null && !isNaN(rawTbSci) ? round1(rawTbSci <= 1 ? rawTbSci * 100 : rawTbSci) : null;
+
+    const rawCritpt = typeof m.critptAgenticHard === 'number' ? m.critptAgenticHard : (typeof m.critpt === 'number' ? m.critpt : null);
+    const critptScore = rawCritpt !== null && !isNaN(rawCritpt) ? round1(rawCritpt <= 1 ? rawCritpt * 100 : rawCritpt) : null;
+
+    let scientific = null;
+    if (tbSciScore !== null && critptScore !== null) {
+      scientific = round1(tbSciScore * 0.6 + critptScore * 0.4);
+    } else if (tbSciScore !== null) {
+      scientific = tbSciScore;
+    } else if (critptScore !== null) {
+      scientific = critptScore;
+    } else {
+      scientific = math || reasoning;
+    }
+
+    // 12. Throughput & Latency (100% actual)
     const rawTps = typeof m.performanceByPromptType?.medium?.medianOutputSpeed === 'number'
       ? m.performanceByPromptType.medium.medianOutputSpeed
       : (typeof m.timescaleData?.medianOutputSpeed === 'number'
@@ -185,7 +222,7 @@ async function generateAllRankFiles(inputModels = null) {
             : (typeof m.median_time_to_first_token_seconds === 'number' ? m.median_time_to_first_token_seconds : null))));
     const latencySec = (rawLatency !== null && !isNaN(rawLatency) && rawLatency > 0) ? round2(rawLatency) : null;
 
-    // 12. Unit Pricing (100% actual)
+    // 13. Unit Pricing (100% actual)
     const rawInPrice = m.price1mInputTokens !== undefined ? m.price1mInputTokens : m.pricing?.price_1m_input_tokens;
     const rawOutPrice = m.price1mOutputTokens !== undefined ? m.price1mOutputTokens : m.pricing?.price_1m_output_tokens;
     const inputCost = (rawInPrice !== null && rawInPrice !== undefined && !isNaN(parseFloat(rawInPrice))) ? parseFloat(rawInPrice) : null;
@@ -196,7 +233,7 @@ async function generateAllRankFiles(inputModels = null) {
 
     const contextLength = m.contextWindowTokens || m.context_length || null;
 
-    // Final score & rating
+    // Final score & rating (Index v5 primary)
     const finalScore = intel !== null ? intel : (coding !== null ? coding : (reasoning !== null ? reasoning : null));
     const arenaElo = (typeof m.rating === 'number' && m.rating > 0) 
       ? m.rating 
@@ -225,7 +262,7 @@ async function generateAllRankFiles(inputModels = null) {
       legal: reasoning || instruction,
       medical: typeof m.healthbench === 'number' ? round1(m.healthbench * 100) : (knowledge || reasoning),
       finance: math || dataAnalysis,
-      scientific: math || reasoning,
+      scientific: scientific,
       "creative-writing": intel,
       roleplay: instruction || intel,
       translation: multilingual || instruction,
@@ -250,23 +287,28 @@ async function generateAllRankFiles(inputModels = null) {
       final_score: finalScore,
       confidence: 95,
       coverage: 100,
-      ranking_status: "verified_artificial_analysis",
+      ranking_status: "verified_artificial_analysis_v5",
       data_sources: ["artificial_analysis_scraper"],
       category_scores: categoryScores,
       evaluations: {
         artificial_analysis_intelligence_index: intel,
-        artificial_analysis_coding_index: codingIndexScore || lcb,
-        artificial_analysis_math_index: mathIndexScore || aime,
+        artificial_analysis_coding_index: coding,
+        artificial_analysis_math_index: math,
         gpqa: gpqa,
         hle: hle,
+        hle_diamond: hleDiamondScore,
+        frontier_code_20: rawFc20 !== null ? round1(rawFc20 <= 1 ? rawFc20 * 100 : rawFc20) : null,
+        terminal_bench_40: tbScore,
+        terminal_bench_science: tbSciScore,
+        critpt_agentic_hard: critptScore,
         ifbench: instruction,
-        livecodebench: lcb,
         aime: aime,
         scicode: scicode,
         mmlu_pro: knowledge,
-        agentic_index: codingAgentScore || tbScore,
-        coding_agent_index: codingAgentScore,
-        gdpval: gdpval
+        agentic_index: agents,
+        coding_agent_index: rawCodingAgents !== null ? round1(rawCodingAgents) : null,
+        gdpval: gdpval,
+        gdp_pdf: gdpScore
       },
       pricing: {
         price_1m_input_tokens: inputCost,
