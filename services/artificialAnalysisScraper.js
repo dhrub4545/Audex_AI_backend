@@ -66,10 +66,14 @@ async function decryptManifest(manifestObj) {
 
 /**
  * Scrapes Coding Agent Index data from https://artificialanalysis.ai/agents/coding-agents
- * @returns {Promise<Array<{ label: string, score: number }>>} Array of agent objects
+ * Incorporates 3 benchmarks: FrontierCode-AA 2.0, SWE-Atlas-QnA-AA, Terminal-Bench 4.1
+ * @returns {Promise<Array<Object>>} Array of detailed agent objects
  */
 async function scrapeCodingAgentsData() {
   const agentsList = [];
+  const cachePath = path.join(__dirname, '../data/coding_agents_cache.json');
+  const streamFallbackPath = path.join(__dirname, '../scratch/full_coding_stream.txt');
+
   try {
     const url = 'https://artificialanalysis.ai/agents/coding-agents';
     console.log(`🌐 Scraping Coding Agents Leaderboard from ${url}...`);
@@ -81,33 +85,281 @@ async function scrapeCodingAgentsData() {
     });
 
     const html = res.data;
-    const idx = html.indexOf('"codingAgentsIndex":');
-    if (idx !== -1) {
-      const startArr = html.lastIndexOf('[', idx);
-      let braceCount = 0;
-      let endArr = -1;
-      for (let i = startArr; i < html.length; i++) {
-        if (html[i] === '[') braceCount++;
-        else if (html[i] === ']') {
-          braceCount--;
-          if (braceCount === 0) { endArr = i + 1; break; }
-        }
-      }
-      if (endArr !== -1) {
-        const jsonText = html.substring(startArr, endArr);
-        const parsed = JSON.parse(jsonText);
-        for (const item of parsed) {
-          if (item.codingAgentsIndex !== undefined && item.codingAgentsIndex !== null) {
-            const score = Math.round(item.codingAgentsIndex * 1000) / 10;
-            agentsList.push({ label: item.label || item.name || '', score });
+    const chunks = [];
+    const sandbox = {
+      self: {
+        __next_f: {
+          push: (arr) => {
+            if (arr && arr.length > 1) {
+              chunks.push(arr[1]);
+            }
           }
         }
-        console.log(`✅ Extracted ${agentsList.length} official Coding Agent Index scores.`);
+      }
+    };
+
+    const scriptRegex = /<script>([\s\S]*?)<\/script>/gi;
+    let match;
+    while ((match = scriptRegex.exec(html)) !== null) {
+      const code = match[1];
+      if (code.includes('self.__next_f.push')) {
+        try {
+          vm.runInNewContext(code, sandbox);
+        } catch (_) {}
       }
     }
+
+    const content = chunks.join('');
+    if (content.length > 0) {
+      const agentObjects = [];
+      let searchPos = 0;
+
+      while (true) {
+        const idPos = content.indexOf('{"id":"', searchPos);
+        if (idPos === -1) break;
+
+        const sample = content.substring(idPos, idPos + 100);
+        if (sample.includes('"agentName"') || sample.includes('"agentSlug"') || sample.includes('"isDefault"')) {
+          let depth = 0;
+          let inString = false;
+          let escape = false;
+          let endObj = -1;
+          for (let i = idPos; i < content.length; i++) {
+            const c = content[i];
+            if (escape) {
+              escape = false;
+              continue;
+            }
+            if (c === '\\') {
+              escape = true;
+              continue;
+            }
+            if (c === '"') {
+              inString = !inString;
+              continue;
+            }
+            if (!inString) {
+              if (c === '{') depth++;
+              else if (c === '}') {
+                depth--;
+                if (depth === 0) {
+                  endObj = i + 1;
+                  break;
+                }
+              }
+            }
+          }
+
+          if (endObj !== -1) {
+            try {
+              const objStr = content.substring(idPos, endObj);
+              const agent = JSON.parse(objStr);
+              agentObjects.push(agent);
+              searchPos = endObj;
+              continue;
+            } catch (_) {}
+          }
+        }
+        searchPos = idPos + 7;
+      }
+
+      // Deduplicate by id
+      const byId = new Map();
+      for (const a of agentObjects) {
+        if (a.id) byId.set(a.id, a);
+      }
+
+      for (const r of byId.values()) {
+        const rewards = (r.evals || []).map(e => e.mean?.reward).filter(x => typeof x === 'number');
+        const unroundedAverage = rewards.length ? (rewards.reduce((s, v) => s + v, 0) / rewards.length) : 0;
+        const score = Math.round(unroundedAverage * 100);
+
+        let creatorName = r.modelCreators?.[0]?.name || r.agentCreator?.name || 'Independent';
+        let creatorSlug = r.modelCreators?.[0]?.slug || r.agentCreator?.slug || 'independent';
+        const labelLower = (r.shortLabel || '').toLowerCase();
+        if (labelLower.includes('claude') || labelLower.includes('anthropic')) {
+          creatorName = 'Anthropic';
+          creatorSlug = 'anthropic';
+        } else if (labelLower.includes('gemini') || labelLower.includes('antigravity')) {
+          creatorName = 'Google';
+          creatorSlug = 'google';
+        } else if (labelLower.includes('muse')) {
+          creatorName = 'Meta';
+          creatorSlug = 'meta';
+        } else if (labelLower.includes('gpt') || labelLower.includes('codex')) {
+          creatorName = 'OpenAI';
+          creatorSlug = 'openai';
+        } else if (labelLower.includes('kimi')) {
+          creatorName = 'Moonshot AI';
+          creatorSlug = 'moonshot';
+        } else if (labelLower.includes('grok')) {
+          creatorName = 'xAI';
+          creatorSlug = 'xai';
+        } else if (labelLower.includes('mistral')) {
+          creatorName = 'Mistral AI';
+          creatorSlug = 'mistralai';
+        } else if (labelLower.includes('glm') || labelLower.includes('opencode')) {
+          creatorName = 'Zhipu AI';
+          creatorSlug = 'zhipu';
+        } else if (labelLower.includes('deepseek')) {
+          creatorName = 'DeepSeek';
+          creatorSlug = 'deepseek';
+        }
+
+        const modelName = r.model?.name || r.display?.model || r.shortLabel;
+        const cleanSlug = (r.shortLabel || r.id).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+        agentsList.push({
+          id: cleanSlug,
+          agentId: r.id,
+          slug: cleanSlug,
+          shortLabel: r.shortLabel,
+          label: r.shortLabel,
+          displayLabel: r.displayLabel,
+          agentName: r.agentName,
+          modelName: modelName,
+          creatorName: creatorName,
+          creatorSlug: creatorSlug,
+          isDefault: !!r.isDefault,
+          isRouter: !!r.isRouter,
+          isHighlighted: !!r.isHighlighted,
+          score: score,
+          unroundedAverage: unroundedAverage,
+          rewards: rewards,
+          evals: r.evals
+        });
+      }
+
+      console.log(`✅ Extracted ${agentsList.length} official Coding Agent Index models from live site.`);
+      try {
+        fs.writeFileSync(cachePath, JSON.stringify(agentsList, null, 2), 'utf8');
+      } catch (_) {}
+    }
   } catch (err) {
-    console.warn('⚠️ Coding agents scraping warning:', err.message);
+    console.warn('⚠️ Coding agents live scraping warning:', err.message);
   }
+
+  // Fallback to cache if live fetch failed
+  if (agentsList.length === 0) {
+    if (fs.existsSync(cachePath)) {
+      try {
+        const cached = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+        if (Array.isArray(cached) && cached.length > 0) {
+          console.log(`📂 Loaded ${cached.length} coding agents from persistent cache.`);
+          return cached;
+        }
+      } catch (_) {}
+    }
+
+    if (fs.existsSync(streamFallbackPath)) {
+      try {
+        const content = fs.readFileSync(streamFallbackPath, 'utf8');
+        const agentObjects = [];
+        let searchPos = 0;
+        while (true) {
+          const idPos = content.indexOf('{"id":"', searchPos);
+          if (idPos === -1) break;
+          const sample = content.substring(idPos, idPos + 100);
+          if (sample.includes('"agentName"') || sample.includes('"agentSlug"') || sample.includes('"isDefault"')) {
+            let depth = 0;
+            let inString = false;
+            let escape = false;
+            let endObj = -1;
+            for (let i = idPos; i < content.length; i++) {
+              const c = content[i];
+              if (escape) { escape = false; continue; }
+              if (c === '\\') { escape = true; continue; }
+              if (c === '"') { inString = !inString; continue; }
+              if (!inString) {
+                if (c === '{') depth++;
+                else if (c === '}') {
+                  depth--;
+                  if (depth === 0) { endObj = i + 1; break; }
+                }
+              }
+            }
+            if (endObj !== -1) {
+              try {
+                const agent = JSON.parse(content.substring(idPos, endObj));
+                agentObjects.push(agent);
+                searchPos = endObj;
+                continue;
+              } catch (_) {}
+            }
+          }
+          searchPos = idPos + 7;
+        }
+
+        const byId = new Map();
+        for (const a of agentObjects) {
+          if (a.id) byId.set(a.id, a);
+        }
+
+        for (const r of byId.values()) {
+          const rewards = (r.evals || []).map(e => e.mean?.reward).filter(x => typeof x === 'number');
+          const unroundedAverage = rewards.length ? (rewards.reduce((s, v) => s + v, 0) / rewards.length) : 0;
+          const score = Math.round(unroundedAverage * 100);
+
+          let creatorName = r.modelCreators?.[0]?.name || r.agentCreator?.name || 'Independent';
+          let creatorSlug = r.modelCreators?.[0]?.slug || r.agentCreator?.slug || 'independent';
+          const labelLower = (r.shortLabel || '').toLowerCase();
+          if (labelLower.includes('claude') || labelLower.includes('anthropic')) {
+            creatorName = 'Anthropic';
+            creatorSlug = 'anthropic';
+          } else if (labelLower.includes('gemini') || labelLower.includes('antigravity')) {
+            creatorName = 'Google';
+            creatorSlug = 'google';
+          } else if (labelLower.includes('muse')) {
+            creatorName = 'Meta';
+            creatorSlug = 'meta';
+          } else if (labelLower.includes('gpt') || labelLower.includes('codex')) {
+            creatorName = 'OpenAI';
+            creatorSlug = 'openai';
+          } else if (labelLower.includes('kimi')) {
+            creatorName = 'Moonshot AI';
+            creatorSlug = 'moonshot';
+          } else if (labelLower.includes('grok')) {
+            creatorName = 'xAI';
+            creatorSlug = 'xai';
+          } else if (labelLower.includes('mistral')) {
+            creatorName = 'Mistral AI';
+            creatorSlug = 'mistralai';
+          } else if (labelLower.includes('glm') || labelLower.includes('opencode')) {
+            creatorName = 'Zhipu AI';
+            creatorSlug = 'zhipu';
+          } else if (labelLower.includes('deepseek')) {
+            creatorName = 'DeepSeek';
+            creatorSlug = 'deepseek';
+          }
+
+          const modelName = r.model?.name || r.display?.model || r.shortLabel;
+          const cleanSlug = (r.shortLabel || r.id).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+          agentsList.push({
+            id: cleanSlug,
+            agentId: r.id,
+            slug: cleanSlug,
+            shortLabel: r.shortLabel,
+            label: r.shortLabel,
+            displayLabel: r.displayLabel,
+            agentName: r.agentName,
+            modelName: modelName,
+            creatorName: creatorName,
+            creatorSlug: creatorSlug,
+            isDefault: !!r.isDefault,
+            isRouter: !!r.isRouter,
+            isHighlighted: !!r.isHighlighted,
+            score: score,
+            unroundedAverage: unroundedAverage,
+            rewards: rewards,
+            evals: r.evals
+          });
+        }
+        console.log(`📂 Loaded ${agentsList.length} coding agents from fallback stream.`);
+      } catch (_) {}
+    }
+  }
+
   return agentsList;
 }
 
@@ -201,11 +453,14 @@ async function scrapeArtificialAnalysis() {
     }
   }
 
-  // Robust word-intersection matching to attach codingAgentsIndex to main models
+  // Attach codingAgentsIndex to base models AND inject dedicated coding agent models
   if (Array.isArray(mainModels) && codingAgents.length > 0) {
+    const existingSlugs = new Set(mainModels.map(m => m.slug));
+    const agentModelsToInject = [];
+
     for (const agent of codingAgents) {
-      const cleanLabel = agent.label.toLowerCase().replace(/[^a-z0-9]+/g, ' ');
-      const agentWords = cleanLabel.split(' ').filter(w => w.length > 2 && !['code', 'claude', 'codex', 'cli', 'opencode', 'cursor'].includes(w));
+      const cleanLabel = (agent.label || agent.shortLabel || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ');
+      const agentWords = cleanLabel.split(' ').filter(w => w.length > 2 && !['code', 'claude', 'codex', 'cli', 'opencode', 'cursor', 'build', 'vibe', 'harness'].includes(w));
 
       let bestMatch = null;
       let maxScore = 0;
@@ -229,8 +484,56 @@ async function scrapeArtificialAnalysis() {
 
       if (bestMatch && maxScore >= 1) {
         bestMatch.codingAgentsIndex = agent.score;
-        console.log(`🔗 Attached Coding Agent Index (${agent.score}) to model "${bestMatch.name}" (${bestMatch.slug})`);
+        bestMatch.codingIndex = agent.score;
       }
+
+      // Create dedicated coding agent model entry matching the official Artificial Analysis Leaderboard
+      const agentSlug = agent.slug || (agent.shortLabel || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      if (!existingSlugs.has(agentSlug)) {
+        const inCost = bestMatch ? parseFloat(bestMatch.price1mInputTokens ?? bestMatch.pricing?.price_1m_input_tokens ?? 0) : 0;
+        const outCost = bestMatch ? parseFloat(bestMatch.price1mOutputTokens ?? bestMatch.pricing?.price_1m_output_tokens ?? 0) : 0;
+
+        agentModelsToInject.push({
+          id: agentSlug,
+          slug: agentSlug,
+          modelId: `${agent.creatorSlug}/${agentSlug}`,
+          name: agent.shortLabel,
+          shortLabel: agent.shortLabel,
+          agentName: agent.agentName,
+          modelName: agent.modelName,
+          organization: agent.creatorName,
+          creator: { name: agent.creatorName, slug: agent.creatorSlug },
+          model_creator: { name: agent.creatorName, slug: agent.creatorSlug },
+          rating: bestMatch?.rating || bestMatch?.arena_elo || Math.round(1000 + agent.score * 7),
+          arena_elo: bestMatch?.rating || bestMatch?.arena_elo || Math.round(1000 + agent.score * 7),
+          codingAgentsIndex: agent.score,
+          codingIndex: agent.score,
+          unroundedAverage: agent.unroundedAverage,
+          isDefault: agent.isDefault,
+          isRouter: agent.isRouter,
+          isHighlighted: agent.isHighlighted,
+          isCodingAgent: true,
+          evaluations: {
+            artificial_analysis_coding_index: agent.score,
+            coding_agent_index: agent.score,
+            frontier_code_20: agent.rewards?.[0] ? Math.round(agent.rewards[0] * 1000) / 10 : null,
+            swe_atlas_qna: agent.rewards?.[1] ? Math.round(agent.rewards[1] * 1000) / 10 : null,
+            terminal_bench_41: agent.rewards?.[2] ? Math.round(agent.rewards[2] * 1000) / 10 : null
+          },
+          pricing: { price_1m_input_tokens: inCost, price_1m_output_tokens: outCost },
+          price1mInputTokens: inCost,
+          price1mOutputTokens: outCost,
+          contextWindowTokens: bestMatch?.contextWindowTokens || bestMatch?.context_length || 200000,
+          medianOutputSpeed: bestMatch?.medianOutputSpeed || null,
+          medianTimeToFirstChunk: bestMatch?.medianTimeToFirstChunk || null
+        });
+        existingSlugs.add(agentSlug);
+      }
+    }
+
+    if (agentModelsToInject.length > 0) {
+      console.log(`🤖 Injected ${agentModelsToInject.length} dedicated official Coding Agent models into model catalog.`);
+      mainModels.push(...agentModelsToInject);
     }
   }
 
@@ -242,4 +545,4 @@ async function scrapeArtificialAnalysis() {
   throw new Error('Failed to scrape live Artificial Analysis data and no valid local cache was found.');
 }
 
-module.exports = { scrapeArtificialAnalysis, decryptManifest };
+module.exports = { scrapeArtificialAnalysis, scrapeCodingAgentsData, decryptManifest };

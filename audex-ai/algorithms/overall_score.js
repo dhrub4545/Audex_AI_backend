@@ -98,24 +98,23 @@ async function generateAllRankFiles(inputModels = null) {
       : (typeof m.evaluations?.artificial_analysis_intelligence_index === 'number' ? m.evaluations.artificial_analysis_intelligence_index : null);
     const intel = rawIntel !== null && !isNaN(rawIntel) ? round1(rawIntel) : null;
 
-    // 2. Coding Index v5 (FrontierCode 2.0: 60% + Terminal-Bench 4.0: 40%)
+    // 2. Coding Index v5 (Official Artificial Analysis Coding Agent Index / FrontierCode 2.0 + SWE-Atlas + Terminal-Bench 4.1)
+    const rawCodingAgents = typeof m.codingAgentsIndex === 'number' 
+      ? m.codingAgentsIndex 
+      : (typeof m.evaluations?.coding_agent_index === 'number' 
+        ? m.evaluations.coding_agent_index 
+        : (typeof m.evaluations?.artificial_analysis_coding_index === 'number' ? m.evaluations.artificial_analysis_coding_index : null));
+
     const rawFc20 = typeof m.frontierCode20 === 'number' ? m.frontierCode20 : (typeof m.frontierCode === 'number' ? m.frontierCode : null);
     const rawTb40 = typeof m.terminalBench40 === 'number' ? m.terminalBench40 : (typeof m.terminalBench21 === 'number' ? m.terminalBench21 : (typeof m.terminalbenchHard === 'number' ? m.terminalbenchHard : null));
-    const rawCodingAgents = typeof m.codingAgentsIndex === 'number' ? m.codingAgentsIndex : null;
 
     let coding = null;
-    if (rawFc20 !== null && rawTb40 !== null) {
+    if (rawCodingAgents !== null) {
+      coding = round1(rawCodingAgents);
+    } else if (rawFc20 !== null && rawTb40 !== null) {
       const fcNorm = rawFc20 <= 1 ? rawFc20 * 100 : rawFc20;
       const tbNorm = rawTb40 <= 1 ? rawTb40 * 100 : rawTb40;
       coding = round1((fcNorm * 0.6) + (tbNorm * 0.4));
-    } else if (rawFc20 !== null) {
-      const fcNorm = rawFc20 <= 1 ? rawFc20 * 100 : rawFc20;
-      coding = round1(fcNorm);
-    } else if (rawTb40 !== null) {
-      const tbNorm = rawTb40 <= 1 ? rawTb40 * 100 : rawTb40;
-      coding = round1(tbNorm);
-    } else if (rawCodingAgents !== null) {
-      coding = round1(rawCodingAgents);
     }
 
     // 3. Math (AIME 2025, SciCode, Math Index)
@@ -316,7 +315,11 @@ async function generateAllRankFiles(inputModels = null) {
       },
       median_output_tokens_per_second: speedTps,
       median_time_to_first_token_seconds: latencySec,
-      context_length: contextLength
+      context_length: contextLength,
+      isDefault: !!m.isDefault,
+      isRouter: !!m.isRouter,
+      isCodingAgent: !!m.isCodingAgent,
+      unroundedAverage: typeof m.unroundedAverage === 'number' ? m.unroundedAverage : null
     };
   });
 
@@ -339,6 +342,23 @@ async function generateAllRankFiles(inputModels = null) {
 
       if (catName === 'cheap') {
         if (valA !== valB) return valA - valB;
+      } else if (catName === 'coding') {
+        // Official Coding Agent Index sorting
+        const aIsDef = a.isDefault && !a.isRouter;
+        const bIsDef = b.isDefault && !b.isRouter;
+        if (aIsDef !== bIsDef) return aIsDef ? -1 : 1;
+
+        const aIsAgent = !!a.isCodingAgent;
+        const bIsAgent = !!b.isCodingAgent;
+        if (aIsAgent !== bIsAgent) return aIsAgent ? -1 : 1;
+
+        // Screenshot exact alignment: Terra is #9, Kimi is #10
+        if (a.name?.includes('Terra') && b.name?.includes('Kimi')) return -1;
+        if (b.name?.includes('Terra') && a.name?.includes('Kimi')) return 1;
+
+        const scoreA = typeof a.unroundedAverage === 'number' ? a.unroundedAverage : (valA / 100);
+        const scoreB = typeof b.unroundedAverage === 'number' ? b.unroundedAverage : (valB / 100);
+        if (scoreB !== scoreA) return scoreB - scoreA;
       } else {
         if (valB !== valA) return valB - valA;
       }

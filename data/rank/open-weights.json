@@ -20,7 +20,7 @@
     ],
     "category_scores": {
       "overall": 46.5,
-      "coding": 42.1,
+      "coding": 49,
       "math": 60.8,
       "reasoning": 37.3,
       "research": 37.3,
@@ -28,7 +28,7 @@
       "writing": 46.5,
       "knowledge": 83.9,
       "multilingual": null,
-      "agents": 42.1,
+      "agents": 49,
       "data-analysis": 31.4,
       "cheap": 4,
       "fast": null,
@@ -47,12 +47,12 @@
       "translation": null,
       "summarization": 37.3,
       "extraction": 31.4,
-      "tool-use": 42.1,
-      "function-calling": 42.1
+      "tool-use": 49,
+      "function-calling": 49
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": 46.5,
-      "artificial_analysis_coding_index": 42.1,
+      "artificial_analysis_coding_index": 49,
       "artificial_analysis_math_index": 60.8,
       "gpqa": null,
       "hle": 52.5,
@@ -65,8 +65,8 @@
       "aime": null,
       "scicode": 60.8,
       "mmlu_pro": 83.9,
-      "agentic_index": 42.1,
-      "coding_agent_index": null,
+      "agentic_index": 49,
+      "coding_agent_index": 49,
       "gdpval": 1860.6,
       "gdp_pdf": 31.4
     },
@@ -77,6 +77,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 1
   },
   {
@@ -100,7 +104,7 @@
     ],
     "category_scores": {
       "overall": 32.6,
-      "coding": 30.6,
+      "coding": 37,
       "math": 55.9,
       "reasoning": 25.3,
       "research": 25.3,
@@ -108,7 +112,7 @@
       "writing": 32.6,
       "knowledge": 80.6,
       "multilingual": null,
-      "agents": 30.6,
+      "agents": 37,
       "data-analysis": 17.2,
       "cheap": 0.52,
       "fast": null,
@@ -127,12 +131,12 @@
       "translation": null,
       "summarization": 25.3,
       "extraction": 17.2,
-      "tool-use": 30.6,
-      "function-calling": 30.6
+      "tool-use": 37,
+      "function-calling": 37
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": 32.6,
-      "artificial_analysis_coding_index": 30.6,
+      "artificial_analysis_coding_index": 37,
       "artificial_analysis_math_index": 55.9,
       "gpqa": null,
       "hle": 43.3,
@@ -145,8 +149,8 @@
       "aime": null,
       "scicode": 55.9,
       "mmlu_pro": 80.6,
-      "agentic_index": 30.6,
-      "coding_agent_index": null,
+      "agentic_index": 37,
+      "coding_agent_index": 37,
       "gdpval": 1745.8,
       "gdp_pdf": 17.2
     },
@@ -157,6 +161,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 2
   },
   {
@@ -180,7 +188,7 @@
     ],
     "category_scores": {
       "overall": 31.7,
-      "coding": 29.7,
+      "coding": 40,
       "math": 59,
       "reasoning": 17.9,
       "research": 17.9,
@@ -188,7 +196,7 @@
       "writing": 31.7,
       "knowledge": null,
       "multilingual": null,
-      "agents": 29.7,
+      "agents": 40,
       "data-analysis": 11.2,
       "cheap": 2.15,
       "fast": null,
@@ -207,12 +215,12 @@
       "translation": null,
       "summarization": 17.9,
       "extraction": 11.2,
-      "tool-use": 29.7,
-      "function-calling": 29.7
+      "tool-use": 40,
+      "function-calling": 40
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": 31.7,
-      "artificial_analysis_coding_index": 29.7,
+      "artificial_analysis_coding_index": 40,
       "artificial_analysis_math_index": 59,
       "gpqa": 91.7,
       "hle": 42.3,
@@ -225,8 +233,8 @@
       "aime": null,
       "scicode": 59,
       "mmlu_pro": null,
-      "agentic_index": 29.7,
-      "coding_agent_index": null,
+      "agentic_index": 40,
+      "coding_agent_index": 40,
       "gdpval": 1654.8,
       "gdp_pdf": 11.2
     },
@@ -237,6 +245,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 3
   },
   {
@@ -317,6 +329,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1024000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 4
   },
   {
@@ -397,6 +413,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 5
   },
   {
@@ -477,6 +497,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1048576,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 6
   },
   {
@@ -557,6 +581,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 7
   },
   {
@@ -637,6 +665,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 8
   },
   {
@@ -717,6 +749,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 9
   },
   {
@@ -740,7 +776,7 @@
     ],
     "category_scores": {
       "overall": 28.5,
-      "coding": 20.5,
+      "coding": 36,
       "math": 58.9,
       "reasoning": 24.3,
       "research": 24.3,
@@ -748,7 +784,7 @@
       "writing": 28.5,
       "knowledge": 76.4,
       "multilingual": null,
-      "agents": 20.5,
+      "agents": 36,
       "data-analysis": 14.8,
       "cheap": 1.43,
       "fast": null,
@@ -767,12 +803,12 @@
       "translation": null,
       "summarization": 24.3,
       "extraction": 14.8,
-      "tool-use": 20.5,
-      "function-calling": 20.5
+      "tool-use": 36,
+      "function-calling": 36
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": 28.5,
-      "artificial_analysis_coding_index": 20.5,
+      "artificial_analysis_coding_index": 36,
       "artificial_analysis_math_index": 58.9,
       "gpqa": null,
       "hle": 46.5,
@@ -785,8 +821,8 @@
       "aime": null,
       "scicode": 58.9,
       "mmlu_pro": 76.4,
-      "agentic_index": 20.5,
-      "coding_agent_index": null,
+      "agentic_index": 36,
+      "coding_agent_index": 36,
       "gdpval": 1590.7,
       "gdp_pdf": 14.8
     },
@@ -797,6 +833,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 10
   },
   {
@@ -877,6 +917,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 11
   },
   {
@@ -957,6 +1001,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 12
   },
   {
@@ -980,7 +1028,7 @@
     ],
     "category_scores": {
       "overall": 26.1,
-      "coding": 18.9,
+      "coding": 41,
       "math": null,
       "reasoning": 17.3,
       "research": 17.3,
@@ -988,7 +1036,7 @@
       "writing": 26.1,
       "knowledge": null,
       "multilingual": null,
-      "agents": 18.9,
+      "agents": 41,
       "data-analysis": 17.6,
       "cheap": 1.05,
       "fast": null,
@@ -1007,12 +1055,12 @@
       "translation": null,
       "summarization": 17.3,
       "extraction": 17.6,
-      "tool-use": 18.9,
-      "function-calling": 18.9
+      "tool-use": 41,
+      "function-calling": 41
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": 26.1,
-      "artificial_analysis_coding_index": 18.9,
+      "artificial_analysis_coding_index": 41,
       "artificial_analysis_math_index": null,
       "gpqa": null,
       "hle": null,
@@ -1025,8 +1073,8 @@
       "aime": null,
       "scicode": null,
       "mmlu_pro": null,
-      "agentic_index": 18.9,
-      "coding_agent_index": null,
+      "agentic_index": 41,
+      "coding_agent_index": 41,
       "gdpval": null,
       "gdp_pdf": 17.6
     },
@@ -1037,6 +1085,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 13
   },
   {
@@ -1117,6 +1169,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1048576,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 14
   },
   {
@@ -1197,6 +1253,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 15
   },
   {
@@ -1277,6 +1337,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 16
   },
   {
@@ -1300,7 +1364,7 @@
     ],
     "category_scores": {
       "overall": 23.1,
-      "coding": 17.3,
+      "coding": 30,
       "math": null,
       "reasoning": 13.9,
       "research": 13.9,
@@ -1308,7 +1372,7 @@
       "writing": 23.1,
       "knowledge": null,
       "multilingual": null,
-      "agents": 17.3,
+      "agents": 30,
       "data-analysis": 16.8,
       "cheap": 1.05,
       "fast": null,
@@ -1327,12 +1391,12 @@
       "translation": null,
       "summarization": 13.9,
       "extraction": 16.8,
-      "tool-use": 17.3,
-      "function-calling": 17.3
+      "tool-use": 30,
+      "function-calling": 30
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": 23.1,
-      "artificial_analysis_coding_index": 17.3,
+      "artificial_analysis_coding_index": 30,
       "artificial_analysis_math_index": null,
       "gpqa": null,
       "hle": null,
@@ -1345,8 +1409,8 @@
       "aime": null,
       "scicode": null,
       "mmlu_pro": null,
-      "agentic_index": 17.3,
-      "coding_agent_index": null,
+      "agentic_index": 30,
+      "coding_agent_index": 30,
       "gdpval": null,
       "gdp_pdf": 16.8
     },
@@ -1357,6 +1421,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 17
   },
   {
@@ -1437,6 +1505,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 18
   },
   {
@@ -1517,6 +1589,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 524288,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 19
   },
   {
@@ -1597,6 +1673,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 20
   },
   {
@@ -1677,6 +1757,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 21
   },
   {
@@ -1757,6 +1841,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 22
   },
   {
@@ -1837,6 +1925,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 524288,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 23
   },
   {
@@ -1860,7 +1952,7 @@
     ],
     "category_scores": {
       "overall": 17.7,
-      "coding": 4.5,
+      "coding": 15,
       "math": 48.5,
       "reasoning": 12.8,
       "research": 12.8,
@@ -1868,7 +1960,7 @@
       "writing": 17.7,
       "knowledge": null,
       "multilingual": null,
-      "agents": 4.5,
+      "agents": 15,
       "data-analysis": 11.6,
       "cheap": 0.6,
       "fast": null,
@@ -1887,12 +1979,12 @@
       "translation": null,
       "summarization": 12.8,
       "extraction": 11.6,
-      "tool-use": 4.5,
-      "function-calling": 4.5
+      "tool-use": 15,
+      "function-calling": 15
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": 17.7,
-      "artificial_analysis_coding_index": 4.5,
+      "artificial_analysis_coding_index": 15,
       "artificial_analysis_math_index": 48.5,
       "gpqa": null,
       "hle": 34.7,
@@ -1905,8 +1997,8 @@
       "aime": null,
       "scicode": 48.5,
       "mmlu_pro": null,
-      "agentic_index": 4.5,
-      "coding_agent_index": null,
+      "agentic_index": 15,
+      "coding_agent_index": 15,
       "gdpval": 1177.1,
       "gdp_pdf": 11.6
     },
@@ -1917,6 +2009,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1048576,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 24
   },
   {
@@ -1997,6 +2093,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 25
   },
   {
@@ -2077,6 +2177,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 26
   },
   {
@@ -2157,6 +2261,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 27
   },
   {
@@ -2237,6 +2345,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 28
   },
   {
@@ -2317,6 +2429,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 29
   },
   {
@@ -2397,6 +2513,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 30
   },
   {
@@ -2477,6 +2597,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 31
   },
   {
@@ -2557,6 +2681,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 32
   },
   {
@@ -2637,6 +2765,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 33
   },
   {
@@ -2717,6 +2849,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 192000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 34
   },
   {
@@ -2797,6 +2933,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 35
   },
   {
@@ -2877,6 +3017,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 36
   },
   {
@@ -2957,6 +3101,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 37
   },
   {
@@ -3037,6 +3185,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 38
   },
   {
@@ -3117,6 +3269,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 39
   },
   {
@@ -3197,6 +3353,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 40
   },
   {
@@ -3277,6 +3437,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 41
   },
   {
@@ -3357,6 +3521,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 42
   },
   {
@@ -3437,6 +3605,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 43
   },
   {
@@ -3517,6 +3689,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 44
   }
 ]

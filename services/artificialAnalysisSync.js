@@ -267,9 +267,14 @@ async function syncArtificialAnalysis(scrapedModels = null) {
       : (m.evaluations?.artificial_analysis_intelligence_index !== undefined ? parseFloat(m.evaluations.artificial_analysis_intelligence_index) : (m.category_scores?.overall !== undefined ? parseFloat(m.category_scores.overall) : null));
 
     const lcb = m.livecodebench !== undefined && m.livecodebench !== null ? parseFloat(m.livecodebench) : (m.evaluations?.livecodebench !== undefined ? parseFloat(m.evaluations.livecodebench) : null);
-    const coding = m.codingIndex !== undefined && m.codingIndex !== null 
-      ? parseFloat(m.codingIndex) 
-      : (m.evaluations?.artificial_analysis_coding_index !== undefined ? parseFloat(m.evaluations.artificial_analysis_coding_index) : (lcb !== null ? (lcb <= 1 ? lcb * 100 : lcb) : null));
+    const codingAgents = m.codingAgentsIndex !== undefined && m.codingAgentsIndex !== null 
+      ? parseFloat(m.codingAgentsIndex) 
+      : (m.evaluations?.coding_agent_index !== undefined ? parseFloat(m.evaluations.coding_agent_index) : null);
+    const coding = codingAgents !== null 
+      ? codingAgents 
+      : (m.codingIndex !== undefined && m.codingIndex !== null 
+        ? parseFloat(m.codingIndex) 
+        : (m.evaluations?.artificial_analysis_coding_index !== undefined ? parseFloat(m.evaluations.artificial_analysis_coding_index) : null));
 
     const aime = m.aime25 !== undefined && m.aime25 !== null ? parseFloat(m.aime25) : (m.evaluations?.aime !== undefined ? parseFloat(m.evaluations.aime) : null);
     const math = m.mathIndex !== undefined && m.mathIndex !== null 
@@ -281,7 +286,6 @@ async function syncArtificialAnalysis(scrapedModels = null) {
     const ifbench = m.ifbench !== undefined && m.ifbench !== null ? parseFloat(m.ifbench) : (m.evaluations?.ifbench !== undefined ? parseFloat(m.evaluations.ifbench) : null);
     const scicode = m.scicode !== undefined && m.scicode !== null ? parseFloat(m.scicode) : (m.evaluations?.scicode !== undefined ? parseFloat(m.evaluations.scicode) : null);
     const mmmuPro = m.mmmuPro !== undefined && m.mmmuPro !== null ? parseFloat(m.mmmuPro) : (m.evaluations?.mmlu_pro !== undefined ? parseFloat(m.evaluations.mmlu_pro) : null);
-    const codingAgents = m.codingAgentsIndex !== undefined && m.codingAgentsIndex !== null ? parseFloat(m.codingAgentsIndex) : (m.evaluations?.coding_agent_index !== undefined ? parseFloat(m.evaluations.coding_agent_index) : null);
     const tb = m.terminalBench21 !== undefined && m.terminalBench21 !== null ? parseFloat(m.terminalBench21) : (m.evaluations?.terminalbench_v2_1 !== undefined ? parseFloat(m.evaluations.terminalbench_v2_1) : null);
 
     const inP = parseFloat(m.price1mInputTokens ?? m.pricing?.price_1m_input_tokens) || 0;

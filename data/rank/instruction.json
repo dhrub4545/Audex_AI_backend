@@ -77,6 +77,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 1
   },
   {
@@ -157,6 +161,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 2
   },
   {
@@ -169,9 +177,9 @@
       "name": "NVIDIA",
       "slug": "nvidia"
     },
-    "rating": 1113,
-    "arena_elo": 1113,
-    "final_score": 20.6,
+    "rating": 1417,
+    "arena_elo": 1417,
+    "final_score": 75.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -180,7 +188,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 20.6,
+      "coding": null,
       "math": null,
       "reasoning": 75.8,
       "research": 12,
@@ -212,7 +220,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 20.6,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 75.8,
       "hle": 12,
@@ -237,6 +245,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 3
   },
   {
@@ -249,9 +261,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1107,
-    "arena_elo": 1107,
-    "final_score": 19.5,
+    "rating": 1413,
+    "arena_elo": 1413,
+    "final_score": 75.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -260,7 +272,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 19.5,
+      "coding": null,
       "math": 63.3,
       "reasoning": 75.1,
       "research": 5.2,
@@ -292,7 +304,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 19.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 63.3,
       "gpqa": 75.1,
       "hle": 5.2,
@@ -317,6 +329,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 4
   },
   {
@@ -329,9 +345,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1163,
-    "arena_elo": 1163,
-    "final_score": 29.6,
+    "rating": 1432,
+    "arena_elo": 1432,
+    "final_score": 78.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -340,7 +356,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 29.6,
+      "coding": null,
       "math": 89,
       "reasoning": 78.5,
       "research": 9.4,
@@ -372,7 +388,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 29.6,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 89,
       "gpqa": 78.5,
       "hle": 9.4,
@@ -397,6 +413,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 5
   },
   {
@@ -409,9 +429,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1068,
+    "arena_elo": 1068,
+    "final_score": 12.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -420,7 +440,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 44.8,
       "reasoning": 12.4,
       "research": 12.4,
@@ -448,11 +468,11 @@
       "summarization": 12.4,
       "extraction": 78.8,
       "tool-use": 78.8,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 44.8,
       "gpqa": 89.3,
       "hle": 29,
@@ -477,6 +497,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 6
   },
   {
@@ -489,9 +513,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1006,
-    "arena_elo": 1006,
-    "final_score": 1,
+    "rating": 1076,
+    "arena_elo": 1076,
+    "final_score": 13.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -500,7 +524,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 1,
+      "coding": null,
       "math": 46.1,
       "reasoning": 13.9,
       "research": 13.9,
@@ -532,7 +556,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 1,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 46.1,
       "gpqa": 90,
       "hle": 35.6,
@@ -557,6 +581,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 7
   },
   {
@@ -569,9 +597,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1022,
-    "arena_elo": 1022,
-    "final_score": 4,
+    "rating": 1173,
+    "arena_elo": 1173,
+    "final_score": 31.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -580,7 +608,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 4,
+      "coding": null,
       "math": 58.7,
       "reasoning": 31.4,
       "research": 31.4,
@@ -612,7 +640,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 4,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 58.7,
       "gpqa": 94.1,
       "hle": 47,
@@ -637,6 +665,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 8
   },
   {
@@ -649,9 +681,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1040,
+    "arena_elo": 1040,
+    "final_score": 7.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -660,7 +692,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 39.7,
       "reasoning": 7.3,
       "research": 7.3,
@@ -688,11 +720,11 @@
       "summarization": 7.3,
       "extraction": 75.7,
       "tool-use": 75.7,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 39.7,
       "gpqa": 85.7,
       "hle": 25.2,
@@ -717,6 +749,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 9
   },
   {
@@ -797,6 +833,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 10
   },
   {
@@ -809,9 +849,9 @@
       "name": "OpenAI",
       "slug": "openai"
     },
-    "rating": 1292,
-    "arena_elo": 1292,
-    "final_score": 53,
+    "rating": 1503,
+    "arena_elo": 1503,
+    "final_score": 91.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -820,7 +860,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 53,
+      "coding": null,
       "math": null,
       "reasoning": 91.5,
       "research": 42.5,
@@ -852,7 +892,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 53,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 91.5,
       "hle": 42.5,
@@ -877,6 +917,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 11
   },
   {
@@ -957,6 +1001,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 192000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 12
   },
   {
@@ -969,9 +1017,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1150,
-    "arena_elo": 1150,
-    "final_score": 27.3,
+    "rating": 1414,
+    "arena_elo": 1414,
+    "final_score": 75.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -980,7 +1028,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 27.3,
+      "coding": null,
       "math": null,
       "reasoning": 75.3,
       "research": 15.7,
@@ -1012,7 +1060,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 27.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 75.3,
       "hle": 15.7,
@@ -1037,6 +1085,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 13
   },
   {
@@ -1049,9 +1101,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1215,
-    "arena_elo": 1215,
-    "final_score": 39,
+    "rating": 1034,
+    "arena_elo": 1034,
+    "final_score": 6.2,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -1060,7 +1112,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 39,
+      "coding": null,
       "math": 40,
       "reasoning": 6.2,
       "research": 6.2,
@@ -1092,7 +1144,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 39,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 40,
       "gpqa": 79.2,
       "hle": 19.3,
@@ -1117,6 +1169,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 14
   },
   {
@@ -1129,9 +1185,9 @@
       "name": "OpenAI",
       "slug": "openai"
     },
-    "rating": 1204,
-    "arena_elo": 1204,
-    "final_score": 37.1,
+    "rating": 1455,
+    "arena_elo": 1455,
+    "final_score": 82.7,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -1140,7 +1196,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 37.1,
+      "coding": null,
       "math": 88.3,
       "reasoning": 82.7,
       "research": 20.1,
@@ -1172,7 +1228,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 37.1,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 88.3,
       "gpqa": 82.7,
       "hle": 20.1,
@@ -1197,6 +1253,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 15
   },
   {
@@ -1209,9 +1269,9 @@
       "name": "NVIDIA",
       "slug": "nvidia"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1019,
+    "arena_elo": 1019,
+    "final_score": 3.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -1220,7 +1280,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 91,
       "reasoning": 3.5,
       "research": 3.5,
@@ -1248,11 +1308,11 @@
       "summarization": 3.5,
       "extraction": 71.1,
       "tool-use": 71.1,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 91,
       "gpqa": 75.7,
       "hle": 11.4,
@@ -1277,6 +1337,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 16
   },
   {
@@ -1289,9 +1353,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1089,
-    "arena_elo": 1089,
-    "final_score": 16.1,
+    "rating": 1446,
+    "arena_elo": 1446,
+    "final_score": 81.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -1300,7 +1364,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 16.1,
+      "coding": null,
       "math": 94.3,
       "reasoning": 81.1,
       "research": 11.6,
@@ -1332,7 +1396,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 16.1,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 94.3,
       "gpqa": 81.1,
       "hle": 11.6,
@@ -1357,6 +1421,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 17
   },
   {
@@ -1369,9 +1437,9 @@
       "name": "ServiceNow",
       "slug": "servicenow"
     },
-    "rating": 1079,
-    "arena_elo": 1079,
-    "final_score": 14.4,
+    "rating": 1403,
+    "arena_elo": 1403,
+    "final_score": 73.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -1380,7 +1448,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 14.4,
+      "coding": null,
       "math": 88,
       "reasoning": 73.3,
       "research": 10.8,
@@ -1412,7 +1480,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 14.4,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 88,
       "gpqa": 73.3,
       "hle": 10.8,
@@ -1437,6 +1505,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 18
   },
   {
@@ -1517,6 +1589,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 19
   },
   {
@@ -1597,6 +1673,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 20
   },
   {
@@ -1609,9 +1689,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1096,
-    "arena_elo": 1096,
-    "final_score": 17.4,
+    "rating": 1422,
+    "arena_elo": 1422,
+    "final_score": 76.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -1620,7 +1700,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 17.4,
+      "coding": null,
       "math": 88.7,
       "reasoning": 76.8,
       "research": 9,
@@ -1652,7 +1732,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 17.4,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 88.7,
       "gpqa": 76.8,
       "hle": 9,
@@ -1677,6 +1757,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 21
   },
   {
@@ -1689,9 +1773,9 @@
       "name": "KwaiKAT",
       "slug": "kwaikat"
     },
-    "rating": 1385,
-    "arena_elo": 1385,
-    "final_score": 70,
+    "rating": 1470,
+    "arena_elo": 1470,
+    "final_score": 85.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -1700,7 +1784,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 70,
+      "coding": null,
       "math": null,
       "reasoning": 85.5,
       "research": 16.1,
@@ -1732,7 +1816,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 70,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 85.5,
       "hle": 16.1,
@@ -1757,6 +1841,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 22
   },
   {
@@ -1769,9 +1857,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1003,
-    "arena_elo": 1003,
-    "final_score": 0.5,
+    "rating": 1026,
+    "arena_elo": 1026,
+    "final_score": 4.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -1780,7 +1868,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0.5,
+      "coding": null,
       "math": 29.5,
       "reasoning": 4.8,
       "research": 4.8,
@@ -1812,7 +1900,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 29.5,
       "gpqa": 80.6,
       "hle": 14.9,
@@ -1837,6 +1925,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 23
   },
   {
@@ -1849,9 +1941,9 @@
       "name": "Multiverse Computing",
       "slug": "multiversecomputing"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1403,
+    "arena_elo": 1403,
+    "final_score": 73.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -1860,7 +1952,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 73.3,
       "research": 16.6,
@@ -1888,11 +1980,11 @@
       "summarization": 16.6,
       "extraction": 66.5,
       "tool-use": 66.5,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 73.3,
       "hle": 16.6,
@@ -1917,6 +2009,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 24
   },
   {
@@ -1929,9 +2025,9 @@
       "name": "Nex AGI",
       "slug": "nex"
     },
-    "rating": 1373,
-    "arena_elo": 1373,
-    "final_score": 67.8,
+    "rating": 1491,
+    "arena_elo": 1491,
+    "final_score": 89.2,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -1940,7 +2036,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 67.8,
+      "coding": null,
       "math": 43.3,
       "reasoning": 89.2,
       "research": 33.7,
@@ -1972,7 +2068,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 67.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 43.3,
       "gpqa": 89.2,
       "hle": 33.7,
@@ -1997,6 +2093,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 25
   },
   {
@@ -2009,9 +2109,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1025,
-    "arena_elo": 1025,
-    "final_score": 4.5,
+    "rating": 1418,
+    "arena_elo": 1418,
+    "final_score": 76,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -2020,7 +2120,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 4.5,
+      "coding": null,
       "math": 89.7,
       "reasoning": 76,
       "research": 7,
@@ -2052,7 +2152,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 4.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 89.7,
       "gpqa": 76,
       "hle": 7,
@@ -2077,6 +2177,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 26
   },
   {
@@ -2089,9 +2193,9 @@
       "name": "Allen Institute for AI",
       "slug": "ai2"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1325,
+    "arena_elo": 1325,
+    "final_score": 59.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -2100,7 +2204,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 77.3,
       "reasoning": 59.1,
       "research": 6.3,
@@ -2128,11 +2232,11 @@
       "summarization": 6.3,
       "extraction": 66,
       "tool-use": 66,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 77.3,
       "gpqa": 59.1,
       "hle": 6.3,
@@ -2157,6 +2261,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 65500,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 27
   },
   {
@@ -2169,9 +2277,9 @@
       "name": "OpenAI",
       "slug": "openai"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1026,
+    "arena_elo": 1026,
+    "final_score": 4.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -2180,7 +2288,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 89.3,
       "reasoning": 4.8,
       "research": 4.8,
@@ -2208,11 +2316,11 @@
       "summarization": 4.8,
       "extraction": 65.1,
       "tool-use": 65.1,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 89.3,
       "gpqa": 68.8,
       "hle": 11,
@@ -2237,6 +2345,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 28
   },
   {
@@ -2249,9 +2361,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1038,
+    "arena_elo": 1038,
+    "final_score": 6.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -2260,7 +2372,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 36.6,
       "reasoning": 6.9,
       "research": 6.9,
@@ -2288,11 +2400,11 @@
       "summarization": 6.9,
       "extraction": 64.4,
       "tool-use": 64.4,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 36.6,
       "gpqa": 84.1,
       "hle": 22.2,
@@ -2317,6 +2429,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 29
   },
   {
@@ -2329,9 +2445,9 @@
       "name": "NVIDIA",
       "slug": "nvidia"
     },
-    "rating": 1037,
-    "arena_elo": 1037,
-    "final_score": 6.7,
+    "rating": 1258,
+    "arena_elo": 1258,
+    "final_score": 46.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -2340,7 +2456,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 6.7,
+      "coding": null,
       "math": null,
       "reasoning": 46.9,
       "research": 4.8,
@@ -2372,7 +2488,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 6.7,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 46.9,
       "hle": 4.8,
@@ -2397,6 +2513,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 30
   },
   {
@@ -2409,9 +2529,9 @@
       "name": "Kimi",
       "slug": "kimi"
     },
-    "rating": 1006,
-    "arena_elo": 1006,
-    "final_score": 1,
+    "rating": 1081,
+    "arena_elo": 1081,
+    "final_score": 14.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -2420,7 +2540,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 1,
+      "coding": null,
       "math": 47.8,
       "reasoning": 14.8,
       "research": 14.8,
@@ -2452,7 +2572,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 1,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 47.8,
       "gpqa": 89.6,
       "hle": 35,
@@ -2477,6 +2597,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 31
   },
   {
@@ -2489,9 +2613,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1021,
-    "arena_elo": 1021,
-    "final_score": 3.8,
+    "rating": 1384,
+    "arena_elo": 1384,
+    "final_score": 69.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -2500,7 +2624,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 3.8,
+      "coding": null,
       "math": 56,
       "reasoning": 69.9,
       "research": 57.7,
@@ -2532,7 +2656,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 3.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 56,
       "gpqa": 69.9,
       "hle": null,
@@ -2557,6 +2681,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 32
   },
   {
@@ -2569,9 +2697,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1021,
-    "arena_elo": 1021,
-    "final_score": 3.8,
+    "rating": 1384,
+    "arena_elo": 1384,
+    "final_score": 69.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -2580,7 +2708,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 3.8,
+      "coding": null,
       "math": 46.7,
       "reasoning": 69.8,
       "research": 4,
@@ -2612,7 +2740,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 3.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 46.7,
       "gpqa": 69.8,
       "hle": 4,
@@ -2637,6 +2765,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 33
   },
   {
@@ -2717,6 +2849,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 34
   },
   {
@@ -2729,9 +2865,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1037,
-    "arena_elo": 1037,
-    "final_score": 6.7,
+    "rating": 1417,
+    "arena_elo": 1417,
+    "final_score": 75.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -2740,7 +2876,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 6.7,
+      "coding": null,
       "math": 84.3,
       "reasoning": 75.9,
       "research": 12.6,
@@ -2772,7 +2908,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 6.7,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 84.3,
       "gpqa": 75.9,
       "hle": 12.6,
@@ -2797,6 +2933,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 35
   },
   {
@@ -2809,9 +2949,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1068,
-    "arena_elo": 1068,
-    "final_score": 12.4,
+    "rating": 1368,
+    "arena_elo": 1368,
+    "final_score": 66.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -2820,7 +2960,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 12.4,
+      "coding": null,
       "math": null,
       "reasoning": 66.9,
       "research": 10.8,
@@ -2852,7 +2992,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 12.4,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 66.9,
       "hle": 10.8,
@@ -2877,6 +3017,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 36
   },
   {
@@ -2889,9 +3033,9 @@
       "name": "OpenAI",
       "slug": "openai"
     },
-    "rating": 1076,
-    "arena_elo": 1076,
-    "final_score": 13.9,
+    "rating": 1370,
+    "arena_elo": 1370,
+    "final_score": 67.2,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -2900,7 +3044,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 13.9,
+      "coding": null,
       "math": 66.7,
       "reasoning": 67.2,
       "research": 5.9,
@@ -2932,7 +3076,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 13.9,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 66.7,
       "gpqa": 67.2,
       "hle": 5.9,
@@ -2957,6 +3101,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 37
   },
   {
@@ -3037,6 +3185,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 38
   },
   {
@@ -3049,9 +3201,9 @@
       "name": "LG AI Research",
       "slug": "lg"
     },
-    "rating": 1117,
-    "arena_elo": 1117,
-    "final_score": 21.3,
+    "rating": 1437,
+    "arena_elo": 1437,
+    "final_score": 79.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3060,7 +3212,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 21.3,
+      "coding": null,
       "math": null,
       "reasoning": 79.4,
       "research": 12.9,
@@ -3092,7 +3244,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 21.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 79.4,
       "hle": 12.9,
@@ -3117,6 +3269,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 39
   },
   {
@@ -3129,9 +3285,9 @@
       "name": "OpenAI",
       "slug": "openai"
     },
-    "rating": 1025,
-    "arena_elo": 1025,
-    "final_score": 4.5,
+    "rating": 1336,
+    "arena_elo": 1336,
+    "final_score": 61.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3140,7 +3296,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 4.5,
+      "coding": null,
       "math": 62.3,
       "reasoning": 61.1,
       "research": 5.3,
@@ -3172,7 +3328,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 4.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 62.3,
       "gpqa": 61.1,
       "hle": 5.3,
@@ -3197,6 +3353,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 40
   },
   {
@@ -3209,9 +3369,9 @@
       "name": "Upstage",
       "slug": "upstage"
     },
-    "rating": 1013,
-    "arena_elo": 1013,
-    "final_score": 2.3,
+    "rating": 1361,
+    "arena_elo": 1361,
+    "final_score": 65.7,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3220,7 +3380,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 2.3,
+      "coding": null,
       "math": null,
       "reasoning": 65.7,
       "research": 10.4,
@@ -3252,7 +3412,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 2.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 65.7,
       "hle": 10.4,
@@ -3277,6 +3437,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 41
   },
   {
@@ -3357,6 +3521,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 42
   },
   {
@@ -3369,9 +3537,9 @@
       "name": "Motif Technologies",
       "slug": "motif-technologies"
     },
-    "rating": 1021,
-    "arena_elo": 1021,
-    "final_score": 3.8,
+    "rating": 1382,
+    "arena_elo": 1382,
+    "final_score": 69.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3380,7 +3548,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 3.8,
+      "coding": null,
       "math": 80.3,
       "reasoning": 69.5,
       "research": 8.8,
@@ -3412,7 +3580,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 3.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 80.3,
       "gpqa": 69.5,
       "hle": 8.8,
@@ -3437,6 +3605,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 43
   },
   {
@@ -3449,9 +3621,9 @@
       "name": "Arcee AI",
       "slug": "arcee"
     },
-    "rating": 1003,
-    "arena_elo": 1003,
-    "final_score": 0.5,
+    "rating": 1033,
+    "arena_elo": 1033,
+    "final_score": 6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3460,7 +3632,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0.5,
+      "coding": null,
       "math": 40.6,
       "reasoning": 6,
       "research": 6,
@@ -3492,7 +3664,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 40.6,
       "gpqa": 75.2,
       "hle": 15.8,
@@ -3517,6 +3689,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 512000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 44
   },
   {
@@ -3529,9 +3705,9 @@
       "name": "Liquid AI",
       "slug": "liquidai"
     },
-    "rating": 1025,
-    "arena_elo": 1025,
-    "final_score": 4.5,
+    "rating": 1282,
+    "arena_elo": 1282,
+    "final_score": 51.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3540,7 +3716,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 4.5,
+      "coding": null,
       "math": null,
       "reasoning": 51.3,
       "research": 6.9,
@@ -3572,7 +3748,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 4.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 51.3,
       "hle": 6.9,
@@ -3597,6 +3773,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 32768,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 45
   },
   {
@@ -3609,9 +3789,9 @@
       "name": "Trillion Labs",
       "slug": "trillionlabs"
     },
-    "rating": 1004,
-    "arena_elo": 1004,
-    "final_score": 0.8,
+    "rating": 1331,
+    "arena_elo": 1331,
+    "final_score": 60.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3620,7 +3800,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0.8,
+      "coding": null,
       "math": null,
       "reasoning": 60.1,
       "research": 5.9,
@@ -3652,7 +3832,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 60.1,
       "hle": 5.9,
@@ -3677,6 +3857,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 32000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 46
   },
   {
@@ -3689,9 +3873,9 @@
       "name": "TII UAE",
       "slug": "tii-uae"
     },
-    "rating": 1013,
-    "arena_elo": 1013,
-    "final_score": 2.3,
+    "rating": 1364,
+    "arena_elo": 1364,
+    "final_score": 66.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3700,7 +3884,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 2.3,
+      "coding": null,
       "math": 80,
       "reasoning": 66.1,
       "research": 11,
@@ -3732,7 +3916,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 2.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 80,
       "gpqa": 66.1,
       "hle": 11,
@@ -3757,6 +3941,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 47
   },
   {
@@ -3769,9 +3957,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1161,
-    "arena_elo": 1161,
-    "final_score": 29.2,
+    "rating": 1420,
+    "arena_elo": 1420,
+    "final_score": 76.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3780,7 +3968,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 29.2,
+      "coding": null,
       "math": null,
       "reasoning": 76.3,
       "research": 11.8,
@@ -3812,7 +4000,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 29.2,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 76.3,
       "hle": 11.8,
@@ -3837,6 +4025,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 48
   },
   {
@@ -3849,9 +4041,9 @@
       "name": "AI21 Labs",
       "slug": "ai21-labs"
     },
-    "rating": 1004,
-    "arena_elo": 1004,
-    "final_score": 0.8,
+    "rating": 1183,
+    "arena_elo": 1183,
+    "final_score": 33.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3860,7 +4052,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0.8,
+      "coding": null,
       "math": 10.7,
       "reasoning": 33.3,
       "research": 3.8,
@@ -3892,7 +4084,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 10.7,
       "gpqa": 33.3,
       "hle": 3.8,
@@ -3917,6 +4109,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 49
   },
   {
@@ -3929,9 +4125,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1095,
-    "arena_elo": 1095,
-    "final_score": 17.2,
+    "rating": 1350,
+    "arena_elo": 1350,
+    "final_score": 63.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3940,7 +4136,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 17.2,
+      "coding": null,
       "math": 30.7,
       "reasoning": 63.6,
       "research": 3.9,
@@ -3972,7 +4168,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 17.2,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 30.7,
       "gpqa": 63.6,
       "hle": 3.9,
@@ -3997,6 +4193,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 50
   },
   {
@@ -4009,9 +4209,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1142,
-    "arena_elo": 1142,
-    "final_score": 25.8,
+    "rating": 1424,
+    "arena_elo": 1424,
+    "final_score": 77.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4020,7 +4220,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 25.8,
+      "coding": null,
       "math": null,
       "reasoning": 77.1,
       "research": 9.9,
@@ -4052,7 +4252,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 25.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 77.1,
       "hle": 9.9,
@@ -4077,6 +4277,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 51
   },
   {
@@ -4089,9 +4293,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1196,
-    "arena_elo": 1196,
-    "final_score": 35.6,
+    "rating": 1474,
+    "arena_elo": 1474,
+    "final_score": 86.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4100,7 +4304,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 35.6,
+      "coding": null,
       "math": null,
       "reasoning": 86.1,
       "research": 19.8,
@@ -4132,7 +4336,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 35.6,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 86.1,
       "hle": 19.8,
@@ -4157,6 +4361,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 52
   },
   {
@@ -4169,9 +4377,9 @@
       "name": "ByteDance Seed",
       "slug": "bytedance-seed"
     },
-    "rating": 1146,
-    "arena_elo": 1146,
-    "final_score": 26.5,
+    "rating": 1420,
+    "arena_elo": 1420,
+    "final_score": 76.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4180,7 +4388,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 26.5,
+      "coding": null,
       "math": 79.3,
       "reasoning": 76.4,
       "research": 14.1,
@@ -4212,7 +4420,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 26.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 79.3,
       "gpqa": 76.4,
       "hle": 14.1,
@@ -4237,6 +4445,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 53
   },
   {
@@ -4249,9 +4461,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1117,
-    "arena_elo": 1117,
-    "final_score": 21.2,
+    "rating": 1454,
+    "arena_elo": 1454,
+    "final_score": 82.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4260,7 +4472,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 21.2,
+      "coding": null,
       "math": null,
       "reasoning": 82.6,
       "research": 14.9,
@@ -4292,7 +4504,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 21.2,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 82.6,
       "hle": 14.9,
@@ -4317,6 +4529,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 54
   },
   {
@@ -4329,9 +4545,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1260,
-    "arena_elo": 1260,
-    "final_score": 47.2,
+    "rating": 1455,
+    "arena_elo": 1455,
+    "final_score": 82.7,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4340,7 +4556,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 47.2,
+      "coding": null,
       "math": null,
       "reasoning": 82.7,
       "research": 15.9,
@@ -4372,7 +4588,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 47.2,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 82.7,
       "hle": 15.9,
@@ -4397,6 +4613,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 55
   },
   {
@@ -4409,9 +4629,9 @@
       "name": "StepFun",
       "slug": "stepfun"
     },
-    "rating": 1029,
-    "arena_elo": 1029,
-    "final_score": 5.3,
+    "rating": 1380,
+    "arena_elo": 1380,
+    "final_score": 69,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4420,7 +4640,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 5.3,
+      "coding": null,
       "math": null,
       "reasoning": 69,
       "research": 10.8,
@@ -4452,7 +4672,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 5.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 69,
       "hle": 10.8,
@@ -4477,6 +4697,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 65536,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 56
   },
   {
@@ -4489,9 +4713,9 @@
       "name": "Korea Telecom",
       "slug": "korea-telecom"
     },
-    "rating": 1013,
-    "arena_elo": 1013,
-    "final_score": 2.3,
+    "rating": 1386,
+    "arena_elo": 1386,
+    "final_score": 70.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4500,7 +4724,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 2.3,
+      "coding": null,
       "math": 76.7,
       "reasoning": 70.1,
       "research": 8.1,
@@ -4532,7 +4756,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 2.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 76.7,
       "gpqa": 70.1,
       "hle": 8.1,
@@ -4557,6 +4781,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 57
   },
   {
@@ -4569,9 +4797,9 @@
       "name": "OpenBMB",
       "slug": "openbmb"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1153,
+    "arena_elo": 1153,
+    "final_score": 27.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4580,7 +4808,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 27.8,
       "research": 6.5,
@@ -4608,11 +4836,11 @@
       "summarization": 6.5,
       "extraction": 49.3,
       "tool-use": 49.3,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 27.8,
       "hle": 6.5,
@@ -4637,6 +4865,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 58
   },
   {
@@ -4717,6 +4949,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 59
   },
   {
@@ -4729,9 +4965,9 @@
       "name": "Meta",
       "slug": "meta-llama"
     },
-    "rating": 1027,
-    "arena_elo": 1027,
-    "final_score": 4.9,
+    "rating": 1274,
+    "arena_elo": 1274,
+    "final_score": 49.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4740,7 +4976,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 4.9,
+      "coding": null,
       "math": 7.7,
       "reasoning": 49.8,
       "research": 3.6,
@@ -4772,7 +5008,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 4.9,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 7.7,
       "gpqa": 49.8,
       "hle": 3.6,
@@ -4797,6 +5033,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 60
   },
   {
@@ -4809,9 +5049,9 @@
       "name": "Deep Cogito",
       "slug": "deepcogito"
     },
-    "rating": 1092,
-    "arena_elo": 1092,
-    "final_score": 16.7,
+    "rating": 1422,
+    "arena_elo": 1422,
+    "final_score": 76.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4820,7 +5060,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 16.7,
+      "coding": null,
       "math": 72.7,
       "reasoning": 76.8,
       "research": 12,
@@ -4852,7 +5092,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 16.7,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 72.7,
       "gpqa": 76.8,
       "hle": 12,
@@ -4877,6 +5117,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 61
   },
   {
@@ -4889,9 +5133,9 @@
       "name": "Liquid AI",
       "slug": "liquidai"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1261,
+    "arena_elo": 1261,
+    "final_score": 47.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4900,7 +5144,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 47.4,
       "research": 4.2,
@@ -4928,11 +5172,11 @@
       "summarization": 4.2,
       "extraction": 45.9,
       "tool-use": 45.9,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 47.4,
       "hle": 4.2,
@@ -4957,6 +5201,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 32768,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 62
   },
   {
@@ -4969,9 +5217,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1138,
-    "arena_elo": 1138,
-    "final_score": 25,
+    "rating": 1393,
+    "arena_elo": 1393,
+    "final_score": 71.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4980,7 +5228,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 25,
+      "coding": null,
       "math": null,
       "reasoning": 71.4,
       "research": 11.5,
@@ -5012,7 +5260,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 25,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 71.4,
       "hle": 11.5,
@@ -5037,6 +5285,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 63
   },
   {
@@ -5049,9 +5301,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1063,
-    "arena_elo": 1063,
-    "final_score": 11.4,
+    "rating": 1364,
+    "arena_elo": 1364,
+    "final_score": 66.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -5060,7 +5312,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 11.4,
+      "coding": null,
       "math": null,
       "reasoning": 66.1,
       "research": 6.3,
@@ -5092,7 +5344,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 11.4,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 66.1,
       "hle": 6.3,
@@ -5117,6 +5369,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 64
   },
   {
@@ -5129,9 +5385,9 @@
       "name": "InclusionAI",
       "slug": "inclusionai"
     },
-    "rating": 1003,
-    "arena_elo": 1003,
-    "final_score": 0.5,
+    "rating": 1471,
+    "arena_elo": 1471,
+    "final_score": 85.7,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -5140,7 +5396,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0.5,
+      "coding": null,
       "math": 45,
       "reasoning": 85.7,
       "research": 21.6,
@@ -5172,7 +5428,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 45,
       "gpqa": 85.7,
       "hle": 21.6,
@@ -5197,6 +5453,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 65
   },
   {
@@ -5209,9 +5469,9 @@
       "name": "Mistral",
       "slug": "mistralai"
     },
-    "rating": 1025,
-    "arena_elo": 1025,
-    "final_score": 4.5,
+    "rating": 1365,
+    "arena_elo": 1365,
+    "final_score": 66.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -5220,7 +5480,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 4.5,
+      "coding": null,
       "math": 80.3,
       "reasoning": 66.3,
       "research": 6.4,
@@ -5252,7 +5512,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 4.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 80.3,
       "gpqa": 66.3,
       "hle": 6.4,
@@ -5277,6 +5537,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 66
   },
   {
@@ -5357,6 +5621,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 67
   },
   {
@@ -5369,9 +5637,9 @@
       "name": "Liquid AI",
       "slug": "liquidai"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1179,
+    "arena_elo": 1179,
+    "final_score": 32.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -5380,7 +5648,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 32.6,
       "research": 6.7,
@@ -5408,11 +5676,11 @@
       "summarization": 6.7,
       "extraction": 43.8,
       "tool-use": 43.8,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 32.6,
       "hle": 6.7,
@@ -5437,6 +5705,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 32000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 68
   },
   {
@@ -5449,9 +5721,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1021,
-    "arena_elo": 1021,
-    "final_score": 3.8,
+    "rating": 1399,
+    "arena_elo": 1399,
+    "final_score": 72.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -5460,7 +5732,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 3.8,
+      "coding": null,
       "math": 74,
       "reasoning": 72.6,
       "research": 7.5,
@@ -5492,7 +5764,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 3.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 74,
       "gpqa": 72.6,
       "hle": 7.5,
@@ -5517,6 +5789,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 65536,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 69
   },
   {
@@ -5529,9 +5805,9 @@
       "name": "InclusionAI",
       "slug": "inclusionai"
     },
-    "rating": 1042,
-    "arena_elo": 1042,
-    "final_score": 7.6,
+    "rating": 1399,
+    "arena_elo": 1399,
+    "final_score": 72.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -5540,7 +5816,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 7.6,
+      "coding": null,
       "math": 83.7,
       "reasoning": 72.5,
       "research": 9.6,
@@ -5572,7 +5848,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 7.6,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 83.7,
       "gpqa": 72.5,
       "hle": 9.6,
@@ -5597,6 +5873,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 70
   },
   {
@@ -5609,9 +5889,9 @@
       "name": "LongCat",
       "slug": "longcat"
     },
-    "rating": 1058,
-    "arena_elo": 1058,
-    "final_score": 10.6,
+    "rating": 1350,
+    "arena_elo": 1350,
+    "final_score": 63.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -5620,7 +5900,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 10.6,
+      "coding": null,
       "math": null,
       "reasoning": 63.6,
       "research": 5.8,
@@ -5652,7 +5932,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 10.6,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 63.6,
       "hle": 5.8,
@@ -5677,6 +5957,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 71
   },
   {
@@ -5689,9 +5973,9 @@
       "name": "Meta",
       "slug": "meta-llama"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1369,
+    "arena_elo": 1369,
+    "final_score": 67.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -5700,7 +5984,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 19.3,
       "reasoning": 67.1,
       "research": 4.9,
@@ -5728,11 +6012,11 @@
       "summarization": 4.9,
       "extraction": 43,
       "tool-use": 43,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 19.3,
       "gpqa": 67.1,
       "hle": 4.9,
@@ -5757,6 +6041,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 72
   },
   {
@@ -5769,9 +6057,9 @@
       "name": "Mistral",
       "slug": "mistralai"
     },
-    "rating": 1068,
-    "arena_elo": 1068,
-    "final_score": 12.4,
+    "rating": 1406,
+    "arena_elo": 1406,
+    "final_score": 73.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -5780,7 +6068,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 12.4,
+      "coding": null,
       "math": 82,
       "reasoning": 73.9,
       "research": 10.3,
@@ -5812,7 +6100,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 12.4,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 82,
       "gpqa": 73.9,
       "hle": 10.3,
@@ -5837,6 +6125,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 73
   },
   {
@@ -5849,9 +6141,9 @@
       "name": "China Mobile",
       "slug": "china-mobile"
     },
-    "rating": 1158,
-    "arena_elo": 1158,
-    "final_score": 28.8,
+    "rating": 1456,
+    "arena_elo": 1456,
+    "final_score": 82.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -5860,7 +6152,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 28.8,
+      "coding": null,
       "math": null,
       "reasoning": 82.9,
       "research": 6.4,
@@ -5892,7 +6184,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 28.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 82.9,
       "hle": 6.4,
@@ -5917,6 +6209,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 74
   },
   {
@@ -5929,9 +6225,9 @@
       "name": "Liquid AI",
       "slug": "liquidai"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1186,
+    "arena_elo": 1186,
+    "final_score": 33.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -5940,7 +6236,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 33.9,
       "research": 6.2,
@@ -5968,11 +6264,11 @@
       "summarization": 6.2,
       "extraction": 41.8,
       "tool-use": 41.8,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 33.9,
       "hle": 6.2,
@@ -5997,6 +6293,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 32000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 75
   },
   {
@@ -6009,9 +6309,9 @@
       "name": "Allen Institute for AI",
       "slug": "ai2"
     },
-    "rating": 1004,
-    "arena_elo": 1004,
-    "final_score": 0.8,
+    "rating": 1284,
+    "arena_elo": 1284,
+    "final_score": 51.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6020,7 +6320,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0.8,
+      "coding": null,
       "math": 70.7,
       "reasoning": 51.6,
       "research": 6,
@@ -6052,7 +6352,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 70.7,
       "gpqa": 51.6,
       "hle": 6,
@@ -6077,6 +6377,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 65536,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 76
   },
   {
@@ -6089,9 +6393,9 @@
       "name": "Baidu",
       "slug": "baidu"
     },
-    "rating": 1138,
-    "arena_elo": 1138,
-    "final_score": 25,
+    "rating": 1427,
+    "arena_elo": 1427,
+    "final_score": 77.7,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6100,7 +6404,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 25,
+      "coding": null,
       "math": 85,
       "reasoning": 77.7,
       "research": 13.3,
@@ -6132,7 +6436,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 25,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 85,
       "gpqa": 77.7,
       "hle": 13.3,
@@ -6157,6 +6461,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 77
   },
   {
@@ -6169,9 +6477,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1037,
-    "arena_elo": 1037,
-    "final_score": 6.8,
+    "rating": 1305,
+    "arena_elo": 1305,
+    "final_score": 55.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6180,7 +6488,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 6.8,
+      "coding": null,
       "math": 37,
       "reasoning": 55.5,
       "research": 3.8,
@@ -6212,7 +6520,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 6.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 37,
       "gpqa": 55.5,
       "hle": 3.8,
@@ -6237,6 +6545,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 78
   },
   {
@@ -6249,9 +6561,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1042,
-    "arena_elo": 1042,
-    "final_score": 7.6,
+    "rating": 1302,
+    "arena_elo": 1302,
+    "final_score": 54.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6260,7 +6572,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 7.6,
+      "coding": null,
       "math": null,
       "reasoning": 54.9,
       "research": 4.8,
@@ -6292,7 +6604,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 7.6,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 54.9,
       "hle": 4.8,
@@ -6317,6 +6629,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 79
   },
   {
@@ -6329,9 +6645,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1037,
-    "arena_elo": 1037,
-    "final_score": 6.8,
+    "rating": 1332,
+    "arena_elo": 1332,
+    "final_score": 60.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6340,7 +6656,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 6.8,
+      "coding": null,
       "math": 33.7,
       "reasoning": 60.3,
       "research": 2.9,
@@ -6372,7 +6688,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 6.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 33.7,
       "gpqa": 60.3,
       "hle": 2.9,
@@ -6397,6 +6713,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 80
   },
   {
@@ -6409,9 +6729,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1042,
-    "arena_elo": 1042,
-    "final_score": 7.6,
+    "rating": 1406,
+    "arena_elo": 1406,
+    "final_score": 73.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6420,7 +6740,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 7.6,
+      "coding": null,
       "math": 66.3,
       "reasoning": 73.8,
       "research": 7.6,
@@ -6452,7 +6772,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 7.6,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 66.3,
       "gpqa": 73.8,
       "hle": 7.6,
@@ -6477,6 +6797,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 81
   },
   {
@@ -6489,9 +6813,9 @@
       "name": "Meta",
       "slug": "meta-llama"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1323,
+    "arena_elo": 1323,
+    "final_score": 58.7,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6500,7 +6824,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 14,
       "reasoning": 58.7,
       "research": 3.8,
@@ -6528,11 +6852,11 @@
       "summarization": 3.8,
       "extraction": 39.5,
       "tool-use": 39.5,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 14,
       "gpqa": 58.7,
       "hle": 3.8,
@@ -6557,6 +6881,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 10000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 82
   },
   {
@@ -6569,9 +6897,9 @@
       "name": "Allen Institute for AI",
       "slug": "ai2"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1296,
+    "arena_elo": 1296,
+    "final_score": 53.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6580,7 +6908,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 53.9,
       "research": 5,
@@ -6608,11 +6936,11 @@
       "summarization": 5,
       "extraction": 39.2,
       "tool-use": 39.2,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 53.9,
       "hle": 5,
@@ -6637,6 +6965,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 65536,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 83
   },
   {
@@ -6649,9 +6981,9 @@
       "name": "Baidu",
       "slug": "baidu"
     },
-    "rating": 1034,
-    "arena_elo": 1034,
-    "final_score": 6.1,
+    "rating": 1446,
+    "arena_elo": 1446,
+    "final_score": 81.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6660,7 +6992,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 6.1,
+      "coding": null,
       "math": 41.3,
       "reasoning": 81.1,
       "research": 3.3,
@@ -6692,7 +7024,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 6.1,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 41.3,
       "gpqa": 81.1,
       "hle": 3.3,
@@ -6717,6 +7049,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 84
   },
   {
@@ -6729,9 +7065,9 @@
       "name": "Meta",
       "slug": "meta-llama"
     },
-    "rating": 1037,
-    "arena_elo": 1037,
-    "final_score": 6.8,
+    "rating": 1283,
+    "arena_elo": 1283,
+    "final_score": 51.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6740,7 +7076,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 6.8,
+      "coding": null,
       "math": 3,
       "reasoning": 51.5,
       "research": 4,
@@ -6772,7 +7108,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 6.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 3,
       "gpqa": 51.5,
       "hle": 4,
@@ -6797,6 +7133,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 85
   },
   {
@@ -6809,9 +7149,9 @@
       "name": "NVIDIA",
       "slug": "nvidia"
     },
-    "rating": 1013,
-    "arena_elo": 1013,
-    "final_score": 2.3,
+    "rating": 1400,
+    "arena_elo": 1400,
+    "final_score": 72.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6820,7 +7160,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 2.3,
+      "coding": null,
       "math": 63.7,
       "reasoning": 72.8,
       "research": 7.4,
@@ -6852,7 +7192,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 2.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 63.7,
       "gpqa": 72.8,
       "hle": 7.4,
@@ -6877,6 +7217,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 86
   },
   {
@@ -6889,9 +7233,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1002,
-    "arena_elo": 1002,
-    "final_score": 0.4,
+    "rating": 1238,
+    "arena_elo": 1238,
+    "final_score": 43.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6900,7 +7244,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0.4,
+      "coding": null,
       "math": null,
       "reasoning": 43.3,
       "research": 4.8,
@@ -6932,7 +7276,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0.4,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 43.3,
       "hle": 4.8,
@@ -6957,6 +7301,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 87
   },
   {
@@ -6969,9 +7317,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1046,
-    "arena_elo": 1046,
-    "final_score": 8.3,
+    "rating": 1408,
+    "arena_elo": 1408,
+    "final_score": 74.2,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -6980,7 +7328,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 8.3,
+      "coding": null,
       "math": null,
       "reasoning": 74.2,
       "research": 7.6,
@@ -7012,7 +7360,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 8.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 74.2,
       "hle": 7.6,
@@ -7037,6 +7385,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 88
   },
   {
@@ -7049,9 +7401,9 @@
       "name": "Naver",
       "slug": "naver"
     },
-    "rating": 1067,
-    "arena_elo": 1067,
-    "final_score": 12.1,
+    "rating": 1338,
+    "arena_elo": 1338,
+    "final_score": 61.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7060,7 +7412,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 12.1,
+      "coding": null,
       "math": 59,
       "reasoning": 61.5,
       "research": 5.5,
@@ -7092,7 +7444,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 12.1,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 59,
       "gpqa": 61.5,
       "hle": 5.5,
@@ -7117,6 +7469,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 89
   },
   {
@@ -7129,9 +7485,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1117,
-    "arena_elo": 1117,
-    "final_score": 21.3,
+    "rating": 1432,
+    "arena_elo": 1432,
+    "final_score": 78.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7140,7 +7496,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 21.3,
+      "coding": null,
       "math": null,
       "reasoning": 78.6,
       "research": 9.4,
@@ -7172,7 +7528,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 21.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 78.6,
       "hle": 9.4,
@@ -7197,6 +7553,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 90
   },
   {
@@ -7209,9 +7569,9 @@
       "name": "NVIDIA",
       "slug": "nvidia"
     },
-    "rating": 1067,
-    "arena_elo": 1067,
-    "final_score": 12.1,
+    "rating": 1219,
+    "arena_elo": 1219,
+    "final_score": 39.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7220,7 +7580,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 12.1,
+      "coding": null,
       "math": 13.3,
       "reasoning": 39.9,
       "research": 4.6,
@@ -7252,7 +7612,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 12.1,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 13.3,
       "gpqa": 39.9,
       "hle": 4.6,
@@ -7277,6 +7637,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 91
   },
   {
@@ -7289,9 +7653,9 @@
       "name": "China Mobile",
       "slug": "china-mobile"
     },
-    "rating": 1100,
-    "arena_elo": 1100,
-    "final_score": 18.2,
+    "rating": 1372,
+    "arena_elo": 1372,
+    "final_score": 67.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7300,7 +7664,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 18.2,
+      "coding": null,
       "math": null,
       "reasoning": 67.6,
       "research": 6.4,
@@ -7332,7 +7696,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 18.2,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 67.6,
       "hle": 6.4,
@@ -7357,6 +7721,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 92
   },
   {
@@ -7369,9 +7737,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1037,
-    "arena_elo": 1037,
-    "final_score": 6.8,
+    "rating": 1313,
+    "arena_elo": 1313,
+    "final_score": 56.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7380,7 +7748,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 6.8,
+      "coding": null,
       "math": 17.3,
       "reasoning": 56.9,
       "research": 4.2,
@@ -7412,7 +7780,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 6.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 17.3,
       "gpqa": 56.9,
       "hle": 4.2,
@@ -7437,6 +7805,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 93
   },
   {
@@ -7449,9 +7821,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1229,
-    "arena_elo": 1229,
-    "final_score": 41.6,
+    "rating": 1449,
+    "arena_elo": 1449,
+    "final_score": 81.7,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7460,7 +7832,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 41.6,
+      "coding": null,
       "math": null,
       "reasoning": 81.7,
       "research": 13.9,
@@ -7492,7 +7864,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 41.6,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 81.7,
       "hle": 13.9,
@@ -7517,6 +7889,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 94
   },
   {
@@ -7529,9 +7905,9 @@
       "name": "Nanbeige",
       "slug": "nanbeige"
     },
-    "rating": 1006,
-    "arena_elo": 1006,
-    "final_score": 1.1,
+    "rating": 1467,
+    "arena_elo": 1467,
+    "final_score": 84.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7540,7 +7916,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 1.1,
+      "coding": null,
       "math": null,
       "reasoning": 84.9,
       "research": 10.9,
@@ -7572,7 +7948,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 1.1,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 84.9,
       "hle": 10.9,
@@ -7597,6 +7973,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 95
   },
   {
@@ -7609,9 +7989,9 @@
       "name": "AI21 Labs",
       "slug": "ai21-labs"
     },
-    "rating": 1013,
-    "arena_elo": 1013,
-    "final_score": 2.3,
+    "rating": 1215,
+    "arena_elo": 1215,
+    "final_score": 39,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7620,7 +8000,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 2.3,
+      "coding": null,
       "math": 2.3,
       "reasoning": 39,
       "research": 3.7,
@@ -7652,7 +8032,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 2.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 2.3,
       "gpqa": 39,
       "hle": 3.7,
@@ -7677,6 +8057,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 96
   },
   {
@@ -7689,9 +8073,9 @@
       "name": "OpenBMB",
       "slug": "openbmb"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1148,
+    "arena_elo": 1148,
+    "final_score": 26.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7700,7 +8084,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 26.9,
       "research": 4.5,
@@ -7728,11 +8112,11 @@
       "summarization": 4.5,
       "extraction": 35.2,
       "tool-use": 35.2,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 26.9,
       "hle": 4.5,
@@ -7757,6 +8141,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 97
   },
   {
@@ -7769,9 +8157,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1024,
+    "arena_elo": 1024,
+    "final_score": 4.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7780,7 +8168,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 36.2,
       "reasoning": 4.3,
       "research": 4.3,
@@ -7808,11 +8196,11 @@
       "summarization": 4.3,
       "extraction": 35.2,
       "tool-use": 35.2,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 36.2,
       "gpqa": 73.7,
       "hle": 10.1,
@@ -7837,6 +8225,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 98
   },
   {
@@ -7849,9 +8241,9 @@
       "name": "Nous Research",
       "slug": "nous-research"
     },
-    "rating": 1054,
-    "arena_elo": 1054,
-    "final_score": 9.8,
+    "rating": 1295,
+    "arena_elo": 1295,
+    "final_score": 53.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7860,7 +8252,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 9.8,
+      "coding": null,
       "math": 15.3,
       "reasoning": 53.6,
       "research": 4.2,
@@ -7892,7 +8284,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 9.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 15.3,
       "gpqa": 53.6,
       "hle": 4.2,
@@ -7917,6 +8309,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 99
   },
   {
@@ -7929,9 +8325,9 @@
       "name": "Sarvam",
       "slug": "sarvam"
     },
-    "rating": 1008,
-    "arena_elo": 1008,
-    "final_score": 1.5,
+    "rating": 1406,
+    "arena_elo": 1406,
+    "final_score": 73.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -7940,7 +8336,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 1.5,
+      "coding": null,
       "math": null,
       "reasoning": 73.8,
       "research": 11,
@@ -7972,7 +8368,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 1.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 73.8,
       "hle": 11,
@@ -7997,6 +8393,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 100
   },
   {
@@ -8009,9 +8409,9 @@
       "name": "Prime Intellect",
       "slug": "prime-intellect"
     },
-    "rating": 1050,
-    "arena_elo": 1050,
-    "final_score": 9.1,
+    "rating": 1419,
+    "arena_elo": 1419,
+    "final_score": 76.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8020,7 +8420,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 9.1,
+      "coding": null,
       "math": 88,
       "reasoning": 76.1,
       "research": 13.1,
@@ -8052,7 +8452,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 9.1,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 88,
       "gpqa": 76.1,
       "hle": 13.1,
@@ -8077,6 +8477,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131100,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 101
   },
   {
@@ -8089,9 +8493,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1013,
-    "arena_elo": 1013,
-    "final_score": 2.3,
+    "rating": 1223,
+    "arena_elo": 1223,
+    "final_score": 40.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8100,7 +8504,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 2.3,
+      "coding": null,
       "math": null,
       "reasoning": 40.5,
       "research": 4.7,
@@ -8132,7 +8536,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 2.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 40.5,
       "hle": 4.7,
@@ -8157,6 +8561,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 102
   },
   {
@@ -8169,9 +8577,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1117,
-    "arena_elo": 1117,
-    "final_score": 21.3,
+    "rating": 1392,
+    "arena_elo": 1392,
+    "final_score": 71.2,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8180,7 +8588,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 21.3,
+      "coding": null,
       "math": null,
       "reasoning": 71.2,
       "research": 8,
@@ -8212,7 +8620,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 21.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 71.2,
       "hle": 8,
@@ -8237,6 +8645,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 103
   },
   {
@@ -8249,9 +8661,9 @@
       "name": "Liquid AI",
       "slug": "liquidai"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1159,
+    "arena_elo": 1159,
+    "final_score": 28.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8260,7 +8672,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 28.9,
       "research": 5.1,
@@ -8288,11 +8700,11 @@
       "summarization": 5.1,
       "extraction": 33.1,
       "tool-use": 33.1,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 28.9,
       "hle": 5.1,
@@ -8317,6 +8729,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 32000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 104
   },
   {
@@ -8329,9 +8745,9 @@
       "name": "Mistral",
       "slug": "mistralai"
     },
-    "rating": 1058,
-    "arena_elo": 1058,
-    "final_score": 10.6,
+    "rating": 1314,
+    "arena_elo": 1314,
+    "final_score": 57.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8340,7 +8756,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 10.6,
+      "coding": null,
       "math": null,
       "reasoning": 57.1,
       "research": 3.8,
@@ -8372,7 +8788,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 10.6,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 57.1,
       "hle": 3.8,
@@ -8397,6 +8813,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 105
   },
   {
@@ -8409,9 +8829,9 @@
       "name": "Allen Institute for AI",
       "slug": "ai2"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1220,
+    "arena_elo": 1220,
+    "final_score": 40,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8420,7 +8840,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 41.3,
       "reasoning": 40,
       "research": 5.8,
@@ -8448,11 +8868,11 @@
       "summarization": 5.8,
       "extraction": 32.8,
       "tool-use": 32.8,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 41.3,
       "gpqa": 40,
       "hle": 5.8,
@@ -8477,6 +8897,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 65536,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 106
   },
   {
@@ -8489,9 +8913,9 @@
       "name": "Nous Research",
       "slug": "nous-research"
     },
-    "rating": 1063,
-    "arena_elo": 1063,
-    "final_score": 11.4,
+    "rating": 1400,
+    "arena_elo": 1400,
+    "final_score": 72.7,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8500,7 +8924,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 11.4,
+      "coding": null,
       "math": 69.7,
       "reasoning": 72.7,
       "research": 10.9,
@@ -8532,7 +8956,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 11.4,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 69.7,
       "gpqa": 72.7,
       "hle": 10.9,
@@ -8557,6 +8981,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 107
   },
   {
@@ -8569,9 +8997,9 @@
       "name": "Mistral",
       "slug": "mistralai"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1024,
+    "arena_elo": 1024,
+    "final_score": 4.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8580,7 +9008,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 30,
       "reasoning": 4.4,
       "research": 4.4,
@@ -8608,11 +9036,11 @@
       "summarization": 4.4,
       "extraction": 32,
       "tool-use": 32,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 30,
       "gpqa": 57.2,
       "hle": 4.6,
@@ -8637,6 +9065,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 108
   },
   {
@@ -8649,9 +9081,9 @@
       "name": "NVIDIA",
       "slug": "nvidia"
     },
-    "rating": 1025,
-    "arena_elo": 1025,
-    "final_score": 4.5,
+    "rating": 1315,
+    "arena_elo": 1315,
+    "final_score": 57.2,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8660,7 +9092,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 4.5,
+      "coding": null,
       "math": 75,
       "reasoning": 57.2,
       "research": 5.5,
@@ -8692,7 +9124,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 4.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 75,
       "gpqa": 57.2,
       "hle": 5.5,
@@ -8717,6 +9149,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 109
   },
   {
@@ -8729,9 +9165,9 @@
       "name": "IBM",
       "slug": "ibm"
     },
-    "rating": 1013,
-    "arena_elo": 1013,
-    "final_score": 2.3,
+    "rating": 1229,
+    "arena_elo": 1229,
+    "final_score": 41.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8740,7 +9176,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 2.3,
+      "coding": null,
       "math": 13.7,
       "reasoning": 41.6,
       "research": 3.8,
@@ -8772,7 +9208,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 2.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 13.7,
       "gpqa": 41.6,
       "hle": 3.8,
@@ -8797,6 +9233,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 110
   },
   {
@@ -8809,9 +9249,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1017,
-    "arena_elo": 1017,
-    "final_score": 3,
+    "rating": 1251,
+    "arena_elo": 1251,
+    "final_score": 45.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8820,7 +9260,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 3,
+      "coding": null,
       "math": null,
       "reasoning": 45.6,
       "research": 2.6,
@@ -8852,7 +9292,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 45.6,
       "hle": 2.6,
@@ -8877,6 +9317,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 111
   },
   {
@@ -8889,9 +9333,9 @@
       "name": "AI21 Labs",
       "slug": "ai21-labs"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1177,
+    "arena_elo": 1177,
+    "final_score": 32.2,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8900,7 +9344,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 0.3,
       "reasoning": 32.2,
       "research": 4.4,
@@ -8928,11 +9372,11 @@
       "summarization": 4.4,
       "extraction": 31.4,
       "tool-use": 31.4,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 0.3,
       "gpqa": 32.2,
       "hle": 4.4,
@@ -8957,6 +9401,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 258000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 112
   },
   {
@@ -8969,9 +9417,9 @@
       "name": "Nous Research",
       "slug": "nous-research"
     },
-    "rating": 1025,
-    "arena_elo": 1025,
-    "final_score": 4.5,
+    "rating": 1384,
+    "arena_elo": 1384,
+    "final_score": 69.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -8980,7 +9428,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 4.5,
+      "coding": null,
       "math": 68.7,
       "reasoning": 69.9,
       "research": 8.8,
@@ -9012,7 +9460,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 4.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 68.7,
       "gpqa": 69.9,
       "hle": 8.8,
@@ -9037,6 +9485,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 113
   },
   {
@@ -9049,9 +9501,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1008,
-    "arena_elo": 1008,
-    "final_score": 1.5,
+    "rating": 1341,
+    "arena_elo": 1341,
+    "final_score": 62,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9060,7 +9512,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 1.5,
+      "coding": null,
       "math": 52.3,
       "reasoning": 62,
       "research": 4.6,
@@ -9092,7 +9544,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 1.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 52.3,
       "gpqa": 62,
       "hle": 4.6,
@@ -9117,6 +9569,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 65536,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 114
   },
   {
@@ -9129,9 +9585,9 @@
       "name": "Meta",
       "slug": "meta-llama"
     },
-    "rating": 1004,
-    "arena_elo": 1004,
-    "final_score": 0.8,
+    "rating": 1122,
+    "arena_elo": 1122,
+    "final_score": 22.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9140,7 +9596,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0.8,
+      "coding": null,
       "math": 1.7,
       "reasoning": 22.1,
       "research": 5.5,
@@ -9172,7 +9628,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 1.7,
       "gpqa": 22.1,
       "hle": 5.5,
@@ -9197,6 +9653,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 115
   },
   {
@@ -9209,9 +9669,9 @@
       "name": "Reka AI",
       "slug": "reka-ai"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1291,
+    "arena_elo": 1291,
+    "final_score": 52.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9220,7 +9680,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 33.7,
       "reasoning": 52.9,
       "research": 4.4,
@@ -9248,11 +9708,11 @@
       "summarization": 4.4,
       "extraction": 30.4,
       "tool-use": 30.4,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 33.7,
       "gpqa": 52.9,
       "hle": 4.4,
@@ -9277,6 +9737,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 116
   },
   {
@@ -9289,9 +9753,9 @@
       "name": "Amazon",
       "slug": "aws"
     },
-    "rating": 1008,
-    "arena_elo": 1008,
-    "final_score": 1.5,
+    "rating": 1197,
+    "arena_elo": 1197,
+    "final_score": 35.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9300,7 +9764,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 1.5,
+      "coding": null,
       "math": 6,
       "reasoning": 35.8,
       "research": 4.6,
@@ -9332,7 +9796,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 1.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 6,
       "gpqa": 35.8,
       "hle": 4.6,
@@ -9357,6 +9821,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 130000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 117
   },
   {
@@ -9369,9 +9837,9 @@
       "name": "Mistral",
       "slug": "mistralai"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1024,
+    "arena_elo": 1024,
+    "final_score": 4.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9380,7 +9848,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 31.7,
       "reasoning": 4.4,
       "research": 4.4,
@@ -9408,11 +9876,11 @@
       "summarization": 4.4,
       "extraction": 29.1,
       "tool-use": 29.1,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 31.7,
       "gpqa": 47.1,
       "hle": 4.3,
@@ -9437,6 +9905,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 118
   },
   {
@@ -9449,9 +9921,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1241,
+    "arena_elo": 1241,
+    "final_score": 43.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9460,7 +9932,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 43.8,
       "research": 5,
@@ -9488,11 +9960,11 @@
       "summarization": 5,
       "extraction": 29.1,
       "tool-use": 29.1,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 43.8,
       "hle": 5,
@@ -9517,6 +9989,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 119
   },
   {
@@ -9529,9 +10005,9 @@
       "name": "Nous Research",
       "slug": "nous-research"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1270,
+    "arena_elo": 1270,
+    "final_score": 49.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9540,7 +10016,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 11.3,
       "reasoning": 49.1,
       "research": 3.6,
@@ -9568,11 +10044,11 @@
       "summarization": 3.6,
       "extraction": 29,
       "tool-use": 29,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 11.3,
       "gpqa": 49.1,
       "hle": 3.6,
@@ -9597,6 +10073,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 120
   },
   {
@@ -9609,9 +10089,9 @@
       "name": "Kimi",
       "slug": "kimi"
     },
-    "rating": 1063,
-    "arena_elo": 1063,
-    "final_score": 11.4,
+    "rating": 1227,
+    "arena_elo": 1227,
+    "final_score": 41.2,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9620,7 +10100,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 11.4,
+      "coding": null,
       "math": 36.3,
       "reasoning": 41.2,
       "research": 2.5,
@@ -9652,7 +10132,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 11.4,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 36.3,
       "gpqa": 41.2,
       "hle": 2.5,
@@ -9677,6 +10157,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 121
   },
   {
@@ -9689,9 +10173,9 @@
       "name": "NVIDIA",
       "slug": "nvidia"
     },
-    "rating": 1008,
-    "arena_elo": 1008,
-    "final_score": 1.5,
+    "rating": 1314,
+    "arena_elo": 1314,
+    "final_score": 57,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9700,7 +10184,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 1.5,
+      "coding": null,
       "math": 69.7,
       "reasoning": 57,
       "research": 4.9,
@@ -9732,7 +10216,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 1.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 69.7,
       "gpqa": 57,
       "hle": 4.9,
@@ -9757,6 +10241,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 122
   },
   {
@@ -9769,9 +10257,9 @@
       "name": "NVIDIA",
       "slug": "nvidia"
     },
-    "rating": 1004,
-    "arena_elo": 1004,
-    "final_score": 0.8,
+    "rating": 1306,
+    "arena_elo": 1306,
+    "final_score": 55.7,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9780,7 +10268,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0.8,
+      "coding": null,
       "math": 62.3,
       "reasoning": 55.7,
       "research": 4.6,
@@ -9812,7 +10300,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 62.3,
       "gpqa": 55.7,
       "hle": 4.6,
@@ -9837,6 +10325,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 123
   },
   {
@@ -9849,9 +10341,9 @@
       "name": "Allen Institute for AI",
       "slug": "ai2"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1234,
+    "arena_elo": 1234,
+    "final_score": 42.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9860,7 +10352,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 42.5,
       "research": 4.3,
@@ -9888,11 +10380,11 @@
       "summarization": 4.3,
       "extraction": 26.9,
       "tool-use": 26.9,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 42.5,
       "hle": 4.3,
@@ -9917,6 +10409,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 36864,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 124
   },
   {
@@ -9929,9 +10425,9 @@
       "name": "Mistral",
       "slug": "mistralai"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1028,
+    "arena_elo": 1028,
+    "final_score": 5.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -9940,7 +10436,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 22,
       "reasoning": 5.1,
       "research": 5.1,
@@ -9968,11 +10464,11 @@
       "summarization": 5.1,
       "extraction": 26.8,
       "tool-use": 26.8,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 22,
       "gpqa": 35.8,
       "hle": 5.4,
@@ -9997,6 +10493,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 125
   },
   {
@@ -10009,9 +10509,9 @@
       "name": "OpenBMB",
       "slug": "openbmb"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1168,
+    "arena_elo": 1168,
+    "final_score": 30.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10020,7 +10520,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 30.5,
       "research": 5.1,
@@ -10048,11 +10548,11 @@
       "summarization": 5.1,
       "extraction": 26.7,
       "tool-use": 26.7,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 30.5,
       "hle": 5.1,
@@ -10077,6 +10577,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 126
   },
   {
@@ -10089,9 +10593,9 @@
       "name": "Sarvam",
       "slug": "sarvam"
     },
-    "rating": 1013,
-    "arena_elo": 1013,
-    "final_score": 2.3,
+    "rating": 1348,
+    "arena_elo": 1348,
+    "final_score": 63.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10100,7 +10604,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 2.3,
+      "coding": null,
       "math": null,
       "reasoning": 63.3,
       "research": 7.5,
@@ -10132,7 +10636,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 2.3,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 63.3,
       "hle": 7.5,
@@ -10157,6 +10661,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 65536,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 127
   },
   {
@@ -10169,9 +10677,9 @@
       "name": "IBM",
       "slug": "ibm"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1145,
+    "arena_elo": 1145,
+    "final_score": 26.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10180,7 +10688,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 6.3,
       "reasoning": 26.3,
       "research": 5,
@@ -10208,11 +10716,11 @@
       "summarization": 5,
       "extraction": 26.2,
       "tool-use": 26.2,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 6.3,
       "gpqa": 26.3,
       "hle": 5,
@@ -10237,6 +10745,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 128
   },
   {
@@ -10249,9 +10761,9 @@
       "name": "Swiss AI Initiative",
       "slug": "swiss-ai-initiative"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1150,
+    "arena_elo": 1150,
+    "final_score": 27.2,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10260,7 +10772,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 27.2,
       "research": 5.5,
@@ -10288,11 +10800,11 @@
       "summarization": 5.5,
       "extraction": 25.9,
       "tool-use": 25.9,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 27.2,
       "hle": 5.5,
@@ -10317,6 +10829,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 65536,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 129
   },
   {
@@ -10329,9 +10845,9 @@
       "name": "NVIDIA",
       "slug": "nvidia"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1241,
+    "arena_elo": 1241,
+    "final_score": 43.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10340,7 +10856,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 26.7,
       "reasoning": 43.9,
       "research": 4.3,
@@ -10368,11 +10884,11 @@
       "summarization": 4.3,
       "extraction": 25.9,
       "tool-use": 25.9,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 26.7,
       "gpqa": 43.9,
       "hle": 4.3,
@@ -10397,6 +10913,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 130
   },
   {
@@ -10409,9 +10929,9 @@
       "name": "LG AI Research",
       "slug": "lg"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1233,
+    "arena_elo": 1233,
+    "final_score": 42.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10420,7 +10940,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 24,
       "reasoning": 42.4,
       "research": 5.7,
@@ -10448,11 +10968,11 @@
       "summarization": 5.7,
       "extraction": 25.3,
       "tool-use": 25.3,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 24,
       "gpqa": 42.4,
       "hle": 5.7,
@@ -10477,6 +10997,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 64000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 131
   },
   {
@@ -10489,9 +11013,9 @@
       "name": "IBM",
       "slug": "ibm"
     },
-    "rating": 1008,
-    "arena_elo": 1008,
-    "final_score": 1.5,
+    "rating": 1185,
+    "arena_elo": 1185,
+    "final_score": 33.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10500,7 +11024,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 1.5,
+      "coding": null,
       "math": 6,
       "reasoning": 33.6,
       "research": 5,
@@ -10532,7 +11056,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 1.5,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 6,
       "gpqa": 33.6,
       "hle": 5,
@@ -10557,6 +11081,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 132
   },
   {
@@ -10569,9 +11097,9 @@
       "name": "Microsoft",
       "slug": "azure"
     },
-    "rating": 1021,
-    "arena_elo": 1021,
-    "final_score": 3.8,
+    "rating": 1316,
+    "arena_elo": 1316,
+    "final_score": 57.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10580,7 +11108,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 3.8,
+      "coding": null,
       "math": 18,
       "reasoning": 57.5,
       "research": 3.8,
@@ -10612,7 +11140,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 3.8,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 18,
       "gpqa": 57.5,
       "hle": 3.8,
@@ -10637,6 +11165,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 16000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 133
   },
   {
@@ -10649,9 +11181,9 @@
       "name": "LG AI Research",
       "slug": "lg"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1283,
+    "arena_elo": 1283,
+    "final_score": 51.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10660,7 +11192,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 50.3,
       "reasoning": 51.5,
       "research": 6,
@@ -10688,11 +11220,11 @@
       "summarization": 6,
       "extraction": 23,
       "tool-use": 23,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 50.3,
       "gpqa": 51.5,
       "hle": 6,
@@ -10717,6 +11249,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 64000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 134
   },
   {
@@ -10729,9 +11265,9 @@
       "name": "Swiss AI Initiative",
       "slug": "swiss-ai-initiative"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1141,
+    "arena_elo": 1141,
+    "final_score": 25.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10740,7 +11276,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 25.6,
       "research": 5,
@@ -10768,11 +11304,11 @@
       "summarization": 5,
       "extraction": 22.4,
       "tool-use": 22.4,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 25.6,
       "hle": 5,
@@ -10797,6 +11333,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 65536,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 135
   },
   {
@@ -10809,9 +11349,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1002,
-    "arena_elo": 1002,
-    "final_score": 0.4,
+    "rating": 1130,
+    "arena_elo": 1130,
+    "final_score": 23.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10820,7 +11360,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0.4,
+      "coding": null,
       "math": null,
       "reasoning": 23.6,
       "research": 5.1,
@@ -10852,7 +11392,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0.4,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 23.6,
       "hle": 5.1,
@@ -10877,6 +11417,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 136
   },
   {
@@ -10889,9 +11433,9 @@
       "name": "Alibaba",
       "slug": "alibaba"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1061,
+    "arena_elo": 1061,
+    "final_score": 11.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10900,7 +11444,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 11.1,
       "research": 1.1,
@@ -10928,11 +11472,11 @@
       "summarization": 1.1,
       "extraction": 21.5,
       "tool-use": 21.5,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 11.1,
       "hle": 1.1,
@@ -10957,6 +11501,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 137
   },
   {
@@ -10969,9 +11517,9 @@
       "name": "Microsoft",
       "slug": "azure"
     },
-    "rating": 1002,
-    "arena_elo": 1002,
-    "final_score": 0.4,
+    "rating": 1182,
+    "arena_elo": 1182,
+    "final_score": 33.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -10980,7 +11528,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0.4,
+      "coding": null,
       "math": 6.7,
       "reasoning": 33.1,
       "research": 4.5,
@@ -11012,7 +11560,7 @@
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0.4,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 6.7,
       "gpqa": 33.1,
       "hle": 4.5,
@@ -11037,6 +11585,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 138
   },
   {
@@ -11049,9 +11601,9 @@
       "name": "Cohere",
       "slug": "cohere"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1168,
+    "arena_elo": 1168,
+    "final_score": 30.5,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -11060,7 +11612,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": null,
       "reasoning": 30.5,
       "research": 5.2,
@@ -11088,11 +11640,11 @@
       "summarization": 5.2,
       "extraction": 20.1,
       "tool-use": 20.1,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 30.5,
       "hle": 5.2,
@@ -11117,6 +11669,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 8192,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 139
   },
   {
@@ -11129,9 +11685,9 @@
       "name": "Allen Institute for AI",
       "slug": "ai2"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1132,
+    "arena_elo": 1132,
+    "final_score": 24,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -11140,7 +11696,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 0,
       "reasoning": 24,
       "research": 5.1,
@@ -11168,11 +11724,11 @@
       "summarization": 5.1,
       "extraction": 19.7,
       "tool-use": 19.7,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 0,
       "gpqa": 24,
       "hle": 5.1,
@@ -11197,6 +11753,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 4096,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 140
   },
   {
@@ -11209,9 +11769,9 @@
       "name": "IBM",
       "slug": "ibm"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1141,
+    "arena_elo": 1141,
+    "final_score": 25.7,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -11220,7 +11780,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 1.3,
       "reasoning": 25.7,
       "research": 6.4,
@@ -11248,11 +11808,11 @@
       "summarization": 6.4,
       "extraction": 17.6,
       "tool-use": 17.6,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 1.3,
       "gpqa": 25.7,
       "hle": 6.4,
@@ -11277,6 +11837,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 32768,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 141
   },
   {
@@ -11289,9 +11853,9 @@
       "name": "IBM",
       "slug": "ibm"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1144,
+    "arena_elo": 1144,
+    "final_score": 26.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -11300,7 +11864,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 0,
       "reasoning": 26.1,
       "research": 5.5,
@@ -11328,11 +11892,11 @@
       "summarization": 5.5,
       "extraction": 15.9,
       "tool-use": 15.9,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 0,
       "gpqa": 26.1,
       "hle": 5.5,
@@ -11357,6 +11921,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 32768,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 142
   },
   {
@@ -11369,9 +11937,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1000,
-    "arena_elo": 1000,
-    "final_score": 0,
+    "rating": 1123,
+    "arena_elo": 1123,
+    "final_score": 22.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -11380,7 +11948,7 @@
     ],
     "category_scores": {
       "overall": null,
-      "coding": 0,
+      "coding": null,
       "math": 2.3,
       "reasoning": 22.4,
       "research": 3.6,
@@ -11408,11 +11976,11 @@
       "summarization": 3.6,
       "extraction": 12.1,
       "tool-use": 12.1,
-      "function-calling": 0
+      "function-calling": null
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": null,
-      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": 2.3,
       "gpqa": 22.4,
       "hle": 3.6,
@@ -11437,6 +12005,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 32000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 143
   }
 ]

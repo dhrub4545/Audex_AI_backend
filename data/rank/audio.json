@@ -20,7 +20,7 @@
     ],
     "category_scores": {
       "overall": 60,
-      "coding": 50.4,
+      "coding": 55,
       "math": null,
       "reasoning": 69.1,
       "research": 69.1,
@@ -28,7 +28,7 @@
       "writing": 60,
       "knowledge": null,
       "multilingual": null,
-      "agents": 50.4,
+      "agents": 55,
       "data-analysis": 28.4,
       "cheap": 4,
       "fast": null,
@@ -47,12 +47,12 @@
       "translation": null,
       "summarization": 69.1,
       "extraction": 28.4,
-      "tool-use": 50.4,
-      "function-calling": 50.4
+      "tool-use": 55,
+      "function-calling": 55
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": 60,
-      "artificial_analysis_coding_index": 50.4,
+      "artificial_analysis_coding_index": 55,
       "artificial_analysis_math_index": null,
       "gpqa": null,
       "hle": null,
@@ -65,8 +65,8 @@
       "aime": null,
       "scicode": null,
       "mmlu_pro": null,
-      "agentic_index": 50.4,
-      "coding_agent_index": null,
+      "agentic_index": 55,
+      "coding_agent_index": 55,
       "gdpval": 1732.7,
       "gdp_pdf": 28.4
     },
@@ -77,6 +77,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 1
   },
   {
@@ -157,6 +161,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 2
   },
   {
@@ -237,6 +245,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 3
   },
   {
@@ -260,7 +272,7 @@
     ],
     "category_scores": {
       "overall": 53.9,
-      "coding": 44.8,
+      "coding": 52,
       "math": null,
       "reasoning": 58.8,
       "research": 58.8,
@@ -268,7 +280,7 @@
       "writing": 53.9,
       "knowledge": null,
       "multilingual": null,
-      "agents": 44.8,
+      "agents": 52,
       "data-analysis": 27.6,
       "cheap": 3,
       "fast": null,
@@ -287,12 +299,12 @@
       "translation": null,
       "summarization": 58.8,
       "extraction": 27.6,
-      "tool-use": 44.8,
-      "function-calling": 44.8
+      "tool-use": 52,
+      "function-calling": 52
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": 53.9,
-      "artificial_analysis_coding_index": 44.8,
+      "artificial_analysis_coding_index": 52,
       "artificial_analysis_math_index": null,
       "gpqa": null,
       "hle": null,
@@ -305,8 +317,8 @@
       "aime": null,
       "scicode": null,
       "mmlu_pro": null,
-      "agentic_index": 44.8,
-      "coding_agent_index": null,
+      "agentic_index": 52,
+      "coding_agent_index": 52,
       "gdpval": null,
       "gdp_pdf": 27.6
     },
@@ -317,6 +329,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 4
   },
   {
@@ -397,6 +413,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 5
   },
   {
@@ -420,7 +440,7 @@
     ],
     "category_scores": {
       "overall": 50.1,
-      "coding": 45.5,
+      "coding": 44,
       "math": 62.6,
       "reasoning": 48.5,
       "research": 48.5,
@@ -428,7 +448,7 @@
       "writing": 50.1,
       "knowledge": null,
       "multilingual": null,
-      "agents": 45.5,
+      "agents": 44,
       "data-analysis": 32.6,
       "cheap": null,
       "fast": null,
@@ -447,12 +467,12 @@
       "translation": null,
       "summarization": 48.5,
       "extraction": 32.6,
-      "tool-use": 45.5,
-      "function-calling": 45.5
+      "tool-use": 44,
+      "function-calling": 44
     },
     "evaluations": {
       "artificial_analysis_intelligence_index": 50.1,
-      "artificial_analysis_coding_index": 45.5,
+      "artificial_analysis_coding_index": 44,
       "artificial_analysis_math_index": 62.6,
       "gpqa": null,
       "hle": 53.6,
@@ -465,8 +485,8 @@
       "aime": null,
       "scicode": 62.6,
       "mmlu_pro": null,
-      "agentic_index": 45.5,
-      "coding_agent_index": null,
+      "agentic_index": 44,
+      "coding_agent_index": 44,
       "gdpval": 1857.1,
       "gdp_pdf": 32.6
     },
@@ -477,6 +497,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 6
   },
   {
@@ -557,6 +581,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1048576,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 7
   },
   {
@@ -637,6 +665,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 8
   },
   {
@@ -717,6 +749,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1048576,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 9
   },
   {
@@ -797,6 +833,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 10
   },
   {
@@ -877,6 +917,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 11
   },
   {
@@ -957,6 +1001,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1048576,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 12
   },
   {
@@ -1037,6 +1085,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 13
   },
   {
@@ -1117,6 +1169,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 14
   },
   {
@@ -1197,6 +1253,10 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "unroundedAverage": null,
     "rank": 15
   }
 ]
