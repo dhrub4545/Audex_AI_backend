@@ -398,9 +398,9 @@ async function syncSubscriptionTiers(freshModels = null) {
     // --- 6. META ---
     else if (provKey === 'meta') {
       if (planName.includes('free')) {
-        selectedModels = pickDiverseModels(metaModels.filter(m => isLightweightModel(m.slug, m.name) || m.slug.includes('70b') || m.slug.includes('spark')), 3);
+        selectedModels = pickDiverseModels(metaModels.filter(m => isLightweightModel(m.slug, m.name) || (m.slug || '').includes('70b') || (m.slug || '').includes('spark')), 3);
       } else {
-        selectedModels = pickDiverseModels(metaModels.filter(m => isUltraModel(m.slug, m.name) || m.slug.includes('405b') || m.slug.includes('wonder')), 4);
+        selectedModels = pickDiverseModels(metaModels.filter(m => isUltraModel(m.slug, m.name) || (m.slug || '').includes('405b') || (m.slug || '').includes('wonder')), 4);
       }
     }
 
@@ -429,7 +429,7 @@ async function syncSubscriptionTiers(freshModels = null) {
         const topOpus = pickDiverseModels(anthropicModels.filter(m => isUltraModel(m.slug, m.name)), 1);
         const topGPT = pickDiverseModels(openAIModels.filter(m => isUltraModel(m.slug, m.name)), 1);
         const topSonnet = pickDiverseModels(anthropicModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 1);
-        const topGemini = pickDiverseModels(googleModels.filter(m => isUltraModel(m.slug, m.name) || m.slug.includes('argon')), 1);
+        const topGemini = pickDiverseModels(googleModels.filter(m => isUltraModel(m.slug, m.name) || (m.slug || '').includes('argon')), 1);
         selectedModels = [...topOpus, ...topGPT, ...topSonnet, ...topGemini];
       } else {
         const topClaude = pickDiverseModels(anthropicModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 1);
@@ -441,7 +441,7 @@ async function syncSubscriptionTiers(freshModels = null) {
 
     // --- 9. PERPLEXITY SEARCH ---
     else if (provKey === 'perplexity') {
-      const sonarModels = allModels.filter(m => m.slug.includes('sonar'));
+      const sonarModels = allModels.filter(m => (m.slug || '').includes('sonar'));
       if (planName.includes('free')) {
         const sLight = sonarModels.slice(0, 1);
         const gLight = pickDiverseModels(googleModels.filter(m => isLightweightModel(m.slug, m.name)), 1);

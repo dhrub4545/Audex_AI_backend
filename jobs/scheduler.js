@@ -1,4 +1,6 @@
 const cron = require('node-cron');
+const fs = require('fs');
+const path = require('path');
 const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
 const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
 const { syncSubscriptionTiers } = require('../services/subscriptionTierSync');
@@ -21,15 +23,16 @@ function initScheduler() {
     }
   });
 
-  // 2. Run Artificial Analysis sync hourly and auto-sync SaaS subscription tiers
+  // 2. Run automated pipeline hourly to scrape newly arrived models and update overall index leaderboard & subscription tiers
   cron.schedule('0 * * * *', async () => {
-    console.log('⏰ Ingestion Scheduler: Starting hourly Artificial Analysis sync...');
+    console.log('⏰ Ingestion Scheduler: Starting hourly Artificial Analysis live sync...');
     try {
-      await syncArtificialAnalysis();
-      console.log('⏰ Ingestion Scheduler: Auto-syncing subscription tiers with latest models...');
-      await syncSubscriptionTiers();
+      await runDailyRankingPipeline();
+      console.log('⏰ Ingestion Scheduler: Hourly live sync completed successfully.');
     } catch (err) {
-      console.error('⏰ Ingestion Scheduler: Artificial Analysis hourly sync failed:', err.message);
+      console.error('⏰ Ingestion Scheduler: Hourly sync failed, attempting fallback local sync:', err.message);
+      await syncArtificialAnalysis().catch(() => {});
+      await syncSubscriptionTiers().catch(() => {});
     }
   });
 
@@ -43,21 +46,31 @@ function initScheduler() {
     }
   })();
 
-  // 4. Trigger initial synchronization if explicitly enabled via environment variable
-  if (process.env.RUN_INITIAL_SYNC === 'true') {
-    (async () => {
-      console.log('🚀 Ingestion Scheduler: Triggering initial synchronization on startup (RUN_INITIAL_SYNC=true)...');
-      try {
-        await runDailyRankingPipeline();
-        console.log('🚀 Ingestion Scheduler: Initial synchronization completed successfully!');
-      } catch (err) {
-        console.error('🚀 Ingestion Scheduler: Initial synchronization encountered an error:', err.message);
-        await syncArtificialAnalysis().catch(() => {});
+  // 4. Trigger automated synchronization on startup if data is missing, stale (> 6h), or RUN_INITIAL_SYNC is true
+  (async () => {
+    try {
+      const rawPath = path.join(__dirname, '../data/raw_data.json');
+      let shouldSync = false;
+      if (!fs.existsSync(rawPath)) {
+        shouldSync = true;
+      } else {
+        const stats = fs.statSync(rawPath);
+        const ageHours = (Date.now() - stats.mtimeMs) / (1000 * 60 * 60);
+        if (ageHours > 6 || process.env.RUN_INITIAL_SYNC === 'true') {
+          shouldSync = true;
+        }
       }
-    })();
-  } else {
-    console.log('ℹ️ Ingestion Scheduler: Startup scraping skipped (RUN_INITIAL_SYNC!=true). Scheduled cron jobs are active.');
-  }
+      if (shouldSync) {
+        console.log('🚀 Ingestion Scheduler: Triggering automated synchronization on startup (data missing or > 6h old)...');
+        await runDailyRankingPipeline();
+        console.log('🚀 Ingestion Scheduler: Startup synchronization completed successfully!');
+      } else {
+        console.log('ℹ️ Ingestion Scheduler: Startup data is fresh (< 6h). Scheduled cron jobs are active.');
+      }
+    } catch (err) {
+      console.warn('⚠️ Ingestion Scheduler: Startup synchronization warning:', err.message);
+    }
+  })();
 }
 
 module.exports = { initScheduler };

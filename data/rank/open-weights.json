@@ -1,5 +1,80 @@
 [
   {
+    "id": "kimi-k3-1-pro",
+    "slug": "kimi-k3-1-pro",
+    "modelId": "kimi/kimi-k3-1-pro",
+    "name": "Kimi K3.1 Pro",
+    "organization": "Kimi",
+    "model_creator": {
+      "name": "Kimi",
+      "slug": "kimi"
+    },
+    "rating": 1256,
+    "arena_elo": 1256,
+    "final_score": 46.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 46.5,
+      "coding": 47.1,
+      "math": 60.8,
+      "reasoning": 52.5,
+      "research": 52.5,
+      "instruction": null,
+      "writing": 46.5,
+      "knowledge": 83.9,
+      "multilingual": null,
+      "agents": null,
+      "data-analysis": 1860.6,
+      "cheap": 4,
+      "fast": null,
+      "frontier": 46.5,
+      "vision": 46.5,
+      "audio": null,
+      "open-weights": 46.5,
+      "long-context": 1000000,
+      "enterprise": 1860.6,
+      "legal": 52.5,
+      "medical": 83.9,
+      "finance": 60.8,
+      "scientific": 60.8,
+      "creative-writing": 46.5,
+      "roleplay": 46.5,
+      "translation": null,
+      "summarization": 52.5,
+      "extraction": 1860.6,
+      "tool-use": null,
+      "function-calling": 47.1
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 46.5,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": null,
+      "hle": 52.5,
+      "ifbench": null,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": 60.8,
+      "mmlu_pro": 83.9,
+      "agentic_index": null,
+      "coding_agent_index": null,
+      "gdpval": 1860.6
+    },
+    "pricing": {
+      "price_1m_input_tokens": 2,
+      "price_1m_output_tokens": 10
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 1000000,
+    "rank": 1
+  },
+  {
     "id": "deepseek-v4-1-flash-1017",
     "slug": "deepseek-v4-1-flash-1017",
     "modelId": "deepseek/deepseek-v4-1-flash-1017",
@@ -11,7 +86,7 @@
     },
     "rating": 1179,
     "arena_elo": 1179,
-    "final_score": 32.5,
+    "final_score": 32.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -19,31 +94,31 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 32.5,
+      "overall": 32.6,
       "coding": 43.7,
       "math": 55.9,
       "reasoning": 43.3,
       "research": 43.3,
       "instruction": null,
-      "writing": 32.5,
+      "writing": 32.6,
       "knowledge": 80.6,
       "multilingual": null,
       "agents": null,
       "data-analysis": 1745.8,
       "cheap": 0.52,
-      "fast": 158.6,
+      "fast": null,
       "frontier": null,
-      "vision": 32.5,
+      "vision": 32.6,
       "audio": null,
-      "open-weights": 32.5,
+      "open-weights": 32.6,
       "long-context": 1000000,
       "enterprise": 1745.8,
       "legal": 43.3,
       "medical": 80.6,
       "finance": 55.9,
       "scientific": 55.9,
-      "creative-writing": 32.5,
-      "roleplay": 32.5,
+      "creative-writing": 32.6,
+      "roleplay": 32.6,
       "translation": null,
       "summarization": 43.3,
       "extraction": 1745.8,
@@ -51,7 +126,7 @@
       "function-calling": 43.7
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": 32.5,
+      "artificial_analysis_intelligence_index": 32.6,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": null,
@@ -69,10 +144,10 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 158.6,
-    "median_time_to_first_token_seconds": 13.49,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 1
+    "rank": 2
   },
   {
     "id": "glm-5-3",
@@ -106,7 +181,7 @@
       "agents": 83.9,
       "data-analysis": 50.3,
       "cheap": 2.15,
-      "fast": 76,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -138,16 +213,91 @@
       "mmlu_pro": null,
       "agentic_index": 83.9,
       "coding_agent_index": null,
-      "gdpval": 1656.9
+      "gdpval": 1654.8
     },
     "pricing": {
       "price_1m_input_tokens": 1.4,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 76,
-    "median_time_to_first_token_seconds": 27.75,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 2
+    "rank": 3
+  },
+  {
+    "id": "inkling-2-small",
+    "slug": "inkling-2-small",
+    "modelId": "thinking-machines/inkling-2-small",
+    "name": "Inkling 2 Small",
+    "organization": "Thinking Machines",
+    "model_creator": {
+      "name": "Thinking Machines",
+      "slug": "thinking-machines"
+    },
+    "rating": 1168,
+    "arena_elo": 1168,
+    "final_score": 30.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 30.6,
+      "coding": 25.4,
+      "math": 52.3,
+      "reasoning": 44.1,
+      "research": 44.1,
+      "instruction": null,
+      "writing": 30.6,
+      "knowledge": 81.6,
+      "multilingual": null,
+      "agents": 81.3,
+      "data-analysis": 40.4,
+      "cheap": 0.48,
+      "fast": null,
+      "frontier": null,
+      "vision": 30.6,
+      "audio": null,
+      "open-weights": 30.6,
+      "long-context": 1024000,
+      "enterprise": 40.4,
+      "legal": 44.1,
+      "medical": 81.6,
+      "finance": 52.3,
+      "scientific": 52.3,
+      "creative-writing": 30.6,
+      "roleplay": 30.6,
+      "translation": null,
+      "summarization": 44.1,
+      "extraction": 40.4,
+      "tool-use": 81.3,
+      "function-calling": 81.3
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 30.6,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": null,
+      "hle": 44.1,
+      "ifbench": null,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": 52.3,
+      "mmlu_pro": 81.6,
+      "agentic_index": 81.3,
+      "coding_agent_index": null,
+      "gdpval": 1630.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.3,
+      "price_1m_output_tokens": 1
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 1024000,
+    "rank": 4
   },
   {
     "id": "mimo-v2-6-pro",
@@ -179,15 +329,15 @@
       "knowledge": null,
       "multilingual": null,
       "agents": null,
-      "data-analysis": 1689.4,
+      "data-analysis": 1692.1,
       "cheap": 0.54,
-      "fast": 41.7,
+      "fast": null,
       "frontier": null,
       "vision": 29.9,
       "audio": 29.9,
       "open-weights": 29.9,
       "long-context": 1000000,
-      "enterprise": 1689.4,
+      "enterprise": 1692.1,
       "legal": 49.4,
       "medical": 49.4,
       "finance": 60.9,
@@ -196,7 +346,7 @@
       "roleplay": 29.9,
       "translation": null,
       "summarization": 49.4,
-      "extraction": 1689.4,
+      "extraction": 1692.1,
       "tool-use": null,
       "function-calling": 45.4
     },
@@ -213,30 +363,30 @@
       "mmlu_pro": null,
       "agentic_index": null,
       "coding_agent_index": null,
-      "gdpval": 1689.4
+      "gdpval": 1692.1
     },
     "pricing": {
       "price_1m_input_tokens": 0.435,
       "price_1m_output_tokens": 0.87
     },
-    "median_output_tokens_per_second": 41.7,
-    "median_time_to_first_token_seconds": 51.05,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 3
+    "rank": 5
   },
   {
-    "id": "ling-3-1-flash-1019",
-    "slug": "ling-3-1-flash-1019",
-    "modelId": "inclusionai/ling-3-1-flash-1019",
+    "id": "ling-3-1-flash",
+    "slug": "ling-3-1-flash",
+    "modelId": "inclusionai/ling-3-1-flash",
     "name": "Ling 3.1 Flash 1019",
     "organization": "InclusionAI",
     "model_creator": {
       "name": "InclusionAI",
       "slug": "inclusionai"
     },
-    "rating": 1162,
-    "arena_elo": 1162,
-    "final_score": 29.5,
+    "rating": 1163,
+    "arena_elo": 1163,
+    "final_score": 29.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -244,39 +394,39 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 29.5,
+      "overall": 29.6,
       "coding": 17,
       "math": 56.8,
       "reasoning": 43.5,
       "research": 43.5,
       "instruction": null,
-      "writing": 29.5,
+      "writing": 29.6,
       "knowledge": null,
       "multilingual": null,
       "agents": null,
-      "data-analysis": 1652.9,
+      "data-analysis": 1655,
       "cheap": 0.45,
       "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
-      "open-weights": 29.5,
+      "open-weights": 29.6,
       "long-context": 1048576,
-      "enterprise": 1652.9,
+      "enterprise": 1655,
       "legal": 43.5,
       "medical": 43.5,
       "finance": 56.8,
       "scientific": 56.8,
-      "creative-writing": 29.5,
-      "roleplay": 29.5,
+      "creative-writing": 29.6,
+      "roleplay": 29.6,
       "translation": null,
       "summarization": 43.5,
-      "extraction": 1652.9,
+      "extraction": 1655,
       "tool-use": null,
       "function-calling": 17
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": 29.5,
+      "artificial_analysis_intelligence_index": 29.6,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": null,
@@ -288,7 +438,7 @@
       "mmlu_pro": null,
       "agentic_index": null,
       "coding_agent_index": null,
-      "gdpval": 1652.9
+      "gdpval": 1655
     },
     "pricing": {
       "price_1m_input_tokens": 0.3,
@@ -297,7 +447,7 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1048576,
-    "rank": 4
+    "rank": 6
   },
   {
     "id": "minimax-m3-1-flash",
@@ -309,9 +459,9 @@
       "name": "MiniMax",
       "slug": "minimax"
     },
-    "rating": 1159,
-    "arena_elo": 1159,
-    "final_score": 28.9,
+    "rating": 1160,
+    "arena_elo": 1160,
+    "final_score": 29.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -319,39 +469,39 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 28.9,
+      "overall": 29.1,
       "coding": 38.6,
       "math": 53.4,
       "reasoning": 48,
       "research": 48,
       "instruction": null,
-      "writing": 28.9,
+      "writing": 29.1,
       "knowledge": 79.1,
       "multilingual": null,
       "agents": null,
-      "data-analysis": 1465.4,
+      "data-analysis": 1465.3,
       "cheap": 0.26,
-      "fast": 110.6,
+      "fast": null,
       "frontier": null,
-      "vision": 28.9,
+      "vision": 29.1,
       "audio": null,
-      "open-weights": 28.9,
+      "open-weights": 29.1,
       "long-context": 1000000,
-      "enterprise": 1465.4,
+      "enterprise": 1465.3,
       "legal": 48,
       "medical": 79.1,
       "finance": 53.4,
       "scientific": 53.4,
-      "creative-writing": 28.9,
-      "roleplay": 28.9,
+      "creative-writing": 29.1,
+      "roleplay": 29.1,
       "translation": null,
       "summarization": 48,
-      "extraction": 1465.4,
+      "extraction": 1465.3,
       "tool-use": null,
       "function-calling": 38.6
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": 28.9,
+      "artificial_analysis_intelligence_index": 29.1,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": null,
@@ -363,16 +513,166 @@
       "mmlu_pro": 79.1,
       "agentic_index": null,
       "coding_agent_index": null,
-      "gdpval": 1465.4
+      "gdpval": 1465.3
     },
     "pricing": {
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 110.6,
-    "median_time_to_first_token_seconds": 18.92,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 5
+    "rank": 7
+  },
+  {
+    "id": "deepseek-v4-1-flash-1017-high",
+    "slug": "deepseek-v4-1-flash-1017-high",
+    "modelId": "deepseek/deepseek-v4-1-flash-1017-high",
+    "name": "DeepSeek V4.1 Flash 1017 (High)",
+    "organization": "DeepSeek",
+    "model_creator": {
+      "name": "DeepSeek",
+      "slug": "deepseek"
+    },
+    "rating": 1157,
+    "arena_elo": 1157,
+    "final_score": 28.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 28.6,
+      "coding": 16.8,
+      "math": null,
+      "reasoning": 28.6,
+      "research": null,
+      "instruction": null,
+      "writing": 28.6,
+      "knowledge": 79.7,
+      "multilingual": null,
+      "agents": null,
+      "data-analysis": null,
+      "cheap": 0.52,
+      "fast": null,
+      "frontier": null,
+      "vision": 28.6,
+      "audio": null,
+      "open-weights": 28.6,
+      "long-context": 1000000,
+      "enterprise": 28.6,
+      "legal": 28.6,
+      "medical": 79.7,
+      "finance": null,
+      "scientific": 28.6,
+      "creative-writing": 28.6,
+      "roleplay": 28.6,
+      "translation": null,
+      "summarization": null,
+      "extraction": null,
+      "tool-use": null,
+      "function-calling": 16.8
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 28.6,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": null,
+      "hle": null,
+      "ifbench": null,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": null,
+      "mmlu_pro": 79.7,
+      "agentic_index": null,
+      "coding_agent_index": null,
+      "gdpval": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.3,
+      "price_1m_output_tokens": 1.2
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 1000000,
+    "rank": 8
+  },
+  {
+    "id": "qwen3-8-flash-next",
+    "slug": "qwen3-8-flash-next",
+    "modelId": "alibaba/qwen3-8-flash-next",
+    "name": "Qwen3.8-Flash-Next",
+    "organization": "Alibaba",
+    "model_creator": {
+      "name": "Alibaba",
+      "slug": "alibaba"
+    },
+    "rating": 1157,
+    "arena_elo": 1157,
+    "final_score": 28.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 28.6,
+      "coding": 27.1,
+      "math": 50.6,
+      "reasoning": 92.3,
+      "research": 38,
+      "instruction": null,
+      "writing": 28.6,
+      "knowledge": 78.6,
+      "multilingual": null,
+      "agents": 86.1,
+      "data-analysis": 45.4,
+      "cheap": 0.23,
+      "fast": null,
+      "frontier": null,
+      "vision": 28.6,
+      "audio": null,
+      "open-weights": 28.6,
+      "long-context": 256000,
+      "enterprise": 45.4,
+      "legal": 92.3,
+      "medical": 78.6,
+      "finance": 50.6,
+      "scientific": 50.6,
+      "creative-writing": 28.6,
+      "roleplay": 28.6,
+      "translation": null,
+      "summarization": 38,
+      "extraction": 45.4,
+      "tool-use": 86.1,
+      "function-calling": 86.1
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 28.6,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": 92.3,
+      "hle": 38,
+      "ifbench": null,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": 50.6,
+      "mmlu_pro": 78.6,
+      "agentic_index": 86.1,
+      "coding_agent_index": null,
+      "gdpval": 1636.8
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.15,
+      "price_1m_output_tokens": 0.47
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 256000,
+    "rank": 9
   },
   {
     "id": "step-5",
@@ -404,15 +704,15 @@
       "knowledge": 76.4,
       "multilingual": null,
       "agents": 38,
-      "data-analysis": 1594,
+      "data-analysis": 1590.7,
       "cheap": 1.43,
-      "fast": 144.9,
+      "fast": null,
       "frontier": null,
       "vision": 28.5,
       "audio": null,
       "open-weights": 28.5,
       "long-context": 1000000,
-      "enterprise": 1594,
+      "enterprise": 1590.7,
       "legal": 46.5,
       "medical": 76.4,
       "finance": 58.9,
@@ -421,7 +721,7 @@
       "roleplay": 28.5,
       "translation": null,
       "summarization": 46.5,
-      "extraction": 1594,
+      "extraction": 1590.7,
       "tool-use": 38,
       "function-calling": 38
     },
@@ -438,16 +738,16 @@
       "mmlu_pro": 76.4,
       "agentic_index": null,
       "coding_agent_index": null,
-      "gdpval": 1594
+      "gdpval": 1590.7
     },
     "pricing": {
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 2.7
     },
-    "median_output_tokens_per_second": 144.9,
-    "median_time_to_first_token_seconds": 14.5,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 6
+    "rank": 10
   },
   {
     "id": "glm-5-3-flash",
@@ -481,7 +781,7 @@
       "agents": 84.3,
       "data-analysis": 47.2,
       "cheap": 0.24,
-      "fast": 65.7,
+      "fast": null,
       "frontier": null,
       "vision": 27.8,
       "audio": null,
@@ -513,16 +813,16 @@
       "mmlu_pro": null,
       "agentic_index": 84.3,
       "coding_agent_index": null,
-      "gdpval": 1649.4
+      "gdpval": 1648.3
     },
     "pricing": {
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 65.7,
-    "median_time_to_first_token_seconds": 31.46,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 7
+    "rank": 11
   },
   {
     "id": "mimo-v2-6-flash",
@@ -554,15 +854,15 @@
       "knowledge": 73.1,
       "multilingual": null,
       "agents": null,
-      "data-analysis": 1613.6,
+      "data-analysis": 1614.7,
       "cheap": 0.18,
-      "fast": 45.1,
+      "fast": null,
       "frontier": null,
       "vision": 26.7,
       "audio": null,
       "open-weights": 26.7,
       "long-context": 1000000,
-      "enterprise": 1613.6,
+      "enterprise": 1614.7,
       "legal": 35.1,
       "medical": 73.1,
       "finance": 51.3,
@@ -571,7 +871,7 @@
       "roleplay": 26.7,
       "translation": null,
       "summarization": 35.1,
-      "extraction": 1613.6,
+      "extraction": 1614.7,
       "tool-use": null,
       "function-calling": 42.1
     },
@@ -588,16 +888,16 @@
       "mmlu_pro": 73.1,
       "agentic_index": null,
       "coding_agent_index": null,
-      "gdpval": 1613.6
+      "gdpval": 1614.7
     },
     "pricing": {
       "price_1m_input_tokens": 0.14,
       "price_1m_output_tokens": 0.28
     },
-    "median_output_tokens_per_second": 45.1,
-    "median_time_to_first_token_seconds": 47.87,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 8
+    "rank": 12
   },
   {
     "id": "mistral-large-4",
@@ -609,9 +909,9 @@
       "name": "Mistral",
       "slug": "mistralai"
     },
-    "rating": 1143,
-    "arena_elo": 1143,
-    "final_score": 26,
+    "rating": 1144,
+    "arena_elo": 1144,
+    "final_score": 26.1,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -619,31 +919,31 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 26,
+      "overall": 26.1,
       "coding": 15,
       "math": null,
-      "reasoning": 26,
+      "reasoning": 26.1,
       "research": null,
       "instruction": null,
-      "writing": 26,
+      "writing": 26.1,
       "knowledge": null,
       "multilingual": null,
       "agents": null,
       "data-analysis": null,
       "cheap": 1.05,
-      "fast": 169.1,
+      "fast": null,
       "frontier": null,
-      "vision": 26,
+      "vision": 26.1,
       "audio": null,
-      "open-weights": 26,
+      "open-weights": 26.1,
       "long-context": 1000000,
-      "enterprise": 26,
-      "legal": 26,
-      "medical": 26,
+      "enterprise": 26.1,
+      "legal": 26.1,
+      "medical": 26.1,
       "finance": null,
-      "scientific": 26,
-      "creative-writing": 26,
-      "roleplay": 26,
+      "scientific": 26.1,
+      "creative-writing": 26.1,
+      "roleplay": 26.1,
       "translation": null,
       "summarization": null,
       "extraction": null,
@@ -651,7 +951,7 @@
       "function-calling": 15
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": 26,
+      "artificial_analysis_intelligence_index": 26.1,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": null,
@@ -669,10 +969,10 @@
       "price_1m_input_tokens": 0.7,
       "price_1m_output_tokens": 2.1
     },
-    "median_output_tokens_per_second": 169.1,
-    "median_time_to_first_token_seconds": 14.71,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 9
+    "rank": 13
   },
   {
     "id": "muse-spark-open",
@@ -684,9 +984,9 @@
       "name": "Meta",
       "slug": "meta-llama"
     },
-    "rating": 1136,
-    "arena_elo": 1136,
-    "final_score": 24.7,
+    "rating": 1137,
+    "arena_elo": 1137,
+    "final_score": 24.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -694,31 +994,31 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 24.7,
+      "overall": 24.9,
       "coding": 27.6,
       "math": 58.4,
       "reasoning": 89,
       "research": 43.9,
       "instruction": null,
-      "writing": 24.7,
+      "writing": 24.9,
       "knowledge": 80.9,
       "multilingual": null,
       "agents": 76.4,
       "data-analysis": 1401.1,
       "cheap": 2,
-      "fast": 140.7,
+      "fast": null,
       "frontier": null,
-      "vision": 24.7,
-      "audio": 24.7,
-      "open-weights": 24.7,
+      "vision": 24.9,
+      "audio": 24.9,
+      "open-weights": 24.9,
       "long-context": 1048576,
       "enterprise": 1401.1,
       "legal": 89,
       "medical": 80.9,
       "finance": 58.4,
       "scientific": 58.4,
-      "creative-writing": 24.7,
-      "roleplay": 24.7,
+      "creative-writing": 24.9,
+      "roleplay": 24.9,
       "translation": null,
       "summarization": 43.9,
       "extraction": 1401.1,
@@ -726,7 +1026,7 @@
       "function-calling": 76.4
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": 24.7,
+      "artificial_analysis_intelligence_index": 24.9,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 89,
@@ -744,10 +1044,10 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 4.25
     },
-    "median_output_tokens_per_second": 140.7,
-    "median_time_to_first_token_seconds": 14.67,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1048576,
-    "rank": 10
+    "rank": 14
   },
   {
     "id": "deepseek-v4-pro",
@@ -781,7 +1081,7 @@
       "agents": 78.7,
       "data-analysis": 39.6,
       "cheap": 1.98,
-      "fast": 76.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -813,16 +1113,16 @@
       "mmlu_pro": null,
       "agentic_index": 78.7,
       "coding_agent_index": null,
-      "gdpval": 1457.4
+      "gdpval": 1455.6
     },
     "pricing": {
       "price_1m_input_tokens": 1.32,
       "price_1m_output_tokens": 3.96
     },
-    "median_output_tokens_per_second": 76.9,
-    "median_time_to_first_token_seconds": 27.09,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 11
+    "rank": 15
   },
   {
     "id": "glm-5-3-low",
@@ -854,15 +1154,15 @@
       "knowledge": null,
       "multilingual": null,
       "agents": null,
-      "data-analysis": 1333.3,
+      "data-analysis": 1332.3,
       "cheap": 2.15,
-      "fast": 78.5,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
       "open-weights": 23.1,
       "long-context": 1000000,
-      "enterprise": 1333.3,
+      "enterprise": 1332.3,
       "legal": 36.6,
       "medical": 36.6,
       "finance": 42,
@@ -871,7 +1171,7 @@
       "roleplay": 23.1,
       "translation": null,
       "summarization": 36.6,
-      "extraction": 1333.3,
+      "extraction": 1332.3,
       "tool-use": null,
       "function-calling": 34.9
     },
@@ -888,16 +1188,16 @@
       "mmlu_pro": null,
       "agentic_index": null,
       "coding_agent_index": null,
-      "gdpval": 1333.3
+      "gdpval": 1332.3
     },
     "pricing": {
       "price_1m_input_tokens": 1.4,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 78.5,
-    "median_time_to_first_token_seconds": 26.91,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 12
+    "rank": 16
   },
   {
     "id": "mistral-large-4-medium",
@@ -972,7 +1272,157 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 13
+    "rank": 17
+  },
+  {
+    "id": "deepseek-v4-pro-high",
+    "slug": "deepseek-v4-pro-high",
+    "modelId": "deepseek/deepseek-v4-pro-high",
+    "name": "DeepSeek V4 Pro 0813 (High)",
+    "organization": "DeepSeek",
+    "model_creator": {
+      "name": "DeepSeek",
+      "slug": "deepseek"
+    },
+    "rating": 1114,
+    "arena_elo": 1114,
+    "final_score": 20.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 20.8,
+      "coding": 16.7,
+      "math": 51.7,
+      "reasoning": 41.5,
+      "research": 41.5,
+      "instruction": null,
+      "writing": 20.8,
+      "knowledge": null,
+      "multilingual": null,
+      "agents": null,
+      "data-analysis": 1336.2,
+      "cheap": 1.98,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 20.8,
+      "long-context": 1000000,
+      "enterprise": 1336.2,
+      "legal": 41.5,
+      "medical": 41.5,
+      "finance": 51.7,
+      "scientific": 51.7,
+      "creative-writing": 20.8,
+      "roleplay": 20.8,
+      "translation": null,
+      "summarization": 41.5,
+      "extraction": 1336.2,
+      "tool-use": null,
+      "function-calling": 16.7
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 20.8,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": null,
+      "hle": 41.5,
+      "ifbench": null,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": 51.7,
+      "mmlu_pro": null,
+      "agentic_index": null,
+      "coding_agent_index": null,
+      "gdpval": 1336.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.32,
+      "price_1m_output_tokens": 3.96
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 1000000,
+    "rank": 18
+  },
+  {
+    "id": "nanbeige4-3-33b",
+    "slug": "nanbeige4-3-33b",
+    "modelId": "nanbeige/nanbeige4-3-33b",
+    "name": "Nanbeige4.3-33B",
+    "organization": "Nanbeige",
+    "model_creator": {
+      "name": "Nanbeige",
+      "slug": "nanbeige"
+    },
+    "rating": 1112,
+    "arena_elo": 1112,
+    "final_score": 20.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 20.4,
+      "coding": 10.7,
+      "math": null,
+      "reasoning": 20.4,
+      "research": null,
+      "instruction": null,
+      "writing": 20.4,
+      "knowledge": null,
+      "multilingual": null,
+      "agents": null,
+      "data-analysis": null,
+      "cheap": null,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 20.4,
+      "long-context": 524288,
+      "enterprise": 20.4,
+      "legal": 20.4,
+      "medical": 20.4,
+      "finance": null,
+      "scientific": 20.4,
+      "creative-writing": 20.4,
+      "roleplay": 20.4,
+      "translation": null,
+      "summarization": null,
+      "extraction": null,
+      "tool-use": null,
+      "function-calling": 10.7
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 20.4,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": null,
+      "hle": null,
+      "ifbench": null,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": null,
+      "mmlu_pro": null,
+      "agentic_index": null,
+      "coding_agent_index": null,
+      "gdpval": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 524288,
+    "rank": 19
   },
   {
     "id": "qwen3-8-27b",
@@ -1006,7 +1456,7 @@
       "agents": 79.8,
       "data-analysis": 48,
       "cheap": 1.13,
-      "fast": 39.7,
+      "fast": null,
       "frontier": null,
       "vision": 20.1,
       "audio": null,
@@ -1038,16 +1488,16 @@
       "mmlu_pro": 76.3,
       "agentic_index": 79.8,
       "coding_agent_index": null,
-      "gdpval": 1426.7
+      "gdpval": 1426.2
     },
     "pricing": {
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 39.7,
-    "median_time_to_first_token_seconds": 51.53,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
-    "rank": 14
+    "rank": 20
   },
   {
     "id": "minimax-m3",
@@ -1059,9 +1509,9 @@
       "name": "MiniMax",
       "slug": "minimax"
     },
-    "rating": 1103,
-    "arena_elo": 1103,
-    "final_score": 18.7,
+    "rating": 1104,
+    "arena_elo": 1104,
+    "final_score": 18.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -1069,30 +1519,30 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 18.7,
+      "overall": 18.9,
       "coding": 23,
       "math": 47.1,
       "reasoning": 92.9,
       "research": 39,
       "instruction": 82.9,
-      "writing": 18.7,
+      "writing": 18.9,
       "knowledge": 78.6,
       "multilingual": 88.9,
       "agents": 65.2,
       "data-analysis": 15.3,
       "cheap": 0.52,
-      "fast": 114.8,
+      "fast": null,
       "frontier": null,
-      "vision": 18.7,
+      "vision": 18.9,
       "audio": null,
-      "open-weights": 18.7,
+      "open-weights": 18.9,
       "long-context": 1000000,
       "enterprise": 15.3,
       "legal": 92.9,
       "medical": 78.6,
       "finance": 47.1,
       "scientific": 47.1,
-      "creative-writing": 18.7,
+      "creative-writing": 18.9,
       "roleplay": 82.9,
       "translation": 88.9,
       "summarization": 39,
@@ -1101,7 +1551,7 @@
       "function-calling": 65.2
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": 18.7,
+      "artificial_analysis_intelligence_index": 18.9,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 92.9,
@@ -1113,16 +1563,16 @@
       "mmlu_pro": 78.6,
       "agentic_index": 65.2,
       "coding_agent_index": null,
-      "gdpval": 1250
+      "gdpval": 1249.7
     },
     "pricing": {
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 114.8,
-    "median_time_to_first_token_seconds": 18.18,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 15
+    "rank": 21
   },
   {
     "id": "deepseek-v4-1-flash-1017-non-reasoning",
@@ -1154,15 +1604,15 @@
       "knowledge": 69.2,
       "multilingual": null,
       "agents": null,
-      "data-analysis": null,
-      "cheap": 0.79,
-      "fast": 715.9,
+      "data-analysis": 1317.1,
+      "cheap": 0.52,
+      "fast": null,
       "frontier": null,
       "vision": 18.5,
       "audio": null,
       "open-weights": 18.5,
       "long-context": 1000000,
-      "enterprise": 18.5,
+      "enterprise": 1317.1,
       "legal": 11.5,
       "medical": 69.2,
       "finance": 38.5,
@@ -1171,7 +1621,7 @@
       "roleplay": 18.5,
       "translation": null,
       "summarization": 11.5,
-      "extraction": null,
+      "extraction": 1317.1,
       "tool-use": null,
       "function-calling": 6.1
     },
@@ -1188,16 +1638,16 @@
       "mmlu_pro": 69.2,
       "agentic_index": null,
       "coding_agent_index": null,
-      "gdpval": null
+      "gdpval": 1317.1
     },
     "pricing": {
-      "price_1m_input_tokens": 0.44999999999999996,
-      "price_1m_output_tokens": 1.7999999999999998
+      "price_1m_input_tokens": 0.3,
+      "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 715.9,
-    "median_time_to_first_token_seconds": 0.72,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 16
+    "rank": 22
   },
   {
     "id": "k2-horizon-375b-a23b",
@@ -1231,7 +1681,7 @@
       "agents": 71.9,
       "data-analysis": 34.2,
       "cheap": null,
-      "fast": 649,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -1263,16 +1713,16 @@
       "mmlu_pro": null,
       "agentic_index": 71.9,
       "coding_agent_index": null,
-      "gdpval": 1365.1
+      "gdpval": 1363.2
     },
     "pricing": {
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 649,
-    "median_time_to_first_token_seconds": 4.52,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 524288,
-    "rank": 17
+    "rank": 23
   },
   {
     "id": "reflection-beam",
@@ -1306,7 +1756,7 @@
       "agents": null,
       "data-analysis": 1177.1,
       "cheap": 0.6,
-      "fast": 298.6,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -1344,10 +1794,10 @@
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 298.6,
-    "median_time_to_first_token_seconds": 7.21,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1048576,
-    "rank": 18
+    "rank": 24
   },
   {
     "id": "qwen3-8-27b-medium",
@@ -1381,7 +1831,7 @@
       "agents": 65.2,
       "data-analysis": 47.4,
       "cheap": 1.13,
-      "fast": 43.2,
+      "fast": null,
       "frontier": null,
       "vision": 17.5,
       "audio": null,
@@ -1413,16 +1863,16 @@
       "mmlu_pro": 74.2,
       "agentic_index": 65.2,
       "coding_agent_index": null,
-      "gdpval": 1388.6
+      "gdpval": 1390.9
     },
     "pricing": {
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 43.2,
-    "median_time_to_first_token_seconds": 47.54,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
-    "rank": 19
+    "rank": 25
   },
   {
     "id": "kimi-k3-low",
@@ -1456,7 +1906,7 @@
       "agents": 82.4,
       "data-analysis": 41.6,
       "cheap": 6,
-      "fast": 58.3,
+      "fast": null,
       "frontier": null,
       "vision": 17.4,
       "audio": null,
@@ -1488,16 +1938,16 @@
       "mmlu_pro": 78.5,
       "agentic_index": 82.4,
       "coding_agent_index": null,
-      "gdpval": 1135.8
+      "gdpval": 1135.7
     },
     "pricing": {
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 58.3,
-    "median_time_to_first_token_seconds": 3.66,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1048576,
-    "rank": 20
+    "rank": 26
   },
   {
     "id": "qwen3-8-27b-low",
@@ -1531,7 +1981,7 @@
       "agents": 67.4,
       "data-analysis": 32.2,
       "cheap": 1.13,
-      "fast": 40.1,
+      "fast": null,
       "frontier": null,
       "vision": 15.7,
       "audio": null,
@@ -1563,16 +2013,16 @@
       "mmlu_pro": 73.8,
       "agentic_index": 67.4,
       "coding_agent_index": null,
-      "gdpval": 1370.3
+      "gdpval": 1366.4
     },
     "pricing": {
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 40.1,
-    "median_time_to_first_token_seconds": 51.18,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
-    "rank": 21
+    "rank": 27
   },
   {
     "id": "nemotron-3-5-super-vl",
@@ -1606,7 +2056,7 @@
       "agents": null,
       "data-analysis": 1162.4,
       "cheap": 0.28,
-      "fast": 430.2,
+      "fast": null,
       "frontier": null,
       "vision": 13.6,
       "audio": null,
@@ -1644,10 +2094,10 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 430.2,
-    "median_time_to_first_token_seconds": 5.2,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 22
+    "rank": 28
   },
   {
     "id": "inkling-small",
@@ -1681,7 +2131,7 @@
       "agents": 55.1,
       "data-analysis": 18.8,
       "cheap": 0.52,
-      "fast": 184.3,
+      "fast": null,
       "frontier": null,
       "vision": 12.9,
       "audio": 12.9,
@@ -1713,16 +2163,91 @@
       "mmlu_pro": 74,
       "agentic_index": 55.1,
       "coding_agent_index": null,
-      "gdpval": 1132.6
+      "gdpval": 1132.8
     },
     "pricing": {
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 184.3,
-    "median_time_to_first_token_seconds": 12.26,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 23
+    "rank": 29
+  },
+  {
+    "id": "deepseek-v4-pro-non-reasoning",
+    "slug": "deepseek-v4-pro-non-reasoning",
+    "modelId": "deepseek/deepseek-v4-pro-non-reasoning",
+    "name": "DeepSeek V4 Pro 0813 (Non-reasoning)",
+    "organization": "DeepSeek",
+    "model_creator": {
+      "name": "DeepSeek",
+      "slug": "deepseek"
+    },
+    "rating": 1069,
+    "arena_elo": 1069,
+    "final_score": 12.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 12.6,
+      "coding": 10.3,
+      "math": 39.9,
+      "reasoning": 10.6,
+      "research": 10.6,
+      "instruction": null,
+      "writing": 12.6,
+      "knowledge": null,
+      "multilingual": null,
+      "agents": null,
+      "data-analysis": 1065.1,
+      "cheap": 1.98,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 12.6,
+      "long-context": 1000000,
+      "enterprise": 1065.1,
+      "legal": 10.6,
+      "medical": 10.6,
+      "finance": 39.9,
+      "scientific": 39.9,
+      "creative-writing": 12.6,
+      "roleplay": 12.6,
+      "translation": null,
+      "summarization": 10.6,
+      "extraction": 1065.1,
+      "tool-use": null,
+      "function-calling": 10.3
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 12.6,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": null,
+      "hle": 10.6,
+      "ifbench": null,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": 39.9,
+      "mmlu_pro": null,
+      "agentic_index": null,
+      "coding_agent_index": null,
+      "gdpval": 1065.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.32,
+      "price_1m_output_tokens": 3.96
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 1000000,
+    "rank": 30
   },
   {
     "id": "inkling",
@@ -1756,7 +2281,7 @@
       "agents": 55.1,
       "data-analysis": 29.1,
       "cheap": 1.76,
-      "fast": 153.3,
+      "fast": null,
       "frontier": null,
       "vision": 12.5,
       "audio": 12.5,
@@ -1788,16 +2313,16 @@
       "mmlu_pro": 73.5,
       "agentic_index": 55.1,
       "coding_agent_index": null,
-      "gdpval": 1080.2
+      "gdpval": 1080.3
     },
     "pricing": {
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 4.05
     },
-    "median_output_tokens_per_second": 153.3,
-    "median_time_to_first_token_seconds": 15.18,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 24
+    "rank": 31
   },
   {
     "id": "nvidia-nemotron-3-ultra-550b-a55b",
@@ -1830,8 +2355,8 @@
       "multilingual": 83.3,
       "agents": 53.9,
       "data-analysis": 14.2,
-      "cheap": 1.13,
-      "fast": 142.4,
+      "cheap": 1.05,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -1863,16 +2388,16 @@
       "mmlu_pro": null,
       "agentic_index": 53.9,
       "coding_agent_index": null,
-      "gdpval": 1020.7
+      "gdpval": 1020
     },
     "pricing": {
       "price_1m_input_tokens": 0.6,
-      "price_1m_output_tokens": 2.7
+      "price_1m_output_tokens": 2.4
     },
-    "median_output_tokens_per_second": 142.4,
-    "median_time_to_first_token_seconds": 16.79,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
-    "rank": 25
+    "rank": 32
   },
   {
     "id": "qwen3-8-27b-non-reasoning",
@@ -1906,7 +2431,7 @@
       "agents": 49.1,
       "data-analysis": 20,
       "cheap": 1.13,
-      "fast": 38.9,
+      "fast": null,
       "frontier": null,
       "vision": 10,
       "audio": null,
@@ -1938,16 +2463,91 @@
       "mmlu_pro": 69.9,
       "agentic_index": 49.1,
       "coding_agent_index": null,
-      "gdpval": 1082.1
+      "gdpval": 1081.2
     },
     "pricing": {
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 38.9,
-    "median_time_to_first_token_seconds": 1.2,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
-    "rank": 26
+    "rank": 33
+  },
+  {
+    "id": "k-exaone-2-0",
+    "slug": "k-exaone-2-0",
+    "modelId": "lg/k-exaone-2-0",
+    "name": "K-EXAONE 2.0",
+    "organization": "LG AI Research",
+    "model_creator": {
+      "name": "LG AI Research",
+      "slug": "lg"
+    },
+    "rating": 1042,
+    "arena_elo": 1042,
+    "final_score": 7.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 7.6,
+      "coding": 0.8,
+      "math": 42,
+      "reasoning": 82.9,
+      "research": 18.6,
+      "instruction": null,
+      "writing": 7.6,
+      "knowledge": null,
+      "multilingual": null,
+      "agents": 40.4,
+      "data-analysis": 11.5,
+      "cheap": null,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 7.6,
+      "long-context": 262144,
+      "enterprise": 11.5,
+      "legal": 82.9,
+      "medical": 82.9,
+      "finance": 42,
+      "scientific": 42,
+      "creative-writing": 7.6,
+      "roleplay": 7.6,
+      "translation": null,
+      "summarization": 18.6,
+      "extraction": 11.5,
+      "tool-use": 40.4,
+      "function-calling": 40.4
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 7.6,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": 82.9,
+      "hle": 18.6,
+      "ifbench": null,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": 42,
+      "mmlu_pro": null,
+      "agentic_index": 40.4,
+      "coding_agent_index": null,
+      "gdpval": 815.8
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 262144,
+    "rank": 34
   },
   {
     "id": "muse-glimmer",
@@ -1980,8 +2580,8 @@
       "multilingual": null,
       "agents": 51.7,
       "data-analysis": 23.5,
-      "cheap": 0.52,
-      "fast": 118.9,
+      "cheap": 0.58,
+      "fast": null,
       "frontier": null,
       "vision": 6.3,
       "audio": null,
@@ -2013,16 +2613,16 @@
       "mmlu_pro": 74.3,
       "agentic_index": 51.7,
       "coding_agent_index": null,
-      "gdpval": 792.3
+      "gdpval": 791.7
     },
     "pricing": {
-      "price_1m_input_tokens": 0.3,
-      "price_1m_output_tokens": 1.2
+      "price_1m_input_tokens": 0.32499999999999996,
+      "price_1m_output_tokens": 1.35
     },
-    "median_output_tokens_per_second": 118.9,
-    "median_time_to_first_token_seconds": 17.23,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 131072,
-    "rank": 27
+    "rank": 35
   },
   {
     "id": "command-a-plus",
@@ -2056,7 +2656,7 @@
       "agents": 22.8,
       "data-analysis": 6,
       "cheap": null,
-      "fast": 146,
+      "fast": null,
       "frontier": null,
       "vision": 6.2,
       "audio": null,
@@ -2088,16 +2688,16 @@
       "mmlu_pro": 63.2,
       "agentic_index": 22.8,
       "coding_agent_index": null,
-      "gdpval": 521.9
+      "gdpval": 521.5
     },
     "pricing": {
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 146,
-    "median_time_to_first_token_seconds": 13.91,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 192000,
-    "rank": 28
+    "rank": 36
   },
   {
     "id": "nemotron-3-5-lightning",
@@ -2131,7 +2731,7 @@
       "agents": 24.3,
       "data-analysis": 8.9,
       "cheap": 0.1,
-      "fast": 277.7,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -2163,16 +2763,166 @@
       "mmlu_pro": null,
       "agentic_index": 24.3,
       "coding_agent_index": null,
-      "gdpval": 645.7
+      "gdpval": 645.3
     },
     "pricing": {
       "price_1m_input_tokens": 0.06,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 277.7,
-    "median_time_to_first_token_seconds": 7.63,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
-    "rank": 29
+    "rank": 37
+  },
+  {
+    "id": "granite-4-2-8b",
+    "slug": "granite-4-2-8b",
+    "modelId": "ibm/granite-4-2-8b",
+    "name": "Granite 4.2 8B",
+    "organization": "IBM",
+    "model_creator": {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    "rating": 1028,
+    "arena_elo": 1028,
+    "final_score": 5.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 5.1,
+      "coding": 0,
+      "math": 31.5,
+      "reasoning": 63.1,
+      "research": 9.7,
+      "instruction": null,
+      "writing": 5.1,
+      "knowledge": null,
+      "multilingual": null,
+      "agents": 18.4,
+      "data-analysis": 7.6,
+      "cheap": 0.11,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 5.1,
+      "long-context": 131072,
+      "enterprise": 7.6,
+      "legal": 63.1,
+      "medical": 63.1,
+      "finance": 31.5,
+      "scientific": 31.5,
+      "creative-writing": 5.1,
+      "roleplay": 5.1,
+      "translation": null,
+      "summarization": 9.7,
+      "extraction": 7.6,
+      "tool-use": 18.4,
+      "function-calling": 18.4
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 5.1,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": 63.1,
+      "hle": 9.7,
+      "ifbench": null,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": 31.5,
+      "mmlu_pro": null,
+      "agentic_index": 18.4,
+      "coding_agent_index": null,
+      "gdpval": 498.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.06,
+      "price_1m_output_tokens": 0.25
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 131072,
+    "rank": 38
+  },
+  {
+    "id": "gemma-4-e4b",
+    "slug": "gemma-4-e4b",
+    "modelId": "google/gemma-4-e4b",
+    "name": "Gemma 4 E4B (Reasoning)",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1026,
+    "arena_elo": 1026,
+    "final_score": 4.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 4.8,
+      "coding": 0,
+      "math": 24.4,
+      "reasoning": 57.6,
+      "research": 3.8,
+      "instruction": 44.2,
+      "writing": 4.8,
+      "knowledge": 51.4,
+      "multilingual": 20.8,
+      "agents": 1.9,
+      "data-analysis": -29.7,
+      "cheap": 0.04,
+      "fast": null,
+      "frontier": null,
+      "vision": 4.8,
+      "audio": 4.8,
+      "open-weights": 4.8,
+      "long-context": 128000,
+      "enterprise": -29.7,
+      "legal": 57.6,
+      "medical": 51.4,
+      "finance": 24.4,
+      "scientific": 24.4,
+      "creative-writing": 4.8,
+      "roleplay": 44.2,
+      "translation": 20.8,
+      "summarization": 3.8,
+      "extraction": 44.2,
+      "tool-use": 1.9,
+      "function-calling": 1.9
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 4.8,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": 57.6,
+      "hle": 3.8,
+      "ifbench": 44.2,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": 24.4,
+      "mmlu_pro": 51.4,
+      "agentic_index": 1.9,
+      "coding_agent_index": null,
+      "gdpval": -29.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.02,
+      "price_1m_output_tokens": 0.1
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 128000,
+    "rank": 39
   },
   {
     "id": "granite-4-2-3b",
@@ -2238,7 +2988,7 @@
       "mmlu_pro": null,
       "agentic_index": 13.9,
       "coding_agent_index": null,
-      "gdpval": 209.2
+      "gdpval": 208.9
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -2247,7 +2997,157 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 131072,
-    "rank": 30
+    "rank": 40
+  },
+  {
+    "id": "mistral-medium-3-5",
+    "slug": "mistral-medium-3-5",
+    "modelId": "mistralai/mistral-medium-3-5",
+    "name": "Mistral Medium 3.5",
+    "organization": "Mistral",
+    "model_creator": {
+      "name": "Mistral",
+      "slug": "mistralai"
+    },
+    "rating": 1025,
+    "arena_elo": 1025,
+    "final_score": 4.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 4.6,
+      "coding": 1.8,
+      "math": 40.2,
+      "reasoning": 74.8,
+      "research": 13.8,
+      "instruction": 68.8,
+      "writing": 4.6,
+      "knowledge": 64.9,
+      "multilingual": 94.2,
+      "agents": 50.6,
+      "data-analysis": 15.1,
+      "cheap": 3,
+      "fast": null,
+      "frontier": null,
+      "vision": 4.6,
+      "audio": null,
+      "open-weights": 4.6,
+      "long-context": 256000,
+      "enterprise": 15.1,
+      "legal": 74.8,
+      "medical": 64.9,
+      "finance": 40.2,
+      "scientific": 40.2,
+      "creative-writing": 4.6,
+      "roleplay": 68.8,
+      "translation": 94.2,
+      "summarization": 13.8,
+      "extraction": 68.8,
+      "tool-use": 50.6,
+      "function-calling": 50.6
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 4.6,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": 74.8,
+      "hle": 13.8,
+      "ifbench": 68.8,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": 40.2,
+      "mmlu_pro": 64.9,
+      "agentic_index": 50.6,
+      "coding_agent_index": null,
+      "gdpval": 768.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.5,
+      "price_1m_output_tokens": 7.5
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 256000,
+    "rank": 41
+  },
+  {
+    "id": "gemma-4-31b",
+    "slug": "gemma-4-31b",
+    "modelId": "google/gemma-4-31b",
+    "name": "Gemma 4 31B (Reasoning)",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1024,
+    "arena_elo": 1024,
+    "final_score": 4.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 4.4,
+      "coding": 0,
+      "math": 45.5,
+      "reasoning": 85.7,
+      "research": 23.6,
+      "instruction": 75.6,
+      "writing": 4.4,
+      "knowledge": 73.4,
+      "multilingual": 59.9,
+      "agents": 43.4,
+      "data-analysis": 14.8,
+      "cheap": null,
+      "fast": null,
+      "frontier": null,
+      "vision": 4.4,
+      "audio": null,
+      "open-weights": 4.4,
+      "long-context": 256000,
+      "enterprise": 14.8,
+      "legal": 85.7,
+      "medical": 73.4,
+      "finance": 45.5,
+      "scientific": 45.5,
+      "creative-writing": 4.4,
+      "roleplay": 75.6,
+      "translation": 59.9,
+      "summarization": 23.6,
+      "extraction": 75.6,
+      "tool-use": 43.4,
+      "function-calling": 43.4
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 4.4,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": 85.7,
+      "hle": 23.6,
+      "ifbench": 75.6,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": 45.5,
+      "mmlu_pro": 73.4,
+      "agentic_index": 43.4,
+      "coding_agent_index": null,
+      "gdpval": 626.6
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0,
+      "price_1m_output_tokens": 0
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 256000,
+    "rank": 42
   },
   {
     "id": "mistral-small-4",
@@ -2281,7 +3181,7 @@
       "agents": 21,
       "data-analysis": 4.9,
       "cheap": 0.26,
-      "fast": 169.5,
+      "fast": null,
       "frontier": null,
       "vision": 4.3,
       "audio": null,
@@ -2313,16 +3213,166 @@
       "mmlu_pro": 56.8,
       "agentic_index": 21,
       "coding_agent_index": null,
-      "gdpval": 369.7
+      "gdpval": 369.4
     },
     "pricing": {
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 169.5,
-    "median_time_to_first_token_seconds": 12.44,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
-    "rank": 31
+    "rank": 43
+  },
+  {
+    "id": "gpt-oss-120b",
+    "slug": "gpt-oss-120b",
+    "modelId": "openai/gpt-oss-120b",
+    "name": "gpt-oss-120b (High)",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1021,
+    "arena_elo": 1021,
+    "final_score": 3.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 3.8,
+      "coding": 87.8,
+      "math": 93.4,
+      "reasoning": 78.2,
+      "research": 19.6,
+      "instruction": 69,
+      "writing": 3.8,
+      "knowledge": null,
+      "multilingual": 65.8,
+      "agents": 26.2,
+      "data-analysis": 12.8,
+      "cheap": 0.26,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 3.8,
+      "long-context": 131072,
+      "enterprise": 12.8,
+      "legal": 78.2,
+      "medical": 78.2,
+      "finance": 93.4,
+      "scientific": 93.4,
+      "creative-writing": 3.8,
+      "roleplay": 69,
+      "translation": 65.8,
+      "summarization": 19.6,
+      "extraction": 69,
+      "tool-use": 26.2,
+      "function-calling": 26.2
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 3.8,
+      "artificial_analysis_coding_index": 87.8,
+      "artificial_analysis_math_index": 93.4,
+      "gpqa": 78.2,
+      "hle": 19.6,
+      "ifbench": 69,
+      "livecodebench": 87.8,
+      "aime": 93.4,
+      "scicode": 34,
+      "mmlu_pro": null,
+      "agentic_index": 26.2,
+      "coding_agent_index": null,
+      "gdpval": 615.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.15,
+      "price_1m_output_tokens": 0.6
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 131072,
+    "rank": 44
+  },
+  {
+    "id": "north-mini-code",
+    "slug": "north-mini-code",
+    "modelId": "cohere/north-mini-code",
+    "name": "North Mini Code",
+    "organization": "Cohere",
+    "model_creator": {
+      "name": "Cohere",
+      "slug": "cohere"
+    },
+    "rating": 1019,
+    "arena_elo": 1019,
+    "final_score": 3.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 3.4,
+      "coding": 0.2,
+      "math": 38.8,
+      "reasoning": 75.7,
+      "research": 11.1,
+      "instruction": 57.6,
+      "writing": 3.4,
+      "knowledge": null,
+      "multilingual": 37.4,
+      "agents": 35.6,
+      "data-analysis": 6.4,
+      "cheap": null,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 3.4,
+      "long-context": 256000,
+      "enterprise": 6.4,
+      "legal": 75.7,
+      "medical": 75.7,
+      "finance": 38.8,
+      "scientific": 38.8,
+      "creative-writing": 3.4,
+      "roleplay": 57.6,
+      "translation": 37.4,
+      "summarization": 11.1,
+      "extraction": 57.6,
+      "tool-use": 35.6,
+      "function-calling": 35.6
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 3.4,
+      "artificial_analysis_coding_index": null,
+      "artificial_analysis_math_index": null,
+      "gpqa": 75.7,
+      "hle": 11.1,
+      "ifbench": 57.6,
+      "livecodebench": null,
+      "aime": null,
+      "scicode": 38.8,
+      "mmlu_pro": null,
+      "agentic_index": 35.6,
+      "coding_agent_index": null,
+      "gdpval": 318.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0,
+      "price_1m_output_tokens": 0
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 256000,
+    "rank": 45
   },
   {
     "id": "nvidia-nemotron-3-nano-4b",
@@ -2354,7 +3404,7 @@
       "knowledge": null,
       "multilingual": 28.1,
       "agents": 3.7,
-      "data-analysis": -51.3,
+      "data-analysis": -51.6,
       "cheap": null,
       "fast": null,
       "frontier": null,
@@ -2362,7 +3412,7 @@
       "audio": null,
       "open-weights": 1.8,
       "long-context": 262000,
-      "enterprise": -51.3,
+      "enterprise": -51.6,
       "legal": 51.3,
       "medical": 51.3,
       "finance": 16.1,
@@ -2388,7 +3438,7 @@
       "mmlu_pro": null,
       "agentic_index": 3.7,
       "coding_agent_index": null,
-      "gdpval": -51.3
+      "gdpval": -51.6
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -2397,6 +3447,6 @@
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
     "context_length": 262000,
-    "rank": 32
+    "rank": 46
   }
 ]

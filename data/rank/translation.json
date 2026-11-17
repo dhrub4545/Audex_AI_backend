@@ -31,7 +31,7 @@
       "agents": 77.9,
       "data-analysis": 34.6,
       "cheap": 2.15,
-      "fast": 80.3,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -63,14 +63,14 @@
       "mmlu_pro": null,
       "agentic_index": 77.9,
       "coding_agent_index": null,
-      "gdpval": 1381.5
+      "gdpval": 1380.2
     },
     "pricing": {
       "price_1m_input_tokens": 1.4,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 80.3,
-    "median_time_to_first_token_seconds": 1.79,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 1
   },
@@ -181,7 +181,7 @@
       "agents": 22,
       "data-analysis": null,
       "cheap": 0.15,
-      "fast": 101,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -219,8 +219,8 @@
       "price_1m_input_tokens": 0.07,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 101,
-    "median_time_to_first_token_seconds": 1.47,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 3
   },
@@ -256,7 +256,7 @@
       "agents": 84.6,
       "data-analysis": 38.1,
       "cheap": 20,
-      "fast": 65.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -288,14 +288,14 @@
       "mmlu_pro": null,
       "agentic_index": 84.6,
       "coding_agent_index": null,
-      "gdpval": 1618.4
+      "gdpval": 1618
     },
     "pricing": {
       "price_1m_input_tokens": 10,
       "price_1m_output_tokens": 50
     },
-    "median_output_tokens_per_second": 65.4,
-    "median_time_to_first_token_seconds": 78.9,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 4
   },
@@ -481,7 +481,7 @@
       "agents": 39.3,
       "data-analysis": 12,
       "cheap": 0.44,
-      "fast": 112.7,
+      "fast": null,
       "frontier": null,
       "vision": 75.3,
       "audio": null,
@@ -519,8 +519,8 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 1.15
     },
-    "median_output_tokens_per_second": 112.7,
-    "median_time_to_first_token_seconds": 2.51,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 7
   },
@@ -556,7 +556,7 @@
       "agents": 43.2,
       "data-analysis": null,
       "cheap": 1.55,
-      "fast": 67.5,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -594,8 +594,8 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 3.2
     },
-    "median_output_tokens_per_second": 67.5,
-    "median_time_to_first_token_seconds": 1.47,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 8
   },
@@ -630,8 +630,8 @@
       "multilingual": 97.7,
       "agents": 61.8,
       "data-analysis": 13.6,
-      "cheap": 1.98,
-      "fast": 74.5,
+      "cheap": 1.83,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -663,14 +663,14 @@
       "mmlu_pro": null,
       "agentic_index": 61.8,
       "coding_agent_index": null,
-      "gdpval": 1125.2
+      "gdpval": 1124.7
     },
     "pricing": {
-      "price_1m_input_tokens": 1.285,
-      "price_1m_output_tokens": 4.07
+      "price_1m_input_tokens": 1.19,
+      "price_1m_output_tokens": 3.74
     },
-    "median_output_tokens_per_second": 74.5,
-    "median_time_to_first_token_seconds": 1.58,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 9
   },
@@ -706,7 +706,7 @@
       "agents": 39.7,
       "data-analysis": 12.4,
       "cheap": 1.56,
-      "fast": 86.5,
+      "fast": null,
       "frontier": null,
       "vision": 78.1,
       "audio": null,
@@ -738,14 +738,14 @@
       "mmlu_pro": 78.1,
       "agentic_index": 39.7,
       "coding_agent_index": null,
-      "gdpval": 945.8
+      "gdpval": 945.4
     },
     "pricing": {
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 86.5,
-    "median_time_to_first_token_seconds": 23.27,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 10
   },
@@ -781,7 +781,7 @@
       "agents": 61.4,
       "data-analysis": 20.8,
       "cheap": 1.13,
-      "fast": 55.4,
+      "fast": null,
       "frontier": null,
       "vision": 78,
       "audio": null,
@@ -819,8 +819,8 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 55.4,
-    "median_time_to_first_token_seconds": 2.01,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 11
   },
@@ -856,7 +856,7 @@
       "agents": 39.4,
       "data-analysis": null,
       "cheap": 1.55,
-      "fast": 63.2,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -894,8 +894,8 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 3.2
     },
-    "median_output_tokens_per_second": 63.2,
-    "median_time_to_first_token_seconds": 1.7,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 12
   },
@@ -930,8 +930,8 @@
       "multilingual": 97.1,
       "agents": 35.6,
       "data-analysis": null,
-      "cheap": 2.13,
-      "fast": 73.4,
+      "cheap": 1.98,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -966,11 +966,11 @@
       "gdpval": null
     },
     "pricing": {
-      "price_1m_input_tokens": 1.38,
-      "price_1m_output_tokens": 4.4
+      "price_1m_input_tokens": 1.285,
+      "price_1m_output_tokens": 4.07
     },
-    "median_output_tokens_per_second": 73.4,
-    "median_time_to_first_token_seconds": 1.68,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 13
   },
@@ -1080,8 +1080,8 @@
       "multilingual": 96.2,
       "agents": 64,
       "data-analysis": 30.1,
-      "cheap": 1.85,
-      "fast": 105.7,
+      "cheap": 1.93,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -1113,14 +1113,14 @@
       "mmlu_pro": null,
       "agentic_index": 64,
       "coding_agent_index": null,
-      "gdpval": 1166.2
+      "gdpval": 1165.8
     },
     "pricing": {
-      "price_1m_input_tokens": 1.40581,
-      "price_1m_output_tokens": 3.1675
+      "price_1m_input_tokens": 1.50162,
+      "price_1m_output_tokens": 3.2
     },
-    "median_output_tokens_per_second": 105.7,
-    "median_time_to_first_token_seconds": 1.38,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 15
   },
@@ -1156,7 +1156,7 @@
       "agents": 45.3,
       "data-analysis": 12.2,
       "cheap": 0.92,
-      "fast": 37.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -1194,8 +1194,8 @@
       "price_1m_input_tokens": 0.525,
       "price_1m_output_tokens": 2.1
     },
-    "median_output_tokens_per_second": 37.9,
-    "median_time_to_first_token_seconds": 1.69,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 16
   },
@@ -1231,7 +1231,7 @@
       "agents": 45.7,
       "data-analysis": 14.2,
       "cheap": 1.2,
-      "fast": 65.5,
+      "fast": null,
       "frontier": null,
       "vision": 75.4,
       "audio": null,
@@ -1269,8 +1269,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 65.5,
-    "median_time_to_first_token_seconds": 1.73,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 17
   },
@@ -1306,7 +1306,7 @@
       "agents": 65.9,
       "data-analysis": 23.3,
       "cheap": 1.71,
-      "fast": 45.2,
+      "fast": null,
       "frontier": null,
       "vision": 79.4,
       "audio": null,
@@ -1338,14 +1338,14 @@
       "mmlu_pro": 79.4,
       "agentic_index": 65.9,
       "coding_agent_index": null,
-      "gdpval": 1046.5
+      "gdpval": 1046.4
     },
     "pricing": {
       "price_1m_input_tokens": 0.95,
       "price_1m_output_tokens": 4
     },
-    "median_output_tokens_per_second": 45.2,
-    "median_time_to_first_token_seconds": 2.72,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 18
   },
@@ -1488,7 +1488,7 @@
       "mmlu_pro": null,
       "agentic_index": 56.9,
       "coding_agent_index": null,
-      "gdpval": 1009.3
+      "gdpval": 1009.1
     },
     "pricing": {
       "price_1m_input_tokens": 0.1119,
@@ -1531,7 +1531,7 @@
       "agents": 73.8,
       "data-analysis": 21.4,
       "cheap": 4.5,
-      "fast": 135.3,
+      "fast": null,
       "frontier": null,
       "vision": 82.4,
       "audio": null,
@@ -1563,14 +1563,14 @@
       "mmlu_pro": 82.4,
       "agentic_index": 73.8,
       "coding_agent_index": null,
-      "gdpval": 798.9
+      "gdpval": 798.5
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 12
     },
-    "median_output_tokens_per_second": 135.3,
-    "median_time_to_first_token_seconds": 15.81,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 21
   },
@@ -1606,7 +1606,7 @@
       "agents": 39.4,
       "data-analysis": null,
       "cheap": 3.38,
-      "fast": 187,
+      "fast": null,
       "frontier": null,
       "vision": 83.9,
       "audio": null,
@@ -1644,8 +1644,8 @@
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 9
     },
-    "median_output_tokens_per_second": 187,
-    "median_time_to_first_token_seconds": 12.73,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 22
   },
@@ -1681,7 +1681,7 @@
       "agents": 51.3,
       "data-analysis": 13.4,
       "cheap": 1.35,
-      "fast": 58.9,
+      "fast": null,
       "frontier": null,
       "vision": 77.3,
       "audio": null,
@@ -1713,14 +1713,14 @@
       "mmlu_pro": 77.3,
       "agentic_index": 51.3,
       "coding_agent_index": null,
-      "gdpval": 800.6
+      "gdpval": 800.4
     },
     "pricing": {
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 3.6
     },
-    "median_output_tokens_per_second": 58.9,
-    "median_time_to_first_token_seconds": 55.64,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 23
   },
@@ -1756,7 +1756,7 @@
       "agents": 78.7,
       "data-analysis": 32.2,
       "cheap": 3.38,
-      "fast": 196.6,
+      "fast": null,
       "frontier": null,
       "vision": 84.3,
       "audio": null,
@@ -1788,14 +1788,14 @@
       "mmlu_pro": 84.3,
       "agentic_index": 78.7,
       "coding_agent_index": null,
-      "gdpval": 1211.6
+      "gdpval": 1211
     },
     "pricing": {
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 9
     },
-    "median_output_tokens_per_second": 196.6,
-    "median_time_to_first_token_seconds": 16.21,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 24
   },
@@ -1831,7 +1831,7 @@
       "agents": 34.8,
       "data-analysis": null,
       "cheap": 0.52,
-      "fast": 34.7,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -1869,8 +1869,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 34.7,
-    "median_time_to_first_token_seconds": 1.78,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 204800,
     "rank": 25
   },
@@ -1906,7 +1906,7 @@
       "agents": 44.9,
       "data-analysis": 9.3,
       "cheap": 0.84,
-      "fast": 136.5,
+      "fast": null,
       "frontier": null,
       "vision": 75,
       "audio": null,
@@ -1938,14 +1938,14 @@
       "mmlu_pro": 75,
       "agentic_index": 44.9,
       "coding_agent_index": null,
-      "gdpval": 899.5
+      "gdpval": 898.9
     },
     "pricing": {
       "price_1m_input_tokens": 0.375,
       "price_1m_output_tokens": 2.25
     },
-    "median_output_tokens_per_second": 136.5,
-    "median_time_to_first_token_seconds": 40.59,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 26
   },
@@ -1981,7 +1981,7 @@
       "agents": 61.8,
       "data-analysis": 30.9,
       "cheap": 0.14,
-      "fast": 46.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -2013,14 +2013,14 @@
       "mmlu_pro": null,
       "agentic_index": 61.8,
       "coding_agent_index": null,
-      "gdpval": 1045.6
+      "gdpval": 1045
     },
     "pricing": {
       "price_1m_input_tokens": 0.1119,
       "price_1m_output_tokens": 0.2338
     },
-    "median_output_tokens_per_second": 46.9,
-    "median_time_to_first_token_seconds": 1.48,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 27
   },
@@ -2206,7 +2206,7 @@
       "agents": 74.5,
       "data-analysis": 11.8,
       "cheap": 3.75,
-      "fast": 198,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -2238,14 +2238,14 @@
       "mmlu_pro": null,
       "agentic_index": 74.5,
       "coding_agent_index": null,
-      "gdpval": 1135.5
+      "gdpval": 1134.3
     },
     "pricing": {
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 7.5
     },
-    "median_output_tokens_per_second": 198,
-    "median_time_to_first_token_seconds": 2.17,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 30
   },
@@ -2281,7 +2281,7 @@
       "agents": 84.6,
       "data-analysis": 34.2,
       "cheap": 10,
-      "fast": 59.2,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -2313,14 +2313,14 @@
       "mmlu_pro": null,
       "agentic_index": 84.6,
       "coding_agent_index": null,
-      "gdpval": 1461.8
+      "gdpval": 1461.4
     },
     "pricing": {
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 59.2,
-    "median_time_to_first_token_seconds": 25.33,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 31
   },
@@ -2431,7 +2431,7 @@
       "agents": 27.3,
       "data-analysis": null,
       "cheap": 0.15,
-      "fast": 119.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -2469,8 +2469,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 119.4,
-    "median_time_to_first_token_seconds": 3.2,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 33
   },
@@ -2505,7 +2505,7 @@
       "multilingual": 94.2,
       "agents": 64.8,
       "data-analysis": 26.2,
-      "cheap": 2.09,
+      "cheap": 2,
       "fast": null,
       "frontier": null,
       "vision": null,
@@ -2541,8 +2541,8 @@
       "gdpval": 1160
     },
     "pricing": {
-      "price_1m_input_tokens": 1.67,
-      "price_1m_output_tokens": 3.34
+      "price_1m_input_tokens": 1.6,
+      "price_1m_output_tokens": 3.2
     },
     "median_output_tokens_per_second": null,
     "median_time_to_first_token_seconds": null,
@@ -2581,7 +2581,7 @@
       "agents": 30.3,
       "data-analysis": null,
       "cheap": 0.92,
-      "fast": 38.7,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -2619,8 +2619,8 @@
       "price_1m_input_tokens": 0.525,
       "price_1m_output_tokens": 2.1
     },
-    "median_output_tokens_per_second": 38.7,
-    "median_time_to_first_token_seconds": 2.07,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 35
   },
@@ -2655,8 +2655,8 @@
       "multilingual": 94.2,
       "agents": 65.2,
       "data-analysis": 9.9,
-      "cheap": 0.56,
-      "fast": 51.7,
+      "cheap": 0.44,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -2688,14 +2688,14 @@
       "mmlu_pro": null,
       "agentic_index": 65.2,
       "coding_agent_index": null,
-      "gdpval": 1128.6
+      "gdpval": 1127.9
     },
     "pricing": {
-      "price_1m_input_tokens": 0.4125,
-      "price_1m_output_tokens": 1.02
+      "price_1m_input_tokens": 0.348,
+      "price_1m_output_tokens": 0.696
     },
-    "median_output_tokens_per_second": 51.7,
-    "median_time_to_first_token_seconds": 1.08,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 36
   },
@@ -2709,9 +2709,9 @@
       "name": "Mistral",
       "slug": "mistralai"
     },
-    "rating": 1278,
-    "arena_elo": 1278,
-    "final_score": 50.6,
+    "rating": 1025,
+    "arena_elo": 1025,
+    "final_score": 4.6,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -2719,30 +2719,30 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": null,
-      "coding": 50.6,
+      "overall": 4.6,
+      "coding": 1.8,
       "math": 40.2,
       "reasoning": 74.8,
       "research": 13.8,
       "instruction": 68.8,
-      "writing": null,
+      "writing": 4.6,
       "knowledge": 64.9,
       "multilingual": 94.2,
       "agents": 50.6,
       "data-analysis": 15.1,
       "cheap": 3,
-      "fast": 154.8,
+      "fast": null,
       "frontier": null,
-      "vision": 64.9,
+      "vision": 4.6,
       "audio": null,
-      "open-weights": null,
+      "open-weights": 4.6,
       "long-context": 256000,
       "enterprise": 15.1,
       "legal": 74.8,
       "medical": 64.9,
       "finance": 40.2,
       "scientific": 40.2,
-      "creative-writing": null,
+      "creative-writing": 4.6,
       "roleplay": 68.8,
       "translation": 94.2,
       "summarization": 13.8,
@@ -2751,7 +2751,7 @@
       "function-calling": 50.6
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": null,
+      "artificial_analysis_intelligence_index": 4.6,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 74.8,
@@ -2763,14 +2763,14 @@
       "mmlu_pro": 64.9,
       "agentic_index": 50.6,
       "coding_agent_index": null,
-      "gdpval": 768.9
+      "gdpval": 768.5
     },
     "pricing": {
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 7.5
     },
-    "median_output_tokens_per_second": 154.8,
-    "median_time_to_first_token_seconds": 13.58,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 37
   },
@@ -2806,7 +2806,7 @@
       "agents": 60.7,
       "data-analysis": 16.7,
       "cheap": 1.35,
-      "fast": 57,
+      "fast": null,
       "frontier": null,
       "vision": 74.6,
       "audio": null,
@@ -2838,14 +2838,14 @@
       "mmlu_pro": 74.6,
       "agentic_index": 60.7,
       "coding_agent_index": null,
-      "gdpval": 993
+      "gdpval": 992.6
     },
     "pricing": {
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 3.6
     },
-    "median_output_tokens_per_second": 57,
-    "median_time_to_first_token_seconds": 3.56,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 38
   },
@@ -2881,7 +2881,7 @@
       "agents": 84.3,
       "data-analysis": 39,
       "cheap": 11.25,
-      "fast": 77.4,
+      "fast": null,
       "frontier": null,
       "vision": 79.9,
       "audio": null,
@@ -2913,14 +2913,14 @@
       "mmlu_pro": 79.9,
       "agentic_index": 84.3,
       "coding_agent_index": null,
-      "gdpval": 1359.2
+      "gdpval": 1357.2
     },
     "pricing": {
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 77.4,
-    "median_time_to_first_token_seconds": 47.55,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 922000,
     "rank": 39
   },
@@ -2956,7 +2956,7 @@
       "agents": 37.9,
       "data-analysis": null,
       "cheap": 1.71,
-      "fast": 43.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -2994,8 +2994,8 @@
       "price_1m_input_tokens": 0.95,
       "price_1m_output_tokens": 4
     },
-    "median_output_tokens_per_second": 43.9,
-    "median_time_to_first_token_seconds": 2.96,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 40
   },
@@ -3031,7 +3031,7 @@
       "agents": 32.6,
       "data-analysis": null,
       "cheap": 0.83,
-      "fast": 77.8,
+      "fast": null,
       "frontier": null,
       "vision": 75,
       "audio": null,
@@ -3069,8 +3069,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.4
     },
-    "median_output_tokens_per_second": 77.8,
-    "median_time_to_first_token_seconds": 5.63,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 41
   },
@@ -3106,7 +3106,7 @@
       "agents": 47.6,
       "data-analysis": 15.3,
       "cheap": 1.1,
-      "fast": 134.4,
+      "fast": null,
       "frontier": null,
       "vision": 75,
       "audio": null,
@@ -3138,14 +3138,14 @@
       "mmlu_pro": 75,
       "agentic_index": 47.6,
       "coding_agent_index": null,
-      "gdpval": 821.6
+      "gdpval": 821.1
     },
     "pricing": {
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 3.2
     },
-    "median_output_tokens_per_second": 134.4,
-    "median_time_to_first_token_seconds": 15.81,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 42
   },
@@ -3181,7 +3181,7 @@
       "agents": 51.3,
       "data-analysis": 9.3,
       "cheap": 1.35,
-      "fast": 57.6,
+      "fast": null,
       "frontier": null,
       "vision": 71.7,
       "audio": null,
@@ -3219,8 +3219,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 3.6
     },
-    "median_output_tokens_per_second": 57.6,
-    "median_time_to_first_token_seconds": 3.63,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 43
   },
@@ -3481,7 +3481,7 @@
       "agents": 79.4,
       "data-analysis": 36.7,
       "cheap": 11.25,
-      "fast": 69.5,
+      "fast": null,
       "frontier": null,
       "vision": 81.1,
       "audio": null,
@@ -3513,14 +3513,14 @@
       "mmlu_pro": 81.1,
       "agentic_index": 79.4,
       "coding_agent_index": null,
-      "gdpval": 1335.9
+      "gdpval": 1335.3
     },
     "pricing": {
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 69.5,
-    "median_time_to_first_token_seconds": 30.77,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 922000,
     "rank": 47
   },
@@ -3556,7 +3556,7 @@
       "agents": 37.9,
       "data-analysis": null,
       "cheap": 1.56,
-      "fast": 105,
+      "fast": null,
       "frontier": null,
       "vision": 74.6,
       "audio": null,
@@ -3594,8 +3594,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 105,
-    "median_time_to_first_token_seconds": 18.37,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 2000000,
     "rank": 48
   },
@@ -3706,7 +3706,7 @@
       "agents": 31.1,
       "data-analysis": null,
       "cheap": 1.08,
-      "fast": 120.1,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -3744,8 +3744,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 120.1,
-    "median_time_to_first_token_seconds": 1.72,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 50
   },
@@ -3781,7 +3781,7 @@
       "agents": 61,
       "data-analysis": 17.5,
       "cheap": 0.7,
-      "fast": 55,
+      "fast": null,
       "frontier": null,
       "vision": 80.5,
       "audio": null,
@@ -3813,14 +3813,14 @@
       "mmlu_pro": 80.5,
       "agentic_index": 61,
       "coding_agent_index": null,
-      "gdpval": 774.8
+      "gdpval": 774.4
     },
     "pricing": {
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 1.6
     },
-    "median_output_tokens_per_second": 55,
-    "median_time_to_first_token_seconds": 38.11,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 51
   },
@@ -3931,7 +3931,7 @@
       "agents": 29.6,
       "data-analysis": 476.8,
       "cheap": 3.44,
-      "fast": 129.1,
+      "fast": null,
       "frontier": null,
       "vision": 64.5,
       "audio": null,
@@ -3969,8 +3969,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 129.1,
-    "median_time_to_first_token_seconds": 29.83,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 53
   },
@@ -4006,7 +4006,7 @@
       "agents": 43.1,
       "data-analysis": 17.9,
       "cheap": 0.85,
-      "fast": 114.5,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -4038,14 +4038,14 @@
       "mmlu_pro": null,
       "agentic_index": 43.1,
       "coding_agent_index": null,
-      "gdpval": 752.9
+      "gdpval": 752.8
     },
     "pricing": {
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 114.5,
-    "median_time_to_first_token_seconds": 19.59,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 54
   },
@@ -4081,7 +4081,7 @@
       "agents": 46.2,
       "data-analysis": null,
       "cheap": 10,
-      "fast": 44.8,
+      "fast": null,
       "frontier": null,
       "vision": 75.4,
       "audio": null,
@@ -4119,8 +4119,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 44.8,
-    "median_time_to_first_token_seconds": 24.56,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 55
   },
@@ -4156,7 +4156,7 @@
       "agents": 37.1,
       "data-analysis": null,
       "cheap": 4.81,
-      "fast": 90.4,
+      "fast": null,
       "frontier": null,
       "vision": 76.3,
       "audio": null,
@@ -4194,8 +4194,8 @@
       "price_1m_input_tokens": 1.75,
       "price_1m_output_tokens": 14
     },
-    "median_output_tokens_per_second": 90.4,
-    "median_time_to_first_token_seconds": 117.85,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 56
   },
@@ -4231,7 +4231,7 @@
       "agents": 25.8,
       "data-analysis": 6.8,
       "cheap": 0.06,
-      "fast": 19.3,
+      "fast": null,
       "frontier": null,
       "vision": 65.4,
       "audio": null,
@@ -4269,8 +4269,8 @@
       "price_1m_input_tokens": 0.03,
       "price_1m_output_tokens": 0.15
     },
-    "median_output_tokens_per_second": 19.3,
-    "median_time_to_first_token_seconds": 104.38,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 57
   },
@@ -4306,7 +4306,7 @@
       "agents": 3.8,
       "data-analysis": null,
       "cheap": 0.15,
-      "fast": 121.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -4344,8 +4344,8 @@
       "price_1m_input_tokens": 0.07,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 121.4,
-    "median_time_to_first_token_seconds": 1.82,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 58
   },
@@ -4381,7 +4381,7 @@
       "agents": 80.5,
       "data-analysis": 29.9,
       "cheap": 11.25,
-      "fast": 65.9,
+      "fast": null,
       "frontier": null,
       "vision": 81.2,
       "audio": null,
@@ -4413,14 +4413,14 @@
       "mmlu_pro": 81.2,
       "agentic_index": 80.5,
       "coding_agent_index": null,
-      "gdpval": 1243
+      "gdpval": 1242
     },
     "pricing": {
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 65.9,
-    "median_time_to_first_token_seconds": 9.58,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 922000,
     "rank": 59
   },
@@ -4454,7 +4454,7 @@
       "knowledge": 80.5,
       "multilingual": 91.5,
       "agents": 62.2,
-      "data-analysis": 1006.1,
+      "data-analysis": 1005.7,
       "cheap": null,
       "fast": null,
       "frontier": null,
@@ -4462,10 +4462,10 @@
       "audio": null,
       "open-weights": null,
       "long-context": 262144,
-      "enterprise": 1006.1,
+      "enterprise": 1005.7,
       "legal": 88.4,
       "medical": 80.5,
-      "finance": 1006.1,
+      "finance": 1005.7,
       "scientific": 88.4,
       "creative-writing": null,
       "roleplay": 75.9,
@@ -4488,7 +4488,7 @@
       "mmlu_pro": 80.5,
       "agentic_index": 62.2,
       "coding_agent_index": null,
-      "gdpval": 1006.1
+      "gdpval": 1005.7
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -4530,8 +4530,8 @@
       "multilingual": 91.2,
       "agents": 36.4,
       "data-analysis": null,
-      "cheap": 2.18,
-      "fast": 167,
+      "cheap": 2.17,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -4567,10 +4567,10 @@
     },
     "pricing": {
       "price_1m_input_tokens": 1.74,
-      "price_1m_output_tokens": 3.49
+      "price_1m_output_tokens": 3.48
     },
-    "median_output_tokens_per_second": 167,
-    "median_time_to_first_token_seconds": 1.37,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 61
   },
@@ -4606,7 +4606,7 @@
       "agents": 30.3,
       "data-analysis": null,
       "cheap": 1.56,
-      "fast": 79.6,
+      "fast": null,
       "frontier": null,
       "vision": 75.8,
       "audio": null,
@@ -4644,8 +4644,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 79.6,
-    "median_time_to_first_token_seconds": 13.33,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 62
   },
@@ -4830,8 +4830,8 @@
       "multilingual": 90.6,
       "agents": 63.7,
       "data-analysis": 8.7,
-      "cheap": 0.17,
-      "fast": 77.3,
+      "cheap": 0.14,
+      "fast": null,
       "frontier": null,
       "vision": 75.4,
       "audio": null,
@@ -4863,14 +4863,14 @@
       "mmlu_pro": 75.4,
       "agentic_index": 63.7,
       "coding_agent_index": null,
-      "gdpval": 1005.2
+      "gdpval": 1004.3
     },
     "pricing": {
-      "price_1m_input_tokens": 0.133,
-      "price_1m_output_tokens": 0.266
+      "price_1m_input_tokens": 0.112,
+      "price_1m_output_tokens": 0.224
     },
-    "median_output_tokens_per_second": 77.3,
-    "median_time_to_first_token_seconds": 1.05,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 65
   },
@@ -4906,7 +4906,7 @@
       "agents": 19.5,
       "data-analysis": 443.6,
       "cheap": 3.44,
-      "fast": 140.5,
+      "fast": null,
       "frontier": null,
       "vision": 62.7,
       "audio": null,
@@ -4944,8 +4944,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 140.5,
-    "median_time_to_first_token_seconds": 17.04,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 66
   },
@@ -4980,8 +4980,8 @@
       "multilingual": 90.4,
       "agents": 17.4,
       "data-analysis": null,
-      "cheap": 0.35,
-      "fast": 52.3,
+      "cheap": null,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -5016,11 +5016,11 @@
       "gdpval": null
     },
     "pricing": {
-      "price_1m_input_tokens": 0.3,
-      "price_1m_output_tokens": 0.5
+      "price_1m_input_tokens": 0,
+      "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 52.3,
-    "median_time_to_first_token_seconds": 1.7,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 67
   },
@@ -5056,7 +5056,7 @@
       "agents": 67.4,
       "data-analysis": 20.2,
       "cheap": 1.71,
-      "fast": 47.7,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -5088,14 +5088,14 @@
       "mmlu_pro": null,
       "agentic_index": 67.4,
       "coding_agent_index": null,
-      "gdpval": 1046
+      "gdpval": 1045.9
     },
     "pricing": {
       "price_1m_input_tokens": 0.95,
       "price_1m_output_tokens": 4
     },
-    "median_output_tokens_per_second": 47.7,
-    "median_time_to_first_token_seconds": 47.77,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 68
   },
@@ -5163,7 +5163,7 @@
       "mmlu_pro": null,
       "agentic_index": 20.6,
       "coding_agent_index": null,
-      "gdpval": 343.7
+      "gdpval": 343.4
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -5281,7 +5281,7 @@
       "agents": 47,
       "data-analysis": null,
       "cheap": 10,
-      "fast": 53.3,
+      "fast": null,
       "frontier": null,
       "vision": 74,
       "audio": null,
@@ -5319,8 +5319,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 53.3,
-    "median_time_to_first_token_seconds": 13.98,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 71
   },
@@ -5431,7 +5431,7 @@
       "agents": 26.5,
       "data-analysis": null,
       "cheap": 0.69,
-      "fast": 151.6,
+      "fast": null,
       "frontier": null,
       "vision": 72.7,
       "audio": null,
@@ -5469,8 +5469,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 2
     },
-    "median_output_tokens_per_second": 151.6,
-    "median_time_to_first_token_seconds": 2.01,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 73
   },
@@ -5506,7 +5506,7 @@
       "agents": 26.5,
       "data-analysis": null,
       "cheap": 1.56,
-      "fast": 88.7,
+      "fast": null,
       "frontier": null,
       "vision": 72.8,
       "audio": null,
@@ -5544,8 +5544,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 88.7,
-    "median_time_to_first_token_seconds": 6.34,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 74
   },
@@ -5559,9 +5559,9 @@
       "name": "MiniMax",
       "slug": "minimax"
     },
-    "rating": 1103,
-    "arena_elo": 1103,
-    "final_score": 18.7,
+    "rating": 1104,
+    "arena_elo": 1104,
+    "final_score": 18.9,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -5569,30 +5569,30 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 18.7,
+      "overall": 18.9,
       "coding": 23,
       "math": 47.1,
       "reasoning": 92.9,
       "research": 39,
       "instruction": 82.9,
-      "writing": 18.7,
+      "writing": 18.9,
       "knowledge": 78.6,
       "multilingual": 88.9,
       "agents": 65.2,
       "data-analysis": 15.3,
       "cheap": 0.52,
-      "fast": 114.8,
+      "fast": null,
       "frontier": null,
-      "vision": 18.7,
+      "vision": 18.9,
       "audio": null,
-      "open-weights": 18.7,
+      "open-weights": 18.9,
       "long-context": 1000000,
       "enterprise": 15.3,
       "legal": 92.9,
       "medical": 78.6,
       "finance": 47.1,
       "scientific": 47.1,
-      "creative-writing": 18.7,
+      "creative-writing": 18.9,
       "roleplay": 82.9,
       "translation": 88.9,
       "summarization": 39,
@@ -5601,7 +5601,7 @@
       "function-calling": 65.2
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": 18.7,
+      "artificial_analysis_intelligence_index": 18.9,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 92.9,
@@ -5613,14 +5613,14 @@
       "mmlu_pro": 78.6,
       "agentic_index": 65.2,
       "coding_agent_index": null,
-      "gdpval": 1250
+      "gdpval": 1249.7
     },
     "pricing": {
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 114.8,
-    "median_time_to_first_token_seconds": 18.18,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 75
   },
@@ -5656,7 +5656,7 @@
       "agents": 83.1,
       "data-analysis": 34.6,
       "cheap": 10,
-      "fast": 54,
+      "fast": null,
       "frontier": null,
       "vision": 78.8,
       "audio": null,
@@ -5688,14 +5688,14 @@
       "mmlu_pro": 78.8,
       "agentic_index": 83.1,
       "coding_agent_index": null,
-      "gdpval": 1361.7
+      "gdpval": 1361.5
     },
     "pricing": {
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 54,
-    "median_time_to_first_token_seconds": 21.22,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 76
   },
@@ -5729,7 +5729,7 @@
       "knowledge": null,
       "multilingual": 88.6,
       "agents": 9.1,
-      "data-analysis": 738.4,
+      "data-analysis": 738,
       "cheap": null,
       "fast": null,
       "frontier": null,
@@ -5737,7 +5737,7 @@
       "audio": null,
       "open-weights": null,
       "long-context": 256000,
-      "enterprise": 738.4,
+      "enterprise": 738,
       "legal": 76.4,
       "medical": 76.4,
       "finance": 94.7,
@@ -5763,7 +5763,7 @@
       "mmlu_pro": null,
       "agentic_index": 9.1,
       "coding_agent_index": null,
-      "gdpval": 738.4
+      "gdpval": 738
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -5806,7 +5806,7 @@
       "agents": 21.2,
       "data-analysis": null,
       "cheap": 1.5,
-      "fast": 103,
+      "fast": null,
       "frontier": null,
       "vision": 70.5,
       "audio": null,
@@ -5844,8 +5844,8 @@
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 4.8
     },
-    "median_output_tokens_per_second": 103,
-    "median_time_to_first_token_seconds": 1.09,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 78
   },
@@ -6031,7 +6031,7 @@
       "agents": 21.3,
       "data-analysis": 4.3,
       "cheap": 0.06,
-      "fast": 15.3,
+      "fast": null,
       "frontier": null,
       "vision": 62.1,
       "audio": null,
@@ -6069,8 +6069,8 @@
       "price_1m_input_tokens": 0.03,
       "price_1m_output_tokens": 0.15
     },
-    "median_output_tokens_per_second": 15.3,
-    "median_time_to_first_token_seconds": 0.7,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 81
   },
@@ -6181,7 +6181,7 @@
       "agents": 32.6,
       "data-analysis": null,
       "cheap": 0.15,
-      "fast": 130.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -6219,8 +6219,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 130.4,
-    "median_time_to_first_token_seconds": 3.19,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 83
   },
@@ -6331,7 +6331,7 @@
       "agents": 78.3,
       "data-analysis": 39.6,
       "cheap": 5.63,
-      "fast": 96.7,
+      "fast": null,
       "frontier": null,
       "vision": 78.4,
       "audio": null,
@@ -6369,8 +6369,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 96.7,
-    "median_time_to_first_token_seconds": 180.19,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1050000,
     "rank": 85
   },
@@ -6406,7 +6406,7 @@
       "agents": 31.8,
       "data-analysis": null,
       "cheap": 0.83,
-      "fast": 81.7,
+      "fast": null,
       "frontier": null,
       "vision": 70,
       "audio": null,
@@ -6444,8 +6444,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.4
     },
-    "median_output_tokens_per_second": 81.7,
-    "median_time_to_first_token_seconds": 5.63,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 86
   },
@@ -6481,7 +6481,7 @@
       "agents": 37.9,
       "data-analysis": null,
       "cheap": 3.44,
-      "fast": 173.4,
+      "fast": null,
       "frontier": null,
       "vision": 73.8,
       "audio": null,
@@ -6519,8 +6519,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 173.4,
-    "median_time_to_first_token_seconds": 10.22,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 87
   },
@@ -6556,7 +6556,7 @@
       "agents": 25.8,
       "data-analysis": null,
       "cheap": 0.52,
-      "fast": 122.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -6594,8 +6594,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 122.9,
-    "median_time_to_first_token_seconds": 1.34,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 204800,
     "rank": 88
   },
@@ -6631,7 +6631,7 @@
       "agents": 29.2,
       "data-analysis": 7,
       "cheap": 0.15,
-      "fast": 59.9,
+      "fast": null,
       "frontier": null,
       "vision": 69.2,
       "audio": null,
@@ -6663,14 +6663,14 @@
       "mmlu_pro": 69.2,
       "agentic_index": 29.2,
       "coding_agent_index": null,
-      "gdpval": 426.6
+      "gdpval": 426.3
     },
     "pricing": {
       "price_1m_input_tokens": 0.135,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 59.9,
-    "median_time_to_first_token_seconds": 34.38,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 89
   },
@@ -6706,7 +6706,7 @@
       "agents": 37.9,
       "data-analysis": null,
       "cheap": 3.44,
-      "fast": 96.9,
+      "fast": null,
       "frontier": null,
       "vision": 74.3,
       "audio": null,
@@ -6744,8 +6744,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 96.9,
-    "median_time_to_first_token_seconds": 25.42,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 90
   },
@@ -6856,7 +6856,7 @@
       "agents": 40.9,
       "data-analysis": null,
       "cheap": 10,
-      "fast": 45,
+      "fast": null,
       "frontier": null,
       "vision": 71.2,
       "audio": null,
@@ -6894,8 +6894,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 45,
-    "median_time_to_first_token_seconds": 1.11,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 92
   },
@@ -6909,9 +6909,9 @@
       "name": "OpenAI",
       "slug": "openai"
     },
-    "rating": 1484,
-    "arena_elo": 1484,
-    "final_score": 88,
+    "rating": 1178,
+    "arena_elo": 1178,
+    "final_score": 32.3,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -6919,21 +6919,21 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": null,
-      "coding": 88,
+      "overall": 32.3,
+      "coding": 23.9,
       "math": 55,
       "reasoning": 92.5,
       "research": 42.9,
       "instruction": 71.2,
-      "writing": null,
+      "writing": 32.3,
       "knowledge": 80.7,
       "multilingual": 86.3,
       "agents": 88,
       "data-analysis": 40.2,
       "cheap": 4.5,
-      "fast": 111.1,
+      "fast": null,
       "frontier": null,
-      "vision": 80.7,
+      "vision": 32.3,
       "audio": null,
       "open-weights": null,
       "long-context": 1000000,
@@ -6942,7 +6942,7 @@
       "medical": 80.7,
       "finance": 55,
       "scientific": 55,
-      "creative-writing": null,
+      "creative-writing": 32.3,
       "roleplay": 71.2,
       "translation": 86.3,
       "summarization": 42.9,
@@ -6951,7 +6951,7 @@
       "function-calling": 88
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": null,
+      "artificial_analysis_intelligence_index": 32.3,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 92.5,
@@ -6963,14 +6963,14 @@
       "mmlu_pro": 80.7,
       "agentic_index": 88,
       "coding_agent_index": null,
-      "gdpval": 1461.5
+      "gdpval": 1461.2
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 12
     },
-    "median_output_tokens_per_second": 111.1,
-    "median_time_to_first_token_seconds": 139.39,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 93
   },
@@ -7006,7 +7006,7 @@
       "agents": 40.8,
       "data-analysis": 4.9,
       "cheap": 0.69,
-      "fast": 165.7,
+      "fast": null,
       "frontier": null,
       "vision": 69.2,
       "audio": null,
@@ -7044,8 +7044,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 2
     },
-    "median_output_tokens_per_second": 165.7,
-    "median_time_to_first_token_seconds": 2.11,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 94
   },
@@ -7081,7 +7081,7 @@
       "agents": 12,
       "data-analysis": 8.7,
       "cheap": 0.26,
-      "fast": 154.3,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -7113,14 +7113,14 @@
       "mmlu_pro": null,
       "agentic_index": 12,
       "coding_agent_index": null,
-      "gdpval": 272
+      "gdpval": 271.7
     },
     "pricing": {
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 154.3,
-    "median_time_to_first_token_seconds": 1.24,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 95
   },
@@ -7156,7 +7156,7 @@
       "agents": 53,
       "data-analysis": null,
       "cheap": 4.81,
-      "fast": 84,
+      "fast": null,
       "frontier": null,
       "vision": 78.5,
       "audio": null,
@@ -7194,8 +7194,8 @@
       "price_1m_input_tokens": 1.75,
       "price_1m_output_tokens": 14
     },
-    "median_output_tokens_per_second": 84,
-    "median_time_to_first_token_seconds": 50.88,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 96
   },
@@ -7306,7 +7306,7 @@
       "agents": 28.8,
       "data-analysis": null,
       "cheap": 0.52,
-      "fast": 39.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -7344,8 +7344,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 39.4,
-    "median_time_to_first_token_seconds": 1.69,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 204800,
     "rank": 98
   },
@@ -7381,7 +7381,7 @@
       "agents": 88,
       "data-analysis": 44.3,
       "cheap": 8,
-      "fast": 101.9,
+      "fast": null,
       "frontier": null,
       "vision": 83.4,
       "audio": null,
@@ -7413,14 +7413,14 @@
       "mmlu_pro": 83.4,
       "agentic_index": 88,
       "coding_agent_index": null,
-      "gdpval": 1617.8
+      "gdpval": 1618.7
     },
     "pricing": {
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 101.9,
-    "median_time_to_first_token_seconds": 91.59,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 99
   },
@@ -7456,7 +7456,7 @@
       "agents": 21.3,
       "data-analysis": null,
       "cheap": 0.19,
-      "fast": 88,
+      "fast": null,
       "frontier": null,
       "vision": 66.8,
       "audio": null,
@@ -7494,8 +7494,8 @@
       "price_1m_input_tokens": 0.17,
       "price_1m_output_tokens": 0.25
     },
-    "median_output_tokens_per_second": 88,
-    "median_time_to_first_token_seconds": 0.41,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 100
   },
@@ -7531,7 +7531,7 @@
       "agents": 41.6,
       "data-analysis": 5.4,
       "cheap": 0.84,
-      "fast": 141.8,
+      "fast": null,
       "frontier": null,
       "vision": 71,
       "audio": null,
@@ -7569,8 +7569,8 @@
       "price_1m_input_tokens": 0.375,
       "price_1m_output_tokens": 2.25
     },
-    "median_output_tokens_per_second": 141.8,
-    "median_time_to_first_token_seconds": 1.02,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 101
   },
@@ -7606,7 +7606,7 @@
       "agents": 48.5,
       "data-analysis": null,
       "cheap": 10,
-      "fast": 38.8,
+      "fast": null,
       "frontier": null,
       "vision": 72.5,
       "audio": null,
@@ -7644,8 +7644,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 38.8,
-    "median_time_to_first_token_seconds": 1.87,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 102
   },
@@ -7681,7 +7681,7 @@
       "agents": 35.2,
       "data-analysis": 22.1,
       "cheap": 3.44,
-      "fast": 101.6,
+      "fast": null,
       "frontier": null,
       "vision": 74.2,
       "audio": null,
@@ -7719,8 +7719,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 101.6,
-    "median_time_to_first_token_seconds": 80.85,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 103
   },
@@ -7756,7 +7756,7 @@
       "agents": 47,
       "data-analysis": null,
       "cheap": 4.81,
-      "fast": 70.3,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -7794,8 +7794,8 @@
       "price_1m_input_tokens": 1.75,
       "price_1m_output_tokens": 14
     },
-    "median_output_tokens_per_second": 70.3,
-    "median_time_to_first_token_seconds": 102.33,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 104
   },
@@ -7831,7 +7831,7 @@
       "agents": 89.5,
       "data-analysis": 38.1,
       "cheap": 8,
-      "fast": 98.9,
+      "fast": null,
       "frontier": null,
       "vision": 82.7,
       "audio": null,
@@ -7863,14 +7863,14 @@
       "mmlu_pro": 82.7,
       "agentic_index": 89.5,
       "coding_agent_index": null,
-      "gdpval": 1577.8
+      "gdpval": 1577.3
     },
     "pricing": {
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 98.9,
-    "median_time_to_first_token_seconds": 41.63,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 105
   },
@@ -7906,7 +7906,7 @@
       "agents": 55.4,
       "data-analysis": 9.9,
       "cheap": 0.52,
-      "fast": 41.7,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -7938,14 +7938,14 @@
       "mmlu_pro": null,
       "agentic_index": 55.4,
       "coding_agent_index": null,
-      "gdpval": 1016.1
+      "gdpval": 1015.5
     },
     "pricing": {
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 41.7,
-    "median_time_to_first_token_seconds": 1.72,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 204800,
     "rank": 106
   },
@@ -7981,7 +7981,7 @@
       "agents": 47.2,
       "data-analysis": 10.3,
       "cheap": 1.1,
-      "fast": 142.6,
+      "fast": null,
       "frontier": null,
       "vision": 70.3,
       "audio": null,
@@ -8019,8 +8019,8 @@
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 3.2
     },
-    "median_output_tokens_per_second": 142.6,
-    "median_time_to_first_token_seconds": 0.97,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 107
   },
@@ -8056,7 +8056,7 @@
       "agents": 8.3,
       "data-analysis": null,
       "cheap": 0.28,
-      "fast": 225.9,
+      "fast": null,
       "frontier": null,
       "vision": 64.7,
       "audio": null,
@@ -8094,8 +8094,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.8
     },
-    "median_output_tokens_per_second": 225.9,
-    "median_time_to_first_token_seconds": 0.9,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 108
   },
@@ -8131,7 +8131,7 @@
       "agents": 26.5,
       "data-analysis": null,
       "cheap": 3.44,
-      "fast": 85.1,
+      "fast": null,
       "frontier": null,
       "vision": 73.8,
       "audio": null,
@@ -8169,8 +8169,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 85.1,
-    "median_time_to_first_token_seconds": 9.56,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 109
   },
@@ -8281,7 +8281,7 @@
       "agents": 65.5,
       "data-analysis": 24.9,
       "cheap": 11.25,
-      "fast": 71.1,
+      "fast": null,
       "frontier": null,
       "vision": 79,
       "audio": null,
@@ -8319,8 +8319,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 71.1,
-    "median_time_to_first_token_seconds": 1.65,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 922000,
     "rank": 111
   },
@@ -8431,7 +8431,7 @@
       "agents": 35.6,
       "data-analysis": null,
       "cheap": 1.35,
-      "fast": 59.3,
+      "fast": null,
       "frontier": null,
       "vision": 52.7,
       "audio": null,
@@ -8469,8 +8469,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 3.6
     },
-    "median_output_tokens_per_second": 59.3,
-    "median_time_to_first_token_seconds": 1.65,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 113
   },
@@ -8656,7 +8656,7 @@
       "agents": 59.2,
       "data-analysis": 25.6,
       "cheap": 1.69,
-      "fast": 238,
+      "fast": null,
       "frontier": null,
       "vision": 73.3,
       "audio": null,
@@ -8688,14 +8688,14 @@
       "mmlu_pro": 73.3,
       "agentic_index": 59.2,
       "coding_agent_index": null,
-      "gdpval": 1021.8
+      "gdpval": 1021.2
     },
     "pricing": {
       "price_1m_input_tokens": 0.75,
       "price_1m_output_tokens": 4.5
     },
-    "median_output_tokens_per_second": 238,
-    "median_time_to_first_token_seconds": 106.57,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 116
   },
@@ -8731,7 +8731,7 @@
       "agents": 87.3,
       "data-analysis": 36.7,
       "cheap": 8,
-      "fast": 90.4,
+      "fast": null,
       "frontier": null,
       "vision": 81.8,
       "audio": null,
@@ -8763,14 +8763,14 @@
       "mmlu_pro": 81.8,
       "agentic_index": 87.3,
       "coding_agent_index": null,
-      "gdpval": 1511.8
+      "gdpval": 1511.3
     },
     "pricing": {
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 90.4,
-    "median_time_to_first_token_seconds": 14.05,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 117
   },
@@ -8805,8 +8805,8 @@
       "multilingual": 83.3,
       "agents": 53.9,
       "data-analysis": 14.2,
-      "cheap": 1.13,
-      "fast": 142.4,
+      "cheap": 1.05,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -8838,14 +8838,14 @@
       "mmlu_pro": null,
       "agentic_index": 53.9,
       "coding_agent_index": null,
-      "gdpval": 1020.7
+      "gdpval": 1020
     },
     "pricing": {
       "price_1m_input_tokens": 0.6,
-      "price_1m_output_tokens": 2.7
+      "price_1m_output_tokens": 2.4
     },
-    "median_output_tokens_per_second": 142.4,
-    "median_time_to_first_token_seconds": 16.79,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 118
   },
@@ -8881,7 +8881,7 @@
       "agents": 34.8,
       "data-analysis": null,
       "cheap": 3.44,
-      "fast": 126.8,
+      "fast": null,
       "frontier": null,
       "vision": 72.5,
       "audio": null,
@@ -8919,8 +8919,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 126.8,
-    "median_time_to_first_token_seconds": 7.47,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 119
   },
@@ -9031,7 +9031,7 @@
       "agents": 52.4,
       "data-analysis": 15.9,
       "cheap": 3.44,
-      "fast": 92.5,
+      "fast": null,
       "frontier": null,
       "vision": 75.5,
       "audio": null,
@@ -9069,8 +9069,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 92.5,
-    "median_time_to_first_token_seconds": 37.82,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 121
   },
@@ -9138,7 +9138,7 @@
       "mmlu_pro": null,
       "agentic_index": 67.8,
       "coding_agent_index": null,
-      "gdpval": 1109.5
+      "gdpval": 1109.2
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -9256,7 +9256,7 @@
       "agents": 18.9,
       "data-analysis": null,
       "cheap": 1.2,
-      "fast": 50,
+      "fast": null,
       "frontier": null,
       "vision": 73.1,
       "audio": null,
@@ -9294,8 +9294,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 50,
-    "median_time_to_first_token_seconds": 2.26,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 124
   },
@@ -9331,7 +9331,7 @@
       "agents": 86.1,
       "data-analysis": 36.5,
       "cheap": 8,
-      "fast": 88.7,
+      "fast": null,
       "frontier": null,
       "vision": 81.4,
       "audio": null,
@@ -9363,14 +9363,14 @@
       "mmlu_pro": 81.4,
       "agentic_index": 86.1,
       "coding_agent_index": null,
-      "gdpval": 1431.7
+      "gdpval": 1432.8
     },
     "pricing": {
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 88.7,
-    "median_time_to_first_token_seconds": 3.39,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 125
   },
@@ -9556,7 +9556,7 @@
       "agents": 22.8,
       "data-analysis": 6,
       "cheap": null,
-      "fast": 146,
+      "fast": null,
       "frontier": null,
       "vision": 6.2,
       "audio": null,
@@ -9588,14 +9588,14 @@
       "mmlu_pro": 63.2,
       "agentic_index": 22.8,
       "coding_agent_index": null,
-      "gdpval": 521.9
+      "gdpval": 521.5
     },
     "pricing": {
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 146,
-    "median_time_to_first_token_seconds": 13.91,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 192000,
     "rank": 128
   },
@@ -9631,7 +9631,7 @@
       "agents": 37.1,
       "data-analysis": null,
       "cheap": 3.5,
-      "fast": 132,
+      "fast": null,
       "frontier": null,
       "vision": 70.1,
       "audio": null,
@@ -9669,8 +9669,8 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 8
     },
-    "median_output_tokens_per_second": 132,
-    "median_time_to_first_token_seconds": 4.95,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 129
   },
@@ -9706,7 +9706,7 @@
       "agents": 38.6,
       "data-analysis": 20.8,
       "cheap": 1.13,
-      "fast": 183,
+      "fast": null,
       "frontier": null,
       "vision": 79.9,
       "audio": null,
@@ -9744,8 +9744,8 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 183,
-    "median_time_to_first_token_seconds": 6.04,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 130
   },
@@ -9781,7 +9781,7 @@
       "agents": 80.1,
       "data-analysis": 29.7,
       "cheap": 4.5,
-      "fast": 105.7,
+      "fast": null,
       "frontier": null,
       "vision": 79.5,
       "audio": null,
@@ -9813,14 +9813,14 @@
       "mmlu_pro": 79.5,
       "agentic_index": 80.1,
       "coding_agent_index": null,
-      "gdpval": 1455.1
+      "gdpval": 1456.1
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 12
     },
-    "median_output_tokens_per_second": 105.7,
-    "median_time_to_first_token_seconds": 18.05,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 131
   },
@@ -9931,7 +9931,7 @@
       "agents": 46.2,
       "data-analysis": null,
       "cheap": 6,
-      "fast": 43,
+      "fast": null,
       "frontier": null,
       "vision": 70.6,
       "audio": null,
@@ -9969,8 +9969,8 @@
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 43,
-    "median_time_to_first_token_seconds": 0.96,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 133
   },
@@ -10081,7 +10081,7 @@
       "agents": 38.2,
       "data-analysis": 5.4,
       "cheap": 0.48,
-      "fast": 76.6,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -10113,14 +10113,14 @@
       "mmlu_pro": null,
       "agentic_index": 38.2,
       "coding_agent_index": null,
-      "gdpval": 521.4
+      "gdpval": 521.1
     },
     "pricing": {
       "price_1m_input_tokens": 0.31,
       "price_1m_output_tokens": 1
     },
-    "median_output_tokens_per_second": 76.6,
-    "median_time_to_first_token_seconds": 0.71,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 135
   },
@@ -10156,7 +10156,7 @@
       "agents": 42.4,
       "data-analysis": null,
       "cheap": 6,
-      "fast": 44.7,
+      "fast": null,
       "frontier": null,
       "vision": 69.2,
       "audio": null,
@@ -10194,8 +10194,8 @@
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 44.7,
-    "median_time_to_first_token_seconds": 0.99,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 136
   },
@@ -10306,7 +10306,7 @@
       "agents": 75.7,
       "data-analysis": 28.7,
       "cheap": 4.5,
-      "fast": 94,
+      "fast": null,
       "frontier": null,
       "vision": 79.1,
       "audio": null,
@@ -10338,14 +10338,14 @@
       "mmlu_pro": 79.1,
       "agentic_index": 75.7,
       "coding_agent_index": null,
-      "gdpval": 1387.3
+      "gdpval": 1388.5
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 12
     },
-    "median_output_tokens_per_second": 94,
-    "median_time_to_first_token_seconds": 2.78,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 138
   },
@@ -10381,7 +10381,7 @@
       "agents": 55.8,
       "data-analysis": 24.5,
       "cheap": 6,
-      "fast": 44.6,
+      "fast": null,
       "frontier": null,
       "vision": 68.7,
       "audio": null,
@@ -10413,14 +10413,14 @@
       "mmlu_pro": 68.7,
       "agentic_index": 55.8,
       "coding_agent_index": null,
-      "gdpval": 915.4
+      "gdpval": 915
     },
     "pricing": {
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 44.6,
-    "median_time_to_first_token_seconds": 10.67,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 139
   },
@@ -10531,7 +10531,7 @@
       "agents": 28.8,
       "data-analysis": null,
       "cheap": 0.98,
-      "fast": 35.6,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -10569,8 +10569,8 @@
       "price_1m_input_tokens": 0.575,
       "price_1m_output_tokens": 2.2
     },
-    "median_output_tokens_per_second": 35.6,
-    "median_time_to_first_token_seconds": 4.53,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 141
   },
@@ -10606,7 +10606,7 @@
       "agents": 60.7,
       "data-analysis": 27.4,
       "cheap": 0.46,
-      "fast": 159.8,
+      "fast": null,
       "frontier": null,
       "vision": 65.4,
       "audio": null,
@@ -10638,14 +10638,14 @@
       "mmlu_pro": 65.4,
       "agentic_index": 60.7,
       "coding_agent_index": null,
-      "gdpval": 954.7
+      "gdpval": 954.2
     },
     "pricing": {
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 1.25
     },
-    "median_output_tokens_per_second": 159.8,
-    "median_time_to_first_token_seconds": 60.96,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 142
   },
@@ -10681,7 +10681,7 @@
       "agents": 76.8,
       "data-analysis": 29.1,
       "cheap": 8,
-      "fast": 96.6,
+      "fast": null,
       "frontier": null,
       "vision": 81,
       "audio": null,
@@ -10713,14 +10713,14 @@
       "mmlu_pro": 81,
       "agentic_index": 76.8,
       "coding_agent_index": null,
-      "gdpval": 1313
+      "gdpval": 1313.1
     },
     "pricing": {
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 96.6,
-    "median_time_to_first_token_seconds": 2.44,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 143
   },
@@ -10756,7 +10756,7 @@
       "agents": 71.2,
       "data-analysis": 34.4,
       "cheap": 6,
-      "fast": 63.6,
+      "fast": null,
       "frontier": null,
       "vision": 73.3,
       "audio": null,
@@ -10788,14 +10788,14 @@
       "mmlu_pro": 73.3,
       "agentic_index": 71.2,
       "coding_agent_index": null,
-      "gdpval": 1240.5
+      "gdpval": 1240.2
     },
     "pricing": {
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 63.6,
-    "median_time_to_first_token_seconds": 105.32,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 144
   },
@@ -10906,7 +10906,7 @@
       "agents": 17.4,
       "data-analysis": null,
       "cheap": 0.85,
-      "fast": 187,
+      "fast": null,
       "frontier": null,
       "vision": 62.5,
       "audio": null,
@@ -10944,8 +10944,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 187,
-    "median_time_to_first_token_seconds": 21.63,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 146
   },
@@ -10981,7 +10981,7 @@
       "agents": 37.9,
       "data-analysis": null,
       "cheap": 6,
-      "fast": 72.7,
+      "fast": null,
       "frontier": null,
       "vision": 68.8,
       "audio": null,
@@ -11019,8 +11019,8 @@
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 72.7,
-    "median_time_to_first_token_seconds": 9.88,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 147
   },
@@ -11056,7 +11056,7 @@
       "agents": 43.2,
       "data-analysis": null,
       "cheap": 5.63,
-      "fast": 62.8,
+      "fast": null,
       "frontier": null,
       "vision": 78,
       "audio": null,
@@ -11094,8 +11094,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 62.8,
-    "median_time_to_first_token_seconds": 2.12,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1050000,
     "rank": 148
   },
@@ -11356,7 +11356,7 @@
       "agents": 54.5,
       "data-analysis": null,
       "cheap": 10,
-      "fast": 45.9,
+      "fast": null,
       "frontier": null,
       "vision": 76.4,
       "audio": null,
@@ -11394,8 +11394,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 25
     },
-    "median_output_tokens_per_second": 45.9,
-    "median_time_to_first_token_seconds": 0.86,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 152
   },
@@ -11506,7 +11506,7 @@
       "agents": 23.5,
       "data-analysis": null,
       "cheap": 1.08,
-      "fast": 45.8,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -11544,8 +11544,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 45.8,
-    "median_time_to_first_token_seconds": 1.34,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 154
   },
@@ -11581,7 +11581,7 @@
       "agents": 72.3,
       "data-analysis": 25.6,
       "cheap": 4.5,
-      "fast": 91.5,
+      "fast": null,
       "frontier": null,
       "vision": 76.8,
       "audio": null,
@@ -11613,14 +11613,14 @@
       "mmlu_pro": 76.8,
       "agentic_index": 72.3,
       "coding_agent_index": null,
-      "gdpval": 1274.3
+      "gdpval": 1273.3
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 12
     },
-    "median_output_tokens_per_second": 91.5,
-    "median_time_to_first_token_seconds": 1.63,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 155
   },
@@ -11656,7 +11656,7 @@
       "agents": 16.1,
       "data-analysis": 373.6,
       "cheap": 0.85,
-      "fast": 196.1,
+      "fast": null,
       "frontier": null,
       "vision": 63.8,
       "audio": null,
@@ -11694,8 +11694,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 196.1,
-    "median_time_to_first_token_seconds": 25.45,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 156
   },
@@ -11730,8 +11730,8 @@
       "multilingual": 72.5,
       "agents": 35.6,
       "data-analysis": null,
-      "cheap": 0.59,
-      "fast": 51.7,
+      "cheap": 0.44,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -11766,11 +11766,11 @@
       "gdpval": null
     },
     "pricing": {
-      "price_1m_input_tokens": 0.39,
-      "price_1m_output_tokens": 1.17
+      "price_1m_input_tokens": 0.348,
+      "price_1m_output_tokens": 0.696
     },
-    "median_output_tokens_per_second": 51.7,
-    "median_time_to_first_token_seconds": 1.11,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 157
   },
@@ -11806,7 +11806,7 @@
       "agents": 3.8,
       "data-analysis": null,
       "cheap": 0.85,
-      "fast": 200.2,
+      "fast": null,
       "frontier": null,
       "vision": 58,
       "audio": null,
@@ -11844,8 +11844,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 200.2,
-    "median_time_to_first_token_seconds": 14.37,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 158
   },
@@ -11881,7 +11881,7 @@
       "agents": 17.2,
       "data-analysis": 338.8,
       "cheap": 3.44,
-      "fast": 143.1,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -11919,8 +11919,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 143.1,
-    "median_time_to_first_token_seconds": 0.6,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 159
   },
@@ -12031,7 +12031,7 @@
       "agents": 28.8,
       "data-analysis": null,
       "cheap": 0.69,
-      "fast": 99.9,
+      "fast": null,
       "frontier": null,
       "vision": 68.8,
       "audio": null,
@@ -12069,8 +12069,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 2
     },
-    "median_output_tokens_per_second": 99.9,
-    "median_time_to_first_token_seconds": 13.68,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 161
   },
@@ -12138,7 +12138,7 @@
       "mmlu_pro": null,
       "agentic_index": 27.3,
       "coding_agent_index": null,
-      "gdpval": 501.7
+      "gdpval": 501.4
     },
     "pricing": {
       "price_1m_input_tokens": 0.25,
@@ -12181,7 +12181,7 @@
       "agents": 28.8,
       "data-analysis": null,
       "cheap": 6,
-      "fast": 41.1,
+      "fast": null,
       "frontier": null,
       "vision": 65.2,
       "audio": null,
@@ -12219,8 +12219,8 @@
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 41.1,
-    "median_time_to_first_token_seconds": 1.05,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 163
   },
@@ -12256,7 +12256,7 @@
       "agents": 49.4,
       "data-analysis": 13.4,
       "cheap": 0.96,
-      "fast": 31.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -12294,8 +12294,8 @@
       "price_1m_input_tokens": 0.55,
       "price_1m_output_tokens": 2.2
     },
-    "median_output_tokens_per_second": 31.9,
-    "median_time_to_first_token_seconds": 3.64,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 164
   },
@@ -12481,7 +12481,7 @@
       "agents": 61,
       "data-analysis": 14.8,
       "cheap": 11.25,
-      "fast": 66.5,
+      "fast": null,
       "frontier": null,
       "vision": 71.4,
       "audio": null,
@@ -12519,8 +12519,8 @@
       "price_1m_input_tokens": 5,
       "price_1m_output_tokens": 30
     },
-    "median_output_tokens_per_second": 66.5,
-    "median_time_to_first_token_seconds": 1.02,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 922000,
     "rank": 167
   },
@@ -12706,7 +12706,7 @@
       "agents": 3.7,
       "data-analysis": 15.5,
       "cheap": 0.69,
-      "fast": 107.9,
+      "fast": null,
       "frontier": null,
       "vision": 70.1,
       "audio": null,
@@ -12738,14 +12738,14 @@
       "mmlu_pro": 70.1,
       "agentic_index": 3.7,
       "coding_agent_index": null,
-      "gdpval": 773.4
+      "gdpval": 773
     },
     "pricing": {
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 2
     },
-    "median_output_tokens_per_second": 107.9,
-    "median_time_to_first_token_seconds": 61.34,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 170
   },
@@ -12856,7 +12856,7 @@
       "agents": 38.6,
       "data-analysis": 10.3,
       "cheap": 0.45,
-      "fast": 163.6,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -12888,14 +12888,14 @@
       "mmlu_pro": null,
       "agentic_index": 38.6,
       "coding_agent_index": null,
-      "gdpval": 497.5
+      "gdpval": 497.2
     },
     "pricing": {
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 0.9
     },
-    "median_output_tokens_per_second": 163.6,
-    "median_time_to_first_token_seconds": 1.33,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 172
   },
@@ -13081,7 +13081,7 @@
       "agents": 18.2,
       "data-analysis": null,
       "cheap": 3.44,
-      "fast": 82.8,
+      "fast": null,
       "frontier": null,
       "vision": 62.1,
       "audio": null,
@@ -13119,8 +13119,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 82.8,
-    "median_time_to_first_token_seconds": 1.14,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 175
   },
@@ -13209,9 +13209,9 @@
       "name": "OpenAI",
       "slug": "openai"
     },
-    "rating": 1483,
-    "arena_elo": 1483,
-    "final_score": 87.8,
+    "rating": 1021,
+    "arena_elo": 1021,
+    "final_score": 3.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -13219,30 +13219,30 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": null,
+      "overall": 3.8,
       "coding": 87.8,
       "math": 93.4,
       "reasoning": 78.2,
       "research": 19.6,
       "instruction": 69,
-      "writing": null,
+      "writing": 3.8,
       "knowledge": null,
       "multilingual": 65.8,
       "agents": 26.2,
       "data-analysis": 12.8,
       "cheap": 0.26,
-      "fast": 183,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
-      "open-weights": null,
+      "open-weights": 3.8,
       "long-context": 131072,
       "enterprise": 12.8,
       "legal": 78.2,
       "medical": 78.2,
       "finance": 93.4,
       "scientific": 93.4,
-      "creative-writing": null,
+      "creative-writing": 3.8,
       "roleplay": 69,
       "translation": 65.8,
       "summarization": 19.6,
@@ -13251,7 +13251,7 @@
       "function-calling": 26.2
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": null,
+      "artificial_analysis_intelligence_index": 3.8,
       "artificial_analysis_coding_index": 87.8,
       "artificial_analysis_math_index": 93.4,
       "gpqa": 78.2,
@@ -13263,14 +13263,14 @@
       "mmlu_pro": null,
       "agentic_index": 26.2,
       "coding_agent_index": null,
-      "gdpval": 615.6
+      "gdpval": 615.3
     },
     "pricing": {
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 183,
-    "median_time_to_first_token_seconds": 11.43,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 131072,
     "rank": 177
   },
@@ -13381,7 +13381,7 @@
       "agents": 34.1,
       "data-analysis": 8,
       "cheap": 1.56,
-      "fast": 75.8,
+      "fast": null,
       "frontier": null,
       "vision": 64.8,
       "audio": null,
@@ -13413,14 +13413,14 @@
       "mmlu_pro": 64.8,
       "agentic_index": 34.1,
       "coding_agent_index": null,
-      "gdpval": 948.9
+      "gdpval": 948.5
     },
     "pricing": {
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 75.8,
-    "median_time_to_first_token_seconds": 0.65,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 179
   },
@@ -13455,8 +13455,8 @@
       "multilingual": 65.5,
       "agents": 29.2,
       "data-analysis": 8.9,
-      "cheap": 0.22,
-      "fast": 58.5,
+      "cheap": 0.21,
+      "fast": null,
       "frontier": null,
       "vision": 70.3,
       "audio": null,
@@ -13491,11 +13491,11 @@
       "gdpval": 555
     },
     "pricing": {
-      "price_1m_input_tokens": 0.16499999999999998,
+      "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 58.5,
-    "median_time_to_first_token_seconds": 0.6,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 180
   },
@@ -13938,7 +13938,7 @@
       "mmlu_pro": null,
       "agentic_index": 18.4,
       "coding_agent_index": null,
-      "gdpval": 448.6
+      "gdpval": 448.3
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -13981,7 +13981,7 @@
       "agents": 33.3,
       "data-analysis": null,
       "cheap": 0.69,
-      "fast": 173.3,
+      "fast": null,
       "frontier": null,
       "vision": 69,
       "audio": null,
@@ -14019,8 +14019,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 2
     },
-    "median_output_tokens_per_second": 173.3,
-    "median_time_to_first_token_seconds": 17.3,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 187
   },
@@ -14131,7 +14131,7 @@
       "agents": 6.8,
       "data-analysis": null,
       "cheap": 0.85,
-      "fast": 211.1,
+      "fast": null,
       "frontier": null,
       "vision": 49,
       "audio": null,
@@ -14169,8 +14169,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 211.1,
-    "median_time_to_first_token_seconds": 0.83,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 189
   },
@@ -14206,7 +14206,7 @@
       "agents": 15.9,
       "data-analysis": null,
       "cheap": 1,
-      "fast": 47.6,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -14244,8 +14244,8 @@
       "price_1m_input_tokens": 0.57,
       "price_1m_output_tokens": 2.3
     },
-    "median_output_tokens_per_second": 47.6,
-    "median_time_to_first_token_seconds": 1.9,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 190
   },
@@ -14356,7 +14356,7 @@
       "agents": 62.5,
       "data-analysis": 18.8,
       "cheap": 4.5,
-      "fast": 94.5,
+      "fast": null,
       "frontier": null,
       "vision": 76.1,
       "audio": null,
@@ -14388,14 +14388,14 @@
       "mmlu_pro": 76.1,
       "agentic_index": 62.5,
       "coding_agent_index": null,
-      "gdpval": 1117
+      "gdpval": 1117.3
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 12
     },
-    "median_output_tokens_per_second": 94.5,
-    "median_time_to_first_token_seconds": 1.64,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 192
   },
@@ -14431,7 +14431,7 @@
       "agents": 13.9,
       "data-analysis": 7,
       "cheap": 0.09,
-      "fast": 139.1,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -14463,14 +14463,14 @@
       "mmlu_pro": null,
       "agentic_index": 13.9,
       "coding_agent_index": null,
-      "gdpval": 347.2
+      "gdpval": 346.9
     },
     "pricing": {
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.22
     },
-    "median_output_tokens_per_second": 139.1,
-    "median_time_to_first_token_seconds": 14.8,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 131072,
     "rank": 193
   },
@@ -14484,9 +14484,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1239,
-    "arena_elo": 1239,
-    "final_score": 43.4,
+    "rating": 1024,
+    "arena_elo": 1024,
+    "final_score": 4.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -14494,30 +14494,30 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": null,
-      "coding": 43.4,
+      "overall": 4.4,
+      "coding": 0,
       "math": 45.5,
       "reasoning": 85.7,
       "research": 23.6,
       "instruction": 75.6,
-      "writing": null,
+      "writing": 4.4,
       "knowledge": 73.4,
       "multilingual": 59.9,
       "agents": 43.4,
       "data-analysis": 14.8,
       "cheap": null,
-      "fast": 35.1,
+      "fast": null,
       "frontier": null,
-      "vision": 73.4,
+      "vision": 4.4,
       "audio": null,
-      "open-weights": null,
+      "open-weights": 4.4,
       "long-context": 256000,
       "enterprise": 14.8,
       "legal": 85.7,
       "medical": 73.4,
       "finance": 45.5,
       "scientific": 45.5,
-      "creative-writing": null,
+      "creative-writing": 4.4,
       "roleplay": 75.6,
       "translation": 59.9,
       "summarization": 23.6,
@@ -14526,7 +14526,7 @@
       "function-calling": 43.4
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": null,
+      "artificial_analysis_intelligence_index": 4.4,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 85.7,
@@ -14538,14 +14538,14 @@
       "mmlu_pro": 73.4,
       "agentic_index": 43.4,
       "coding_agent_index": null,
-      "gdpval": 626.8
+      "gdpval": 626.6
     },
     "pricing": {
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 35.1,
-    "median_time_to_first_token_seconds": 50.44,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 194
   },
@@ -14581,7 +14581,7 @@
       "agents": 16.7,
       "data-analysis": null,
       "cheap": 1.56,
-      "fast": 99.1,
+      "fast": null,
       "frontier": null,
       "vision": 64.9,
       "audio": null,
@@ -14619,8 +14619,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 99.1,
-    "median_time_to_first_token_seconds": 0.54,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 2000000,
     "rank": 195
   },
@@ -14806,7 +14806,7 @@
       "agents": 46.2,
       "data-analysis": null,
       "cheap": 3.38,
-      "fast": 170,
+      "fast": null,
       "frontier": null,
       "vision": 80.1,
       "audio": null,
@@ -14844,8 +14844,8 @@
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 9
     },
-    "median_output_tokens_per_second": 170,
-    "median_time_to_first_token_seconds": 0.8,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 198
   },
@@ -14956,7 +14956,7 @@
       "agents": 15.2,
       "data-analysis": null,
       "cheap": 1.93,
-      "fast": 148.1,
+      "fast": null,
       "frontier": null,
       "vision": 69.2,
       "audio": null,
@@ -14994,8 +14994,8 @@
       "price_1m_input_tokens": 1.1,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 148.1,
-    "median_time_to_first_token_seconds": 21.91,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 200
   },
@@ -15084,9 +15084,9 @@
       "name": "Anthropic",
       "slug": "anthropic"
     },
-    "rating": 1338,
-    "arena_elo": 1338,
-    "final_score": 61.5,
+    "rating": 1041,
+    "arena_elo": 1041,
+    "final_score": 7.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -15094,21 +15094,21 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": null,
+      "overall": 7.4,
       "coding": 61.5,
       "math": 83.7,
       "reasoning": 67.2,
       "research": 10.4,
       "instruction": 54.3,
-      "writing": null,
+      "writing": 7.4,
       "knowledge": 58.6,
       "multilingual": 54.7,
       "agents": 44.2,
       "data-analysis": 9.3,
       "cheap": 2,
-      "fast": 92.5,
+      "fast": null,
       "frontier": null,
-      "vision": 58.6,
+      "vision": 7.4,
       "audio": null,
       "open-weights": null,
       "long-context": 200000,
@@ -15117,7 +15117,7 @@
       "medical": 58.6,
       "finance": 83.7,
       "scientific": 83.7,
-      "creative-writing": null,
+      "creative-writing": 7.4,
       "roleplay": 54.3,
       "translation": 54.7,
       "summarization": 10.4,
@@ -15126,7 +15126,7 @@
       "function-calling": 44.2
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": null,
+      "artificial_analysis_intelligence_index": 7.4,
       "artificial_analysis_coding_index": 61.5,
       "artificial_analysis_math_index": 83.7,
       "gpqa": 67.2,
@@ -15138,14 +15138,14 @@
       "mmlu_pro": 58.6,
       "agentic_index": 44.2,
       "coding_agent_index": null,
-      "gdpval": 739.8
+      "gdpval": 739.3
     },
     "pricing": {
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 5
     },
-    "median_output_tokens_per_second": 92.5,
-    "median_time_to_first_token_seconds": 19.89,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 202
   },
@@ -15181,7 +15181,7 @@
       "agents": 28.5,
       "data-analysis": 9.7,
       "cheap": 3.44,
-      "fast": 109,
+      "fast": null,
       "frontier": null,
       "vision": 74.9,
       "audio": null,
@@ -15213,14 +15213,14 @@
       "mmlu_pro": 74.9,
       "agentic_index": 28.5,
       "coding_agent_index": null,
-      "gdpval": 463.1
+      "gdpval": 462.7
     },
     "pricing": {
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 109,
-    "median_time_to_first_token_seconds": 26.41,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 203
   },
@@ -15406,7 +15406,7 @@
       "agents": 12,
       "data-analysis": 7.8,
       "cheap": 0.75,
-      "fast": 44.2,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -15438,14 +15438,14 @@
       "mmlu_pro": null,
       "agentic_index": 12,
       "coding_agent_index": null,
-      "gdpval": 320.8
+      "gdpval": 320.5
     },
     "pricing": {
       "price_1m_input_tokens": 0.23,
       "price_1m_output_tokens": 2.3
     },
-    "median_output_tokens_per_second": 44.2,
-    "median_time_to_first_token_seconds": 0.87,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 206
   },
@@ -15481,7 +15481,7 @@
       "agents": 10.1,
       "data-analysis": 5.4,
       "cheap": 0.7,
-      "fast": 161.6,
+      "fast": null,
       "frontier": null,
       "vision": 58.7,
       "audio": null,
@@ -15519,8 +15519,8 @@
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 1.6
     },
-    "median_output_tokens_per_second": 161.6,
-    "median_time_to_first_token_seconds": 0.85,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 207
   },
@@ -15556,7 +15556,7 @@
       "agents": 33.3,
       "data-analysis": null,
       "cheap": 0.46,
-      "fast": 163.5,
+      "fast": null,
       "frontier": null,
       "vision": 59.5,
       "audio": null,
@@ -15594,8 +15594,8 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 1.25
     },
-    "median_output_tokens_per_second": 163.5,
-    "median_time_to_first_token_seconds": 5.07,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 208
   },
@@ -15781,7 +15781,7 @@
       "agents": 4.5,
       "data-analysis": null,
       "cheap": 0.13,
-      "fast": 139.8,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -15819,8 +15819,8 @@
       "price_1m_input_tokens": 0.07,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 139.8,
-    "median_time_to_first_token_seconds": 14.77,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 131072,
     "rank": 211
   },
@@ -16081,7 +16081,7 @@
       "agents": 6.8,
       "data-analysis": null,
       "cheap": 0.3,
-      "fast": 38.3,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -16119,8 +16119,8 @@
       "price_1m_input_tokens": 0.21,
       "price_1m_output_tokens": 0.57
     },
-    "median_output_tokens_per_second": 38.3,
-    "median_time_to_first_token_seconds": 2.93,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 512000,
     "rank": 215
   },
@@ -16231,7 +16231,7 @@
       "agents": 11.4,
       "data-analysis": null,
       "cheap": 6,
-      "fast": 76,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -16269,8 +16269,8 @@
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 76,
-    "median_time_to_first_token_seconds": 1.73,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 217
   },
@@ -16456,7 +16456,7 @@
       "agents": 13.9,
       "data-analysis": 4.7,
       "cheap": 0.41,
-      "fast": 138.7,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -16488,14 +16488,14 @@
       "mmlu_pro": null,
       "agentic_index": 13.9,
       "coding_agent_index": null,
-      "gdpval": 76.8
+      "gdpval": 76.5
     },
     "pricing": {
       "price_1m_input_tokens": 0.24,
       "price_1m_output_tokens": 0.9
     },
-    "median_output_tokens_per_second": 138.7,
-    "median_time_to_first_token_seconds": 0.72,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 220
   },
@@ -16531,7 +16531,7 @@
       "agents": 13.6,
       "data-analysis": null,
       "cheap": 3.5,
-      "fast": 165.1,
+      "fast": null,
       "frontier": null,
       "vision": 61.2,
       "audio": null,
@@ -16569,8 +16569,8 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 8
     },
-    "median_output_tokens_per_second": 165.1,
-    "median_time_to_first_token_seconds": 0.97,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 221
   },
@@ -16606,7 +16606,7 @@
       "agents": 1.5,
       "data-analysis": null,
       "cheap": 0.07,
-      "fast": 180,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -16644,8 +16644,8 @@
       "price_1m_input_tokens": 0.042,
       "price_1m_output_tokens": 0.17
     },
-    "median_output_tokens_per_second": 180,
-    "median_time_to_first_token_seconds": 12.02,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 222
   },
@@ -16681,7 +16681,7 @@
       "agents": 20.5,
       "data-analysis": null,
       "cheap": 0.37,
-      "fast": 76.5,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -16719,8 +16719,8 @@
       "price_1m_input_tokens": 0.17,
       "price_1m_output_tokens": 0.98
     },
-    "median_output_tokens_per_second": 76.5,
-    "median_time_to_first_token_seconds": 2.42,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 223
   },
@@ -16756,7 +16756,7 @@
       "agents": 22.7,
       "data-analysis": null,
       "cheap": 3.44,
-      "fast": 79.6,
+      "fast": null,
       "frontier": null,
       "vision": 62.4,
       "audio": null,
@@ -16794,8 +16794,8 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 79.6,
-    "median_time_to_first_token_seconds": 1.34,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 224
   },
@@ -16831,7 +16831,7 @@
       "agents": 31.8,
       "data-analysis": 11.1,
       "cheap": 4.81,
-      "fast": 64.6,
+      "fast": null,
       "frontier": null,
       "vision": 65.8,
       "audio": null,
@@ -16869,8 +16869,8 @@
       "price_1m_input_tokens": 1.75,
       "price_1m_output_tokens": 14
     },
-    "median_output_tokens_per_second": 64.6,
-    "median_time_to_first_token_seconds": 0.87,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 225
   },
@@ -17205,8 +17205,8 @@
       "multilingual": 45.3,
       "agents": 6.7,
       "data-analysis": 236.9,
-      "cheap": 0.6,
-      "fast": 231.1,
+      "cheap": null,
+      "fast": null,
       "frontier": null,
       "vision": 53.2,
       "audio": null,
@@ -17241,11 +17241,11 @@
       "gdpval": 236.9
     },
     "pricing": {
-      "price_1m_input_tokens": 0.5,
-      "price_1m_output_tokens": 0.9
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
     },
-    "median_output_tokens_per_second": 231.1,
-    "median_time_to_first_token_seconds": 9.14,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 230
   },
@@ -17356,7 +17356,7 @@
       "agents": 13.9,
       "data-analysis": 2.9,
       "cheap": 0.24,
-      "fast": 247.7,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -17394,8 +17394,8 @@
       "price_1m_input_tokens": 0.125,
       "price_1m_output_tokens": 0.595
     },
-    "median_output_tokens_per_second": 247.7,
-    "median_time_to_first_token_seconds": 8.57,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 131072,
     "rank": 232
   },
@@ -17505,8 +17505,8 @@
       "multilingual": 43.6,
       "agents": 39,
       "data-analysis": 12,
-      "cheap": 0.16,
-      "fast": 100.6,
+      "cheap": 0.15,
+      "fast": null,
       "frontier": null,
       "vision": 69.2,
       "audio": null,
@@ -17538,14 +17538,14 @@
       "mmlu_pro": 69.2,
       "agentic_index": 39,
       "coding_agent_index": null,
-      "gdpval": 572.9
+      "gdpval": 572.5
     },
     "pricing": {
-      "price_1m_input_tokens": 0.1,
-      "price_1m_output_tokens": 0.34
+      "price_1m_input_tokens": 0.09,
+      "price_1m_output_tokens": 0.32
     },
-    "median_output_tokens_per_second": 100.6,
-    "median_time_to_first_token_seconds": 20.5,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 234
   },
@@ -17581,7 +17581,7 @@
       "agents": 18.9,
       "data-analysis": null,
       "cheap": 0.63,
-      "fast": 71.1,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -17619,8 +17619,8 @@
       "price_1m_input_tokens": 0.375,
       "price_1m_output_tokens": 1.4
     },
-    "median_output_tokens_per_second": 71.1,
-    "median_time_to_first_token_seconds": 1.1,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 235
   },
@@ -17731,7 +17731,7 @@
       "agents": 31.8,
       "data-analysis": null,
       "cheap": 1.13,
-      "fast": 187,
+      "fast": null,
       "frontier": null,
       "vision": 78.6,
       "audio": null,
@@ -17769,8 +17769,8 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 187,
-    "median_time_to_first_token_seconds": 0.9,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 237
   },
@@ -18181,7 +18181,7 @@
       "agents": 21,
       "data-analysis": 4.9,
       "cheap": 0.26,
-      "fast": 169.5,
+      "fast": null,
       "frontier": null,
       "vision": 4.3,
       "audio": null,
@@ -18213,14 +18213,14 @@
       "mmlu_pro": 56.8,
       "agentic_index": 21,
       "coding_agent_index": null,
-      "gdpval": 369.7
+      "gdpval": 369.4
     },
     "pricing": {
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 169.5,
-    "median_time_to_first_token_seconds": 12.44,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 243
   },
@@ -18256,7 +18256,7 @@
       "agents": 6.7,
       "data-analysis": 6,
       "cheap": 0.09,
-      "fast": 238.8,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -18288,14 +18288,14 @@
       "mmlu_pro": null,
       "agentic_index": 6.7,
       "coding_agent_index": null,
-      "gdpval": 262.3
+      "gdpval": 262
     },
     "pricing": {
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 238.8,
-    "median_time_to_first_token_seconds": 8.76,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 244
   },
@@ -18363,7 +18363,7 @@
       "mmlu_pro": 54.2,
       "agentic_index": 13.9,
       "coding_agent_index": null,
-      "gdpval": 392.7
+      "gdpval": 392.3
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -18405,8 +18405,8 @@
       "multilingual": 40.4,
       "agents": 25,
       "data-analysis": null,
-      "cheap": 0.19,
-      "fast": 115.1,
+      "cheap": 0.2,
+      "fast": null,
       "frontier": null,
       "vision": 66.7,
       "audio": null,
@@ -18441,11 +18441,11 @@
       "gdpval": null
     },
     "pricing": {
-      "price_1m_input_tokens": 0.115,
+      "price_1m_input_tokens": 0.13,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 115.1,
-    "median_time_to_first_token_seconds": 0.53,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 246
   },
@@ -18930,8 +18930,8 @@
       "multilingual": 37.4,
       "agents": 25,
       "data-analysis": null,
-      "cheap": 0.86,
-      "fast": 119,
+      "cheap": 0.65,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -18966,11 +18966,11 @@
       "gdpval": null
     },
     "pricing": {
-      "price_1m_input_tokens": 0.58,
-      "price_1m_output_tokens": 1.68
+      "price_1m_input_tokens": 0.425,
+      "price_1m_output_tokens": 1.3399999999999999
     },
-    "median_output_tokens_per_second": 119,
-    "median_time_to_first_token_seconds": 3.07,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 253
   },
@@ -18984,9 +18984,9 @@
       "name": "Cohere",
       "slug": "cohere"
     },
-    "rating": 1196,
-    "arena_elo": 1196,
-    "final_score": 35.6,
+    "rating": 1019,
+    "arena_elo": 1019,
+    "final_score": 3.4,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -18994,30 +18994,30 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": null,
-      "coding": 35.6,
+      "overall": 3.4,
+      "coding": 0.2,
       "math": 38.8,
       "reasoning": 75.7,
       "research": 11.1,
       "instruction": 57.6,
-      "writing": null,
+      "writing": 3.4,
       "knowledge": null,
       "multilingual": 37.4,
       "agents": 35.6,
       "data-analysis": 6.4,
       "cheap": null,
-      "fast": 79.5,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
-      "open-weights": null,
+      "open-weights": 3.4,
       "long-context": 256000,
       "enterprise": 6.4,
       "legal": 75.7,
       "medical": 75.7,
       "finance": 38.8,
       "scientific": 38.8,
-      "creative-writing": null,
+      "creative-writing": 3.4,
       "roleplay": 57.6,
       "translation": 37.4,
       "summarization": 11.1,
@@ -19026,7 +19026,7 @@
       "function-calling": 35.6
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": null,
+      "artificial_analysis_intelligence_index": 3.4,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 75.7,
@@ -19038,14 +19038,14 @@
       "mmlu_pro": null,
       "agentic_index": 35.6,
       "coding_agent_index": null,
-      "gdpval": 318.6
+      "gdpval": 318.3
     },
     "pricing": {
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 79.5,
-    "median_time_to_first_token_seconds": 25.4,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 254
   },
@@ -19081,7 +19081,7 @@
       "agents": 31.8,
       "data-analysis": null,
       "cheap": 0.45,
-      "fast": 57.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -19119,8 +19119,8 @@
       "price_1m_input_tokens": 0.27,
       "price_1m_output_tokens": 1
     },
-    "median_output_tokens_per_second": 57.4,
-    "median_time_to_first_token_seconds": 0.81,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 255
   },
@@ -19188,7 +19188,7 @@
       "mmlu_pro": null,
       "agentic_index": 44.9,
       "coding_agent_index": null,
-      "gdpval": 717.7
+      "gdpval": 717.5
     },
     "pricing": {
       "price_1m_input_tokens": 1.635,
@@ -19306,7 +19306,7 @@
       "agents": 15.9,
       "data-analysis": null,
       "cheap": 2.08,
-      "fast": 27.6,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -19344,8 +19344,8 @@
       "price_1m_input_tokens": 1.85,
       "price_1m_output_tokens": 2.75
     },
-    "median_output_tokens_per_second": 27.6,
-    "median_time_to_first_token_seconds": 1.33,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 258
   },
@@ -19381,7 +19381,7 @@
       "agents": 12.1,
       "data-analysis": null,
       "cheap": 0.14,
-      "fast": 144.3,
+      "fast": null,
       "frontier": null,
       "vision": 61,
       "audio": null,
@@ -19419,8 +19419,8 @@
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 144.3,
-    "median_time_to_first_token_seconds": 76.77,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 259
   },
@@ -19456,7 +19456,7 @@
       "agents": 34.1,
       "data-analysis": null,
       "cheap": 1.69,
-      "fast": 208.4,
+      "fast": null,
       "frontier": null,
       "vision": 71.2,
       "audio": null,
@@ -19494,8 +19494,8 @@
       "price_1m_input_tokens": 0.75,
       "price_1m_output_tokens": 4.5
     },
-    "median_output_tokens_per_second": 208.4,
-    "median_time_to_first_token_seconds": 4.44,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 260
   },
@@ -19604,18 +19604,18 @@
       "knowledge": 69.7,
       "multilingual": 36.3,
       "agents": 27.3,
-      "data-analysis": 434.8,
-      "cheap": 0.15,
-      "fast": 139.5,
+      "data-analysis": 434.6,
+      "cheap": null,
+      "fast": null,
       "frontier": null,
       "vision": 69.7,
       "audio": null,
       "open-weights": null,
       "long-context": 262144,
-      "enterprise": 434.8,
+      "enterprise": 434.6,
       "legal": 75.3,
       "medical": 69.7,
-      "finance": 434.8,
+      "finance": 434.6,
       "scientific": 75.3,
       "creative-writing": null,
       "roleplay": 73.5,
@@ -19638,14 +19638,14 @@
       "mmlu_pro": 69.7,
       "agentic_index": 27.3,
       "coding_agent_index": null,
-      "gdpval": 434.8
+      "gdpval": 434.6
     },
     "pricing": {
-      "price_1m_input_tokens": 0.1,
-      "price_1m_output_tokens": 0.3
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
     },
-    "median_output_tokens_per_second": 139.5,
-    "median_time_to_first_token_seconds": 15.51,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 262
   },
@@ -19681,7 +19681,7 @@
       "agents": 37.9,
       "data-analysis": null,
       "cheap": 5.63,
-      "fast": 63.9,
+      "fast": null,
       "frontier": null,
       "vision": 70.6,
       "audio": null,
@@ -19719,8 +19719,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 63.9,
-    "median_time_to_first_token_seconds": 1.02,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1050000,
     "rank": 263
   },
@@ -19756,7 +19756,7 @@
       "agents": 6.8,
       "data-analysis": null,
       "cheap": 0.51,
-      "fast": 41.9,
+      "fast": null,
       "frontier": null,
       "vision": 67.6,
       "audio": null,
@@ -19794,8 +19794,8 @@
       "price_1m_input_tokens": 0.215,
       "price_1m_output_tokens": 1.39
     },
-    "median_output_tokens_per_second": 41.9,
-    "median_time_to_first_token_seconds": 1.1,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 264
   },
@@ -19830,8 +19830,8 @@
       "multilingual": 34.8,
       "agents": 24.2,
       "data-analysis": null,
-      "cheap": 0.84,
-      "fast": 101.8,
+      "cheap": 0.8,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -19866,11 +19866,11 @@
       "gdpval": null
     },
     "pricing": {
-      "price_1m_input_tokens": 0.56,
-      "price_1m_output_tokens": 1.68
+      "price_1m_input_tokens": 0.53,
+      "price_1m_output_tokens": 1.5899999999999999
     },
-    "median_output_tokens_per_second": 101.8,
-    "median_time_to_first_token_seconds": 1.3,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 265
   },
@@ -19906,7 +19906,7 @@
       "agents": 24.2,
       "data-analysis": null,
       "cheap": 0.46,
-      "fast": 163.1,
+      "fast": null,
       "frontier": null,
       "vision": 43.8,
       "audio": null,
@@ -19944,8 +19944,8 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 1.25
     },
-    "median_output_tokens_per_second": 163.1,
-    "median_time_to_first_token_seconds": 0.7,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 266
   },
@@ -19981,7 +19981,7 @@
       "agents": 4.5,
       "data-analysis": null,
       "cheap": 0.48,
-      "fast": 28.2,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -20019,8 +20019,8 @@
       "price_1m_input_tokens": 0.475,
       "price_1m_output_tokens": 0.495
     },
-    "median_output_tokens_per_second": 28.2,
-    "median_time_to_first_token_seconds": 4.06,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 131072,
     "rank": 267
   },
@@ -20056,7 +20056,7 @@
       "agents": 4.9,
       "data-analysis": 5.6,
       "cheap": 0.15,
-      "fast": 86.7,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -20088,14 +20088,14 @@
       "mmlu_pro": null,
       "agentic_index": 4.9,
       "coding_agent_index": null,
-      "gdpval": -17.2
+      "gdpval": -17.6
     },
     "pricing": {
       "price_1m_input_tokens": 0.12,
       "price_1m_output_tokens": 0.24
     },
-    "median_output_tokens_per_second": 86.7,
-    "median_time_to_first_token_seconds": 0.88,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 32768,
     "rank": 268
   },
@@ -20131,7 +20131,7 @@
       "agents": 15.2,
       "data-analysis": null,
       "cheap": 0.33,
-      "fast": 236.6,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -20169,8 +20169,8 @@
       "price_1m_input_tokens": 0.19,
       "price_1m_output_tokens": 0.765
     },
-    "median_output_tokens_per_second": 236.6,
-    "median_time_to_first_token_seconds": 1.02,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 269
   },
@@ -20281,7 +20281,7 @@
       "agents": 3,
       "data-analysis": null,
       "cheap": 0.96,
-      "fast": 114.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -20319,8 +20319,8 @@
       "price_1m_input_tokens": 0.55,
       "price_1m_output_tokens": 2.2
     },
-    "median_output_tokens_per_second": 114.9,
-    "median_time_to_first_token_seconds": 1.57,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 271
   },
@@ -20505,8 +20505,8 @@
       "multilingual": 33.3,
       "agents": 15.2,
       "data-analysis": null,
-      "cheap": 0.37,
-      "fast": 50.1,
+      "cheap": 0.39,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -20541,11 +20541,11 @@
       "gdpval": null
     },
     "pricing": {
-      "price_1m_input_tokens": 0.21000000000000002,
-      "price_1m_output_tokens": 0.8400000000000001
+      "price_1m_input_tokens": 0.22,
+      "price_1m_output_tokens": 0.88
     },
-    "median_output_tokens_per_second": 50.1,
-    "median_time_to_first_token_seconds": 1.22,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 274
   },
@@ -20881,7 +20881,7 @@
       "agents": 27.3,
       "data-analysis": null,
       "cheap": 2,
-      "fast": 81.5,
+      "fast": null,
       "frontier": null,
       "vision": 55.1,
       "audio": null,
@@ -20919,8 +20919,8 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 5
     },
-    "median_output_tokens_per_second": 81.5,
-    "median_time_to_first_token_seconds": 0.58,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 279
   },
@@ -20956,7 +20956,7 @@
       "agents": 5.3,
       "data-analysis": null,
       "cheap": 0.15,
-      "fast": 87.3,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -20994,8 +20994,8 @@
       "price_1m_input_tokens": 0.12,
       "price_1m_output_tokens": 0.24
     },
-    "median_output_tokens_per_second": 87.3,
-    "median_time_to_first_token_seconds": 0.85,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 32768,
     "rank": 280
   },
@@ -21030,8 +21030,8 @@
       "multilingual": 31.9,
       "agents": 11.4,
       "data-analysis": null,
-      "cheap": 0.15,
-      "fast": 148.9,
+      "cheap": null,
+      "fast": null,
       "frontier": null,
       "vision": 62,
       "audio": null,
@@ -21066,11 +21066,11 @@
       "gdpval": null
     },
     "pricing": {
-      "price_1m_input_tokens": 0.1,
-      "price_1m_output_tokens": 0.3
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
     },
-    "median_output_tokens_per_second": 148.9,
-    "median_time_to_first_token_seconds": 1.27,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 281
   },
@@ -21106,7 +21106,7 @@
       "agents": 14.4,
       "data-analysis": null,
       "cheap": 0.69,
-      "fast": 96.7,
+      "fast": null,
       "frontier": null,
       "vision": 58.4,
       "audio": null,
@@ -21144,8 +21144,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 2
     },
-    "median_output_tokens_per_second": 96.7,
-    "median_time_to_first_token_seconds": 1.07,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 282
   },
@@ -21331,7 +21331,7 @@
       "agents": 13.6,
       "data-analysis": null,
       "cheap": 0.85,
-      "fast": 208.2,
+      "fast": null,
       "frontier": null,
       "vision": 69.1,
       "audio": null,
@@ -21369,8 +21369,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 208.2,
-    "median_time_to_first_token_seconds": 14.26,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 285
   },
@@ -21406,7 +21406,7 @@
       "agents": 14.4,
       "data-analysis": null,
       "cheap": 0.45,
-      "fast": 80.6,
+      "fast": null,
       "frontier": null,
       "vision": 48.6,
       "audio": null,
@@ -21444,8 +21444,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 0.9
     },
-    "median_output_tokens_per_second": 80.6,
-    "median_time_to_first_token_seconds": 3.96,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 286
   },
@@ -21556,7 +21556,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.26,
-      "fast": 55.2,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -21594,8 +21594,8 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 55.2,
-    "median_time_to_first_token_seconds": 1.32,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 32768,
     "rank": 288
   },
@@ -21609,9 +21609,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1171,
-    "arena_elo": 1171,
-    "final_score": 31.1,
+    "rating": 1034,
+    "arena_elo": 1034,
+    "final_score": 6.2,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -21619,22 +21619,22 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": null,
-      "coding": 31.1,
+      "overall": 6.2,
+      "coding": 0.6,
       "math": 43.4,
       "reasoning": 82.2,
       "research": 17.2,
       "instruction": 77.2,
-      "writing": null,
+      "writing": 6.2,
       "knowledge": 75.5,
       "multilingual": 31.3,
       "agents": 31.1,
       "data-analysis": 9.7,
       "cheap": 0.56,
-      "fast": 326.8,
+      "fast": null,
       "frontier": null,
-      "vision": 75.5,
-      "audio": null,
+      "vision": 6.2,
+      "audio": 6.2,
       "open-weights": null,
       "long-context": 1000000,
       "enterprise": 9.7,
@@ -21642,7 +21642,7 @@
       "medical": 75.5,
       "finance": 43.4,
       "scientific": 43.4,
-      "creative-writing": null,
+      "creative-writing": 6.2,
       "roleplay": 77.2,
       "translation": 31.3,
       "summarization": 17.2,
@@ -21651,7 +21651,7 @@
       "function-calling": 31.1
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": null,
+      "artificial_analysis_intelligence_index": 6.2,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 82.2,
@@ -21663,14 +21663,14 @@
       "mmlu_pro": 75.5,
       "agentic_index": 31.1,
       "coding_agent_index": null,
-      "gdpval": 437.9
+      "gdpval": 437.7
     },
     "pricing": {
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 1.5
     },
-    "median_output_tokens_per_second": 326.8,
-    "median_time_to_first_token_seconds": 4.75,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 289
   },
@@ -21706,7 +21706,7 @@
       "agents": 4.5,
       "data-analysis": 5.2,
       "cheap": 1.93,
-      "fast": 237.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -21738,14 +21738,14 @@
       "mmlu_pro": null,
       "agentic_index": 4.5,
       "coding_agent_index": null,
-      "gdpval": 237.5
+      "gdpval": 237.2
     },
     "pricing": {
       "price_1m_input_tokens": 1.1,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 237.9,
-    "median_time_to_first_token_seconds": 18.19,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 290
   },
@@ -21781,7 +21781,7 @@
       "agents": 5.6,
       "data-analysis": 2.9,
       "cheap": 0.26,
-      "fast": 107.2,
+      "fast": null,
       "frontier": null,
       "vision": 41.5,
       "audio": null,
@@ -21819,8 +21819,8 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 107.2,
-    "median_time_to_first_token_seconds": 1.19,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 291
   },
@@ -21931,7 +21931,7 @@
       "agents": 3,
       "data-analysis": null,
       "cheap": 0.45,
-      "fast": 96.1,
+      "fast": null,
       "frontier": null,
       "vision": 42.2,
       "audio": null,
@@ -21969,8 +21969,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 0.9
     },
-    "median_output_tokens_per_second": 96.1,
-    "median_time_to_first_token_seconds": 3.46,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 293
   },
@@ -22156,7 +22156,7 @@
       "agents": 17.4,
       "data-analysis": null,
       "cheap": 0.14,
-      "fast": 138.3,
+      "fast": null,
       "frontier": null,
       "vision": 58.2,
       "audio": null,
@@ -22194,8 +22194,8 @@
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 138.3,
-    "median_time_to_first_token_seconds": 40.79,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 296
   },
@@ -22231,7 +22231,7 @@
       "agents": 0,
       "data-analysis": null,
       "cheap": 0.13,
-      "fast": 90.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -22269,8 +22269,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 90.9,
-    "median_time_to_first_token_seconds": 22.83,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 297
   },
@@ -22306,7 +22306,7 @@
       "agents": 5.2,
       "data-analysis": 5.4,
       "cheap": 0.32,
-      "fast": 25.5,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -22338,14 +22338,14 @@
       "mmlu_pro": null,
       "agentic_index": 5.2,
       "coding_agent_index": null,
-      "gdpval": 40.8
+      "gdpval": 40.5
     },
     "pricing": {
       "price_1m_input_tokens": 0.24000000000000002,
       "price_1m_output_tokens": 0.54
     },
-    "median_output_tokens_per_second": 25.5,
-    "median_time_to_first_token_seconds": 1.4,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 32768,
     "rank": 298
   },
@@ -22456,7 +22456,7 @@
       "agents": 5.6,
       "data-analysis": 6.2,
       "cheap": 0.11,
-      "fast": 50.9,
+      "fast": null,
       "frontier": null,
       "vision": 48,
       "audio": null,
@@ -22488,14 +22488,14 @@
       "mmlu_pro": 48,
       "agentic_index": 5.6,
       "coding_agent_index": null,
-      "gdpval": -187.8
+      "gdpval": -188.1
     },
     "pricing": {
       "price_1m_input_tokens": 0.075,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 50.9,
-    "median_time_to_first_token_seconds": 1.02,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 300
   },
@@ -22681,7 +22681,7 @@
       "agents": 8.3,
       "data-analysis": null,
       "cheap": 4.38,
-      "fast": 140.9,
+      "fast": null,
       "frontier": null,
       "vision": 56.3,
       "audio": null,
@@ -22719,8 +22719,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 140.9,
-    "median_time_to_first_token_seconds": 1.06,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 303
   },
@@ -22756,7 +22756,7 @@
       "agents": 6.8,
       "data-analysis": null,
       "cheap": 1.93,
-      "fast": 225.3,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -22794,8 +22794,8 @@
       "price_1m_input_tokens": 1.1,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 225.3,
-    "median_time_to_first_token_seconds": 7.39,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 200000,
     "rank": 304
   },
@@ -23129,7 +23129,7 @@
       "knowledge": null,
       "multilingual": 28.1,
       "agents": 3.7,
-      "data-analysis": -51.3,
+      "data-analysis": -51.6,
       "cheap": null,
       "fast": null,
       "frontier": null,
@@ -23137,7 +23137,7 @@
       "audio": null,
       "open-weights": 1.8,
       "long-context": 262000,
-      "enterprise": -51.3,
+      "enterprise": -51.6,
       "legal": 51.3,
       "medical": 51.3,
       "finance": 16.1,
@@ -23163,7 +23163,7 @@
       "mmlu_pro": null,
       "agentic_index": 3.7,
       "coding_agent_index": null,
-      "gdpval": -51.3
+      "gdpval": -51.6
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -23238,7 +23238,7 @@
       "mmlu_pro": null,
       "agentic_index": 1.5,
       "coding_agent_index": null,
-      "gdpval": 75
+      "gdpval": 74.8
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -23581,7 +23581,7 @@
       "agents": 4.5,
       "data-analysis": 4.5,
       "cheap": 0.75,
-      "fast": 109.9,
+      "fast": null,
       "frontier": null,
       "vision": 55.5,
       "audio": null,
@@ -23619,8 +23619,8 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 1.5
     },
-    "median_output_tokens_per_second": 109.9,
-    "median_time_to_first_token_seconds": 18.87,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 315
   },
@@ -23688,7 +23688,7 @@
       "mmlu_pro": null,
       "agentic_index": 2.2,
       "coding_agent_index": null,
-      "gdpval": -41.1
+      "gdpval": -41.4
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -23731,7 +23731,7 @@
       "agents": 9.7,
       "data-analysis": 6.6,
       "cheap": 0.2,
-      "fast": 57.1,
+      "fast": null,
       "frontier": null,
       "vision": 49.8,
       "audio": null,
@@ -23763,14 +23763,14 @@
       "mmlu_pro": 49.8,
       "agentic_index": 9.7,
       "coding_agent_index": null,
-      "gdpval": 254.8
+      "gdpval": 254.5
     },
     "pricing": {
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 57.1,
-    "median_time_to_first_token_seconds": 0.68,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 317
   },
@@ -24031,7 +24031,7 @@
       "agents": 9.8,
       "data-analysis": null,
       "cheap": 1.5,
-      "fast": 36.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -24069,8 +24069,8 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 36.4,
-    "median_time_to_first_token_seconds": 0.7,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 321
   },
@@ -24181,7 +24181,7 @@
       "agents": 4.9,
       "data-analysis": -166.5,
       "cheap": 0.63,
-      "fast": 96.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -24219,8 +24219,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 0.71
     },
-    "median_output_tokens_per_second": 96.9,
-    "median_time_to_first_token_seconds": 0.65,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 323
   },
@@ -24331,7 +24331,7 @@
       "agents": 4.1,
       "data-analysis": 3.7,
       "cheap": 0.15,
-      "fast": 99,
+      "fast": null,
       "frontier": null,
       "vision": 46,
       "audio": null,
@@ -24363,14 +24363,14 @@
       "mmlu_pro": 46,
       "agentic_index": 4.1,
       "coding_agent_index": null,
-      "gdpval": 221.1
+      "gdpval": 220.8
     },
     "pricing": {
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.15
     },
-    "median_output_tokens_per_second": 99,
-    "median_time_to_first_token_seconds": 0.49,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 325
   },
@@ -24556,7 +24556,7 @@
       "agents": 7.6,
       "data-analysis": null,
       "cheap": 0.04,
-      "fast": 38.2,
+      "fast": null,
       "frontier": null,
       "vision": 51.2,
       "audio": null,
@@ -24594,8 +24594,8 @@
       "price_1m_input_tokens": 0.02,
       "price_1m_output_tokens": 0.1
     },
-    "median_output_tokens_per_second": 38.2,
-    "median_time_to_first_token_seconds": 0.46,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 328
   },
@@ -24706,7 +24706,7 @@
       "agents": 2.3,
       "data-analysis": null,
       "cheap": 0.24,
-      "fast": 118.1,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -24744,8 +24744,8 @@
       "price_1m_input_tokens": 0.135,
       "price_1m_output_tokens": 0.55
     },
-    "median_output_tokens_per_second": 118.1,
-    "median_time_to_first_token_seconds": 0.58,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 32768,
     "rank": 330
   },
@@ -24781,7 +24781,7 @@
       "agents": 6.8,
       "data-analysis": null,
       "cheap": 0.14,
-      "fast": 141.8,
+      "fast": null,
       "frontier": null,
       "vision": 31.8,
       "audio": null,
@@ -24819,8 +24819,8 @@
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 141.8,
-    "median_time_to_first_token_seconds": 0.92,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 331
   },
@@ -24854,7 +24854,7 @@
       "knowledge": null,
       "multilingual": 25.4,
       "agents": 15,
-      "data-analysis": 137.2,
+      "data-analysis": 136.9,
       "cheap": null,
       "fast": null,
       "frontier": null,
@@ -24862,10 +24862,10 @@
       "audio": null,
       "open-weights": null,
       "long-context": 262144,
-      "enterprise": 137.2,
+      "enterprise": 136.9,
       "legal": 71.3,
       "medical": 71.3,
-      "finance": 137.2,
+      "finance": 136.9,
       "scientific": 71.3,
       "creative-writing": null,
       "roleplay": 62.8,
@@ -24888,7 +24888,7 @@
       "mmlu_pro": null,
       "agentic_index": 15,
       "coding_agent_index": null,
-      "gdpval": 137.2
+      "gdpval": 136.9
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -24931,7 +24931,7 @@
       "agents": 12.1,
       "data-analysis": -349.4,
       "cheap": 0.09,
-      "fast": 259,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -24969,8 +24969,8 @@
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 259,
-    "median_time_to_first_token_seconds": 0.32,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 333
   },
@@ -25081,7 +25081,7 @@
       "agents": 8.3,
       "data-analysis": -9.2,
       "cheap": 4.38,
-      "fast": 165,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -25119,8 +25119,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 165,
-    "median_time_to_first_token_seconds": 1.04,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 335
   },
@@ -25231,7 +25231,7 @@
       "agents": 26.2,
       "data-analysis": 7.4,
       "cheap": 0.09,
-      "fast": 43.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -25263,14 +25263,14 @@
       "mmlu_pro": null,
       "agentic_index": 26.2,
       "coding_agent_index": null,
-      "gdpval": 384.1
+      "gdpval": 383.8
     },
     "pricing": {
       "price_1m_input_tokens": 0.08,
       "price_1m_output_tokens": 0.135
     },
-    "median_output_tokens_per_second": 43.9,
-    "median_time_to_first_token_seconds": 1.02,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 337
   },
@@ -25338,7 +25338,7 @@
       "mmlu_pro": null,
       "agentic_index": 30.3,
       "coding_agent_index": null,
-      "gdpval": 551.8
+      "gdpval": 551.5
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -25456,7 +25456,7 @@
       "agents": 0,
       "data-analysis": 4.7,
       "cheap": 0.1,
-      "fast": 202.4,
+      "fast": null,
       "frontier": null,
       "vision": 38.1,
       "audio": null,
@@ -25488,14 +25488,14 @@
       "mmlu_pro": 38.1,
       "agentic_index": 0,
       "coding_agent_index": null,
-      "gdpval": 36.7
+      "gdpval": 36.4
     },
     "pricing": {
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.1
     },
-    "median_output_tokens_per_second": 202.4,
-    "median_time_to_first_token_seconds": 0.45,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 340
   },
@@ -25756,7 +25756,7 @@
       "agents": 12,
       "data-analysis": 5.8,
       "cheap": 0.75,
-      "fast": 75.8,
+      "fast": null,
       "frontier": null,
       "vision": 55.7,
       "audio": null,
@@ -25788,14 +25788,14 @@
       "mmlu_pro": 55.7,
       "agentic_index": 12,
       "coding_agent_index": null,
-      "gdpval": 427.6
+      "gdpval": 427.3
     },
     "pricing": {
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 1.5
     },
-    "median_output_tokens_per_second": 75.8,
-    "median_time_to_first_token_seconds": 1.12,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 344
   },
@@ -25906,7 +25906,7 @@
       "agents": 3.8,
       "data-analysis": null,
       "cheap": 0.8,
-      "fast": 45.7,
+      "fast": null,
       "frontier": null,
       "vision": 53,
       "audio": null,
@@ -25944,8 +25944,8 @@
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 2
     },
-    "median_output_tokens_per_second": 45.7,
-    "median_time_to_first_token_seconds": 2.48,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 346
   },
@@ -26131,7 +26131,7 @@
       "agents": 3.8,
       "data-analysis": null,
       "cheap": 0.22,
-      "fast": 42.6,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -26169,8 +26169,8 @@
       "price_1m_input_tokens": 0.125,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 42.6,
-    "median_time_to_first_token_seconds": 0.9,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 16000,
     "rank": 349
   },
@@ -26238,7 +26238,7 @@
       "mmlu_pro": 44.6,
       "agentic_index": 29.6,
       "coding_agent_index": null,
-      "gdpval": 535.5
+      "gdpval": 535.1
     },
     "pricing": {
       "price_1m_input_tokens": null,
@@ -26281,7 +26281,7 @@
       "agents": 18.2,
       "data-analysis": 597.2,
       "cheap": 1.69,
-      "fast": 202,
+      "fast": null,
       "frontier": null,
       "vision": 60.5,
       "audio": null,
@@ -26319,8 +26319,8 @@
       "price_1m_input_tokens": 0.75,
       "price_1m_output_tokens": 4.5
     },
-    "median_output_tokens_per_second": 202,
-    "median_time_to_first_token_seconds": 0.74,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 400000,
     "rank": 351
   },
@@ -26356,7 +26356,7 @@
       "agents": 0.8,
       "data-analysis": null,
       "cheap": 0.09,
-      "fast": 170.2,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -26394,8 +26394,8 @@
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.195
     },
-    "median_output_tokens_per_second": 170.2,
-    "median_time_to_first_token_seconds": 0.69,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 131072,
     "rank": 352
   },
@@ -26731,7 +26731,7 @@
       "agents": 16.9,
       "data-analysis": 4.7,
       "cheap": 0.46,
-      "fast": 42,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -26763,14 +26763,14 @@
       "mmlu_pro": null,
       "agentic_index": 16.9,
       "coding_agent_index": null,
-      "gdpval": -21.3
+      "gdpval": -21.6
     },
     "pricing": {
       "price_1m_input_tokens": 0.32,
       "price_1m_output_tokens": 0.89
     },
-    "median_output_tokens_per_second": 42,
-    "median_time_to_first_token_seconds": 1.01,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 357
   },
@@ -26956,7 +26956,7 @@
       "agents": 5.3,
       "data-analysis": null,
       "cheap": 0.9,
-      "fast": 63.2,
+      "fast": null,
       "frontier": null,
       "vision": 50.5,
       "audio": null,
@@ -26994,8 +26994,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 1.8
     },
-    "median_output_tokens_per_second": 63.2,
-    "median_time_to_first_token_seconds": 3.32,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 64000,
     "rank": 360
   },
@@ -27256,7 +27256,7 @@
       "agents": 11.4,
       "data-analysis": null,
       "cheap": 1.5,
-      "fast": 38.6,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -27294,8 +27294,8 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 38.6,
-    "median_time_to_first_token_seconds": 52.46,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 364
   },
@@ -27331,7 +27331,7 @@
       "agents": 6.8,
       "data-analysis": null,
       "cheap": 0.22,
-      "fast": 122.5,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -27369,8 +27369,8 @@
       "price_1m_input_tokens": 0.12,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 122.5,
-    "median_time_to_first_token_seconds": 0.57,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 32768,
     "rank": 365
   },
@@ -27631,7 +27631,7 @@
       "agents": 1.5,
       "data-analysis": null,
       "cheap": 0.07,
-      "fast": 212.3,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -27669,8 +27669,8 @@
       "price_1m_input_tokens": 0.04,
       "price_1m_output_tokens": 0.16
     },
-    "median_output_tokens_per_second": 212.3,
-    "median_time_to_first_token_seconds": 9.74,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 131072,
     "rank": 369
   },
@@ -27931,7 +27931,7 @@
       "agents": 7.6,
       "data-analysis": null,
       "cheap": 0.35,
-      "fast": 131.6,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -27969,8 +27969,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 1.1
     },
-    "median_output_tokens_per_second": 131.6,
-    "median_time_to_first_token_seconds": 0.61,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 373
   },
@@ -28156,7 +28156,7 @@
       "agents": 3.8,
       "data-analysis": null,
       "cheap": 0.43,
-      "fast": 110.9,
+      "fast": null,
       "frontier": null,
       "vision": 60.2,
       "audio": null,
@@ -28194,8 +28194,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 0.97
     },
-    "median_output_tokens_per_second": 110.9,
-    "median_time_to_first_token_seconds": 18.95,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 65536,
     "rank": 376
   },
@@ -28509,9 +28509,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1010,
-    "arena_elo": 1010,
-    "final_score": 1.9,
+    "rating": 1026,
+    "arena_elo": 1026,
+    "final_score": 4.8,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis",
@@ -28519,30 +28519,30 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": null,
-      "coding": 1.9,
+      "overall": 4.8,
+      "coding": 0,
       "math": 24.4,
       "reasoning": 57.6,
       "research": 3.8,
       "instruction": 44.2,
-      "writing": null,
+      "writing": 4.8,
       "knowledge": 51.4,
       "multilingual": 20.8,
       "agents": 1.9,
-      "data-analysis": -29.4,
+      "data-analysis": -29.7,
       "cheap": 0.04,
-      "fast": 39.6,
+      "fast": null,
       "frontier": null,
-      "vision": 51.4,
-      "audio": null,
-      "open-weights": null,
+      "vision": 4.8,
+      "audio": 4.8,
+      "open-weights": 4.8,
       "long-context": 128000,
-      "enterprise": -29.4,
+      "enterprise": -29.7,
       "legal": 57.6,
       "medical": 51.4,
       "finance": 24.4,
       "scientific": 24.4,
-      "creative-writing": null,
+      "creative-writing": 4.8,
       "roleplay": 44.2,
       "translation": 20.8,
       "summarization": 3.8,
@@ -28551,7 +28551,7 @@
       "function-calling": 1.9
     },
     "evaluations": {
-      "artificial_analysis_intelligence_index": null,
+      "artificial_analysis_intelligence_index": 4.8,
       "artificial_analysis_coding_index": null,
       "artificial_analysis_math_index": null,
       "gpqa": 57.6,
@@ -28563,14 +28563,14 @@
       "mmlu_pro": 51.4,
       "agentic_index": 1.9,
       "coding_agent_index": null,
-      "gdpval": -29.4
+      "gdpval": -29.7
     },
     "pricing": {
       "price_1m_input_tokens": 0.02,
       "price_1m_output_tokens": 0.1
     },
-    "median_output_tokens_per_second": 39.6,
-    "median_time_to_first_token_seconds": 51,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 381
   },
@@ -28681,7 +28681,7 @@
       "agents": 10.6,
       "data-analysis": null,
       "cheap": 0.25,
-      "fast": 5.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -28719,8 +28719,8 @@
       "price_1m_input_tokens": 0.14,
       "price_1m_output_tokens": 0.57
     },
-    "median_output_tokens_per_second": 5.4,
-    "median_time_to_first_token_seconds": 2.48,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 383
   },
@@ -28906,7 +28906,7 @@
       "agents": 0,
       "data-analysis": null,
       "cheap": null,
-      "fast": 131.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -28944,8 +28944,8 @@
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 131.4,
-    "median_time_to_first_token_seconds": 0.18,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 8192,
     "rank": 386
   },
@@ -29356,7 +29356,7 @@
       "agents": 6.8,
       "data-analysis": null,
       "cheap": 0.9,
-      "fast": 65.1,
+      "fast": null,
       "frontier": null,
       "vision": 42.8,
       "audio": null,
@@ -29394,8 +29394,8 @@
       "price_1m_input_tokens": 0.6,
       "price_1m_output_tokens": 1.8
     },
-    "median_output_tokens_per_second": 65.1,
-    "median_time_to_first_token_seconds": 3.33,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 64000,
     "rank": 392
   },
@@ -29656,7 +29656,7 @@
       "agents": null,
       "data-analysis": null,
       "cheap": 0.06,
-      "fast": 50,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -29694,8 +29694,8 @@
       "price_1m_input_tokens": 0.05,
       "price_1m_output_tokens": 0.08
     },
-    "median_output_tokens_per_second": 50,
-    "median_time_to_first_token_seconds": 1.04,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 32000,
     "rank": 396
   },
@@ -29731,7 +29731,7 @@
       "agents": 0,
       "data-analysis": null,
       "cheap": 0.3,
-      "fast": 207.3,
+      "fast": null,
       "frontier": null,
       "vision": 44.5,
       "audio": null,
@@ -29769,8 +29769,8 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 207.3,
-    "median_time_to_first_token_seconds": 0.71,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 397
   },
@@ -29806,7 +29806,7 @@
       "agents": 2.3,
       "data-analysis": null,
       "cheap": 0.18,
-      "fast": 309.4,
+      "fast": null,
       "frontier": null,
       "vision": 54,
       "audio": null,
@@ -29844,8 +29844,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 309.4,
-    "median_time_to_first_token_seconds": 0.31,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 398
   },
@@ -30031,7 +30031,7 @@
       "agents": 6.1,
       "data-analysis": null,
       "cheap": 0.41,
-      "fast": 38.6,
+      "fast": null,
       "frontier": null,
       "vision": 62.1,
       "audio": null,
@@ -30069,8 +30069,8 @@
       "price_1m_input_tokens": 0.35,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 38.6,
-    "median_time_to_first_token_seconds": 2.43,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 401
   },
@@ -30106,7 +30106,7 @@
       "agents": 4.5,
       "data-analysis": null,
       "cheap": 0.18,
-      "fast": 339.6,
+      "fast": null,
       "frontier": null,
       "vision": 58.2,
       "audio": null,
@@ -30144,8 +30144,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 339.6,
-    "median_time_to_first_token_seconds": 12.67,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 402
   },
@@ -30181,7 +30181,7 @@
       "agents": 10.6,
       "data-analysis": null,
       "cheap": 0.26,
-      "fast": 165.5,
+      "fast": null,
       "frontier": null,
       "vision": 46.5,
       "audio": null,
@@ -30219,8 +30219,8 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 165.5,
-    "median_time_to_first_token_seconds": 0.83,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 403
   },
@@ -30255,8 +30255,8 @@
       "multilingual": 17.8,
       "agents": 7.9,
       "data-analysis": 3.7,
-      "cheap": 0.42,
-      "fast": 51.8,
+      "cheap": 0.43,
+      "fast": null,
       "frontier": null,
       "vision": 62.1,
       "audio": null,
@@ -30288,14 +30288,14 @@
       "mmlu_pro": 62.1,
       "agentic_index": 7.9,
       "coding_agent_index": null,
-      "gdpval": -267.8
+      "gdpval": -268.1
     },
     "pricing": {
       "price_1m_input_tokens": 0.25,
-      "price_1m_output_tokens": 0.9199999999999999
+      "price_1m_output_tokens": 0.97
     },
-    "median_output_tokens_per_second": 51.8,
-    "median_time_to_first_token_seconds": 0.61,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 404
   },
@@ -30406,7 +30406,7 @@
       "agents": 0.8,
       "data-analysis": null,
       "cheap": 0.11,
-      "fast": 174.8,
+      "fast": null,
       "frontier": null,
       "vision": 37.8,
       "audio": null,
@@ -30444,8 +30444,8 @@
       "price_1m_input_tokens": 0.06,
       "price_1m_output_tokens": 0.24
     },
-    "median_output_tokens_per_second": 174.8,
-    "median_time_to_first_token_seconds": 0.92,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 300000,
     "rank": 406
   },
@@ -30556,7 +30556,7 @@
       "agents": 3.7,
       "data-analysis": 3.5,
       "cheap": 0.18,
-      "fast": 277.5,
+      "fast": null,
       "frontier": null,
       "vision": 40.1,
       "audio": null,
@@ -30594,8 +30594,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.4
     },
-    "median_output_tokens_per_second": 277.5,
-    "median_time_to_first_token_seconds": 1.46,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 408
   },
@@ -30781,7 +30781,7 @@
       "agents": 1.5,
       "data-analysis": -379.6,
       "cheap": 0.04,
-      "fast": 139.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -30819,8 +30819,8 @@
       "price_1m_input_tokens": 0.035,
       "price_1m_output_tokens": 0.065
     },
-    "median_output_tokens_per_second": 139.4,
-    "median_time_to_first_token_seconds": 0.85,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 411
   },
@@ -30856,7 +30856,7 @@
       "agents": 1.5,
       "data-analysis": null,
       "cheap": 0.43,
-      "fast": 108.3,
+      "fast": null,
       "frontier": null,
       "vision": 55.5,
       "audio": null,
@@ -30894,8 +30894,8 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 0.97
     },
-    "median_output_tokens_per_second": 108.3,
-    "median_time_to_first_token_seconds": 0.86,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 65536,
     "rank": 412
   },
@@ -31156,7 +31156,7 @@
       "agents": 3.7,
       "data-analysis": 3.3,
       "cheap": 0.3,
-      "fast": 135.2,
+      "fast": null,
       "frontier": null,
       "vision": 52.9,
       "audio": null,
@@ -31188,14 +31188,14 @@
       "mmlu_pro": 52.9,
       "agentic_index": 3.7,
       "coding_agent_index": null,
-      "gdpval": -155.8
+      "gdpval": -156.1
     },
     "pricing": {
       "price_1m_input_tokens": 0.18,
       "price_1m_output_tokens": 0.66
     },
-    "median_output_tokens_per_second": 135.2,
-    "median_time_to_first_token_seconds": 0.61,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 10000000,
     "rank": 416
   },
@@ -31306,7 +31306,7 @@
       "agents": 0.8,
       "data-analysis": null,
       "cheap": 4.38,
-      "fast": 18.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -31344,8 +31344,8 @@
       "price_1m_input_tokens": 2.5,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 18.4,
-    "median_time_to_first_token_seconds": 0.64,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 256000,
     "rank": 418
   },
@@ -31381,7 +31381,7 @@
       "agents": 3,
       "data-analysis": null,
       "cheap": 0.56,
-      "fast": 40.4,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -31419,8 +31419,8 @@
       "price_1m_input_tokens": 0.56,
       "price_1m_output_tokens": 0.56
     },
-    "median_output_tokens_per_second": 40.4,
-    "median_time_to_first_token_seconds": 2.11,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 419
   },
@@ -31456,7 +31456,7 @@
       "agents": 12.1,
       "data-analysis": null,
       "cheap": 0.85,
-      "fast": 202.6,
+      "fast": null,
       "frontier": null,
       "vision": 65.5,
       "audio": null,
@@ -31494,8 +31494,8 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 202.6,
-    "median_time_to_first_token_seconds": 0.36,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 1000000,
     "rank": 420
   },
@@ -31606,7 +31606,7 @@
       "agents": 0.8,
       "data-analysis": null,
       "cheap": 0.35,
-      "fast": 27.1,
+      "fast": null,
       "frontier": null,
       "vision": 29.3,
       "audio": null,
@@ -31644,8 +31644,8 @@
       "price_1m_input_tokens": 0.345,
       "price_1m_output_tokens": 0.345
     },
-    "median_output_tokens_per_second": 27.1,
-    "median_time_to_first_token_seconds": 0.59,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 422
   },
@@ -31756,7 +31756,7 @@
       "agents": 1.5,
       "data-analysis": null,
       "cheap": 0.06,
-      "fast": 253,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -31794,8 +31794,8 @@
       "price_1m_input_tokens": 0.035,
       "price_1m_output_tokens": 0.14
     },
-    "median_output_tokens_per_second": 253,
-    "median_time_to_first_token_seconds": 0.54,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 130000,
     "rank": 424
   },
@@ -31831,7 +31831,7 @@
       "agents": 6.1,
       "data-analysis": null,
       "cheap": 1.4,
-      "fast": 128.1,
+      "fast": null,
       "frontier": null,
       "vision": 44.3,
       "audio": null,
@@ -31869,8 +31869,8 @@
       "price_1m_input_tokens": 0.8,
       "price_1m_output_tokens": 3.2
     },
-    "median_output_tokens_per_second": 128.1,
-    "median_time_to_first_token_seconds": 1.09,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 300000,
     "rank": 425
   },
@@ -32730,8 +32730,8 @@
       "multilingual": 11.4,
       "agents": 0,
       "data-analysis": null,
-      "cheap": 0.13,
-      "fast": 152.6,
+      "cheap": null,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -32766,11 +32766,11 @@
       "gdpval": null
     },
     "pricing": {
-      "price_1m_input_tokens": 0.1,
-      "price_1m_output_tokens": 0.2
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
     },
-    "median_output_tokens_per_second": 152.6,
-    "median_time_to_first_token_seconds": 2.28,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 65536,
     "rank": 437
   },
@@ -32806,7 +32806,7 @@
       "agents": 19.1,
       "data-analysis": 6.4,
       "cheap": 2.5,
-      "fast": 148.9,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -32838,14 +32838,14 @@
       "mmlu_pro": null,
       "agentic_index": 19.1,
       "coding_agent_index": null,
-      "gdpval": 302.5
+      "gdpval": 302.2
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 4
     },
-    "median_output_tokens_per_second": 148.9,
-    "median_time_to_first_token_seconds": 1.01,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 438
   },
@@ -33063,7 +33063,7 @@
       "mmlu_pro": 37.5,
       "agentic_index": 0,
       "coding_agent_index": null,
-      "gdpval": -401.1
+      "gdpval": -401.4
     },
     "pricing": {
       "price_1m_input_tokens": 0,
@@ -33288,7 +33288,7 @@
       "mmlu_pro": 48,
       "agentic_index": 4.5,
       "coding_agent_index": null,
-      "gdpval": -400.9
+      "gdpval": -401.2
     },
     "pricing": {
       "price_1m_input_tokens": 0,
@@ -33481,7 +33481,7 @@
       "agents": 6.1,
       "data-analysis": null,
       "cheap": 0.15,
-      "fast": 200.3,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -33519,8 +33519,8 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 200.3,
-    "median_time_to_first_token_seconds": 0.93,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 262144,
     "rank": 447
   },
@@ -33706,7 +33706,7 @@
       "agents": 0.4,
       "data-analysis": -401.2,
       "cheap": 0.13,
-      "fast": 47,
+      "fast": null,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -33744,8 +33744,8 @@
       "price_1m_input_tokens": 0.075,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 47,
-    "median_time_to_first_token_seconds": 0.34,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "rank": 450
   },

@@ -1803,9 +1803,12 @@ router.post('/audit-recommendation', async (req, res) => {
 // Route to fetch raw Artificial Analysis API data for the home page analysis dashboard
 router.get('/analysis/raw-data', async (req, res) => {
   try {
-    const cachedData = await cache.get('audex:analysis:raw_data');
-    if (cachedData) {
-      return res.json(cachedData);
+    const force = req.query.refresh === 'true';
+    if (!force) {
+      const cachedData = await cache.get('audex:analysis:raw_data');
+      if (cachedData) {
+        return res.json(cachedData);
+      }
     }
     const rawPath = path.join(__dirname, '../data/raw_data.json');
     if (!fs.existsSync(rawPath)) {
