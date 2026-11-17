@@ -1,5 +1,5 @@
 {
-  "fetched_at_utc": "2026-11-17T13:01:28.104Z",
+  "fetched_at_utc": "2026-11-17T13:26:55.396Z",
   "categories": {
     "overall": [
       {
@@ -826441,7 +826441,7 @@
       {
         "rank": 196,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1491.04,
@@ -826474,7 +826474,7 @@
       {
         "rank": 196,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1444.1,
@@ -834052,7 +834052,7 @@
       {
         "rank": 202,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1412.13,
@@ -834085,7 +834085,7 @@
       {
         "rank": 202,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1448.03,
@@ -841953,7 +841953,7 @@
       {
         "rank": 198,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1445.15,
@@ -841986,7 +841986,7 @@
       {
         "rank": 198,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1395.61,
@@ -846932,7 +846932,7 @@
       {
         "rank": 52,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1461.34,
@@ -851680,7 +851680,7 @@
       {
         "rank": 209,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1423.38,
@@ -867212,7 +867212,7 @@
       {
         "rank": 141,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1426.1,
@@ -867245,7 +867245,7 @@
       {
         "rank": 141,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1463.87,
@@ -873433,7 +873433,7 @@
       {
         "rank": 153,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1407.41,
@@ -873487,7 +873487,7 @@
       {
         "rank": 153,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1468.19,
@@ -880834,7 +880834,7 @@
       {
         "rank": 216,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1456.58,
@@ -880867,7 +880867,7 @@
       {
         "rank": 216,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1418.42,
@@ -888762,7 +888762,7 @@
       {
         "rank": 208,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1458.23,
@@ -888795,7 +888795,7 @@
       {
         "rank": 208,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1419.8,
@@ -896949,7 +896949,7 @@
       {
         "rank": 213,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1435.63,
@@ -896982,7 +896982,7 @@
       {
         "rank": 213,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1397.79,
@@ -904722,7 +904722,7 @@
       {
         "rank": 197,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1430.28,
@@ -904755,7 +904755,7 @@
       {
         "rank": 197,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1387.93,
@@ -912641,7 +912641,7 @@
       {
         "rank": 193,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1467.74,
@@ -912674,7 +912674,7 @@
       {
         "rank": 193,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1427.33,
@@ -920535,7 +920535,7 @@
       {
         "rank": 205,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1470.04,
@@ -920568,7 +920568,7 @@
       {
         "rank": 205,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1429.92,
@@ -925041,7 +925041,7 @@
       {
         "rank": 41,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1448.85,
@@ -928165,7 +928165,7 @@
       {
         "rank": 142,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1417.95,
@@ -944252,7 +944252,7 @@
       {
         "rank": 202,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1467.07,
@@ -944285,7 +944285,7 @@
       {
         "rank": 202,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1425.48,
@@ -948663,7 +948663,7 @@
       {
         "rank": 53,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1459.82,
@@ -952154,7 +952154,7 @@
       {
         "rank": 169,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1421.84,
@@ -970912,7 +970912,7 @@
       {
         "rank": 197,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1404.08,
@@ -970945,7 +970945,7 @@
       {
         "rank": 197,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1445.43,
@@ -979610,7 +979610,7 @@
       {
         "rank": 181,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1439.51,
@@ -987066,7 +987066,7 @@
       {
         "rank": 526,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1401.52,
@@ -995168,7 +995168,7 @@
       {
         "rank": 124,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1393.31,
@@ -995201,7 +995201,7 @@
       {
         "rank": 124,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1451.45,
@@ -1001087,7 +1001087,7 @@
       {
         "rank": 145,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1414.7,
@@ -1001150,7 +1001150,7 @@
       {
         "rank": 145,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1376.22,
@@ -1007572,7 +1007572,7 @@
       {
         "rank": 183,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1456.65,
@@ -1007605,7 +1007605,7 @@
       {
         "rank": 183,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1418.75,
@@ -1015715,7 +1015715,7 @@
       {
         "rank": 206,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1403.5,
@@ -1015779,7 +1015779,7 @@
       {
         "rank": 206,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1448.06,
@@ -1023752,7 +1023752,7 @@
       {
         "rank": 202,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1439.88,
@@ -1023785,7 +1023785,7 @@
       {
         "rank": 202,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1403.8,
@@ -1030444,7 +1030444,7 @@
       {
         "rank": 133,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1457.07,
@@ -1030477,7 +1030477,7 @@
       {
         "rank": 133,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1399.75,
@@ -1036472,7 +1036472,7 @@
       {
         "rank": 186,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1413.07,
@@ -1036505,7 +1036505,7 @@
       {
         "rank": 186,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1452.72,
@@ -1042977,7 +1042977,7 @@
       {
         "rank": 144,
         "slug": "gemini-2-5-flash",
-        "modelId": "google/gemini-2-5-flash",
+        "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
         "organization": "Google",
         "rating": 1405.02,
@@ -1043010,7 +1043010,7 @@
       {
         "rank": 144,
         "slug": "gemini-2-5-pro",
-        "modelId": "google/gemini-2-5-pro",
+        "modelId": "google/gemini-2.5-pro",
         "name": "Gemini 2.5 Pro",
         "organization": "Google",
         "rating": 1449.57,
@@ -1049538,7 +1049538,7 @@
         },
         {
           "slug": "gemini-2-5-pro",
-          "modelId": "google/gemini-2-5-pro",
+          "modelId": "google/gemini-2.5-pro",
           "name": "Gemini 2.5 Pro",
           "model_creator": {
             "name": "Google",
@@ -1056643,7 +1056643,7 @@
         },
         {
           "slug": "gemini-2-5-flash",
-          "modelId": "google/gemini-2-5-flash",
+          "modelId": "google/gemini-2.5-flash",
           "name": "Gemini 2.5 Flash (Non-reasoning)",
           "model_creator": {
             "name": "Google",
@@ -1060003,7 +1060003,7 @@
         },
         {
           "slug": "gemini-3-8-flash",
-          "modelId": "google/gemini-3-8-flash",
+          "modelId": "google/gemini-3.8-flash",
           "name": "Gemini 3.8 Flash (High)",
           "model_creator": {
             "name": "Google",

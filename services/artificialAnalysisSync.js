@@ -8,6 +8,17 @@ const { ALL_30_CATEGORIES, normalizeModelId, normalizeCreatorSlug } = require('.
 async function syncArtificialAnalysis(scrapedModels = null) {
   console.log('🔄 Local Data Sync: Synchronizing Artificial Analysis models & updating raw_data.json...');
 
+  // If scrapedModels is not passed, attempt to fetch live from Artificial Analysis scraper
+  if (!scrapedModels || !Array.isArray(scrapedModels) || scrapedModels.length === 0) {
+    try {
+      const { scrapeArtificialAnalysis } = require('./artificialAnalysisScraper');
+      console.log('🌐 Artificial Analysis Sync: Fetching new models list from Artificial Analysis scraper...');
+      scrapedModels = await scrapeArtificialAnalysis();
+    } catch (err) {
+      console.warn('⚠️ Artificial Analysis Sync: Could not fetch from scraper, falling back to local files:', err.message);
+    }
+  }
+
   const modelsMap = new Map();
   const categories = {};
 
@@ -70,25 +81,36 @@ async function syncArtificialAnalysis(scrapedModels = null) {
   }
 
   const llmModels = Array.from(modelsMap.values());
-  console.log(`📥 Processing ${llmModels.length} unique local models for database synchronization...`);
+  const sourceModels = (scrapedModels && Array.isArray(scrapedModels) && scrapedModels.length > 0)
+    ? scrapedModels
+    : llmModels;
+  console.log(`📥 Processing ${sourceModels.length} models from Artificial Analysis for database synchronization...`);
 
   const syncedModels = [];
+  const seenModelIds = new Set();
 
-  for (const item of llmModels) {
-    if (!item.slug) continue;
+  for (const item of sourceModels) {
+    if (!item.slug && !item.name) continue;
 
-    const creatorName = item.organization || item.model_creator?.name || 'Independent';
-    const creatorSlug = normalizeCreatorSlug(creatorName, item.model_creator?.slug);
-    const modelId = item.modelId || normalizeModelId(creatorSlug, item.slug);
+    const creatorName = item.creator?.name || item.model_creator?.name || item.organization || 'Independent';
+    const creatorSlug = normalizeCreatorSlug(creatorName, item.creator?.slug || item.model_creator?.slug);
+    const slug = item.slug || (item.name ? item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') : 'unknown');
+    const modelId = item.modelId || normalizeModelId(creatorSlug, slug);
 
-    const inputCostPerM = parseFloat(item.pricing?.price_1m_input_tokens || item.price1mInputTokens || 0);
-    const outputCostPerM = parseFloat(item.pricing?.price_1m_output_tokens || item.price1mOutputTokens || 0);
+    if (seenModelIds.has(modelId)) continue;
+    seenModelIds.add(modelId);
+
+    // Look up any matching ranked info from rank files
+    const rankedInfo = modelsMap.get(item.id) || modelsMap.get(item.slug) || modelsMap.get(modelId);
+
+    const inputCostPerM = parseFloat(item.price1mInputTokens ?? item.pricing?.price_1m_input_tokens ?? 0);
+    const outputCostPerM = parseFloat(item.price1mOutputTokens ?? item.pricing?.price_1m_output_tokens ?? 0);
 
     const endpointData = {
       provider_name: 'Artificial Analysis',
       input_cost_per_m: isNaN(inputCostPerM) ? 0 : inputCostPerM,
       output_cost_per_m: isNaN(outputCostPerM) ? 0 : outputCostPerM,
-      cache_read_cost_per_m: 0,
+      cache_read_cost_per_m: parseFloat(item.cacheHitPrice) || 0,
       is_active: true,
       last_synced_at: new Date()
     };
@@ -96,7 +118,7 @@ async function syncArtificialAnalysis(scrapedModels = null) {
     // 100% actual benchmark metrics - NO FAKE FALLBACK TO INTEL IF BENCHMARK IS MISSING!
     // 1. Intelligence / Overall index
     let aa_index_score = null;
-    const rawIntel = parseFloat(item.evaluations?.artificial_analysis_intelligence_index ?? item.category_scores?.overall ?? item.intelligenceIndex);
+    const rawIntel = parseFloat(item.evaluations?.artificial_analysis_intelligence_index ?? item.category_scores?.overall ?? item.intelligenceIndex ?? rankedInfo?.category_scores?.overall ?? rankedInfo?.final_score);
     if (!isNaN(rawIntel) && rawIntel > 0) {
       aa_index_score = Math.min(100, Math.round(rawIntel));
     } else if (item.final_score && item.final_score > 0) {
@@ -105,9 +127,9 @@ async function syncArtificialAnalysis(scrapedModels = null) {
 
     // 2. Coding index (LiveCodeBench, Coding Index, Coding Agents)
     let coding_score = null;
-    const rawLcb = parseFloat(item.evaluations?.livecodebench ?? item.livecodebench);
-    const rawCoding = parseFloat(item.evaluations?.artificial_analysis_coding_index ?? item.category_scores?.coding ?? item.codingIndex);
-    const rawAgents = parseFloat(item.evaluations?.coding_agent_index ?? item.codingAgentsIndex);
+    const rawLcb = parseFloat(item.evaluations?.livecodebench ?? item.livecodebench ?? rankedInfo?.evaluations?.livecodebench);
+    const rawCoding = parseFloat(item.evaluations?.artificial_analysis_coding_index ?? item.category_scores?.coding ?? item.codingIndex ?? rankedInfo?.category_scores?.coding);
+    const rawAgents = parseFloat(item.evaluations?.coding_agent_index ?? item.codingAgentsIndex ?? rankedInfo?.evaluations?.coding_agent_index);
     if (!isNaN(rawLcb) && rawLcb > 0) {
       coding_score = Math.min(100, Math.round(rawLcb <= 1 ? rawLcb * 100 : rawLcb));
     } else if (!isNaN(rawCoding) && rawCoding > 0) {
@@ -118,9 +140,9 @@ async function syncArtificialAnalysis(scrapedModels = null) {
 
     // 3. Math index (AIME, Math Index, SciCode)
     let math_score = null;
-    const rawAime = parseFloat(item.evaluations?.aime ?? item.aime25);
-    const rawMath = parseFloat(item.evaluations?.artificial_analysis_math_index ?? item.category_scores?.math ?? item.mathIndex);
-    const rawSci = parseFloat(item.evaluations?.scicode ?? item.scicode);
+    const rawAime = parseFloat(item.evaluations?.aime ?? item.aime25 ?? rankedInfo?.evaluations?.aime);
+    const rawMath = parseFloat(item.evaluations?.artificial_analysis_math_index ?? item.category_scores?.math ?? item.mathIndex ?? rankedInfo?.category_scores?.math);
+    const rawSci = parseFloat(item.evaluations?.scicode ?? item.scicode ?? rankedInfo?.evaluations?.scicode);
     if (!isNaN(rawAime) && rawAime > 0) {
       math_score = Math.min(100, Math.round(rawAime <= 1 ? rawAime * 100 : rawAime));
     } else if (!isNaN(rawMath) && rawMath > 0) {
@@ -131,8 +153,8 @@ async function syncArtificialAnalysis(scrapedModels = null) {
 
     // 4. Reasoning index (GPQA Diamond, HLE)
     let reasoning_score = null;
-    const rawGpqa = parseFloat(item.evaluations?.gpqa ?? item.gpqa);
-    const rawHle = parseFloat(item.evaluations?.hle ?? item.hle);
+    const rawGpqa = parseFloat(item.evaluations?.gpqa ?? item.gpqa ?? rankedInfo?.evaluations?.gpqa);
+    const rawHle = parseFloat(item.evaluations?.hle ?? item.hle ?? rankedInfo?.evaluations?.hle);
     if (!isNaN(rawGpqa) && rawGpqa > 0) {
       reasoning_score = Math.min(100, Math.round(rawGpqa <= 1 ? rawGpqa * 100 : rawGpqa));
     } else if (!isNaN(rawHle) && rawHle > 0) {
@@ -142,18 +164,20 @@ async function syncArtificialAnalysis(scrapedModels = null) {
     }
 
     let tokens_per_second = null;
-    if (item.median_output_tokens_per_second !== null && item.median_output_tokens_per_second !== undefined) {
-      const val = parseFloat(item.median_output_tokens_per_second);
+    const rawTps = item.headline?.outputSpeed || item.performanceByPromptType?.medium?.medianOutputSpeed || item.timescaleData?.medianOutputSpeed || item.medianOutputSpeed || item.median_output_tokens_per_second || rankedInfo?.median_output_tokens_per_second;
+    if (rawTps !== null && rawTps !== undefined) {
+      const val = parseFloat(rawTps);
       if (!isNaN(val) && val > 0) {
         tokens_per_second = Math.round(val);
       }
     }
 
     let time_to_first_token_ms = null;
-    if (item.median_time_to_first_token_seconds !== null && item.median_time_to_first_token_seconds !== undefined) {
-      const val = parseFloat(item.median_time_to_first_token_seconds);
+    const rawTtft = item.headline?.timeToFirstAnswerToken || item.headline?.timeToFirstToken || item.performanceByPromptType?.medium?.medianTimeToFirstAnswerToken || item.performanceByPromptType?.medium?.medianTimeToFirstChunk || item.timescaleData?.medianTimeToFirstChunk || item.medianTimeToFirstAnswerToken || item.median_time_to_first_token_seconds || rankedInfo?.median_time_to_first_token_seconds;
+    if (rawTtft !== null && rawTtft !== undefined) {
+      const val = parseFloat(rawTtft);
       if (!isNaN(val) && val > 0) {
-        time_to_first_token_ms = Math.round(val * 1000);
+        time_to_first_token_ms = Math.round(val < 100 ? val * 1000 : val);
       }
     }
 
@@ -171,39 +195,51 @@ async function syncArtificialAnalysis(scrapedModels = null) {
       _id: modelId,
       name: item.name || modelId,
       developer: creatorName,
-      context_length: item.context_length || item.contextWindowTokens || null,
+      context_length: item.contextWindowTokens || item.context_length || rankedInfo?.context_length || null,
       endpoints: [endpointData],
       capabilities: caps,
-      evaluations: item.evaluations || {},
+      evaluations: {
+        ...(rankedInfo?.evaluations || {}),
+        ...(item.evaluations || {}),
+        artificial_analysis_intelligence_index: aa_index_score,
+        artificial_analysis_coding_index: coding_score,
+        artificial_analysis_math_index: math_score,
+        gpqa: rawGpqa !== null && !isNaN(rawGpqa) ? (rawGpqa <= 1 ? rawGpqa * 100 : rawGpqa) : (rankedInfo?.evaluations?.gpqa || null),
+        hle: rawHle !== null && !isNaN(rawHle) ? (rawHle <= 1 ? rawHle * 100 : rawHle) : (rankedInfo?.evaluations?.hle || null),
+        livecodebench: rawLcb !== null && !isNaN(rawLcb) ? (rawLcb <= 1 ? rawLcb * 100 : rawLcb) : (rankedInfo?.evaluations?.livecodebench || null),
+        aime: rawAime !== null && !isNaN(rawAime) ? (rawAime <= 1 ? rawAime * 100 : rawAime) : (rankedInfo?.evaluations?.aime || null),
+        coding_agent_index: rawAgents !== null && !isNaN(rawAgents) ? rawAgents : (rankedInfo?.evaluations?.coding_agent_index || null)
+      },
       updated_at: new Date()
     };
 
     syncedModels.push(modelData);
+  }
 
-    if (mongoose.connection.readyState === 1) {
-      try {
-        await Model.findByIdAndUpdate(
-          modelId,
-          {
-            $set: {
-              name: modelData.name,
-              developer: modelData.developer,
-              context_length: modelData.context_length,
-              endpoints: modelData.endpoints,
-              capabilities: modelData.capabilities,
-              evaluations: modelData.evaluations,
-              updated_at: modelData.updated_at
-            }
-           },
-           { upsert: true, new: true }
-        );
-      } catch (dbErr) {
-        // Ignore DB errors if offline/no mongo connection
-      }
+  // Purge existing models from MongoDB collection and insert ONLY the freshly fetched models
+  if (mongoose.connection.readyState === 1 && syncedModels.length > 0) {
+    try {
+      const prevCount = await Model.countDocuments();
+      console.log(`🗑️ Database Sync: Purging all ${prevCount} previous models from MongoDB to retain ONLY fresh Artificial Analysis list...`);
+      await Model.deleteMany({});
+      console.log(`📥 Database Sync: Inserting ONLY the ${syncedModels.length} newly fetched models into MongoDB...`);
+      await Model.insertMany(syncedModels, { ordered: false });
+      console.log(`✅ Database Sync: MongoDB collection refreshed with ONLY the ${syncedModels.length} new models.`);
+    } catch (dbErr) {
+      console.error('⚠️ Database Sync: Error replacing models in MongoDB:', dbErr.message);
     }
   }
 
-  const sourceModels = (scrapedModels && scrapedModels.length > 0) ? scrapedModels : llmModels;
+  // Invalidate multi-tier caches so all APIs return the fresh data immediately
+  try {
+    const cache = require('./cacheService');
+    await cache.del('audex:models:all_docs');
+    await cache.del('audex:models:list');
+    await cache.del('audex:analysis:raw_data');
+    await cache.del('audex:raw_data');
+    console.log('🧹 Multi-tier Cache: Invalidated model and raw_data caches.');
+  } catch (_) {}
+
   const prunedLlms = sourceModels.map(m => {
     const creatorName = m.creator?.name || m.model_creator?.name || m.organization || 'Independent';
     const creatorSlug = normalizeCreatorSlug(creatorName, m.creator?.slug || m.model_creator?.slug);
