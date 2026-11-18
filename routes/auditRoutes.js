@@ -511,6 +511,19 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
     return null;
   }
 
+  if (p === 'overall' || p === 'mixed') {
+    if (typeof evals.artificial_analysis_intelligence_index === 'number' && evals.artificial_analysis_intelligence_index > 0) {
+      return round1(evals.artificial_analysis_intelligence_index);
+    }
+    if (typeof item?.category_scores?.overall === 'number' && item.category_scores.overall > 0) {
+      return round1(item.category_scores.overall);
+    }
+    if (typeof dbModel?.capabilities?.aa_index_score === 'number' && dbModel.capabilities.aa_index_score > 0) {
+      return round1(dbModel.capabilities.aa_index_score);
+    }
+    return null;
+  }
+
   // 2. Direct overall intelligence index
   if (typeof evals.artificial_analysis_intelligence_index === 'number' && evals.artificial_analysis_intelligence_index > 0) {
     return round1(evals.artificial_analysis_intelligence_index);

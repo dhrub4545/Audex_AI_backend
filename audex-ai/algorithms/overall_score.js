@@ -379,19 +379,8 @@ async function generateAllRankFiles(inputModels = null) {
     const rawContext = m.contextWindowTokens || m.context_length;
     const contextLength = toNum(rawContext);
 
-    // 23. Overall Score: Official intelligenceIndex OR custom weighted composite from verified benchmarks
-    let finalScore = intel;
-    if (finalScore === null) {
-      let bSum = 0, bWeight = 0;
-      if (coding !== null) { bSum += coding * 0.25; bWeight += 0.25; }
-      if (reasoning !== null) { bSum += reasoning * 0.25; bWeight += 0.25; }
-      if (math !== null) { bSum += math * 0.20; bWeight += 0.20; }
-      if (instruction !== null) { bSum += instruction * 0.15; bWeight += 0.15; }
-      if (multilingual !== null) { bSum += multilingual * 0.15; bWeight += 0.15; }
-      if (bWeight > 0) {
-        finalScore = round1(bSum / bWeight);
-      }
-    }
+    // 23. Overall Score: Strictly Official Artificial Analysis Intelligence Index
+    const finalScore = intel;
 
     const arenaElo = (typeof m.rating === 'number' && m.rating > 0) 
       ? m.rating 
@@ -399,7 +388,7 @@ async function generateAllRankFiles(inputModels = null) {
 
     // 24. STRICT Category Scores: Only populate if verified data exists for that category, otherwise NULL
     const categoryScores = {
-      overall: finalScore,
+      overall: intel,
       coding: coding,
       math: math,
       reasoning: reasoning,
@@ -410,10 +399,10 @@ async function generateAllRankFiles(inputModels = null) {
       multilingual: multilingual,
       cheap: blendedPrice,
       fast: speedTps,
-      frontier: (intel !== null && intel >= 40) ? intel : ((finalScore !== null && finalScore >= 45) ? finalScore : null),
+      frontier: (intel !== null && intel >= 40) ? intel : null,
       vision: m.inputModalityImage && (knowledge !== null || vialsScore !== null) ? (knowledge || vialsScore) : null,
-      audio: (m.inputModalitySpeech || m.outputModalitySpeech) && finalScore !== null ? finalScore : null,
-      "open-weights": m.isOpenWeights && finalScore !== null ? finalScore : null,
+      audio: (m.inputModalitySpeech || m.outputModalitySpeech) && intel !== null ? intel : null,
+      "open-weights": m.isOpenWeights && intel !== null ? intel : null,
       agents: agents,
       "long-context": (contextLength !== null && contextLength >= 32000) ? contextLength : null,
       enterprise: enterprise,

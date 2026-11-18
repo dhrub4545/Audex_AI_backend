@@ -549,9 +549,9 @@
       "name": "DeepSeek",
       "slug": "deepseek"
     },
-    "rating": 1190,
-    "arena_elo": 1190,
-    "final_score": 34.6,
+    "rating": null,
+    "arena_elo": null,
+    "final_score": null,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -559,7 +559,7 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 34.6,
+      "overall": null,
       "coding": 36.5,
       "math": 51.9,
       "reasoning": 25.3,
@@ -573,7 +573,7 @@
       "frontier": null,
       "vision": 77,
       "audio": null,
-      "open-weights": 34.6,
+      "open-weights": null,
       "agents": 26.8,
       "long-context": 1000000,
       "enterprise": 68.9,
@@ -1449,9 +1449,9 @@
       "name": "Kimi",
       "slug": "kimi"
     },
-    "rating": 1234,
-    "arena_elo": 1234,
-    "final_score": 42.6,
+    "rating": null,
+    "arena_elo": null,
+    "final_score": null,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -1459,7 +1459,7 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 42.6,
+      "overall": null,
       "coding": 30.1,
       "math": 59.5,
       "reasoning": 54.2,
@@ -1473,7 +1473,7 @@
       "frontier": null,
       "vision": 80.5,
       "audio": null,
-      "open-weights": 42.6,
+      "open-weights": null,
       "agents": 41.3,
       "long-context": 1048576,
       "enterprise": 45.3,
@@ -3429,9 +3429,9 @@
       "name": "SpaceXAI",
       "slug": "x-ai"
     },
-    "rating": 1225,
-    "arena_elo": 1225,
-    "final_score": 40.9,
+    "rating": null,
+    "arena_elo": null,
+    "final_score": null,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3439,7 +3439,7 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 40.9,
+      "overall": null,
       "coding": 10.6,
       "math": 55,
       "reasoning": 74.8,
@@ -3519,9 +3519,9 @@
       "name": "Google",
       "slug": "google"
     },
-    "rating": 1290,
-    "arena_elo": 1290,
-    "final_score": 52.8,
+    "rating": null,
+    "arena_elo": null,
+    "final_score": null,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3529,7 +3529,7 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 52.8,
+      "overall": null,
       "coding": 4,
       "math": 58.7,
       "reasoning": 56.5,
@@ -3540,9 +3540,9 @@
       "multilingual": 95.6,
       "cheap": 4.5,
       "fast": 116.6,
-      "frontier": 52.8,
+      "frontier": null,
       "vision": 82.4,
-      "audio": 52.8,
+      "audio": null,
       "open-weights": null,
       "agents": 32,
       "long-context": 1000000,
@@ -3699,9 +3699,9 @@
       "name": "OpenAI",
       "slug": "openai"
     },
-    "rating": 1166,
-    "arena_elo": 1166,
-    "final_score": 30.1,
+    "rating": null,
+    "arena_elo": null,
+    "final_score": null,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -3709,7 +3709,7 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 30.1,
+      "overall": null,
       "coding": 18.2,
       "math": null,
       "reasoning": 40.7,
@@ -4329,9 +4329,9 @@
       "name": "NVIDIA",
       "slug": "nvidia"
     },
-    "rating": 1336,
-    "arena_elo": 1336,
-    "final_score": 61.1,
+    "rating": null,
+    "arena_elo": null,
+    "final_score": null,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4339,7 +4339,7 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 61.1,
+      "overall": null,
       "coding": null,
       "math": null,
       "reasoning": null,
@@ -4350,10 +4350,10 @@
       "multilingual": null,
       "cheap": null,
       "fast": null,
-      "frontier": 61.1,
+      "frontier": null,
       "vision": null,
       "audio": null,
-      "open-weights": 61.1,
+      "open-weights": null,
       "agents": null,
       "long-context": 131072,
       "enterprise": null,
@@ -4509,9 +4509,9 @@
       "name": "OpenAI",
       "slug": "openai"
     },
-    "rating": 1127,
-    "arena_elo": 1127,
-    "final_score": 23.1,
+    "rating": null,
+    "arena_elo": null,
+    "final_score": null,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4519,7 +4519,7 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 23.1,
+      "overall": null,
       "coding": 16.5,
       "math": 6,
       "reasoning": 35.4,
@@ -4599,9 +4599,9 @@
       "name": "OpenAI",
       "slug": "openai"
     },
-    "rating": 1163,
-    "arena_elo": 1163,
-    "final_score": 29.7,
+    "rating": null,
+    "arena_elo": null,
+    "final_score": null,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4609,7 +4609,7 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 29.7,
+      "overall": null,
       "coding": null,
       "math": null,
       "reasoning": 29.7,
@@ -4689,9 +4689,9 @@
       "name": "Meta",
       "slug": "meta-llama"
     },
-    "rating": 1158,
-    "arena_elo": 1158,
-    "final_score": 28.7,
+    "rating": null,
+    "arena_elo": null,
+    "final_score": null,
     "confidence": 95,
     "coverage": 100,
     "ranking_status": "verified_artificial_analysis_v5",
@@ -4699,7 +4699,7 @@
       "artificial_analysis_scraper"
     ],
     "category_scores": {
-      "overall": 28.7,
+      "overall": null,
       "coding": 14.4,
       "math": 24.3,
       "reasoning": 44.5,
@@ -4713,7 +4713,7 @@
       "frontier": null,
       "vision": 62.1,
       "audio": null,
-      "open-weights": 28.7,
+      "open-weights": null,
       "agents": 0,
       "long-context": 1000000,
       "enterprise": 0.2,

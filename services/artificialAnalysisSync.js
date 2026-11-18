@@ -117,13 +117,11 @@ async function syncArtificialAnalysis(scrapedModels = null) {
     };
 
     // 100% actual benchmark metrics - Index v5
-    // 1. Intelligence / Overall index (v5)
+    // 1. Intelligence / Overall index (Strictly Official Intelligence Index)
     let aa_index_score = null;
-    const rawIntel = parseFloat(item.intelligenceIndex ?? item.evaluations?.artificial_analysis_intelligence_index ?? item.category_scores?.overall ?? rankedInfo?.category_scores?.overall ?? rankedInfo?.final_score);
+    const rawIntel = parseFloat(item.intelligenceIndex ?? item.evaluations?.artificial_analysis_intelligence_index ?? item.category_scores?.overall ?? rankedInfo?.category_scores?.overall);
     if (!isNaN(rawIntel) && rawIntel > 0) {
       aa_index_score = Math.min(100, Math.round(rawIntel));
-    } else if (item.final_score && item.final_score > 0) {
-      aa_index_score = Math.min(100, Math.round(item.final_score));
     }
 
     // 2. Coding index v5 (FrontierCode 2.0: 60% + Terminal-Bench 4.0: 40%)

@@ -61,7 +61,7 @@ strictly on official Artificial Analysis metrics without synthetic fallback subs
 
    Category Name       Primary Metric Used from Artificial Analysis Data
    ------------------  -------------------------------------------------------------
-   overall             intelligenceIndex / weighted composite from verified benchmarks
+   overall             intelligenceIndex (Official Artificial Analysis Intelligence Index)
    coding              codingAgentsIndex / frontierCode20 / terminalBench40 / livecodebench
    math                aime25 / scicode
    reasoning           hleDiamond / gpqa / hle / omniscience
