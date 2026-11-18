@@ -84,9 +84,8 @@ async function syncArtificialAnalysis(scrapedModels = null) {
   const rawSource = (scrapedModels && Array.isArray(scrapedModels) && scrapedModels.length > 0)
     ? scrapedModels
     : llmModels;
-  // Use latest version data only: filter out deprecated / superseded models
-  const sourceModels = rawSource.filter(m => !m.deprecated);
-  console.log(`📥 Processing ${sourceModels.length} active models (latest version data) from Artificial Analysis for database synchronization...`);
+  const sourceModels = rawSource;
+  console.log(`📥 Processing every model (${sourceModels.length} total) from Artificial Analysis for database synchronization...`);
 
   const syncedModels = [];
   const seenModelIds = new Set();

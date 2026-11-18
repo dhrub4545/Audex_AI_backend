@@ -61,43 +61,43 @@ strictly on official Artificial Analysis metrics without synthetic fallback subs
 
    Category Name       Primary Metric Used from Artificial Analysis Data
    ------------------  -------------------------------------------------------------
-   overall             intelligenceIndex (General Intelligence Index)
-   coding              codingIndex (Composite Coding Index)
-   math                mathIndex / aime25 / scicode
-   reasoning           gpqa / hle
-   research            lcr (Long Context Reasoning)
-   instruction         ifbench (Instruction Following)
-   writing             intelligenceIndex
-   knowledge           mmmuPro (MMMU Pro Knowledge)
-   multilingual        tau2 (Multilingual Index)
-   agents              agenticIndex / terminalbenchV21 (Coding Agent Index)
-   data-analysis       gdpvalNormalized / tauBanking (Data Analysis Index)
-   fast                medianOutputSpeed (Output Tokens/Second)
-   cheap               price1mInputTokens + price1mOutputTokens (Cheapest First)
-   frontier            intelligenceIndex
-   vision              inputModalityImage ? intelligenceIndex : null
-   audio               inputModalitySpeech ? intelligenceIndex : null
-   open-weights        isOpenWeights ? intelligenceIndex : null
-   long-context        contextWindowTokens (Largest Context First)
-   enterprise          gdpvalNormalized / intelligenceIndex
-   legal               gpqa / ifbench / intelligenceIndex
-   medical             mmmuPro / gpqa / intelligenceIndex
-   finance             tauBanking / gdpvalNormalized / intelligenceIndex
-   scientific          scicode / gpqa / mmmuPro
-   creative-writing    intelligenceIndex
-   roleplay            ifbench / intelligenceIndex
-   translation         tau2 / instruction
-   summarization       lcr / ifbench
-   extraction          ifbench / gdpvalNormalized
-   tool-use            agenticIndex / ifbench
-   function-calling    agenticIndex / codingIndex
+   overall             intelligenceIndex / weighted composite from verified benchmarks
+   coding              codingAgentsIndex / frontierCode20 / terminalBench40 / livecodebench
+   math                aime25 / scicode
+   reasoning           hleDiamond / gpqa / hle / omniscience
+   research            lcr / mlcrOverall
+   instruction         ifbench
+   writing             personalityBench (expressiveness, organization, 100 - slop)
+   knowledge           mmmuPro
+   multilingual        tau2 / mlcrOverall
+   agents              codingAgentsIndex / apexAgents / terminalBench40
+   data-analysis       gdpPdfAllPass / automationBenchPartialScore / gdpval
+   fast                headline.outputSpeed / medianOutputSpeed (Tokens/Second)
+   cheap               price1mBlended0To3To1 / 0.75*Input + 0.25*Output (Cheapest First)
+   frontier            intelligenceIndex >= 40 / frontier benchmarks
+   vision              inputModalityImage ? mmmuPro / vialsScore : null
+   audio               inputModalitySpeech ? intelligenceIndex / composite : null
+   open-weights        isOpenWeights ? intelligenceIndex / composite : null
+   long-context        contextWindowTokens >= 32000 (Largest Context First)
+   enterprise          enterpriseOpsGym / automationBenchPartialScore / gdpPdfAllPass
+   legal               harveyLab (Harvey Legal AI benchmark)
+   medical             healthbenchProfessional / healthbench / vialsScore
+   finance             analystAgent / tauBanking
+   scientific          terminalBenchScience / critptAgenticHard / scicode
+   creative-writing    personalityBench (expressiveness, imagination, 100 - slop)
+   roleplay            personalityBench (warmth, imagination, expressiveness)
+   translation         tau2 / mlcrOverall
+   summarization       lcr / mlcrOverall / personalityBench bottom line summary
+   extraction          gdpPdfAllPass (PDF parsing pass rate)
+   tool-use            terminalBench40 / terminalbenchHard / apexAgents / itBenchSre
+   function-calling    terminalBench40 / terminalBench21 / itBenchSre / frontierCode20
 
 2. Sorting & Integer Rank Assignment:
-   - Step 1: For each category file (e.g. coding.json, data-analysis.json), models containing valid metric values are separated from models missing the metric.
-   - Step 2: Models with valid metrics are sorted in DESCENDING order of their category metric value (except `cheap` which is sorted in ASCENDING order of total price).
+   - Step 1: For each category, models without verified data in that category are skipped (category_score = null).
+   - Step 2: Models with valid metrics are sorted in DESCENDING order of their category metric value (except `cheap` which is sorted in ASCENDING order of blended price).
    - Step 3: Tie-Breaker: If two models have identical metric values, they are sorted alphabetically by model name.
-   - Step 4: Models missing the metric appear at the bottom with category_score = null.
-   - Step 5: Integer 1-indexed rank (1..N) is assigned according to final position in the sorted list (rank: 1, rank: 2, ..., rank: N).
+   - Step 4: Models missing the metric are completely skipped from that category's ranking list ("if not skip it").
+   - Step 5: Integer 1-indexed rank (1..N) is assigned according to position in the category list (rank: 1, rank: 2, ..., rank: N).
 
 3. File Output:
    - Output Directory: backend/data/rank/
