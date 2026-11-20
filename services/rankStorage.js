@@ -94,9 +94,46 @@ async function getRankCategory(categoryKey) {
  */
 function pruneRawDataForDb(rawData) {
   if (!rawData) return null;
+
+  // Prune categories to essential fields so document fits comfortably in MongoDB 16MB limit
+  const prunedCategories = {};
+  if (rawData.categories) {
+    for (const [catKey, catList] of Object.entries(rawData.categories)) {
+      if (Array.isArray(catList)) {
+        prunedCategories[catKey] = catList.map(m => ({
+          rank: m.rank,
+          slug: m.slug,
+          name: m.name,
+          organization: m.organization || m.model_creator?.name || 'Unknown',
+          rating: m.rating || null,
+          pricing: m.pricing || null,
+          evaluations: m.evaluations ? {
+            artificial_analysis_intelligence_index: m.evaluations.artificial_analysis_intelligence_index,
+            artificial_analysis_coding_index: m.evaluations.artificial_analysis_coding_index,
+            artificial_analysis_math_index: m.evaluations.artificial_analysis_math_index,
+            aime: m.evaluations.aime,
+            livecodebench: m.evaluations.livecodebench,
+            gpqa: m.evaluations.gpqa,
+            hle: m.evaluations.hle
+          } : null,
+          category_scores: m.category_scores ? {
+            overall: m.category_scores.overall,
+            coding: m.category_scores.coding,
+            math: m.category_scores.math,
+            reasoning: m.category_scores.reasoning,
+            fast: m.category_scores.fast
+          } : null,
+          median_output_tokens_per_second: m.median_output_tokens_per_second || null,
+          median_time_to_first_token_seconds: m.median_time_to_first_token_seconds || null,
+          context_length: m.context_length || null
+        }));
+      }
+    }
+  }
+
   const pruned = {
     fetched_at_utc: rawData.fetched_at_utc || new Date().toISOString(),
-    categories: rawData.categories || {},
+    categories: prunedCategories,
     sources: {
       llms: {
         status: rawData.sources?.llms?.status || 200,

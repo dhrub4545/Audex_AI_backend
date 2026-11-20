@@ -448,14 +448,11 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
   }
 
   if (p === 'math') {
-    if (typeof evals.aime === 'number' && evals.aime > 0) {
-      return round1(evals.aime <= 1 ? evals.aime * 100 : evals.aime);
-    }
     if (typeof evals.artificial_analysis_math_index === 'number' && evals.artificial_analysis_math_index > 0) {
       return round1(evals.artificial_analysis_math_index);
     }
-    if (typeof evals.scicode === 'number' && evals.scicode > 0) {
-      return round1(evals.scicode <= 1 ? evals.scicode * 100 : evals.scicode);
+    if (typeof evals.aime === 'number' && evals.aime > 0) {
+      return round1(evals.aime <= 1 ? evals.aime * 100 : evals.aime);
     }
     if (typeof item?.category_scores?.math === 'number' && item.category_scores.math > 0) {
       return round1(item.category_scores.math);
@@ -1868,7 +1865,7 @@ function formatRawDataResponse(rawData) {
       rank: item.rank || null,
       intelligence_index: parseFloat(evaluations.artificial_analysis_intelligence_index) || null,
       coding_index: parseFloat(evaluations.artificial_analysis_coding_index) || null,
-      math_index: parseFloat(evaluations.artificial_analysis_math_index) || null,
+      math_index: parseFloat(evaluations.artificial_analysis_math_index ?? evaluations.aime) || null,
       gpqa: parseFloat(evaluations.gpqa) || null,
       hle: parseFloat(evaluations.hle) || null,
       throughput: parseFloat(item.median_output_tokens_per_second) || null,

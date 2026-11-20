@@ -135,25 +135,20 @@ async function generateAllRankFiles(inputModels = null) {
       if (weight > 0) coding = round1(sum / weight);
     }
 
-    // 3. Math (AIME 2025, SciCode, Math Index)
+    // 3. Math: Strictly Official Artificial Analysis Math Index (AIME)
+    // Only models with verified math evaluations are included; if not available, skip it.
+    const rawMathIndex = toNum(m.mathIndex) ?? toNum(m.evaluations?.artificial_analysis_math_index);
     const rawAime = toNum(m.aime25) ?? toNum(m.evaluations?.aime);
     const aime = rawAime !== null ? round1(norm100(rawAime)) : null;
 
     const rawScicode = toNum(m.scicode) ?? toNum(m.evaluations?.scicode);
     const scicode = rawScicode !== null ? round1(norm100(rawScicode)) : null;
 
-    const rawMathIndex = toNum(m.mathIndex) ?? toNum(m.evaluations?.artificial_analysis_math_index);
-    const mathIndexScore = rawMathIndex !== null ? round1(rawMathIndex) : null;
-
     let math = null;
-    if (aime !== null && scicode !== null) {
-      math = round1(aime * 0.6 + scicode * 0.4);
+    if (rawMathIndex !== null) {
+      math = round1(norm100(rawMathIndex));
     } else if (aime !== null) {
       math = aime;
-    } else if (mathIndexScore !== null) {
-      math = mathIndexScore;
-    } else if (scicode !== null) {
-      math = scicode;
     }
 
     // 4. Reasoning (HLE-Diamond, GPQA Diamond, HLE, Omniscience)
@@ -520,6 +515,15 @@ async function generateAllRankFiles(inputModels = null) {
         const scoreA = typeof a.unroundedAverage === 'number' ? a.unroundedAverage : (valA / 100);
         const scoreB = typeof b.unroundedAverage === 'number' ? b.unroundedAverage : (valB / 100);
         if (scoreB !== scoreA) return scoreB - scoreA;
+      } else if (catName === 'math') {
+        // High-precision sorting for Math Index
+        const rawA = typeof a.evaluations?.artificial_analysis_math_index === 'number' 
+          ? a.evaluations.artificial_analysis_math_index 
+          : (typeof a.evaluations?.aime === 'number' ? a.evaluations.aime : valA);
+        const rawB = typeof b.evaluations?.artificial_analysis_math_index === 'number' 
+          ? b.evaluations.artificial_analysis_math_index 
+          : (typeof b.evaluations?.aime === 'number' ? b.evaluations.aime : valB);
+        if (rawB !== rawA) return rawB - rawA;
       } else {
         if (valB !== valA) return valB - valA;
       }
