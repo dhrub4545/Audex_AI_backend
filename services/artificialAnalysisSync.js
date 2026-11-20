@@ -134,12 +134,15 @@ async function syncArtificialAnalysis(scrapedModels = null) {
       coding_score = Math.min(100, Math.round(rawAgents));
     }
 
-    // 3. Math index: Strictly official Math Index / AIME 2025
+    // 3. Math index: Strictly official LiveBench AI Math Benchmark / Math Index
     let math_score = null;
+    const rawLiveMath = parseFloat(item.evaluations?.livebench_math ?? rankedInfo?.evaluations?.livebench_math);
     const rawAime = parseFloat(item.evaluations?.aime ?? item.aime25 ?? rankedInfo?.evaluations?.aime);
     const rawMath = parseFloat(item.evaluations?.artificial_analysis_math_index ?? item.category_scores?.math ?? item.mathIndex ?? rankedInfo?.category_scores?.math);
     const rawSci = parseFloat(item.evaluations?.scicode ?? item.scicode ?? rankedInfo?.evaluations?.scicode);
-    if (!isNaN(rawMath) && rawMath > 0) {
+    if (!isNaN(rawLiveMath) && rawLiveMath > 0) {
+      math_score = Math.min(100, Math.round(rawLiveMath));
+    } else if (!isNaN(rawMath) && rawMath > 0) {
       math_score = Math.min(100, Math.round(rawMath));
     } else if (!isNaN(rawAime) && rawAime > 0) {
       math_score = Math.min(100, Math.round(rawAime <= 1 ? rawAime * 100 : rawAime));
@@ -195,6 +198,7 @@ async function syncArtificialAnalysis(scrapedModels = null) {
         artificial_analysis_intelligence_index: aa_index_score,
         artificial_analysis_coding_index: coding_score,
         artificial_analysis_math_index: math_score,
+        livebench_math: !isNaN(rawLiveMath) && rawLiveMath > 0 ? rawLiveMath : (rankedInfo?.evaluations?.livebench_math || null),
         hle_diamond: rawHleDiamond !== null && !isNaN(rawHleDiamond) ? (rawHleDiamond <= 1 ? rawHleDiamond * 100 : rawHleDiamond) : (rankedInfo?.evaluations?.hle_diamond || null),
         gpqa: rawGpqa !== null && !isNaN(rawGpqa) ? (rawGpqa <= 1 ? rawGpqa * 100 : rawGpqa) : (rankedInfo?.evaluations?.gpqa || null),
         hle: rawHle !== null && !isNaN(rawHle) ? (rawHle <= 1 ? rawHle * 100 : rawHle) : (rankedInfo?.evaluations?.hle || null),
@@ -239,6 +243,7 @@ async function syncArtificialAnalysis(scrapedModels = null) {
     const creatorSlug = normalizeCreatorSlug(creatorName, m.creator?.slug || m.model_creator?.slug);
     const slug = m.slug || (m.name ? m.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') : 'unknown');
     const modelId = m.modelId || normalizeModelId(creatorSlug, slug);
+    const rankedInfo = modelsMap.get(m.id) || modelsMap.get(m.slug) || modelsMap.get(modelId);
 
     const intel = m.intelligenceIndex !== undefined && m.intelligenceIndex !== null
       ? parseFloat(m.intelligenceIndex)
@@ -254,10 +259,13 @@ async function syncArtificialAnalysis(scrapedModels = null) {
         ? parseFloat(m.codingIndex) 
         : (m.evaluations?.artificial_analysis_coding_index !== undefined ? parseFloat(m.evaluations.artificial_analysis_coding_index) : null));
 
+    const liveMath = parseFloat(m.evaluations?.livebench_math ?? rankedInfo?.evaluations?.livebench_math);
     const aime = m.aime25 !== undefined && m.aime25 !== null ? parseFloat(m.aime25) : (m.evaluations?.aime !== undefined ? parseFloat(m.evaluations.aime) : null);
-    const math = m.mathIndex !== undefined && m.mathIndex !== null 
-      ? parseFloat(m.mathIndex) 
-      : (m.evaluations?.artificial_analysis_math_index !== undefined ? parseFloat(m.evaluations.artificial_analysis_math_index) : (aime !== null ? (aime <= 1 ? aime * 100 : aime) : null));
+    const math = !isNaN(liveMath) && liveMath > 0 
+      ? liveMath 
+      : (m.mathIndex !== undefined && m.mathIndex !== null 
+        ? parseFloat(m.mathIndex) 
+        : (m.evaluations?.artificial_analysis_math_index !== undefined ? parseFloat(m.evaluations.artificial_analysis_math_index) : (aime !== null ? (aime <= 1 ? aime * 100 : aime) : null)));
 
     const gpqa = m.gpqa !== undefined && m.gpqa !== null ? parseFloat(m.gpqa) : (m.evaluations?.gpqa !== undefined ? parseFloat(m.evaluations.gpqa) : null);
     const hle = m.hle !== undefined && m.hle !== null ? parseFloat(m.hle) : (m.evaluations?.hle !== undefined ? parseFloat(m.evaluations.hle) : null);

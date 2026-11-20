@@ -1,0 +1,5890 @@
+[
+  {
+    "id": "gpt-5-5",
+    "slug": "gpt-5-5",
+    "modelId": "openai/gpt-5-5",
+    "name": "GPT-5.5 Thinking xHigh Effort",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1527,
+    "arena_elo": null,
+    "final_score": 95.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 95.9
+    },
+    "evaluations": {
+      "livebench_math": 95.9,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 99,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 91.4,
+      "artificial_analysis_math_index": 95.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 30
+    },
+    "median_output_tokens_per_second": 74.7646486195597,
+    "median_time_to_first_token_seconds": 39.1599573381152,
+    "context_length": 922000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 95.85725,
+    "livebench_raw_id": "gpt-5.5-xhigh",
+    "livebench_release": "2026-06-25",
+    "rank": 1
+  },
+  {
+    "id": "claude-fable-5",
+    "slug": "claude-fable-5",
+    "modelId": "anthropic/claude-fable-5",
+    "name": "Claude Fable 5 Thinking xHigh Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1526,
+    "arena_elo": null,
+    "final_score": 95.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 95.7
+    },
+    "evaluations": {
+      "livebench_math": 95.7,
+      "livebench_amps_hard": 99,
+      "livebench_integrals": 96,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 92.7,
+      "artificial_analysis_math_index": 95.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": 10,
+      "price_1m_output_tokens": 50
+    },
+    "median_output_tokens_per_second": 85.8014765736048,
+    "median_time_to_first_token_seconds": 55.1327272727871,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 95.69300000000001,
+    "livebench_raw_id": "claude-fable-5-xhigh-effort",
+    "livebench_release": "2026-06-25",
+    "rank": 2
+  },
+  {
+    "id": "claude-opus-4-8",
+    "slug": "claude-opus-4-8",
+    "modelId": "anthropic/claude-opus-4-8",
+    "name": "Claude 4.8 Opus Thinking xHigh Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1524,
+    "arena_elo": null,
+    "final_score": 95.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 95.3
+    },
+    "evaluations": {
+      "livebench_math": 95.3,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 95,
+      "livebench_math_comp": 97.1,
+      "livebench_olympiad": 91.2,
+      "artificial_analysis_math_index": 95.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 83.8751626711172,
+    "median_time_to_first_token_seconds": 27.8337127153501,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 95.31649999999999,
+    "livebench_raw_id": "claude-opus-4-8-xhigh-effort",
+    "livebench_release": "2026-06-25",
+    "rank": 3
+  },
+  {
+    "id": "gpt-5-5",
+    "slug": "gpt-5-5",
+    "modelId": "openai/gpt-5-5",
+    "name": "GPT-5.5 Thinking High Effort",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1524,
+    "arena_elo": null,
+    "final_score": 95.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 95.2
+    },
+    "evaluations": {
+      "livebench_math": 95.2,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 95,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 91.7,
+      "artificial_analysis_math_index": 95.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 30
+    },
+    "median_output_tokens_per_second": 74.7646486195597,
+    "median_time_to_first_token_seconds": 39.1599573381152,
+    "context_length": 922000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 95.19,
+    "livebench_raw_id": "gpt-5.5-high",
+    "livebench_release": "2026-06-25",
+    "rank": 4
+  },
+  {
+    "id": "gpt-5-4",
+    "slug": "gpt-5-4",
+    "modelId": "openai/gpt-5-4",
+    "name": "GPT-5.4 Thinking xHigh Effort",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1518,
+    "arena_elo": null,
+    "final_score": 94.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 94.1
+    },
+    "evaluations": {
+      "livebench_math": 94.1,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 93,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 91.5,
+      "artificial_analysis_math_index": 94.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 2.5,
+      "price_1m_output_tokens": 15
+    },
+    "median_output_tokens_per_second": 63.7791504917916,
+    "median_time_to_first_token_seconds": 108.262675266877,
+    "context_length": 1050000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 94.148,
+    "livebench_raw_id": "gpt-5.4-xhigh",
+    "livebench_release": "2026-06-25",
+    "rank": 5
+  },
+  {
+    "id": "gpt-5-2-2025-12-11-high",
+    "slug": "gpt-5-2-2025-12-11-high",
+    "modelId": "openai/gpt-5-2-2025-12-11-high",
+    "name": "GPT-5.2 High",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1513,
+    "arena_elo": null,
+    "final_score": 93.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 93.2
+    },
+    "evaluations": {
+      "livebench_math": 93.2,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 92,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 88.6,
+      "artificial_analysis_math_index": 93.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 93.166,
+    "livebench_raw_id": "gpt-5.2-2025-12-11-high",
+    "livebench_release": "2026-06-25",
+    "rank": 6
+  },
+  {
+    "id": "claude-sonnet-5",
+    "slug": "claude-sonnet-5",
+    "modelId": "anthropic/claude-sonnet-5",
+    "name": "Claude Sonnet 5 xHigh Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1511,
+    "arena_elo": null,
+    "final_score": 92.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 92.9
+    },
+    "evaluations": {
+      "livebench_math": 92.9,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 88,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 90.7,
+      "artificial_analysis_math_index": 92.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 2,
+      "price_1m_output_tokens": 10
+    },
+    "median_output_tokens_per_second": 102.839305330536,
+    "median_time_to_first_token_seconds": 117.436438974522,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 92.94225,
+    "livebench_raw_id": "claude-sonnet-5-xhigh-effort",
+    "livebench_release": "2026-06-25",
+    "rank": 7
+  },
+  {
+    "id": "claude-opus-4-7",
+    "slug": "claude-opus-4-7",
+    "modelId": "anthropic/claude-opus-4-7",
+    "name": "Claude 4.7 Opus Thinking xHigh Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1511,
+    "arena_elo": null,
+    "final_score": 92.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 92.9
+    },
+    "evaluations": {
+      "livebench_math": 92.9,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 84,
+      "livebench_math_comp": 98,
+      "livebench_olympiad": 91.4,
+      "artificial_analysis_math_index": 92.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 82.503504112746,
+    "median_time_to_first_token_seconds": 26.612848070538,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 92.85374999999999,
+    "livebench_raw_id": "claude-opus-4-7-xhigh-effort",
+    "livebench_release": "2026-06-25",
+    "rank": 8
+  },
+  {
+    "id": "gpt-5-2-medium",
+    "slug": "gpt-5-2-medium",
+    "modelId": "openai/gpt-5-2-medium",
+    "name": "GPT-5.2 Medium",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1507,
+    "arena_elo": null,
+    "final_score": 92.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 92.1
+    },
+    "evaluations": {
+      "livebench_math": 92.1,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 88,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 89.2,
+      "artificial_analysis_math_index": 92.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.75,
+      "price_1m_output_tokens": 14
+    },
+    "median_output_tokens_per_second": 71.421238845398,
+    "median_time_to_first_token_seconds": 5.80879726158335,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 92.069,
+    "livebench_raw_id": "gpt-5.2-2025-12-11-medium",
+    "livebench_release": "2026-01-08",
+    "rank": 9
+  },
+  {
+    "id": "claude-fable-5",
+    "slug": "claude-fable-5",
+    "modelId": "anthropic/claude-fable-5",
+    "name": "Claude Fable 5 Thinking High Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1502,
+    "arena_elo": null,
+    "final_score": 91.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 91.3
+    },
+    "evaluations": {
+      "livebench_math": 91.3,
+      "livebench_amps_hard": 99,
+      "livebench_integrals": 80,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 92.2,
+      "artificial_analysis_math_index": 91.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 10,
+      "price_1m_output_tokens": 50
+    },
+    "median_output_tokens_per_second": 85.8014765736048,
+    "median_time_to_first_token_seconds": 55.1327272727871,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 91.3235,
+    "livebench_raw_id": "claude-fable-5-high-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 10
+  },
+  {
+    "id": "gemini-3-1-pro-preview-high",
+    "slug": "gemini-3-1-pro-preview-high",
+    "modelId": "google/gemini-3-1-pro-preview-high",
+    "name": "Gemini 3.1 Pro Preview High",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1501,
+    "arena_elo": null,
+    "final_score": 91,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 91
+    },
+    "evaluations": {
+      "livebench_math": 91,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 78,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 92.1,
+      "artificial_analysis_math_index": 91
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 91.04499999999999,
+    "livebench_raw_id": "gemini-3.1-pro-preview-high",
+    "livebench_release": "2026-06-25",
+    "rank": 11
+  },
+  {
+    "id": "claude-opus-4-8",
+    "slug": "claude-opus-4-8",
+    "modelId": "anthropic/claude-opus-4-8",
+    "name": "Claude 4.8 Opus Thinking High Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1501,
+    "arena_elo": null,
+    "final_score": 91,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 91
+    },
+    "evaluations": {
+      "livebench_math": 91,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 81,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 90.9,
+      "artificial_analysis_math_index": 91
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 83.8751626711172,
+    "median_time_to_first_token_seconds": 27.8337127153501,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 91.00025000000001,
+    "livebench_raw_id": "claude-opus-4-8-high-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 12
+  },
+  {
+    "id": "gpt-5-4-nano",
+    "slug": "gpt-5-4-nano",
+    "modelId": "openai/gpt-5-4-nano",
+    "name": "GPT-5.4 Nano xHigh",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1501,
+    "arena_elo": null,
+    "final_score": 91,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 91
+    },
+    "evaluations": {
+      "livebench_math": 91,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 82.8,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 88,
+      "artificial_analysis_math_index": 91
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.2,
+      "price_1m_output_tokens": 1.25
+    },
+    "median_output_tokens_per_second": 150.879236295007,
+    "median_time_to_first_token_seconds": 41.6229986810611,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 90.977,
+    "livebench_raw_id": "gpt-5.4-nano-xhigh",
+    "livebench_release": "2026-06-25",
+    "rank": 13
+  },
+  {
+    "id": "claude-opus-4-8",
+    "slug": "claude-opus-4-8",
+    "modelId": "anthropic/claude-opus-4-8",
+    "name": "Claude 4.8 Opus Thinking Medium Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1500,
+    "arena_elo": null,
+    "final_score": 90.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 90.9
+    },
+    "evaluations": {
+      "livebench_math": 90.9,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 82,
+      "livebench_math_comp": 93.1,
+      "livebench_olympiad": 90.4,
+      "artificial_analysis_math_index": 90.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 83.8751626711172,
+    "median_time_to_first_token_seconds": 27.8337127153501,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 90.87875,
+    "livebench_raw_id": "claude-opus-4-8-medium-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 14
+  },
+  {
+    "id": "deepseek-v4-pro",
+    "slug": "deepseek-v4-pro",
+    "modelId": "deepseek/deepseek-v4-pro",
+    "name": "DeepSeek V4 Pro",
+    "organization": "DeepSeek",
+    "model_creator": {
+      "name": "DeepSeek",
+      "slug": "deepseek"
+    },
+    "rating": 1499,
+    "arena_elo": null,
+    "final_score": 90.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 90.7
+    },
+    "evaluations": {
+      "livebench_math": 90.7,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 78,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 90.6,
+      "artificial_analysis_math_index": 90.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.32,
+      "price_1m_output_tokens": 3.96
+    },
+    "median_output_tokens_per_second": 78.2550061944263,
+    "median_time_to_first_token_seconds": 66.3998296724093,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 90.6755,
+    "livebench_raw_id": "deepseek-v4-pro",
+    "livebench_release": "2026-06-25",
+    "rank": 15
+  },
+  {
+    "id": "claude-opus-4-5-thinking",
+    "slug": "claude-opus-4-5-thinking",
+    "modelId": "anthropic/claude-opus-4-5-thinking",
+    "name": "Claude 4.5 Opus Thinking High Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1497,
+    "arena_elo": null,
+    "final_score": 90.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 90.4
+    },
+    "evaluations": {
+      "livebench_math": 90.4,
+      "livebench_amps_hard": 99,
+      "livebench_integrals": 78,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 89.5,
+      "artificial_analysis_math_index": 90.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 61.8318611779675,
+    "median_time_to_first_token_seconds": 12.7770006565111,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 90.38900000000001,
+    "livebench_raw_id": "claude-opus-4-5-20251101-thinking-64k-high-effort",
+    "livebench_release": "2026-06-25",
+    "rank": 16
+  },
+  {
+    "id": "gpt-5-4",
+    "slug": "gpt-5-4",
+    "modelId": "openai/gpt-5-4",
+    "name": "GPT-5.4 Thinking High Effort",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1495,
+    "arena_elo": null,
+    "final_score": 90,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 90
+    },
+    "evaluations": {
+      "livebench_math": 90,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 77,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 88.8,
+      "artificial_analysis_math_index": 90
+    },
+    "pricing": {
+      "price_1m_input_tokens": 2.5,
+      "price_1m_output_tokens": 15
+    },
+    "median_output_tokens_per_second": 63.7791504917916,
+    "median_time_to_first_token_seconds": 108.262675266877,
+    "context_length": 1050000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 89.98124999999999,
+    "livebench_raw_id": "gpt-5.4-high",
+    "livebench_release": "2026-01-08",
+    "rank": 17
+  },
+  {
+    "id": "glm-5-2",
+    "slug": "glm-5-2",
+    "modelId": "z-ai/glm-5-2",
+    "name": "GLM 5.2",
+    "organization": "Z.AI",
+    "model_creator": {
+      "name": "Z.AI",
+      "slug": "z-ai"
+    },
+    "rating": 1494,
+    "arena_elo": null,
+    "final_score": 89.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 89.8
+    },
+    "evaluations": {
+      "livebench_math": 89.8,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 76,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 89,
+      "artificial_analysis_math_index": 89.8
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.4,
+      "price_1m_output_tokens": 4.4
+    },
+    "median_output_tokens_per_second": 62.2945437844885,
+    "median_time_to_first_token_seconds": 38.2753139591314,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 89.78125,
+    "livebench_raw_id": "glm-5.2",
+    "livebench_release": "2026-06-25",
+    "rank": 18
+  },
+  {
+    "id": "claude-opus-4-6",
+    "slug": "claude-opus-4-6",
+    "modelId": "anthropic/claude-opus-4-6",
+    "name": "Claude 4.6 Opus Thinking High Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1491,
+    "arena_elo": null,
+    "final_score": 89.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 89.3
+    },
+    "evaluations": {
+      "livebench_math": 89.3,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 73,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 92.2,
+      "artificial_analysis_math_index": 89.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 48.711385856567,
+    "median_time_to_first_token_seconds": 2.33103902505133,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 89.31700000000001,
+    "livebench_raw_id": "claude-opus-4-6-thinking-auto-high-effort",
+    "livebench_release": "2026-06-25",
+    "rank": 19
+  },
+  {
+    "id": "claude-opus-4-7",
+    "slug": "claude-opus-4-7",
+    "modelId": "anthropic/claude-opus-4-7",
+    "name": "Claude 4.7 Opus Thinking High Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1491,
+    "arena_elo": null,
+    "final_score": 89.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 89.3
+    },
+    "evaluations": {
+      "livebench_math": 89.3,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 74,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 91.1,
+      "artificial_analysis_math_index": 89.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 82.503504112746,
+    "median_time_to_first_token_seconds": 26.612848070538,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 89.293,
+    "livebench_raw_id": "claude-opus-4-7-high-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 20
+  },
+  {
+    "id": "gpt-5-2-codex",
+    "slug": "gpt-5-2-codex",
+    "modelId": "openai/gpt-5-2-codex",
+    "name": "GPT-5.2 Codex",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1488,
+    "arena_elo": null,
+    "final_score": 88.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 88.8
+    },
+    "evaluations": {
+      "livebench_math": 88.8,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 75,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 87,
+      "artificial_analysis_math_index": 88.8
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.75,
+      "price_1m_output_tokens": 14
+    },
+    "median_output_tokens_per_second": 72.8430036924422,
+    "median_time_to_first_token_seconds": 39.2561978586371,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 88.77375,
+    "livebench_raw_id": "gpt-5.2-codex",
+    "livebench_release": "2026-06-25",
+    "rank": 21
+  },
+  {
+    "id": "claude-opus-4-8",
+    "slug": "claude-opus-4-8",
+    "modelId": "anthropic/claude-opus-4-8",
+    "name": "Claude 4.8 Opus Thinking Low Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1488,
+    "arena_elo": null,
+    "final_score": 88.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 88.7
+    },
+    "evaluations": {
+      "livebench_math": 88.7,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 71,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 90.9,
+      "artificial_analysis_math_index": 88.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 83.8751626711172,
+    "median_time_to_first_token_seconds": 27.8337127153501,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 88.73725,
+    "livebench_raw_id": "claude-opus-4-8-low-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 22
+  },
+  {
+    "id": "gpt-5-4-nano",
+    "slug": "gpt-5-4-nano",
+    "modelId": "openai/gpt-5-4-nano",
+    "name": "GPT-5.4 Nano High",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1487,
+    "arena_elo": null,
+    "final_score": 88.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 88.6
+    },
+    "evaluations": {
+      "livebench_math": 88.6,
+      "livebench_amps_hard": 95,
+      "livebench_integrals": 81.8,
+      "livebench_math_comp": 93.1,
+      "livebench_olympiad": 84.4,
+      "artificial_analysis_math_index": 88.6
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.2,
+      "price_1m_output_tokens": 1.25
+    },
+    "median_output_tokens_per_second": 150.879236295007,
+    "median_time_to_first_token_seconds": 41.6229986810611,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 88.59349999999999,
+    "livebench_raw_id": "gpt-5.4-nano-high",
+    "livebench_release": "2026-01-08",
+    "rank": 23
+  },
+  {
+    "id": "gemini-3-5-flash",
+    "slug": "gemini-3-5-flash",
+    "modelId": "google/gemini-3-5-flash",
+    "name": "Gemini 3.5 Flash High",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1485,
+    "arena_elo": null,
+    "final_score": 88.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 88.2
+    },
+    "evaluations": {
+      "livebench_math": 88.2,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 68,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 91.9,
+      "artificial_analysis_math_index": 88.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.5,
+      "price_1m_output_tokens": 9
+    },
+    "median_output_tokens_per_second": 154.808163334832,
+    "median_time_to_first_token_seconds": 11.3439773163,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 88.24375,
+    "livebench_raw_id": "gemini-3.5-flash-high",
+    "livebench_release": "2026-06-25",
+    "rank": 24
+  },
+  {
+    "id": "gpt-5-3-codex",
+    "slug": "gpt-5-3-codex",
+    "modelId": "openai/gpt-5-3-codex",
+    "name": "GPT-5.3 Codex High",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1483,
+    "arena_elo": null,
+    "final_score": 87.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 87.8
+    },
+    "evaluations": {
+      "livebench_math": 87.8,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 73,
+      "livebench_math_comp": 93.1,
+      "livebench_olympiad": 87.2,
+      "artificial_analysis_math_index": 87.8
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.75,
+      "price_1m_output_tokens": 14
+    },
+    "median_output_tokens_per_second": 74.5549238150118,
+    "median_time_to_first_token_seconds": 44.7123124226975,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 87.83575,
+    "livebench_raw_id": "gpt-5.3-codex-high",
+    "livebench_release": "2026-01-08",
+    "rank": 25
+  },
+  {
+    "id": "grok-4-20",
+    "slug": "grok-4-20",
+    "modelId": "xai/grok-4-20",
+    "name": "Grok 4.20 Beta",
+    "organization": "xAI",
+    "model_creator": {
+      "name": "xAI",
+      "slug": "xai"
+    },
+    "rating": 1479,
+    "arena_elo": null,
+    "final_score": 87.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 87.1
+    },
+    "evaluations": {
+      "livebench_math": 87.1,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 81,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 75.1,
+      "artificial_analysis_math_index": 87.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.25,
+      "price_1m_output_tokens": 2.5
+    },
+    "median_output_tokens_per_second": 119.196111498799,
+    "median_time_to_first_token_seconds": 9.89086109929535,
+    "context_length": 2000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 87.0555,
+    "livebench_raw_id": "grok-4.20-beta-0309-reasoning",
+    "livebench_release": "2026-01-08",
+    "rank": 26
+  },
+  {
+    "id": "claude-sonnet-4-6",
+    "slug": "claude-sonnet-4-6",
+    "modelId": "anthropic/claude-sonnet-4-6",
+    "name": "Claude 4.6 Sonnet Thinking Medium Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1479,
+    "arena_elo": null,
+    "final_score": 87,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 87
+    },
+    "evaluations": {
+      "livebench_math": 87,
+      "livebench_amps_hard": 76,
+      "livebench_integrals": 90,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 87.9,
+      "artificial_analysis_math_index": 87
+    },
+    "pricing": {
+      "price_1m_input_tokens": 3,
+      "price_1m_output_tokens": 15
+    },
+    "median_output_tokens_per_second": 56.2851058149877,
+    "median_time_to_first_token_seconds": 1.65792589383794,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 86.994,
+    "livebench_raw_id": "claude-sonnet-4-6-thinking-auto-medium-effort",
+    "livebench_release": "2026-06-25",
+    "rank": 27
+  },
+  {
+    "id": "gpt-5-1",
+    "slug": "gpt-5-1",
+    "modelId": "openai/gpt-5-1",
+    "name": "GPT-5.1 High",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1478,
+    "arena_elo": null,
+    "final_score": 86.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 86.9
+    },
+    "evaluations": {
+      "livebench_math": 86.9,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 67,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 88.5,
+      "artificial_analysis_math_index": 86.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.25,
+      "price_1m_output_tokens": 10
+    },
+    "median_output_tokens_per_second": 85.7223455507841,
+    "median_time_to_first_token_seconds": 30.9195812187676,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 86.8995,
+    "livebench_raw_id": "gpt-5.1-2025-11-13-high",
+    "livebench_release": "2026-01-08",
+    "rank": 28
+  },
+  {
+    "id": "claude-sonnet-4-6",
+    "slug": "claude-sonnet-4-6",
+    "modelId": "anthropic/claude-sonnet-4-6",
+    "name": "Claude 4.6 Sonnet Thinking High Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1476,
+    "arena_elo": null,
+    "final_score": 86.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 86.5
+    },
+    "evaluations": {
+      "livebench_math": 86.5,
+      "livebench_amps_hard": 78,
+      "livebench_integrals": 87,
+      "livebench_math_comp": 93.1,
+      "livebench_olympiad": 88,
+      "artificial_analysis_math_index": 86.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": 3,
+      "price_1m_output_tokens": 15
+    },
+    "median_output_tokens_per_second": 56.2851058149877,
+    "median_time_to_first_token_seconds": 1.65792589383794,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 86.53375,
+    "livebench_raw_id": "claude-sonnet-4-6-thinking-auto-high-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 29
+  },
+  {
+    "id": "claude-opus-4-7",
+    "slug": "claude-opus-4-7",
+    "modelId": "anthropic/claude-opus-4-7",
+    "name": "Claude 4.7 Opus Thinking Medium Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1475,
+    "arena_elo": null,
+    "final_score": 86.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 86.4
+    },
+    "evaluations": {
+      "livebench_math": 86.4,
+      "livebench_amps_hard": 99,
+      "livebench_integrals": 63,
+      "livebench_math_comp": 93.1,
+      "livebench_olympiad": 90.4,
+      "artificial_analysis_math_index": 86.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 82.503504112746,
+    "median_time_to_first_token_seconds": 26.612848070538,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 86.37925,
+    "livebench_raw_id": "claude-opus-4-7-medium-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 30
+  },
+  {
+    "id": "gpt-5-pro-2025-10-06",
+    "slug": "gpt-5-pro-2025-10-06",
+    "modelId": "openai/gpt-5-pro-2025-10-06",
+    "name": "GPT-5 Pro",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1474,
+    "arena_elo": null,
+    "final_score": 86.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 86.2
+    },
+    "evaluations": {
+      "livebench_math": 86.2,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 62,
+      "livebench_math_comp": 97.1,
+      "livebench_olympiad": 87.6,
+      "artificial_analysis_math_index": 86.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 86.1655,
+    "livebench_raw_id": "gpt-5-pro-2025-10-06",
+    "livebench_release": "2026-01-08",
+    "rank": 31
+  },
+  {
+    "id": "gpt-5-3-codex",
+    "slug": "gpt-5-3-codex",
+    "modelId": "openai/gpt-5-3-codex",
+    "name": "GPT-5.3 Codex xHigh",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1471,
+    "arena_elo": null,
+    "final_score": 85.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 85.7
+    },
+    "evaluations": {
+      "livebench_math": 85.7,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 66,
+      "livebench_math_comp": 93.1,
+      "livebench_olympiad": 86.7,
+      "artificial_analysis_math_index": 85.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.75,
+      "price_1m_output_tokens": 14
+    },
+    "median_output_tokens_per_second": 74.5549238150118,
+    "median_time_to_first_token_seconds": 44.7123124226975,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 85.6995,
+    "livebench_raw_id": "gpt-5.3-codex-xhigh",
+    "livebench_release": "2026-01-08",
+    "rank": 32
+  },
+  {
+    "id": "qwen3-7-max",
+    "slug": "qwen3-7-max",
+    "modelId": "alibaba/qwen3-7-max",
+    "name": "Qwen 3.7 Max",
+    "organization": "Alibaba",
+    "model_creator": {
+      "name": "Alibaba",
+      "slug": "alibaba"
+    },
+    "rating": 1469,
+    "arena_elo": null,
+    "final_score": 85.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 85.2
+    },
+    "evaluations": {
+      "livebench_math": 85.2,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 59,
+      "livebench_math_comp": 97.1,
+      "livebench_olympiad": 86.9,
+      "artificial_analysis_math_index": 85.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 2.5,
+      "price_1m_output_tokens": 7.5
+    },
+    "median_output_tokens_per_second": 142.274074092926,
+    "median_time_to_first_token_seconds": 13.7664945263815,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 85.24825,
+    "livebench_raw_id": "qwen3.7-max",
+    "livebench_release": "2026-06-25",
+    "rank": 33
+  },
+  {
+    "id": "claude-opus-4-5-thinking",
+    "slug": "claude-opus-4-5-thinking",
+    "modelId": "anthropic/claude-opus-4-5-thinking",
+    "name": "Claude 4.5 Opus Thinking Medium Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1469,
+    "arena_elo": null,
+    "final_score": 85.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 85.2
+    },
+    "evaluations": {
+      "livebench_math": 85.2,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 62,
+      "livebench_math_comp": 92.2,
+      "livebench_olympiad": 88.8,
+      "artificial_analysis_math_index": 85.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 61.8318611779675,
+    "median_time_to_first_token_seconds": 12.7770006565111,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 85.2405,
+    "livebench_raw_id": "claude-opus-4-5-20251101-thinking-64k-medium-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 34
+  },
+  {
+    "id": "deepseek-v3-2-0925",
+    "slug": "deepseek-v3-2-0925",
+    "modelId": "deepseek/deepseek-v3-2-0925",
+    "name": "DeepSeek V3.2 Thinking",
+    "organization": "DeepSeek",
+    "model_creator": {
+      "name": "DeepSeek",
+      "slug": "deepseek"
+    },
+    "rating": 1468,
+    "arena_elo": null,
+    "final_score": 85,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 85
+    },
+    "evaluations": {
+      "livebench_math": 85,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 63,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 85,
+      "artificial_analysis_math_index": 85
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.28,
+      "price_1m_output_tokens": 0.42
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 85.03375,
+    "livebench_raw_id": "deepseek-v3.2-thinking",
+    "livebench_release": "2026-01-08",
+    "rank": 35
+  },
+  {
+    "id": "glm-5-1",
+    "slug": "glm-5-1",
+    "modelId": "z-ai/glm-5-1",
+    "name": "GLM 5.1",
+    "organization": "Z.AI",
+    "model_creator": {
+      "name": "Z.AI",
+      "slug": "z-ai"
+    },
+    "rating": 1467,
+    "arena_elo": null,
+    "final_score": 84.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 84.9
+    },
+    "evaluations": {
+      "livebench_math": 84.9,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 60,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 88.5,
+      "artificial_analysis_math_index": 84.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.285,
+      "price_1m_output_tokens": 4.07
+    },
+    "median_output_tokens_per_second": 76.0288353048719,
+    "median_time_to_first_token_seconds": 15.9390226413404,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 84.89425,
+    "livebench_raw_id": "glm-5.1",
+    "livebench_release": "2026-01-08",
+    "rank": 36
+  },
+  {
+    "id": "kimi-k2",
+    "slug": "kimi-k2",
+    "modelId": "moonshot-ai/kimi-k2",
+    "name": "Kimi K2.5 Thinking",
+    "organization": "Moonshot AI",
+    "model_creator": {
+      "name": "Moonshot AI",
+      "slug": "moonshot-ai"
+    },
+    "rating": 1467,
+    "arena_elo": null,
+    "final_score": 84.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 84.9
+    },
+    "evaluations": {
+      "livebench_math": 84.9,
+      "livebench_amps_hard": 96,
+      "livebench_integrals": 61,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 88.4,
+      "artificial_analysis_math_index": 84.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.57,
+      "price_1m_output_tokens": 2.3
+    },
+    "median_output_tokens_per_second": 41.2924040646353,
+    "median_time_to_first_token_seconds": 4.40598004159438,
+    "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 84.868,
+    "livebench_raw_id": "kimi-k2.5-thinking",
+    "livebench_release": "2026-01-08",
+    "rank": 37
+  },
+  {
+    "id": "gpt-5-2-2025-12-11-low",
+    "slug": "gpt-5-2-2025-12-11-low",
+    "modelId": "openai/gpt-5-2-2025-12-11-low",
+    "name": "GPT-5.2 Low",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1466,
+    "arena_elo": null,
+    "final_score": 84.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 84.7
+    },
+    "evaluations": {
+      "livebench_math": 84.7,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 61,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 86.7,
+      "artificial_analysis_math_index": 84.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 84.71424999999999,
+    "livebench_raw_id": "gpt-5.2-2025-12-11-low",
+    "livebench_release": "2026-01-08",
+    "rank": 38
+  },
+  {
+    "id": "grok-4-3",
+    "slug": "grok-4-3",
+    "modelId": "xai/grok-4-3",
+    "name": "Grok 4.3",
+    "organization": "xAI",
+    "model_creator": {
+      "name": "xAI",
+      "slug": "xai"
+    },
+    "rating": 1464,
+    "arena_elo": null,
+    "final_score": 84.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 84.3
+    },
+    "evaluations": {
+      "livebench_math": 84.3,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 63,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 82.3,
+      "artificial_analysis_math_index": 84.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.25,
+      "price_1m_output_tokens": 2.5
+    },
+    "median_output_tokens_per_second": 80.2465440104856,
+    "median_time_to_first_token_seconds": 16.9052275475319,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 84.339,
+    "livebench_raw_id": "grok-4.3",
+    "livebench_release": "2026-06-25",
+    "rank": 39
+  },
+  {
+    "id": "kimi-k2-6",
+    "slug": "kimi-k2-6",
+    "modelId": "moonshot-ai/kimi-k2-6",
+    "name": "Kimi K2.6 Thinking",
+    "organization": "Moonshot AI",
+    "model_creator": {
+      "name": "Moonshot AI",
+      "slug": "moonshot-ai"
+    },
+    "rating": 1464,
+    "arena_elo": null,
+    "final_score": 84.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 84.3
+    },
+    "evaluations": {
+      "livebench_math": 84.3,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 54,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 90,
+      "artificial_analysis_math_index": 84.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.95,
+      "price_1m_output_tokens": 4
+    },
+    "median_output_tokens_per_second": 35.6177412051304,
+    "median_time_to_first_token_seconds": 109.807375226048,
+    "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 84.27625,
+    "livebench_raw_id": "kimi-k2.6-thinking",
+    "livebench_release": "2026-06-25",
+    "rank": 40
+  },
+  {
+    "id": "gemini-3-flash",
+    "slug": "gemini-3-flash",
+    "modelId": "google/gemini-3-flash",
+    "name": "Gemini 3 Flash Preview High",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1463,
+    "arena_elo": null,
+    "final_score": 84.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 84.2
+    },
+    "evaluations": {
+      "livebench_math": 84.2,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 56,
+      "livebench_math_comp": 93.1,
+      "livebench_olympiad": 89.6,
+      "artificial_analysis_math_index": 84.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.5,
+      "price_1m_output_tokens": 3
+    },
+    "median_output_tokens_per_second": 165.863703643635,
+    "median_time_to_first_token_seconds": 1.36285390761112,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 84.17425,
+    "livebench_raw_id": "gemini-3-flash-preview-high",
+    "livebench_release": "2026-01-08",
+    "rank": 41
+  },
+  {
+    "id": "qwen3-6-plus",
+    "slug": "qwen3-6-plus",
+    "modelId": "alibaba/qwen3-6-plus",
+    "name": "Qwen 3.6 Plus",
+    "organization": "Alibaba",
+    "model_creator": {
+      "name": "Alibaba",
+      "slug": "alibaba"
+    },
+    "rating": 1460,
+    "arena_elo": null,
+    "final_score": 83.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 83.7
+    },
+    "evaluations": {
+      "livebench_math": 83.7,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 62,
+      "livebench_math_comp": 93.1,
+      "livebench_olympiad": 82.8,
+      "artificial_analysis_math_index": 83.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.5,
+      "price_1m_output_tokens": 3
+    },
+    "median_output_tokens_per_second": 49.0902068244969,
+    "median_time_to_first_token_seconds": 35.7949054940223,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 83.72475,
+    "livebench_raw_id": "qwen3.6-plus",
+    "livebench_release": "2026-06-25",
+    "rank": 42
+  },
+  {
+    "id": "grok-4-1-fast-reasoning",
+    "slug": "grok-4-1-fast-reasoning",
+    "modelId": "xai/grok-4-1-fast-reasoning",
+    "name": "Grok 4.1 Fast",
+    "organization": "xAI",
+    "model_creator": {
+      "name": "xAI",
+      "slug": "xai"
+    },
+    "rating": 1460,
+    "arena_elo": null,
+    "final_score": 83.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 83.7
+    },
+    "evaluations": {
+      "livebench_math": 83.7,
+      "livebench_amps_hard": 95,
+      "livebench_integrals": 65,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 78.8,
+      "artificial_analysis_math_index": 83.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 2000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 83.72,
+    "livebench_raw_id": "grok-4-1-fast-reasoning",
+    "livebench_release": "2026-01-08",
+    "rank": 43
+  },
+  {
+    "id": "gpt-5-1-codex",
+    "slug": "gpt-5-1-codex",
+    "modelId": "openai/gpt-5-1-codex",
+    "name": "GPT-5.1 Codex Max",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1460,
+    "arena_elo": null,
+    "final_score": 83.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 83.7
+    },
+    "evaluations": {
+      "livebench_math": 83.7,
+      "livebench_amps_hard": 96,
+      "livebench_integrals": 56,
+      "livebench_math_comp": 93.1,
+      "livebench_olympiad": 89.5,
+      "artificial_analysis_math_index": 83.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.25,
+      "price_1m_output_tokens": 10
+    },
+    "median_output_tokens_per_second": 105.970624048449,
+    "median_time_to_first_token_seconds": 12.1574860500861,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 83.655,
+    "livebench_raw_id": "gpt-5.1-codex-max",
+    "livebench_release": "2026-01-08",
+    "rank": 44
+  },
+  {
+    "id": "glm-5",
+    "slug": "glm-5",
+    "modelId": "z-ai/glm-5",
+    "name": "GLM 5",
+    "organization": "Z.AI",
+    "model_creator": {
+      "name": "Z.AI",
+      "slug": "z-ai"
+    },
+    "rating": 1459,
+    "arena_elo": null,
+    "final_score": 83.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 83.5
+    },
+    "evaluations": {
+      "livebench_math": 83.5,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 57,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 84.8,
+      "artificial_analysis_math_index": 83.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1,
+      "price_1m_output_tokens": 3.2
+    },
+    "median_output_tokens_per_second": 69.5110969180369,
+    "median_time_to_first_token_seconds": 38.4989750533181,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 83.464,
+    "livebench_raw_id": "glm-5",
+    "livebench_release": "2026-01-08",
+    "rank": 45
+  },
+  {
+    "id": "gpt-5-1-codex",
+    "slug": "gpt-5-1-codex",
+    "modelId": "openai/gpt-5-1-codex",
+    "name": "GPT-5.1 Codex Max High",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1458,
+    "arena_elo": null,
+    "final_score": 83.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 83.2
+    },
+    "evaluations": {
+      "livebench_math": 83.2,
+      "livebench_amps_hard": 90,
+      "livebench_integrals": 61,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 85.8,
+      "artificial_analysis_math_index": 83.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.25,
+      "price_1m_output_tokens": 10
+    },
+    "median_output_tokens_per_second": 105.970624048449,
+    "median_time_to_first_token_seconds": 12.1574860500861,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 83.21625,
+    "livebench_raw_id": "gpt-5.1-codex-max-high",
+    "livebench_release": "2026-01-08",
+    "rank": 46
+  },
+  {
+    "id": "gpt-5-4-nano-medium",
+    "slug": "gpt-5-4-nano-medium",
+    "modelId": "openai/gpt-5-4-nano-medium",
+    "name": "GPT-5.4 Nano Medium",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1457,
+    "arena_elo": null,
+    "final_score": 83.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 83.1
+    },
+    "evaluations": {
+      "livebench_math": 83.1,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 61.6,
+      "livebench_math_comp": 91.2,
+      "livebench_olympiad": 82.6,
+      "artificial_analysis_math_index": 83.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.2,
+      "price_1m_output_tokens": 1.25
+    },
+    "median_output_tokens_per_second": 129.939299471972,
+    "median_time_to_first_token_seconds": 4.13910872530278,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 83.09575,
+    "livebench_raw_id": "gpt-5.4-nano-medium",
+    "livebench_release": "2026-01-08",
+    "rank": 47
+  },
+  {
+    "id": "claude-opus-4-7",
+    "slug": "claude-opus-4-7",
+    "modelId": "anthropic/claude-opus-4-7",
+    "name": "Claude 4.7 Opus Thinking Low Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1457,
+    "arena_elo": null,
+    "final_score": 83.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 83.1
+    },
+    "evaluations": {
+      "livebench_math": 83.1,
+      "livebench_amps_hard": 99,
+      "livebench_integrals": 58,
+      "livebench_math_comp": 87.3,
+      "livebench_olympiad": 88.1,
+      "artificial_analysis_math_index": 83.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 82.503504112746,
+    "median_time_to_first_token_seconds": 26.612848070538,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 83.09049999999999,
+    "livebench_raw_id": "claude-opus-4-7-low-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 48
+  },
+  {
+    "id": "grok-4",
+    "slug": "grok-4",
+    "modelId": "xai/grok-4",
+    "name": "Grok 4",
+    "organization": "xAI",
+    "model_creator": {
+      "name": "xAI",
+      "slug": "xai"
+    },
+    "rating": 1457,
+    "arena_elo": null,
+    "final_score": 83,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 83
+    },
+    "evaluations": {
+      "livebench_math": 83,
+      "livebench_amps_hard": 86,
+      "livebench_integrals": 65,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 87,
+      "artificial_analysis_math_index": 83
+    },
+    "pricing": {
+      "price_1m_input_tokens": 3,
+      "price_1m_output_tokens": 15
+    },
+    "median_output_tokens_per_second": 70.9551481436252,
+    "median_time_to_first_token_seconds": 14.6976577618221,
+    "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 83.02324999999999,
+    "livebench_raw_id": "grok-4-0709",
+    "livebench_release": "2026-01-08",
+    "rank": 49
+  },
+  {
+    "id": "deepseek-v3",
+    "slug": "deepseek-v3",
+    "modelId": "deepseek/deepseek-v3",
+    "name": "DeepSeek V3.2 Exp Thinking",
+    "organization": "DeepSeek",
+    "model_creator": {
+      "name": "DeepSeek",
+      "slug": "deepseek"
+    },
+    "rating": 1453,
+    "arena_elo": null,
+    "final_score": 82.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 82.4
+    },
+    "evaluations": {
+      "livebench_math": 82.4,
+      "livebench_amps_hard": 96,
+      "livebench_integrals": 59,
+      "livebench_math_comp": 92.2,
+      "livebench_olympiad": 82.4,
+      "artificial_analysis_math_index": 82.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.32,
+      "price_1m_output_tokens": 0.89
+    },
+    "median_output_tokens_per_second": 72.92972063021405,
+    "median_time_to_first_token_seconds": 1.3834031342241775,
+    "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 82.39525,
+    "livebench_raw_id": "deepseek-v3.2-exp-thinking",
+    "livebench_release": "2026-01-08",
+    "rank": 50
+  },
+  {
+    "id": "gpt-5-mini",
+    "slug": "gpt-5-mini",
+    "modelId": "openai/gpt-5-mini",
+    "name": "GPT-5 Mini High",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1452,
+    "arena_elo": null,
+    "final_score": 82.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 82.2
+    },
+    "evaluations": {
+      "livebench_math": 82.2,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 57,
+      "livebench_math_comp": 91.2,
+      "livebench_olympiad": 82.6,
+      "artificial_analysis_math_index": 82.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.25,
+      "price_1m_output_tokens": 2
+    },
+    "median_output_tokens_per_second": 93.6656314708624,
+    "median_time_to_first_token_seconds": 47.2215651025056,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 82.2005,
+    "livebench_raw_id": "gpt-5-mini-high",
+    "livebench_release": "2026-01-08",
+    "rank": 51
+  },
+  {
+    "id": "gemini-3-pro",
+    "slug": "gemini-3-pro",
+    "modelId": "google/gemini-3-pro",
+    "name": "Gemini 3 Pro Preview High",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1450,
+    "arena_elo": null,
+    "final_score": 81.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 81.8
+    },
+    "evaluations": {
+      "livebench_math": 81.8,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 45,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 90.3,
+      "artificial_analysis_math_index": 81.8
+    },
+    "pricing": {
+      "price_1m_input_tokens": 2,
+      "price_1m_output_tokens": 12
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 81.837,
+    "livebench_raw_id": "gemini-3-pro-preview-11-2025-high",
+    "livebench_release": "2026-01-08",
+    "rank": 52
+  },
+  {
+    "id": "glm-4-6",
+    "slug": "glm-4-6",
+    "modelId": "z-ai/glm-4-6",
+    "name": "GLM 4.6",
+    "organization": "Z.AI",
+    "model_creator": {
+      "name": "Z.AI",
+      "slug": "z-ai"
+    },
+    "rating": 1446,
+    "arena_elo": null,
+    "final_score": 81.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 81.1
+    },
+    "evaluations": {
+      "livebench_math": 81.1,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 50,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 81.4,
+      "artificial_analysis_math_index": 81.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.575,
+      "price_1m_output_tokens": 2.2
+    },
+    "median_output_tokens_per_second": 32.6475719817572,
+    "median_time_to_first_token_seconds": 9.14532150079453,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 81.128,
+    "livebench_raw_id": "glm-4.6",
+    "livebench_release": "2026-01-08",
+    "rank": 53
+  },
+  {
+    "id": "kimi-k2-thinking",
+    "slug": "kimi-k2-thinking",
+    "modelId": "moonshot-ai/kimi-k2-thinking",
+    "name": "Kimi K2 Thinking",
+    "organization": "Moonshot AI",
+    "model_creator": {
+      "name": "Moonshot AI",
+      "slug": "moonshot-ai"
+    },
+    "rating": 1446,
+    "arena_elo": null,
+    "final_score": 81.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 81.1
+    },
+    "evaluations": {
+      "livebench_math": 81.1,
+      "livebench_amps_hard": 96,
+      "livebench_integrals": 52,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 80.3,
+      "artificial_analysis_math_index": 81.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.6,
+      "price_1m_output_tokens": 2.5
+    },
+    "median_output_tokens_per_second": 117.047406578098,
+    "median_time_to_first_token_seconds": 24.9011047028055,
+    "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 81.09575000000001,
+    "livebench_raw_id": "kimi-k2-thinking",
+    "livebench_release": "2026-01-08",
+    "rank": 54
+  },
+  {
+    "id": "minimax-m2-7",
+    "slug": "minimax-m2-7",
+    "modelId": "minimax/minimax-m2-7",
+    "name": "Minimax M2.7",
+    "organization": "Minimax",
+    "model_creator": {
+      "name": "Minimax",
+      "slug": "minimax"
+    },
+    "rating": 1443,
+    "arena_elo": null,
+    "final_score": 80.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 80.5
+    },
+    "evaluations": {
+      "livebench_math": 80.5,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 49,
+      "livebench_math_comp": 92.2,
+      "livebench_olympiad": 84,
+      "artificial_analysis_math_index": 80.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.3,
+      "price_1m_output_tokens": 1.2
+    },
+    "median_output_tokens_per_second": 48.9118972728339,
+    "median_time_to_first_token_seconds": 18.6445671584346,
+    "context_length": 204800,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 80.54225,
+    "livebench_raw_id": "minimax-m2.7",
+    "livebench_release": "2026-01-08",
+    "rank": 55
+  },
+  {
+    "id": "claude-sonnet-4-6",
+    "slug": "claude-sonnet-4-6",
+    "modelId": "anthropic/claude-sonnet-4-6",
+    "name": "Claude 4.6 Sonnet Thinking Low Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1442,
+    "arena_elo": null,
+    "final_score": 80.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 80.4
+    },
+    "evaluations": {
+      "livebench_math": 80.4,
+      "livebench_amps_hard": 75,
+      "livebench_integrals": 72,
+      "livebench_math_comp": 89.2,
+      "livebench_olympiad": 85.3,
+      "artificial_analysis_math_index": 80.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 3,
+      "price_1m_output_tokens": 15
+    },
+    "median_output_tokens_per_second": 56.2851058149877,
+    "median_time_to_first_token_seconds": 1.65792589383794,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 80.382,
+    "livebench_raw_id": "claude-sonnet-4-6-thinking-auto-low-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 56
+  },
+  {
+    "id": "qwen3-6-27b",
+    "slug": "qwen3-6-27b",
+    "modelId": "alibaba/qwen3-6-27b",
+    "name": "Qwen 3.6 27B",
+    "organization": "Alibaba",
+    "model_creator": {
+      "name": "Alibaba",
+      "slug": "alibaba"
+    },
+    "rating": 1439,
+    "arena_elo": null,
+    "final_score": 79.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 79.9
+    },
+    "evaluations": {
+      "livebench_math": 79.9,
+      "livebench_amps_hard": 93,
+      "livebench_integrals": 52,
+      "livebench_math_comp": 92.2,
+      "livebench_olympiad": 82.3,
+      "artificial_analysis_math_index": 79.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.6,
+      "price_1m_output_tokens": 3.6
+    },
+    "median_output_tokens_per_second": 56.6881459475133,
+    "median_time_to_first_token_seconds": 36.9514928334694,
+    "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 79.8685,
+    "livebench_raw_id": "qwen3.6-27b",
+    "livebench_release": "2026-06-25",
+    "rank": 57
+  },
+  {
+    "id": "deepseek-v4-flash",
+    "slug": "deepseek-v4-flash",
+    "modelId": "deepseek/deepseek-v4-flash",
+    "name": "DeepSeek V4 Flash",
+    "organization": "DeepSeek",
+    "model_creator": {
+      "name": "DeepSeek",
+      "slug": "deepseek"
+    },
+    "rating": 1438,
+    "arena_elo": null,
+    "final_score": 79.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 79.6
+    },
+    "evaluations": {
+      "livebench_math": 79.6,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 37,
+      "livebench_math_comp": 97.1,
+      "livebench_olympiad": 86.5,
+      "artificial_analysis_math_index": 79.6
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.14,
+      "price_1m_output_tokens": 0.28
+    },
+    "median_output_tokens_per_second": 125.036343892717,
+    "median_time_to_first_token_seconds": 23.8956902088147,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 79.64750000000001,
+    "livebench_raw_id": "deepseek-v4-flash",
+    "livebench_release": "2026-06-25",
+    "rank": 58
+  },
+  {
+    "id": "kimi-k2-7-code",
+    "slug": "kimi-k2-7-code",
+    "modelId": "moonshot-ai/kimi-k2-7-code",
+    "name": "Kimi K2.7 Code",
+    "organization": "Moonshot AI",
+    "model_creator": {
+      "name": "Moonshot AI",
+      "slug": "moonshot-ai"
+    },
+    "rating": 1438,
+    "arena_elo": null,
+    "final_score": 79.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 79.6
+    },
+    "evaluations": {
+      "livebench_math": 79.6,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 37,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 90.3,
+      "artificial_analysis_math_index": 79.6
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.95,
+      "price_1m_output_tokens": 4
+    },
+    "median_output_tokens_per_second": 50.0545957357318,
+    "median_time_to_first_token_seconds": 34.298657662317,
+    "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 79.60425000000001,
+    "livebench_raw_id": "kimi-k2.7-code",
+    "livebench_release": "2026-06-25",
+    "rank": 59
+  },
+  {
+    "id": "gpt-5-1-codex",
+    "slug": "gpt-5-1-codex",
+    "modelId": "openai/gpt-5-1-codex",
+    "name": "GPT-5.1 Codex",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1438,
+    "arena_elo": null,
+    "final_score": 79.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 79.6
+    },
+    "evaluations": {
+      "livebench_math": 79.6,
+      "livebench_amps_hard": 95,
+      "livebench_integrals": 45,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 82.2,
+      "artificial_analysis_math_index": 79.6
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.25,
+      "price_1m_output_tokens": 10
+    },
+    "median_output_tokens_per_second": 105.970624048449,
+    "median_time_to_first_token_seconds": 12.1574860500861,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 79.5805,
+    "livebench_raw_id": "gpt-5.1-codex",
+    "livebench_release": "2026-01-08",
+    "rank": 60
+  },
+  {
+    "id": "claude-sonnet-4-5-20250929-thinking-64k",
+    "slug": "claude-sonnet-4-5-20250929-thinking-64k",
+    "modelId": "anthropic/claude-sonnet-4-5-20250929-thinking-64k",
+    "name": "Claude Sonnet 4.5 Thinking",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1436,
+    "arena_elo": null,
+    "final_score": 79.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 79.3
+    },
+    "evaluations": {
+      "livebench_math": 79.3,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 47,
+      "livebench_math_comp": 90.2,
+      "livebench_olympiad": 83.1,
+      "artificial_analysis_math_index": 79.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 79.3135,
+    "livebench_raw_id": "claude-sonnet-4-5-20250929-thinking-64k",
+    "livebench_release": "2026-01-08",
+    "rank": 61
+  },
+  {
+    "id": "gpt-5-1-2025-11-13-medium",
+    "slug": "gpt-5-1-2025-11-13-medium",
+    "modelId": "openai/gpt-5-1-2025-11-13-medium",
+    "name": "GPT-5.1 Medium",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1435,
+    "arena_elo": null,
+    "final_score": 79,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 79
+    },
+    "evaluations": {
+      "livebench_math": 79,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 42,
+      "livebench_math_comp": 90.2,
+      "livebench_olympiad": 86.8,
+      "artificial_analysis_math_index": 79
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 79.01050000000001,
+    "livebench_raw_id": "gpt-5.1-2025-11-13-medium",
+    "livebench_release": "2026-01-08",
+    "rank": 62
+  },
+  {
+    "id": "qwen3-6-flash",
+    "slug": "qwen3-6-flash",
+    "modelId": "alibaba/qwen3-6-flash",
+    "name": "Qwen 3.6 Flash",
+    "organization": "Alibaba",
+    "model_creator": {
+      "name": "Alibaba",
+      "slug": "alibaba"
+    },
+    "rating": 1434,
+    "arena_elo": null,
+    "final_score": 78.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 78.9
+    },
+    "evaluations": {
+      "livebench_math": 78.9,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 44,
+      "livebench_math_comp": 93.1,
+      "livebench_olympiad": 80.4,
+      "artificial_analysis_math_index": 78.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 78.87725,
+    "livebench_raw_id": "qwen3.6-flash",
+    "livebench_release": "2026-01-08",
+    "rank": 63
+  },
+  {
+    "id": "gpt-5-4-mini",
+    "slug": "gpt-5-4-mini",
+    "modelId": "openai/gpt-5-4-mini",
+    "name": "GPT-5.4 Mini xHigh",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1432,
+    "arena_elo": null,
+    "final_score": 78.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 78.5
+    },
+    "evaluations": {
+      "livebench_math": 78.5,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 37,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 85.7,
+      "artificial_analysis_math_index": 78.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.75,
+      "price_1m_output_tokens": 4.5
+    },
+    "median_output_tokens_per_second": 167.704755509428,
+    "median_time_to_first_token_seconds": 111.906229998286,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 78.462,
+    "livebench_raw_id": "gpt-5.4-mini-xhigh",
+    "livebench_release": "2026-06-25",
+    "rank": 64
+  },
+  {
+    "id": "grok-build-0-1-06-16",
+    "slug": "grok-build-0-1-06-16",
+    "modelId": "xai/grok-build-0-1-06-16",
+    "name": "Grok Build 0.1",
+    "organization": "xAI",
+    "model_creator": {
+      "name": "xAI",
+      "slug": "xai"
+    },
+    "rating": 1431,
+    "arena_elo": null,
+    "final_score": 78.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 78.4
+    },
+    "evaluations": {
+      "livebench_math": 78.4,
+      "livebench_amps_hard": 66,
+      "livebench_integrals": 66,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 86.6,
+      "artificial_analysis_math_index": 78.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1,
+      "price_1m_output_tokens": 2
+    },
+    "median_output_tokens_per_second": 155.575892685558,
+    "median_time_to_first_token_seconds": 11.9586269874639,
+    "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 78.42875000000001,
+    "livebench_raw_id": "grok-build-0.1",
+    "livebench_release": "2026-06-25",
+    "rank": 65
+  },
+  {
+    "id": "gemini-3-pro-low",
+    "slug": "gemini-3-pro-low",
+    "modelId": "google/gemini-3-pro-low",
+    "name": "Gemini 3 Pro Preview Low",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1427,
+    "arena_elo": null,
+    "final_score": 77.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 77.7
+    },
+    "evaluations": {
+      "livebench_math": 77.7,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 32,
+      "livebench_math_comp": 92.2,
+      "livebench_olympiad": 89.8,
+      "artificial_analysis_math_index": 77.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": 2,
+      "price_1m_output_tokens": 12
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 77.734,
+    "livebench_raw_id": "gemini-3-pro-preview-11-2025-low",
+    "livebench_release": "2026-01-08",
+    "rank": 66
+  },
+  {
+    "id": "claude-haiku-4-5-20251001-thinking-64k",
+    "slug": "claude-haiku-4-5-20251001-thinking-64k",
+    "modelId": "anthropic/claude-haiku-4-5-20251001-thinking-64k",
+    "name": "Claude Haiku 4.5 Thinking",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1426,
+    "arena_elo": null,
+    "final_score": 77.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 77.5
+    },
+    "evaluations": {
+      "livebench_math": 77.5,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 38,
+      "livebench_math_comp": 95.1,
+      "livebench_olympiad": 80,
+      "artificial_analysis_math_index": 77.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 77.53200000000001,
+    "livebench_raw_id": "claude-haiku-4-5-20251001-thinking-64k",
+    "livebench_release": "2026-01-08",
+    "rank": 67
+  },
+  {
+    "id": "minimax-m2-5",
+    "slug": "minimax-m2-5",
+    "modelId": "minimax/minimax-m2-5",
+    "name": "Minimax M2.5",
+    "organization": "Minimax",
+    "model_creator": {
+      "name": "Minimax",
+      "slug": "minimax"
+    },
+    "rating": 1426,
+    "arena_elo": null,
+    "final_score": 77.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 77.4
+    },
+    "evaluations": {
+      "livebench_math": 77.4,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 39,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 78.5,
+      "artificial_analysis_math_index": 77.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.3,
+      "price_1m_output_tokens": 1.2
+    },
+    "median_output_tokens_per_second": 45.2151208130982,
+    "median_time_to_first_token_seconds": 19.0490187640926,
+    "context_length": 204800,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 77.40675,
+    "livebench_raw_id": "minimax-m2.5",
+    "livebench_release": "2026-01-08",
+    "rank": 68
+  },
+  {
+    "id": "mimo-v2-pro",
+    "slug": "mimo-v2-pro",
+    "modelId": "xiaomi/mimo-v2-pro",
+    "name": "MiMo V2 Pro",
+    "organization": "Xiaomi",
+    "model_creator": {
+      "name": "Xiaomi",
+      "slug": "xiaomi"
+    },
+    "rating": 1424,
+    "arena_elo": null,
+    "final_score": 77,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 77
+    },
+    "evaluations": {
+      "livebench_math": 77,
+      "livebench_amps_hard": 91,
+      "livebench_integrals": 41,
+      "livebench_math_comp": 93.1,
+      "livebench_olympiad": 82.7,
+      "artificial_analysis_math_index": 77
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 76.96025,
+    "livebench_raw_id": "mimo-v2-pro",
+    "livebench_release": "2026-01-08",
+    "rank": 69
+  },
+  {
+    "id": "minimax-m3",
+    "slug": "minimax-m3",
+    "modelId": "minimax/minimax-m3",
+    "name": "Minimax M3",
+    "organization": "Minimax",
+    "model_creator": {
+      "name": "Minimax",
+      "slug": "minimax"
+    },
+    "rating": 1423,
+    "arena_elo": null,
+    "final_score": 76.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 76.9
+    },
+    "evaluations": {
+      "livebench_math": 76.9,
+      "livebench_amps_hard": 75,
+      "livebench_integrals": 56,
+      "livebench_math_comp": 91.2,
+      "livebench_olympiad": 85.6,
+      "artificial_analysis_math_index": 76.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.3,
+      "price_1m_output_tokens": 1.2
+    },
+    "median_output_tokens_per_second": 83.7161868728253,
+    "median_time_to_first_token_seconds": 104.022402290839,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 76.94749999999999,
+    "livebench_raw_id": "minimax-m3",
+    "livebench_release": "2026-06-25",
+    "rank": 70
+  },
+  {
+    "id": "claude-opus-4-5-thinking",
+    "slug": "claude-opus-4-5-thinking",
+    "modelId": "anthropic/claude-opus-4-5-thinking",
+    "name": "Claude 4.5 Opus Thinking Low Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1422,
+    "arena_elo": null,
+    "final_score": 76.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 76.7
+    },
+    "evaluations": {
+      "livebench_math": 76.7,
+      "livebench_amps_hard": 85,
+      "livebench_integrals": 44,
+      "livebench_math_comp": 90.2,
+      "livebench_olympiad": 87.4,
+      "artificial_analysis_math_index": 76.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 61.8318611779675,
+    "median_time_to_first_token_seconds": 12.7770006565111,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 76.65275,
+    "livebench_raw_id": "claude-opus-4-5-20251101-thinking-64k-low-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 71
+  },
+  {
+    "id": "gpt-5-1-codex-mini",
+    "slug": "gpt-5-1-codex-mini",
+    "modelId": "openai/gpt-5-1-codex-mini",
+    "name": "GPT-5.1 Codex Mini",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1420,
+    "arena_elo": null,
+    "final_score": 76.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 76.3
+    },
+    "evaluations": {
+      "livebench_math": 76.3,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 32,
+      "livebench_math_comp": 94.1,
+      "livebench_olympiad": 80.9,
+      "artificial_analysis_math_index": 76.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.25,
+      "price_1m_output_tokens": 2
+    },
+    "median_output_tokens_per_second": 134.162135472029,
+    "median_time_to_first_token_seconds": 10.937100343957,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 76.2555,
+    "livebench_raw_id": "gpt-5.1-codex-mini",
+    "livebench_release": "2026-01-08",
+    "rank": 72
+  },
+  {
+    "id": "glm-4-7",
+    "slug": "glm-4-7",
+    "modelId": "z-ai/glm-4-7",
+    "name": "GLM 4.7",
+    "organization": "Z.AI",
+    "model_creator": {
+      "name": "Z.AI",
+      "slug": "z-ai"
+    },
+    "rating": 1418,
+    "arena_elo": null,
+    "final_score": 76,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 76
+    },
+    "evaluations": {
+      "livebench_math": 76,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 35,
+      "livebench_math_comp": 92.2,
+      "livebench_olympiad": 79.9,
+      "artificial_analysis_math_index": 76
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.525,
+      "price_1m_output_tokens": 2.1
+    },
+    "median_output_tokens_per_second": 49.5657581219406,
+    "median_time_to_first_token_seconds": 35.3509133260829,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 76.01875,
+    "livebench_raw_id": "glm-4.7",
+    "livebench_release": "2026-01-08",
+    "rank": 73
+  },
+  {
+    "id": "gemini-2-5-flash",
+    "slug": "gemini-2-5-flash",
+    "modelId": "google/gemini-2-5-flash",
+    "name": "Gemini 2.5 Flash (Max Thinking)",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1415,
+    "arena_elo": null,
+    "final_score": 75.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 75.4
+    },
+    "evaluations": {
+      "livebench_math": 75.4,
+      "livebench_amps_hard": 96,
+      "livebench_integrals": 32,
+      "livebench_math_comp": 89.2,
+      "livebench_olympiad": 84.2,
+      "artificial_analysis_math_index": 75.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.3,
+      "price_1m_output_tokens": 2.5
+    },
+    "median_output_tokens_per_second": 170.920039444071,
+    "median_time_to_first_token_seconds": 0.649814480319471,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 75.351,
+    "livebench_raw_id": "gemini-2.5-flash-preview-09-2025-highthinking",
+    "livebench_release": "2026-01-08",
+    "rank": 74
+  },
+  {
+    "id": "gpt-5-mini",
+    "slug": "gpt-5-mini",
+    "modelId": "openai/gpt-5-mini",
+    "name": "GPT-5 Mini",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1409,
+    "arena_elo": null,
+    "final_score": 74.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 74.4
+    },
+    "evaluations": {
+      "livebench_math": 74.4,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 32,
+      "livebench_math_comp": 89.2,
+      "livebench_olympiad": 78.3,
+      "artificial_analysis_math_index": 74.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.25,
+      "price_1m_output_tokens": 2
+    },
+    "median_output_tokens_per_second": 93.6656314708624,
+    "median_time_to_first_token_seconds": 47.2215651025056,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 74.37775,
+    "livebench_raw_id": "gpt-5-mini",
+    "livebench_release": "2026-01-08",
+    "rank": 75
+  },
+  {
+    "id": "qwen3-next-80b-a3b-instruct",
+    "slug": "qwen3-next-80b-a3b-instruct",
+    "modelId": "alibaba/qwen3-next-80b-a3b-instruct",
+    "name": "Qwen 3 Next 80B A3B Thinking",
+    "organization": "Alibaba",
+    "model_creator": {
+      "name": "Alibaba",
+      "slug": "alibaba"
+    },
+    "rating": 1409,
+    "arena_elo": null,
+    "final_score": 74.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 74.3
+    },
+    "evaluations": {
+      "livebench_math": 74.3,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 38,
+      "livebench_math_comp": 88.2,
+      "livebench_olympiad": 72.8,
+      "artificial_analysis_math_index": 74.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.1,
+      "price_1m_output_tokens": 1.1
+    },
+    "median_output_tokens_per_second": 90.8035811070399,
+    "median_time_to_first_token_seconds": 1.20490117907332,
+    "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 74.26,
+    "livebench_raw_id": "qwen3-next-80b-a3b-thinking",
+    "livebench_release": "2026-01-08",
+    "rank": 76
+  },
+  {
+    "id": "gpt-5-4-mini",
+    "slug": "gpt-5-4-mini",
+    "modelId": "openai/gpt-5-4-mini",
+    "name": "GPT-5.4 Mini High",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1408,
+    "arena_elo": null,
+    "final_score": 74.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 74.1
+    },
+    "evaluations": {
+      "livebench_math": 74.1,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 22.2,
+      "livebench_math_comp": 91.2,
+      "livebench_olympiad": 86,
+      "artificial_analysis_math_index": 74.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.75,
+      "price_1m_output_tokens": 4.5
+    },
+    "median_output_tokens_per_second": 167.704755509428,
+    "median_time_to_first_token_seconds": 111.906229998286,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 74.0985,
+    "livebench_raw_id": "gpt-5.4-mini-high",
+    "livebench_release": "2026-01-08",
+    "rank": 77
+  },
+  {
+    "id": "gemma-4-31b",
+    "slug": "gemma-4-31b",
+    "modelId": "google/gemma-4-31b",
+    "name": "Gemma 4 31B",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1406,
+    "arena_elo": null,
+    "final_score": 73.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 73.9
+    },
+    "evaluations": {
+      "livebench_math": 73.9,
+      "livebench_amps_hard": 100,
+      "livebench_integrals": 26.3,
+      "livebench_math_comp": 87.3,
+      "livebench_olympiad": 82.2,
+      "artificial_analysis_math_index": 73.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0,
+      "price_1m_output_tokens": 0
+    },
+    "median_output_tokens_per_second": 35.7291231584299,
+    "median_time_to_first_token_seconds": 47.5844360281889,
+    "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 73.9365,
+    "livebench_raw_id": "gemma-4-31b-it",
+    "livebench_release": "2026-01-08",
+    "rank": 78
+  },
+  {
+    "id": "gemini-3-1-flash-lite-preview-high",
+    "slug": "gemini-3-1-flash-lite-preview-high",
+    "modelId": "google/gemini-3-1-flash-lite-preview-high",
+    "name": "Gemini 3.1 Flash Lite Preview High",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1405,
+    "arena_elo": null,
+    "final_score": 73.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 73.6
+    },
+    "evaluations": {
+      "livebench_math": 73.6,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 27,
+      "livebench_math_comp": 89.2,
+      "livebench_olympiad": 81,
+      "artificial_analysis_math_index": 73.6
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 73.55925,
+    "livebench_raw_id": "gemini-3.1-flash-lite-preview-high",
+    "livebench_release": "2026-01-08",
+    "rank": 79
+  },
+  {
+    "id": "qwen3-235b-a22b-thinking-2507",
+    "slug": "qwen3-235b-a22b-thinking-2507",
+    "modelId": "alibaba/qwen3-235b-a22b-thinking-2507",
+    "name": "Qwen 3 235B A22B Thinking 2507",
+    "organization": "Alibaba",
+    "model_creator": {
+      "name": "Alibaba",
+      "slug": "alibaba"
+    },
+    "rating": 1404,
+    "arena_elo": null,
+    "final_score": 73.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 73.4
+    },
+    "evaluations": {
+      "livebench_math": 73.4,
+      "livebench_amps_hard": 86,
+      "livebench_integrals": 40,
+      "livebench_math_comp": 86.3,
+      "livebench_olympiad": 81.3,
+      "artificial_analysis_math_index": 73.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 73.39475,
+    "livebench_raw_id": "qwen3-235b-a22b-thinking-2507",
+    "livebench_release": "2026-01-08",
+    "rank": 80
+  },
+  {
+    "id": "claude-4-1-opus-thinking",
+    "slug": "claude-4-1-opus-thinking",
+    "modelId": "anthropic/claude-4-1-opus-thinking",
+    "name": "Claude 4.1 Opus Thinking",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1403,
+    "arena_elo": null,
+    "final_score": 73.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 73.2
+    },
+    "evaluations": {
+      "livebench_math": 73.2,
+      "livebench_amps_hard": 93,
+      "livebench_integrals": 26,
+      "livebench_math_comp": 85.3,
+      "livebench_olympiad": 88.5,
+      "artificial_analysis_math_index": 73.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 15,
+      "price_1m_output_tokens": 75
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 73.19425,
+    "livebench_raw_id": "claude-4-1-opus-20250805-thinking-32k",
+    "livebench_release": "2026-01-08",
+    "rank": 81
+  },
+  {
+    "id": "gpt-5-3-instant",
+    "slug": "gpt-5-3-instant",
+    "modelId": "openai/gpt-5-3-instant",
+    "name": "GPT-5.3 Instant",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1398,
+    "arena_elo": null,
+    "final_score": 72.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 72.4
+    },
+    "evaluations": {
+      "livebench_math": 72.4,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 23,
+      "livebench_math_comp": 86.3,
+      "livebench_olympiad": 83.3,
+      "artificial_analysis_math_index": 72.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 72.4055,
+    "livebench_raw_id": "gpt-5.3-instant",
+    "livebench_release": "2026-01-08",
+    "rank": 82
+  },
+  {
+    "id": "claude-4-sonnet-thinking",
+    "slug": "claude-4-sonnet-thinking",
+    "modelId": "anthropic/claude-4-sonnet-thinking",
+    "name": "Claude 4 Sonnet Thinking",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1388,
+    "arena_elo": null,
+    "final_score": 70.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 70.5
+    },
+    "evaluations": {
+      "livebench_math": 70.5,
+      "livebench_amps_hard": 86,
+      "livebench_integrals": 27,
+      "livebench_math_comp": 85.3,
+      "livebench_olympiad": 83.7,
+      "artificial_analysis_math_index": 70.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 70.499,
+    "livebench_raw_id": "claude-4-sonnet-20250514-thinking-64k",
+    "livebench_release": "2026-01-08",
+    "rank": 83
+  },
+  {
+    "id": "glm-5v-turbo",
+    "slug": "glm-5v-turbo",
+    "modelId": "z-ai/glm-5v-turbo",
+    "name": "GLM 5V Turbo",
+    "organization": "Z.AI",
+    "model_creator": {
+      "name": "Z.AI",
+      "slug": "z-ai"
+    },
+    "rating": 1387,
+    "arena_elo": null,
+    "final_score": 70.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 70.4
+    },
+    "evaluations": {
+      "livebench_math": 70.4,
+      "livebench_amps_hard": 98.8,
+      "livebench_integrals": 13,
+      "livebench_math_comp": 85.3,
+      "livebench_olympiad": 84.5,
+      "artificial_analysis_math_index": 70.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 70.41125,
+    "livebench_raw_id": "glm-5v-turbo",
+    "livebench_release": "2026-01-08",
+    "rank": 84
+  },
+  {
+    "id": "gpt-5-4-mini-medium",
+    "slug": "gpt-5-4-mini-medium",
+    "modelId": "openai/gpt-5-4-mini-medium",
+    "name": "GPT-5.4 Mini Medium",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1387,
+    "arena_elo": null,
+    "final_score": 70.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 70.4
+    },
+    "evaluations": {
+      "livebench_math": 70.4,
+      "livebench_amps_hard": 96,
+      "livebench_integrals": 16.2,
+      "livebench_math_comp": 89.2,
+      "livebench_olympiad": 80.2,
+      "artificial_analysis_math_index": 70.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.75,
+      "price_1m_output_tokens": 4.5
+    },
+    "median_output_tokens_per_second": 135.739708627644,
+    "median_time_to_first_token_seconds": 5.09493804681567,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 70.4025,
+    "livebench_raw_id": "gpt-5.4-mini-medium",
+    "livebench_release": "2026-01-08",
+    "rank": 85
+  },
+  {
+    "id": "qwen3-next-80b-a3b-instruct",
+    "slug": "qwen3-next-80b-a3b-instruct",
+    "modelId": "alibaba/qwen3-next-80b-a3b-instruct",
+    "name": "Qwen 3 Next 80B A3B Instruct",
+    "organization": "Alibaba",
+    "model_creator": {
+      "name": "Alibaba",
+      "slug": "alibaba"
+    },
+    "rating": 1386,
+    "arena_elo": null,
+    "final_score": 70.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 70.2
+    },
+    "evaluations": {
+      "livebench_math": 70.2,
+      "livebench_amps_hard": 97,
+      "livebench_integrals": 26,
+      "livebench_math_comp": 86.3,
+      "livebench_olympiad": 71.4,
+      "artificial_analysis_math_index": 70.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.1,
+      "price_1m_output_tokens": 1.1
+    },
+    "median_output_tokens_per_second": 90.8035811070399,
+    "median_time_to_first_token_seconds": 1.20490117907332,
+    "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 70.178,
+    "livebench_raw_id": "qwen3-next-80b-a3b-instruct",
+    "livebench_release": "2026-01-08",
+    "rank": 86
+  },
+  {
+    "id": "gpt-5-5",
+    "slug": "gpt-5-5",
+    "modelId": "openai/gpt-5-5",
+    "name": "GPT-5.5 Thinking Medium Effort",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1384,
+    "arena_elo": null,
+    "final_score": 69.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 69.8
+    },
+    "evaluations": {
+      "livebench_math": 69.8,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 85,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 0,
+      "artificial_analysis_math_index": 69.8
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 30
+    },
+    "median_output_tokens_per_second": 74.7646486195597,
+    "median_time_to_first_token_seconds": 39.1599573381152,
+    "context_length": 922000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 69.7695,
+    "livebench_raw_id": "gpt-5.5-medium",
+    "livebench_release": "2026-01-08",
+    "rank": 87
+  },
+  {
+    "id": "gpt-5-5",
+    "slug": "gpt-5-5",
+    "modelId": "openai/gpt-5-5",
+    "name": "GPT-5.5",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1384,
+    "arena_elo": null,
+    "final_score": 69.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 69.8
+    },
+    "evaluations": {
+      "livebench_math": 69.8,
+      "livebench_amps_hard": 98,
+      "livebench_integrals": 85,
+      "livebench_math_comp": 96.1,
+      "livebench_olympiad": 0,
+      "artificial_analysis_math_index": 69.8
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 30
+    },
+    "median_output_tokens_per_second": 74.7646486195597,
+    "median_time_to_first_token_seconds": 39.1599573381152,
+    "context_length": 922000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 69.7695,
+    "livebench_raw_id": "gpt-5.5",
+    "livebench_release": "2026-06-25",
+    "rank": 88
+  },
+  {
+    "id": "gpt-oss-120b",
+    "slug": "gpt-oss-120b",
+    "modelId": "openai/gpt-oss-120b",
+    "name": "GPT OSS 120b",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1379,
+    "arena_elo": null,
+    "final_score": 68.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 68.9
+    },
+    "evaluations": {
+      "livebench_math": 68.9,
+      "livebench_amps_hard": 92,
+      "livebench_integrals": 32,
+      "livebench_math_comp": 92.2,
+      "livebench_olympiad": 59.3,
+      "artificial_analysis_math_index": 68.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.15,
+      "price_1m_output_tokens": 0.6
+    },
+    "median_output_tokens_per_second": 214.441540870805,
+    "median_time_to_first_token_seconds": 9.39345281227464,
+    "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 68.87375,
+    "livebench_raw_id": "gpt-oss-120b",
+    "livebench_release": "2026-01-08",
+    "rank": 89
+  },
+  {
+    "id": "gemini-2-5-flash",
+    "slug": "gemini-2-5-flash",
+    "modelId": "google/gemini-2-5-flash",
+    "name": "Gemini 2.5 Flash (Max Thinking)",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1378,
+    "arena_elo": null,
+    "final_score": 68.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 68.8
+    },
+    "evaluations": {
+      "livebench_math": 68.8,
+      "livebench_amps_hard": 85,
+      "livebench_integrals": 21,
+      "livebench_math_comp": 87.3,
+      "livebench_olympiad": 81.8,
+      "artificial_analysis_math_index": 68.8
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.3,
+      "price_1m_output_tokens": 2.5
+    },
+    "median_output_tokens_per_second": 170.920039444071,
+    "median_time_to_first_token_seconds": 0.649814480319471,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 68.75425,
+    "livebench_raw_id": "gemini-2.5-flash-06-05-highthinking",
+    "livebench_release": "2026-01-08",
+    "rank": 90
+  },
+  {
+    "id": "gpt-5-nano",
+    "slug": "gpt-5-nano",
+    "modelId": "openai/gpt-5-nano",
+    "name": "GPT-5 Nano High",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1376,
+    "arena_elo": null,
+    "final_score": 68.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 68.4
+    },
+    "evaluations": {
+      "livebench_math": 68.4,
+      "livebench_amps_hard": 96,
+      "livebench_integrals": 31,
+      "livebench_math_comp": 90.2,
+      "livebench_olympiad": 56.4,
+      "artificial_analysis_math_index": 68.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.05,
+      "price_1m_output_tokens": 0.4
+    },
+    "median_output_tokens_per_second": 148.102354713705,
+    "median_time_to_first_token_seconds": 58.5187680316583,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 68.40625,
+    "livebench_raw_id": "gpt-5-nano-high",
+    "livebench_release": "2026-01-08",
+    "rank": 91
+  },
+  {
+    "id": "gpt-5-1-2025-11-13-low",
+    "slug": "gpt-5-1-2025-11-13-low",
+    "modelId": "openai/gpt-5-1-2025-11-13-low",
+    "name": "GPT-5.1 Low",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1376,
+    "arena_elo": null,
+    "final_score": 68.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 68.4
+    },
+    "evaluations": {
+      "livebench_math": 68.4,
+      "livebench_amps_hard": 94,
+      "livebench_integrals": 24,
+      "livebench_math_comp": 81.4,
+      "livebench_olympiad": 74.1,
+      "artificial_analysis_math_index": 68.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 68.37825,
+    "livebench_raw_id": "gpt-5.1-2025-11-13-low",
+    "livebench_release": "2026-01-08",
+    "rank": 92
+  },
+  {
+    "id": "gemini-2-5-pro",
+    "slug": "gemini-2-5-pro",
+    "modelId": "google/gemini-2-5-pro",
+    "name": "Gemini 2.5 Pro (Max Thinking)",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1376,
+    "arena_elo": null,
+    "final_score": 68.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 68.3
+    },
+    "evaluations": {
+      "livebench_math": 68.3,
+      "livebench_amps_hard": 74,
+      "livebench_integrals": 24,
+      "livebench_math_comp": 89.2,
+      "livebench_olympiad": 86,
+      "artificial_analysis_math_index": 68.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.25,
+      "price_1m_output_tokens": 10
+    },
+    "median_output_tokens_per_second": 111.087756498091,
+    "median_time_to_first_token_seconds": 12.1178419932546,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 68.31575000000001,
+    "livebench_raw_id": "gemini-2.5-pro-06-05-highthinking",
+    "livebench_release": "2026-01-08",
+    "rank": 93
+  },
+  {
+    "id": "gemini-3-flash",
+    "slug": "gemini-3-flash",
+    "modelId": "google/gemini-3-flash",
+    "name": "Gemini 3 Flash Preview Minimal",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1375,
+    "arena_elo": null,
+    "final_score": 68.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 68.1
+    },
+    "evaluations": {
+      "livebench_math": 68.1,
+      "livebench_amps_hard": 94,
+      "livebench_integrals": 12,
+      "livebench_math_comp": 84.3,
+      "livebench_olympiad": 82.1,
+      "artificial_analysis_math_index": 68.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.5,
+      "price_1m_output_tokens": 3
+    },
+    "median_output_tokens_per_second": 165.863703643635,
+    "median_time_to_first_token_seconds": 1.36285390761112,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 68.09875,
+    "livebench_raw_id": "gemini-3-flash-preview-minimal",
+    "livebench_release": "2026-01-08",
+    "rank": 94
+  },
+  {
+    "id": "qwen3-235b-a22b-instruct-2507",
+    "slug": "qwen3-235b-a22b-instruct-2507",
+    "modelId": "alibaba/qwen3-235b-a22b-instruct-2507",
+    "name": "Qwen 3 235B A22B Instruct 2507",
+    "organization": "Alibaba",
+    "model_creator": {
+      "name": "Alibaba",
+      "slug": "alibaba"
+    },
+    "rating": 1374,
+    "arena_elo": null,
+    "final_score": 68,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 68
+    },
+    "evaluations": {
+      "livebench_math": 68,
+      "livebench_amps_hard": 84,
+      "livebench_integrals": 21,
+      "livebench_math_comp": 90.2,
+      "livebench_olympiad": 76.9,
+      "artificial_analysis_math_index": 68
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.22,
+      "price_1m_output_tokens": 0.88
+    },
+    "median_output_tokens_per_second": 42.1738242938081,
+    "median_time_to_first_token_seconds": 3.3274314186801446,
+    "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 68.03175,
+    "livebench_raw_id": "qwen3-235b-a22b-instruct-2507",
+    "livebench_release": "2026-01-08",
+    "rank": 95
+  },
+  {
+    "id": "qwen3-32b-instruct-reasoning",
+    "slug": "qwen3-32b-instruct-reasoning",
+    "modelId": "alibaba/qwen3-32b-instruct-reasoning",
+    "name": "Qwen 3 32B",
+    "organization": "Alibaba",
+    "model_creator": {
+      "name": "Alibaba",
+      "slug": "alibaba"
+    },
+    "rating": 1371,
+    "arena_elo": null,
+    "final_score": 67.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 67.4
+    },
+    "evaluations": {
+      "livebench_math": 67.4,
+      "livebench_amps_hard": 87,
+      "livebench_integrals": 25,
+      "livebench_math_comp": 84.3,
+      "livebench_olympiad": 73.4,
+      "artificial_analysis_math_index": 67.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.24000000000000002,
+      "price_1m_output_tokens": 0.54
+    },
+    "median_output_tokens_per_second": 30.0278835731437,
+    "median_time_to_first_token_seconds": 30.0954781338067,
+    "context_length": 32768,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 67.44,
+    "livebench_raw_id": "qwen3-32b-thinking",
+    "livebench_release": "2026-01-08",
+    "rank": 96
+  },
+  {
+    "id": "claude-opus-4-5-thinking",
+    "slug": "claude-opus-4-5-thinking",
+    "modelId": "anthropic/claude-opus-4-5-thinking",
+    "name": "Claude 4.5 Opus High Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1365,
+    "arena_elo": null,
+    "final_score": 66.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 66.4
+    },
+    "evaluations": {
+      "livebench_math": 66.4,
+      "livebench_amps_hard": 90,
+      "livebench_integrals": 8,
+      "livebench_math_comp": 80.4,
+      "livebench_olympiad": 87.4,
+      "artificial_analysis_math_index": 66.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 61.8318611779675,
+    "median_time_to_first_token_seconds": 12.7770006565111,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 66.445,
+    "livebench_raw_id": "claude-opus-4-5-20251101-high-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 97
+  },
+  {
+    "id": "claude-opus-4-5-thinking",
+    "slug": "claude-opus-4-5-thinking",
+    "modelId": "anthropic/claude-opus-4-5-thinking",
+    "name": "Claude 4.5 Opus Medium Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1365,
+    "arena_elo": null,
+    "final_score": 66.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 66.3
+    },
+    "evaluations": {
+      "livebench_math": 66.3,
+      "livebench_amps_hard": 88,
+      "livebench_integrals": 7,
+      "livebench_math_comp": 83.3,
+      "livebench_olympiad": 86.9,
+      "artificial_analysis_math_index": 66.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 61.8318611779675,
+    "median_time_to_first_token_seconds": 12.7770006565111,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 66.31775,
+    "livebench_raw_id": "claude-opus-4-5-20251101-medium-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 98
+  },
+  {
+    "id": "qwen3-30b-a3b-instruct-reasoning",
+    "slug": "qwen3-30b-a3b-instruct-reasoning",
+    "modelId": "alibaba/qwen3-30b-a3b-instruct-reasoning",
+    "name": "Qwen 3 30B A3B",
+    "organization": "Alibaba",
+    "model_creator": {
+      "name": "Alibaba",
+      "slug": "alibaba"
+    },
+    "rating": 1359,
+    "arena_elo": null,
+    "final_score": 65.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 65.3
+    },
+    "evaluations": {
+      "livebench_math": 65.3,
+      "livebench_amps_hard": 91,
+      "livebench_integrals": 22,
+      "livebench_math_comp": 84.3,
+      "livebench_olympiad": 64.1,
+      "artificial_analysis_math_index": 65.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.135,
+      "price_1m_output_tokens": 0.55
+    },
+    "median_output_tokens_per_second": 102.034864424937,
+    "median_time_to_first_token_seconds": 10.1573644788567,
+    "context_length": 32768,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 65.34725,
+    "livebench_raw_id": "qwen3-30b-a3b-thinking",
+    "livebench_release": "2026-01-08",
+    "rank": 99
+  },
+  {
+    "id": "gpt-5-4-nano",
+    "slug": "gpt-5-4-nano",
+    "modelId": "openai/gpt-5-4-nano",
+    "name": "GPT-5.4 Nano Low",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1359,
+    "arena_elo": null,
+    "final_score": 65.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 65.2
+    },
+    "evaluations": {
+      "livebench_math": 65.2,
+      "livebench_amps_hard": 94,
+      "livebench_integrals": 21.2,
+      "livebench_math_comp": 78.4,
+      "livebench_olympiad": 67,
+      "artificial_analysis_math_index": 65.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.2,
+      "price_1m_output_tokens": 1.25
+    },
+    "median_output_tokens_per_second": 150.879236295007,
+    "median_time_to_first_token_seconds": 41.6229986810611,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 65.156,
+    "livebench_raw_id": "gpt-5.4-nano-low",
+    "livebench_release": "2026-01-08",
+    "rank": 100
+  },
+  {
+    "id": "gemini-2-5-flash-lite",
+    "slug": "gemini-2-5-flash-lite",
+    "modelId": "google/gemini-2-5-flash-lite",
+    "name": "Gemini 2.5 Flash Lite (Max Thinking)",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1357,
+    "arena_elo": null,
+    "final_score": 64.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 64.9
+    },
+    "evaluations": {
+      "livebench_math": 64.9,
+      "livebench_amps_hard": 93,
+      "livebench_integrals": 17,
+      "livebench_math_comp": 83.3,
+      "livebench_olympiad": 66.3,
+      "artificial_analysis_math_index": 64.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.1,
+      "price_1m_output_tokens": 0.4
+    },
+    "median_output_tokens_per_second": 306.017245048426,
+    "median_time_to_first_token_seconds": 0.369054484019351,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 64.90299999999999,
+    "livebench_raw_id": "gemini-2.5-flash-lite-preview-09-2025-highthinking",
+    "livebench_release": "2026-01-08",
+    "rank": 101
+  },
+  {
+    "id": "gpt-5-nano",
+    "slug": "gpt-5-nano",
+    "modelId": "openai/gpt-5-nano",
+    "name": "GPT-5 Nano",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1356,
+    "arena_elo": null,
+    "final_score": 64.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 64.7
+    },
+    "evaluations": {
+      "livebench_math": 64.7,
+      "livebench_amps_hard": 96,
+      "livebench_integrals": 22,
+      "livebench_math_comp": 86.3,
+      "livebench_olympiad": 54.5,
+      "artificial_analysis_math_index": 64.7
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.05,
+      "price_1m_output_tokens": 0.4
+    },
+    "median_output_tokens_per_second": 148.102354713705,
+    "median_time_to_first_token_seconds": 58.5187680316583,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 64.69925,
+    "livebench_raw_id": "gpt-5-nano",
+    "livebench_release": "2026-01-08",
+    "rank": 102
+  },
+  {
+    "id": "deepseek-v3",
+    "slug": "deepseek-v3",
+    "modelId": "deepseek/deepseek-v3",
+    "name": "DeepSeek V3.2 Exp",
+    "organization": "DeepSeek",
+    "model_creator": {
+      "name": "DeepSeek",
+      "slug": "deepseek"
+    },
+    "rating": 1354,
+    "arena_elo": null,
+    "final_score": 64.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 64.4
+    },
+    "evaluations": {
+      "livebench_math": 64.4,
+      "livebench_amps_hard": 92,
+      "livebench_integrals": 13,
+      "livebench_math_comp": 75.5,
+      "livebench_olympiad": 77,
+      "artificial_analysis_math_index": 64.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.32,
+      "price_1m_output_tokens": 0.89
+    },
+    "median_output_tokens_per_second": 72.92972063021405,
+    "median_time_to_first_token_seconds": 1.3834031342241775,
+    "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 64.38250000000001,
+    "livebench_raw_id": "deepseek-v3.2-exp",
+    "livebench_release": "2026-01-08",
+    "rank": 103
+  },
+  {
+    "id": "claude-opus-4-5-thinking",
+    "slug": "claude-opus-4-5-thinking",
+    "modelId": "anthropic/claude-opus-4-5-thinking",
+    "name": "Claude 4.5 Opus Low Effort",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1353,
+    "arena_elo": null,
+    "final_score": 64.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 64.1
+    },
+    "evaluations": {
+      "livebench_math": 64.1,
+      "livebench_amps_hard": 86,
+      "livebench_integrals": 7,
+      "livebench_math_comp": 76.5,
+      "livebench_olympiad": 86.9,
+      "artificial_analysis_math_index": 64.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 5,
+      "price_1m_output_tokens": 25
+    },
+    "median_output_tokens_per_second": 61.8318611779675,
+    "median_time_to_first_token_seconds": 12.7770006565111,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 64.10325,
+    "livebench_raw_id": "claude-opus-4-5-20251101-low-effort",
+    "livebench_release": "2026-01-08",
+    "rank": 104
+  },
+  {
+    "id": "gpt-5-4-mini",
+    "slug": "gpt-5-4-mini",
+    "modelId": "openai/gpt-5-4-mini",
+    "name": "GPT-5.4 Mini Low",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1353,
+    "arena_elo": null,
+    "final_score": 64.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 64.1
+    },
+    "evaluations": {
+      "livebench_math": 64.1,
+      "livebench_amps_hard": 93,
+      "livebench_integrals": 9.1,
+      "livebench_math_comp": 86.3,
+      "livebench_olympiad": 68,
+      "artificial_analysis_math_index": 64.1
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.75,
+      "price_1m_output_tokens": 4.5
+    },
+    "median_output_tokens_per_second": 167.704755509428,
+    "median_time_to_first_token_seconds": 111.906229998286,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 64.0895,
+    "livebench_raw_id": "gpt-5.4-mini-low",
+    "livebench_release": "2026-01-08",
+    "rank": 105
+  },
+  {
+    "id": "deepseek-v3-2",
+    "slug": "deepseek-v3-2",
+    "modelId": "deepseek/deepseek-v3-2",
+    "name": "DeepSeek V3.2",
+    "organization": "DeepSeek",
+    "model_creator": {
+      "name": "DeepSeek",
+      "slug": "deepseek"
+    },
+    "rating": 1352,
+    "arena_elo": null,
+    "final_score": 64,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 64
+    },
+    "evaluations": {
+      "livebench_math": 64,
+      "livebench_amps_hard": 95,
+      "livebench_integrals": 10,
+      "livebench_math_comp": 76.5,
+      "livebench_olympiad": 74.3,
+      "artificial_analysis_math_index": 64
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.28,
+      "price_1m_output_tokens": 0.42
+    },
+    "median_output_tokens_per_second": 36.9946386666951,
+    "median_time_to_first_token_seconds": 3.24152138900834,
+    "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 63.95425,
+    "livebench_raw_id": "deepseek-v3.2",
+    "livebench_release": "2026-01-08",
+    "rank": 106
+  },
+  {
+    "id": "gpt-5-mini",
+    "slug": "gpt-5-mini",
+    "modelId": "openai/gpt-5-mini",
+    "name": "GPT-5 Mini Low",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1348,
+    "arena_elo": null,
+    "final_score": 63.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 63.2
+    },
+    "evaluations": {
+      "livebench_math": 63.2,
+      "livebench_amps_hard": 95,
+      "livebench_integrals": 12,
+      "livebench_math_comp": 79.4,
+      "livebench_olympiad": 66.5,
+      "artificial_analysis_math_index": 63.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.25,
+      "price_1m_output_tokens": 2
+    },
+    "median_output_tokens_per_second": 93.6656314708624,
+    "median_time_to_first_token_seconds": 47.2215651025056,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 63.23925,
+    "livebench_raw_id": "gpt-5-mini-low",
+    "livebench_release": "2026-01-08",
+    "rank": 107
+  },
+  {
+    "id": "claude-4-1-opus",
+    "slug": "claude-4-1-opus",
+    "modelId": "anthropic/claude-4-1-opus",
+    "name": "Claude 4.1 Opus",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1345,
+    "arena_elo": null,
+    "final_score": 62.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 62.8
+    },
+    "evaluations": {
+      "livebench_math": 62.8,
+      "livebench_amps_hard": 89,
+      "livebench_integrals": 10,
+      "livebench_math_comp": 65.7,
+      "livebench_olympiad": 86.6,
+      "artificial_analysis_math_index": 62.8
+    },
+    "pricing": {
+      "price_1m_input_tokens": 15,
+      "price_1m_output_tokens": 75
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 200000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 62.82625,
+    "livebench_raw_id": "claude-4-1-opus-20250805-base",
+    "livebench_release": "2026-01-08",
+    "rank": 108
+  },
+  {
+    "id": "claude-sonnet-4-5-20250929",
+    "slug": "claude-sonnet-4-5-20250929",
+    "modelId": "anthropic/claude-sonnet-4-5-20250929",
+    "name": "Claude Sonnet 4.5",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1344,
+    "arena_elo": null,
+    "final_score": 62.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 62.6
+    },
+    "evaluations": {
+      "livebench_math": 62.6,
+      "livebench_amps_hard": 91,
+      "livebench_integrals": 8,
+      "livebench_math_comp": 68.6,
+      "livebench_olympiad": 82.9,
+      "artificial_analysis_math_index": 62.6
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 62.61975,
+    "livebench_raw_id": "claude-sonnet-4-5-20250929",
+    "livebench_release": "2026-01-08",
+    "rank": 109
+  },
+  {
+    "id": "glm-4-6v",
+    "slug": "glm-4-6v",
+    "modelId": "z-ai/glm-4-6v",
+    "name": "GLM 4.6V",
+    "organization": "Z.AI",
+    "model_creator": {
+      "name": "Z.AI",
+      "slug": "z-ai"
+    },
+    "rating": 1344,
+    "arena_elo": null,
+    "final_score": 62.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 62.5
+    },
+    "evaluations": {
+      "livebench_math": 62.5,
+      "livebench_amps_hard": 95,
+      "livebench_integrals": 10,
+      "livebench_math_comp": 84.3,
+      "livebench_olympiad": 60.7,
+      "artificial_analysis_math_index": 62.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.3,
+      "price_1m_output_tokens": 0.9
+    },
+    "median_output_tokens_per_second": 38.4178508199319,
+    "median_time_to_first_token_seconds": 5.74033856161941,
+    "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 62.500249999999994,
+    "livebench_raw_id": "glm-4.6v",
+    "livebench_release": "2026-01-08",
+    "rank": 110
+  },
+  {
+    "id": "gemini-2-5-flash-lite",
+    "slug": "gemini-2-5-flash-lite",
+    "modelId": "google/gemini-2-5-flash-lite",
+    "name": "Gemini 2.5 Flash Lite (Max Thinking)",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1336,
+    "arena_elo": null,
+    "final_score": 61,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 61
+    },
+    "evaluations": {
+      "livebench_math": 61,
+      "livebench_amps_hard": 93,
+      "livebench_integrals": 11,
+      "livebench_math_comp": 73.5,
+      "livebench_olympiad": 66.6,
+      "artificial_analysis_math_index": 61
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.1,
+      "price_1m_output_tokens": 0.4
+    },
+    "median_output_tokens_per_second": 306.017245048426,
+    "median_time_to_first_token_seconds": 0.369054484019351,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 61.040499999999994,
+    "livebench_raw_id": "gemini-2.5-flash-lite-highthinking",
+    "livebench_release": "2026-01-08",
+    "rank": 111
+  },
+  {
+    "id": "claude-4-sonnet",
+    "slug": "claude-4-sonnet",
+    "modelId": "anthropic/claude-4-sonnet",
+    "name": "Claude 4 Sonnet",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1332,
+    "arena_elo": null,
+    "final_score": 60.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 60.4
+    },
+    "evaluations": {
+      "livebench_math": 60.4,
+      "livebench_amps_hard": 84,
+      "livebench_integrals": 6,
+      "livebench_math_comp": 70.6,
+      "livebench_olympiad": 80.8,
+      "artificial_analysis_math_index": 60.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 60.35724999999999,
+    "livebench_raw_id": "claude-4-sonnet-20250514-base",
+    "livebench_release": "2026-01-08",
+    "rank": 112
+  },
+  {
+    "id": "gpt-5-2-non-reasoning",
+    "slug": "gpt-5-2-non-reasoning",
+    "modelId": "openai/gpt-5-2-non-reasoning",
+    "name": "GPT-5.2 No Thinking",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1321,
+    "arena_elo": null,
+    "final_score": 58.3,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 58.3
+    },
+    "evaluations": {
+      "livebench_math": 58.3,
+      "livebench_amps_hard": 77,
+      "livebench_integrals": 7,
+      "livebench_math_comp": 67.6,
+      "livebench_olympiad": 81.4,
+      "artificial_analysis_math_index": 58.3
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.75,
+      "price_1m_output_tokens": 14
+    },
+    "median_output_tokens_per_second": 57.1711682216383,
+    "median_time_to_first_token_seconds": 2.3710356717597,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 58.25075,
+    "livebench_raw_id": "gpt-5.2-2025-12-11-nothinking",
+    "livebench_release": "2026-01-08",
+    "rank": 113
+  },
+  {
+    "id": "kimi-k2",
+    "slug": "kimi-k2",
+    "modelId": "moonshot-ai/kimi-k2",
+    "name": "Kimi K2 Instruct",
+    "organization": "Moonshot AI",
+    "model_creator": {
+      "name": "Moonshot AI",
+      "slug": "moonshot-ai"
+    },
+    "rating": 1320,
+    "arena_elo": null,
+    "final_score": 58.2,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 58.2
+    },
+    "evaluations": {
+      "livebench_math": 58.2,
+      "livebench_amps_hard": 82,
+      "livebench_integrals": 7,
+      "livebench_math_comp": 72.5,
+      "livebench_olympiad": 71.1,
+      "artificial_analysis_math_index": 58.2
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.57,
+      "price_1m_output_tokens": 2.3
+    },
+    "median_output_tokens_per_second": 41.2924040646353,
+    "median_time_to_first_token_seconds": 4.40598004159438,
+    "context_length": 128000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 58.15175000000001,
+    "livebench_raw_id": "kimi-k2-instruct",
+    "livebench_release": "2026-01-08",
+    "rank": 114
+  },
+  {
+    "id": "claude-haiku-4-5-20251001",
+    "slug": "claude-haiku-4-5-20251001",
+    "modelId": "anthropic/claude-haiku-4-5-20251001",
+    "name": "Claude Haiku 4.5",
+    "organization": "Anthropic",
+    "model_creator": {
+      "name": "Anthropic",
+      "slug": "anthropic"
+    },
+    "rating": 1319,
+    "arena_elo": null,
+    "final_score": 58,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 58
+    },
+    "evaluations": {
+      "livebench_math": 58,
+      "livebench_amps_hard": 88,
+      "livebench_integrals": 4,
+      "livebench_math_comp": 68.6,
+      "livebench_olympiad": 71.3,
+      "artificial_analysis_math_index": 58
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 57.971500000000006,
+    "livebench_raw_id": "claude-haiku-4-5-20251001",
+    "livebench_release": "2026-01-08",
+    "rank": 115
+  },
+  {
+    "id": "elephant-alpha",
+    "slug": "elephant-alpha",
+    "modelId": "openrouter/elephant-alpha",
+    "name": "Elephant Alpha",
+    "organization": "OpenRouter",
+    "model_creator": {
+      "name": "OpenRouter",
+      "slug": "openrouter"
+    },
+    "rating": 1316,
+    "arena_elo": null,
+    "final_score": 57.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 57.5
+    },
+    "evaluations": {
+      "livebench_math": 57.5,
+      "livebench_amps_hard": 94,
+      "livebench_integrals": 8,
+      "livebench_math_comp": 75.5,
+      "livebench_olympiad": 52.5,
+      "artificial_analysis_math_index": 57.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": null,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 57.49575,
+    "livebench_raw_id": "elephant-alpha",
+    "livebench_release": "2026-01-08",
+    "rank": 116
+  },
+  {
+    "id": "grok-code-fast-1",
+    "slug": "grok-code-fast-1",
+    "modelId": "xai/grok-code-fast-1",
+    "name": "Grok Code Fast",
+    "organization": "xAI",
+    "model_creator": {
+      "name": "xAI",
+      "slug": "xai"
+    },
+    "rating": 1308,
+    "arena_elo": null,
+    "final_score": 56,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 56
+    },
+    "evaluations": {
+      "livebench_math": 56,
+      "livebench_amps_hard": 87,
+      "livebench_integrals": 8,
+      "livebench_math_comp": 61.8,
+      "livebench_olympiad": 67.3,
+      "artificial_analysis_math_index": 56
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 56.01275,
+    "livebench_raw_id": "grok-code-fast-1-0825",
+    "livebench_release": "2026-01-08",
+    "rank": 117
+  },
+  {
+    "id": "nvidia-nemotron-3-ultra-550b-a55b",
+    "slug": "nvidia-nemotron-3-ultra-550b-a55b",
+    "modelId": "nvidia/nvidia-nemotron-3-ultra-550b-a55b",
+    "name": "Nemotron 3 Ultra 550B A55B",
+    "organization": "NVIDIA",
+    "model_creator": {
+      "name": "NVIDIA",
+      "slug": "nvidia"
+    },
+    "rating": 1300,
+    "arena_elo": null,
+    "final_score": 54.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 54.5
+    },
+    "evaluations": {
+      "livebench_math": 54.5,
+      "livebench_amps_hard": 73,
+      "livebench_integrals": 14,
+      "livebench_math_comp": 81.4,
+      "livebench_olympiad": 49.7,
+      "artificial_analysis_math_index": 54.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.55,
+      "price_1m_output_tokens": 2.3
+    },
+    "median_output_tokens_per_second": 215.80165542377,
+    "median_time_to_first_token_seconds": 7.338056091568295,
+    "context_length": 262144,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 54.518249999999995,
+    "livebench_raw_id": "nemotron-3-ultra-550b-a55b",
+    "livebench_release": "2026-01-08",
+    "rank": 118
+  },
+  {
+    "id": "devstral-2",
+    "slug": "devstral-2",
+    "modelId": "mistral/devstral-2",
+    "name": "Devstral 2",
+    "organization": "Mistral",
+    "model_creator": {
+      "name": "Mistral",
+      "slug": "mistral"
+    },
+    "rating": 1289,
+    "arena_elo": null,
+    "final_score": 52.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 52.5
+    },
+    "evaluations": {
+      "livebench_math": 52.5,
+      "livebench_amps_hard": 80,
+      "livebench_integrals": 7,
+      "livebench_math_comp": 60.8,
+      "livebench_olympiad": 62.3,
+      "artificial_analysis_math_index": 52.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 256000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 52.51575,
+    "livebench_raw_id": "devstral-2512",
+    "livebench_release": "2026-01-08",
+    "rank": 119
+  },
+  {
+    "id": "gpt-5-nano",
+    "slug": "gpt-5-nano",
+    "modelId": "openai/gpt-5-nano",
+    "name": "GPT-5 Nano Low",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1269,
+    "arena_elo": null,
+    "final_score": 48.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 48.9
+    },
+    "evaluations": {
+      "livebench_math": 48.9,
+      "livebench_amps_hard": 79,
+      "livebench_integrals": 7,
+      "livebench_math_comp": 73.5,
+      "livebench_olympiad": 36.1,
+      "artificial_analysis_math_index": 48.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.05,
+      "price_1m_output_tokens": 0.4
+    },
+    "median_output_tokens_per_second": 148.102354713705,
+    "median_time_to_first_token_seconds": 58.5187680316583,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 48.907,
+    "livebench_raw_id": "gpt-5-nano-low",
+    "livebench_release": "2026-01-08",
+    "rank": 120
+  },
+  {
+    "id": "gpt-5-mini",
+    "slug": "gpt-5-mini",
+    "modelId": "openai/gpt-5-mini",
+    "name": "GPT-5 Mini Minimal",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1261,
+    "arena_elo": null,
+    "final_score": 47.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 47.5
+    },
+    "evaluations": {
+      "livebench_math": 47.5,
+      "livebench_amps_hard": 76,
+      "livebench_integrals": 6,
+      "livebench_math_comp": 56.9,
+      "livebench_olympiad": 51.3,
+      "artificial_analysis_math_index": 47.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.25,
+      "price_1m_output_tokens": 2
+    },
+    "median_output_tokens_per_second": 93.6656314708624,
+    "median_time_to_first_token_seconds": 47.2215651025056,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 47.5305,
+    "livebench_raw_id": "gpt-5-mini-minimal",
+    "livebench_release": "2026-01-08",
+    "rank": 121
+  },
+  {
+    "id": "grok-4-20",
+    "slug": "grok-4-20",
+    "modelId": "xai/grok-4-20",
+    "name": "Grok 4.20 Beta (Non-Reasoning)",
+    "organization": "xAI",
+    "model_creator": {
+      "name": "xAI",
+      "slug": "xai"
+    },
+    "rating": 1250,
+    "arena_elo": null,
+    "final_score": 45.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 45.5
+    },
+    "evaluations": {
+      "livebench_math": 45.5,
+      "livebench_amps_hard": 49,
+      "livebench_integrals": 27,
+      "livebench_math_comp": 80.4,
+      "livebench_olympiad": 25.7,
+      "artificial_analysis_math_index": 45.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.25,
+      "price_1m_output_tokens": 2.5
+    },
+    "median_output_tokens_per_second": 119.196111498799,
+    "median_time_to_first_token_seconds": 9.89086109929535,
+    "context_length": 2000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 45.52175,
+    "livebench_raw_id": "grok-4.20-beta-0309-non-reasoning",
+    "livebench_release": "2026-01-08",
+    "rank": 122
+  },
+  {
+    "id": "trinity-large-thinking",
+    "slug": "trinity-large-thinking",
+    "modelId": "arcee/trinity-large-thinking",
+    "name": "Trinity Large Preview",
+    "organization": "Arcee",
+    "model_creator": {
+      "name": "Arcee",
+      "slug": "arcee"
+    },
+    "rating": 1247,
+    "arena_elo": null,
+    "final_score": 44.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 44.9
+    },
+    "evaluations": {
+      "livebench_math": 44.9,
+      "livebench_amps_hard": 61,
+      "livebench_integrals": 8,
+      "livebench_math_comp": 47.1,
+      "livebench_olympiad": 63.7,
+      "artificial_analysis_math_index": 44.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 512000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 44.932,
+    "livebench_raw_id": "arcee-trinity-large-preview",
+    "livebench_release": "2026-01-08",
+    "rank": 123
+  },
+  {
+    "id": "gpt-5-1-non-reasoning",
+    "slug": "gpt-5-1-non-reasoning",
+    "modelId": "openai/gpt-5-1-non-reasoning",
+    "name": "GPT-5.1 No Thinking",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1245,
+    "arena_elo": null,
+    "final_score": 44.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 44.5
+    },
+    "evaluations": {
+      "livebench_math": 44.5,
+      "livebench_amps_hard": 78,
+      "livebench_integrals": 3,
+      "livebench_math_comp": 28.4,
+      "livebench_olympiad": 68.6,
+      "artificial_analysis_math_index": 44.5
+    },
+    "pricing": {
+      "price_1m_input_tokens": 1.25,
+      "price_1m_output_tokens": 10
+    },
+    "median_output_tokens_per_second": 65.5002254197769,
+    "median_time_to_first_token_seconds": 3.57298872805913,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 44.511250000000004,
+    "livebench_raw_id": "gpt-5.1-2025-11-13-nothinking",
+    "livebench_release": "2026-01-08",
+    "rank": 124
+  },
+  {
+    "id": "grok-4-1-fast",
+    "slug": "grok-4-1-fast",
+    "modelId": "xai/grok-4-1-fast",
+    "name": "Grok 4.1 Fast (Non-Reasoning)",
+    "organization": "xAI",
+    "model_creator": {
+      "name": "xAI",
+      "slug": "xai"
+    },
+    "rating": 1214,
+    "arena_elo": null,
+    "final_score": 38.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 38.9
+    },
+    "evaluations": {
+      "livebench_math": 38.9,
+      "livebench_amps_hard": 47,
+      "livebench_integrals": 5,
+      "livebench_math_comp": 45.1,
+      "livebench_olympiad": 58.6,
+      "artificial_analysis_math_index": 38.9
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 2000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 38.92,
+    "livebench_raw_id": "grok-4-1-fast-non-reasoning",
+    "livebench_release": "2026-01-08",
+    "rank": 125
+  },
+  {
+    "id": "gpt-5-4-mini",
+    "slug": "gpt-5-4-mini",
+    "modelId": "openai/gpt-5-4-mini",
+    "name": "GPT-5.4 Mini",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1204,
+    "arena_elo": null,
+    "final_score": 37,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 37
+    },
+    "evaluations": {
+      "livebench_math": 37,
+      "livebench_amps_hard": 68,
+      "livebench_integrals": 7.1,
+      "livebench_math_comp": 18.6,
+      "livebench_olympiad": 54.5,
+      "artificial_analysis_math_index": 37
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.75,
+      "price_1m_output_tokens": 4.5
+    },
+    "median_output_tokens_per_second": 167.704755509428,
+    "median_time_to_first_token_seconds": 111.906229998286,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 37.04475,
+    "livebench_raw_id": "gpt-5.4-mini",
+    "livebench_release": "2026-01-08",
+    "rank": 126
+  },
+  {
+    "id": "nvidia-nemotron-3-super-120b-a12b",
+    "slug": "nvidia-nemotron-3-super-120b-a12b",
+    "modelId": "nvidia/nvidia-nemotron-3-super-120b-a12b",
+    "name": "Nemotron 3 Super 120B A12B",
+    "organization": "NVIDIA",
+    "model_creator": {
+      "name": "NVIDIA",
+      "slug": "nvidia"
+    },
+    "rating": 1200,
+    "arena_elo": null,
+    "final_score": 36.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 36.4
+    },
+    "evaluations": {
+      "livebench_math": 36.4,
+      "livebench_amps_hard": 87,
+      "livebench_integrals": 6,
+      "livebench_math_comp": 23.6,
+      "livebench_olympiad": 29.1,
+      "artificial_analysis_math_index": 36.4
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.3,
+      "price_1m_output_tokens": 0.9
+    },
+    "median_output_tokens_per_second": 114.676307438654,
+    "median_time_to_first_token_seconds": 51.5571798080834,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 36.42875,
+    "livebench_raw_id": "nemotron-3-super-120b-a12b",
+    "livebench_release": "2026-01-08",
+    "rank": 127
+  },
+  {
+    "id": "gpt-5-4-nano",
+    "slug": "gpt-5-4-nano",
+    "modelId": "openai/gpt-5-4-nano",
+    "name": "GPT-5.4 Nano",
+    "organization": "OpenAI",
+    "model_creator": {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    "rating": 1198,
+    "arena_elo": null,
+    "final_score": 36,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_livebench_ai_math",
+    "data_sources": [
+      "livebench_ai"
+    ],
+    "category_scores": {
+      "math": 36
+    },
+    "evaluations": {
+      "livebench_math": 36,
+      "livebench_amps_hard": 62,
+      "livebench_integrals": 9.1,
+      "livebench_math_comp": 32.4,
+      "livebench_olympiad": 40.6,
+      "artificial_analysis_math_index": 36
+    },
+    "pricing": {
+      "price_1m_input_tokens": 0.2,
+      "price_1m_output_tokens": 1.25
+    },
+    "median_output_tokens_per_second": 150.879236295007,
+    "median_time_to_first_token_seconds": 41.6229986810611,
+    "context_length": 400000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": 36.00825,
+    "livebench_raw_id": "gpt-5.4-nano",
+    "livebench_release": "2026-01-08",
+    "rank": 128
+  }
+]

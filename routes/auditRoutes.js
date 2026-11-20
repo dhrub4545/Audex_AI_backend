@@ -61,7 +61,7 @@ async function getCachedAllModels() {
 
             const rawIntel = parseFloat(evaluations.artificial_analysis_intelligence_index);
             const rawCoding = parseFloat(evaluations.artificial_analysis_coding_index ?? evaluations.livecodebench);
-            const rawMath = parseFloat(evaluations.artificial_analysis_math_index ?? evaluations.aime);
+            const rawMath = parseFloat(evaluations.livebench_math ?? evaluations.artificial_analysis_math_index ?? evaluations.aime);
             const rawReason = parseFloat(item.category_scores?.reasoning ?? evaluations.hle_diamond ?? item.hleDiamond);
 
             return {
@@ -439,6 +439,9 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
   }
 
   if (p === 'math') {
+    if (typeof evals.livebench_math === 'number' && evals.livebench_math > 0) {
+      return round1(evals.livebench_math);
+    }
     if (typeof evals.artificial_analysis_math_index === 'number' && evals.artificial_analysis_math_index > 0) {
       return round1(evals.artificial_analysis_math_index);
     }
@@ -1844,7 +1847,7 @@ function formatRawDataResponse(rawData) {
       rank: item.rank || null,
       intelligence_index: parseFloat(evaluations.artificial_analysis_intelligence_index) || null,
       coding_index: parseFloat(evaluations.artificial_analysis_coding_index) || null,
-      math_index: parseFloat(evaluations.artificial_analysis_math_index ?? evaluations.aime) || null,
+      math_index: parseFloat(evaluations.livebench_math ?? evaluations.artificial_analysis_math_index ?? evaluations.aime) || null,
       reasoning_index: parseFloat(item.category_scores?.reasoning ?? evaluations.hle_diamond) || null,
       hle_diamond: parseFloat(evaluations.hle_diamond) || null,
       gpqa: parseFloat(evaluations.gpqa) || null,

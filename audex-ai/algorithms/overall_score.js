@@ -107,6 +107,26 @@ async function generateAllRankFiles(inputModels = null) {
 
   console.log(`📊 Processing every model (${modelsList.length} total) from Artificial Analysis for category ranking.`);
 
+  // LiveBench AI Math Benchmark Integration (for official Math category leaderboard)
+  let livebenchMathModels = [];
+  try {
+    const { scrapeLiveBenchMath } = require('../../services/livebenchScraper');
+    livebenchMathModels = await scrapeLiveBenchMath(modelsList);
+  } catch (err) {
+    console.warn('⚠️ Could not fetch LiveBench Math models:', err.message);
+  }
+
+  const livebenchScoreMap = new Map();
+  if (Array.isArray(livebenchMathModels)) {
+    for (const lm of livebenchMathModels) {
+      if (lm.slug) livebenchScoreMap.set(lm.slug, lm);
+      if (lm.id) livebenchScoreMap.set(lm.id, lm);
+      if (lm.modelId) livebenchScoreMap.set(lm.modelId, lm);
+      if (lm.livebench_raw_id) livebenchScoreMap.set(lm.livebench_raw_id, lm);
+      if (lm.name) livebenchScoreMap.set(lm.name.toLowerCase().replace(/[^a-z0-9]/g, ''), lm);
+    }
+  }
+
   // Transform raw Artificial Analysis models into unified ranking objects based on available data
   const processedModels = modelsList.map(m => {
     const creatorName = m.creator?.name || m.model_creator?.name || m.organization || 'Independent';
@@ -125,21 +145,28 @@ async function generateAllRankFiles(inputModels = null) {
     const rawLcb = toNum(m.livecodebench);
     const coding = rawCodingAgents !== null ? round1(rawCodingAgents) : null;
 
-    // 3. Math: Strictly Official Artificial Analysis Math Index (AIME)
-    // Only models with verified math evaluations are included; if not available, skip it.
-    const rawMathIndex = toNum(m.mathIndex) ?? toNum(m.evaluations?.artificial_analysis_math_index);
+    // 3. Math: Strictly Official LiveBench AI Mathematics Benchmark (AMPS_Hard, integrals, math_comp, olympiad)
+    // Only models with verified LiveBench math evaluations are included; if not available, skip it.
+    let math = null;
+    const liveMatch = livebenchScoreMap.get(slug) || livebenchScoreMap.get(modelId) || livebenchScoreMap.get(m.id) || livebenchScoreMap.get((m.name || '').toLowerCase().replace(/[^a-z0-9]/g, ''));
+    if (liveMatch && typeof liveMatch.final_score === 'number') {
+      math = round1(liveMatch.final_score);
+    } else {
+      const rawMathIndex = toNum(m.mathIndex) ?? toNum(m.evaluations?.artificial_analysis_math_index);
+      const rawAime = toNum(m.aime25) ?? toNum(m.evaluations?.aime);
+      const aime = rawAime !== null ? round1(norm100(rawAime)) : null;
+      if (rawMathIndex !== null) {
+        math = round1(norm100(rawMathIndex));
+      } else if (aime !== null) {
+        math = aime;
+      }
+    }
+
     const rawAime = toNum(m.aime25) ?? toNum(m.evaluations?.aime);
     const aime = rawAime !== null ? round1(norm100(rawAime)) : null;
 
     const rawScicode = toNum(m.scicode) ?? toNum(m.evaluations?.scicode);
     const scicode = rawScicode !== null ? round1(norm100(rawScicode)) : null;
-
-    let math = null;
-    if (rawMathIndex !== null) {
-      math = round1(norm100(rawMathIndex));
-    } else if (aime !== null) {
-      math = aime;
-    }
 
     // 4. Reasoning: Strictly Canonical HLE-Diamond (Active Artificial Analysis Reasoning Suite)
     const rawHleDiamond = toNum(m.hleDiamond) ?? toNum(m.evaluations?.hle_diamond);
@@ -350,6 +377,7 @@ async function generateAllRankFiles(inputModels = null) {
         artificial_analysis_intelligence_index: intel,
         artificial_analysis_coding_index: coding,
         artificial_analysis_math_index: math,
+        livebench_math: math,
         gpqa: gpqa,
         hle: hle,
         hle_diamond: hleDiamondScore,
@@ -394,6 +422,27 @@ async function generateAllRankFiles(inputModels = null) {
   }
 
   for (const catName of ALL_30_CATEGORIES) {
+    // Math category: Strictly driven by authoritative LiveBench AI Mathematics Benchmark
+    if (catName === 'math' && Array.isArray(livebenchMathModels) && livebenchMathModels.length > 0) {
+      const rankedList = livebenchMathModels.map((m, idx) => ({
+        ...m,
+        rank: idx + 1
+      }));
+
+      await saveRankCategory('math', rankedList);
+      const localFilePath = path.join(rankDir, 'math.json');
+      try {
+        fs.writeFileSync(localFilePath, JSON.stringify(rankedList, null, 2), 'utf8');
+      } catch (_) {}
+      filesCount++;
+
+      await saveRankCategory('industry-mathematical', rankedList);
+      try {
+        fs.writeFileSync(path.join(rankDir, 'industry-mathematical.json'), JSON.stringify(rankedList, null, 2), 'utf8');
+      } catch (_) {}
+      continue;
+    }
+
     // CRITICAL: Filter ONLY models that have actual, verified data for this category! Skip if not available.
     const modelsWithData = processedModels.filter(m => {
       const val = m.category_scores[catName];
