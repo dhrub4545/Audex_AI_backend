@@ -124,39 +124,25 @@ async function syncArtificialAnalysis(scrapedModels = null) {
       aa_index_score = Math.min(100, Math.round(rawIntel));
     }
 
-    // 2. Coding index v5 (FrontierCode 2.0: 60% + Terminal-Bench 4.0: 40%)
+    // 2. Coding index: Strictly official Coding Agent Index
     let coding_score = null;
     const rawFc = typeof item.frontierCode20 === 'number' ? item.frontierCode20 : (typeof item.frontierCode === 'number' ? item.frontierCode : null);
     const rawTb = typeof item.terminalBench40 === 'number' ? item.terminalBench40 : (typeof item.terminalBench21 === 'number' ? item.terminalBench21 : (typeof item.terminalbenchHard === 'number' ? item.terminalbenchHard : null));
-    const rawAgents = typeof item.codingAgentsIndex === 'number' ? item.codingAgentsIndex : (typeof item.evaluations?.coding_agent_index === 'number' ? item.evaluations.coding_agent_index : null);
+    const rawAgents = typeof item.codingAgentsIndex === 'number' ? item.codingAgentsIndex : (typeof item.codingIndex === 'number' ? item.codingIndex : (typeof item.evaluations?.coding_agent_index === 'number' ? item.evaluations.coding_agent_index : (rankedInfo?.category_scores?.coding ? rankedInfo.category_scores.coding : null)));
 
-    if (rawFc !== null && rawTb !== null) {
-      const fcNorm = rawFc <= 1 ? rawFc * 100 : rawFc;
-      const tbNorm = rawTb <= 1 ? rawTb * 100 : rawTb;
-      coding_score = Math.min(100, Math.round(fcNorm * 0.6 + tbNorm * 0.4));
-    } else if (rawFc !== null) {
-      const fcNorm = rawFc <= 1 ? rawFc * 100 : rawFc;
-      coding_score = Math.min(100, Math.round(fcNorm));
-    } else if (rawTb !== null) {
-      const tbNorm = rawTb <= 1 ? rawTb * 100 : rawTb;
-      coding_score = Math.min(100, Math.round(tbNorm));
-    } else if (rawAgents !== null) {
+    if (rawAgents !== null && !isNaN(rawAgents) && rawAgents > 0) {
       coding_score = Math.min(100, Math.round(rawAgents));
-    } else if (rankedInfo?.category_scores?.coding) {
-      coding_score = Math.min(100, Math.round(rankedInfo.category_scores.coding));
     }
 
-    // 3. Math index (AIME 2025, SciCode)
+    // 3. Math index: Strictly official Math Index / AIME 2025
     let math_score = null;
     const rawAime = parseFloat(item.evaluations?.aime ?? item.aime25 ?? rankedInfo?.evaluations?.aime);
     const rawMath = parseFloat(item.evaluations?.artificial_analysis_math_index ?? item.category_scores?.math ?? item.mathIndex ?? rankedInfo?.category_scores?.math);
     const rawSci = parseFloat(item.evaluations?.scicode ?? item.scicode ?? rankedInfo?.evaluations?.scicode);
-    if (!isNaN(rawAime) && rawAime > 0) {
-      math_score = Math.min(100, Math.round(rawAime <= 1 ? rawAime * 100 : rawAime));
-    } else if (!isNaN(rawMath) && rawMath > 0) {
+    if (!isNaN(rawMath) && rawMath > 0) {
       math_score = Math.min(100, Math.round(rawMath));
-    } else if (!isNaN(rawSci) && rawSci > 0) {
-      math_score = Math.min(100, Math.round(rawSci <= 1 ? rawSci * 100 : rawSci));
+    } else if (!isNaN(rawAime) && rawAime > 0) {
+      math_score = Math.min(100, Math.round(rawAime <= 1 ? rawAime * 100 : rawAime));
     }
 
     // 4. Reasoning index: Strictly official HLE-Diamond (Active reasoning benchmark)

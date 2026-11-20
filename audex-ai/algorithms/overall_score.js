@@ -118,22 +118,12 @@ async function generateAllRankFiles(inputModels = null) {
     const rawIntel = toNum(m.intelligenceIndex) ?? toNum(m.evaluations?.artificial_analysis_intelligence_index);
     const intel = rawIntel !== null ? round1(rawIntel) : null;
 
-    // 2. Coding Benchmarks (FrontierCode 2.0, Terminal-Bench 4.0/2.1/Hard, LiveCodeBench, Coding Agent Index)
+    // 2. Coding: Strictly Official Coding Agent Index (Flagship Artificial Analysis coding benchmark)
     const rawCodingAgents = toNum(m.codingAgentsIndex) ?? toNum(m.codingIndex) ?? toNum(m.evaluations?.coding_agent_index) ?? toNum(m.evaluations?.artificial_analysis_coding_index);
-    const rawFc20 = toNum(m.frontierCode20) ?? toNum(m.frontierCode);
-    const rawTb40 = toNum(m.terminalBench40) ?? toNum(m.terminalbenchHard) ?? toNum(m.terminalBench21);
+    const rawFc20 = toNum(m.frontierCode20);
+    const rawTb40 = toNum(m.terminalBench40);
     const rawLcb = toNum(m.livecodebench);
-
-    let coding = null;
-    if (rawCodingAgents !== null) {
-      coding = round1(rawCodingAgents);
-    } else if (rawFc20 !== null || rawTb40 !== null || rawLcb !== null) {
-      let sum = 0, weight = 0;
-      if (rawFc20 !== null) { sum += norm100(rawFc20) * 0.45; weight += 0.45; }
-      if (rawTb40 !== null) { sum += norm100(rawTb40) * 0.35; weight += 0.35; }
-      if (rawLcb !== null) { sum += norm100(rawLcb) * 0.20; weight += 0.20; }
-      if (weight > 0) coding = round1(sum / weight);
-    }
+    const coding = rawCodingAgents !== null ? round1(rawCodingAgents) : null;
 
     // 3. Math: Strictly Official Artificial Analysis Math Index (AIME)
     // Only models with verified math evaluations are included; if not available, skip it.
@@ -166,126 +156,72 @@ async function generateAllRankFiles(inputModels = null) {
     const rawOmni = toNum(m.omniscience);
     const omniScore = rawOmni !== null ? round1(norm100(rawOmni)) : null;
 
-    // 5. Research & Long Context Reasoning (LCR, MLCR)
+    // 5. Research: Strictly Long Context Reasoning (LCR)
     const rawLcr = toNum(m.lcr);
     const lcr = (rawLcr !== null && rawLcr > 0) ? round1(norm100(rawLcr)) : null;
-
     const rawMlcr = toNum(m.mlcrOverall);
     const mlcr = (rawMlcr !== null && rawMlcr > 0) ? round1(norm100(rawMlcr)) : null;
-
-    const research = lcr !== null ? lcr : (mlcr !== null ? mlcr : null);
+    const research = lcr;
 
     // 6. Instruction Following (IFBench)
     const rawIfbench = toNum(m.ifbench) ?? toNum(m.evaluations?.ifbench);
     const instruction = rawIfbench !== null ? round1(norm100(rawIfbench)) : null;
 
-    // 7. Knowledge / Multimodal (MMMU-Pro)
-    const rawMmlu = toNum(m.mmmuPro) ?? toNum(m.evaluations?.mmlu_pro);
-    const knowledge = rawMmlu !== null ? round1(norm100(rawMmlu)) : null;
+    // 7. Knowledge / Multimodal: Strictly MMMU-Pro
+    const rawMmmuPro = toNum(m.mmmuPro) ?? toNum(m.evaluations?.mmlu_pro);
+    const knowledge = rawMmmuPro !== null ? round1(norm100(rawMmmuPro)) : null;
 
-    // 8. Agents & Autonomous Capabilities (Coding Agents Index, Apex Agents, Terminal-Bench 4.0 / 2.1)
+    // 8. Agents & Autonomous Capabilities: Strictly Official Coding Agent Index
     const rawApex = toNum(m.apexAgents);
     const apex = rawApex !== null ? round1(norm100(rawApex)) : null;
     const tbScore = rawTb40 !== null ? round1(norm100(rawTb40)) : null;
+    const agents = coding;
 
-    let agents = null;
-    if (coding !== null && rawCodingAgents !== null) {
-      agents = coding;
-    } else if (apex !== null) {
-      agents = apex;
-    } else if (tbScore !== null) {
-      agents = tbScore;
-    }
-
-    // 9. Multilingual (Tau2, MLCR)
+    // 9. Multilingual: Strictly Tau-2
     const rawTau2 = toNum(m.tau2);
     const tau2 = rawTau2 !== null ? round1(norm100(rawTau2)) : null;
-    const multilingual = tau2 !== null ? tau2 : (mlcr !== null ? mlcr : null);
+    const multilingual = tau2;
 
-    // 10. Data Analysis & Automation (GDPval, GDP PDF, AutomationBench, AnalystAgent)
+    // 10. Data Analysis & Automation: Strictly AutomationBench
     const rawGdpPdf = toNum(m.gdpPdfAllPass);
     const gdpScore = rawGdpPdf !== null ? round1(norm100(rawGdpPdf)) : null;
-
     const rawAutoBench = toNum(m.automationBenchPartialScore);
     const autoBenchScore = rawAutoBench !== null ? round1(norm100(rawAutoBench)) : null;
-
     const rawAnalyst = toNum(m.analystAgent);
     const analystScore = rawAnalyst !== null ? round1(norm100(rawAnalyst)) : null;
-
     const rawGdpval = toNum(m.gdpval);
     const gdpval = rawGdpval !== null ? round1(((rawGdpval - 1000) / 300) * 100) : null;
+    const dataAnalysis = autoBenchScore;
 
-    let dataAnalysis = null;
-    if (gdpScore !== null && autoBenchScore !== null) {
-      dataAnalysis = round1(gdpScore * 0.55 + autoBenchScore * 0.45);
-    } else if (gdpScore !== null) {
-      dataAnalysis = gdpScore;
-    } else if (autoBenchScore !== null) {
-      dataAnalysis = autoBenchScore;
-    } else if (analystScore !== null) {
-      dataAnalysis = analystScore;
-    } else if (gdpval !== null) {
-      dataAnalysis = gdpval;
-    }
-
-    // 11. Scientific (Terminal-Bench-Science + CritPt Agentic Hard + SciCode)
+    // 11. Scientific: Strictly Terminal-Bench Science
     const rawTbSci = toNum(m.terminalBenchScience);
     const tbSciScore = rawTbSci !== null ? round1(norm100(rawTbSci)) : null;
-
     const rawCritpt = toNum(m.critptAgenticHard) ?? (toNum(m.critpt) > 0 ? toNum(m.critpt) : null);
     const critptScore = rawCritpt !== null ? round1(norm100(rawCritpt)) : null;
+    const scientific = tbSciScore;
 
-    let scientific = null;
-    if (tbSciScore !== null && critptScore !== null) {
-      scientific = round1(tbSciScore * 0.6 + critptScore * 0.4);
-    } else if (tbSciScore !== null) {
-      scientific = tbSciScore;
-    } else if (critptScore !== null) {
-      scientific = critptScore;
-    } else if (scicode !== null) {
-      scientific = scicode;
-    }
-
-    // 12. Medical & Clinical Healthcare (HealthBench Professional, HealthBench, VIALS)
+    // 12. Medical & Clinical Healthcare: Strictly HealthBench
     const rawHbProf = toNum(m.healthbenchProfessional);
     const hbProfScore = rawHbProf !== null ? round1(norm100(rawHbProf)) : null;
-
     const rawHb = toNum(m.healthbench);
     const hbScore = rawHb !== null ? round1(norm100(rawHb)) : null;
-
     const rawVials = toNum(m.vialsScore);
     const vialsScore = rawVials !== null ? round1(norm100(rawVials)) : null;
+    const medical = hbScore;
 
-    let medical = null;
-    if (hbProfScore !== null) medical = hbProfScore;
-    else if (hbScore !== null) medical = hbScore;
-    else if (vialsScore !== null) medical = vialsScore;
-
-    // 13. Legal (Harvey Lab Legal Benchmark)
+    // 13. Legal: Strictly Harvey Lab Legal Benchmark
     const rawHarvey = toNum(m.harveyLab);
     const legal = (rawHarvey !== null && rawHarvey > 0) ? round1(norm100(rawHarvey)) : null;
 
-    // 14. Finance & Banking (AnalystAgent, Tau-Banking)
+    // 14. Finance & Banking: Strictly Tau-Banking
     const rawTauBanking = toNum(m.tauBanking);
     const tauBanking = rawTauBanking !== null ? round1(norm100(rawTauBanking)) : null;
+    const finance = tauBanking;
 
-    let finance = null;
-    if (analystScore !== null && tauBanking !== null) {
-      finance = round1(analystScore * 0.6 + tauBanking * 0.4);
-    } else if (analystScore !== null) {
-      finance = analystScore;
-    } else if (tauBanking !== null) {
-      finance = tauBanking;
-    }
-
-    // 15. Enterprise & Operations (EnterpriseOpsGym, AutomationBench, GDP PDF)
+    // 15. Enterprise & Operations: Strictly EnterpriseOpsGym
     const rawOpsGym = toNum(m.enterpriseOpsGym);
     const opsGymScore = rawOpsGym !== null ? round1(norm100(rawOpsGym)) : null;
-
-    let enterprise = null;
-    if (opsGymScore !== null) enterprise = opsGymScore;
-    else if (autoBenchScore !== null) enterprise = autoBenchScore;
-    else if (gdpScore !== null) enterprise = gdpScore;
+    const enterprise = opsGymScore;
 
     // 16. Creative Writing, Writing & Roleplay (PersonalityBench)
     let writing = null;
@@ -303,33 +239,21 @@ async function generateAllRankFiles(inputModels = null) {
       roleplay = round1((warmth + imag + exp) / 3);
     }
 
-    // 17. Extraction & PDF Parsing (GDP PDF pass rate)
+    // 17. Extraction & PDF Parsing: Strictly GDP PDF pass rate
     const extraction = gdpScore;
 
-    // 18. Summarization (LCR or PersonalityBench bottom line summary)
+    // 18. Summarization: Strictly PersonalityBench Summarizes Bottom Line
     let summarization = null;
-    if (research !== null) {
-      summarization = research;
-    } else if (m.personalityBench?.scores?.summarizesBottomLine !== undefined) {
+    if (m.personalityBench?.scores?.summarizesBottomLine !== undefined) {
       const sVal = toNum(m.personalityBench.scores.summarizesBottomLine);
       if (sVal !== null) summarization = round1(((sVal + 500) / 1500) * 100);
     }
 
-    // 19. Tool Use & Function Calling (Terminal-Bench 4.0/Hard, IT-Bench SRE, Apex Agents, EnterpriseOpsGym)
+    // 19. Tool Use: Strictly Terminal-Bench 4.0; Function Calling: Strictly FrontierCode 2.0
     const rawItSre = toNum(m.itBenchSre);
     const itSreScore = rawItSre !== null ? round1(norm100(rawItSre)) : null;
-
-    let toolUse = null;
-    if (tbScore !== null) toolUse = tbScore;
-    else if (apex !== null) toolUse = apex;
-    else if (itSreScore !== null) toolUse = itSreScore;
-    else if (opsGymScore !== null) toolUse = opsGymScore;
-
-    let functionCalling = null;
-    if (tbScore !== null) functionCalling = tbScore;
-    else if (itSreScore !== null) functionCalling = itSreScore;
-    else if (rawFc20 !== null) functionCalling = round1(norm100(rawFc20));
-    else if (apex !== null) functionCalling = apex;
+    const toolUse = tbScore;
+    const functionCalling = rawFc20 !== null ? round1(norm100(rawFc20)) : null;
 
     // 20. Throughput & Latency (Tokens/sec & TTFT in seconds)
     const rawTps = m.headline?.outputSpeed 
@@ -384,7 +308,7 @@ async function generateAllRankFiles(inputModels = null) {
       cheap: blendedPrice,
       fast: speedTps,
       frontier: (intel !== null && intel >= 40) ? intel : null,
-      vision: m.inputModalityImage && (knowledge !== null || vialsScore !== null) ? (knowledge || vialsScore) : null,
+      vision: m.inputModalityImage && knowledge !== null ? knowledge : null,
       audio: (m.inputModalitySpeech || m.outputModalitySpeech) && intel !== null ? intel : null,
       "open-weights": m.isOpenWeights && intel !== null ? intel : null,
       agents: agents,

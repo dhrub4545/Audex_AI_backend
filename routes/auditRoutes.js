@@ -423,23 +423,14 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
 
   // 1. Category-specific verified actual benchmarks
   if (p === 'coding') {
-    if (typeof evals.livecodebench === 'number' && evals.livecodebench > 0) {
-      return round1(evals.livecodebench <= 1 ? evals.livecodebench * 100 : evals.livecodebench);
-    }
-    if (typeof evals.artificial_analysis_coding_index === 'number' && evals.artificial_analysis_coding_index > 0) {
-      return round1(evals.artificial_analysis_coding_index);
-    }
-    if (typeof evals.terminalbench_v2_1 === 'number' && evals.terminalbench_v2_1 > 0) {
-      return round1(evals.terminalbench_v2_1 <= 1 ? evals.terminalbench_v2_1 * 100 : evals.terminalbench_v2_1);
+    if (typeof item?.category_scores?.coding === 'number' && item.category_scores.coding > 0) {
+      return round1(item.category_scores.coding);
     }
     if (typeof evals.coding_agent_index === 'number' && evals.coding_agent_index > 0) {
       return round1(evals.coding_agent_index);
     }
-    if (typeof evals.scicode === 'number' && evals.scicode > 0) {
-      return round1(evals.scicode <= 1 ? evals.scicode * 100 : evals.scicode);
-    }
-    if (typeof item?.category_scores?.coding === 'number' && item.category_scores.coding > 0) {
-      return round1(item.category_scores.coding);
+    if (typeof evals.artificial_analysis_coding_index === 'number' && evals.artificial_analysis_coding_index > 0) {
+      return round1(evals.artificial_analysis_coding_index);
     }
     if (typeof dbModel?.capabilities?.coding_score === 'number' && dbModel.capabilities.coding_score > 0) {
       return round1(dbModel.capabilities.coding_score);
@@ -477,17 +468,11 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
   }
 
   if (p === 'research') {
-    if (typeof evals.hle === 'number' && evals.hle > 0) {
-      return round1(evals.hle <= 1 ? evals.hle * 100 : evals.hle);
+    if (typeof item?.category_scores?.research === 'number' && item.category_scores.research > 0) {
+      return round1(item.category_scores.research);
     }
     if (typeof evals.lcr === 'number' && evals.lcr > 0) {
       return round1(evals.lcr <= 1 ? evals.lcr * 100 : evals.lcr);
-    }
-    if (typeof evals.gpqa === 'number' && evals.gpqa > 0) {
-      return round1(evals.gpqa <= 1 ? evals.gpqa * 100 : evals.gpqa);
-    }
-    if (typeof item?.category_scores?.research === 'number' && item.category_scores.research > 0) {
-      return round1(item.category_scores.research);
     }
     return null;
   }
