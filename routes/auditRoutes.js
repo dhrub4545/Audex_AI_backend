@@ -1813,81 +1813,149 @@ router.post('/audit-recommendation', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
 });
+// Concurrency lock and rate-limiter for background live scraping pipeline
+let autoSyncPromise = null;
+let lastAutoSyncAt = 0;
+
+async function triggerLivePipelineAutoSync(force = false) {
+  const now = Date.now();
+  if (autoSyncPromise) return autoSyncPromise;
+  // Throttle non-forced runs to once every 15 minutes
+  if (!force && now - lastAutoSyncAt < 15 * 60 * 1000) return null;
+
+  autoSyncPromise = (async () => {
+    try {
+      console.log('🔄 Live Auto-Sync: Scraping & updating new models from Artificial Analysis...');
+      await runDailyRankingPipeline();
+      lastAutoSyncAt = Date.now();
+      await cache.del('audex:analysis:raw_data');
+      await cache.del('audex:models:all_docs');
+      await cache.del('audex:models:list');
+      await cache.del('audex:tiers:list');
+      await cache.del('audex:tiers:raw');
+      await cache.delByPrefix('audex:rec:');
+      await cache.delByPrefix('audex:rank:');
+      console.log('✅ Live Auto-Sync: Models & categories successfully updated.');
+    } catch (err) {
+      console.error('⚠️ Live Auto-Sync Error:', err.message);
+    } finally {
+      autoSyncPromise = null;
+    }
+  })();
+
+  return autoSyncPromise;
+}
+
+function formatRawDataResponse(rawData) {
+  const sources = rawData.sources || {};
+  const rawLlms = Array.isArray(sources.llms) ? sources.llms : (sources.llms?.data || []);
+  const processedLlms = rawLlms.map(item => {
+    const pricing = item.pricing || {};
+    const evaluations = item.evaluations || {};
+    
+    const inputCost = parseFloat(pricing.price_1m_input_tokens) || 0;
+    const outputCost = parseFloat(pricing.price_1m_output_tokens) || 0;
+    // Blended price assumes a standard 3:1 input:output tokens ratio
+    const blendedPrice = (inputCost * 0.75) + (outputCost * 0.25);
+
+    return {
+      slug: item.slug,
+      modelId: item.modelId || item.id || `unknown/${item.slug}`,
+      name: item.name,
+      creator: item.model_creator?.name || item.organization || 'Unknown',
+      release_date: item.release_date,
+      rating: item.rating || item.arena_elo || null,
+      rank: item.rank || null,
+      intelligence_index: parseFloat(evaluations.artificial_analysis_intelligence_index) || null,
+      coding_index: parseFloat(evaluations.artificial_analysis_coding_index) || null,
+      math_index: parseFloat(evaluations.artificial_analysis_math_index) || null,
+      gpqa: parseFloat(evaluations.gpqa) || null,
+      hle: parseFloat(evaluations.hle) || null,
+      throughput: parseFloat(item.median_output_tokens_per_second) || null,
+      ttft: parseFloat(item.median_time_to_first_token_seconds) || null,
+      inputCost,
+      outputCost,
+      blendedPrice,
+      pricing: item.pricing || { price_1m_input_tokens: inputCost, price_1m_output_tokens: outputCost },
+      evaluations: evaluations
+    };
+  });
+
+  // Process Media categories
+  const mediaCategories = {};
+  const mediaKeys = ['text_to_image', 'image_editing', 'text_to_speech', 'text_to_video', 'image_to_video'];
+  
+  mediaKeys.forEach(key => {
+    const items = Array.isArray(sources[key]) ? sources[key] : (sources[key]?.data || []);
+    mediaCategories[key] = items.map(item => ({
+      name: item.name,
+      creator: item.model_creator?.name || 'Unknown',
+      elo: parseInt(item.elo) || null,
+      rank: parseInt(item.rank) || null,
+      release_date: item.release_date
+    })).sort((a, b) => (a.rank || Infinity) - (b.rank || Infinity));
+  });
+
+  return {
+    fetched_at: rawData.fetched_at_utc || new Date().toISOString(),
+    categories: rawData.categories || {},
+    llms: processedLlms,
+    media: mediaCategories
+  };
+}
+
 // Route to fetch raw Artificial Analysis API data for the home page analysis dashboard
 router.get('/analysis/raw-data', async (req, res) => {
   try {
     const force = req.query.refresh === 'true';
-    if (!force) {
+
+    if (force) {
+      console.log('🔄 Forced refresh requested on /analysis/raw-data. Triggering live scraper pipeline...');
+      await triggerLivePipelineAutoSync(true);
+      await cache.del('audex:analysis:raw_data');
+    } else {
       const cachedData = await cache.get('audex:analysis:raw_data');
       if (cachedData) {
+        // If cached data is older than 1 hour, trigger background update silently
+        const cachedAgeMs = cachedData.fetched_at ? (Date.now() - new Date(cachedData.fetched_at).getTime()) : Infinity;
+        if (cachedAgeMs > 60 * 60 * 1000) {
+          triggerLivePipelineAutoSync(false).catch(() => {});
+        }
         return res.json(cachedData);
       }
     }
+
     const rawPath = path.join(__dirname, '../data/raw_data.json');
-    if (!fs.existsSync(rawPath)) {
-      return res.status(404).json({ error: 'Raw analysis data not found. Please run database synchronization first.' });
+    let rawData = null;
+
+    if (fs.existsSync(rawPath)) {
+      try {
+        const rawContent = fs.readFileSync(rawPath, 'utf8');
+        rawData = JSON.parse(rawContent);
+      } catch (_) {}
     }
 
-    const rawContent = fs.readFileSync(rawPath, 'utf8');
-    const rawData = JSON.parse(rawContent);
-    const sources = rawData.sources || {};
+    // If file missing or invalid, run pipeline immediately
+    if (!rawData) {
+      console.log('⚠️ raw_data.json missing or invalid. Running pipeline synchronization...');
+      await triggerLivePipelineAutoSync(true);
+      if (fs.existsSync(rawPath)) {
+        rawData = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
+      }
+    }
 
-    // 1. Process LLMs
-    const rawLlms = Array.isArray(sources.llms) ? sources.llms : (sources.llms?.data || []);
-    const processedLlms = rawLlms.map(item => {
-      const pricing = item.pricing || {};
-      const evaluations = item.evaluations || {};
-      
-      const inputCost = parseFloat(pricing.price_1m_input_tokens) || 0;
-      const outputCost = parseFloat(pricing.price_1m_output_tokens) || 0;
-      // Blended price assumes a standard 3:1 input:output tokens ratio
-      const blendedPrice = (inputCost * 0.75) + (outputCost * 0.25);
+    if (!rawData) {
+      return res.status(500).json({ error: 'Failed to synchronize raw analysis data.' });
+    }
 
-      return {
-        slug: item.slug,
-        modelId: item.modelId || item.id || `unknown/${item.slug}`,
-        name: item.name,
-        creator: item.model_creator?.name || item.organization || 'Unknown',
-        release_date: item.release_date,
-        rating: item.rating || item.arena_elo || null,
-        rank: item.rank || null,
-        intelligence_index: parseFloat(evaluations.artificial_analysis_intelligence_index) || null,
-        coding_index: parseFloat(evaluations.artificial_analysis_coding_index) || null,
-        math_index: parseFloat(evaluations.artificial_analysis_math_index) || null,
-        gpqa: parseFloat(evaluations.gpqa) || null,
-        hle: parseFloat(evaluations.hle) || null,
-        throughput: parseFloat(item.median_output_tokens_per_second) || null,
-        ttft: parseFloat(item.median_time_to_first_token_seconds) || null,
-        inputCost,
-        outputCost,
-        blendedPrice,
-        pricing: item.pricing || { price_1m_input_tokens: inputCost, price_1m_output_tokens: outputCost },
-        evaluations: evaluations
-      };
-    });
+    // If data on disk is older than 1 hour, trigger background auto-sync so subsequent requests are fresh
+    const fileAgeMs = rawData.fetched_at_utc ? (Date.now() - new Date(rawData.fetched_at_utc).getTime()) : Infinity;
+    if (!force && fileAgeMs > 60 * 60 * 1000) {
+      triggerLivePipelineAutoSync(false).catch(() => {});
+    }
 
-    // 2. Process Media categories
-    const mediaCategories = {};
-    const mediaKeys = ['text_to_image', 'image_editing', 'text_to_speech', 'text_to_video', 'image_to_video'];
-    
-    mediaKeys.forEach(key => {
-      const items = Array.isArray(sources[key]) ? sources[key] : (sources[key]?.data || []);
-      mediaCategories[key] = items.map(item => ({
-        name: item.name,
-        creator: item.model_creator?.name || 'Unknown',
-        elo: parseInt(item.elo) || null,
-        rank: parseInt(item.rank) || null,
-        release_date: item.release_date
-      })).sort((a, b) => (a.rank || Infinity) - (b.rank || Infinity));
-    });
-
-    const responseData = {
-      fetched_at: rawData.fetched_at_utc,
-      categories: rawData.categories || {},
-      llms: processedLlms,
-      media: mediaCategories
-    };
-    await cache.set('audex:analysis:raw_data', responseData, 1800); // 30 minutes TTL
+    const responseData = formatRawDataResponse(rawData);
+    await cache.set('audex:analysis:raw_data', responseData, 900); // 15 minutes TTL
     return res.json(responseData);
   } catch (error) {
     console.error('Error fetching raw analysis data:', error);
@@ -2221,7 +2289,9 @@ Return ONLY a valid JSON object matching the following structure (no markdown wr
 const handleCronSync = async (req, res) => {
   try {
     const cronSecret = process.env.CRON_SECRET || process.env.ADMIN_SECRET;
-    const providedSecret = req.query.secret || req.headers['x-cron-secret'];
+    const authHeader = req.headers.authorization;
+    const bearerSecret = authHeader && authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+    const providedSecret = req.query.secret || req.headers['x-cron-secret'] || bearerSecret;
     if (cronSecret && providedSecret !== cronSecret) {
       return res.status(401).json({ error: 'Unauthorized: Invalid cron secret.' });
     }

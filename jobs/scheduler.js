@@ -1,9 +1,22 @@
 const cron = require('node-cron');
 const fs = require('fs');
 const path = require('path');
+const cache = require('../services/cacheService');
 const { syncArtificialAnalysis } = require('../services/artificialAnalysisSync');
 const { runDailyRankingPipeline } = require('../services/dailyRankingPipeline');
 const { syncSubscriptionTiers } = require('../services/subscriptionTierSync');
+
+async function invalidateAllCaches() {
+  try {
+    await cache.del('audex:models:all_docs');
+    await cache.del('audex:models:list');
+    await cache.del('audex:tiers:list');
+    await cache.del('audex:tiers:raw');
+    await cache.del('audex:analysis:raw_data');
+    await cache.delByPrefix('audex:rec:');
+    await cache.delByPrefix('audex:rank:');
+  } catch (_) {}
+}
 
 function initScheduler() {
   if (process.env.VERCEL) {
@@ -18,6 +31,7 @@ function initScheduler() {
     console.log('⏰ Ingestion Scheduler: Starting daily AI ranking pipeline run...');
     try {
       await runDailyRankingPipeline();
+      await invalidateAllCaches();
     } catch (err) {
       console.error('⏰ Ingestion Scheduler: Daily AI ranking pipeline failed:', err.message);
     }
@@ -28,11 +42,13 @@ function initScheduler() {
     console.log('⏰ Ingestion Scheduler: Starting hourly Artificial Analysis live sync...');
     try {
       await runDailyRankingPipeline();
+      await invalidateAllCaches();
       console.log('⏰ Ingestion Scheduler: Hourly live sync completed successfully.');
     } catch (err) {
       console.error('⏰ Ingestion Scheduler: Hourly sync failed, attempting fallback local sync:', err.message);
       await syncArtificialAnalysis().catch(() => {});
       await syncSubscriptionTiers().catch(() => {});
+      await invalidateAllCaches();
     }
   });
 
@@ -46,7 +62,7 @@ function initScheduler() {
     }
   })();
 
-  // 4. Trigger automated synchronization on startup if data is missing, stale (> 6h), or RUN_INITIAL_SYNC is true
+  // 4. Trigger automated synchronization on startup if data is missing, stale (> 1h), or RUN_INITIAL_SYNC is true
   (async () => {
     try {
       const rawPath = path.join(__dirname, '../data/raw_data.json');
@@ -56,16 +72,17 @@ function initScheduler() {
       } else {
         const stats = fs.statSync(rawPath);
         const ageHours = (Date.now() - stats.mtimeMs) / (1000 * 60 * 60);
-        if (ageHours > 6 || process.env.RUN_INITIAL_SYNC === 'true') {
+        if (ageHours > 1 || process.env.RUN_INITIAL_SYNC === 'true') {
           shouldSync = true;
         }
       }
       if (shouldSync) {
-        console.log('🚀 Ingestion Scheduler: Triggering automated synchronization on startup (data missing or > 6h old)...');
+        console.log('🚀 Ingestion Scheduler: Triggering automated synchronization on startup (data missing or > 1h old)...');
         await runDailyRankingPipeline();
+        await invalidateAllCaches();
         console.log('🚀 Ingestion Scheduler: Startup synchronization completed successfully!');
       } else {
-        console.log('ℹ️ Ingestion Scheduler: Startup data is fresh (< 6h). Scheduled cron jobs are active.');
+        console.log('ℹ️ Ingestion Scheduler: Startup data is fresh (< 1h). Scheduled cron jobs are active.');
       }
     } catch (err) {
       console.warn('⚠️ Ingestion Scheduler: Startup synchronization warning:', err.message);

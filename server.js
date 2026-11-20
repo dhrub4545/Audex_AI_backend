@@ -164,6 +164,16 @@ async function connectToDatabase() {
 // Initial connection attempt on server startup
 connectToDatabase().catch(() => {});
 
+// Initialize background ingestion scheduler for standalone mode
+if (!process.env.VERCEL) {
+  try {
+    const { initScheduler } = require('./jobs/scheduler');
+    initScheduler();
+  } catch (err) {
+    console.warn('⚠️ Could not initialize background scheduler on boot:', err.message);
+  }
+}
+
 // Middleware to guarantee MongoDB is connected before handling routes
 app.use(async (req, res, next) => {
   if (mongoose.connection.readyState !== 1) {

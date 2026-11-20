@@ -29,7 +29,7 @@
       "knowledge": null,
       "multilingual": 43.9,
       "cheap": 16,
-      "fast": 112.1,
+      "fast": 109.9,
       "frontier": 64.6,
       "vision": 67.1,
       "audio": null,
@@ -79,8 +79,8 @@
       "price_1m_input_tokens": 8,
       "price_1m_output_tokens": 40
     },
-    "median_output_tokens_per_second": 112.1,
-    "median_time_to_first_token_seconds": 0.21,
+    "median_output_tokens_per_second": 109.9,
+    "median_time_to_first_token_seconds": 0.25,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
@@ -119,7 +119,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 16,
-      "fast": 113.2,
+      "fast": 110,
       "frontier": 62.2,
       "vision": null,
       "audio": null,
@@ -169,8 +169,8 @@
       "price_1m_input_tokens": 8,
       "price_1m_output_tokens": 40
     },
-    "median_output_tokens_per_second": 113.2,
-    "median_time_to_first_token_seconds": 54.32,
+    "median_output_tokens_per_second": 110,
+    "median_time_to_first_token_seconds": 58.84,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
@@ -209,7 +209,7 @@
       "knowledge": 89.5,
       "multilingual": 39.4,
       "cheap": 16,
-      "fast": 63.8,
+      "fast": 47.9,
       "frontier": 62.1,
       "vision": 89.5,
       "audio": null,
@@ -259,8 +259,8 @@
       "price_1m_input_tokens": 8,
       "price_1m_output_tokens": 40
     },
-    "median_output_tokens_per_second": 63.8,
-    "median_time_to_first_token_seconds": 0.15,
+    "median_output_tokens_per_second": 47.9,
+    "median_time_to_first_token_seconds": 0.2,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
@@ -299,7 +299,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 16,
-      "fast": 110,
+      "fast": 107.4,
       "frontier": 61.8,
       "vision": null,
       "audio": null,
@@ -349,8 +349,8 @@
       "price_1m_input_tokens": 8,
       "price_1m_output_tokens": 40
     },
-    "median_output_tokens_per_second": 110,
-    "median_time_to_first_token_seconds": 23.9,
+    "median_output_tokens_per_second": 107.4,
+    "median_time_to_first_token_seconds": 25.4,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
@@ -385,11 +385,11 @@
       "reasoning": 67.3,
       "research": 37.8,
       "instruction": null,
-      "writing": 58,
+      "writing": 58.7,
       "knowledge": 87.9,
       "multilingual": 37.8,
       "cheap": 16,
-      "fast": 59.9,
+      "fast": 47.8,
       "frontier": 61.6,
       "vision": 87.9,
       "audio": null,
@@ -401,9 +401,9 @@
       "medical": 52.8,
       "finance": 62.5,
       "scientific": 75.4,
-      "creative-writing": 71,
+      "creative-writing": 70.9,
       "data-analysis": 49.6,
-      "roleplay": 60.4,
+      "roleplay": 61.7,
       "translation": 37.8,
       "summarization": 37.8,
       "extraction": 28,
@@ -433,14 +433,14 @@
       "tau_banking": null,
       "harvey_lab": 12.8,
       "healthbench": 52.8,
-      "personality_bench": 71
+      "personality_bench": 70.9
     },
     "pricing": {
       "price_1m_input_tokens": 8,
       "price_1m_output_tokens": 40
     },
-    "median_output_tokens_per_second": 59.9,
-    "median_time_to_first_token_seconds": 44.64,
+    "median_output_tokens_per_second": 47.8,
+    "median_time_to_first_token_seconds": 65.18,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
@@ -448,6 +448,96 @@
     "deprecated": false,
     "unroundedAverage": null,
     "rank": 5
+  },
+  {
+    "id": "gemini-4-neon",
+    "slug": "gemini-4-neon",
+    "modelId": "google/gemini-4-neon",
+    "name": "Gemini 4 Neon (Xhigh)",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1338,
+    "arena_elo": 1338,
+    "final_score": 61.4,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis_v5",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 61.4,
+      "coding": 59,
+      "math": null,
+      "reasoning": 71.3,
+      "research": 31.7,
+      "instruction": null,
+      "writing": null,
+      "knowledge": null,
+      "multilingual": 31.7,
+      "cheap": 6,
+      "fast": 109.9,
+      "frontier": 61.4,
+      "vision": null,
+      "audio": 61.4,
+      "open-weights": null,
+      "agents": 59,
+      "long-context": 1000000,
+      "enterprise": 79.3,
+      "legal": null,
+      "medical": null,
+      "finance": null,
+      "scientific": 66.2,
+      "creative-writing": null,
+      "data-analysis": 51.1,
+      "roleplay": null,
+      "translation": 31.7,
+      "summarization": 31.7,
+      "extraction": 28,
+      "tool-use": 63.6,
+      "function-calling": 63.6
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 61.4,
+      "artificial_analysis_coding_index": 59,
+      "artificial_analysis_math_index": null,
+      "gpqa": null,
+      "hle": null,
+      "hle_diamond": 71.3,
+      "frontier_code_20": 44.4,
+      "terminal_bench_40": 63.6,
+      "terminal_bench_science": 70,
+      "critpt_agentic_hard": 60.5,
+      "ifbench": null,
+      "aime": null,
+      "scicode": null,
+      "mmlu_pro": null,
+      "agentic_index": 59,
+      "coding_agent_index": 59,
+      "gdpval": null,
+      "gdp_pdf": 28,
+      "automation_bench": 79.3,
+      "tau_banking": null,
+      "harvey_lab": null,
+      "healthbench": null,
+      "personality_bench": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": 3,
+      "price_1m_output_tokens": 15
+    },
+    "median_output_tokens_per_second": 109.9,
+    "median_time_to_first_token_seconds": 56.51,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": null,
+    "rank": 6
   },
   {
     "id": "gpt-6-2-astra-high",
@@ -475,11 +565,11 @@
       "reasoning": 65.9,
       "research": 35.6,
       "instruction": null,
-      "writing": 57.4,
+      "writing": 60.3,
       "knowledge": 87.7,
       "multilingual": 35.6,
       "cheap": 16,
-      "fast": 60.7,
+      "fast": 47.9,
       "frontier": 60.1,
       "vision": 87.7,
       "audio": null,
@@ -491,9 +581,9 @@
       "medical": 52.7,
       "finance": 61.3,
       "scientific": 73.7,
-      "creative-writing": 70.9,
+      "creative-writing": 72,
       "data-analysis": 49.9,
-      "roleplay": 59,
+      "roleplay": 61.1,
       "translation": 35.6,
       "summarization": 35.6,
       "extraction": 28.6,
@@ -523,21 +613,21 @@
       "tau_banking": null,
       "harvey_lab": 13.3,
       "healthbench": 52.7,
-      "personality_bench": 70.9
+      "personality_bench": 72
     },
     "pricing": {
       "price_1m_input_tokens": 8,
       "price_1m_output_tokens": 40
     },
-    "median_output_tokens_per_second": 60.7,
-    "median_time_to_first_token_seconds": 16.86,
+    "median_output_tokens_per_second": 47.9,
+    "median_time_to_first_token_seconds": 25.27,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 6
+    "rank": 7
   },
   {
     "id": "gemini-4-carbon",
@@ -568,8 +658,8 @@
       "writing": null,
       "knowledge": null,
       "multilingual": 19.4,
-      "cheap": 4,
-      "fast": 61.7,
+      "cheap": 8,
+      "fast": 51.4,
       "frontier": 60,
       "vision": 64,
       "audio": 60,
@@ -616,18 +706,108 @@
       "personality_bench": null
     },
     "pricing": {
-      "price_1m_input_tokens": 2,
-      "price_1m_output_tokens": 10
+      "price_1m_input_tokens": 4,
+      "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 61.7,
-    "median_time_to_first_token_seconds": 73.37,
+    "median_output_tokens_per_second": 51.4,
+    "median_time_to_first_token_seconds": 74.48,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 7
+    "rank": 8
+  },
+  {
+    "id": "gemini-4-neon-high",
+    "slug": "gemini-4-neon-high",
+    "modelId": "google/gemini-4-neon-high",
+    "name": "Gemini 4 Neon (High)",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1328,
+    "arena_elo": 1328,
+    "final_score": 59.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis_v5",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 59.6,
+      "coding": 51.3,
+      "math": null,
+      "reasoning": 68.4,
+      "research": 28.9,
+      "instruction": null,
+      "writing": null,
+      "knowledge": null,
+      "multilingual": 28.9,
+      "cheap": 6,
+      "fast": 101.5,
+      "frontier": 59.6,
+      "vision": null,
+      "audio": 59.6,
+      "open-weights": null,
+      "agents": 61.6,
+      "long-context": 1000000,
+      "enterprise": 79.2,
+      "legal": null,
+      "medical": null,
+      "finance": null,
+      "scientific": 63,
+      "creative-writing": null,
+      "data-analysis": 54,
+      "roleplay": null,
+      "translation": 28.9,
+      "summarization": 28.9,
+      "extraction": 33.4,
+      "tool-use": 61.6,
+      "function-calling": 61.6
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 59.6,
+      "artificial_analysis_coding_index": 51.3,
+      "artificial_analysis_math_index": null,
+      "gpqa": null,
+      "hle": null,
+      "hle_diamond": 68.4,
+      "frontier_code_20": 43.3,
+      "terminal_bench_40": 61.6,
+      "terminal_bench_science": 65.7,
+      "critpt_agentic_hard": 59,
+      "ifbench": null,
+      "aime": null,
+      "scicode": null,
+      "mmlu_pro": null,
+      "agentic_index": 61.6,
+      "coding_agent_index": null,
+      "gdpval": null,
+      "gdp_pdf": 33.4,
+      "automation_bench": 79.2,
+      "tau_banking": null,
+      "harvey_lab": null,
+      "healthbench": null,
+      "personality_bench": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": 3,
+      "price_1m_output_tokens": 15
+    },
+    "median_output_tokens_per_second": 101.5,
+    "median_time_to_first_token_seconds": 40.64,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": null,
+    "rank": 9
   },
   {
     "id": "claude-opus-5-5",
@@ -659,7 +839,7 @@
       "knowledge": 87.7,
       "multilingual": 27.8,
       "cheap": 8,
-      "fast": 117.8,
+      "fast": 112.3,
       "frontier": 59.1,
       "vision": 87.7,
       "audio": null,
@@ -709,15 +889,15 @@
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 117.8,
-    "median_time_to_first_token_seconds": 0.36,
+    "median_output_tokens_per_second": 112.3,
+    "median_time_to_first_token_seconds": 0.37,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 8
+    "rank": 10
   },
   {
     "id": "gemini-4-carbon-medium",
@@ -743,13 +923,13 @@
       "coding": 48.7,
       "math": null,
       "reasoning": 67.4,
-      "research": null,
+      "research": 18.3,
       "instruction": null,
       "writing": null,
       "knowledge": 89.2,
-      "multilingual": null,
-      "cheap": 4,
-      "fast": 58.6,
+      "multilingual": 18.3,
+      "cheap": 8,
+      "fast": 59.4,
       "frontier": 58.3,
       "vision": 89.2,
       "audio": 58.3,
@@ -764,8 +944,8 @@
       "creative-writing": null,
       "data-analysis": 51.2,
       "roleplay": null,
-      "translation": null,
-      "summarization": null,
+      "translation": 18.3,
+      "summarization": 18.3,
       "extraction": 29.6,
       "tool-use": 60.6,
       "function-calling": 60.6
@@ -796,18 +976,18 @@
       "personality_bench": null
     },
     "pricing": {
-      "price_1m_input_tokens": 2,
-      "price_1m_output_tokens": 10
+      "price_1m_input_tokens": 4,
+      "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 58.6,
-    "median_time_to_first_token_seconds": 27.41,
+    "median_output_tokens_per_second": 59.4,
+    "median_time_to_first_token_seconds": 33.41,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 9
+    "rank": 11
   },
   {
     "id": "claude-opus-5-5-xhigh",
@@ -839,7 +1019,7 @@
       "knowledge": 86.6,
       "multilingual": 25,
       "cheap": 8,
-      "fast": 110.3,
+      "fast": 106.8,
       "frontier": 57.4,
       "vision": 86.6,
       "audio": null,
@@ -889,15 +1069,15 @@
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 110.3,
-    "median_time_to_first_token_seconds": 63.37,
+    "median_output_tokens_per_second": 106.8,
+    "median_time_to_first_token_seconds": 70.07,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 10
+    "rank": 12
   },
   {
     "id": "gpt-6-2-sol",
@@ -929,9 +1109,9 @@
       "knowledge": null,
       "multilingual": 37.2,
       "cheap": 4,
-      "fast": 85.2,
+      "fast": 71.6,
       "frontier": 57.3,
-      "vision": null,
+      "vision": 62.7,
       "audio": null,
       "open-weights": null,
       "agents": 60.1,
@@ -979,15 +1159,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 85.2,
-    "median_time_to_first_token_seconds": 61.56,
+    "median_output_tokens_per_second": 71.6,
+    "median_time_to_first_token_seconds": 80.62,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 11
+    "rank": 13
   },
   {
     "id": "gpt-6-2-astra-medium",
@@ -1015,11 +1195,11 @@
       "reasoning": 56,
       "research": 32.8,
       "instruction": null,
-      "writing": 55.7,
+      "writing": 57.6,
       "knowledge": 86.1,
       "multilingual": 32.8,
       "cheap": 16,
-      "fast": 58.6,
+      "fast": 45.4,
       "frontier": 57,
       "vision": 86.1,
       "audio": null,
@@ -1031,9 +1211,9 @@
       "medical": 52.8,
       "finance": 52.5,
       "scientific": 71.9,
-      "creative-writing": 64.3,
+      "creative-writing": 62.9,
       "data-analysis": 48.4,
-      "roleplay": 50.7,
+      "roleplay": 46.2,
       "translation": 32.8,
       "summarization": 32.8,
       "extraction": 28.4,
@@ -1063,21 +1243,21 @@
       "tau_banking": null,
       "harvey_lab": 8.1,
       "healthbench": 52.8,
-      "personality_bench": 64.3
+      "personality_bench": 62.9
     },
     "pricing": {
       "price_1m_input_tokens": 8,
       "price_1m_output_tokens": 40
     },
-    "median_output_tokens_per_second": 58.6,
-    "median_time_to_first_token_seconds": 2.7,
+    "median_output_tokens_per_second": 45.4,
+    "median_time_to_first_token_seconds": 3.91,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 12
+    "rank": 14
   },
   {
     "id": "gpt-6-astra",
@@ -1109,7 +1289,7 @@
       "knowledge": 86.9,
       "multilingual": 41.7,
       "cheap": 20,
-      "fast": 43.5,
+      "fast": 40.5,
       "frontier": 56.9,
       "vision": 86.9,
       "audio": null,
@@ -1159,15 +1339,15 @@
       "price_1m_input_tokens": 10,
       "price_1m_output_tokens": 50
     },
-    "median_output_tokens_per_second": 43.5,
-    "median_time_to_first_token_seconds": 0.19,
+    "median_output_tokens_per_second": 40.5,
+    "median_time_to_first_token_seconds": 0.21,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 13
+    "rank": 15
   },
   {
     "id": "claude-fable-5-2-medium",
@@ -1199,7 +1379,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 16,
-      "fast": 113,
+      "fast": 110.5,
       "frontier": 56.4,
       "vision": null,
       "audio": null,
@@ -1249,15 +1429,15 @@
       "price_1m_input_tokens": 8,
       "price_1m_output_tokens": 40
     },
-    "median_output_tokens_per_second": 113,
-    "median_time_to_first_token_seconds": 9.87,
+    "median_output_tokens_per_second": 110.5,
+    "median_time_to_first_token_seconds": 11.43,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 14
+    "rank": 16
   },
   {
     "id": "gpt-6-2-sol-xhigh",
@@ -1285,11 +1465,11 @@
       "reasoning": 61.8,
       "research": 35,
       "instruction": null,
-      "writing": 56.5,
+      "writing": 53.9,
       "knowledge": null,
       "multilingual": 35,
       "cheap": 4,
-      "fast": 80.2,
+      "fast": 70.1,
       "frontier": 55.7,
       "vision": null,
       "audio": null,
@@ -1301,9 +1481,9 @@
       "medical": 53.3,
       "finance": 53.8,
       "scientific": 65,
-      "creative-writing": 67,
+      "creative-writing": 62.4,
       "data-analysis": 47.4,
-      "roleplay": 54.2,
+      "roleplay": 52.1,
       "translation": 35,
       "summarization": 35,
       "extraction": 28.4,
@@ -1333,21 +1513,21 @@
       "tau_banking": null,
       "harvey_lab": 6.1,
       "healthbench": 53.3,
-      "personality_bench": 67
+      "personality_bench": 62.4
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 80.2,
-    "median_time_to_first_token_seconds": 22.98,
+    "median_output_tokens_per_second": 70.1,
+    "median_time_to_first_token_seconds": 32.96,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 15
+    "rank": 17
   },
   {
     "id": "gpt-6-astra-xhigh",
@@ -1379,7 +1559,7 @@
       "knowledge": 86.2,
       "multilingual": 36.1,
       "cheap": 20,
-      "fast": 43.8,
+      "fast": 42,
       "frontier": 55.3,
       "vision": 86.2,
       "audio": null,
@@ -1429,15 +1609,105 @@
       "price_1m_input_tokens": 10,
       "price_1m_output_tokens": 50
     },
-    "median_output_tokens_per_second": 43.8,
-    "median_time_to_first_token_seconds": 84.53,
+    "median_output_tokens_per_second": 42,
+    "median_time_to_first_token_seconds": 93.05,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 16
+    "rank": 18
+  },
+  {
+    "id": "gemini-4-neon-medium",
+    "slug": "gemini-4-neon-medium",
+    "modelId": "google/gemini-4-neon-medium",
+    "name": "Gemini 4 Neon (Medium)",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1302,
+    "arena_elo": 1302,
+    "final_score": 54.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis_v5",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 54.9,
+      "coding": 44.6,
+      "math": null,
+      "reasoning": 63.6,
+      "research": 30.6,
+      "instruction": null,
+      "writing": null,
+      "knowledge": null,
+      "multilingual": 30.6,
+      "cheap": 6,
+      "fast": 100.7,
+      "frontier": 54.9,
+      "vision": null,
+      "audio": 54.9,
+      "open-weights": null,
+      "agents": 54.5,
+      "long-context": 1000000,
+      "enterprise": 77.8,
+      "legal": null,
+      "medical": null,
+      "finance": null,
+      "scientific": 57.5,
+      "creative-writing": null,
+      "data-analysis": 53.1,
+      "roleplay": null,
+      "translation": 30.6,
+      "summarization": 30.6,
+      "extraction": 32.8,
+      "tool-use": 54.5,
+      "function-calling": 54.5
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 54.9,
+      "artificial_analysis_coding_index": 44.6,
+      "artificial_analysis_math_index": null,
+      "gpqa": null,
+      "hle": null,
+      "hle_diamond": 63.6,
+      "frontier_code_20": 36.9,
+      "terminal_bench_40": 54.5,
+      "terminal_bench_science": 54.8,
+      "critpt_agentic_hard": 61.5,
+      "ifbench": null,
+      "aime": null,
+      "scicode": null,
+      "mmlu_pro": null,
+      "agentic_index": 54.5,
+      "coding_agent_index": null,
+      "gdpval": null,
+      "gdp_pdf": 32.8,
+      "automation_bench": 77.8,
+      "tau_banking": null,
+      "harvey_lab": null,
+      "healthbench": null,
+      "personality_bench": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": 3,
+      "price_1m_output_tokens": 15
+    },
+    "median_output_tokens_per_second": 100.7,
+    "median_time_to_first_token_seconds": 20.14,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": null,
+    "rank": 19
   },
   {
     "id": "gpt-6-2-sol-high",
@@ -1465,11 +1735,11 @@
       "reasoning": 58.3,
       "research": 33.9,
       "instruction": null,
-      "writing": 57.5,
+      "writing": 53.9,
       "knowledge": null,
       "multilingual": 33.9,
       "cheap": 4,
-      "fast": 79.3,
+      "fast": 67.7,
       "frontier": 54.9,
       "vision": null,
       "audio": null,
@@ -1481,9 +1751,9 @@
       "medical": 53.2,
       "finance": 52.5,
       "scientific": 65.2,
-      "creative-writing": 65.9,
+      "creative-writing": 59.2,
       "data-analysis": 47.3,
-      "roleplay": 52.8,
+      "roleplay": 49.4,
       "translation": 33.9,
       "summarization": 33.9,
       "extraction": 28.8,
@@ -1513,21 +1783,21 @@
       "tau_banking": null,
       "harvey_lab": 5.8,
       "healthbench": 53.2,
-      "personality_bench": 65.9
+      "personality_bench": 59.2
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 79.3,
-    "median_time_to_first_token_seconds": 7.9,
+    "median_output_tokens_per_second": 67.7,
+    "median_time_to_first_token_seconds": 12.41,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 17
+    "rank": 20
   },
   {
     "id": "gpt-6-astra-high",
@@ -1610,14 +1880,14 @@
       "price_1m_output_tokens": 50
     },
     "median_output_tokens_per_second": 44,
-    "median_time_to_first_token_seconds": 40.3,
+    "median_time_to_first_token_seconds": 41.5,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 18
+    "rank": 21
   },
   {
     "id": "gpt-6-1-sol",
@@ -1645,11 +1915,11 @@
       "reasoning": 57,
       "research": 83,
       "instruction": null,
-      "writing": 72.4,
+      "writing": 70.4,
       "knowledge": 86,
       "multilingual": 38.3,
       "cheap": 4,
-      "fast": 48.5,
+      "fast": 45.5,
       "frontier": 54.6,
       "vision": 86,
       "audio": null,
@@ -1661,9 +1931,9 @@
       "medical": 65.1,
       "finance": 50,
       "scientific": 62.7,
-      "creative-writing": 66,
+      "creative-writing": 64,
       "data-analysis": 46.3,
-      "roleplay": 59.4,
+      "roleplay": 64.3,
       "translation": 38.3,
       "summarization": 83,
       "extraction": 31,
@@ -1693,13 +1963,13 @@
       "tau_banking": null,
       "harvey_lab": 6.9,
       "healthbench": 65.1,
-      "personality_bench": 66
+      "personality_bench": 64
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 48.5,
+    "median_output_tokens_per_second": 45.5,
     "median_time_to_first_token_seconds": 0.15,
     "context_length": 1000000,
     "isDefault": false,
@@ -1707,7 +1977,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 19
+    "rank": 22
   },
   {
     "id": "claude-sonnet-5-5",
@@ -1739,7 +2009,7 @@
       "knowledge": null,
       "multilingual": 41.7,
       "cheap": 4,
-      "fast": 147.1,
+      "fast": 144.4,
       "frontier": 54.5,
       "vision": 59.6,
       "audio": null,
@@ -1789,15 +2059,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 147.1,
-    "median_time_to_first_token_seconds": 0.29,
+    "median_output_tokens_per_second": 144.4,
+    "median_time_to_first_token_seconds": 0.27,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 20
+    "rank": 23
   },
   {
     "id": "gemini-4-carbon-low",
@@ -1823,13 +2093,13 @@
       "coding": 44.1,
       "math": null,
       "reasoning": 61.9,
-      "research": null,
+      "research": 18.9,
       "instruction": null,
       "writing": null,
       "knowledge": null,
-      "multilingual": null,
-      "cheap": 4,
-      "fast": 48.5,
+      "multilingual": 18.9,
+      "cheap": 8,
+      "fast": 49.9,
       "frontier": 54.2,
       "vision": null,
       "audio": 54.2,
@@ -1844,8 +2114,8 @@
       "creative-writing": null,
       "data-analysis": 44.3,
       "roleplay": null,
-      "translation": null,
-      "summarization": null,
+      "translation": 18.9,
+      "summarization": 18.9,
       "extraction": 28.6,
       "tool-use": 62.6,
       "function-calling": 62.6
@@ -1876,18 +2146,18 @@
       "personality_bench": null
     },
     "pricing": {
-      "price_1m_input_tokens": 2,
-      "price_1m_output_tokens": 10
+      "price_1m_input_tokens": 4,
+      "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 48.5,
-    "median_time_to_first_token_seconds": 8.65,
+    "median_output_tokens_per_second": 49.9,
+    "median_time_to_first_token_seconds": 8.04,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 21
+    "rank": 24
   },
   {
     "id": "claude-fable-5-2-low",
@@ -1919,7 +2189,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 16,
-      "fast": 112,
+      "fast": 108.2,
       "frontier": 53.9,
       "vision": null,
       "audio": null,
@@ -1969,15 +2239,15 @@
       "price_1m_input_tokens": 8,
       "price_1m_output_tokens": 40
     },
-    "median_output_tokens_per_second": 112,
-    "median_time_to_first_token_seconds": 7.17,
+    "median_output_tokens_per_second": 108.2,
+    "median_time_to_first_token_seconds": 8.47,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 22
+    "rank": 25
   },
   {
     "id": "gemini-4-hydrogen",
@@ -2009,7 +2279,7 @@
       "knowledge": null,
       "multilingual": 21.1,
       "cheap": 3,
-      "fast": 173.9,
+      "fast": 164.2,
       "frontier": 53.9,
       "vision": null,
       "audio": 53.9,
@@ -2059,15 +2329,15 @@
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 7.5
     },
-    "median_output_tokens_per_second": 173.9,
-    "median_time_to_first_token_seconds": 42.69,
+    "median_output_tokens_per_second": 164.2,
+    "median_time_to_first_token_seconds": 51.32,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 23
+    "rank": 26
   },
   {
     "id": "gpt-6-2-sol-medium",
@@ -2095,11 +2365,11 @@
       "reasoning": 50.7,
       "research": 31.7,
       "instruction": null,
-      "writing": 61.8,
+      "writing": 62.9,
       "knowledge": null,
       "multilingual": 31.7,
       "cheap": 4,
-      "fast": 74.5,
+      "fast": 65.8,
       "frontier": 52.7,
       "vision": null,
       "audio": null,
@@ -2111,9 +2381,9 @@
       "medical": 53.1,
       "finance": 50,
       "scientific": 61.9,
-      "creative-writing": 65.9,
+      "creative-writing": 61.9,
       "data-analysis": 47.7,
-      "roleplay": 52.9,
+      "roleplay": 52.1,
       "translation": 31.7,
       "summarization": 31.7,
       "extraction": 29.2,
@@ -2143,21 +2413,21 @@
       "tau_banking": null,
       "harvey_lab": 5,
       "healthbench": 53.1,
-      "personality_bench": 65.9
+      "personality_bench": 61.9
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 74.5,
-    "median_time_to_first_token_seconds": 2.81,
+    "median_output_tokens_per_second": 65.8,
+    "median_time_to_first_token_seconds": 3.36,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 24
+    "rank": 27
   },
   {
     "id": "gpt-6-1-sol-xhigh",
@@ -2189,7 +2459,7 @@
       "knowledge": 85.1,
       "multilingual": 35.6,
       "cheap": 4,
-      "fast": 53.9,
+      "fast": 48.5,
       "frontier": 52.5,
       "vision": 85.1,
       "audio": null,
@@ -2239,15 +2509,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 53.9,
-    "median_time_to_first_token_seconds": 59.68,
+    "median_output_tokens_per_second": 48.5,
+    "median_time_to_first_token_seconds": 66.73,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 25
+    "rank": 28
   },
   {
     "id": "claude-opus-5-5-high",
@@ -2279,7 +2549,7 @@
       "knowledge": 85.8,
       "multilingual": 15,
       "cheap": 8,
-      "fast": 107.9,
+      "fast": 106.1,
       "frontier": 51.8,
       "vision": 85.8,
       "audio": null,
@@ -2329,15 +2599,15 @@
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 107.9,
-    "median_time_to_first_token_seconds": 19.81,
+    "median_output_tokens_per_second": 106.1,
+    "median_time_to_first_token_seconds": 24.25,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 26
+    "rank": 29
   },
   {
     "id": "gpt-6-astra-medium",
@@ -2369,7 +2639,7 @@
       "knowledge": 85.1,
       "multilingual": 38.3,
       "cheap": 20,
-      "fast": 46.5,
+      "fast": 44.7,
       "frontier": 51.6,
       "vision": 85.1,
       "audio": null,
@@ -2419,15 +2689,15 @@
       "price_1m_input_tokens": 10,
       "price_1m_output_tokens": 50
     },
-    "median_output_tokens_per_second": 46.5,
-    "median_time_to_first_token_seconds": 5.99,
+    "median_output_tokens_per_second": 44.7,
+    "median_time_to_first_token_seconds": 6.64,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 27
+    "rank": 30
   },
   {
     "id": "gpt-6-1-terra",
@@ -2459,7 +2729,7 @@
       "knowledge": 84.7,
       "multilingual": 30.6,
       "cheap": 2,
-      "fast": 70.3,
+      "fast": 61.7,
       "frontier": 51.3,
       "vision": 84.7,
       "audio": null,
@@ -2509,15 +2779,15 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 5
     },
-    "median_output_tokens_per_second": 70.3,
-    "median_time_to_first_token_seconds": 0.14,
+    "median_output_tokens_per_second": 61.7,
+    "median_time_to_first_token_seconds": 0.18,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 28
+    "rank": 31
   },
   {
     "id": "gemini-4-hydrogen-high",
@@ -2543,13 +2813,13 @@
       "coding": 44.1,
       "math": null,
       "reasoning": 54.9,
-      "research": null,
+      "research": 27.2,
       "instruction": null,
       "writing": null,
       "knowledge": null,
-      "multilingual": null,
+      "multilingual": 27.2,
       "cheap": 3,
-      "fast": 169.4,
+      "fast": 161.3,
       "frontier": 50.8,
       "vision": null,
       "audio": 50.8,
@@ -2564,8 +2834,8 @@
       "creative-writing": null,
       "data-analysis": 50,
       "roleplay": null,
-      "translation": null,
-      "summarization": null,
+      "translation": 27.2,
+      "summarization": 27.2,
       "extraction": 30,
       "tool-use": 54,
       "function-calling": 54
@@ -2599,15 +2869,15 @@
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 7.5
     },
-    "median_output_tokens_per_second": 169.4,
-    "median_time_to_first_token_seconds": 17.39,
+    "median_output_tokens_per_second": 161.3,
+    "median_time_to_first_token_seconds": 21.9,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 29
+    "rank": 32
   },
   {
     "id": "gemini-4-argon",
@@ -2639,7 +2909,7 @@
       "knowledge": null,
       "multilingual": 13.9,
       "cheap": 4,
-      "fast": 66.6,
+      "fast": 67.6,
       "frontier": 50.4,
       "vision": 59.6,
       "audio": null,
@@ -2689,15 +2959,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 66.6,
-    "median_time_to_first_token_seconds": 47,
+    "median_output_tokens_per_second": 67.6,
+    "median_time_to_first_token_seconds": 47.12,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 30
+    "rank": 33
   },
   {
     "id": "gpt-6-1-sol-high",
@@ -2729,7 +2999,7 @@
       "knowledge": 84.9,
       "multilingual": 31.7,
       "cheap": 4,
-      "fast": 50.8,
+      "fast": 49.7,
       "frontier": 50.3,
       "vision": 84.9,
       "audio": null,
@@ -2779,15 +3049,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 50.8,
-    "median_time_to_first_token_seconds": 26.29,
+    "median_output_tokens_per_second": 49.7,
+    "median_time_to_first_token_seconds": 28.31,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 31
+    "rank": 34
   },
   {
     "id": "muse-wonder-full",
@@ -2877,7 +3147,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 32
+    "rank": 35
   },
   {
     "id": "claude-fable-5-1-xhigh",
@@ -2909,7 +3179,7 @@
       "knowledge": null,
       "multilingual": 13.3,
       "cheap": 20,
-      "fast": 83.1,
+      "fast": 85.6,
       "frontier": 50,
       "vision": null,
       "audio": null,
@@ -2959,15 +3229,15 @@
       "price_1m_input_tokens": 10,
       "price_1m_output_tokens": 50
     },
-    "median_output_tokens_per_second": 83.1,
-    "median_time_to_first_token_seconds": 68.36,
+    "median_output_tokens_per_second": 85.6,
+    "median_time_to_first_token_seconds": 42.26,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 33
+    "rank": 36
   },
   {
     "id": "claude-sonnet-5-5-xhigh",
@@ -2999,7 +3269,7 @@
       "knowledge": null,
       "multilingual": 20.6,
       "cheap": 4,
-      "fast": 143.3,
+      "fast": 140.6,
       "frontier": 49.9,
       "vision": null,
       "audio": null,
@@ -3049,15 +3319,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 143.3,
-    "median_time_to_first_token_seconds": 28.12,
+    "median_output_tokens_per_second": 140.6,
+    "median_time_to_first_token_seconds": 29.53,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 34
+    "rank": 37
   },
   {
     "id": "claude-fable-5-1",
@@ -3089,7 +3359,7 @@
       "knowledge": null,
       "multilingual": 15.6,
       "cheap": 20,
-      "fast": 92.9,
+      "fast": 90.4,
       "frontier": 49.2,
       "vision": null,
       "audio": null,
@@ -3139,15 +3409,15 @@
       "price_1m_input_tokens": 10,
       "price_1m_output_tokens": 50
     },
-    "median_output_tokens_per_second": 92.9,
-    "median_time_to_first_token_seconds": 0.21,
+    "median_output_tokens_per_second": 90.4,
+    "median_time_to_first_token_seconds": 0.15,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 35
+    "rank": 38
   },
   {
     "id": "claude-opus-5-5-medium",
@@ -3179,7 +3449,7 @@
       "knowledge": 85.7,
       "multilingual": 22.2,
       "cheap": 8,
-      "fast": 106.7,
+      "fast": 105.9,
       "frontier": 48.2,
       "vision": 85.7,
       "audio": null,
@@ -3229,15 +3499,15 @@
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 106.7,
-    "median_time_to_first_token_seconds": 11.53,
+    "median_output_tokens_per_second": 105.9,
+    "median_time_to_first_token_seconds": 14.57,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 36
+    "rank": 39
   },
   {
     "id": "gemini-4-argon-medium",
@@ -3269,7 +3539,7 @@
       "knowledge": 88.3,
       "multilingual": null,
       "cheap": 4,
-      "fast": 59.7,
+      "fast": 55.9,
       "frontier": 47.6,
       "vision": 88.3,
       "audio": null,
@@ -3319,15 +3589,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 59.7,
-    "median_time_to_first_token_seconds": 14.89,
+    "median_output_tokens_per_second": 55.9,
+    "median_time_to_first_token_seconds": 13.5,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 37
+    "rank": 40
   },
   {
     "id": "claude-fable-5-1-high",
@@ -3410,14 +3680,14 @@
       "price_1m_output_tokens": 50
     },
     "median_output_tokens_per_second": 84.3,
-    "median_time_to_first_token_seconds": 10.72,
+    "median_time_to_first_token_seconds": 10.77,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 38
+    "rank": 41
   },
   {
     "id": "kimi-k3-1-pro",
@@ -3449,7 +3719,7 @@
       "knowledge": 83.9,
       "multilingual": 38.3,
       "cheap": 4,
-      "fast": 31.4,
+      "fast": 30.4,
       "frontier": 46.5,
       "vision": 83.9,
       "audio": null,
@@ -3499,7 +3769,7 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 31.4,
+    "median_output_tokens_per_second": 30.4,
     "median_time_to_first_token_seconds": 0.16,
     "context_length": 1000000,
     "isDefault": false,
@@ -3507,7 +3777,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 39
+    "rank": 42
   },
   {
     "id": "gpt-6-1-sol-medium",
@@ -3539,7 +3809,7 @@
       "knowledge": 83.9,
       "multilingual": 32.2,
       "cheap": 4,
-      "fast": 52.6,
+      "fast": 51,
       "frontier": 46.3,
       "vision": 83.9,
       "audio": null,
@@ -3589,15 +3859,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 52.6,
-    "median_time_to_first_token_seconds": 4.8,
+    "median_output_tokens_per_second": 51,
+    "median_time_to_first_token_seconds": 5.37,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 40
+    "rank": 43
   },
   {
     "id": "gpt-6-2-astra-low",
@@ -3625,11 +3895,11 @@
       "reasoning": 47.7,
       "research": 30.6,
       "instruction": null,
-      "writing": 52.5,
+      "writing": 49.1,
       "knowledge": 85.1,
       "multilingual": 30.6,
       "cheap": 16,
-      "fast": 58.2,
+      "fast": 44.5,
       "frontier": 45.7,
       "vision": 85.1,
       "audio": null,
@@ -3641,9 +3911,9 @@
       "medical": 52.3,
       "finance": 56.3,
       "scientific": 55,
-      "creative-writing": 61.4,
+      "creative-writing": 57.1,
       "data-analysis": 46.3,
-      "roleplay": 48.2,
+      "roleplay": 43.6,
       "translation": 30.6,
       "summarization": 30.6,
       "extraction": 28,
@@ -3673,21 +3943,21 @@
       "tau_banking": null,
       "harvey_lab": 2.2,
       "healthbench": 52.3,
-      "personality_bench": 61.4
+      "personality_bench": 57.1
     },
     "pricing": {
       "price_1m_input_tokens": 8,
       "price_1m_output_tokens": 40
     },
-    "median_output_tokens_per_second": 58.2,
-    "median_time_to_first_token_seconds": 2.72,
+    "median_output_tokens_per_second": 44.5,
+    "median_time_to_first_token_seconds": 2.87,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 41
+    "rank": 44
   },
   {
     "id": "gpt-6-1-terra-xhigh",
@@ -3719,7 +3989,7 @@
       "knowledge": 83.8,
       "multilingual": null,
       "cheap": 2,
-      "fast": 66.8,
+      "fast": 58.6,
       "frontier": 45.3,
       "vision": 83.8,
       "audio": null,
@@ -3769,15 +4039,15 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 5
     },
-    "median_output_tokens_per_second": 66.8,
-    "median_time_to_first_token_seconds": 28.38,
+    "median_output_tokens_per_second": 58.6,
+    "median_time_to_first_token_seconds": 34.75,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 42
+    "rank": 45
   },
   {
     "id": "claude-opus-5",
@@ -3860,14 +4130,14 @@
       "price_1m_output_tokens": 25
     },
     "median_output_tokens_per_second": 79.9,
-    "median_time_to_first_token_seconds": 40.12,
+    "median_time_to_first_token_seconds": 34.74,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 43
+    "rank": 46
   },
   {
     "id": "gpt-6-sol",
@@ -3899,7 +4169,7 @@
       "knowledge": 82.9,
       "multilingual": 33.9,
       "cheap": 4,
-      "fast": 120.5,
+      "fast": 111.7,
       "frontier": 44.2,
       "vision": 82.9,
       "audio": null,
@@ -3949,15 +4219,105 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 120.5,
-    "median_time_to_first_token_seconds": 36.15,
+    "median_output_tokens_per_second": 111.7,
+    "median_time_to_first_token_seconds": 41.55,
     "context_length": 1050000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 44
+    "rank": 47
+  },
+  {
+    "id": "gemini-4-neon-low",
+    "slug": "gemini-4-neon-low",
+    "modelId": "google/gemini-4-neon-low",
+    "name": "Gemini 4 Neon (Low)",
+    "organization": "Google",
+    "model_creator": {
+      "name": "Google",
+      "slug": "google"
+    },
+    "rating": 1243,
+    "arena_elo": 1243,
+    "final_score": 44.1,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis_v5",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 44.1,
+      "coding": 29.5,
+      "math": null,
+      "reasoning": 54.2,
+      "research": 26.1,
+      "instruction": null,
+      "writing": null,
+      "knowledge": null,
+      "multilingual": 26.1,
+      "cheap": 6,
+      "fast": 97.1,
+      "frontier": 44.1,
+      "vision": null,
+      "audio": 44.1,
+      "open-weights": null,
+      "agents": 32.8,
+      "long-context": 1000000,
+      "enterprise": 76,
+      "legal": null,
+      "medical": null,
+      "finance": null,
+      "scientific": 41.1,
+      "creative-writing": null,
+      "data-analysis": 51.5,
+      "roleplay": null,
+      "translation": 26.1,
+      "summarization": 26.1,
+      "extraction": 31.4,
+      "tool-use": 32.8,
+      "function-calling": 32.8
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 44.1,
+      "artificial_analysis_coding_index": 29.5,
+      "artificial_analysis_math_index": null,
+      "gpqa": null,
+      "hle": null,
+      "hle_diamond": 54.2,
+      "frontier_code_20": 26.9,
+      "terminal_bench_40": 32.8,
+      "terminal_bench_science": 27.1,
+      "critpt_agentic_hard": 62,
+      "ifbench": null,
+      "aime": null,
+      "scicode": null,
+      "mmlu_pro": null,
+      "agentic_index": 32.8,
+      "coding_agent_index": null,
+      "gdpval": null,
+      "gdp_pdf": 31.4,
+      "automation_bench": 76,
+      "tau_banking": null,
+      "harvey_lab": null,
+      "healthbench": null,
+      "personality_bench": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": 3,
+      "price_1m_output_tokens": 15
+    },
+    "median_output_tokens_per_second": 97.1,
+    "median_time_to_first_token_seconds": 13.93,
+    "context_length": 1000000,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": null,
+    "rank": 48
   },
   {
     "id": "muse-wonder",
@@ -3989,7 +4349,7 @@
       "knowledge": null,
       "multilingual": 22.2,
       "cheap": 8,
-      "fast": 119.7,
+      "fast": 113.6,
       "frontier": 43.6,
       "vision": 55.3,
       "audio": 43.6,
@@ -4039,15 +4399,15 @@
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 119.7,
-    "median_time_to_first_token_seconds": 19.58,
+    "median_output_tokens_per_second": 113.6,
+    "median_time_to_first_token_seconds": 20.92,
     "context_length": 1048576,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 45
+    "rank": 49
   },
   {
     "id": "gpt-6-astra-low",
@@ -4079,7 +4439,7 @@
       "knowledge": 84.6,
       "multilingual": 33.9,
       "cheap": 20,
-      "fast": 45.9,
+      "fast": 42.6,
       "frontier": 43.3,
       "vision": 84.6,
       "audio": null,
@@ -4129,15 +4489,15 @@
       "price_1m_input_tokens": 10,
       "price_1m_output_tokens": 50
     },
-    "median_output_tokens_per_second": 45.9,
-    "median_time_to_first_token_seconds": 3.41,
+    "median_output_tokens_per_second": 42.6,
+    "median_time_to_first_token_seconds": 3.77,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 46
+    "rank": 50
   },
   {
     "id": "claude-fable-5-1-medium",
@@ -4169,7 +4529,7 @@
       "knowledge": null,
       "multilingual": 9.4,
       "cheap": 20,
-      "fast": 84.8,
+      "fast": 83.8,
       "frontier": 43.2,
       "vision": null,
       "audio": null,
@@ -4219,15 +4579,15 @@
       "price_1m_input_tokens": 10,
       "price_1m_output_tokens": 50
     },
-    "median_output_tokens_per_second": 84.8,
-    "median_time_to_first_token_seconds": 5.15,
+    "median_output_tokens_per_second": 83.8,
+    "median_time_to_first_token_seconds": 4.35,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 47
+    "rank": 51
   },
   {
     "id": "qwen4-max",
@@ -4259,7 +4619,7 @@
       "knowledge": null,
       "multilingual": 19.4,
       "cheap": 2.25,
-      "fast": 52.8,
+      "fast": 58.7,
       "frontier": 42.9,
       "vision": null,
       "audio": null,
@@ -4309,7 +4669,7 @@
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 4.5
     },
-    "median_output_tokens_per_second": 52.8,
+    "median_output_tokens_per_second": 58.7,
     "median_time_to_first_token_seconds": 0.14,
     "context_length": 983616,
     "isDefault": false,
@@ -4317,7 +4677,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 48
+    "rank": 52
   },
   {
     "id": "gpt-6-1-terra-high",
@@ -4349,7 +4709,7 @@
       "knowledge": 83.8,
       "multilingual": null,
       "cheap": 2,
-      "fast": 66.4,
+      "fast": 59.2,
       "frontier": 42.4,
       "vision": 83.8,
       "audio": null,
@@ -4399,15 +4759,15 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 5
     },
-    "median_output_tokens_per_second": 66.4,
-    "median_time_to_first_token_seconds": 10.08,
+    "median_output_tokens_per_second": 59.2,
+    "median_time_to_first_token_seconds": 12.25,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 49
+    "rank": 53
   },
   {
     "id": "claude-sonnet-5-5-high",
@@ -4439,7 +4799,7 @@
       "knowledge": null,
       "multilingual": 18.9,
       "cheap": 4,
-      "fast": 143.7,
+      "fast": 136.3,
       "frontier": 41.5,
       "vision": null,
       "audio": null,
@@ -4489,15 +4849,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 143.7,
-    "median_time_to_first_token_seconds": 9.56,
+    "median_output_tokens_per_second": 136.3,
+    "median_time_to_first_token_seconds": 10.4,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 50
+    "rank": 54
   },
   {
     "id": "gemini-4-hydrogen-medium",
@@ -4523,13 +4883,13 @@
       "coding": 30.5,
       "math": null,
       "reasoning": 47.7,
-      "research": null,
+      "research": 20,
       "instruction": null,
       "writing": null,
       "knowledge": null,
-      "multilingual": null,
+      "multilingual": 20,
       "cheap": 3,
-      "fast": 162.8,
+      "fast": 159.4,
       "frontier": 41.2,
       "vision": null,
       "audio": 41.2,
@@ -4544,8 +4904,8 @@
       "creative-writing": null,
       "data-analysis": 50.4,
       "roleplay": null,
-      "translation": null,
-      "summarization": null,
+      "translation": 20,
+      "summarization": 20,
       "extraction": 32.8,
       "tool-use": 29.3,
       "function-calling": 29.3
@@ -4579,15 +4939,15 @@
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 7.5
     },
-    "median_output_tokens_per_second": 162.8,
-    "median_time_to_first_token_seconds": 12.52,
+    "median_output_tokens_per_second": 159.4,
+    "median_time_to_first_token_seconds": 12.58,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 51
+    "rank": 55
   },
   {
     "id": "gpt-6-2-sol-low",
@@ -4615,11 +4975,11 @@
       "reasoning": 34.5,
       "research": 32.2,
       "instruction": null,
-      "writing": 58.8,
+      "writing": 55.5,
       "knowledge": null,
       "multilingual": 32.2,
       "cheap": 4,
-      "fast": 72,
+      "fast": 61.9,
       "frontier": 40.6,
       "vision": null,
       "audio": null,
@@ -4631,9 +4991,9 @@
       "medical": 53,
       "finance": 38.8,
       "scientific": 45.5,
-      "creative-writing": 64.7,
+      "creative-writing": 57.6,
       "data-analysis": 44.2,
-      "roleplay": 51.3,
+      "roleplay": 47.3,
       "translation": 32.2,
       "summarization": 32.2,
       "extraction": 28.6,
@@ -4663,21 +5023,21 @@
       "tau_banking": null,
       "harvey_lab": 3.1,
       "healthbench": 53,
-      "personality_bench": 64.7
+      "personality_bench": 57.6
     },
     "pricing": {
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 72,
-    "median_time_to_first_token_seconds": 1.77,
+    "median_output_tokens_per_second": 61.9,
+    "median_time_to_first_token_seconds": 2.02,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 52
+    "rank": 56
   },
   {
     "id": "muse-wonder-high",
@@ -4709,7 +5069,7 @@
       "knowledge": 83.8,
       "multilingual": null,
       "cheap": 8,
-      "fast": 129.7,
+      "fast": 118.1,
       "frontier": 40.5,
       "vision": 83.8,
       "audio": 40.5,
@@ -4759,15 +5119,15 @@
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 129.7,
-    "median_time_to_first_token_seconds": 9.57,
+    "median_output_tokens_per_second": 118.1,
+    "median_time_to_first_token_seconds": 10.11,
     "context_length": 1048576,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 53
+    "rank": 57
   },
   {
     "id": "claude-fable-5-1-low",
@@ -4799,7 +5159,7 @@
       "knowledge": null,
       "multilingual": 18.3,
       "cheap": 20,
-      "fast": 84.2,
+      "fast": 83.2,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -4849,15 +5209,15 @@
       "price_1m_input_tokens": 10,
       "price_1m_output_tokens": 50
     },
-    "median_output_tokens_per_second": 84.2,
-    "median_time_to_first_token_seconds": 3.04,
+    "median_output_tokens_per_second": 83.2,
+    "median_time_to_first_token_seconds": 2.39,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 54
+    "rank": 58
   },
   {
     "id": "gpt-6-1-terra-medium",
@@ -4889,7 +5249,7 @@
       "knowledge": 82.8,
       "multilingual": null,
       "cheap": 2,
-      "fast": 64.5,
+      "fast": 58.1,
       "frontier": null,
       "vision": 82.8,
       "audio": null,
@@ -4939,15 +5299,15 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 5
     },
-    "median_output_tokens_per_second": 64.5,
-    "median_time_to_first_token_seconds": 4.58,
+    "median_output_tokens_per_second": 58.1,
+    "median_time_to_first_token_seconds": 5.31,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 55
+    "rank": 59
   },
   {
     "id": "muse-spark-1-3",
@@ -4979,7 +5339,7 @@
       "knowledge": null,
       "multilingual": 13.9,
       "cheap": 2,
-      "fast": 106.7,
+      "fast": 97.7,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -5029,15 +5389,15 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 4.25
     },
-    "median_output_tokens_per_second": 106.7,
-    "median_time_to_first_token_seconds": 29.14,
+    "median_output_tokens_per_second": 97.7,
+    "median_time_to_first_token_seconds": 29.7,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 56
+    "rank": 60
   },
   {
     "id": "claude-haiku-5-5",
@@ -5069,7 +5429,7 @@
       "knowledge": null,
       "multilingual": 35,
       "cheap": 0.2,
-      "fast": 255.4,
+      "fast": 251.5,
       "frontier": null,
       "vision": 49.1,
       "audio": null,
@@ -5119,15 +5479,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 255.4,
-    "median_time_to_first_token_seconds": 0.19,
+    "median_output_tokens_per_second": 251.5,
+    "median_time_to_first_token_seconds": 0.18,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 57
+    "rank": 61
   },
   {
     "id": "muse-ember",
@@ -5159,7 +5519,7 @@
       "knowledge": null,
       "multilingual": 18.3,
       "cheap": 0.2,
-      "fast": 452.4,
+      "fast": 462.2,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -5209,15 +5569,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 452.4,
-    "median_time_to_first_token_seconds": 4.85,
+    "median_output_tokens_per_second": 462.2,
+    "median_time_to_first_token_seconds": 5.11,
     "context_length": 1048576,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 58
+    "rank": 62
   },
   {
     "id": "grok-4-7",
@@ -5249,7 +5609,7 @@
       "knowledge": null,
       "multilingual": 20,
       "cheap": 3,
-      "fast": 72,
+      "fast": 68.7,
       "frontier": null,
       "vision": 37.9,
       "audio": null,
@@ -5299,15 +5659,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 72,
-    "median_time_to_first_token_seconds": 47.29,
+    "median_output_tokens_per_second": 68.7,
+    "median_time_to_first_token_seconds": 57.69,
     "context_length": 500000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 59
+    "rank": 63
   },
   {
     "id": "grok-4-7-high",
@@ -5339,7 +5699,7 @@
       "knowledge": null,
       "multilingual": 18.9,
       "cheap": 3,
-      "fast": 70.8,
+      "fast": 67.9,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -5389,15 +5749,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 70.8,
-    "median_time_to_first_token_seconds": 36.64,
+    "median_output_tokens_per_second": 67.9,
+    "median_time_to_first_token_seconds": 38.14,
     "context_length": 500000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 60
+    "rank": 64
   },
   {
     "id": "claude-opus-5-5-low",
@@ -5429,7 +5789,7 @@
       "knowledge": 84.7,
       "multilingual": 19.4,
       "cheap": 8,
-      "fast": 105.4,
+      "fast": 103,
       "frontier": null,
       "vision": 84.7,
       "audio": null,
@@ -5479,15 +5839,15 @@
       "price_1m_input_tokens": 4,
       "price_1m_output_tokens": 20
     },
-    "median_output_tokens_per_second": 105.4,
-    "median_time_to_first_token_seconds": 4.88,
+    "median_output_tokens_per_second": 103,
+    "median_time_to_first_token_seconds": 5.43,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 61
+    "rank": 65
   },
   {
     "id": "gpt-6-1-sol-low",
@@ -5519,7 +5879,7 @@
       "knowledge": 83.1,
       "multilingual": 26.7,
       "cheap": 4,
-      "fast": 51.8,
+      "fast": 48.9,
       "frontier": null,
       "vision": 83.1,
       "audio": null,
@@ -5569,15 +5929,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 51.8,
-    "median_time_to_first_token_seconds": 2.99,
+    "median_output_tokens_per_second": 48.9,
+    "median_time_to_first_token_seconds": 3.21,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 62
+    "rank": 66
   },
   {
     "id": "claude-haiku-5-5-xhigh",
@@ -5609,7 +5969,7 @@
       "knowledge": null,
       "multilingual": 15,
       "cheap": 0.2,
-      "fast": 235.9,
+      "fast": 238.2,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -5659,15 +6019,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 235.9,
-    "median_time_to_first_token_seconds": 44.47,
+    "median_output_tokens_per_second": 238.2,
+    "median_time_to_first_token_seconds": 45.29,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 63
+    "rank": 67
   },
   {
     "id": "tencent-hy4",
@@ -5699,7 +6059,7 @@
       "knowledge": null,
       "multilingual": 32.8,
       "cheap": 1.25,
-      "fast": 96,
+      "fast": 93.2,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -5749,15 +6109,15 @@
       "price_1m_input_tokens": 0.834,
       "price_1m_output_tokens": 2.501
     },
-    "median_output_tokens_per_second": 96,
-    "median_time_to_first_token_seconds": 0.11,
+    "median_output_tokens_per_second": 93.2,
+    "median_time_to_first_token_seconds": 0.12,
     "context_length": 1048576,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 64
+    "rank": 68
   },
   {
     "id": "muse-ember-xhigh",
@@ -5789,7 +6149,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 0.2,
-      "fast": 426.1,
+      "fast": 444,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -5839,15 +6199,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 426.1,
-    "median_time_to_first_token_seconds": 3.71,
+    "median_output_tokens_per_second": 444,
+    "median_time_to_first_token_seconds": 3.74,
     "context_length": 1048576,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 65
+    "rank": 69
   },
   {
     "id": "qwen3-8-max",
@@ -5879,7 +6239,7 @@
       "knowledge": 82.8,
       "multilingual": 20,
       "cheap": 3,
-      "fast": 60,
+      "fast": 58.9,
       "frontier": null,
       "vision": 82.8,
       "audio": null,
@@ -5929,15 +6289,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 60,
-    "median_time_to_first_token_seconds": 96.56,
+    "median_output_tokens_per_second": 58.9,
+    "median_time_to_first_token_seconds": 99.48,
     "context_length": 983616,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 66
+    "rank": 70
   },
   {
     "id": "deepseek-v4-1-flash-1017",
@@ -5969,7 +6329,7 @@
       "knowledge": 80.6,
       "multilingual": 26.7,
       "cheap": 0.52,
-      "fast": 177.8,
+      "fast": 162.7,
       "frontier": null,
       "vision": 80.6,
       "audio": null,
@@ -6019,15 +6379,15 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 177.8,
-    "median_time_to_first_token_seconds": 37.93,
+    "median_output_tokens_per_second": 162.7,
+    "median_time_to_first_token_seconds": 47.23,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 67
+    "rank": 71
   },
   {
     "id": "gpt-5-6-terra",
@@ -6059,7 +6419,7 @@
       "knowledge": 80.7,
       "multilingual": 86.3,
       "cheap": 4.5,
-      "fast": 90.1,
+      "fast": 81.8,
       "frontier": null,
       "vision": 80.7,
       "audio": null,
@@ -6109,15 +6469,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 12
     },
-    "median_output_tokens_per_second": 90.1,
-    "median_time_to_first_token_seconds": 65.86,
+    "median_output_tokens_per_second": 81.8,
+    "median_time_to_first_token_seconds": 77.14,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 68
+    "rank": 72
   },
   {
     "id": "glm-5-3",
@@ -6149,7 +6509,7 @@
       "knowledge": null,
       "multilingual": 17.2,
       "cheap": 2.15,
-      "fast": 91.5,
+      "fast": 73.6,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -6199,15 +6559,15 @@
       "price_1m_input_tokens": 1.4,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 91.5,
-    "median_time_to_first_token_seconds": 69.29,
+    "median_output_tokens_per_second": 73.6,
+    "median_time_to_first_token_seconds": 75.52,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 69
+    "rank": 73
   },
   {
     "id": "grok-4-7-low",
@@ -6239,7 +6599,7 @@
       "knowledge": 78.2,
       "multilingual": 21.1,
       "cheap": 3,
-      "fast": 71.7,
+      "fast": 64.6,
       "frontier": null,
       "vision": 78.2,
       "audio": null,
@@ -6289,15 +6649,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 71.7,
-    "median_time_to_first_token_seconds": 13.25,
+    "median_output_tokens_per_second": 64.6,
+    "median_time_to_first_token_seconds": 14.11,
     "context_length": 500000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 70
+    "rank": 74
   },
   {
     "id": "grok-4-6-xhigh",
@@ -6329,7 +6689,7 @@
       "knowledge": null,
       "multilingual": 17.2,
       "cheap": 3,
-      "fast": 76.6,
+      "fast": 78.1,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -6379,15 +6739,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 6
     },
-    "median_output_tokens_per_second": 76.6,
-    "median_time_to_first_token_seconds": 30.97,
+    "median_output_tokens_per_second": 78.1,
+    "median_time_to_first_token_seconds": 28.72,
     "context_length": 500000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 71
+    "rank": 75
   },
   {
     "id": "claude-sonnet-5-5-medium",
@@ -6419,7 +6779,7 @@
       "knowledge": null,
       "multilingual": 17.8,
       "cheap": 4,
-      "fast": 136.7,
+      "fast": 135.9,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -6469,15 +6829,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 136.7,
-    "median_time_to_first_token_seconds": 5.2,
+    "median_output_tokens_per_second": 135.9,
+    "median_time_to_first_token_seconds": 5.02,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 72
+    "rank": 76
   },
   {
     "id": "gemini-3-8-flash",
@@ -6509,7 +6869,7 @@
       "knowledge": 85.6,
       "multilingual": 10.6,
       "cheap": 1.5,
-      "fast": 116.2,
+      "fast": 116.1,
       "frontier": null,
       "vision": 85.6,
       "audio": 30.8,
@@ -6559,15 +6919,15 @@
       "price_1m_input_tokens": 0.75,
       "price_1m_output_tokens": 3.75
     },
-    "median_output_tokens_per_second": 116.2,
-    "median_time_to_first_token_seconds": 22.38,
+    "median_output_tokens_per_second": 116.1,
+    "median_time_to_first_token_seconds": 22.25,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 73
+    "rank": 77
   },
   {
     "id": "inkling-2-small",
@@ -6599,7 +6959,7 @@
       "knowledge": 81.6,
       "multilingual": 20.6,
       "cheap": 0.48,
-      "fast": 119.3,
+      "fast": 114.6,
       "frontier": null,
       "vision": 81.6,
       "audio": null,
@@ -6649,15 +7009,15 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1
     },
-    "median_output_tokens_per_second": 119.3,
-    "median_time_to_first_token_seconds": 39.18,
+    "median_output_tokens_per_second": 114.6,
+    "median_time_to_first_token_seconds": 40.18,
     "context_length": 1024000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 74
+    "rank": 78
   },
   {
     "id": "gpt-6-1-terra-non-reasoning",
@@ -6689,7 +7049,7 @@
       "knowledge": 76,
       "multilingual": null,
       "cheap": 2,
-      "fast": 63.5,
+      "fast": 57.3,
       "frontier": null,
       "vision": 76,
       "audio": null,
@@ -6739,15 +7099,15 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 5
     },
-    "median_output_tokens_per_second": 63.5,
-    "median_time_to_first_token_seconds": 2.67,
+    "median_output_tokens_per_second": 57.3,
+    "median_time_to_first_token_seconds": 2.52,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 75
+    "rank": 79
   },
   {
     "id": "gemini-3-8-flash-medium",
@@ -6779,7 +7139,7 @@
       "knowledge": 84.2,
       "multilingual": 12.8,
       "cheap": 1.5,
-      "fast": 120.3,
+      "fast": 116.1,
       "frontier": null,
       "vision": 84.2,
       "audio": 30.1,
@@ -6829,15 +7189,15 @@
       "price_1m_input_tokens": 0.75,
       "price_1m_output_tokens": 3.75
     },
-    "median_output_tokens_per_second": 120.3,
-    "median_time_to_first_token_seconds": 15.43,
+    "median_output_tokens_per_second": 116.1,
+    "median_time_to_first_token_seconds": 12.37,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 76
+    "rank": 80
   },
   {
     "id": "claude-haiku-5-5-high",
@@ -6869,7 +7229,7 @@
       "knowledge": null,
       "multilingual": 15,
       "cheap": 0.2,
-      "fast": 226.9,
+      "fast": 225.7,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -6919,15 +7279,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 226.9,
-    "median_time_to_first_token_seconds": 19.69,
+    "median_output_tokens_per_second": 225.7,
+    "median_time_to_first_token_seconds": 20.45,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 77
+    "rank": 81
   },
   {
     "id": "mimo-v2-6-pro",
@@ -6959,7 +7319,7 @@
       "knowledge": null,
       "multilingual": 12.8,
       "cheap": 0.54,
-      "fast": 58,
+      "fast": 55.5,
       "frontier": null,
       "vision": 43.5,
       "audio": 29.9,
@@ -7009,15 +7369,15 @@
       "price_1m_input_tokens": 0.435,
       "price_1m_output_tokens": 0.87
     },
-    "median_output_tokens_per_second": 58,
-    "median_time_to_first_token_seconds": 25.73,
+    "median_output_tokens_per_second": 55.5,
+    "median_time_to_first_token_seconds": 45.39,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 78
+    "rank": 82
   },
   {
     "id": "ling-3-1-flash",
@@ -7107,7 +7467,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 79
+    "rank": 83
   },
   {
     "id": "gpt-6-1-terra-low",
@@ -7139,7 +7499,7 @@
       "knowledge": 82.5,
       "multilingual": null,
       "cheap": 2,
-      "fast": 61.5,
+      "fast": 53.9,
       "frontier": null,
       "vision": 82.5,
       "audio": null,
@@ -7189,15 +7549,15 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 5
     },
-    "median_output_tokens_per_second": 61.5,
-    "median_time_to_first_token_seconds": 2.99,
+    "median_output_tokens_per_second": 53.9,
+    "median_time_to_first_token_seconds": 3.07,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 80
+    "rank": 84
   },
   {
     "id": "minimax-m3-1-flash",
@@ -7229,7 +7589,7 @@
       "knowledge": 79.1,
       "multilingual": 16.7,
       "cheap": 0.26,
-      "fast": 131.1,
+      "fast": 116.7,
       "frontier": null,
       "vision": 79.1,
       "audio": null,
@@ -7279,15 +7639,15 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 131.1,
-    "median_time_to_first_token_seconds": 48.55,
+    "median_output_tokens_per_second": 116.7,
+    "median_time_to_first_token_seconds": 60.25,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 81
+    "rank": 85
   },
   {
     "id": "deepseek-v4-1-flash-1017-high",
@@ -7319,7 +7679,7 @@
       "knowledge": 79.7,
       "multilingual": null,
       "cheap": 0.52,
-      "fast": 178.6,
+      "fast": 164.6,
       "frontier": null,
       "vision": 79.7,
       "audio": null,
@@ -7369,15 +7729,15 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 178.6,
-    "median_time_to_first_token_seconds": 17.83,
+    "median_output_tokens_per_second": 164.6,
+    "median_time_to_first_token_seconds": 18.8,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 82
+    "rank": 86
   },
   {
     "id": "qwen3-8-flash-next",
@@ -7409,7 +7769,7 @@
       "knowledge": 78.6,
       "multilingual": 20.6,
       "cheap": 0.23,
-      "fast": 83.8,
+      "fast": 74.2,
       "frontier": null,
       "vision": 78.6,
       "audio": null,
@@ -7459,15 +7819,15 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.47
     },
-    "median_output_tokens_per_second": 83.8,
-    "median_time_to_first_token_seconds": 62.69,
+    "median_output_tokens_per_second": 74.2,
+    "median_time_to_first_token_seconds": 89.96,
     "context_length": 256000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 83
+    "rank": 87
   },
   {
     "id": "step-5",
@@ -7499,7 +7859,7 @@
       "knowledge": 76.4,
       "multilingual": 18.3,
       "cheap": 1.43,
-      "fast": 143.7,
+      "fast": 148.2,
       "frontier": null,
       "vision": 76.4,
       "audio": null,
@@ -7549,21 +7909,21 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 2.7
     },
-    "median_output_tokens_per_second": 143.7,
-    "median_time_to_first_token_seconds": 21.77,
+    "median_output_tokens_per_second": 148.2,
+    "median_time_to_first_token_seconds": 24.97,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 84
+    "rank": 88
   },
   {
     "id": "joyai-vl",
     "slug": "joyai-vl",
     "modelId": "joy-ai/joyai-vl",
-    "name": "joyvl2_v27 (JoyAI-VL-Preview)",
+    "name": "JoyAI-VL-Preview",
     "organization": "Joy Future Academy",
     "model_creator": {
       "name": "Joy Future Academy",
@@ -7647,7 +8007,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 85
+    "rank": 89
   },
   {
     "id": "gpt-6-luna",
@@ -7675,11 +8035,11 @@
       "reasoning": 27.2,
       "research": 83.3,
       "instruction": null,
-      "writing": 54.6,
+      "writing": 51.2,
       "knowledge": 79.7,
       "multilingual": 26.1,
       "cheap": 0.2,
-      "fast": 103.7,
+      "fast": 100.3,
       "frontier": null,
       "vision": 79.7,
       "audio": null,
@@ -7691,9 +8051,9 @@
       "medical": 61.9,
       "finance": 43.8,
       "scientific": 22.2,
-      "creative-writing": 54,
+      "creative-writing": 45.4,
       "data-analysis": 36.5,
-      "roleplay": 38.4,
+      "roleplay": 32.4,
       "translation": 26.1,
       "summarization": 83.3,
       "extraction": 22.8,
@@ -7723,21 +8083,21 @@
       "tau_banking": null,
       "harvey_lab": 3.3,
       "healthbench": 61.9,
-      "personality_bench": 54
+      "personality_bench": 45.4
     },
     "pricing": {
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 103.7,
-    "median_time_to_first_token_seconds": 64.04,
+    "median_output_tokens_per_second": 100.3,
+    "median_time_to_first_token_seconds": 67.83,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 86
+    "rank": 90
   },
   {
     "id": "glm-5-3-flash",
@@ -7769,7 +8129,7 @@
       "knowledge": null,
       "multilingual": 11.7,
       "cheap": 0.24,
-      "fast": 58.4,
+      "fast": 54.2,
       "frontier": null,
       "vision": 39.8,
       "audio": null,
@@ -7819,15 +8179,15 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 58.4,
-    "median_time_to_first_token_seconds": 84.58,
+    "median_output_tokens_per_second": 54.2,
+    "median_time_to_first_token_seconds": 95.67,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 87
+    "rank": 91
   },
   {
     "id": "gemini-4-hydrogen-low",
@@ -7853,13 +8213,13 @@
       "coding": 8.1,
       "math": null,
       "reasoning": 32.2,
-      "research": null,
+      "research": 22.2,
       "instruction": null,
       "writing": null,
       "knowledge": null,
-      "multilingual": null,
+      "multilingual": 22.2,
       "cheap": 3,
-      "fast": 158.9,
+      "fast": 157.2,
       "frontier": null,
       "vision": null,
       "audio": 26.9,
@@ -7874,8 +8234,8 @@
       "creative-writing": null,
       "data-analysis": 42.7,
       "roleplay": null,
-      "translation": null,
-      "summarization": null,
+      "translation": 22.2,
+      "summarization": 22.2,
       "extraction": 28.2,
       "tool-use": 6.6,
       "function-calling": 6.6
@@ -7909,15 +8269,15 @@
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 7.5
     },
-    "median_output_tokens_per_second": 158.9,
-    "median_time_to_first_token_seconds": 6.11,
+    "median_output_tokens_per_second": 157.2,
+    "median_time_to_first_token_seconds": 6.07,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 88
+    "rank": 92
   },
   {
     "id": "mimo-v2-6-flash",
@@ -7949,7 +8309,7 @@
       "knowledge": 73.1,
       "multilingual": 11.7,
       "cheap": 0.18,
-      "fast": 40.2,
+      "fast": 42.4,
       "frontier": null,
       "vision": 73.1,
       "audio": null,
@@ -7999,15 +8359,15 @@
       "price_1m_input_tokens": 0.14,
       "price_1m_output_tokens": 0.28
     },
-    "median_output_tokens_per_second": 40.2,
-    "median_time_to_first_token_seconds": 33.03,
+    "median_output_tokens_per_second": 42.4,
+    "median_time_to_first_token_seconds": 34.45,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 89
+    "rank": 93
   },
   {
     "id": "mistral-large-4",
@@ -8039,7 +8399,7 @@
       "knowledge": null,
       "multilingual": 17.8,
       "cheap": 1.05,
-      "fast": 72.8,
+      "fast": 56.9,
       "frontier": null,
       "vision": 20.5,
       "audio": null,
@@ -8089,15 +8449,15 @@
       "price_1m_input_tokens": 0.7,
       "price_1m_output_tokens": 2.1
     },
-    "median_output_tokens_per_second": 72.8,
-    "median_time_to_first_token_seconds": 64.46,
+    "median_output_tokens_per_second": 56.9,
+    "median_time_to_first_token_seconds": 88.93,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 90
+    "rank": 94
   },
   {
     "id": "claude-sonnet-5-5-low",
@@ -8129,7 +8489,7 @@
       "knowledge": null,
       "multilingual": 19.4,
       "cheap": 4,
-      "fast": 135.5,
+      "fast": 133.4,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -8179,15 +8539,15 @@
       "price_1m_input_tokens": 2,
       "price_1m_output_tokens": 10
     },
-    "median_output_tokens_per_second": 135.5,
-    "median_time_to_first_token_seconds": 2.52,
+    "median_output_tokens_per_second": 133.4,
+    "median_time_to_first_token_seconds": 2.29,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 91
+    "rank": 95
   },
   {
     "id": "mistral-large-4-preview",
@@ -8219,7 +8579,7 @@
       "knowledge": 76.4,
       "multilingual": 7.8,
       "cheap": 1.05,
-      "fast": 81.4,
+      "fast": 56.1,
       "frontier": null,
       "vision": 76.4,
       "audio": null,
@@ -8269,15 +8629,15 @@
       "price_1m_input_tokens": 0.7,
       "price_1m_output_tokens": 2.1
     },
-    "median_output_tokens_per_second": 81.4,
-    "median_time_to_first_token_seconds": 52.78,
+    "median_output_tokens_per_second": 56.1,
+    "median_time_to_first_token_seconds": 74.22,
     "context_length": 524288,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 92
+    "rank": 96
   },
   {
     "id": "muse-spark-open",
@@ -8309,7 +8669,7 @@
       "knowledge": 80.9,
       "multilingual": 7.8,
       "cheap": 2,
-      "fast": 189.6,
+      "fast": 163.3,
       "frontier": null,
       "vision": 80.9,
       "audio": 24.9,
@@ -8359,15 +8719,15 @@
       "price_1m_input_tokens": 1.25,
       "price_1m_output_tokens": 4.25
     },
-    "median_output_tokens_per_second": 189.6,
-    "median_time_to_first_token_seconds": 10.44,
+    "median_output_tokens_per_second": 163.3,
+    "median_time_to_first_token_seconds": 10.78,
     "context_length": 1048576,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 93
+    "rank": 97
   },
   {
     "id": "claude-haiku-5-5-medium",
@@ -8399,7 +8759,7 @@
       "knowledge": null,
       "multilingual": 16.1,
       "cheap": 0.2,
-      "fast": 225,
+      "fast": 220.8,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -8449,15 +8809,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 225,
-    "median_time_to_first_token_seconds": 10.19,
+    "median_output_tokens_per_second": 220.8,
+    "median_time_to_first_token_seconds": 9.09,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 94
+    "rank": 98
   },
   {
     "id": "agnes-2-5-pro-theta",
@@ -8489,7 +8849,7 @@
       "knowledge": 78.4,
       "multilingual": null,
       "cheap": 0.15,
-      "fast": 202.6,
+      "fast": 195,
       "frontier": null,
       "vision": 78.4,
       "audio": null,
@@ -8539,15 +8899,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.3
     },
-    "median_output_tokens_per_second": 202.6,
-    "median_time_to_first_token_seconds": 8.1,
+    "median_output_tokens_per_second": 195,
+    "median_time_to_first_token_seconds": 7.99,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 95
+    "rank": 99
   },
   {
     "id": "gpt-5-6-luna",
@@ -8579,7 +8939,7 @@
       "knowledge": 78.6,
       "multilingual": 20,
       "cheap": 0.45,
-      "fast": 100.8,
+      "fast": 98,
       "frontier": null,
       "vision": 78.6,
       "audio": null,
@@ -8629,15 +8989,15 @@
       "price_1m_input_tokens": 0.2,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 100.8,
-    "median_time_to_first_token_seconds": 44.07,
+    "median_output_tokens_per_second": 98,
+    "median_time_to_first_token_seconds": 45.61,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 96
+    "rank": 100
   },
   {
     "id": "gpt-6-luna-xhigh",
@@ -8669,7 +9029,7 @@
       "knowledge": 79.7,
       "multilingual": 20.6,
       "cheap": 0.2,
-      "fast": 99.9,
+      "fast": 97,
       "frontier": null,
       "vision": 79.7,
       "audio": null,
@@ -8719,15 +9079,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 99.9,
-    "median_time_to_first_token_seconds": 15.71,
+    "median_output_tokens_per_second": 97,
+    "median_time_to_first_token_seconds": 16.45,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 97
+    "rank": 101
   },
   {
     "id": "deepseek-v4-pro",
@@ -8759,7 +9119,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 1.98,
-      "fast": 97.3,
+      "fast": 78.2,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -8809,15 +9169,15 @@
       "price_1m_input_tokens": 1.32,
       "price_1m_output_tokens": 3.96
     },
-    "median_output_tokens_per_second": 97.3,
-    "median_time_to_first_token_seconds": 54.34,
+    "median_output_tokens_per_second": 78.2,
+    "median_time_to_first_token_seconds": 64.74,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 98
+    "rank": 102
   },
   {
     "id": "glm-5-3-low",
@@ -8849,7 +9209,7 @@
       "knowledge": null,
       "multilingual": 11.1,
       "cheap": 2.15,
-      "fast": 71.6,
+      "fast": 57.7,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -8899,15 +9259,15 @@
       "price_1m_input_tokens": 1.4,
       "price_1m_output_tokens": 4.4
     },
-    "median_output_tokens_per_second": 71.6,
-    "median_time_to_first_token_seconds": 8.23,
+    "median_output_tokens_per_second": 57.7,
+    "median_time_to_first_token_seconds": 12.6,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 99
+    "rank": 103
   },
   {
     "id": "mistral-large-4-medium",
@@ -8939,7 +9299,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 1.05,
-      "fast": 71.2,
+      "fast": 56.4,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -8989,15 +9349,15 @@
       "price_1m_input_tokens": 0.7,
       "price_1m_output_tokens": 2.1
     },
-    "median_output_tokens_per_second": 71.2,
-    "median_time_to_first_token_seconds": 44.56,
+    "median_output_tokens_per_second": 56.4,
+    "median_time_to_first_token_seconds": 53.71,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 100
+    "rank": 104
   },
   {
     "id": "gemini-3-8-flash-low",
@@ -9029,7 +9389,7 @@
       "knowledge": 84.5,
       "multilingual": 15.6,
       "cheap": 1.5,
-      "fast": 107.6,
+      "fast": 101.3,
       "frontier": null,
       "vision": 84.5,
       "audio": 22.5,
@@ -9079,15 +9439,15 @@
       "price_1m_input_tokens": 0.75,
       "price_1m_output_tokens": 3.75
     },
-    "median_output_tokens_per_second": 107.6,
-    "median_time_to_first_token_seconds": 4.17,
+    "median_output_tokens_per_second": 101.3,
+    "median_time_to_first_token_seconds": 2.84,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 101
+    "rank": 105
   },
   {
     "id": "gpt-6-luna-high",
@@ -9119,7 +9479,7 @@
       "knowledge": 77.5,
       "multilingual": 19.4,
       "cheap": 0.2,
-      "fast": 94.4,
+      "fast": 88.6,
       "frontier": null,
       "vision": 77.5,
       "audio": null,
@@ -9169,15 +9529,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 94.4,
-    "median_time_to_first_token_seconds": 9.44,
+    "median_output_tokens_per_second": 88.6,
+    "median_time_to_first_token_seconds": 11.93,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 102
+    "rank": 106
   },
   {
     "id": "deepseek-v4-pro-high",
@@ -9209,7 +9569,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 1.98,
-      "fast": null,
+      "fast": 78.2,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -9259,15 +9619,15 @@
       "price_1m_input_tokens": 1.32,
       "price_1m_output_tokens": 3.96
     },
-    "median_output_tokens_per_second": null,
-    "median_time_to_first_token_seconds": null,
+    "median_output_tokens_per_second": 78.2,
+    "median_time_to_first_token_seconds": 48.43,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 103
+    "rank": 107
   },
   {
     "id": "nanbeige4-3-33b",
@@ -9357,7 +9717,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 104
+    "rank": 108
   },
   {
     "id": "qwen3-8-27b",
@@ -9389,7 +9749,7 @@
       "knowledge": 76.3,
       "multilingual": 22.8,
       "cheap": 1.13,
-      "fast": 48.1,
+      "fast": 48.4,
       "frontier": null,
       "vision": 76.3,
       "audio": null,
@@ -9439,15 +9799,15 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 48.1,
-    "median_time_to_first_token_seconds": 0.12,
+    "median_output_tokens_per_second": 48.4,
+    "median_time_to_first_token_seconds": 0.15,
     "context_length": 256000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 105
+    "rank": 109
   },
   {
     "id": "jt-4-1-flash-236b-a21b",
@@ -9537,7 +9897,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 106
+    "rank": 110
   },
   {
     "id": "minimax-m3",
@@ -9569,7 +9929,7 @@
       "knowledge": 78.6,
       "multilingual": 88.9,
       "cheap": 0.52,
-      "fast": 107.8,
+      "fast": 80.3,
       "frontier": null,
       "vision": 78.6,
       "audio": null,
@@ -9619,15 +9979,15 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 107.8,
-    "median_time_to_first_token_seconds": 69.98,
+    "median_output_tokens_per_second": 80.3,
+    "median_time_to_first_token_seconds": 0.11,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 107
+    "rank": 111
   },
   {
     "id": "claude-haiku-5-5-low",
@@ -9659,7 +10019,7 @@
       "knowledge": null,
       "multilingual": 12.2,
       "cheap": 0.2,
-      "fast": 213.5,
+      "fast": 216.1,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -9709,15 +10069,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 213.5,
-    "median_time_to_first_token_seconds": 5.61,
+    "median_output_tokens_per_second": 216.1,
+    "median_time_to_first_token_seconds": 5.87,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 108
+    "rank": 112
   },
   {
     "id": "deepseek-v4-1-flash-1017-non-reasoning",
@@ -9749,7 +10109,7 @@
       "knowledge": 69.2,
       "multilingual": null,
       "cheap": 0.52,
-      "fast": 151.7,
+      "fast": 150.1,
       "frontier": null,
       "vision": 69.2,
       "audio": null,
@@ -9799,15 +10159,15 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 151.7,
-    "median_time_to_first_token_seconds": 1.19,
+    "median_output_tokens_per_second": 150.1,
+    "median_time_to_first_token_seconds": 1.15,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 109
+    "rank": 113
   },
   {
     "id": "gpt-6-luna-medium",
@@ -9839,7 +10199,7 @@
       "knowledge": 77.9,
       "multilingual": 18.3,
       "cheap": 0.2,
-      "fast": 95.4,
+      "fast": 90.7,
       "frontier": null,
       "vision": 77.9,
       "audio": null,
@@ -9889,15 +10249,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 95.4,
-    "median_time_to_first_token_seconds": 5.27,
+    "median_output_tokens_per_second": 90.7,
+    "median_time_to_first_token_seconds": 6.17,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 110
+    "rank": 114
   },
   {
     "id": "k2-horizon-375b-a23b",
@@ -9929,7 +10289,7 @@
       "knowledge": null,
       "multilingual": 12.2,
       "cheap": 0,
-      "fast": 220.9,
+      "fast": 288.8,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -9979,15 +10339,15 @@
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 220.9,
-    "median_time_to_first_token_seconds": 19.59,
+    "median_output_tokens_per_second": 288.8,
+    "median_time_to_first_token_seconds": 13.12,
     "context_length": 524288,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 111
+    "rank": 115
   },
   {
     "id": "reflection-beam",
@@ -10019,7 +10379,7 @@
       "knowledge": null,
       "multilingual": 17.8,
       "cheap": 0.6,
-      "fast": 263.1,
+      "fast": 257.5,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -10069,15 +10429,15 @@
       "price_1m_input_tokens": 0.4,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 263.1,
-    "median_time_to_first_token_seconds": 7.3,
+    "median_output_tokens_per_second": 257.5,
+    "median_time_to_first_token_seconds": 7.74,
     "context_length": 1048576,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 112
+    "rank": 116
   },
   {
     "id": "qwen3-8-27b-medium",
@@ -10109,7 +10469,7 @@
       "knowledge": 74.2,
       "multilingual": 3.9,
       "cheap": 1.13,
-      "fast": 46.7,
+      "fast": 50.3,
       "frontier": null,
       "vision": 74.2,
       "audio": null,
@@ -10159,15 +10519,15 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 46.7,
-    "median_time_to_first_token_seconds": 25.93,
+    "median_output_tokens_per_second": 50.3,
+    "median_time_to_first_token_seconds": 27.31,
     "context_length": 256000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 113
+    "rank": 117
   },
   {
     "id": "kimi-k3-low",
@@ -10199,7 +10559,7 @@
       "knowledge": 78.5,
       "multilingual": 10.6,
       "cheap": 6,
-      "fast": 41.5,
+      "fast": 39.2,
       "frontier": null,
       "vision": 78.5,
       "audio": null,
@@ -10249,15 +10609,15 @@
       "price_1m_input_tokens": 3,
       "price_1m_output_tokens": 15
     },
-    "median_output_tokens_per_second": 41.5,
-    "median_time_to_first_token_seconds": 6.6,
+    "median_output_tokens_per_second": 39.2,
+    "median_time_to_first_token_seconds": 6.48,
     "context_length": 1048576,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 114
+    "rank": 118
   },
   {
     "id": "qwen3-8-27b-low",
@@ -10289,7 +10649,7 @@
       "knowledge": 73.8,
       "multilingual": 7.8,
       "cheap": 1.13,
-      "fast": 48.4,
+      "fast": 52.8,
       "frontier": null,
       "vision": 73.8,
       "audio": null,
@@ -10339,15 +10699,15 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 48.4,
-    "median_time_to_first_token_seconds": 14.84,
+    "median_output_tokens_per_second": 52.8,
+    "median_time_to_first_token_seconds": 17.51,
     "context_length": 256000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 115
+    "rank": 119
   },
   {
     "id": "solar-pro4",
@@ -10379,7 +10739,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 0.52,
-      "fast": 72.1,
+      "fast": 72.3,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -10429,15 +10789,195 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 72.1,
-    "median_time_to_first_token_seconds": 31.47,
+    "median_output_tokens_per_second": 72.3,
+    "median_time_to_first_token_seconds": 42.41,
     "context_length": 512000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 116
+    "rank": 120
+  },
+  {
+    "id": "k2-horizon-32b",
+    "slug": "k2-horizon-32b",
+    "modelId": "ifm/k2-horizon-32b",
+    "name": "K2 Horizon 32B",
+    "organization": "Institute of Foundation Models",
+    "model_creator": {
+      "name": "Institute of Foundation Models",
+      "slug": "ifm"
+    },
+    "rating": 1076,
+    "arena_elo": 1076,
+    "final_score": 13.9,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis_v5",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 13.9,
+      "coding": 1.5,
+      "math": null,
+      "reasoning": 8,
+      "research": null,
+      "instruction": null,
+      "writing": null,
+      "knowledge": null,
+      "multilingual": null,
+      "cheap": null,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 13.9,
+      "agents": 0.5,
+      "long-context": 524288,
+      "enterprise": 29.4,
+      "legal": null,
+      "medical": null,
+      "finance": null,
+      "scientific": 4,
+      "creative-writing": null,
+      "data-analysis": 15.3,
+      "roleplay": null,
+      "translation": null,
+      "summarization": null,
+      "extraction": 3.8,
+      "tool-use": 0.5,
+      "function-calling": 0.5
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 13.9,
+      "artificial_analysis_coding_index": 1.5,
+      "artificial_analysis_math_index": null,
+      "gpqa": null,
+      "hle": null,
+      "hle_diamond": 8,
+      "frontier_code_20": 2.3,
+      "terminal_bench_40": 0.5,
+      "terminal_bench_science": 0,
+      "critpt_agentic_hard": 10,
+      "ifbench": null,
+      "aime": null,
+      "scicode": null,
+      "mmlu_pro": null,
+      "agentic_index": 0.5,
+      "coding_agent_index": null,
+      "gdpval": null,
+      "gdp_pdf": 3.8,
+      "automation_bench": 29.4,
+      "tau_banking": null,
+      "harvey_lab": null,
+      "healthbench": null,
+      "personality_bench": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 524288,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": null,
+    "rank": 121
+  },
+  {
+    "id": "k2-horizon-mova-36b-a4b",
+    "slug": "k2-horizon-mova-36b-a4b",
+    "modelId": "ifm/k2-horizon-mova-36b-a4b",
+    "name": "K2 Horizon MoVA 36B A4B",
+    "organization": "Institute of Foundation Models",
+    "model_creator": {
+      "name": "Institute of Foundation Models",
+      "slug": "ifm"
+    },
+    "rating": 1076,
+    "arena_elo": 1076,
+    "final_score": 13.8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis_v5",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 13.8,
+      "coding": 2.5,
+      "math": 40,
+      "reasoning": 37.3,
+      "research": 71.7,
+      "instruction": null,
+      "writing": null,
+      "knowledge": null,
+      "multilingual": null,
+      "cheap": null,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 13.8,
+      "agents": 0,
+      "long-context": 524288,
+      "enterprise": 26.1,
+      "legal": null,
+      "medical": null,
+      "finance": 32,
+      "scientific": 3.2,
+      "creative-writing": null,
+      "data-analysis": 14.1,
+      "roleplay": null,
+      "translation": null,
+      "summarization": 71.7,
+      "extraction": 4.2,
+      "tool-use": 0,
+      "function-calling": 0
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 13.8,
+      "artificial_analysis_coding_index": 2.5,
+      "artificial_analysis_math_index": 40,
+      "gpqa": 82.2,
+      "hle": 23.4,
+      "hle_diamond": 8.5,
+      "frontier_code_20": 4.5,
+      "terminal_bench_40": 0,
+      "terminal_bench_science": 0,
+      "critpt_agentic_hard": 8,
+      "ifbench": null,
+      "aime": null,
+      "scicode": 40,
+      "mmlu_pro": null,
+      "agentic_index": 0,
+      "coding_agent_index": null,
+      "gdpval": 65.9,
+      "gdp_pdf": 4.2,
+      "automation_bench": 26.1,
+      "tau_banking": 32,
+      "harvey_lab": null,
+      "healthbench": null,
+      "personality_bench": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 524288,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": null,
+    "rank": 122
   },
   {
     "id": "apodex-1-1",
@@ -10527,7 +11067,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 117
+    "rank": 123
   },
   {
     "id": "nemotron-3-5-super-vl",
@@ -10559,7 +11099,7 @@
       "knowledge": null,
       "multilingual": 13.3,
       "cheap": 0.24,
-      "fast": 254,
+      "fast": 285.5,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -10609,15 +11149,15 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 254,
-    "median_time_to_first_token_seconds": 13.69,
+    "median_output_tokens_per_second": 285.5,
+    "median_time_to_first_token_seconds": 12.88,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 118
+    "rank": 124
   },
   {
     "id": "inkling-small",
@@ -10649,7 +11189,7 @@
       "knowledge": 74,
       "multilingual": 7.8,
       "cheap": 0.52,
-      "fast": 91,
+      "fast": 43.7,
       "frontier": null,
       "vision": 74,
       "audio": 12.9,
@@ -10699,15 +11239,15 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": 91,
-    "median_time_to_first_token_seconds": 26.63,
+    "median_output_tokens_per_second": 43.7,
+    "median_time_to_first_token_seconds": 49.56,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 119
+    "rank": 125
   },
   {
     "id": "deepseek-v4-pro-non-reasoning",
@@ -10739,7 +11279,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 1.98,
-      "fast": 86,
+      "fast": 74.6,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -10789,15 +11329,15 @@
       "price_1m_input_tokens": 1.32,
       "price_1m_output_tokens": 3.96
     },
-    "median_output_tokens_per_second": 86,
-    "median_time_to_first_token_seconds": 2.73,
+    "median_output_tokens_per_second": 74.6,
+    "median_time_to_first_token_seconds": 2.61,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 120
+    "rank": 126
   },
   {
     "id": "inkling",
@@ -10829,7 +11369,7 @@
       "knowledge": 73.5,
       "multilingual": 6.1,
       "cheap": 1.76,
-      "fast": 104.9,
+      "fast": 98.6,
       "frontier": null,
       "vision": 73.5,
       "audio": 12.5,
@@ -10879,15 +11419,15 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 4.05
     },
-    "median_output_tokens_per_second": 104.9,
-    "median_time_to_first_token_seconds": 14.63,
+    "median_output_tokens_per_second": 98.6,
+    "median_time_to_first_token_seconds": 17.17,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 121
+    "rank": 127
   },
   {
     "id": "nvidia-nemotron-3-ultra-550b-a55b",
@@ -10918,8 +11458,8 @@
       "writing": 12.7,
       "knowledge": null,
       "multilingual": 83.3,
-      "cheap": 1.05,
-      "fast": 195.1,
+      "cheap": 0.99,
+      "fast": 209.3,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -10966,18 +11506,18 @@
       "personality_bench": 8.9
     },
     "pricing": {
-      "price_1m_input_tokens": 0.6,
-      "price_1m_output_tokens": 2.4
+      "price_1m_input_tokens": 0.55,
+      "price_1m_output_tokens": 2.3
     },
-    "median_output_tokens_per_second": 195.1,
-    "median_time_to_first_token_seconds": 3.67,
+    "median_output_tokens_per_second": 209.3,
+    "median_time_to_first_token_seconds": 7.5,
     "context_length": 262144,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 122
+    "rank": 128
   },
   {
     "id": "gemini-3-5-flash-lite",
@@ -11009,7 +11549,7 @@
       "knowledge": 79,
       "multilingual": 10.6,
       "cheap": 0.85,
-      "fast": 328.8,
+      "fast": 310.5,
       "frontier": null,
       "vision": 79,
       "audio": 11.7,
@@ -11059,15 +11599,15 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 2.5
     },
-    "median_output_tokens_per_second": 328.8,
-    "median_time_to_first_token_seconds": 4.82,
+    "median_output_tokens_per_second": 310.5,
+    "median_time_to_first_token_seconds": 4.65,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 123
+    "rank": 129
   },
   {
     "id": "inkling-high",
@@ -11099,7 +11639,7 @@
       "knowledge": 69.8,
       "multilingual": null,
       "cheap": 1.76,
-      "fast": null,
+      "fast": 109,
       "frontier": null,
       "vision": 69.8,
       "audio": 11,
@@ -11149,15 +11689,105 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 4.05
     },
-    "median_output_tokens_per_second": null,
-    "median_time_to_first_token_seconds": null,
+    "median_output_tokens_per_second": 109,
+    "median_time_to_first_token_seconds": 10.65,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 124
+    "rank": 130
+  },
+  {
+    "id": "k2-horizon-7b",
+    "slug": "k2-horizon-7b",
+    "modelId": "ifm/k2-horizon-7b",
+    "name": "K2 Horizon 7B",
+    "organization": "Institute of Foundation Models",
+    "model_creator": {
+      "name": "Institute of Foundation Models",
+      "slug": "ifm"
+    },
+    "rating": 1058,
+    "arena_elo": 1058,
+    "final_score": 10.6,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis_v5",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 10.6,
+      "coding": 1.1,
+      "math": 27.5,
+      "reasoning": 32.5,
+      "research": 69.7,
+      "instruction": null,
+      "writing": null,
+      "knowledge": null,
+      "multilingual": null,
+      "cheap": null,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 10.6,
+      "agents": 1,
+      "long-context": 524288,
+      "enterprise": 20.9,
+      "legal": null,
+      "medical": null,
+      "finance": 27.6,
+      "scientific": 0.6,
+      "creative-writing": null,
+      "data-analysis": 11.2,
+      "roleplay": null,
+      "translation": null,
+      "summarization": 69.7,
+      "extraction": 3.2,
+      "tool-use": 1,
+      "function-calling": 1
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 10.6,
+      "artificial_analysis_coding_index": 1.1,
+      "artificial_analysis_math_index": 27.5,
+      "gpqa": 75.3,
+      "hle": 18.2,
+      "hle_diamond": 5.6,
+      "frontier_code_20": 1.2,
+      "terminal_bench_40": 1,
+      "terminal_bench_science": 0,
+      "critpt_agentic_hard": 1.5,
+      "ifbench": null,
+      "aime": null,
+      "scicode": 27.5,
+      "mmlu_pro": null,
+      "agentic_index": 1,
+      "coding_agent_index": null,
+      "gdpval": 7.9,
+      "gdp_pdf": 3.2,
+      "automation_bench": 20.9,
+      "tau_banking": 27.6,
+      "harvey_lab": null,
+      "healthbench": null,
+      "personality_bench": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 524288,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": null,
+    "rank": 131
   },
   {
     "id": "qwen3-8-27b-non-reasoning",
@@ -11189,7 +11819,7 @@
       "knowledge": 69.9,
       "multilingual": 10,
       "cheap": 1.13,
-      "fast": 38.5,
+      "fast": 41.2,
       "frontier": null,
       "vision": 69.9,
       "audio": null,
@@ -11239,15 +11869,15 @@
       "price_1m_input_tokens": 0.5,
       "price_1m_output_tokens": 3
     },
-    "median_output_tokens_per_second": 38.5,
-    "median_time_to_first_token_seconds": 5.31,
+    "median_output_tokens_per_second": 41.2,
+    "median_time_to_first_token_seconds": 5.13,
     "context_length": 256000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 125
+    "rank": 132
   },
   {
     "id": "gpt-6-luna-low",
@@ -11279,7 +11909,7 @@
       "knowledge": 76,
       "multilingual": 18.9,
       "cheap": 0.2,
-      "fast": 88.4,
+      "fast": 86.7,
       "frontier": null,
       "vision": 76,
       "audio": null,
@@ -11329,15 +11959,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 88.4,
-    "median_time_to_first_token_seconds": 2.48,
+    "median_output_tokens_per_second": 86.7,
+    "median_time_to_first_token_seconds": 2.43,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 126
+    "rank": 133
   },
   {
     "id": "inkling-small-high",
@@ -11369,7 +11999,7 @@
       "knowledge": 72.1,
       "multilingual": null,
       "cheap": 0.52,
-      "fast": null,
+      "fast": 82.3,
       "frontier": null,
       "vision": 72.1,
       "audio": 9.6,
@@ -11419,15 +12049,15 @@
       "price_1m_input_tokens": 0.3,
       "price_1m_output_tokens": 1.2
     },
-    "median_output_tokens_per_second": null,
-    "median_time_to_first_token_seconds": null,
+    "median_output_tokens_per_second": 82.3,
+    "median_time_to_first_token_seconds": 23.22,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 127
+    "rank": 134
   },
   {
     "id": "gpt-6-luna-non-reasoning",
@@ -11459,7 +12089,7 @@
       "knowledge": 62.1,
       "multilingual": 15,
       "cheap": 0.2,
-      "fast": 91.9,
+      "fast": 80.9,
       "frontier": null,
       "vision": 62.1,
       "audio": null,
@@ -11509,15 +12139,15 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": 91.9,
-    "median_time_to_first_token_seconds": 1.52,
+    "median_output_tokens_per_second": 80.9,
+    "median_time_to_first_token_seconds": 1.58,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 128
+    "rank": 135
   },
   {
     "id": "a-x-k2",
@@ -11607,7 +12237,97 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 129
+    "rank": 136
+  },
+  {
+    "id": "k2-horizon-3-7b",
+    "slug": "k2-horizon-3-7b",
+    "modelId": "ifm/k2-horizon-3-7b",
+    "name": "K2 Horizon 3.7B",
+    "organization": "Institute of Foundation Models",
+    "model_creator": {
+      "name": "Institute of Foundation Models",
+      "slug": "ifm"
+    },
+    "rating": 1044,
+    "arena_elo": 1044,
+    "final_score": 8,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis_v5",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 8,
+      "coding": 0.5,
+      "math": 22,
+      "reasoning": 29.3,
+      "research": 62.3,
+      "instruction": null,
+      "writing": null,
+      "knowledge": null,
+      "multilingual": null,
+      "cheap": null,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 8,
+      "agents": 0,
+      "long-context": 524288,
+      "enterprise": 14.7,
+      "legal": null,
+      "medical": null,
+      "finance": 19.6,
+      "scientific": 0.4,
+      "creative-writing": null,
+      "data-analysis": 8.4,
+      "roleplay": null,
+      "translation": null,
+      "summarization": 62.3,
+      "extraction": 3.2,
+      "tool-use": 0,
+      "function-calling": 0
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 8,
+      "artificial_analysis_coding_index": 0.5,
+      "artificial_analysis_math_index": 22,
+      "gpqa": 69.2,
+      "hle": 13.9,
+      "hle_diamond": 5.1,
+      "frontier_code_20": 0.9,
+      "terminal_bench_40": 0,
+      "terminal_bench_science": 0,
+      "critpt_agentic_hard": 1,
+      "ifbench": null,
+      "aime": null,
+      "scicode": 22,
+      "mmlu_pro": null,
+      "agentic_index": 0,
+      "coding_agent_index": null,
+      "gdpval": -36.9,
+      "gdp_pdf": 3.2,
+      "automation_bench": 14.7,
+      "tau_banking": 19.6,
+      "harvey_lab": null,
+      "healthbench": null,
+      "personality_bench": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 524288,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": null,
+    "rank": 137
   },
   {
     "id": "k-exaone-2-0",
@@ -11697,7 +12417,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 130
+    "rank": 138
   },
   {
     "id": "claude-4-5-haiku-reasoning",
@@ -11729,7 +12449,7 @@
       "knowledge": 58.6,
       "multilingual": 54.7,
       "cheap": 2,
-      "fast": 111.9,
+      "fast": 105.6,
       "frontier": null,
       "vision": 58.6,
       "audio": null,
@@ -11779,15 +12499,15 @@
       "price_1m_input_tokens": 1,
       "price_1m_output_tokens": 5
     },
-    "median_output_tokens_per_second": 111.9,
-    "median_time_to_first_token_seconds": 19.58,
+    "median_output_tokens_per_second": 105.6,
+    "median_time_to_first_token_seconds": 20.07,
     "context_length": 200000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 131
+    "rank": 139
   },
   {
     "id": "muse-glimmer",
@@ -11819,7 +12539,7 @@
       "knowledge": 74.3,
       "multilingual": null,
       "cheap": 0.58,
-      "fast": 92.9,
+      "fast": 90,
       "frontier": null,
       "vision": 74.3,
       "audio": null,
@@ -11869,15 +12589,15 @@
       "price_1m_input_tokens": 0.32499999999999996,
       "price_1m_output_tokens": 1.35
     },
-    "median_output_tokens_per_second": 92.9,
-    "median_time_to_first_token_seconds": 19.29,
+    "median_output_tokens_per_second": 90,
+    "median_time_to_first_token_seconds": 19.38,
     "context_length": 131072,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 132
+    "rank": 140
   },
   {
     "id": "command-a-plus",
@@ -11909,7 +12629,7 @@
       "knowledge": 63.2,
       "multilingual": 80.7,
       "cheap": 0,
-      "fast": 166.5,
+      "fast": 183.3,
       "frontier": null,
       "vision": 63.2,
       "audio": null,
@@ -11959,15 +12679,15 @@
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 166.5,
-    "median_time_to_first_token_seconds": 29.84,
+    "median_output_tokens_per_second": 183.3,
+    "median_time_to_first_token_seconds": 21.99,
     "context_length": 192000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 133
+    "rank": 141
   },
   {
     "id": "gemini-3-1-flash-lite-preview",
@@ -11999,7 +12719,7 @@
       "knowledge": 75.5,
       "multilingual": 31.3,
       "cheap": 0.56,
-      "fast": 342.8,
+      "fast": 320.4,
       "frontier": null,
       "vision": 75.5,
       "audio": 6.2,
@@ -12049,15 +12769,15 @@
       "price_1m_input_tokens": 0.25,
       "price_1m_output_tokens": 1.5
     },
-    "median_output_tokens_per_second": 342.8,
-    "median_time_to_first_token_seconds": 12.87,
+    "median_output_tokens_per_second": 320.4,
+    "median_time_to_first_token_seconds": 7.99,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
-    "rank": 134
+    "rank": 142
   },
   {
     "id": "lfm3-1-7b",
@@ -12089,7 +12809,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 0.11,
-      "fast": null,
+      "fast": 161.4,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -12139,15 +12859,105 @@
       "price_1m_input_tokens": 0.08,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": null,
-    "median_time_to_first_token_seconds": null,
+    "median_output_tokens_per_second": 161.4,
+    "median_time_to_first_token_seconds": 18.36,
     "context_length": 262144,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 135
+    "rank": 143
+  },
+  {
+    "id": "granite-4-2-30b",
+    "slug": "granite-4-2-30b",
+    "modelId": "ibm/granite-4-2-30b",
+    "name": "Granite 4.2 30B",
+    "organization": "IBM",
+    "model_creator": {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    "rating": 1030,
+    "arena_elo": 1030,
+    "final_score": 5.5,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis_v5",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 5.5,
+      "coding": 0,
+      "math": 37.8,
+      "reasoning": 26.7,
+      "research": 49,
+      "instruction": null,
+      "writing": null,
+      "knowledge": null,
+      "multilingual": null,
+      "cheap": null,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 5.5,
+      "agents": 0,
+      "long-context": 131072,
+      "enterprise": 1.5,
+      "legal": null,
+      "medical": null,
+      "finance": 14.4,
+      "scientific": 0.6,
+      "creative-writing": null,
+      "data-analysis": 1.7,
+      "roleplay": null,
+      "translation": null,
+      "summarization": 49,
+      "extraction": 1.8,
+      "tool-use": 0,
+      "function-calling": 0
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 5.5,
+      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_math_index": 37.8,
+      "gpqa": 64.4,
+      "hle": 11.2,
+      "hle_diamond": 4.3,
+      "frontier_code_20": 0,
+      "terminal_bench_40": 0,
+      "terminal_bench_science": 0,
+      "critpt_agentic_hard": 1.5,
+      "ifbench": null,
+      "aime": null,
+      "scicode": 37.8,
+      "mmlu_pro": null,
+      "agentic_index": 0,
+      "coding_agent_index": null,
+      "gdpval": -139.1,
+      "gdp_pdf": 1.8,
+      "automation_bench": 1.5,
+      "tau_banking": 14.4,
+      "harvey_lab": null,
+      "healthbench": null,
+      "personality_bench": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": null,
+    "rank": 144
   },
   {
     "id": "nemotron-3-5-lightning",
@@ -12179,7 +12989,7 @@
       "knowledge": null,
       "multilingual": 2.2,
       "cheap": 0.1,
-      "fast": 276.6,
+      "fast": 274.7,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -12229,15 +13039,15 @@
       "price_1m_input_tokens": 0.06,
       "price_1m_output_tokens": 0.2
     },
-    "median_output_tokens_per_second": 276.6,
-    "median_time_to_first_token_seconds": 13.95,
+    "median_output_tokens_per_second": 274.7,
+    "median_time_to_first_token_seconds": 17.37,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 136
+    "rank": 145
   },
   {
     "id": "granite-4-2-8b",
@@ -12269,7 +13079,7 @@
       "knowledge": null,
       "multilingual": null,
       "cheap": 0.11,
-      "fast": 78,
+      "fast": 94,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -12319,15 +13129,15 @@
       "price_1m_input_tokens": 0.06,
       "price_1m_output_tokens": 0.25
     },
-    "median_output_tokens_per_second": 78,
-    "median_time_to_first_token_seconds": 46.58,
+    "median_output_tokens_per_second": 94,
+    "median_time_to_first_token_seconds": 35.99,
     "context_length": 131072,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 137
+    "rank": 146
   },
   {
     "id": "gemma-4-e4b",
@@ -12358,8 +13168,8 @@
       "writing": null,
       "knowledge": 51.4,
       "multilingual": 20.8,
-      "cheap": 0.04,
-      "fast": 65.5,
+      "cheap": null,
+      "fast": null,
       "frontier": null,
       "vision": 51.4,
       "audio": 4.8,
@@ -12406,18 +13216,18 @@
       "personality_bench": null
     },
     "pricing": {
-      "price_1m_input_tokens": 0.02,
-      "price_1m_output_tokens": 0.1
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
     },
-    "median_output_tokens_per_second": 65.5,
-    "median_time_to_first_token_seconds": 40.61,
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
     "context_length": 128000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 138
+    "rank": 147
   },
   {
     "id": "granite-4-2-3b",
@@ -12507,7 +13317,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 139
+    "rank": 148
   },
   {
     "id": "mistral-medium-3-5",
@@ -12539,7 +13349,7 @@
       "knowledge": 64.9,
       "multilingual": 94.2,
       "cheap": 3,
-      "fast": 146.4,
+      "fast": 142.6,
       "frontier": null,
       "vision": 64.9,
       "audio": null,
@@ -12589,15 +13399,15 @@
       "price_1m_input_tokens": 1.5,
       "price_1m_output_tokens": 7.5
     },
-    "median_output_tokens_per_second": 146.4,
-    "median_time_to_first_token_seconds": 25.19,
+    "median_output_tokens_per_second": 142.6,
+    "median_time_to_first_token_seconds": 26.02,
     "context_length": 256000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 140
+    "rank": 149
   },
   {
     "id": "gemma-4-31b",
@@ -12629,7 +13439,7 @@
       "knowledge": 73.4,
       "multilingual": 59.9,
       "cheap": 0,
-      "fast": 35.8,
+      "fast": 35.7,
       "frontier": null,
       "vision": 73.4,
       "audio": null,
@@ -12679,15 +13489,15 @@
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 35.8,
-    "median_time_to_first_token_seconds": 78.99,
+    "median_output_tokens_per_second": 35.7,
+    "median_time_to_first_token_seconds": 47.56,
     "context_length": 256000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 141
+    "rank": 150
   },
   {
     "id": "mistral-small-4",
@@ -12719,7 +13529,7 @@
       "knowledge": 56.8,
       "multilingual": 41.2,
       "cheap": 0.26,
-      "fast": 141,
+      "fast": 141.4,
       "frontier": null,
       "vision": 56.8,
       "audio": null,
@@ -12769,15 +13579,15 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 141,
-    "median_time_to_first_token_seconds": 14.37,
+    "median_output_tokens_per_second": 141.4,
+    "median_time_to_first_token_seconds": 13.85,
     "context_length": 256000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 142
+    "rank": 151
   },
   {
     "id": "gpt-oss-120b",
@@ -12809,7 +13619,7 @@
       "knowledge": null,
       "multilingual": 65.8,
       "cheap": 0.26,
-      "fast": 178.7,
+      "fast": 214,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -12859,15 +13669,15 @@
       "price_1m_input_tokens": 0.15,
       "price_1m_output_tokens": 0.6
     },
-    "median_output_tokens_per_second": 178.7,
-    "median_time_to_first_token_seconds": 12.53,
+    "median_output_tokens_per_second": 214,
+    "median_time_to_first_token_seconds": 9.26,
     "context_length": 131072,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 143
+    "rank": 152
   },
   {
     "id": "north-mini-code",
@@ -12899,7 +13709,7 @@
       "knowledge": null,
       "multilingual": 37.4,
       "cheap": 0,
-      "fast": 175,
+      "fast": 193.8,
       "frontier": null,
       "vision": null,
       "audio": null,
@@ -12949,15 +13759,105 @@
       "price_1m_input_tokens": 0,
       "price_1m_output_tokens": 0
     },
-    "median_output_tokens_per_second": 175,
-    "median_time_to_first_token_seconds": 4.76,
+    "median_output_tokens_per_second": 193.8,
+    "median_time_to_first_token_seconds": 5.89,
     "context_length": 256000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 144
+    "rank": 153
+  },
+  {
+    "id": "k2-horizon-0-9b",
+    "slug": "k2-horizon-0-9b",
+    "modelId": "ifm/k2-horizon-0-9b",
+    "name": "K2 Horizon 0.9B",
+    "organization": "Institute of Foundation Models",
+    "model_creator": {
+      "name": "Institute of Foundation Models",
+      "slug": "ifm"
+    },
+    "rating": 1015,
+    "arena_elo": 1015,
+    "final_score": 2.7,
+    "confidence": 95,
+    "coverage": 100,
+    "ranking_status": "verified_artificial_analysis_v5",
+    "data_sources": [
+      "artificial_analysis_scraper"
+    ],
+    "category_scores": {
+      "overall": 2.7,
+      "coding": 0,
+      "math": 6.9,
+      "reasoning": 14,
+      "research": 6.3,
+      "instruction": null,
+      "writing": null,
+      "knowledge": null,
+      "multilingual": null,
+      "cheap": null,
+      "fast": null,
+      "frontier": null,
+      "vision": null,
+      "audio": null,
+      "open-weights": 2.7,
+      "agents": 0,
+      "long-context": 131072,
+      "enterprise": 0.2,
+      "legal": null,
+      "medical": null,
+      "finance": 4.9,
+      "scientific": 0,
+      "creative-writing": null,
+      "data-analysis": 0.5,
+      "roleplay": null,
+      "translation": null,
+      "summarization": 6.3,
+      "extraction": 0.8,
+      "tool-use": 0,
+      "function-calling": 0
+    },
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 2.7,
+      "artificial_analysis_coding_index": 0,
+      "artificial_analysis_math_index": 6.9,
+      "gpqa": 29.3,
+      "hle": 5.4,
+      "hle_diamond": 6,
+      "frontier_code_20": 0,
+      "terminal_bench_40": 0,
+      "terminal_bench_science": 0,
+      "critpt_agentic_hard": 0,
+      "ifbench": null,
+      "aime": null,
+      "scicode": 6.9,
+      "mmlu_pro": null,
+      "agentic_index": 0,
+      "coding_agent_index": null,
+      "gdpval": -467.5,
+      "gdp_pdf": 0.8,
+      "automation_bench": 0.2,
+      "tau_banking": 4.9,
+      "harvey_lab": null,
+      "healthbench": null,
+      "personality_bench": null
+    },
+    "pricing": {
+      "price_1m_input_tokens": null,
+      "price_1m_output_tokens": null
+    },
+    "median_output_tokens_per_second": null,
+    "median_time_to_first_token_seconds": null,
+    "context_length": 131072,
+    "isDefault": false,
+    "isRouter": false,
+    "isCodingAgent": false,
+    "deprecated": false,
+    "unroundedAverage": null,
+    "rank": 154
   },
   {
     "id": "nvidia-nemotron-3-nano-4b",
@@ -13047,7 +13947,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 145
+    "rank": 155
   },
   {
     "id": "lfm3-vl-2b",
@@ -13079,7 +13979,7 @@
       "knowledge": 47.5,
       "multilingual": null,
       "cheap": 0.2,
-      "fast": null,
+      "fast": 335.6,
       "frontier": null,
       "vision": 47.5,
       "audio": null,
@@ -13129,14 +14029,14 @@
       "price_1m_input_tokens": 0.1,
       "price_1m_output_tokens": 0.5
     },
-    "median_output_tokens_per_second": null,
-    "median_time_to_first_token_seconds": null,
+    "median_output_tokens_per_second": 335.6,
+    "median_time_to_first_token_seconds": 5.91,
     "context_length": 128000,
     "isDefault": false,
     "isRouter": false,
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
-    "rank": 146
+    "rank": 156
   }
 ]
