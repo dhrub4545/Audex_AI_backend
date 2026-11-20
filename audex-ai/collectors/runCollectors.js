@@ -1,14 +1,23 @@
 const { scrapeArtificialAnalysis } = require('../../services/artificialAnalysisScraper');
+const { collectLiveBenchMath } = require('./livebenchCollector');
 
 async function runAllCollectors() {
-  console.log('🚀 Audex AI Aggregation Engine: Running Artificial Analysis Web Scraper...');
+  console.log('🚀 Audex AI Aggregation Engine: Running Collectors (Artificial Analysis & LiveBench AI)...');
 
   try {
-    const scrapedModels = await scrapeArtificialAnalysis();
-    console.log(`🎉 Artificial Analysis Web Scraper completed successfully with ${scrapedModels.length} models!`);
+    const [scrapedModels, livebenchModels] = await Promise.all([
+      scrapeArtificialAnalysis(),
+      collectLiveBenchMath().catch(err => {
+        console.warn('⚠️ LiveBench Math collector warning (continuing with cached data):', err.message);
+        return [];
+      })
+    ]);
+
+    console.log(`🎉 Collectors completed: Artificial Analysis (${scrapedModels.length} models), LiveBench Math (${livebenchModels.length} models)`);
+    scrapedModels.livebenchModels = livebenchModels;
     return scrapedModels;
   } catch (error) {
-    console.error('❌ Error running Artificial Analysis Web Scraper:', error.message);
+    console.error('❌ Error running Web Collectors:', error.message);
     throw error;
   }
 }

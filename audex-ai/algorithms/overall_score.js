@@ -67,7 +67,7 @@ function normalizeModelId(creator, slug) {
  * @param {Array<Object>} [inputModels] Scraped models list
  * @returns {Promise<number>} Number of rank files written
  */
-async function generateAllRankFiles(inputModels = null) {
+async function generateAllRankFiles(inputModels = null, inputLivebenchModels = null) {
   console.log('📊 Audex AI Rank File Generator: Building category rank files from Artificial Analysis data...');
 
   let modelsList = inputModels;
@@ -108,12 +108,17 @@ async function generateAllRankFiles(inputModels = null) {
   console.log(`📊 Processing every model (${modelsList.length} total) from Artificial Analysis for category ranking.`);
 
   // LiveBench AI Math Benchmark Integration (for official Math category leaderboard)
-  let livebenchMathModels = [];
-  try {
-    const { scrapeLiveBenchMath } = require('../../services/livebenchScraper');
-    livebenchMathModels = await scrapeLiveBenchMath(modelsList);
-  } catch (err) {
-    console.warn('⚠️ Could not fetch LiveBench Math models:', err.message);
+  let livebenchMathModels = Array.isArray(inputLivebenchModels) && inputLivebenchModels.length > 0
+    ? inputLivebenchModels
+    : [];
+
+  if (livebenchMathModels.length === 0) {
+    try {
+      const { scrapeLiveBenchMath } = require('../../services/livebenchScraper');
+      livebenchMathModels = await scrapeLiveBenchMath(modelsList);
+    } catch (err) {
+      console.warn('⚠️ Could not fetch LiveBench Math models:', err.message);
+    }
   }
 
   const livebenchScoreMap = new Map();

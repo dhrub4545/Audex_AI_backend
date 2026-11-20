@@ -8,19 +8,19 @@ const { syncSubscriptionTiers } = require('../../services/subscriptionTierSync')
  */
 async function runAudexPipeline() {
   console.log('====================================================');
-  console.log('🚀 Starting Audex AI Aggregation Pipeline (Artificial Analysis)');
+  console.log('🚀 Starting Audex AI Aggregation Pipeline (Artificial Analysis & LiveBench AI)');
   console.log('====================================================');
 
   const startTime = Date.now();
 
   try {
-    // Phase 1: Web Scrape Artificial Analysis
-    console.log('\n--- Phase 1: Scraping Artificial Analysis Data ---');
+    // Phase 1: Web Scrape Artificial Analysis & LiveBench AI Math Data
+    console.log('\n--- Phase 1: Scraping Benchmark Data (Artificial Analysis & LiveBench AI) ---');
     const scrapedModels = await runAllCollectors();
 
     // Phase 2: Category Scoring & Rank File Generation
     console.log('\n--- Phase 2: Generating 30 Category Rank Files ---');
-    const totalRankFiles = await generateAllRankFiles(scrapedModels);
+    const totalRankFiles = await generateAllRankFiles(scrapedModels, scrapedModels?.livebenchModels);
 
     // Phase 3: Synchronize raw_data.json & Local Database
     console.log('\n--- Phase 3: Generating raw_data.json & Local Database Sync ---');
@@ -34,6 +34,7 @@ async function runAudexPipeline() {
     console.log('\n====================================================');
     console.log(`🎉 Audex AI Pipeline completed successfully in ${elapsed}s!`);
     console.log(`📊 Models Scraped & Processed: ${scrapedModels.length}`);
+    console.log(`📐 LiveBench Math Models: ${(scrapedModels?.livebenchModels || []).length}`);
     console.log(`💾 Rank Files Updated in backend/data/rank/: ${totalRankFiles}`);
     console.log(`💳 Subscription Tiers Synchronized: Active`);
     console.log('====================================================\n');
@@ -41,6 +42,7 @@ async function runAudexPipeline() {
     return {
       success: true,
       modelsProcessed: scrapedModels.length,
+      livebenchModelsProcessed: (scrapedModels?.livebenchModels || []).length,
       rankFilesUpdated: totalRankFiles,
       elapsedSeconds: elapsed
     };
