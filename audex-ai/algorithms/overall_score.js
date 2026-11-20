@@ -151,10 +151,12 @@ async function generateAllRankFiles(inputModels = null) {
       math = aime;
     }
 
-    // 4. Reasoning (HLE-Diamond, GPQA Diamond, HLE, Omniscience)
-    const rawHleDiamond = toNum(m.hleDiamond);
+    // 4. Reasoning: Strictly Canonical HLE-Diamond (Active Artificial Analysis Reasoning Suite)
+    const rawHleDiamond = toNum(m.hleDiamond) ?? toNum(m.evaluations?.hle_diamond);
     const hleDiamondScore = rawHleDiamond !== null ? round1(norm100(rawHleDiamond)) : null;
+    const reasoning = hleDiamondScore;
 
+    // Retain legacy benchmarks in evaluations object for historical data, but do NOT blend into reasoning score
     const rawGpqa = toNum(m.gpqa) ?? toNum(m.evaluations?.gpqa);
     const gpqa = rawGpqa !== null ? round1(norm100(rawGpqa)) : null;
 
@@ -163,19 +165,6 @@ async function generateAllRankFiles(inputModels = null) {
 
     const rawOmni = toNum(m.omniscience);
     const omniScore = rawOmni !== null ? round1(norm100(rawOmni)) : null;
-
-    let reasoning = null;
-    if (hleDiamondScore !== null || gpqa !== null || hle !== null || omniScore !== null) {
-      let rSum = 0, rWeight = 0;
-      if (hleDiamondScore !== null) { rSum += hleDiamondScore * 0.45; rWeight += 0.45; }
-      if (gpqa !== null) { rSum += gpqa * 0.35; rWeight += 0.35; }
-      if (hle !== null) { rSum += hle * 0.20; rWeight += 0.20; }
-      if (rWeight > 0) {
-        reasoning = round1(rSum / rWeight);
-      } else if (omniScore !== null) {
-        reasoning = omniScore;
-      }
-    }
 
     // 5. Research & Long Context Reasoning (LCR, MLCR)
     const rawLcr = toNum(m.lcr);
@@ -469,7 +458,8 @@ async function generateAllRankFiles(inputModels = null) {
       isRouter: !!m.isRouter,
       isCodingAgent: !!m.isCodingAgent,
       deprecated: !!m.deprecated,
-      unroundedAverage: typeof m.unroundedAverage === 'number' ? m.unroundedAverage : null
+      unroundedAverage: typeof m.unroundedAverage === 'number' ? m.unroundedAverage : null,
+      raw_hle_diamond: rawHleDiamond !== null ? rawHleDiamond : null
     };
   });
 
@@ -523,6 +513,15 @@ async function generateAllRankFiles(inputModels = null) {
         const rawB = typeof b.evaluations?.artificial_analysis_math_index === 'number' 
           ? b.evaluations.artificial_analysis_math_index 
           : (typeof b.evaluations?.aime === 'number' ? b.evaluations.aime : valB);
+        if (rawB !== rawA) return rawB - rawA;
+      } else if (catName === 'reasoning') {
+        // High-precision sorting for Reasoning (HLE-Diamond)
+        const rawA = typeof a.raw_hle_diamond === 'number' 
+          ? a.raw_hle_diamond 
+          : (typeof a.evaluations?.hle_diamond === 'number' ? a.evaluations.hle_diamond : valA);
+        const rawB = typeof b.raw_hle_diamond === 'number' 
+          ? b.raw_hle_diamond 
+          : (typeof b.evaluations?.hle_diamond === 'number' ? b.evaluations.hle_diamond : valB);
         if (rawB !== rawA) return rawB - rawA;
       } else {
         if (valB !== valA) return valB - valA;

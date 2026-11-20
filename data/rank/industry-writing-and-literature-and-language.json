@@ -22,7 +22,7 @@
       "overall": 59.1,
       "coding": 58,
       "math": null,
-      "reasoning": 65.9,
+      "reasoning": 67.9,
       "research": 84.7,
       "instruction": null,
       "writing": 83.2,
@@ -87,6 +87,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.679,
     "rank": 1
   },
   {
@@ -112,7 +113,7 @@
       "overall": 54.5,
       "coding": 51.3,
       "math": null,
-      "reasoning": 53.8,
+      "reasoning": 53.3,
       "research": 82.7,
       "instruction": null,
       "writing": 80,
@@ -177,6 +178,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.533,
     "rank": 2
   },
   {
@@ -202,7 +204,7 @@
       "overall": 49.2,
       "coding": 56,
       "math": null,
-      "reasoning": 71.7,
+      "reasoning": 60.1,
       "research": 85.3,
       "instruction": null,
       "writing": 78.1,
@@ -267,6 +269,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.601,
     "rank": 3
   },
   {
@@ -292,7 +295,7 @@
       "overall": 64.6,
       "coding": 53.5,
       "math": null,
-      "reasoning": 78.4,
+      "reasoning": 80.2,
       "research": 83.3,
       "instruction": null,
       "writing": 76.2,
@@ -357,6 +360,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.802,
     "rank": 4
   },
   {
@@ -382,7 +386,7 @@
       "overall": 12.5,
       "coding": 2.6,
       "math": null,
-      "reasoning": 41.7,
+      "reasoning": 10.6,
       "research": 77.3,
       "instruction": null,
       "writing": 76.2,
@@ -447,6 +451,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.106,
     "rank": 5
   },
   {
@@ -472,7 +477,7 @@
       "overall": 46.5,
       "coding": 49,
       "math": null,
-      "reasoning": 42,
+      "reasoning": 37.3,
       "research": 86.3,
       "instruction": null,
       "writing": 75.6,
@@ -537,6 +542,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.373,
     "rank": 6
   },
   {
@@ -562,7 +568,7 @@
       "overall": null,
       "coding": 36.5,
       "math": null,
-      "reasoning": 25.3,
+      "reasoning": 19.1,
       "research": 84,
       "instruction": null,
       "writing": 74.9,
@@ -627,6 +633,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.191,
     "rank": 7
   },
   {
@@ -652,7 +659,7 @@
       "overall": 43.6,
       "coding": 38.4,
       "math": null,
-      "reasoning": 42.4,
+      "reasoning": 39,
       "research": 80.7,
       "instruction": null,
       "writing": 74.9,
@@ -717,6 +724,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.39,
     "rank": 8
   },
   {
@@ -742,7 +750,7 @@
       "overall": 56.9,
       "coding": 53,
       "math": null,
-      "reasoning": 73.3,
+      "reasoning": 63.8,
       "research": 80.7,
       "instruction": null,
       "writing": 70.5,
@@ -807,6 +815,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.638,
     "rank": 9
   },
   {
@@ -832,7 +841,7 @@
       "overall": 25.3,
       "coding": 19.4,
       "math": null,
-      "reasoning": 21.2,
+      "reasoning": 15.1,
       "research": 81.3,
       "instruction": null,
       "writing": 70.5,
@@ -897,6 +906,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.151,
     "rank": 10
   },
   {
@@ -922,7 +932,7 @@
       "overall": 54.6,
       "coding": 47.4,
       "math": null,
-      "reasoning": 57,
+      "reasoning": 58.8,
       "research": 83,
       "instruction": null,
       "writing": 70.4,
@@ -987,6 +997,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.588,
     "rank": 11
   },
   {
@@ -1012,7 +1023,7 @@
       "overall": 36.5,
       "coding": 30,
       "math": null,
-      "reasoning": 34.2,
+      "reasoning": 29.6,
       "research": 82.7,
       "instruction": null,
       "writing": 69.2,
@@ -1077,6 +1088,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.296,
     "rank": 12
   },
   {
@@ -1102,7 +1114,7 @@
       "overall": 13.6,
       "coding": 3.4,
       "math": null,
-      "reasoning": 15.5,
+      "reasoning": 8.8,
       "research": 69,
       "instruction": null,
       "writing": 67.9,
@@ -1167,6 +1179,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.088,
     "rank": 13
   },
   {
@@ -1192,7 +1205,7 @@
       "overall": 27.8,
       "coding": 24.3,
       "math": null,
-      "reasoning": 48.1,
+      "reasoning": 18.2,
       "research": 80,
       "instruction": null,
       "writing": 67.3,
@@ -1257,6 +1270,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.182,
     "rank": 14
   },
   {
@@ -1282,7 +1296,7 @@
       "overall": 35.5,
       "coding": 42,
       "math": null,
-      "reasoning": 29.3,
+      "reasoning": 23.2,
       "research": 76.7,
       "instruction": null,
       "writing": 65.4,
@@ -1347,6 +1361,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.232,
     "rank": 15
   },
   {
@@ -1372,7 +1387,7 @@
       "overall": 31.7,
       "coding": 40,
       "math": null,
-      "reasoning": 48.6,
+      "reasoning": 17.9,
       "research": 79.7,
       "instruction": null,
       "writing": 64.8,
@@ -1437,6 +1452,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.179,
     "rank": 16
   },
   {
@@ -1462,7 +1478,7 @@
       "overall": null,
       "coding": 30.1,
       "math": null,
-      "reasoning": 54.2,
+      "reasoning": 26.9,
       "research": 88.7,
       "instruction": null,
       "writing": 64.8,
@@ -1527,6 +1543,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.269,
     "rank": 17
   },
   {
@@ -1552,7 +1569,7 @@
       "overall": 32.6,
       "coding": 37,
       "math": null,
-      "reasoning": 30.8,
+      "reasoning": 25.3,
       "research": 82.7,
       "instruction": null,
       "writing": 64.5,
@@ -1617,6 +1634,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.253,
     "rank": 18
   },
   {
@@ -1642,7 +1660,7 @@
       "overall": 28.5,
       "coding": 36,
       "math": null,
-      "reasoning": 31.1,
+      "reasoning": 24.3,
       "research": 88.3,
       "instruction": null,
       "writing": 63.5,
@@ -1707,6 +1725,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.243,
     "rank": 19
   },
   {
@@ -1797,6 +1816,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.507,
     "rank": 20
   },
   {
@@ -1822,7 +1842,7 @@
       "overall": 30.8,
       "coding": 19.2,
       "math": null,
-      "reasoning": 57.8,
+      "reasoning": 33.1,
       "research": 81.3,
       "instruction": null,
       "writing": 60.3,
@@ -1887,6 +1907,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.331,
     "rank": 21
   },
   {
@@ -1977,6 +1998,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.659,
     "rank": 22
   },
   {
@@ -2002,7 +2024,7 @@
       "overall": 29.1,
       "coding": 23,
       "math": null,
-      "reasoning": 34.2,
+      "reasoning": 28.1,
       "research": 79.7,
       "instruction": null,
       "writing": 59.7,
@@ -2067,6 +2089,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.281,
     "rank": 23
   },
   {
@@ -2157,6 +2180,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.673,
     "rank": 24
   },
   {
@@ -2182,7 +2206,7 @@
       "overall": 17.7,
       "coding": 15,
       "math": null,
-      "reasoning": 19.5,
+      "reasoning": 12.8,
       "research": 78,
       "instruction": null,
       "writing": 57.8,
@@ -2247,6 +2271,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.128,
     "rank": 25
   },
   {
@@ -2272,7 +2297,7 @@
       "overall": 50.4,
       "coding": 45,
       "math": null,
-      "reasoning": 56.8,
+      "reasoning": 56.7,
       "research": 79.7,
       "instruction": null,
       "writing": 57.8,
@@ -2337,6 +2362,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.567,
     "rank": 26
   },
   {
@@ -2427,6 +2453,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.56,
     "rank": 27
   },
   {
@@ -2452,7 +2479,7 @@
       "overall": 30.8,
       "coding": 19.2,
       "math": null,
-      "reasoning": 28.7,
+      "reasoning": 23.8,
       "research": 76.3,
       "instruction": null,
       "writing": 57.1,
@@ -2517,6 +2544,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.238,
     "rank": 28
   },
   {
@@ -2607,6 +2635,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.722,
     "rank": 29
   },
   {
@@ -2697,6 +2726,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.345,
     "rank": 30
   },
   {
@@ -2787,6 +2817,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.583,
     "rank": 31
   },
   {
@@ -2877,6 +2908,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.618,
     "rank": 32
   },
   {
@@ -2902,7 +2934,7 @@
       "overall": 36.6,
       "coding": 37,
       "math": null,
-      "reasoning": 57.6,
+      "reasoning": 33.7,
       "research": 83,
       "instruction": null,
       "writing": 53.3,
@@ -2967,6 +2999,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.337,
     "rank": 33
   },
   {
@@ -3057,6 +3090,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.64,
     "rank": 34
   },
   {
@@ -3082,7 +3116,7 @@
       "overall": 27.9,
       "coding": 19.7,
       "math": null,
-      "reasoning": 27.2,
+      "reasoning": 22.2,
       "research": 83.3,
       "instruction": null,
       "writing": 51.2,
@@ -3147,6 +3181,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.222,
     "rank": 35
   },
   {
@@ -3237,6 +3272,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.477,
     "rank": 36
   },
   {
@@ -3262,7 +3298,7 @@
       "overall": 44.2,
       "coding": 39.2,
       "math": null,
-      "reasoning": 46,
+      "reasoning": 45.2,
       "research": 83.7,
       "instruction": null,
       "writing": 48.3,
@@ -3327,6 +3363,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.452,
     "rank": 37
   },
   {
@@ -3352,7 +3389,7 @@
       "overall": 31,
       "coding": 18.6,
       "math": null,
-      "reasoning": 51.2,
+      "reasoning": 21.5,
       "research": 81,
       "instruction": null,
       "writing": 47.6,
@@ -3417,6 +3454,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.215,
     "rank": 38
   },
   {
@@ -3442,7 +3480,7 @@
       "overall": null,
       "coding": 10.6,
       "math": null,
-      "reasoning": 74.8,
+      "reasoning": null,
       "research": 79.3,
       "instruction": null,
       "writing": 46.4,
@@ -3507,6 +3545,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": null,
     "rank": 39
   },
   {
@@ -3532,7 +3571,7 @@
       "overall": null,
       "coding": 4,
       "math": null,
-      "reasoning": 56.5,
+      "reasoning": 31.4,
       "research": 82,
       "instruction": 77.1,
       "writing": 45.1,
@@ -3597,6 +3636,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.314,
     "rank": 40
   },
   {
@@ -3622,7 +3662,7 @@
       "overall": 18.9,
       "coding": 13.2,
       "math": null,
-      "reasoning": 47.5,
+      "reasoning": 16,
       "research": 83,
       "instruction": 82.9,
       "writing": 43.2,
@@ -3687,6 +3727,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.16,
     "rank": 41
   },
   {
@@ -3712,7 +3753,7 @@
       "overall": null,
       "coding": 18.2,
       "math": null,
-      "reasoning": 40.7,
+      "reasoning": null,
       "research": 37,
       "instruction": 38.8,
       "writing": 41.1,
@@ -3777,6 +3818,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": null,
     "rank": 42
   },
   {
@@ -3802,7 +3844,7 @@
       "overall": 33.7,
       "coding": 30.2,
       "math": null,
-      "reasoning": 51.9,
+      "reasoning": 24,
       "research": 80.3,
       "instruction": null,
       "writing": 40.6,
@@ -3867,6 +3909,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.24,
     "rank": 43
   },
   {
@@ -3892,7 +3935,7 @@
       "overall": 29.9,
       "coding": 28.7,
       "math": null,
-      "reasoning": 25.7,
+      "reasoning": 15.2,
       "research": 86.3,
       "instruction": null,
       "writing": 40,
@@ -3957,6 +4000,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.152,
     "rank": 44
   },
   {
@@ -3982,7 +4026,7 @@
       "overall": 24.9,
       "coding": 7.8,
       "math": null,
-      "reasoning": 51.8,
+      "reasoning": 26.3,
       "research": 78.3,
       "instruction": null,
       "writing": 37.5,
@@ -4047,6 +4091,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.263,
     "rank": 45
   },
   {
@@ -4072,7 +4117,7 @@
       "overall": 20.1,
       "coding": 10.8,
       "math": null,
-      "reasoning": 45.3,
+      "reasoning": 15.3,
       "research": 82,
       "instruction": null,
       "writing": 34.9,
@@ -4137,6 +4182,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.153,
     "rank": 46
   },
   {
@@ -4162,7 +4208,7 @@
       "overall": 17.8,
       "coding": 7.3,
       "math": null,
-      "reasoning": 41.5,
+      "reasoning": 10.2,
       "research": 80,
       "instruction": null,
       "writing": 29.2,
@@ -4227,6 +4273,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.102,
     "rank": 47
   },
   {
@@ -4252,7 +4299,7 @@
       "overall": 6.3,
       "coding": 1.1,
       "math": null,
-      "reasoning": 37.7,
+      "reasoning": 9.1,
       "research": 83.3,
       "instruction": null,
       "writing": 28,
@@ -4317,6 +4364,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.091,
     "rank": 48
   },
   {
@@ -4407,6 +4455,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": null,
     "rank": 49
   },
   {
@@ -4432,7 +4481,7 @@
       "overall": 11.8,
       "coding": 0.8,
       "math": null,
-      "reasoning": 39.9,
+      "reasoning": 8.5,
       "research": 79.3,
       "instruction": 81.4,
       "writing": 12.7,
@@ -4497,6 +4546,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": 0.085,
     "rank": 50
   },
   {
@@ -4522,7 +4572,7 @@
       "overall": null,
       "coding": 16.5,
       "math": 6,
-      "reasoning": 35.4,
+      "reasoning": null,
       "research": 49.3,
       "instruction": 34.3,
       "writing": 4.8,
@@ -4587,6 +4637,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": null,
     "rank": 51
   },
   {
@@ -4612,7 +4663,7 @@
       "overall": null,
       "coding": null,
       "math": null,
-      "reasoning": 29.7,
+      "reasoning": null,
       "research": null,
       "instruction": null,
       "writing": 4,
@@ -4677,6 +4728,7 @@
     "isCodingAgent": false,
     "deprecated": true,
     "unroundedAverage": null,
+    "raw_hle_diamond": null,
     "rank": 52
   },
   {
@@ -4702,7 +4754,7 @@
       "overall": null,
       "coding": 14.4,
       "math": 19.3,
-      "reasoning": 44.5,
+      "reasoning": null,
       "research": 50,
       "instruction": 43,
       "writing": 3.2,
@@ -4767,6 +4819,7 @@
     "isCodingAgent": false,
     "deprecated": false,
     "unroundedAverage": null,
+    "raw_hle_diamond": null,
     "rank": 53
   }
 ]

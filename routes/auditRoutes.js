@@ -62,7 +62,7 @@ async function getCachedAllModels() {
             const rawIntel = parseFloat(evaluations.artificial_analysis_intelligence_index);
             const rawCoding = parseFloat(evaluations.artificial_analysis_coding_index ?? evaluations.livecodebench);
             const rawMath = parseFloat(evaluations.artificial_analysis_math_index ?? evaluations.aime);
-            const rawReason = parseFloat(evaluations.gpqa ?? evaluations.hle);
+            const rawReason = parseFloat(item.category_scores?.reasoning ?? evaluations.hle_diamond ?? item.hleDiamond);
 
             return {
               _id: item.modelId || modelId,
@@ -464,17 +464,11 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
   }
 
   if (p === 'reasoning') {
-    if (typeof evals.gpqa === 'number' && evals.gpqa > 0) {
-      return round1(evals.gpqa <= 1 ? evals.gpqa * 100 : evals.gpqa);
-    }
-    if (typeof evals.hle === 'number' && evals.hle > 0) {
-      return round1(evals.hle <= 1 ? evals.hle * 100 : evals.hle);
-    }
-    if (typeof evals.artificial_analysis_intelligence_index === 'number' && evals.artificial_analysis_intelligence_index > 0) {
-      return round1(evals.artificial_analysis_intelligence_index);
-    }
     if (typeof item?.category_scores?.reasoning === 'number' && item.category_scores.reasoning > 0) {
       return round1(item.category_scores.reasoning);
+    }
+    if (typeof evals.hle_diamond === 'number' && evals.hle_diamond > 0) {
+      return round1(evals.hle_diamond <= 1 ? evals.hle_diamond * 100 : evals.hle_diamond);
     }
     if (typeof dbModel?.capabilities?.reasoning_score === 'number' && dbModel.capabilities.reasoning_score > 0) {
       return round1(dbModel.capabilities.reasoning_score);
@@ -1866,6 +1860,8 @@ function formatRawDataResponse(rawData) {
       intelligence_index: parseFloat(evaluations.artificial_analysis_intelligence_index) || null,
       coding_index: parseFloat(evaluations.artificial_analysis_coding_index) || null,
       math_index: parseFloat(evaluations.artificial_analysis_math_index ?? evaluations.aime) || null,
+      reasoning_index: parseFloat(item.category_scores?.reasoning ?? evaluations.hle_diamond) || null,
+      hle_diamond: parseFloat(evaluations.hle_diamond) || null,
       gpqa: parseFloat(evaluations.gpqa) || null,
       hle: parseFloat(evaluations.hle) || null,
       throughput: parseFloat(item.median_output_tokens_per_second) || null,

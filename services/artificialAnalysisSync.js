@@ -159,20 +159,14 @@ async function syncArtificialAnalysis(scrapedModels = null) {
       math_score = Math.min(100, Math.round(rawSci <= 1 ? rawSci * 100 : rawSci));
     }
 
-    // 4. Reasoning index (v5: HLE-Diamond, GPQA Diamond, HLE)
+    // 4. Reasoning index: Strictly official HLE-Diamond (Active reasoning benchmark)
     let reasoning_score = null;
-    const rawHleDiamond = parseFloat(item.hleDiamond ?? rankedInfo?.evaluations?.hle_diamond);
-    const rawGpqa = parseFloat(item.evaluations?.gpqa ?? item.gpqa ?? rankedInfo?.evaluations?.gpqa);
-    const rawHle = parseFloat(item.evaluations?.hle ?? item.hle ?? rankedInfo?.evaluations?.hle);
+    const rawHleDiamond = parseFloat(item.hleDiamond ?? item.evaluations?.hle_diamond ?? rankedInfo?.evaluations?.hle_diamond ?? rankedInfo?.category_scores?.reasoning);
     if (!isNaN(rawHleDiamond) && rawHleDiamond > 0) {
       reasoning_score = Math.min(100, Math.round(rawHleDiamond <= 1 ? rawHleDiamond * 100 : rawHleDiamond));
-    } else if (!isNaN(rawGpqa) && rawGpqa > 0) {
-      reasoning_score = Math.min(100, Math.round(rawGpqa <= 1 ? rawGpqa * 100 : rawGpqa));
-    } else if (!isNaN(rawHle) && rawHle > 0) {
-      reasoning_score = Math.min(100, Math.round(rawHle <= 1 ? rawHle * 100 : rawHle));
-    } else if (aa_index_score !== null) {
-      reasoning_score = aa_index_score;
     }
+    const rawGpqa = parseFloat(item.evaluations?.gpqa ?? item.gpqa ?? rankedInfo?.evaluations?.gpqa);
+    const rawHle = parseFloat(item.evaluations?.hle ?? item.hle ?? rankedInfo?.evaluations?.hle);
 
     let tokens_per_second = null;
     const rawTps = item.headline?.outputSpeed || item.performanceByPromptType?.medium?.medianOutputSpeed || item.timescaleData?.medianOutputSpeed || item.medianOutputSpeed || item.median_output_tokens_per_second || rankedInfo?.median_output_tokens_per_second;
@@ -215,6 +209,7 @@ async function syncArtificialAnalysis(scrapedModels = null) {
         artificial_analysis_intelligence_index: aa_index_score,
         artificial_analysis_coding_index: coding_score,
         artificial_analysis_math_index: math_score,
+        hle_diamond: rawHleDiamond !== null && !isNaN(rawHleDiamond) ? (rawHleDiamond <= 1 ? rawHleDiamond * 100 : rawHleDiamond) : (rankedInfo?.evaluations?.hle_diamond || null),
         gpqa: rawGpqa !== null && !isNaN(rawGpqa) ? (rawGpqa <= 1 ? rawGpqa * 100 : rawGpqa) : (rankedInfo?.evaluations?.gpqa || null),
         hle: rawHle !== null && !isNaN(rawHle) ? (rawHle <= 1 ? rawHle * 100 : rawHle) : (rankedInfo?.evaluations?.hle || null),
         frontier_code_20: rawFc !== null ? Math.round(rawFc <= 1 ? rawFc * 100 : rawFc) : (rankedInfo?.evaluations?.frontier_code_20 || null),
