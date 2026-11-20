@@ -497,8 +497,8 @@ async function generateSampleReport(options = {}) {
         baselineScore = topSub.score;
       }
 
-      const promptTokensPerSeat = purpose === 'Coding' ? 10000000 : 5000000;
-      const completionTokensPerSeat = purpose === 'Coding' ? 2500000 : 1250000;
+      const promptTokensPerSeat = purpose === 'Coding' ? 2500000 : 1250000;
+      const completionTokensPerSeat = purpose === 'Coding' ? 625000 : 312500;
       const totalPromptTokens = seats * promptTokensPerSeat;
       const totalCompletionTokens = seats * completionTokensPerSeat;
       totalTokens = totalPromptTokens + totalCompletionTokens;
@@ -690,15 +690,30 @@ async function generateSampleReport(options = {}) {
     if (optimizationGoal === 'performance') {
       let compatible = apiCandidates.filter(c => {
         if (c.isCurrent) return false;
-        if (c.monthly_cost >= currentCost) return false;
-        if (computedBaselineScore > 0 && c.performance_score < Math.round(computedBaselineScore * 0.95)) return false;
-        if (baselineRank !== 9999 && c.rank > baselineRank && c.performance_score < computedBaselineScore) return false;
+        if (currentCost > 0 && c.monthly_cost >= currentCost) return false;
+        if (computedBaselineScore > 0 && c.performance_score < Math.round(computedBaselineScore * 0.90)) return false;
         return true;
       });
       compatible.sort((a, b) => (b.performance_score - a.performance_score) || (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
       selectedApi = compatible[0] || null;
+
       if (!selectedApi) {
-        apiStatusText = "Already optimized in this category.";
+        // High quality cost saving candidate
+        let costSaving = apiCandidates.filter(c => !c.isCurrent && (currentCost === 0 || c.monthly_cost < currentCost) && c.performance_score >= (qualityThreshold || 80));
+        costSaving.sort((a, b) => (b.performance_score - a.performance_score) || (a.monthly_cost - b.monthly_cost));
+        selectedApi = costSaving[0] || null;
+      }
+      if (!selectedApi) {
+        // Frontier upgrade candidate from leaderboard with superior score
+        let frontier = apiCandidates.filter(c => !c.isCurrent && c.performance_score >= computedBaselineScore);
+        frontier.sort((a, b) => (b.performance_score - a.performance_score) || (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
+        selectedApi = frontier[0] || null;
+      }
+      if (!selectedApi) {
+        // Best general non-current candidate
+        let general = apiCandidates.filter(c => !c.isCurrent);
+        general.sort((a, b) => (b.performance_score - a.performance_score) || (a.rank - b.rank));
+        selectedApi = general[0] || null;
       }
     }
 
@@ -747,15 +762,22 @@ async function generateSampleReport(options = {}) {
     if (optimizationGoal === 'performance') {
       let compatible = subCandidates.filter(c => {
         if (c.isCurrent) return false;
-        if (c.cost >= (currentCost - 1.00)) return false;
-        if (computedBaselineScore > 0 && c.performance_score < Math.round(computedBaselineScore * 0.95)) return false;
-        if (baselineRank !== 9999 && c.rank > baselineRank && c.performance_score < computedBaselineScore) return false;
+        if (currentCost > 0 && c.cost >= currentCost) return false;
+        if (computedBaselineScore > 0 && c.performance_score < Math.round(computedBaselineScore * 0.90)) return false;
         return true;
       });
       compatible.sort((a, b) => (b.performance_score - a.performance_score) || (a.rank - b.rank) || (a.cost - b.cost));
       selectedSub = compatible[0] || null;
+
       if (!selectedSub) {
-        subStatusText = "Already optimized in this category.";
+        let costSaving = subCandidates.filter(c => !c.isCurrent && (currentCost === 0 || c.cost < currentCost) && c.performance_score >= (qualityThreshold || 75));
+        costSaving.sort((a, b) => (b.performance_score - a.performance_score) || (a.cost - b.cost));
+        selectedSub = costSaving[0] || null;
+      }
+      if (!selectedSub) {
+        let frontier = subCandidates.filter(c => !c.isCurrent && (currentCost === 0 ? c.cost <= 15 : c.cost <= currentCost));
+        frontier.sort((a, b) => (b.performance_score - a.performance_score) || (a.rank - b.rank) || (a.cost - b.cost));
+        selectedSub = frontier[0] || null;
       }
     }
 
@@ -763,12 +785,14 @@ async function generateSampleReport(options = {}) {
     const apiOption = selectedApi ? {
       _id: `rec_api_${idx}`,
       cost: parseFloat(selectedApi.monthly_cost.toFixed(2)),
-      savings: parseFloat((currentCost - selectedApi.monthly_cost).toFixed(2)),
+      savings: currentCost === 0 ? 0 : parseFloat(Math.max(0, currentCost - selectedApi.monthly_cost).toFixed(2)),
       name: selectedApi.name,
       modelId: selectedApi._id,
       performance_score: selectedApi.performance_score,
       category_rank: selectedApi.rank,
-      action: `Transition active users to direct API keys using ${selectedApi.name}.`,
+      action: currentCost === 0
+        ? `Adopt direct enterprise API keys with dedicated SLAs using ${selectedApi.name}.`
+        : `Transition active users to direct API keys using ${selectedApi.name}.`,
       statusText: "",
       isAlreadyOptimized: false,
       limits: selectedApi.limits,
@@ -777,8 +801,8 @@ async function generateSampleReport(options = {}) {
       recommendedProvider: getCleanProviderName(selectedApi._id.split('/')[0]),
       inputCostPerM: selectedApi.inputCostPerM,
       outputCostPerM: selectedApi.outputCostPerM,
-      defaultInputTokens: (type === 'subscription') ? (seats * (purpose === 'Coding' ? 10000000 : 5000000)) : inputTokens,
-      defaultOutputTokens: (type === 'subscription') ? (seats * (purpose === 'Coding' ? 2500000 : 1250000)) : outputTokens
+      defaultInputTokens: (type === 'subscription') ? (seats * (purpose === 'Coding' ? 2500000 : 1250000)) : inputTokens,
+      defaultOutputTokens: (type === 'subscription') ? (seats * (purpose === 'Coding' ? 625000 : 312500)) : outputTokens
     } : {
       _id: `rec_api_${idx}`,
       cost: parseFloat(currentCost.toFixed(2)),
@@ -812,7 +836,7 @@ async function generateSampleReport(options = {}) {
       _id: `rec_sub_${idx}`,
       planName: subFormattedPlan,
       cost: parseFloat(selectedSub.cost.toFixed(2)),
-      savings: parseFloat((currentCost - selectedSub.cost).toFixed(2)),
+      savings: currentCost === 0 ? 0 : parseFloat((currentCost - selectedSub.cost).toFixed(2)),
       limits: selectedSub.tier.limits,
       includedModels: selectedSub.tier.rawModels || [],
       modelId: recommendedSubTopModel ? recommendedSubTopModel._id : (selectedSub.tier.models?.[0] || null),
