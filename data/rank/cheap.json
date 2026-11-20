@@ -11897,7 +11897,7 @@
       "knowledge": 62.1,
       "multilingual": 17.8,
       "cheap": 0.44,
-      "fast": 122.8,
+      "fast": 179.4,
       "frontier": null,
       "vision": 62.1,
       "audio": null,
@@ -11945,11 +11945,11 @@
       "personality_bench": 3.2
     },
     "pricing": {
-      "price_1m_input_tokens": 0.26,
-      "price_1m_output_tokens": 0.985
+      "price_1m_input_tokens": 0.25,
+      "price_1m_output_tokens": 1
     },
-    "median_output_tokens_per_second": 122.8,
-    "median_time_to_first_token_seconds": 1.7,
+    "median_output_tokens_per_second": 179.4,
+    "median_time_to_first_token_seconds": 1.19,
     "context_length": 1000000,
     "isDefault": false,
     "isRouter": false,

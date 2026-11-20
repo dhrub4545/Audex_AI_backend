@@ -14,7 +14,7 @@ const { getRankCategory } = require('../services/rankStorage');
 router.get('/:auditId', optionalAuth, async (req, res) => {
   try {
     const { auditId } = req.params;
-    const isSampleAudit = auditId === '6a4fb719471a97ae89e88f49';
+    const isSampleAudit = auditId === '6a4fb719471a97ae89e88f49' || auditId === 'sample_audit_2026' || auditId === 'sample';
     if (!isSampleAudit && !mongoose.Types.ObjectId.isValid(auditId)) {
       return res.status(400).json({ error: 'Invalid audit ID format.' });
     }
@@ -23,7 +23,14 @@ router.get('/:auditId', optionalAuth, async (req, res) => {
     }
 
     // Verify audit exists and belongs to user
-    const audit = await Audit.findById(auditId);
+    let audit = null;
+    if (mongoose.Types.ObjectId.isValid(auditId)) {
+      audit = await Audit.findById(auditId);
+    }
+    if (!audit && isSampleAudit) {
+      const sampleReportService = require('../services/sampleReportService');
+      audit = await sampleReportService.getSampleReport();
+    }
     if (!audit && !isSampleAudit) {
       return res.status(404).json({ error: 'Audit report not found.' });
     }
@@ -73,7 +80,7 @@ router.post('/:auditId', optionalAuth, async (req, res) => {
       return res.status(400).json({ error: 'Message cannot exceed 5000 characters.' });
     }
 
-    const isSampleAudit = auditId === '6a4fb719471a97ae89e88f49';
+    const isSampleAudit = auditId === '6a4fb719471a97ae89e88f49' || auditId === 'sample_audit_2026' || auditId === 'sample';
     if (!isSampleAudit && !mongoose.Types.ObjectId.isValid(auditId)) {
       return res.status(400).json({ error: 'Invalid audit ID format.' });
     }
@@ -82,7 +89,14 @@ router.post('/:auditId', optionalAuth, async (req, res) => {
     }
     
     // 1. Fetch and verify audit context
-    const audit = await Audit.findById(auditId);
+    let audit = null;
+    if (mongoose.Types.ObjectId.isValid(auditId)) {
+      audit = await Audit.findById(auditId);
+    }
+    if (!audit && isSampleAudit) {
+      const sampleReportService = require('../services/sampleReportService');
+      audit = await sampleReportService.getSampleReport();
+    }
     if (!audit) {
       return res.status(404).json({ error: 'Audit report not found.' });
     }
@@ -554,7 +568,7 @@ INSTRUCTIONS:
 router.delete('/:auditId', auth, async (req, res) => {
   try {
     const { auditId } = req.params;
-    const isSampleAudit = auditId === '6a4fb719471a97ae89e88f49';
+    const isSampleAudit = auditId === '6a4fb719471a97ae89e88f49' || auditId === 'sample_audit_2026' || auditId === 'sample';
 
     // Verify audit exists and user owns it
     const audit = await Audit.findById(auditId);

@@ -13,6 +13,10 @@ async function invalidateAllCaches() {
     await cache.del('audex:tiers:list');
     await cache.del('audex:tiers:raw');
     await cache.del('audex:analysis:raw_data');
+    await cache.del('audex:audit:sample');
+    await cache.del('audex:audit:doc:sample_audit_2026');
+    await cache.del('audex:audit:doc:6a4fb719471a97ae89e88f49');
+    await cache.del('audex:audit:doc:sample');
     await cache.delByPrefix('audex:rec:');
     await cache.delByPrefix('audex:rank:');
   } catch (_) {}

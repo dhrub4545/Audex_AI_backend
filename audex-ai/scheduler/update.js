@@ -2,6 +2,7 @@ const { runAllCollectors } = require('../collectors/runCollectors');
 const { generateAllRankFiles } = require('../algorithms/overall_score');
 const { syncArtificialAnalysis } = require('../../services/artificialAnalysisSync');
 const { syncSubscriptionTiers } = require('../../services/subscriptionTierSync');
+const { generateSampleReport } = require('../../services/sampleReportService');
 
 /**
  * Complete Audex AI Benchmark Automation Pipeline
@@ -30,6 +31,10 @@ async function runAudexPipeline() {
     console.log('\n--- Phase 4: Auto-syncing Subscription Tiers & SaaS Plans ---');
     await syncSubscriptionTiers(scrapedModels);
 
+    // Phase 5: Synchronize and Auto-update Canonical Sample Audit Report with Latest Released Models
+    console.log('\n--- Phase 5: Auto-updating Daily Canonical Sample Report with Latest Models ---');
+    const sampleReport = await generateSampleReport({ log: false });
+
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
     console.log('\n====================================================');
     console.log(`🎉 Audex AI Pipeline completed successfully in ${elapsed}s!`);
@@ -37,6 +42,7 @@ async function runAudexPipeline() {
     console.log(`📐 LiveBench Math Models: ${(scrapedModels?.livebenchModels || []).length}`);
     console.log(`💾 Rank Files Updated in backend/data/rank/: ${totalRankFiles}`);
     console.log(`💳 Subscription Tiers Synchronized: Active`);
+    console.log(`📄 Daily Sample Report Updated: ${sampleReport.createdAt} ($${sampleReport.savings?.totalMonthly}/mo savings across ${sampleReport.savings?.recommendations?.length || 0} allocations)`);
     console.log('====================================================\n');
 
     return {
@@ -44,6 +50,9 @@ async function runAudexPipeline() {
       modelsProcessed: scrapedModels.length,
       livebenchModelsProcessed: (scrapedModels?.livebenchModels || []).length,
       rankFilesUpdated: totalRankFiles,
+      sampleReportUpdated: true,
+      sampleReportTimestamp: sampleReport.createdAt,
+      sampleReportSavings: sampleReport.savings?.totalMonthly,
       elapsedSeconds: elapsed
     };
   } catch (error) {

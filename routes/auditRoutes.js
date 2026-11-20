@@ -1381,16 +1381,53 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// Route to get the live, daily-updated sample audit report
+router.get('/sample', async (req, res) => {
+  try {
+    const sampleReportService = require('../services/sampleReportService');
+    const sample = await sampleReportService.getSampleReport();
+    if (!sample) {
+      return res.status(404).json({ error: 'Sample report not found' });
+    }
+    return res.json(sample);
+  } catch (err) {
+    console.error('Error fetching sample report:', err);
+    return res.status(500).json({ error: 'Failed to retrieve sample report', details: err.message });
+  }
+});
+
+// Route to manually trigger sample report regeneration
+router.post('/sample/regenerate', async (req, res) => {
+  try {
+    const adminSecret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
+    const authHeader = req.headers.authorization;
+    const bearerSecret = authHeader && authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+    const providedSecret = req.query.secret || req.headers['x-cron-secret'] || bearerSecret;
+
+    if (adminSecret && providedSecret !== adminSecret) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const sampleReportService = require('../services/sampleReportService');
+    const result = await sampleReportService.generateSampleReport({ log: true });
+    return res.json({ success: true, message: 'Sample report successfully updated with latest models', sample: result });
+  } catch (err) {
+    console.error('Error regenerating sample report:', err);
+    return res.status(500).json({ error: 'Failed to regenerate sample report', details: err.message });
+  }
+});
+
 // Route to get single audit by ID (requires authentication)
 router.get('/:id', optionalAuth, async (req, res, next) => {
   try {
     const id = req.params.id;
     // Guard: Do not intercept named sub-routes
-    const reservedWords = ['models', 'analysis', 'subscription-tiers', 'cron', 'cache', 'compare-report', 'audit-recommendation'];
+    const reservedWords = ['models', 'analysis', 'subscription-tiers', 'cron', 'cache', 'compare-report', 'audit-recommendation', 'sample'];
     if (reservedWords.includes(id)) {
       return next();
     }
-    if (!mongoose.Types.ObjectId.isValid(id) && id !== '6a4fb719471a97ae89e88f49') {
+    const isSampleAudit = id === '6a4fb719471a97ae89e88f49' || id === 'sample_audit_2026' || id === 'sample';
+    if (!mongoose.Types.ObjectId.isValid(id) && !isSampleAudit) {
       return res.status(400).json({ error: 'Invalid audit ID format.' });
     }
 
@@ -1398,17 +1435,23 @@ router.get('/:id', optionalAuth, async (req, res, next) => {
     let auditObj = await cache.get(cacheKey);
 
     if (!auditObj) {
-      const audit = await Audit.findById(id).lean();
-      if (!audit) {
-        return res.status(404).json({ error: 'Audit not found' });
+      if (isSampleAudit) {
+        const sampleReportService = require('../services/sampleReportService');
+        auditObj = await sampleReportService.getSampleReport();
+      } else {
+        const audit = await Audit.findById(id).lean();
+        if (!audit) {
+          return res.status(404).json({ error: 'Audit not found' });
+        }
+        auditObj = audit;
       }
-      auditObj = audit;
-      await cache.set(cacheKey, auditObj, 300); // 5 minutes TTL
+      if (auditObj) {
+        await cache.set(cacheKey, auditObj, 300); // 5 minutes TTL
+      }
     }
 
     // Verify ownership (except for the sample audit)
-    const isSampleAudit = id === '6a4fb719471a97ae89e88f49';
-    if (!isSampleAudit && auditObj.userId) {
+    if (!isSampleAudit && auditObj && auditObj.userId) {
       const ownerId = auditObj.userId._id ? auditObj.userId._id.toString() : auditObj.userId.toString();
       if (!req.user || ownerId !== req.user.id) {
         return res.status(403).json({ error: 'Access denied. You do not own this audit report.' });
@@ -2291,6 +2334,10 @@ const handleCronSync = async (req, res) => {
     await cache.del('audex:tiers:list');
     await cache.del('audex:tiers:raw');
     await cache.del('audex:analysis:raw_data');
+    await cache.del('audex:audit:sample');
+    await cache.del('audex:audit:doc:sample_audit_2026');
+    await cache.del('audex:audit:doc:6a4fb719471a97ae89e88f49');
+    await cache.del('audex:audit:doc:sample');
     await cache.delByPrefix('audex:rec:');
     await cache.delByPrefix('audex:rank:');
     res.json({ success: true, result });

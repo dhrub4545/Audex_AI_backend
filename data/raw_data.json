@@ -1,5 +1,5 @@
 {
-  "fetched_at_utc": "2026-11-20T13:09:53.926Z",
+  "fetched_at_utc": "2026-11-20T13:54:41.091Z",
   "categories": {
     "overall": [
       {
@@ -61277,8 +61277,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -61317,7 +61317,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -61338,8 +61338,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -92815,8 +92815,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -92855,7 +92855,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -92876,8 +92876,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -111651,8 +111651,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -111691,7 +111691,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -111712,8 +111712,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       }
     ],
@@ -128005,8 +128005,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -128045,7 +128045,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -128066,8 +128066,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -161441,8 +161441,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -161481,7 +161481,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -161502,8 +161502,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -176043,8 +176043,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -176083,7 +176083,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -176104,8 +176104,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -206042,6 +206042,79 @@
       },
       {
         "rank": 36,
+        "slug": "llama-4-maverick",
+        "modelId": "meta-llama/llama-4-maverick",
+        "name": "Llama 4 Maverick",
+        "organization": "Meta",
+        "rating": null,
+        "pricing": {
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
+        },
+        "evaluations": {
+          "artificial_analysis_intelligence_index": null,
+          "artificial_analysis_coding_index": null,
+          "artificial_analysis_math_index": 19.3,
+          "livebench_math": 19.3,
+          "gpqa": 67.1,
+          "hle": 4.9,
+          "hle_diamond": null,
+          "frontier_code_20": null,
+          "terminal_bench_40": 0,
+          "terminal_bench_science": null,
+          "critpt_agentic_hard": null,
+          "ifbench": 43,
+          "aime": 19.3,
+          "scicode": 31.7,
+          "mmlu_pro": 62.1,
+          "agentic_index": null,
+          "coding_agent_index": null,
+          "gdpval": -422.7,
+          "gdp_pdf": 0.8,
+          "automation_bench": 0.2,
+          "tau_banking": 3.7,
+          "harvey_lab": null,
+          "healthbench": null,
+          "personality_bench": 3.2
+        },
+        "category_scores": {
+          "overall": null,
+          "coding": null,
+          "math": 19.3,
+          "reasoning": null,
+          "research": 50,
+          "instruction": 43,
+          "writing": 3.2,
+          "knowledge": 62.1,
+          "multilingual": 17.8,
+          "cheap": 0.44,
+          "fast": 179.4,
+          "frontier": null,
+          "vision": 62.1,
+          "audio": null,
+          "open-weights": null,
+          "agents": null,
+          "long-context": 1000000,
+          "enterprise": null,
+          "legal": null,
+          "medical": null,
+          "finance": 3.7,
+          "scientific": null,
+          "creative-writing": 3.2,
+          "data-analysis": 0.2,
+          "roleplay": 3.5,
+          "translation": 17.8,
+          "summarization": 75.9,
+          "extraction": 0.8,
+          "tool-use": 0,
+          "function-calling": null
+        },
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
+        "context_length": 1000000
+      },
+      {
+        "rank": 37,
         "slug": "lfm3-1-7b",
         "modelId": "liquidai/lfm3-1-7b",
         "name": "LFM3-1.7B",
@@ -206114,7 +206187,7 @@
         "context_length": 262144
       },
       {
-        "rank": 37,
+        "rank": 38,
         "slug": "gpt-oss-120b-low",
         "modelId": "openai/gpt-oss-120b-low",
         "name": "gpt-oss-120b (Low)",
@@ -206187,7 +206260,7 @@
         "context_length": 131072
       },
       {
-        "rank": 38,
+        "rank": 39,
         "slug": "gemini-3-5-flash-medium",
         "modelId": "google/gemini-3-5-flash-medium",
         "name": "Gemini 3.5 Flash (Medium)",
@@ -206260,7 +206333,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 39,
+        "rank": 40,
         "slug": "gemini-2-5-flash",
         "modelId": "google/gemini-2.5-flash",
         "name": "Gemini 2.5 Flash (Non-reasoning)",
@@ -206333,7 +206406,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 40,
+        "rank": 41,
         "slug": "gpt-5-4-mini",
         "modelId": "openai/gpt-5-4-mini",
         "name": "GPT-5.4 mini (Xhigh)",
@@ -206406,7 +206479,7 @@
         "context_length": 400000
       },
       {
-        "rank": 41,
+        "rank": 42,
         "slug": "nvidia-nemotron-3-nano-30b-a3b-reasoning",
         "modelId": "nvidia/nvidia-nemotron-3-nano-30b-a3b-reasoning",
         "name": "NVIDIA Nemotron 3 Nano 30B A3B (Reasoning)",
@@ -206479,7 +206552,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 42,
+        "rank": 43,
         "slug": "gemini-3-6-flash",
         "modelId": "google/gemini-3-6-flash",
         "name": "Gemini 3.6 Flash (High)",
@@ -206552,7 +206625,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 43,
+        "rank": 44,
         "slug": "gemini-3-flash",
         "modelId": "google/gemini-3-flash",
         "name": "Gemini 3 Flash Preview (Non-reasoning)",
@@ -206625,7 +206698,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 44,
+        "rank": 45,
         "slug": "deepseek-v4-1-flash-1017-high",
         "modelId": "deepseek/deepseek-v4-1-flash-1017-high",
         "name": "DeepSeek V4.1 Flash 1017 (High)",
@@ -206698,7 +206771,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 45,
+        "rank": 46,
         "slug": "ling-3-0-tiny",
         "modelId": "inclusionai/ling-3-0-tiny",
         "name": "Ling 3.0 Tiny",
@@ -206771,7 +206844,7 @@
         "context_length": 262144
       },
       {
-        "rank": 46,
+        "rank": 47,
         "slug": "gemini-4-hydrogen",
         "modelId": "google/gemini-4-hydrogen",
         "name": "Gemini 4 Hydrogen (Xhigh)",
@@ -206844,7 +206917,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 47,
+        "rank": 48,
         "slug": "muse-spark-open",
         "modelId": "meta-llama/muse-spark-open",
         "name": "Muse Spark Open (Xhigh)",
@@ -206917,7 +206990,7 @@
         "context_length": 1048576
       },
       {
-        "rank": 48,
+        "rank": 49,
         "slug": "deepseek-v4-flash-vision",
         "modelId": "deepseek/deepseek-v4-flash-vision",
         "name": "DeepSeek V4 Flash Vision (Max)",
@@ -206990,7 +207063,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 49,
+        "rank": 50,
         "slug": "deepseek-v4-1-flash-1017",
         "modelId": "deepseek/deepseek-v4-1-flash-1017",
         "name": "DeepSeek V4.1 Flash 1017 (Max)",
@@ -207063,7 +207136,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 50,
+        "rank": 51,
         "slug": "gemini-4-hydrogen-high",
         "modelId": "google/gemini-4-hydrogen-high",
         "name": "Gemini 4 Hydrogen (High)",
@@ -207136,7 +207209,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 51,
+        "rank": 52,
         "slug": "gemini-4-hydrogen-medium",
         "modelId": "google/gemini-4-hydrogen-medium",
         "name": "Gemini 4 Hydrogen (Medium)",
@@ -207209,7 +207282,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 52,
+        "rank": 53,
         "slug": "ministral-3-3b",
         "modelId": "mistralai/ministral-3-3b",
         "name": "Ministral 3 3B",
@@ -207282,7 +207355,7 @@
         "context_length": 256000
       },
       {
-        "rank": 53,
+        "rank": 54,
         "slug": "gemini-4-hydrogen-low",
         "modelId": "google/gemini-4-hydrogen-low",
         "name": "Gemini 4 Hydrogen (Low)",
@@ -207355,7 +207428,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 54,
+        "rank": 55,
         "slug": "grok-build-0-1-06-16",
         "modelId": "x-ai/grok-build-0-1-06-16",
         "name": "Grok Build 0.1 0616",
@@ -207428,7 +207501,7 @@
         "context_length": 256000
       },
       {
-        "rank": 55,
+        "rank": 56,
         "slug": "nvidia-nemotron-3-nano-30b-a3b",
         "modelId": "nvidia/nvidia-nemotron-3-nano-30b-a3b",
         "name": "NVIDIA Nemotron 3 Nano 30B A3B (Non-reasoning)",
@@ -207501,7 +207574,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 56,
+        "rank": 57,
         "slug": "gemini-3-5-flash",
         "modelId": "google/gemini-3-5-flash",
         "name": "Gemini 3.5 Flash (High)",
@@ -207574,7 +207647,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 57,
+        "rank": 58,
         "slug": "deepseek-v4-1-flash-1017-non-reasoning",
         "modelId": "deepseek/deepseek-v4-1-flash-1017-non-reasoning",
         "name": "DeepSeek V4.1 Flash 1017 (Non-reasoning)",
@@ -207647,7 +207720,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 58,
+        "rank": 59,
         "slug": "nova-2-0-lite-reasoning",
         "modelId": "aws/nova-2-0-lite-reasoning",
         "name": "Nova 2.0 Lite (High)",
@@ -207720,7 +207793,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 59,
+        "rank": 60,
         "slug": "gpt-5-4-nano",
         "modelId": "openai/gpt-5-4-nano",
         "name": "GPT-5.4 nano (Xhigh)",
@@ -207793,7 +207866,7 @@
         "context_length": 400000
       },
       {
-        "rank": 60,
+        "rank": 61,
         "slug": "gpt-5-nano-medium",
         "modelId": "openai/gpt-5-nano-medium",
         "name": "GPT-5 nano (Medium)",
@@ -207866,7 +207939,7 @@
         "context_length": 400000
       },
       {
-        "rank": 61,
+        "rank": 62,
         "slug": "gpt-5-nano",
         "modelId": "openai/gpt-5-nano",
         "name": "GPT-5 nano (High)",
@@ -207939,7 +208012,7 @@
         "context_length": 400000
       },
       {
-        "rank": 62,
+        "rank": 63,
         "slug": "nova-2-0-lite-reasoning-low",
         "modelId": "aws/nova-2-0-lite-reasoning-low",
         "name": "Nova 2.0 Lite (Low)",
@@ -208012,7 +208085,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 63,
+        "rank": 64,
         "slug": "nova-2-0-lite-reasoning-medium",
         "modelId": "aws/nova-2-0-lite-reasoning-medium",
         "name": "Nova 2.0 Lite (Medium)",
@@ -208085,7 +208158,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 64,
+        "rank": 65,
         "slug": "claude-sonnet-5-5",
         "modelId": "anthropic/claude-sonnet-5-5",
         "name": "Claude Sonnet 5.5 (Max, Default Fallback)",
@@ -208158,7 +208231,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 65,
+        "rank": 66,
         "slug": "mistral-medium-3-5",
         "modelId": "mistralai/mistral-medium-3-5",
         "name": "Mistral Medium 3.5",
@@ -208231,7 +208304,7 @@
         "context_length": 256000
       },
       {
-        "rank": 66,
+        "rank": 67,
         "slug": "gpt-4-1-nano",
         "modelId": "openai/gpt-4-1-nano",
         "name": "GPT-4.1 nano",
@@ -208304,7 +208377,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 67,
+        "rank": 68,
         "slug": "step-5",
         "modelId": "stepfun/step-5",
         "name": "Step 5 Preview",
@@ -208377,7 +208450,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 68,
+        "rank": 69,
         "slug": "qwen3-7-max",
         "modelId": "alibaba/qwen3-7-max",
         "name": "Qwen3.7 Max",
@@ -208450,7 +208523,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 69,
+        "rank": 70,
         "slug": "mistral-small-4",
         "modelId": "mistralai/mistral-small-4",
         "name": "Mistral Small 4 (Reasoning)",
@@ -208523,7 +208596,7 @@
         "context_length": 256000
       },
       {
-        "rank": 70,
+        "rank": 71,
         "slug": "claude-sonnet-5-5-xhigh",
         "modelId": "anthropic/claude-sonnet-5-5-xhigh",
         "name": "Claude Sonnet 5.5 (Xhigh, Default Fallback)",
@@ -208596,7 +208669,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 71,
+        "rank": 72,
         "slug": "deepseek-v4-flash-0420",
         "modelId": "deepseek/deepseek-v4-flash-0420",
         "name": "DeepSeek V4 Flash 0420 (Max)",
@@ -208669,7 +208742,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 72,
+        "rank": 73,
         "slug": "claude-sonnet-5-5-high",
         "modelId": "anthropic/claude-sonnet-5-5-high",
         "name": "Claude Sonnet 5.5 (High, Default Fallback)",
@@ -208742,7 +208815,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 73,
+        "rank": 74,
         "slug": "nvidia-nemotron-nano-9b-v2",
         "modelId": "nvidia/nvidia-nemotron-nano-9b-v2",
         "name": "NVIDIA Nemotron Nano 9B V2 (Non-reasoning)",
@@ -208815,7 +208888,7 @@
         "context_length": 131072
       },
       {
-        "rank": 74,
+        "rank": 75,
         "slug": "deepseek-r1-0120",
         "modelId": "deepseek/deepseek-r1-0120",
         "name": "DeepSeek R1 (Jan '25)",
@@ -208888,7 +208961,7 @@
         "context_length": 128000
       },
       {
-        "rank": 75,
+        "rank": 76,
         "slug": "claude-sonnet-5-5-medium",
         "modelId": "anthropic/claude-sonnet-5-5-medium",
         "name": "Claude Sonnet 5.5 (Medium, Default Fallback)",
@@ -208961,7 +209034,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 76,
+        "rank": 77,
         "slug": "gpt-5-4-mini-medium",
         "modelId": "openai/gpt-5-4-mini-medium",
         "name": "GPT-5.4 mini (Medium)",
@@ -209034,7 +209107,7 @@
         "context_length": 400000
       },
       {
-        "rank": 77,
+        "rank": 78,
         "slug": "qwen3-coder-30b-a3b-instruct",
         "modelId": "alibaba/qwen3-coder-30b-a3b-instruct",
         "name": "Qwen3 Coder 30B A3B Instruct",
@@ -209107,7 +209180,7 @@
         "context_length": 262144
       },
       {
-        "rank": 78,
+        "rank": 79,
         "slug": "nova-lite",
         "modelId": "aws/nova-lite",
         "name": "Nova Lite",
@@ -209180,7 +209253,7 @@
         "context_length": 300000
       },
       {
-        "rank": 79,
+        "rank": 80,
         "slug": "step-3-7-flash",
         "modelId": "stepfun/step-3-7-flash",
         "name": "Step 3.7 Flash",
@@ -209253,7 +209326,7 @@
         "context_length": 262144
       },
       {
-        "rank": 80,
+        "rank": 81,
         "slug": "gpt-5-1-codex-mini",
         "modelId": "openai/gpt-5-1-codex-mini",
         "name": "GPT-5.1 Codex mini (High)",
@@ -209326,7 +209399,7 @@
         "context_length": 400000
       },
       {
-        "rank": 81,
+        "rank": 82,
         "slug": "claude-sonnet-5-5-low",
         "modelId": "anthropic/claude-sonnet-5-5-low",
         "name": "Claude Sonnet 5.5 (Low, Default Fallback)",
@@ -209399,7 +209472,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 82,
+        "rank": 83,
         "slug": "ling-3-0-flash",
         "modelId": "inclusionai/ling-3-0-flash",
         "name": "Ling 3.0 Flash",
@@ -209472,7 +209545,7 @@
         "context_length": 262144
       },
       {
-        "rank": 83,
+        "rank": 84,
         "slug": "tiny-aya-global",
         "modelId": "cohere/tiny-aya-global",
         "name": "Tiny Aya Global",
@@ -209545,7 +209618,7 @@
         "context_length": 8192
       },
       {
-        "rank": 84,
+        "rank": 85,
         "slug": "gemini-3-5-flash-minimal",
         "modelId": "google/gemini-3-5-flash-minimal",
         "name": "Gemini 3.5 Flash (Minimal)",
@@ -209618,7 +209691,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 85,
+        "rank": 86,
         "slug": "gpt-5-4-nano-medium",
         "modelId": "openai/gpt-5-4-nano-medium",
         "name": "GPT-5.4 nano (Medium)",
@@ -209691,7 +209764,7 @@
         "context_length": 400000
       },
       {
-        "rank": 86,
+        "rank": 87,
         "slug": "nova-2-0-lite",
         "modelId": "aws/nova-2-0-lite",
         "name": "Nova 2.0 Lite (Non-reasoning)",
@@ -209764,7 +209837,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 87,
+        "rank": 88,
         "slug": "gpt-5-codex",
         "modelId": "openai/gpt-5-codex",
         "name": "GPT-5 Codex (High)",
@@ -209837,7 +209910,7 @@
         "context_length": 400000
       },
       {
-        "rank": 88,
+        "rank": 89,
         "slug": "gpt-5-nano-minimal",
         "modelId": "openai/gpt-5-nano-minimal",
         "name": "GPT-5 nano (Minimal)",
@@ -209910,7 +209983,7 @@
         "context_length": 400000
       },
       {
-        "rank": 89,
+        "rank": 90,
         "slug": "solar-mini4",
         "modelId": "upstage/solar-mini4",
         "name": "Solar Mini 4",
@@ -209983,7 +210056,7 @@
         "context_length": 1048576
       },
       {
-        "rank": 90,
+        "rank": 91,
         "slug": "llama-3-1-instruct-8b",
         "modelId": "meta-llama/llama-3-1-instruct-8b",
         "name": "Llama 3.1 Instruct 8B",
@@ -210056,7 +210129,7 @@
         "context_length": 128000
       },
       {
-        "rank": 91,
+        "rank": 92,
         "slug": "deepseek-v4-flash",
         "modelId": "deepseek/deepseek-v4-flash",
         "name": "DeepSeek V4 Flash 0731 (Max)",
@@ -210129,7 +210202,7 @@
         "context_length": 1000000
       },
       {
-        "rank": 92,
+        "rank": 93,
         "slug": "gpt-5-5-instant-06-26",
         "modelId": "openai/gpt-5-5-instant-06-26",
         "name": "GPT-5.5 Instant (June 2026)",
@@ -210202,7 +210275,7 @@
         "context_length": 400000
       },
       {
-        "rank": 93,
+        "rank": 94,
         "slug": "gpt-4o",
         "modelId": "openai/gpt-4o",
         "name": "GPT-4o (Nov '24)",
@@ -210275,7 +210348,7 @@
         "context_length": 128000
       },
       {
-        "rank": 94,
+        "rank": 95,
         "slug": "nvidia-nemotron-nano-12b-v2-vl",
         "modelId": "nvidia/nvidia-nemotron-nano-12b-v2-vl",
         "name": "NVIDIA Nemotron Nano 12B v2 VL (Non-reasoning)",
@@ -210346,79 +210419,6 @@
         "median_output_tokens_per_second": 123,
         "median_time_to_first_token_seconds": 1.64,
         "context_length": 128000
-      },
-      {
-        "rank": 95,
-        "slug": "llama-4-maverick",
-        "modelId": "meta-llama/llama-4-maverick",
-        "name": "Llama 4 Maverick",
-        "organization": "Meta",
-        "rating": null,
-        "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
-        },
-        "evaluations": {
-          "artificial_analysis_intelligence_index": null,
-          "artificial_analysis_coding_index": null,
-          "artificial_analysis_math_index": 19.3,
-          "livebench_math": 19.3,
-          "gpqa": 67.1,
-          "hle": 4.9,
-          "hle_diamond": null,
-          "frontier_code_20": null,
-          "terminal_bench_40": 0,
-          "terminal_bench_science": null,
-          "critpt_agentic_hard": null,
-          "ifbench": 43,
-          "aime": 19.3,
-          "scicode": 31.7,
-          "mmlu_pro": 62.1,
-          "agentic_index": null,
-          "coding_agent_index": null,
-          "gdpval": -422.7,
-          "gdp_pdf": 0.8,
-          "automation_bench": 0.2,
-          "tau_banking": 3.7,
-          "harvey_lab": null,
-          "healthbench": null,
-          "personality_bench": 3.2
-        },
-        "category_scores": {
-          "overall": null,
-          "coding": null,
-          "math": 19.3,
-          "reasoning": null,
-          "research": 50,
-          "instruction": 43,
-          "writing": 3.2,
-          "knowledge": 62.1,
-          "multilingual": 17.8,
-          "cheap": 0.44,
-          "fast": 122.8,
-          "frontier": null,
-          "vision": 62.1,
-          "audio": null,
-          "open-weights": null,
-          "agents": null,
-          "long-context": 1000000,
-          "enterprise": null,
-          "legal": null,
-          "medical": null,
-          "finance": 3.7,
-          "scientific": null,
-          "creative-writing": 3.2,
-          "data-analysis": 0.2,
-          "roleplay": 3.5,
-          "translation": 17.8,
-          "summarization": 75.9,
-          "extraction": 0.8,
-          "tool-use": 0,
-          "function-calling": null
-        },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
-        "context_length": 1000000
       },
       {
         "rank": 96,
@@ -253502,8 +253502,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -253542,7 +253542,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -253563,8 +253563,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -290813,8 +290813,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -290853,7 +290853,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -290874,8 +290874,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -352579,8 +352579,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -352619,7 +352619,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -352640,8 +352640,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -369373,8 +369373,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -369413,7 +369413,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -369434,8 +369434,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       }
     ],
@@ -389888,8 +389888,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -389928,7 +389928,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -389949,8 +389949,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -393905,8 +393905,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -393945,7 +393945,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -393966,8 +393966,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -420990,8 +420990,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -421030,7 +421030,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -421051,8 +421051,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -429898,8 +429898,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -429938,7 +429938,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -429959,8 +429959,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -449756,8 +449756,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -449796,7 +449796,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -449817,8 +449817,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -468519,8 +468519,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -468559,7 +468559,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -468580,8 +468580,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -567712,8 +567712,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -567752,7 +567752,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -567773,8 +567773,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -607698,8 +607698,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -607738,7 +607738,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -607759,8 +607759,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       }
     ],
@@ -625658,8 +625658,8 @@
         "organization": "Meta",
         "rating": null,
         "pricing": {
-          "price_1m_input_tokens": 0.26,
-          "price_1m_output_tokens": 0.985
+          "price_1m_input_tokens": 0.25,
+          "price_1m_output_tokens": 1
         },
         "evaluations": {
           "artificial_analysis_intelligence_index": null,
@@ -625698,7 +625698,7 @@
           "knowledge": 62.1,
           "multilingual": 17.8,
           "cheap": 0.44,
-          "fast": 122.8,
+          "fast": 179.4,
           "frontier": null,
           "vision": 62.1,
           "audio": null,
@@ -625719,8 +625719,8 @@
           "tool-use": 0,
           "function-calling": null
         },
-        "median_output_tokens_per_second": 122.8,
-        "median_time_to_first_token_seconds": 1.7,
+        "median_output_tokens_per_second": 179.4,
+        "median_time_to_first_token_seconds": 1.19,
         "context_length": 1000000
       },
       {
@@ -709769,9 +709769,9 @@
           "rating": null,
           "rank": null,
           "pricing": {
-            "price_1m_input_tokens": 0.26,
-            "price_1m_output_tokens": 0.985,
-            "price_1m_blended_3_to_1": 0.44125000000000003
+            "price_1m_input_tokens": 0.25,
+            "price_1m_output_tokens": 1,
+            "price_1m_blended_3_to_1": 0.4375
           },
           "evaluations": {
             "artificial_analysis_intelligence_index": null,
