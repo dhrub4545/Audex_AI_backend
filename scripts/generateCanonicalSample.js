@@ -141,11 +141,14 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
   }
 
   if (p === 'math') {
-    if (typeof evals.aime === 'number' && evals.aime > 0) {
-      return Math.min(99, Math.round(evals.aime));
+    if (typeof evals.livebench_math === 'number' && evals.livebench_math > 0) {
+      return Math.min(100, Math.round(evals.livebench_math));
     }
     if (typeof evals.artificial_analysis_math_index === 'number' && evals.artificial_analysis_math_index > 0) {
-      return Math.min(99, Math.round((evals.artificial_analysis_math_index / 67) * 98));
+      return Math.min(100, Math.round(evals.artificial_analysis_math_index));
+    }
+    if (typeof evals.aime === 'number' && evals.aime > 0) {
+      return Math.min(99, Math.round(evals.aime));
     }
   }
 

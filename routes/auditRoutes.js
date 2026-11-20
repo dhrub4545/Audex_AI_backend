@@ -114,7 +114,11 @@ function generateFallbackCompareReport(baseline, recommended) {
         'Transitioning from ' + baseline.name + ' to ' + recommended.name + ' offers substantial cost and operational efficiencies. With ' + recommended.name + ' priced at $' + recInput + '/1M input and $' + recOutput + '/1M output compared to ' + baseline.name + ' ($' + baseInput + '/1M input and $' + baseOutput + '/1M output), your workload achieves an estimated ' + avgSavingsPct + '% direct unit token cost reduction.',
         'Beyond raw pricing, ' + recommended.name + ' delivers high inference throughput (' + recSpeed + ' tokens/sec), preserving capability thresholds for production workloads while slashing AI API budget overhead.'
       ],
-      quality_analysis_box: 'Quality Analysis: ' + recommended.name + ' retains approximately ' + (recommended.coding_index && baseline.coding_index ? Math.round((recommended.coding_index / baseline.coding_index) * 100) : 92) + '% of baseline capability while running on an optimized inference route.'
+      quality_analysis_box: 'Quality Analysis: ' + recommended.name + ' retains approximately ' + (() => {
+      const rec = (recommended.purpose === 'Math' || purpose === 'Math') ? (recommended.math_index || recommended.performance_score) : (recommended.coding_index || recommended.performance_score);
+      const base = (recommended.purpose === 'Math' || purpose === 'Math') ? (baseline.math_index || baseline.performance_score) : (baseline.coding_index || baseline.performance_score);
+      return (rec && base) ? Math.min(100, Math.round((rec / base) * 100)) : 92;
+    })() + '% of baseline capability while running on an optimized inference route.'
     },
     route_migration_checklist: {
       title: '🚀 Route Migration Checklist',
@@ -237,7 +241,8 @@ function findTopModelOfSubscription(tier, rankData, allModels, purpose = 'mixed'
     const slug = mid.includes('/') ? mid.split('/')[1] : mid;
     const entry = findRankEntry(rankData, slug, mid);
     const dbModel = allModels?.find(m => m._id === mid || (m._id && m._id.toLowerCase() === mid.toLowerCase()) || (m._id && m._id.split('/')[1] === slug));
-    const score = getEvaluationScore(entry, purpose, dbModel, 'aa_index_score');
+    const targetCapField = (purpose && purpose.toLowerCase() === 'math') ? 'math_score' : ((purpose && purpose.toLowerCase() === 'coding') ? 'coding_score' : 'aa_index_score');
+    const score = getEvaluationScore(entry, purpose, dbModel, targetCapField);
     const rank = entry && typeof entry.rank === 'number' && entry.rank > 0 ? entry.rank : 99999;
     
     const isBetter = (rank < bestRank) || 
@@ -2185,6 +2190,7 @@ Baseline Model:
 - Cost per 1M Output Tokens: ${baseline.cost_per_m_output ?? baseline.pricing?.price_1m_output_tokens ?? 0}
 - Tokens Per Second (Speed): ${baseline.tokens_per_second ?? baseline.throughput ?? 'N/A'}
 - Coding Index: ${baseline.coding_index ?? 'N/A'}
+- Math Index: ${baseline.math_index ?? baseline.evaluations?.livebench_math ?? baseline.evaluations?.artificial_analysis_math_index ?? 'N/A'}
 - Intelligence Index: ${baseline.intelligence_index ?? 'N/A'}
 - Context Length: ${baseline.context_length ?? 'N/A'}
 
@@ -2196,6 +2202,7 @@ Recommended Model:
 - Cost per 1M Output Tokens: ${recommended.cost_per_m_output ?? recommended.pricing?.price_1m_output_tokens ?? 0}
 - Tokens Per Second (Speed): ${recommended.tokens_per_second ?? recommended.throughput ?? 'N/A'}
 - Coding Index: ${recommended.coding_index ?? 'N/A'}
+- Math Index: ${recommended.math_index ?? recommended.evaluations?.livebench_math ?? recommended.evaluations?.artificial_analysis_math_index ?? 'N/A'}
 - Intelligence Index: ${recommended.intelligence_index ?? 'N/A'}
 - Context Length: ${recommended.context_length ?? 'N/A'}
 

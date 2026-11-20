@@ -111,6 +111,7 @@ function pruneRawDataForDb(rawData) {
             artificial_analysis_intelligence_index: m.evaluations.artificial_analysis_intelligence_index,
             artificial_analysis_coding_index: m.evaluations.artificial_analysis_coding_index,
             artificial_analysis_math_index: m.evaluations.artificial_analysis_math_index,
+            livebench_math: m.evaluations.livebench_math,
             aime: m.evaluations.aime,
             livecodebench: m.evaluations.livecodebench,
             gpqa: m.evaluations.gpqa,
