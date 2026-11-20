@@ -95,7 +95,7 @@ async function getCachedAllModels() {
 }
 
 // Fallback report generator for Model Comparison
-function generateFallbackCompareReport(baseline, recommended) {
+function generateFallbackCompareReport(baseline, recommended, targetPurpose = 'Mixed') {
   const baseInput = baseline.cost_per_m_input ?? baseline.pricing?.price_1m_input_tokens ?? 3;
   const baseOutput = baseline.cost_per_m_output ?? baseline.pricing?.price_1m_output_tokens ?? 15;
   const recInput = recommended.cost_per_m_input ?? recommended.pricing?.price_1m_input_tokens ?? 0.5;
@@ -106,6 +106,7 @@ function generateFallbackCompareReport(baseline, recommended) {
   const avgSavingsPct = Math.max(0, Math.round((inputSavingsPct + outputSavingsPct) / 2));
   
   const recSpeed = recommended.tokens_per_second ?? recommended.throughput ?? '110+';
+  const resolvedPurpose = targetPurpose || recommended.purpose || baseline.purpose || 'Mixed';
 
   return {
     architectural_insight: {
@@ -115,10 +116,11 @@ function generateFallbackCompareReport(baseline, recommended) {
         'Beyond raw pricing, ' + recommended.name + ' delivers high inference throughput (' + recSpeed + ' tokens/sec), preserving capability thresholds for production workloads while slashing AI API budget overhead.'
       ],
       quality_analysis_box: 'Quality Analysis: ' + recommended.name + ' retains approximately ' + (() => {
-      const rec = (recommended.purpose === 'Math' || purpose === 'Math') ? (recommended.math_index || recommended.performance_score) : (recommended.coding_index || recommended.performance_score);
-      const base = (recommended.purpose === 'Math' || purpose === 'Math') ? (baseline.math_index || baseline.performance_score) : (baseline.coding_index || baseline.performance_score);
-      return (rec && base) ? Math.min(100, Math.round((rec / base) * 100)) : 92;
-    })() + '% of baseline capability while running on an optimized inference route.'
+        const isMath = resolvedPurpose === 'Math' || recommended.purpose === 'Math' || baseline.purpose === 'Math';
+        const rec = isMath ? (recommended.math_index || recommended.evaluations?.livebench_math || recommended.performance_score) : (recommended.coding_index || recommended.performance_score);
+        const base = isMath ? (baseline.math_index || baseline.evaluations?.livebench_math || baseline.performance_score) : (baseline.coding_index || baseline.performance_score);
+        return (rec && base) ? Math.min(100, Math.round((rec / base) * 100)) : 95;
+      })() + '% of baseline capability while running on an optimized inference route.'
     },
     route_migration_checklist: {
       title: '🚀 Route Migration Checklist',
@@ -2195,7 +2197,7 @@ router.get('/models/list', async (req, res) => {
 
 // Route to generate comparison report using Gemini API
 router.post('/compare/report', optionalAuth, async (req, res) => {
-  const { baseline, recommended } = req.body;
+  const { baseline, recommended, purpose } = req.body;
   
   if (!baseline || !recommended) {
     return res.status(400).json({ error: 'Missing baseline or recommended model details' });
@@ -2215,7 +2217,7 @@ router.post('/compare/report', optionalAuth, async (req, res) => {
 
   const geminiKey = process.env.GEMINI_API_KEY || process.env.Gemini_Api_key;
   if (!geminiKey) {
-    const fallbackReport = generateFallbackCompareReport(baseline, recommended);
+    const fallbackReport = generateFallbackCompareReport(baseline, recommended, purpose);
     return res.json({
       report: fallbackReport,
       updatedCredits: user ? user.credits : null
@@ -2308,7 +2310,7 @@ Return ONLY a valid JSON object matching the following structure (no markdown wr
     });
   } catch (error) {
     console.warn('Gemini report generation warning, using fallback algorithm:', error.message);
-    const fallbackReport = generateFallbackCompareReport(baseline, recommended);
+    const fallbackReport = generateFallbackCompareReport(baseline, recommended, purpose);
     res.json({
       report: fallbackReport,
       updatedCredits: req.user ? user?.credits : null
