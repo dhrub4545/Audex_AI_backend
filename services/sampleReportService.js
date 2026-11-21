@@ -427,21 +427,27 @@ async function generateSampleReport(options = {}) {
       toolName: 'OpenAI',
       plan: 'ChatGPT Plus',
       seats: 1,
-      purpose: 'Mixed'
+      purpose: 'Mixed',
+      topModelId: 'openai/codex-gpt-6-2-sol-xhigh',
+      topModelName: 'Codex - GPT-6.2 Sol (xhigh)'
     },
     {
       type: 'subscription',
       toolName: 'Anthropic',
       plan: 'Claude Pro',
       seats: 5,
-      purpose: 'Mixed'
+      purpose: 'Mixed',
+      topModelId: 'anthropic/claude-code-claude-sonnet-5-5-max',
+      topModelName: 'Claude Code - Claude Sonnet 5.5 (max)'
     },
     {
       type: 'subscription',
       toolName: 'Google',
       plan: 'AI Plus',
       seats: 1,
-      purpose: 'Mixed'
+      purpose: 'Mixed',
+      topModelId: 'google/gemini-3-7-flash',
+      topModelName: 'Gemini 3.7 Flash (High)'
     },
     {
       type: 'api',
@@ -535,7 +541,22 @@ async function generateSampleReport(options = {}) {
       const rankData = getCategoryRankData(purpose, raw);
       const topSub = findTopModelOfSubscription(tier, rankData, allModels);
 
-      if (topSub && topSub.model) {
+      if (alloc.topModelId || alloc.topModelName) {
+        const designatedId = alloc.topModelId || alloc.topModelName;
+        const designatedSlug = designatedId.includes('/') ? designatedId.split('/')[1] : designatedId;
+        const entry = findRankEntry(rankData, designatedSlug, alloc.topModelId, alloc.topModelName);
+        const dbModel = allModels?.find(m => m._id === alloc.topModelId || (m.name && alloc.topModelName && m.name.toLowerCase() === alloc.topModelName.toLowerCase()));
+        primaryBaselineModel = dbModel || (entry ? {
+          _id: entry.modelId || alloc.topModelId || designatedSlug,
+          name: entry.name || alloc.topModelName,
+          developer: entry.organization || tier?.provider || alloc.toolName
+        } : {
+          _id: alloc.topModelId || designatedSlug,
+          name: alloc.topModelName || designatedId,
+          developer: tier?.provider || alloc.toolName
+        });
+        baselineScore = entry ? getEvaluationScore(entry, purpose, dbModel, capabilityField) : (dbModel?.capabilities?.[capabilityField] || topSub?.score || 60);
+      } else if (topSub && topSub.model) {
         primaryBaselineModel = topSub.model;
         baselineScore = topSub.score;
       }
@@ -655,7 +676,17 @@ async function generateSampleReport(options = {}) {
     if (type === 'subscription') {
       const matchingTier = findSubscriptionTier(toolName, plan, tiers);
       const topSub = findTopModelOfSubscription(matchingTier, rankData, allModels);
-      if (topSub && topSub.rankEntry) {
+      if (primaryBaselineModel) {
+        const designatedId = primaryBaselineModel._id || primaryBaselineModel.name;
+        const designatedSlug = designatedId.includes('/') ? designatedId.split('/')[1] : designatedId;
+        const rankEntry = findRankEntry(rankData, designatedSlug, primaryBaselineModel._id, primaryBaselineModel.name);
+        if (rankEntry) {
+          baselineRank = parseInt(rankEntry.rank) || 999;
+          computedBaselineScore = getEvaluationScore(rankEntry, purpose, primaryBaselineModel, capabilityField) || computedBaselineScore;
+        } else if (topSub && topSub.rankEntry) {
+          baselineRank = topSub.rank;
+        }
+      } else if (topSub && topSub.rankEntry) {
         baselineRank = topSub.rank;
         computedBaselineScore = topSub.score;
         if (topSub.model) {
