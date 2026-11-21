@@ -89,85 +89,125 @@ function findRankEntry(rankData, baselineSlug, baselineModelId, baselineName) {
 }
 
 function getEvaluationScore(item, purpose, dbModel, capabilityField) {
-  if (!item && !dbModel) return 50;
+  if (!item && !dbModel) return null;
 
   const evals = item?.evaluations || dbModel?.evaluations || {};
   const p = purpose ? purpose.toLowerCase() : 'mixed';
 
-  // 1. Direct verified category benchmark (0-100) if available
+  // 1. Direct verified category benchmark (actual raw values without normalization scaling)
   if (p === 'coding') {
-    if (typeof evals.livecodebench === 'number' && evals.livecodebench > 0) {
-      return Math.min(99, Math.round((evals.livecodebench / 90) * 100));
+    if (item?.category_scores && typeof item.category_scores.coding === 'number') {
+      return Math.round(item.category_scores.coding);
     }
-    if (typeof evals.artificial_analysis_coding_index === 'number' && evals.artificial_analysis_coding_index > 0) {
-      const v = evals.artificial_analysis_coding_index;
-      return Math.min(99, Math.round(v <= 1 ? v * 100 : (v <= 60 ? (v / 60) * 100 : v)));
+    if (typeof evals.artificial_analysis_coding_index === 'number') {
+      return Math.round(evals.artificial_analysis_coding_index);
     }
-    if (typeof evals.scicode === 'number' && evals.scicode > 0) {
-      return Math.min(99, Math.round((evals.scicode / 67) * 98));
+    if (typeof evals.coding_agent_index === 'number') {
+      return Math.round(evals.coding_agent_index);
+    }
+    if (typeof item?.final_score === 'number') {
+      return Math.round(item.final_score);
+    }
+    if (typeof evals.livecodebench === 'number') {
+      return Math.round(evals.livecodebench);
     }
   }
 
   if (p === 'math') {
-    if (typeof evals.livebench_math === 'number' && evals.livebench_math > 0) {
-      return Math.min(100, Math.round(evals.livebench_math));
+    if (typeof evals.livebench_math === 'number') {
+      return Math.round(evals.livebench_math);
     }
-    if (item?.category_scores && typeof item.category_scores.math === 'number' && item.category_scores.math > 0) {
-      return Math.min(100, Math.round(item.category_scores.math));
+    if (item?.category_scores && typeof item.category_scores.math === 'number') {
+      return Math.round(item.category_scores.math);
     }
-    if (typeof item?.final_score === 'number' && item.final_score > 0 && item.ranking_status === 'verified_livebench_ai_math') {
-      return Math.min(100, Math.round(item.final_score));
+    if (typeof item?.final_score === 'number' && item.final_score > 0) {
+      return Math.round(item.final_score);
     }
-    if (typeof evals.artificial_analysis_math_index === 'number' && evals.artificial_analysis_math_index > 0) {
-      return Math.min(100, Math.round(evals.artificial_analysis_math_index));
+    if (typeof evals.artificial_analysis_math_index === 'number') {
+      return Math.round(evals.artificial_analysis_math_index);
     }
-    if (typeof evals.aime === 'number' && evals.aime > 0) {
-      return Math.min(99, Math.round(evals.aime));
+    if (typeof evals.aime === 'number') {
+      return Math.round(evals.aime);
     }
   }
 
   if (p === 'reasoning') {
-    if (typeof evals.gpqa === 'number' && evals.gpqa > 0) {
-      return Math.min(99, Math.round(evals.gpqa));
+    if (item?.category_scores && typeof item.category_scores.reasoning === 'number') {
+      return Math.round(item.category_scores.reasoning);
     }
-    if (typeof evals.artificial_analysis_intelligence_index === 'number' && evals.artificial_analysis_intelligence_index > 0) {
-      return Math.min(99, Math.round((evals.artificial_analysis_intelligence_index / 60) * 100));
+    if (typeof evals.gpqa === 'number') {
+      return Math.round(evals.gpqa);
+    }
+    if (typeof evals.hle_diamond === 'number') {
+      return Math.round(evals.hle_diamond);
+    }
+    if (typeof evals.artificial_analysis_intelligence_index === 'number') {
+      return Math.round(evals.artificial_analysis_intelligence_index);
+    }
+    if (typeof item?.final_score === 'number') {
+      return Math.round(item.final_score);
     }
   }
 
   if (p === 'research') {
-    if (typeof evals.hle === 'number' && evals.hle > 0) {
-      return Math.min(99, Math.round((evals.hle / 58) * 98));
+    if (item?.category_scores && typeof item.category_scores.research === 'number') {
+      return Math.round(item.category_scores.research);
     }
-    if (typeof evals.gpqa === 'number' && evals.gpqa > 0) {
-      return Math.min(99, Math.round(evals.gpqa));
+    if (typeof evals.gpqa === 'number') {
+      return Math.round(evals.gpqa);
+    }
+    if (typeof evals.hle === 'number') {
+      return Math.round(evals.hle);
+    }
+    if (typeof item?.final_score === 'number') {
+      return Math.round(item.final_score);
+    }
+  }
+
+  if (p === 'writing') {
+    if (item?.category_scores && typeof item.category_scores['creative-writing'] === 'number') {
+      return Math.round(item.category_scores['creative-writing']);
+    }
+    if (item?.category_scores && typeof item.category_scores.writing === 'number') {
+      return Math.round(item.category_scores.writing);
+    }
+    if (typeof item?.final_score === 'number') {
+      return Math.round(item.final_score);
     }
   }
 
   // 2. Direct overall intelligence index
-  if (typeof evals.artificial_analysis_intelligence_index === 'number' && evals.artificial_analysis_intelligence_index > 0) {
-    const v = evals.artificial_analysis_intelligence_index;
-    return Math.min(99, Math.round(v <= 1 ? v * 100 : (v <= 60 ? (v / 60) * 100 : v)));
+  if (item?.category_scores && typeof item.category_scores.overall === 'number') {
+    return Math.round(item.category_scores.overall);
+  }
+  if (typeof evals.artificial_analysis_intelligence_index === 'number') {
+    return Math.round(evals.artificial_analysis_intelligence_index);
+  }
+  if (typeof item?.final_score === 'number') {
+    return Math.round(item.final_score);
   }
 
-  // 3. Composite of verified benchmark evaluations (GPQA, Math, MMLU-Pro, IFBench, LiveCodeBench, HLE)
+  // 3. Composite of verified benchmark evaluations (raw unscaled average)
   const parts = [];
-  if (typeof evals.gpqa === 'number' && evals.gpqa > 0) parts.push(evals.gpqa);
-  if (typeof evals.mmlu_pro === 'number' && evals.mmlu_pro > 0) parts.push(evals.mmlu_pro);
-  if (typeof evals.artificial_analysis_math_index === 'number' && evals.artificial_analysis_math_index > 0) parts.push((evals.artificial_analysis_math_index / 67) * 98);
-  if (typeof evals.livecodebench === 'number' && evals.livecodebench > 0) parts.push((evals.livecodebench / 90) * 100);
-  if (typeof evals.ifbench === 'number' && evals.ifbench > 0) parts.push((evals.ifbench / 85) * 100);
-  if (typeof evals.hle === 'number' && evals.hle > 0) parts.push((evals.hle / 58) * 98);
+  if (typeof evals.gpqa === 'number') parts.push(evals.gpqa);
+  if (typeof evals.mmlu_pro === 'number') parts.push(evals.mmlu_pro);
+  if (typeof evals.livebench_math === 'number') parts.push(evals.livebench_math);
+  if (typeof evals.artificial_analysis_math_index === 'number') parts.push(evals.artificial_analysis_math_index);
+  if (typeof evals.artificial_analysis_coding_index === 'number') parts.push(evals.artificial_analysis_coding_index);
+  if (typeof evals.coding_agent_index === 'number') parts.push(evals.coding_agent_index);
+  if (typeof evals.livecodebench === 'number') parts.push(evals.livecodebench);
+  if (typeof evals.ifbench === 'number') parts.push(evals.ifbench);
+  if (typeof evals.hle === 'number') parts.push(evals.hle);
 
   if (parts.length > 0) {
     const avg = parts.reduce((a, b) => a + b, 0) / parts.length;
-    return Math.min(99, Math.max(25, Math.round(avg)));
+    return Math.round(avg);
   }
 
   // 4. Database capability score
   const dbScore = dbModel?.capabilities?.[capabilityField];
   if (typeof dbScore === 'number' && dbScore > 0) {
-    return Math.min(100, Math.round(dbScore));
+    return Math.round(dbScore);
   }
 
   // 5. Rank-based capability scoring derived from live rankings
@@ -437,6 +477,7 @@ async function generateSampleReport(options = {}) {
 
   const optimizationGoal = 'performance';
   const costCutPercentage = 50;
+  const qualityThreshold = 90;
 
   // Execute audit engine logic
   const parsedAllocations = [];
