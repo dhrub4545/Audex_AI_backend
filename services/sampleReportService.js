@@ -202,10 +202,11 @@ function findTopModelOfSubscription(tier, rankData, allModels) {
   for (const mid of models) {
     const slug = mid.includes('/') ? mid.split('/')[1] : mid;
     const entry = findRankEntry(rankData, slug, mid);
+    if (entry && entry.deprecated && bestModel) continue;
     const dbModel = allModels?.find(m => m._id === mid || (m._id && m._id.toLowerCase() === mid.toLowerCase()) || (m._id && m._id.split('/')[1] === slug));
     const score = getEvaluationScore(entry, 'mixed', dbModel, 'aa_index_score');
     const rank = entry ? (parseInt(entry.rank) || 9999) : 9999;
-    if (score > bestScore || (score === bestScore && rank < bestRank)) {
+    if (score > bestScore || (score === bestScore && rank < bestRank) || (!bestModel && entry)) {
       bestScore = score;
       bestRank = rank;
       bestEntry = entry;
@@ -225,10 +226,11 @@ function findTopModelOfSubscription(tier, rankData, allModels) {
     for (const rm of rawModels) {
       const entry = rankData?.find(m => m.name && (m.name.toLowerCase().includes(rm.toLowerCase()) || rm.toLowerCase().includes(m.name.toLowerCase())));
       if (entry) {
+        if (entry.deprecated && bestModel) continue;
         const dbModel = allModels?.find(m => m.name && m.name.toLowerCase() === entry.name.toLowerCase());
         const score = getEvaluationScore(entry, 'mixed', dbModel, 'aa_index_score');
         const rank = parseInt(entry.rank) || 9999;
-        if (score > bestScore || (score === bestScore && rank < bestRank)) {
+        if (score > bestScore || (score === bestScore && rank < bestRank) || (!bestModel && entry)) {
           bestScore = score;
           bestRank = rank;
           bestEntry = entry;
@@ -770,7 +772,7 @@ async function generateSampleReport(options = {}) {
       selectedSub = compatible[0] || null;
 
       if (!selectedSub) {
-        let costSaving = subCandidates.filter(c => !c.isCurrent && (currentCost === 0 || c.cost < currentCost) && c.performance_score >= (qualityThreshold || 75));
+        let costSaving = subCandidates.filter(c => !c.isCurrent && (currentCost === 0 || c.cost < currentCost) && c.performance_score >= 75);
         costSaving.sort((a, b) => (b.performance_score - a.performance_score) || (a.cost - b.cost));
         selectedSub = costSaving[0] || null;
       }
