@@ -24,6 +24,32 @@ function round2(val) {
   return Math.round(Number(val) * 100) / 100;
 }
 
+// High-performance mtime-cached raw_data.json parser (avoids repeated synchronous 22MB disk reads)
+let _cachedRawData = null;
+let _cachedRawDataMtime = 0;
+
+function getFastRawData() {
+  const rawPath = path.join(__dirname, '../data/raw_data.json');
+  try {
+    if (!fs.existsSync(rawPath)) return null;
+    const stat = fs.statSync(rawPath);
+    if (_cachedRawData && _cachedRawDataMtime === stat.mtimeMs) {
+      return _cachedRawData;
+    }
+    const rawContent = fs.readFileSync(rawPath, 'utf8');
+    _cachedRawData = JSON.parse(rawContent);
+    _cachedRawDataMtime = stat.mtimeMs;
+    return _cachedRawData;
+  } catch (_) {
+    return _cachedRawData || null;
+  }
+}
+
+function invalidateFastRawData() {
+  _cachedRawData = null;
+  _cachedRawDataMtime = 0;
+}
+
 // Multi-tier model cache for high performance (L1 Memory + L2 Redis)
 async function getCachedAllModels() {
   return await cache.getOrSet('audex:models:all_docs', async () => {
@@ -34,9 +60,8 @@ async function getCachedAllModels() {
       } catch (_) {}
     }
     try {
-      const rawPath = path.join(__dirname, '../data/raw_data.json');
-      if (fs.existsSync(rawPath)) {
-        const raw = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
+      const raw = getFastRawData();
+      if (raw) {
         const sources = raw.sources || {};
         const llms = Array.isArray(sources.llms) ? sources.llms : (sources.llms?.data || []);
         if (llms && llms.length > 0) {
@@ -381,15 +406,12 @@ function getCategoryRankData(purpose) {
   const filename = getRankFileName(purpose);
   const catKey = filename.replace('.json', '');
 
-  // 1. Check raw_data.json categories first for specific category
+  // 1. Check raw_data.json categories first for specific category (mtime-cached in-memory)
   try {
-    const rawPath = path.join(__dirname, '../data/raw_data.json');
-    if (fs.existsSync(rawPath)) {
-      const raw = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
-      if (raw.categories && Array.isArray(raw.categories[catKey]) && raw.categories[catKey].length > 0) {
-        rankCategoryMemoryCache.set(normPurpose, raw.categories[catKey]);
-        return raw.categories[catKey];
-      }
+    const raw = getFastRawData();
+    if (raw && raw.categories && Array.isArray(raw.categories[catKey]) && raw.categories[catKey].length > 0) {
+      rankCategoryMemoryCache.set(normPurpose, raw.categories[catKey]);
+      return raw.categories[catKey];
     }
   } catch (_) {}
 
@@ -407,15 +429,12 @@ function getCategoryRankData(purpose) {
     }
   }
 
-  // 3. Fallback to raw_data.json overall ONLY if specific category file does not exist
+  // 3. Fallback to raw_data.json overall ONLY if specific category file does not exist (mtime-cached in-memory)
   try {
-    const rawPath = path.join(__dirname, '../data/raw_data.json');
-    if (fs.existsSync(rawPath)) {
-      const raw = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
-      if (raw.categories && Array.isArray(raw.categories['overall']) && raw.categories['overall'].length > 0) {
-        rankCategoryMemoryCache.set(normPurpose, raw.categories['overall']);
-        return raw.categories['overall'];
-      }
+    const raw = getFastRawData();
+    if (raw && raw.categories && Array.isArray(raw.categories['overall']) && raw.categories['overall'].length > 0) {
+      rankCategoryMemoryCache.set(normPurpose, raw.categories['overall']);
+      return raw.categories['overall'];
     }
   } catch (_) {}
 
@@ -1492,13 +1511,10 @@ router.get('/:id', optionalAuth, async (req, res, next) => {
     auditObj = JSON.parse(JSON.stringify(auditObj));
       auditObj.isUnlocked = true;
     if (auditObj.allocations && Array.isArray(auditObj.allocations)) {
-      auditObj.allocations.forEach((alloc, index) => {
-        console.log(`[Hydration GET] alloc #${index}: type=${alloc.type}, toolName=${alloc.toolName}, plan=${alloc.plan}`);
+      auditObj.allocations.forEach((alloc) => {
         if (alloc.type === 'subscription' && (!alloc.baselineModels || alloc.baselineModels.length === 0)) {
           const tier = findSubscriptionTier(alloc.toolName, alloc.plan);
-          console.log(`[Hydration GET] findSubscriptionTier resolved tier:`, tier ? tier.plan : 'null');
           alloc.baselineModels = tier ? (tier.rawModels || []) : [];
-          console.log(`[Hydration GET] hydrated baselineModels:`, alloc.baselineModels);
         }
       });
     }
@@ -1931,6 +1947,7 @@ async function triggerLivePipelineAutoSync(force = false) {
       console.log('🔄 Live Auto-Sync: Scraping & updating new models from Artificial Analysis...');
       await runDailyRankingPipeline();
       lastAutoSyncAt = Date.now();
+      invalidateFastRawData();
       await cache.del('audex:analysis:raw_data');
       await cache.del('audex:models:all_docs');
       await cache.del('audex:models:list');
@@ -2016,11 +2033,13 @@ router.get('/analysis/raw-data', async (req, res) => {
 
     if (force) {
       console.log('🔄 Forced refresh requested on /analysis/raw-data. Triggering live scraper pipeline...');
+      invalidateFastRawData();
       await triggerLivePipelineAutoSync(true);
       await cache.del('audex:analysis:raw_data');
     } else {
       const cachedData = await cache.get('audex:analysis:raw_data');
       if (cachedData) {
+        res.set('Cache-Control', 'public, max-age=120, stale-while-revalidate=300');
         // If cached data is older than 1 hour, trigger background update silently
         const cachedAgeMs = cachedData.fetched_at ? (Date.now() - new Date(cachedData.fetched_at).getTime()) : Infinity;
         if (cachedAgeMs > 60 * 60 * 1000) {
@@ -2030,23 +2049,13 @@ router.get('/analysis/raw-data', async (req, res) => {
       }
     }
 
-    const rawPath = path.join(__dirname, '../data/raw_data.json');
-    let rawData = null;
-
-    if (fs.existsSync(rawPath)) {
-      try {
-        const rawContent = fs.readFileSync(rawPath, 'utf8');
-        rawData = JSON.parse(rawContent);
-      } catch (_) {}
-    }
+    let rawData = getFastRawData();
 
     // If file missing or invalid, run pipeline immediately
     if (!rawData) {
       console.log('⚠️ raw_data.json missing or invalid. Running pipeline synchronization...');
       await triggerLivePipelineAutoSync(true);
-      if (fs.existsSync(rawPath)) {
-        rawData = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
-      }
+      rawData = getFastRawData();
     }
 
     if (!rawData) {
@@ -2061,6 +2070,7 @@ router.get('/analysis/raw-data', async (req, res) => {
 
     const responseData = formatRawDataResponse(rawData);
     await cache.set('audex:analysis:raw_data', responseData, 900); // 15 minutes TTL
+    res.set('Cache-Control', 'public, max-age=120, stale-while-revalidate=300');
     return res.json(responseData);
   } catch (error) {
     console.error('Error fetching raw analysis data:', error);
@@ -2091,6 +2101,7 @@ router.get('/subscription-tiers/list', async (req, res) => {
     if (!force) {
       const cachedTiers = await cache.get('audex:tiers:list');
       if (cachedTiers && Array.isArray(cachedTiers) && cachedTiers.length > 0) {
+        res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=600');
         return res.json(cachedTiers);
       }
     }
@@ -2227,6 +2238,7 @@ router.get('/subscription-tiers/list', async (req, res) => {
 
     const result = Object.values(grouped);
     await cache.set('audex:tiers:list', result, 900); // 15 minutes TTL
+    res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=600');
     return res.json(result);
   } catch (error) {
     console.error('Error serving subscription-tiers list:', error);
@@ -2239,6 +2251,7 @@ router.get('/models/list', async (req, res) => {
   try {
     const cachedList = await cache.get('audex:models:list');
     if (cachedList) {
+      res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=600');
       return res.json(cachedList);
     }
 
@@ -2262,6 +2275,7 @@ router.get('/models/list', async (req, res) => {
     formatted.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
 
     await cache.set('audex:models:list', formatted, 900); // 15 minutes TTL
+    res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=600');
     res.json(formatted);
   } catch (error) {
     console.error('Audit Models List Error:', error);
@@ -2275,6 +2289,21 @@ router.post('/compare/report', optionalAuth, async (req, res) => {
   
   if (!baseline || !recommended) {
     return res.status(400).json({ error: 'Missing baseline or recommended model details' });
+  }
+
+  // Fast-path: Check compare report cache to avoid repeated expensive LLM calls
+  const baseKey = (baseline.modelId || baseline.id || baseline.name || '').toLowerCase().trim();
+  const recKey = (recommended.modelId || recommended.id || recommended.name || '').toLowerCase().trim();
+  const purpKey = (purpose || 'coding').toLowerCase().trim();
+  const compareCacheKey = `audex:compare_report:${baseKey}:${recKey}:${purpKey}`;
+
+  const cachedReport = await cache.get(compareCacheKey);
+  if (cachedReport) {
+    return res.json({
+      report: cachedReport,
+      updatedCredits: req.user ? user?.credits : null,
+      cached: true
+    });
   }
 
   let user = null;
@@ -2292,6 +2321,7 @@ router.post('/compare/report', optionalAuth, async (req, res) => {
   const geminiKey = process.env.GEMINI_API_KEY || process.env.Gemini_Api_key;
   if (!geminiKey) {
     const fallbackReport = generateFallbackCompareReport(baseline, recommended, purpose);
+    await cache.set(compareCacheKey, fallbackReport, 3600);
     return res.json({
       report: fallbackReport,
       updatedCredits: user ? user.credits : null
@@ -2378,6 +2408,7 @@ Return ONLY a valid JSON object matching the following structure (no markdown wr
     }
 
     const report = JSON.parse(text.trim());
+    await cache.set(compareCacheKey, report, 86400); // 24 hours TTL
     res.json({
       report,
       updatedCredits: req.user ? user?.credits : null
@@ -2385,6 +2416,7 @@ Return ONLY a valid JSON object matching the following structure (no markdown wr
   } catch (error) {
     console.warn('Gemini report generation warning, using fallback algorithm:', error.message);
     const fallbackReport = generateFallbackCompareReport(baseline, recommended, purpose);
+    await cache.set(compareCacheKey, fallbackReport, 3600); // 1 hour TTL
     res.json({
       report: fallbackReport,
       updatedCredits: req.user ? user?.credits : null
