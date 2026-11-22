@@ -536,48 +536,56 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
 }
 
 function findRankEntry(rankData, baselineSlug, baselineModelId, baselineName) {
-  if (!rankData || rankData.length === 0) return null;
   const clean = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   const targetClean = clean(baselineSlug);
   const modelIdClean = clean(baselineModelId);
   const nameClean = clean(baselineName);
 
-  // 1. Try exact modelId match if item has modelId
-  if (baselineModelId) {
-    let match = rankData.find(item => item.modelId && (item.modelId.toLowerCase() === baselineModelId.toLowerCase() || clean(item.modelId) === modelIdClean));
-    if (match) return match;
-  }
+  const matchInList = (list) => {
+    if (!Array.isArray(list) || list.length === 0) return null;
+    if (baselineModelId) {
+      let match = list.find(item => item.modelId && (item.modelId.toLowerCase() === baselineModelId.toLowerCase() || clean(item.modelId) === modelIdClean));
+      if (match) return match;
+    }
+    if (baselineName) {
+      let match = list.find(item => item.name && (item.name.toLowerCase() === baselineName.toLowerCase() || clean(item.name) === nameClean));
+      if (match) return match;
+    }
+    if (baselineSlug) {
+      let match = list.find(item => item.slug === baselineSlug);
+      if (match) return match;
+      match = list.find(item => clean(item.slug || '') === targetClean);
+      if (match) return match;
+      match = list.find(item => {
+        const itemClean = clean(item.slug || '');
+        return (itemClean && targetClean) && (itemClean.includes(targetClean) || targetClean.includes(itemClean));
+      });
+      if (match) return match;
+    }
+    if (nameClean && nameClean.length >= 4) {
+      let match = list.find(item => {
+        const itemClean = clean(item.name || '');
+        return (itemClean && nameClean) && (itemClean.includes(nameClean) || nameClean.includes(itemClean));
+      });
+      if (match) return match;
+    }
+    return null;
+  };
 
-  // 2. Try match by model name if provided
-  if (baselineName) {
-    let match = rankData.find(item => item.name && (item.name.toLowerCase() === baselineName.toLowerCase() || clean(item.name) === nameClean));
-    if (match) return match;
-  }
+  const directMatch = matchInList(rankData);
+  if (directMatch) return directMatch;
 
-  // 3. Try exact match by slug
-  if (baselineSlug) {
-    let match = rankData.find(item => item.slug === baselineSlug);
-    if (match) return match;
-
-    // 4. Try exact clean match
-    match = rankData.find(item => clean(item.slug || '') === targetClean);
-    if (match) return match;
-
-    // 5. Try clean substring match
-    match = rankData.find(item => {
-      const itemClean = clean(item.slug || '');
-      return (itemClean && targetClean) && (itemClean.includes(targetClean) || targetClean.includes(itemClean));
-    });
-    if (match) return match;
-  }
-
-  // 6. Substring match by name
-  if (nameClean && nameClean.length >= 4) {
-    let match = rankData.find(item => {
-      const itemClean = clean(item.name || '');
-      return (itemClean && nameClean) && (itemClean.includes(nameClean) || nameClean.includes(itemClean));
-    });
-    if (match) return match;
+  // Fallback to checking other primary categories if not in current rankData
+  const fallbackFiles = ['coding.json', 'reasoning.json', 'research.json', 'math.json', 'overall.json'];
+  for (const f of fallbackFiles) {
+    try {
+      const p = path.join(__dirname, '../data/rank', f);
+      if (fs.existsSync(p)) {
+        const list = JSON.parse(fs.readFileSync(p, 'utf8'));
+        const m = matchInList(list);
+        if (m) return m;
+      }
+    } catch (_) {}
   }
 
   return null;
@@ -1047,27 +1055,37 @@ router.post('/', optionalAuth, async (req, res) => {
       let apiStatusText = "";
 
       if (optimizationGoal === 'quality') {
+        // Quality focus: only suggest the top model from the leaderboard
         let compatible = apiCandidates.filter(c => !c.isCurrent);
-        compatible.sort((a, b) => a.rank - b.rank);
-        selectedApi = compatible[0] || null;
+        compatible.sort((a, b) => (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
+        if (baselineRank && compatible[0]?.rank >= baselineRank) {
+          selectedApi = null;
+          apiStatusText = "The current model is already the top-ranked model in this category.";
+        } else {
+          selectedApi = compatible[0] || null;
+        }
       } else if (optimizationGoal === 'performance') {
+        // Performance measure: suggest models from the leaderboard which have better rank and less cost. If no such model presents, mark as already optimized model. No false model suggestion.
         let compatible = apiCandidates.filter(c => {
           if (c.isCurrent) return false;
-          if (c.monthly_cost >= currentCost) return false;
+          if (currentCost > 0 && c.monthly_cost >= currentCost) return false;
           if (baselineRank !== null && c.rank >= baselineRank) return false;
-          if (computedBaselineScore !== null && c.performance_score !== null && c.performance_score < computedBaselineScore) return false;
           return true;
         });
         compatible.sort((a, b) => (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
         selectedApi = compatible[0] || null;
         if (!selectedApi) {
-          apiStatusText = "Already optimized in this category.";
+          apiStatusText = "The current model is already optimized with optimal cost and rank in this category.";
         }
       } else if (optimizationGoal === 'cost') {
+        // Cost cutting mode: suggest the model according to the user cost selected in the UI and has the best rank in that category in the leaderboard
         const maxAllowedCost = currentCost * (1 - costCutPercentage / 100);
         let compatible = apiCandidates.filter(c => !c.isCurrent && c.monthly_cost <= maxAllowedCost);
         compatible.sort((a, b) => (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
         selectedApi = compatible[0] || null;
+        if (!selectedApi) {
+          apiStatusText = `No alternative model found within the ${costCutPercentage || 50}% cost cut budget.`;
+        }
       }
 
       // OPTION B: Subscriptions
@@ -1155,27 +1173,37 @@ router.post('/', optionalAuth, async (req, res) => {
       let subStatusText = "";
 
       if (optimizationGoal === 'quality') {
+        // Quality focus: only suggest the top model from the leaderboard
         let compatible = subCandidates.filter(c => !c.isCurrent);
         compatible.sort((a, b) => (a.rank - b.rank) || (a.cost - b.cost));
-        selectedSub = compatible[0] || null;
+        if (baselineRank && compatible[0]?.rank >= baselineRank) {
+          selectedSub = null;
+          subStatusText = "The current subscription is already providing the top-ranked model.";
+        } else {
+          selectedSub = compatible[0] || null;
+        }
       } else if (optimizationGoal === 'performance') {
+        // Performance measure: suggest models from the leaderboard which have better rank and less cost. If no such model presents, mark as already optimized model. No false model suggestion.
         let compatible = subCandidates.filter(c => {
           if (c.isCurrent) return false;
-          if (c.cost >= currentCost) return false;
+          if (currentCost > 0 && c.cost >= currentCost) return false;
           if (baselineRank !== null && c.rank >= baselineRank) return false;
-          if (computedBaselineScore !== null && c.performance_score !== null && c.performance_score < computedBaselineScore) return false;
           return true;
         });
         compatible.sort((a, b) => (a.rank - b.rank) || (a.cost - b.cost));
         selectedSub = compatible[0] || null;
         if (!selectedSub) {
-          subStatusText = "Already optimized in this category.";
+          subStatusText = "The current subscription is already optimized with optimal cost and rank in this category.";
         }
       } else if (optimizationGoal === 'cost') {
+        // Cost cutting mode: suggest the subscription according to the user cost selected in the UI and has the best rank in that category in the leaderboard
         const maxAllowedCost = currentCost * (1 - costCutPercentage / 100);
         let compatible = subCandidates.filter(c => !c.isCurrent && c.cost <= maxAllowedCost);
         compatible.sort((a, b) => (a.rank - b.rank) || (a.cost - b.cost));
         selectedSub = compatible[0] || null;
+        if (!selectedSub) {
+          subStatusText = `No subscription found within the ${costCutPercentage || 50}% cost cut budget.`;
+        }
       }
 
       // Build structured Options
@@ -1588,22 +1616,59 @@ router.post('/audit-recommendation', async (req, res) => {
 
 
 
-    // 2. Find current model
-    let currentModel = allModels.find(m => m._id === currentModelId);
+    // 2. Find current model (supports direct model or subscription to top-model conversion)
+    let currentModel = null;
+    let subscriptionInfo = null;
+    let matchedTier = null;
+    let cleanModelId = currentModelId || '';
+    if (typeof cleanModelId === 'string' && cleanModelId.startsWith('sub:')) {
+      cleanModelId = cleanModelId.slice(4);
+    }
+    const cleanStr = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const targetClean = cleanStr(cleanModelId);
+
+    // Check if target matches a subscription tier
+    matchedTier = subscriptionTiers.find(t => {
+      const pClean = cleanStr(t.plan);
+      const provPlanClean = cleanStr(`${t.provider} ${t.plan}`);
+      return pClean === targetClean || provPlanClean === targetClean || targetClean === cleanStr(t.tierId || '');
+    });
+    if (!matchedTier && (targetClean.includes('chatgpt') || targetClean.includes('claudepro') || targetClean.includes('plus') || targetClean.includes('copilot') || targetClean.includes('aiplus'))) {
+      matchedTier = findSubscriptionTier(cleanModelId, cleanModelId);
+    }
+
+    const rankData = getCategoryRankData(targetUseCase);
+
+    if (matchedTier) {
+      const topSub = findTopModelOfSubscription(matchedTier, rankData, allModels, targetUseCase);
+      if (topSub && topSub.model) {
+        currentModel = topSub.model;
+        subscriptionInfo = {
+          isSubscription: true,
+          planName: `${matchedTier.provider} ${matchedTier.plan}`,
+          provider: matchedTier.provider,
+          plan: matchedTier.plan,
+          monthlyPrice: matchedTier.monthlyPrice,
+          topModelName: topSub.model.name || topSub.entry?.name || 'Top Model',
+          topModelId: topSub.model._id || topSub.entry?.modelId || ''
+        };
+      }
+    }
+
+    if (!currentModel) {
+      currentModel = allModels.find(m => m._id === currentModelId);
+    }
     if (!currentModel) {
       // Try fuzzy matching
       const targetBase = (currentModelId.split('/')[1] || currentModelId).toLowerCase();
       currentModel = allModels.find(m => m._id.toLowerCase().includes(targetBase) || (m.slug && m.slug.toLowerCase() === targetBase)) || null;
     }
     if (!currentModel) {
-      const cleanStr = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-      const targetClean = cleanStr(currentModelId);
       currentModel = allModels.find(m => cleanStr(m._id) === targetClean || cleanStr(m.name || '') === targetClean || cleanStr(m.slug || '') === targetClean) || null;
     }
     if (!currentModel) {
       // Direct lookup from rankData/raw_data if DB didn't resolve it
-      const rawRankData = getCategoryRankData(targetUseCase);
-      const entry = findRankEntry(rawRankData, currentModelId.split('/')[1] || currentModelId, currentModelId);
+      const entry = findRankEntry(rankData, currentModelId.split('/')[1] || currentModelId, currentModelId);
       if (entry) {
         currentModel = {
           _id: entry.modelId || currentModelId,
@@ -1625,14 +1690,13 @@ router.post('/audit-recommendation', async (req, res) => {
     if (!currentModel) {
       return res.status(404).json({ error: 'Baseline model data not found in database.' });
     }
-
-    const rankData = getCategoryRankData(targetUseCase);
     
     const currentSlug = currentModel._id.split('/')[1] || '';
     const currentRankEntry = findRankEntry(rankData, currentSlug, currentModel._id, currentModel.name);
     const currentRank = currentRankEntry && typeof currentRankEntry.rank === 'number' && currentRankEntry.rank > 0 ? currentRankEntry.rank : (parseInt(currentRankEntry?.rank) || null);
     const currentScore = currentRankEntry ? getEvaluationScore(currentRankEntry, targetUseCase, currentModel, capabilityField) : (currentModel.capabilities?.[capabilityField] || null);
-    const currentCost = calculateModelCost(currentModel, monthlyTokens, inputRatio);
+    const tokenCost = calculateModelCost(currentModel, monthlyTokens, inputRatio);
+    const currentCost = (subscriptionInfo && subscriptionInfo.monthlyPrice > 0) ? subscriptionInfo.monthlyPrice : tokenCost;
 
     // 3. Map alternatives strictly from actual Artificial Analysis rankings
     const cleanSlug = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -1723,11 +1787,30 @@ router.post('/audit-recommendation', async (req, res) => {
 
     // Apply strict filtering and ordering for the 3 modes
     let filteredAlternatives = [];
-    if (optimizationGoal === 'performance') {
-      // Performance Preservation mode: models with better rank AND lower cost in the selected category
+    if (optimizationGoal === 'quality') {
+      // Quality Focus mode: only suggest the top model from the leaderboard
       filteredAlternatives = alternatives.filter(alt => {
         if (alt._id === currentModel._id || (alt.slug && alt.slug === currentSlug)) return false;
-        if (alt.monthly_cost >= currentCost) return false;
+        return true;
+      });
+      // Sort strictly by best rank in category
+      filteredAlternatives.sort((a, b) => {
+        const rkA = a.category_rank ?? 99999;
+        const rkB = b.category_rank ?? 99999;
+        return (rkA - rkB) || (a.monthly_cost - b.monthly_cost);
+      });
+      // If current baseline is already rank #1, or the best alternative is not strictly higher ranked
+      if (currentRank === 1 || (currentRank !== null && filteredAlternatives[0]?.category_rank >= currentRank)) {
+        filteredAlternatives = [];
+      } else {
+        // Quality focus: strictly suggest ONLY the #1 top model from the leaderboard
+        filteredAlternatives = filteredAlternatives.slice(0, 1);
+      }
+    } else if (optimizationGoal === 'performance') {
+      // Performance measure: suggest models from the leaderboard which have better rank and less cost. If no such model presents, mark as already optimized model. No false model suggestion.
+      filteredAlternatives = alternatives.filter(alt => {
+        if (alt._id === currentModel._id || (alt.slug && alt.slug === currentSlug)) return false;
+        if (currentCost > 0 && alt.monthly_cost >= currentCost) return false;
         if (currentRank !== null && alt.category_rank !== null && alt.category_rank >= currentRank) return false;
         if (currentScore !== null && alt.performance_score !== null && alt.performance_score < currentScore) return false;
         return true;
@@ -1739,7 +1822,7 @@ router.post('/audit-recommendation', async (req, res) => {
         return (rkA - rkB) || (a.monthly_cost - b.monthly_cost);
       });
     } else if (optimizationGoal === 'cost') {
-      // Cost Reduction mode: models within user desired cost cut target, sorted by best rank
+      // Cost cutting mode: suggest the model according to the user cost selected in the UI and has the best rank in that category in the leaderboard
       const maxAllowedCost = currentCost * (1 - (costCutPercentage / 100));
       filteredAlternatives = alternatives.filter(alt => {
         if (alt._id === currentModel._id || (alt.slug && alt.slug === currentSlug)) return false;
@@ -1751,23 +1834,11 @@ router.post('/audit-recommendation', async (req, res) => {
         const rkB = b.category_rank ?? 99999;
         return (rkA - rkB) || (a.monthly_cost - b.monthly_cost);
       });
-    } else if (optimizationGoal === 'quality') {
-      // Quality Focus mode: ignore cost, only recommend top ranked models in the selected category
-      filteredAlternatives = alternatives.filter(alt => {
-        if (alt._id === currentModel._id || (alt.slug && alt.slug === currentSlug)) return false;
-        return true;
-      });
-      // Sort strictly by best rank in category
-      filteredAlternatives.sort((a, b) => {
-        const rkA = a.category_rank ?? 99999;
-        const rkB = b.category_rank ?? 99999;
-        return (rkA - rkB) || (a.monthly_cost - b.monthly_cost);
-      });
     } else {
       // Default: Performance Preservation
       filteredAlternatives = alternatives.filter(alt => {
         if (alt._id === currentModel._id || (alt.slug && alt.slug === currentSlug)) return false;
-        if (alt.monthly_cost >= currentCost) return false;
+        if (currentCost > 0 && alt.monthly_cost >= currentCost) return false;
         if (currentRank !== null && alt.category_rank !== null && alt.category_rank >= currentRank) return false;
         if (currentScore !== null && alt.performance_score !== null && alt.performance_score < currentScore) return false;
         return true;
@@ -1779,8 +1850,8 @@ router.post('/audit-recommendation', async (req, res) => {
       });
     }
 
-    // Limit to at most 5 models
-    const topAlternatives = filteredAlternatives.slice(0, 5);
+    // Limit to at most 1 for quality mode, at most 5 for other modes
+    const topAlternatives = (optimizationGoal === 'quality') ? filteredAlternatives.slice(0, 1) : filteredAlternatives.slice(0, 5);
 
     // 4. Construct reports with accurate performance increase / decrease metrics
     const recommendations = topAlternatives.map(alt => {
@@ -1812,15 +1883,17 @@ router.post('/audit-recommendation', async (req, res) => {
         monthly_cost: round2(alt.monthly_cost),
         projected_monthly_savings: round2(savings),
         projected_annual_savings: round2(savings * 12),
+        projected_savings_percentage: (currentCost > 0) ? round1((savings / currentCost) * 100) : 0,
         performance_retained_percentage: performanceRetained,
         recommendation_score: alt.category_rank
       };
     });
 
-    const isAlreadyOptimized = (filteredAlternatives.length === 0 && optimizationGoal === 'performance');
+    const isAlreadyOptimized = (filteredAlternatives.length === 0);
     const recResponse = {
       selectedCategory: targetUseCase,
       alreadyOptimized: isAlreadyOptimized,
+      subscriptionInfo: subscriptionInfo || null,
       currentBaseline: {
         modelId: currentModel._id,
         slug: currentSlug,
@@ -1831,7 +1904,8 @@ router.post('/audit-recommendation', async (req, res) => {
         tokens_per_second: currentRankEntry?.median_output_tokens_per_second || currentModel.capabilities?.tokens_per_second || null,
         time_to_first_token_ms: currentRankEntry?.median_time_to_first_token_seconds ? Math.round(currentRankEntry.median_time_to_first_token_seconds * 1000) : (currentModel.capabilities?.time_to_first_token_ms || null),
         cost_per_m_input: currentModel.endpoints?.[0]?.input_cost_per_m ?? currentRankEntry?.pricing?.price_1m_input_tokens ?? 0,
-        cost_per_m_output: currentModel.endpoints?.[0]?.output_cost_per_m ?? currentRankEntry?.pricing?.price_1m_output_tokens ?? 0
+        cost_per_m_output: currentModel.endpoints?.[0]?.output_cost_per_m ?? currentRankEntry?.pricing?.price_1m_output_tokens ?? 0,
+        subscription: subscriptionInfo
       },
       recommendations
     };

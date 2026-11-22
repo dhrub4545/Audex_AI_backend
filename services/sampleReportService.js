@@ -250,7 +250,7 @@ function getEvaluationScore(item, purpose, dbModel, capabilityField) {
   return 50;
 }
 
-function findTopModelOfSubscription(tier, rankData, allModels) {
+function findTopModelOfSubscription(tier, rankData, allModels, purpose = 'mixed') {
   if (!tier) return null;
   const models = tier.models || [];
   const rawModels = tier.rawModels || [];
@@ -264,9 +264,14 @@ function findTopModelOfSubscription(tier, rankData, allModels) {
     const entry = findRankEntry(rankData, slug, mid);
     if (entry && entry.deprecated && bestModel) continue;
     const dbModel = allModels?.find(m => m._id === mid || (m._id && m._id.toLowerCase() === mid.toLowerCase()) || (m._id && m._id.split('/')[1] === slug));
-    const score = getEvaluationScore(entry, 'mixed', dbModel, 'aa_index_score');
-    const rank = entry ? (parseInt(entry.rank) || 9999) : 9999;
-    if (score > bestScore || (score === bestScore && rank < bestRank) || (!bestModel && entry)) {
+    const score = getEvaluationScore(entry, purpose, dbModel);
+    const rank = entry && typeof entry.rank === 'number' && entry.rank > 0 ? entry.rank : (parseInt(entry?.rank) || 99999);
+    
+    const isBetter = (rank < bestRank) || 
+      (rank === bestRank && score !== null && (bestScore === null || score > bestScore)) || 
+      (bestRank === 99999 && score !== null && (bestScore === null || score > bestScore));
+
+    if (isBetter) {
       bestScore = score;
       bestRank = rank;
       bestEntry = entry;
@@ -284,13 +289,18 @@ function findTopModelOfSubscription(tier, rankData, allModels) {
 
   if (rawModels.length > 0) {
     for (const rm of rawModels) {
-      const entry = rankData?.find(m => m.name && (m.name.toLowerCase().includes(rm.toLowerCase()) || rm.toLowerCase().includes(m.name.toLowerCase())));
+      const entry = findRankEntry(rankData, null, null, rm);
       if (entry) {
         if (entry.deprecated && bestModel) continue;
         const dbModel = allModels?.find(m => m.name && m.name.toLowerCase() === entry.name.toLowerCase());
-        const score = getEvaluationScore(entry, 'mixed', dbModel, 'aa_index_score');
-        const rank = parseInt(entry.rank) || 9999;
-        if (score > bestScore || (score === bestScore && rank < bestRank) || (!bestModel && entry)) {
+        const score = getEvaluationScore(entry, purpose, dbModel);
+        const rank = entry && typeof entry.rank === 'number' && entry.rank > 0 ? entry.rank : (parseInt(entry?.rank) || 99999);
+        
+        const isBetter = (rank < bestRank) || 
+          (rank === bestRank && score !== null && (bestScore === null || score > bestScore)) || 
+          (bestRank === 99999 && score !== null && (bestScore === null || score > bestScore));
+
+        if (isBetter) {
           bestScore = score;
           bestRank = rank;
           bestEntry = entry;
@@ -559,7 +569,7 @@ async function generateSampleReport(options = {}) {
       isMedia = ['media (image)', 'media (video)', 'media (audio)', 'ui & layouts'].includes(category.toLowerCase());
 
       const rankData = getCategoryRankData(purpose, raw);
-      const topSub = findTopModelOfSubscription(tier, rankData, allModels);
+      const topSub = findTopModelOfSubscription(tier, rankData, allModels, purpose);
 
       if (alloc.topModelId || alloc.topModelName) {
         const designatedId = alloc.topModelId || alloc.topModelName;
@@ -695,7 +705,7 @@ async function generateSampleReport(options = {}) {
 
     if (type === 'subscription') {
       const matchingTier = findSubscriptionTier(toolName, plan, tiers);
-      const topSub = findTopModelOfSubscription(matchingTier, rankData, allModels);
+      const topSub = findTopModelOfSubscription(matchingTier, rankData, allModels, purpose);
       if (primaryBaselineModel) {
         const designatedId = primaryBaselineModel._id || primaryBaselineModel.name;
         const designatedSlug = designatedId.includes('/') ? designatedId.split('/')[1] : designatedId;
@@ -781,33 +791,37 @@ async function generateSampleReport(options = {}) {
     let selectedApi = null;
     let apiStatusText = "";
 
-    if (optimizationGoal === 'performance') {
+    if (optimizationGoal === 'quality') {
+      // Quality focus: only suggest the top model from the leaderboard
+      let compatible = apiCandidates.filter(c => !c.isCurrent);
+      compatible.sort((a, b) => (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
+      if (baselineRank && compatible[0]?.rank >= baselineRank) {
+        selectedApi = null;
+        apiStatusText = "The current model is already the top-ranked model in this category.";
+      } else {
+        selectedApi = compatible[0] || null;
+      }
+    } else if (optimizationGoal === 'performance') {
+      // Performance measure: suggest the models from the leaderboard which have better rank and less cost. If not such model presents, mark as already optimized model. No false model suggestion.
       let compatible = apiCandidates.filter(c => {
         if (c.isCurrent) return false;
         if (currentCost > 0 && c.monthly_cost >= currentCost) return false;
-        if (computedBaselineScore > 0 && c.performance_score < Math.round(computedBaselineScore * 0.90)) return false;
+        if (baselineRank !== null && c.rank >= baselineRank) return false;
         return true;
       });
-      compatible.sort((a, b) => (b.performance_score - a.performance_score) || (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
+      compatible.sort((a, b) => (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
       selectedApi = compatible[0] || null;
-
       if (!selectedApi) {
-        // High quality cost saving candidate
-        let costSaving = apiCandidates.filter(c => !c.isCurrent && (currentCost === 0 || c.monthly_cost < currentCost) && c.performance_score >= (qualityThreshold || 80));
-        costSaving.sort((a, b) => (b.performance_score - a.performance_score) || (a.monthly_cost - b.monthly_cost));
-        selectedApi = costSaving[0] || null;
+        apiStatusText = "The current model is already optimized with optimal cost and rank in this category.";
       }
+    } else if (optimizationGoal === 'cost') {
+      // Cost cutting mode: suggest the model according to the user cost selected in the UI and has the best rank in that category in the leaderboard
+      const maxAllowedCost = currentCost * (1 - (costCutPercentage || 50) / 100);
+      let compatible = apiCandidates.filter(c => !c.isCurrent && c.monthly_cost <= maxAllowedCost);
+      compatible.sort((a, b) => (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
+      selectedApi = compatible[0] || null;
       if (!selectedApi) {
-        // Frontier upgrade candidate from leaderboard with superior score
-        let frontier = apiCandidates.filter(c => !c.isCurrent && c.performance_score >= computedBaselineScore);
-        frontier.sort((a, b) => (b.performance_score - a.performance_score) || (a.rank - b.rank) || (a.monthly_cost - b.monthly_cost));
-        selectedApi = frontier[0] || null;
-      }
-      if (!selectedApi) {
-        // Best general non-current candidate
-        let general = apiCandidates.filter(c => !c.isCurrent);
-        general.sort((a, b) => (b.performance_score - a.performance_score) || (a.rank - b.rank));
-        selectedApi = general[0] || null;
+        apiStatusText = `No alternative model found within the ${costCutPercentage || 50}% cost cut budget.`;
       }
     }
 
@@ -832,7 +846,7 @@ async function generateSampleReport(options = {}) {
     filteredTiers.forEach(t => {
       if (!isCurrentPlanFree && (t.plan.toLowerCase() === 'free' || t.monthlyPrice === 0)) return;
       const cost = seats * t.monthlyPrice;
-      const topSub = findTopModelOfSubscription(t, rankData, allModels);
+      const topSub = findTopModelOfSubscription(t, rankData, allModels, purpose);
       const bestRank = topSub ? topSub.rank : 999;
       const bestScore = topSub ? topSub.score : 50;
 
@@ -853,25 +867,37 @@ async function generateSampleReport(options = {}) {
     let selectedSub = null;
     let subStatusText = "";
 
-    if (optimizationGoal === 'performance') {
+    if (optimizationGoal === 'quality') {
+      // Quality focus: only suggest the top model from the leaderboard
+      let compatible = subCandidates.filter(c => !c.isCurrent);
+      compatible.sort((a, b) => (a.rank - b.rank) || (a.cost - b.cost));
+      if (baselineRank && compatible[0]?.rank >= baselineRank) {
+        selectedSub = null;
+        subStatusText = "The current subscription is already providing the top-ranked model.";
+      } else {
+        selectedSub = compatible[0] || null;
+      }
+    } else if (optimizationGoal === 'performance') {
+      // Performance measure: suggest the models from the leaderboard which have better rank and less cost. If not such model presents, mark as already optimized model. No false model suggestion.
       let compatible = subCandidates.filter(c => {
         if (c.isCurrent) return false;
         if (currentCost > 0 && c.cost >= currentCost) return false;
-        if (computedBaselineScore > 0 && c.performance_score < Math.round(computedBaselineScore * 0.90)) return false;
+        if (baselineRank !== null && c.rank >= baselineRank) return false;
         return true;
       });
-      compatible.sort((a, b) => (b.performance_score - a.performance_score) || (a.rank - b.rank) || (a.cost - b.cost));
+      compatible.sort((a, b) => (a.rank - b.rank) || (a.cost - b.cost));
       selectedSub = compatible[0] || null;
-
       if (!selectedSub) {
-        let costSaving = subCandidates.filter(c => !c.isCurrent && (currentCost === 0 || c.cost < currentCost) && c.performance_score >= 75);
-        costSaving.sort((a, b) => (b.performance_score - a.performance_score) || (a.cost - b.cost));
-        selectedSub = costSaving[0] || null;
+        subStatusText = "The current subscription is already optimized with optimal cost and rank in this category.";
       }
+    } else if (optimizationGoal === 'cost') {
+      // Cost cutting mode: suggest the subscription according to the user cost selected in the UI and has the best rank in that category in the leaderboard
+      const maxAllowedCost = currentCost * (1 - (costCutPercentage || 50) / 100);
+      let compatible = subCandidates.filter(c => !c.isCurrent && c.cost <= maxAllowedCost);
+      compatible.sort((a, b) => (a.rank - b.rank) || (a.cost - b.cost));
+      selectedSub = compatible[0] || null;
       if (!selectedSub) {
-        let frontier = subCandidates.filter(c => !c.isCurrent && (currentCost === 0 ? c.cost <= 15 : c.cost <= currentCost));
-        frontier.sort((a, b) => (b.performance_score - a.performance_score) || (a.rank - b.rank) || (a.cost - b.cost));
-        selectedSub = frontier[0] || null;
+        subStatusText = `No subscription found within the ${costCutPercentage || 50}% cost cut budget.`;
       }
     }
 
@@ -923,7 +949,7 @@ async function generateSampleReport(options = {}) {
     };
 
     // Build subscriptionOption
-    const recommendedSubTopModel = selectedSub?.topModel || (selectedSub?.tier ? findTopModelOfSubscription(selectedSub.tier, rankData, allModels)?.model : null);
+    const recommendedSubTopModel = selectedSub?.topModel || (selectedSub?.tier ? findTopModelOfSubscription(selectedSub.tier, rankData, allModels, purpose)?.model : null);
     const subFormattedPlan = selectedSub?.tier ? formatSubscriptionPlanName(selectedSub.tier.provider, selectedSub.tier.plan) : '';
     const fallbackFormattedPlan = formatSubscriptionPlanName(toolName, plan || "Free");
     const subscriptionOption = selectedSub ? {

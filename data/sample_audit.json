@@ -1,7 +1,7 @@
 {
   "_id": "sample_audit_2026",
   "userId": "sample_enterprise_user",
-  "createdAt": "2026-11-22T03:04:10.628Z",
+  "createdAt": "2026-11-22T04:08:35.742Z",
   "teamSize": 12,
   "useCase": "Coding & Mixed Workloads",
   "optimizationGoal": "performance",
@@ -12,9 +12,9 @@
   "tierUsed": "pro",
   "selectedOptions": {
     "0": "subscription",
-    "1": "subscription",
+    "1": "api",
     "2": "api",
-    "3": "subscription",
+    "3": "api",
     "4": "api",
     "5": "api",
     "6": "subscription"
@@ -143,10 +143,10 @@
       "purpose": "Mixed",
       "pricePerSeat": 0,
       "currentCost": 0,
-      "topModelId": "deepseek/deepseek-v4-flash-vision",
-      "topModelName": "DeepSeek V4 Flash Vision (Max)",
-      "baselineModelId": "deepseek/deepseek-v4-flash-vision",
-      "baselineModelName": "DeepSeek V4 Flash Vision (Max)",
+      "topModelId": "deepseek/deepseek-harness-deepseek-v4-1-flash-1017-max",
+      "topModelName": "DeepSeek Harness - DeepSeek V4.1 Flash 1017 (max)",
+      "baselineModelId": "deepseek/deepseek-harness-deepseek-v4-1-flash-1017-max",
+      "baselineModelName": "DeepSeek Harness - DeepSeek V4.1 Flash 1017 (max)",
       "baselineModels": [
         "DeepSeek Harness - DeepSeek V4.1 Flash 1017 (max)",
         "DeepSeek V4.1 Flash (Max)",
@@ -157,14 +157,14 @@
     }
   ],
   "savings": {
-    "totalMonthly": 279.18,
-    "totalAnnual": 3350.16,
-    "totalOptimizedSpend": 108.78,
-    "percentageSavings": 72,
+    "totalMonthly": 224.31,
+    "totalAnnual": 2691.72,
+    "totalOptimizedSpend": 163.65,
+    "percentageSavings": 57.8,
     "apiMonthly": 215.45,
     "apiAnnual": 2585.4,
-    "subMonthly": 257,
-    "subAnnual": 3084,
+    "subMonthly": 26.01,
+    "subAnnual": 312.12,
     "recommendations": [
       {
         "_id": "rec_0",
@@ -174,7 +174,7 @@
         "purpose": "Coding",
         "baselineScore": 50,
         "baselineRank": 30,
-        "monthlySavings": 5,
+        "monthlySavings": 12.01,
         "isAlreadyOptimized": false,
         "statusText": "",
         "apiOption": {
@@ -201,26 +201,26 @@
         },
         "subscriptionOption": {
           "_id": "rec_sub_0",
-          "planName": "Alibaba (Qwen) Qwen Chat Pro",
-          "cost": 15,
-          "savings": 5,
-          "limits": "Access to flagship Qwen models with fast inference.",
+          "planName": "Meta One Plus",
+          "cost": 7.99,
+          "savings": 12.01,
+          "limits": "Includes Facebook Plus, Instagram Plus, and WhatsApp Plus benefits at a discounted price[reference:8]. More monthly AI usage allowance for eligible AI features[reference:9]. More advanced reasoning with Thinking mode[reference:10]. Currently in limited testing in select locations[reference:11][reference:12].",
           "includedModels": [
-            "Qwen3.8 Max (0902)",
-            "Qwen3.8 27B (Xhigh)",
-            "Qwen3.8 2.4T A95B",
-            "Qwen3.8-Flash-Next"
+            "Llama 3.1 Nemotron Ultra 253B v1 (Reasoning)",
+            "Muse Code - Muse Wonder Full (max)",
+            "Muse Code - Muse Wonder (max)",
+            "Muse Wonder Full (Max)"
           ],
-          "modelId": "alibaba/qwen3-8-2-4t-a95b",
-          "topModelId": "alibaba/qwen3-8-2-4t-a95b",
-          "topModelName": "Qwen3.8 2.4T A95B",
-          "performance_score": 68,
-          "category_rank": 97,
-          "action": "Migrate to the Alibaba (Qwen) Qwen Chat Pro subscription.",
+          "modelId": "meta/muse-code-muse-wonder-full-max",
+          "topModelId": "meta/muse-code-muse-wonder-full-max",
+          "topModelName": "Muse Code - Muse Wonder Full (max)",
+          "performance_score": 54,
+          "category_rank": 16,
+          "action": "Migrate to the Meta One Plus subscription.",
           "statusText": "",
           "alreadyOptimized": false,
-          "recommendedModel": "Alibaba (Qwen) Qwen Chat Pro",
-          "recommendedProvider": "Alibaba (Qwen)"
+          "recommendedModel": "Meta One Plus",
+          "recommendedProvider": "Meta"
         },
         "originalAlloc": {
           "type": "subscription",
@@ -244,7 +244,7 @@
         "purpose": "Coding",
         "baselineScore": 56,
         "baselineRank": 10,
-        "monthlySavings": 25,
+        "monthlySavings": 15.63,
         "isAlreadyOptimized": false,
         "statusText": "",
         "apiOption": {
@@ -271,26 +271,24 @@
         },
         "subscriptionOption": {
           "_id": "rec_sub_1",
-          "planName": "Alibaba (Qwen) Qwen Chat Pro",
-          "cost": 75,
-          "savings": 25,
-          "limits": "Access to flagship Qwen models with fast inference.",
+          "planName": "Claude Pro",
+          "cost": 100,
+          "savings": 0,
+          "limits": "More usage than Free plan. Access to unlimited projects.",
           "includedModels": [
-            "Qwen3.8 Max (0902)",
-            "Qwen3.8 27B (Xhigh)",
-            "Qwen3.8 2.4T A95B",
-            "Qwen3.8-Flash-Next"
+            "Claude Code - Claude Sonnet 5.5 (max)",
+            "Claude Code - Claude Fable 5.2 (medium)"
           ],
-          "modelId": "alibaba/qwen3-8-2-4t-a95b",
-          "topModelId": "alibaba/qwen3-8-2-4t-a95b",
-          "topModelName": "Qwen3.8 2.4T A95B",
-          "performance_score": 68,
-          "category_rank": 97,
-          "action": "Migrate to the Alibaba (Qwen) Qwen Chat Pro subscription.",
-          "statusText": "",
-          "alreadyOptimized": false,
-          "recommendedModel": "Alibaba (Qwen) Qwen Chat Pro",
-          "recommendedProvider": "Alibaba (Qwen)"
+          "modelId": "anthropic/claude-code-claude-sonnet-5-5-max",
+          "topModelId": "anthropic/claude-code-claude-sonnet-5-5-max",
+          "topModelName": "Claude Code - Claude Sonnet 5.5 (max)",
+          "performance_score": 56,
+          "category_rank": 10,
+          "action": "Your current subscription is already the best choice. Keep using it.",
+          "statusText": "The current subscription is already optimized with optimal cost and rank in this category.",
+          "alreadyOptimized": true,
+          "recommendedModel": "Claude Pro",
+          "recommendedProvider": "Anthropic"
         },
         "originalAlloc": {
           "type": "subscription",
@@ -357,7 +355,7 @@
           "performance_score": 28,
           "category_rank": 73,
           "action": "Your current subscription is already the best choice. Keep using it.",
-          "statusText": "Optimized",
+          "statusText": "The current subscription is already optimized with optimal cost and rank in this category.",
           "alreadyOptimized": true,
           "recommendedModel": "Gemini AI Plus",
           "recommendedProvider": "Google"
@@ -384,7 +382,7 @@
         "purpose": "Coding",
         "baselineScore": 58,
         "baselineRank": 3,
-        "monthlySavings": 210,
+        "monthlySavings": 157.5,
         "isAlreadyOptimized": false,
         "statusText": "",
         "apiOption": {
@@ -411,26 +409,21 @@
         },
         "subscriptionOption": {
           "_id": "rec_sub_3",
-          "planName": "Alibaba (Qwen) Qwen Chat Pro",
-          "cost": 15,
-          "savings": 210,
-          "limits": "Access to flagship Qwen models with fast inference.",
-          "includedModels": [
-            "Qwen3.8 Max (0902)",
-            "Qwen3.8 27B (Xhigh)",
-            "Qwen3.8 2.4T A95B",
-            "Qwen3.8-Flash-Next"
-          ],
-          "modelId": "alibaba/qwen3-8-2-4t-a95b",
-          "topModelId": "alibaba/qwen3-8-2-4t-a95b",
-          "topModelName": "Qwen3.8 2.4T A95B",
-          "performance_score": 68,
-          "category_rank": 97,
-          "action": "Migrate to the Alibaba (Qwen) Qwen Chat Pro subscription.",
+          "planName": "Claude Free",
+          "cost": 225,
+          "savings": 0,
+          "limits": "Free plan limits",
+          "includedModels": [],
+          "modelId": "anthropic/claude-fable-5",
+          "topModelId": "anthropic/claude-fable-5",
+          "topModelName": "Claude Fable 5 (Max, Opus 4.8 Fallback)",
+          "performance_score": 58,
+          "category_rank": 3,
+          "action": "Migrate to the Claude Free subscription.",
           "statusText": "",
           "alreadyOptimized": false,
-          "recommendedModel": "Alibaba (Qwen) Qwen Chat Pro",
-          "recommendedProvider": "Alibaba (Qwen)"
+          "recommendedModel": "Claude Free",
+          "recommendedProvider": "Anthropic"
         },
         "originalAlloc": {
           "type": "api",
@@ -551,26 +544,26 @@
         },
         "subscriptionOption": {
           "_id": "rec_sub_5",
-          "planName": "Gemini AI Plus",
-          "cost": 4.99,
-          "savings": 3,
-          "limits": "2x higher usage limits than Free. 128K token context window. 400GB cloud storage. Daily Brief feature. Redo images with Nano Banana Pro. Video generation with Omni Flash.",
+          "planName": "Meta One Plus",
+          "cost": 7.99,
+          "savings": 0,
+          "limits": "Includes Facebook Plus, Instagram Plus, and WhatsApp Plus benefits at a discounted price[reference:8]. More monthly AI usage allowance for eligible AI features[reference:9]. More advanced reasoning with Thinking mode[reference:10]. Currently in limited testing in select locations[reference:11][reference:12].",
           "includedModels": [
-            "Gemini 3.8 Flash (High)",
-            "Gemini 3.7 Flash (High)",
-            "DiffusionGemma 26B A4B",
-            "Gemma 4 31B (Reasoning)"
+            "Llama 3.1 Nemotron Ultra 253B v1 (Reasoning)",
+            "Muse Code - Muse Wonder Full (max)",
+            "Muse Code - Muse Wonder (max)",
+            "Muse Wonder Full (Max)"
           ],
-          "modelId": "google/diffusiongemma-26b-a4b",
-          "topModelId": "google/diffusiongemma-26b-a4b",
-          "topModelName": "DiffusionGemma 26B A4B",
-          "performance_score": 51,
-          "category_rank": 477,
-          "action": "Migrate to the Gemini AI Plus subscription.",
-          "statusText": "",
-          "alreadyOptimized": false,
-          "recommendedModel": "Gemini AI Plus",
-          "recommendedProvider": "Google"
+          "modelId": "meta/muse-code-muse-wonder-full-max",
+          "topModelId": "meta/muse-code-muse-wonder-full-max",
+          "topModelName": "Muse Code - Muse Wonder Full (max)",
+          "performance_score": 84,
+          "category_rank": 21,
+          "action": "Your current subscription is already the best choice. Keep using it.",
+          "statusText": "The current subscription is already optimized with optimal cost and rank in this category.",
+          "alreadyOptimized": true,
+          "recommendedModel": "Meta One Plus",
+          "recommendedProvider": "Meta"
         },
         "originalAlloc": {
           "type": "subscription",
@@ -592,8 +585,8 @@
         "issue": "Paying $0.00/mo for 1 active Mixed user",
         "action": "Select the most suitable option below.",
         "purpose": "Mixed",
-        "baselineScore": 67,
-        "baselineRank": 91,
+        "baselineScore": 33,
+        "baselineRank": 71,
         "monthlySavings": 0,
         "isAlreadyOptimized": true,
         "statusText": "Optimized",
@@ -621,26 +614,24 @@
         },
         "subscriptionOption": {
           "_id": "rec_sub_6",
-          "planName": "Alibaba (Qwen) Qwen Chat Pro",
-          "cost": 15,
+          "planName": "Claude Pro",
+          "cost": 20,
           "savings": 0,
-          "limits": "Access to flagship Qwen models with fast inference.",
+          "limits": "More usage than Free plan. Access to unlimited projects.",
           "includedModels": [
-            "Qwen3.8 Max (0902)",
-            "Qwen3.8 27B (Xhigh)",
-            "Qwen3.8 2.4T A95B",
-            "Qwen3.8-Flash-Next"
+            "Claude Code - Claude Sonnet 5.5 (max)",
+            "Claude Code - Claude Fable 5.2 (medium)"
           ],
-          "modelId": "alibaba/qwen3-8-2-4t-a95b",
-          "topModelId": "alibaba/qwen3-8-2-4t-a95b",
-          "topModelName": "Qwen3.8 2.4T A95B",
-          "performance_score": 68,
-          "category_rank": 97,
-          "action": "Migrate to the Alibaba (Qwen) Qwen Chat Pro subscription.",
+          "modelId": "anthropic/claude-code-claude-fable-5-2-medium",
+          "topModelId": "anthropic/claude-code-claude-fable-5-2-medium",
+          "topModelName": "Claude Code - Claude Fable 5.2 (medium)",
+          "performance_score": 65,
+          "category_rank": 1,
+          "action": "Migrate to the Claude Pro subscription.",
           "statusText": "",
           "alreadyOptimized": false,
-          "recommendedModel": "Alibaba (Qwen) Qwen Chat Pro",
-          "recommendedProvider": "Alibaba (Qwen)"
+          "recommendedModel": "Claude Pro",
+          "recommendedProvider": "Anthropic"
         },
         "originalAlloc": {
           "type": "subscription",
@@ -651,9 +642,9 @@
           "currentCost": 0,
           "modelId": "",
           "provider": "DeepSeek",
-          "modelName": "DeepSeek V4 Flash Vision (Max)",
-          "performance_score": 67,
-          "category_rank": 91
+          "modelName": "DeepSeek Harness - DeepSeek V4.1 Flash 1017 (max)",
+          "performance_score": 33,
+          "category_rank": 71
         }
       }
     ]
