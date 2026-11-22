@@ -3,12 +3,11 @@ const User = require('../models/User');
 
 const PLAN_HIERARCHY = {
   free: 0,
-  pro: 1,
-  enterprise: 2
+  single_unlock: 1
 };
 
-// Middleware: Require a minimum plan tier (e.g. 'pro' or 'enterprise')
-// Note: Payment process is bypassed - all authenticated users are granted full enterprise access
+// Middleware: Require a minimum plan tier
+// All restrictions removed - all authenticated users are granted full unlimited access
 const requirePlan = (minPlan) => {
   return async (req, res, next) => {
     if (!req.user) {
@@ -23,12 +22,11 @@ const requirePlan = (minPlan) => {
         req.currentUser = {
           _id: req.user.id,
           id: req.user.id,
-          plan: 'enterprise',
+          plan: 'unlimited',
           credits: { starter: 999, pro: 999, proMax: 999 },
-          subscription: { plan: 'enterprise', status: 'active', expiresAt: null }
+          subscription: { plan: 'unlimited', status: 'active', expiresAt: null }
         };
       }
-      // Direct access bypass - allow all features without paywall
       next();
     } catch (err) {
       console.error('Plan entitlement check bypassed smoothly:', err.message);

@@ -6,56 +6,11 @@ const USD_TO_INR_RATE = 85.0; // Standard baseline exchange rate: $1 USD = ₹85
 const PRODUCTS = {
   free: {
     id: 'free',
-    name: 'Free Tier',
-    badge: 'Free',
+    name: 'Free Plan',
+    badge: 'Unlimited',
     priceUsd: 0,
     priceInr: 0,
     billingInterval: 'forever',
-    entitlements: {
-      maxAuditedTools: 2,
-      modelAuditorAccess: false,
-      historyRetentionLimit: 0,
-      pdfExportAllowed: false,
-      detailedMigrationChecklists: false,
-      priorityChatAssistant: false
-    },
-    features: [
-      'Audit up to 2 tools',
-      'Standard Option A vs B comparison',
-      'Basic model capability rating',
-      'No audit history saving'
-    ]
-  },
-  pro: {
-    id: 'pro',
-    name: 'Professional Plan',
-    badge: 'Most Popular',
-    priceUsd: 29,
-    priceInr: 2499,
-    billingInterval: 'month',
-    entitlements: {
-      maxAuditedTools: 15,
-      modelAuditorAccess: false,
-      historyRetentionLimit: 10,
-      pdfExportAllowed: true,
-      detailedMigrationChecklists: true,
-      priorityChatAssistant: true
-    },
-    features: [
-      'Audit up to 15 tools',
-      'Detailed report & migration checklists',
-      'Saves last 10 audits to history',
-      'PDF exports and downloads',
-      'Priority AI spend assistant'
-    ]
-  },
-  enterprise: {
-    id: 'enterprise',
-    name: 'Enterprise Plan',
-    badge: 'Full Access',
-    priceUsd: 99,
-    priceInr: 8499,
-    billingInterval: 'month',
     entitlements: {
       maxAuditedTools: Infinity,
       modelAuditorAccess: true,
@@ -65,12 +20,12 @@ const PRODUCTS = {
       priorityChatAssistant: true
     },
     features: [
-      'Live AI Model Auditor Access',
       'Unlimited tools audited',
-      'Continuous monitoring dashboard',
-      'API integrations enabled',
-      'Unlimited audit history retention',
-      'Team seat allocation controls'
+      'Standard Option A vs B comparison',
+      'Full model capability benchmarks',
+      'Audit history saving',
+      'PDF exports and downloads',
+      'Live AI Model Auditor access'
     ]
   },
   single_unlock: {
@@ -81,12 +36,12 @@ const PRODUCTS = {
     priceInr: 1599,
     billingInterval: 'one_time',
     entitlements: {
-      maxAuditedTools: 15,
-      modelAuditorAccess: false,
-      historyRetentionLimit: 1,
+      maxAuditedTools: Infinity,
+      modelAuditorAccess: true,
+      historyRetentionLimit: Infinity,
       pdfExportAllowed: true,
       detailedMigrationChecklists: true,
-      priorityChatAssistant: false
+      priorityChatAssistant: true
     },
     features: [
       'Permanently unlocks all recommendations for selected report',

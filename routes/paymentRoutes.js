@@ -37,7 +37,7 @@ router.post('/create-upi-order', auth, async (req, res) => {
       return res.status(404).json({ error: 'User account not found.' });
     }
 
-    const product = PRODUCTS[planId] || PRODUCTS.enterprise;
+    const product = PRODUCTS[planId] || PRODUCTS.single_unlock || PRODUCTS.free;
 
     let resolvedAudit = null;
     if (planId === 'single_unlock' && auditId) {
@@ -72,7 +72,7 @@ router.post('/create-upi-order', auth, async (req, res) => {
         user.unlockedAudits.push(resolvedAudit._id);
       }
     } else {
-      user.plan = planId === 'free' ? 'free' : 'enterprise';
+      user.plan = 'unlimited';
       user.subscription = {
         plan: user.plan,
         status: 'active',
@@ -148,8 +148,8 @@ router.post('/verify-upi-payment', auth, async (req, res) => {
       success: true,
       message: '🎉 All features and models are fully unlocked and active!',
       product: {
-        id: 'enterprise',
-        name: 'Enterprise Plan',
+        id: 'unlimited',
+        name: 'Full Access',
         priceInr: 0
       },
       user: {
@@ -182,8 +182,8 @@ router.get('/subscription-status', auth, async (req, res) => {
       return res.status(404).json({ error: 'User not found.' });
     }
 
-    const currentPlan = 'enterprise';
-    const product = PRODUCTS.enterprise;
+    const currentPlan = 'unlimited';
+    const product = PRODUCTS.single_unlock || PRODUCTS.free;
 
     const recentTransactions = await PaymentTransaction.find({ userId: user._id })
       .sort({ createdAt: -1 })
@@ -199,11 +199,11 @@ router.get('/subscription-status', auth, async (req, res) => {
         createdAt: user.createdAt
       },
       subscription: {
-        plan: 'enterprise',
+        plan: 'unlimited',
         status: 'active',
         startedAt: user.createdAt || new Date(),
         expiresAt: null,
-        paymentMethod: 'Free Enterprise Access'
+        paymentMethod: 'Free Unlimited Access'
       },
       unlockedAudits: user.unlockedAudits || [],
       recentTransactions
@@ -219,9 +219,9 @@ router.get('/subscription-status', auth, async (req, res) => {
 router.post('/cancel-subscription', auth, async (req, res) => {
   try {
     res.json({
-      message: 'Your Enterprise access remains active with unlimited benefits.',
+      message: 'Your access remains active with unlimited benefits.',
       subscription: {
-        plan: 'enterprise',
+        plan: 'unlimited',
         status: 'active',
         expiresAt: null
       }

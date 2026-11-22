@@ -165,7 +165,7 @@ router.get('/me', auth, async (req, res) => {
       return res.status(404).json({ error: 'User not found.' });
     }
 
-    const productConfig = PRODUCTS.enterprise || PRODUCTS.free;
+    const productConfig = PRODUCTS.single_unlock || PRODUCTS.free;
 
     const subscriptionObj = {
       plan: 'enterprise',
