@@ -911,7 +911,7 @@ async function generateSampleReport(options = {}) {
       performance_score: selectedApi.performance_score,
       category_rank: selectedApi.rank,
       action: currentCost === 0
-        ? `Adopt direct enterprise API keys with dedicated SLAs using ${selectedApi.name}.`
+        ? `Adopt direct API keys with dedicated SLAs using ${selectedApi.name}.`
         : `Transition active users to direct API keys using ${selectedApi.name}.`,
       statusText: "",
       isAlreadyOptimized: false,
@@ -1066,7 +1066,7 @@ async function generateSampleReport(options = {}) {
 
   const finalSampleAuditData = {
     _id: "sample_audit_2026",
-    userId: "sample_enterprise_user",
+    userId: "sample_user",
     createdAt: currentTimestamp,
     teamSize: totalSeats,
     useCase: "Coding & Mixed Workloads",
