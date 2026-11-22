@@ -772,7 +772,7 @@ router.post('/', optionalAuth, async (req, res) => {
 
     const uniqueTools = [...new Set(allocations.map(a => a.toolName))];
     const numTools = uniqueTools.length;
-    let tierUsed = numTools > 15 ? 'proMax' : (numTools > 2 ? 'pro' : 'starter');
+    let tierUsed = 'proMax'; // Unrestricted access for all audits
 
     const docs = await getCachedAllModels();
     const allModels = docs.map(d => d.toObject ? d.toObject() : d);
