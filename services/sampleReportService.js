@@ -53,38 +53,58 @@ function getCategoryRankData(purpose, customRaw) {
 }
 
 function findRankEntry(rankData, baselineSlug, baselineModelId, baselineName) {
-  if (!rankData || rankData.length === 0) return null;
   const clean = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   const targetClean = clean(baselineSlug);
   const modelIdClean = clean(baselineModelId);
   const nameClean = clean(baselineName);
 
-  if (baselineModelId) {
-    let match = rankData.find(item => item.modelId && (item.modelId.toLowerCase() === baselineModelId.toLowerCase() || clean(item.modelId) === modelIdClean));
-    if (match) return match;
+  const matchInList = (list) => {
+    if (!Array.isArray(list) || list.length === 0) return null;
+    if (baselineModelId) {
+      let match = list.find(item => item.modelId && (item.modelId.toLowerCase() === baselineModelId.toLowerCase() || clean(item.modelId) === modelIdClean));
+      if (match) return match;
+    }
+    if (baselineName) {
+      let match = list.find(item => item.name && (item.name.toLowerCase() === baselineName.toLowerCase() || clean(item.name) === nameClean));
+      if (match) return match;
+    }
+    if (baselineSlug) {
+      let match = list.find(item => item.slug === baselineSlug);
+      if (match) return match;
+      match = list.find(item => clean(item.slug || '') === targetClean);
+      if (match) return match;
+      match = list.find(item => {
+        const itemClean = clean(item.slug || '');
+        return (itemClean && targetClean) && (itemClean.includes(targetClean) || targetClean.includes(itemClean));
+      });
+      if (match) return match;
+    }
+    if (nameClean && nameClean.length >= 4) {
+      let match = list.find(item => {
+        const itemClean = clean(item.name || '');
+        return (itemClean && nameClean) && (itemClean.includes(nameClean) || nameClean.includes(itemClean));
+      });
+      if (match) return match;
+    }
+    return null;
+  };
+
+  const directMatch = matchInList(rankData);
+  if (directMatch) return directMatch;
+
+  // Fallback to checking other primary categories if not in current rankData
+  const fallbackFiles = ['coding.json', 'reasoning.json', 'research.json', 'math.json', 'overall.json'];
+  for (const f of fallbackFiles) {
+    try {
+      const p = path.join(__dirname, '../data/rank', f);
+      if (fs.existsSync(p)) {
+        const list = JSON.parse(fs.readFileSync(p, 'utf8'));
+        const m = matchInList(list);
+        if (m) return m;
+      }
+    } catch (_) {}
   }
-  if (baselineName) {
-    let match = rankData.find(item => item.name && (item.name.toLowerCase() === baselineName.toLowerCase() || clean(item.name) === nameClean));
-    if (match) return match;
-  }
-  if (baselineSlug) {
-    let match = rankData.find(item => item.slug === baselineSlug);
-    if (match) return match;
-    match = rankData.find(item => clean(item.slug || '') === targetClean);
-    if (match) return match;
-    match = rankData.find(item => {
-      const itemClean = clean(item.slug || '');
-      return (itemClean && targetClean) && (itemClean.includes(targetClean) || targetClean.includes(itemClean));
-    });
-    if (match) return match;
-  }
-  if (nameClean && nameClean.length >= 4) {
-    let match = rankData.find(item => {
-      const itemClean = clean(item.name || '');
-      return (itemClean && nameClean) && (itemClean.includes(nameClean) || nameClean.includes(itemClean));
-    });
-    if (match) return match;
-  }
+
   return null;
 }
 
@@ -427,7 +447,7 @@ async function generateSampleReport(options = {}) {
       toolName: 'OpenAI',
       plan: 'ChatGPT Plus',
       seats: 1,
-      purpose: 'Mixed',
+      purpose: 'Coding',
       topModelId: 'openai/codex-gpt-6-2-sol-xhigh',
       topModelName: 'Codex - GPT-6.2 Sol (xhigh)'
     },
@@ -436,7 +456,7 @@ async function generateSampleReport(options = {}) {
       toolName: 'Anthropic',
       plan: 'Claude Pro',
       seats: 5,
-      purpose: 'Mixed',
+      purpose: 'Coding',
       topModelId: 'anthropic/claude-code-claude-sonnet-5-5-max',
       topModelName: 'Claude Code - Claude Sonnet 5.5 (max)'
     },
@@ -445,7 +465,7 @@ async function generateSampleReport(options = {}) {
       toolName: 'Google',
       plan: 'AI Plus',
       seats: 1,
-      purpose: 'Mixed',
+      purpose: 'Coding',
       topModelId: 'google/gemini-3-7-flash',
       topModelName: 'Gemini 3.7 Flash (High)'
     },
