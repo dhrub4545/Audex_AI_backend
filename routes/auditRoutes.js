@@ -1237,7 +1237,8 @@ router.post('/', optionalAuth, async (req, res) => {
           ? "Your current model API is already the best choice. Keep using it."
           : `Transition active users to direct API keys using ${selectedApi.name}.`,
         statusText: (type === 'api' && selectedApi.isCurrent) ? (apiStatusText || "Optimized") : "",
-        alreadyOptimized: false,
+        alreadyOptimized: (type === 'api' && selectedApi.isCurrent),
+        isAlreadyOptimized: (type === 'api' && selectedApi.isCurrent),
         limits: selectedApi.limits,
         includedModels: [selectedApi.name],
         recommendedModel: selectedApi.name,
@@ -1258,6 +1259,7 @@ router.post('/', optionalAuth, async (req, res) => {
           : `Your current configuration is already optimized.`,
         statusText: "Already optimized in this category.",
         alreadyOptimized: true,
+        isAlreadyOptimized: true,
         limits: primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints.length > 0
           ? `Pay-as-you-go rates: $${primaryBaselineModel.endpoints[0].input_cost_per_m.toFixed(2)}/1M input, $${primaryBaselineModel.endpoints[0].output_cost_per_m.toFixed(2)}/1M output. Context: ${primaryBaselineModel.context_length ? (primaryBaselineModel.context_length >= 1000000 ? `${(primaryBaselineModel.context_length / 1000000).toFixed(0)}M` : `${(primaryBaselineModel.context_length / 1000).toFixed(0)}K`) : 'N/A'}.`
           : "Pay-as-you-go token consumption limits.",
@@ -1288,7 +1290,8 @@ router.post('/', optionalAuth, async (req, res) => {
           ? "Your current subscription is already the best choice. Keep using it."
           : `Migrate to the ${subFormattedPlan} subscription.`,
         statusText: (type === 'subscription' && selectedSub.isCurrent) ? (subStatusText || "Optimized") : "",
-        alreadyOptimized: false,
+        alreadyOptimized: (type === 'subscription' && selectedSub.isCurrent),
+        isAlreadyOptimized: (type === 'subscription' && selectedSub.isCurrent),
         recommendedModel: subFormattedPlan,
         recommendedProvider: getCleanProviderName(selectedSub.tier.provider)
       } : {
@@ -1307,6 +1310,7 @@ router.post('/', optionalAuth, async (req, res) => {
           : `Migrate to the ${fallbackFormattedPlan} subscription.`,
         statusText: "Already optimized in this category.",
         alreadyOptimized: true,
+        isAlreadyOptimized: true,
         recommendedModel: fallbackFormattedPlan,
         recommendedProvider: getCleanProviderName(toolName)
       };
@@ -1336,6 +1340,8 @@ router.post('/', optionalAuth, async (req, res) => {
         monthlySavings: Math.max(apiOption ? apiOption.savings : 0, subscriptionOption ? subscriptionOption.savings : 0),
         apiOption,
         subscriptionOption,
+        alreadyOptimized: !!(apiOption?.alreadyOptimized && subscriptionOption?.alreadyOptimized),
+        isAlreadyOptimized: !!(apiOption?.alreadyOptimized && subscriptionOption?.alreadyOptimized),
         originalAlloc: {
           type,
           toolName,

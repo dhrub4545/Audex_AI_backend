@@ -915,6 +915,7 @@ async function generateSampleReport(options = {}) {
         : `Transition active users to direct API keys using ${selectedApi.name}.`,
       statusText: "",
       isAlreadyOptimized: false,
+      alreadyOptimized: false,
       limits: selectedApi.limits,
       includedModels: [selectedApi.name],
       recommendedModel: selectedApi.name,
@@ -936,6 +937,7 @@ async function generateSampleReport(options = {}) {
         : `Transition active users to direct API keys using ${primaryBaselineModel ? primaryBaselineModel.name : (modelId || "Free Model")}.`,
       statusText: (type === 'api') ? (apiStatusText || "Optimized") : "",
       isAlreadyOptimized: type === 'api' && !selectedApi,
+      alreadyOptimized: type === 'api' && !selectedApi,
       limits: primaryBaselineModel && primaryBaselineModel.endpoints && primaryBaselineModel.endpoints.length > 0
         ? `Pay-as-you-go rates: $${primaryBaselineModel.endpoints[0].input_cost_per_m.toFixed(2)}/1M input, $${primaryBaselineModel.endpoints[0].output_cost_per_m.toFixed(2)}/1M output.`
         : "Pay-as-you-go token consumption limits.",
@@ -967,6 +969,7 @@ async function generateSampleReport(options = {}) {
       action: `Migrate to the ${subFormattedPlan} subscription.`,
       statusText: "",
       alreadyOptimized: false,
+      isAlreadyOptimized: false,
       recommendedModel: subFormattedPlan,
       recommendedProvider: getCleanProviderName(selectedSub.tier.provider)
     } : {
@@ -986,6 +989,7 @@ async function generateSampleReport(options = {}) {
         : `Migrate to the ${fallbackFormattedPlan} subscription.`,
       statusText: (type === 'subscription') ? (subStatusText || "Optimized") : "",
       alreadyOptimized: type === 'subscription' && !selectedSub,
+      isAlreadyOptimized: type === 'subscription' && !selectedSub,
       recommendedModel: fallbackFormattedPlan,
       recommendedProvider: getCleanProviderName(toolName)
     };
