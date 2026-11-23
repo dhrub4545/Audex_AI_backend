@@ -115,6 +115,7 @@ function isFlagshipModel(slug = '', name = '') {
   const s = `${slug} ${name}`.toLowerCase();
   if (isLightweightModel(slug, name)) return false;
   return s.includes('argon') || s.includes('neon') || s.includes('hydrogen') || s.includes('carbon') || s.includes('sol') || s.includes('sonnet') || 
+         s.includes('luna') || s.includes('astra') || s.includes('fable') ||
          s.includes('pro') || s.includes('large') || s.includes('medium') ||
          s.includes('grok 4.6') || s.includes('grok-4-6') || s.includes('v4-pro') ||
          s.includes('command a') || s.includes('speciale') || isUltraModel(slug, name);
@@ -148,7 +149,7 @@ function initDateMap(models = []) {
     if (m.release_date) {
       if (m.name) globalDateMap[m.name.toLowerCase().trim()] = m.release_date;
       if (m.slug) globalDateMap[m.slug.toLowerCase().trim()] = m.release_date;
-      const base = (m.slug || '').replace(/^(?:google|openai|anthropic|meta|xai)\//i, '').replace(/-high|-medium|-low|-xhigh|-preview|-reasoning|-non-reasoning/g, '');
+      const base = (m.slug || '').replace(/^(?:google|openai|anthropic|meta|xai)\//i, '').replace(/-high|-medium|-low|-xhigh|-max|-thinking|-minimal|-preview|-reasoning|-non-reasoning/g, '');
       if (base) globalDateMap[base] = m.release_date;
     }
   });
@@ -165,7 +166,7 @@ function getModelRecencyScore(name = '', slug = '', releaseDate = null) {
   if (globalDateMap[cleanName] || globalDateMap[cleanSlug]) {
     return new Date(globalDateMap[cleanName] || globalDateMap[cleanSlug]).getTime();
   }
-  const stripped = cleanSlug.replace(/^(?:antigravity|devin[- ]fusion|claude[- ]code|codex)[- ]*(?:cli)?[- ]*/i, '').replace(/-high|-medium|-low|-xhigh|-preview|-reasoning|-non-reasoning/g, '');
+  const stripped = cleanSlug.replace(/^(?:antigravity|devin[- ]fusion|claude[- ]code|codex|grok[- ]build|mistral[- ]vibe|deepseek[- ]harness)[- ]*(?:cli)?[- ]*/i, '').replace(/-high|-medium|-low|-xhigh|-max|-thinking|-minimal|-preview|-reasoning|-non-reasoning/g, '');
   if (globalDateMap[stripped]) {
     return new Date(globalDateMap[stripped]).getTime();
   }
@@ -199,9 +200,12 @@ function pickDiverseModels(models, maxCount = 4) {
   
   for (const m of models) {
     const familyKey = (m.name || m.slug || '').toLowerCase()
-      .replace(/^(?:antigravity|devin[- ]fusion|claude[- ]code|codex)[- ]*(?:cli)?[- ]*/i, '')
+      .replace(/^(?:antigravity|devin[- ]fusion|claude[- ]code|codex|grok[- ]build|mistral[- ]vibe|deepseek[- ]harness)[- ]*(?:cli)?[- ]*/i, '')
       .replace(/\s*\([^)]*\)/g, '')
-      .replace(/-high|-medium|-low|-xhigh|-preview|-reasoning|-non-reasoning/g, '')
+      .replace(/\b(?:high|medium|low|xhigh|max|thinking|minimal|preview|non-reasoning|reasoning|full|exp|default fallback)\b/gi, '')
+      .replace(/\b\d{4}\b/g, '')
+      .replace(/[-_]/g, ' ')
+      .replace(/\s+/g, ' ')
       .trim();
     if (!seenFamilies.has(familyKey)) {
       seenFamilies.add(familyKey);
@@ -376,14 +380,15 @@ async function syncSubscriptionTiers(freshModels = null) {
 
     // --- 3. ANTHROPIC (Claude) ---
     else if (provKey === 'anthropic') {
+      const pureAnthropic = anthropicModels.filter(m => !m.name.toLowerCase().startsWith('devin'));
       if (planName.includes('free')) {
-        selectedModels = pickDiverseModels(anthropicModels.filter(m => isLightweightModel(m.slug, m.name)), 3);
+        selectedModels = pickDiverseModels(pureAnthropic.filter(m => isLightweightModel(m.slug, m.name)), 3);
       } else if (planName.includes('pro') || planName.includes('standard')) {
-        selectedModels = pickDiverseModels(anthropicModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 4);
+        selectedModels = pickDiverseModels(pureAnthropic.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 4);
       } else if (planName.includes('max') || planName.includes('premium') || planName.includes('enterprise')) {
         selectedModels = pickDiverseModels([
-          ...anthropicModels.filter(m => isUltraModel(m.slug, m.name)),
-          ...anthropicModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name))
+          ...pureAnthropic.filter(m => isUltraModel(m.slug, m.name)),
+          ...pureAnthropic.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name))
         ], 4);
       }
     }
