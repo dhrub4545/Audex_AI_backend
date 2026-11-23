@@ -9,19 +9,19 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
+      "openai/gpt-5-3-instant",
       "openai/gpt-5-5-instant-06-26",
       "openai/gpt-5-4-nano",
-      "openai/gpt-5-4-mini",
-      "openai/gpt-5-1-codex-mini"
+      "openai/gpt-5-4-mini"
     ],
     "rawModels": [
-      "GPT-5.4 nano (Xhigh)",
-      "GPT-5.4 mini (Xhigh)",
+      "GPT-5.3 Instant",
       "GPT-5.5 Instant (June 2026)",
-      "GPT-5.1 Codex mini (High)"
+      "GPT-5.4 nano (Xhigh)",
+      "GPT-5.4 mini (Xhigh)"
     ],
     "limits": "Limited usage. Dynamic rate limits apply. GPT-5.5 Mini serves as fallback when limits are reached.",
-    "last_synced_at": "2026-11-01T12:04:32.837Z"
+    "last_synced_at": "2026-11-23T09:47:26.740Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -33,19 +33,19 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
+      "openai/gpt-5-3-instant",
       "openai/gpt-5-5-instant-06-26",
       "openai/gpt-5-4-nano",
-      "openai/gpt-5-4-mini",
-      "openai/gpt-5-1-codex-mini"
+      "openai/gpt-5-4-mini"
     ],
     "rawModels": [
-      "GPT-5.4 nano (Xhigh)",
-      "GPT-5.4 mini (Xhigh)",
+      "GPT-5.3 Instant",
       "GPT-5.5 Instant (June 2026)",
-      "GPT-5.1 Codex mini (High)"
+      "GPT-5.4 nano (Xhigh)",
+      "GPT-5.4 mini (Xhigh)"
     ],
     "limits": "160 messages every 3 hours; basic image generation; 32K context window.",
-    "last_synced_at": "2026-11-01T12:04:32.847Z"
+    "last_synced_at": "2026-11-23T09:47:26.742Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -58,20 +58,20 @@
     "isPerSeat": false,
     "models": [
       "openai/codex-gpt-6-2-sol-xhigh",
-      "openai/codex-gpt-6-2-sol-high",
       "openai/codex-gpt-6-2-astra-medium",
-      "openai/codex-gpt-6-2-sol-medium",
-      "openai/codex-gpt-6-2-sol-low"
+      "openai/gpt-6-1-sol-xhigh",
+      "openai/gpt-6-luna-medium",
+      "openai/gpt-6-sol-low"
     ],
     "rawModels": [
       "Codex - GPT-6.2 Sol (xhigh)",
-      "Codex - GPT-6.2 Sol (high)",
       "Codex - GPT-6.2 Astra (medium)",
-      "Codex - GPT-6.2 Sol (medium)",
-      "Codex - GPT-6.2 Sol (low)"
+      "GPT-6.1 Sol (Xhigh)",
+      "GPT-6 Luna (Medium)",
+      "GPT-6 Sol (Low)"
     ],
     "limits": "Includes GPT-5.5 Thinking with 'Medium' and 'High' reasoning levels. Canvas is not available with GPT-5.5 models.",
-    "last_synced_at": "2026-11-20T13:54:41.624Z"
+    "last_synced_at": "2026-11-23T09:47:26.743Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -86,18 +86,18 @@
       "openai/codex-gpt-6-2-sol-max",
       "openai/codex-gpt-6-1-sol-max",
       "openai/codex-gpt-6-1-terra-max",
-      "openai/codex-gpt-6-2-sol-xhigh",
-      "openai/codex-gpt-6-2-astra-medium"
+      "openai/gpt-6-sol",
+      "openai/gpt-5-6-terra"
     ],
     "rawModels": [
       "Codex - GPT-6.2 Sol (max)",
       "Codex - GPT-6.1 Sol (max)",
       "Codex - GPT-6.1 Terra (max)",
-      "Codex - GPT-6.2 Sol (xhigh)",
-      "Codex - GPT-6.2 Astra (medium)"
+      "GPT-6 Sol (Max)",
+      "GPT-5.6 Terra (Max)"
     ],
     "limits": "Highest level of access. Includes 'Ultra' reasoning for Thinking and full access to GPT-5.5 Pro.",
-    "last_synced_at": "2026-11-20T13:54:41.625Z"
+    "last_synced_at": "2026-11-23T09:47:26.744Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -112,18 +112,18 @@
       "openai/codex-gpt-6-2-sol-max",
       "openai/codex-gpt-6-1-sol-max",
       "openai/codex-gpt-6-1-terra-max",
-      "openai/codex-gpt-6-2-sol-xhigh",
-      "openai/codex-gpt-6-2-astra-medium"
+      "openai/gpt-6-sol",
+      "openai/gpt-5-6-terra"
     ],
     "rawModels": [
       "Codex - GPT-6.2 Sol (max)",
       "Codex - GPT-6.1 Sol (max)",
       "Codex - GPT-6.1 Terra (max)",
-      "Codex - GPT-6.2 Sol (xhigh)",
-      "Codex - GPT-6.2 Astra (medium)"
+      "GPT-6 Sol (Max)",
+      "GPT-5.6 Terra (Max)"
     ],
     "limits": "Per-user pricing. $25/user/month billed annually ($300/user/year). Includes 'Ultra' reasoning for Thinking. GPT-5.5 Pro available as add-on.",
-    "last_synced_at": "2026-11-20T13:54:41.626Z"
+    "last_synced_at": "2026-11-23T09:47:26.745Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -135,13 +135,17 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "anthropic/claude-code-claude-haiku-5-5-max"
+      "anthropic/claude-haiku-5-5",
+      "anthropic/claude-4-5-haiku",
+      "anthropic/claude-haiku-4-5-20251001-thinking-64k"
     ],
     "rawModels": [
-      "Claude Code - Claude Haiku 5.5 (max)"
+      "Claude Haiku 5.5 (Max)",
+      "Claude 4.5 Haiku (Non-reasoning)",
+      "Claude Haiku 4.5 Thinking"
     ],
     "limits": "Limited daily usage. Free for everyone.",
-    "last_synced_at": "2026-11-20T13:54:41.626Z"
+    "last_synced_at": "2026-11-23T09:47:26.746Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -153,15 +157,19 @@
     "annualDiscount": true,
     "isPerSeat": false,
     "models": [
-      "anthropic/claude-code-claude-sonnet-5-5-max",
-      "anthropic/claude-code-claude-fable-5-2-medium"
+      "anthropic/claude-code-claude-fable-5-2-medium",
+      "anthropic/claude-sonnet-5-5",
+      "anthropic/claude-fable-5-1-medium",
+      "anthropic/claude-sonnet-5"
     ],
     "rawModels": [
-      "Claude Code - Claude Sonnet 5.5 (max)",
-      "Claude Code - Claude Fable 5.2 (medium)"
+      "Claude Code - Claude Fable 5.2 (medium)",
+      "Claude Sonnet 5.5 (Max, Default Fallback)",
+      "Claude Fable 5.1 (Medium, Default Fallback)",
+      "Claude Sonnet 5 (Max)"
     ],
     "limits": "More usage than Free plan. Access to unlimited projects.",
-    "last_synced_at": "2026-11-20T13:54:41.627Z"
+    "last_synced_at": "2026-11-23T09:47:26.746Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -174,18 +182,18 @@
     "isPerSeat": false,
     "models": [
       "anthropic/devin-fusion-cli-claude-opus-5-5-max-gpt-6-luna-high",
-      "anthropic/claude-code-claude-opus-5-5-max",
-      "anthropic/claude-code-claude-sonnet-5-5-max",
-      "anthropic/claude-code-claude-fable-5-2-medium"
+      "anthropic/claude-code-claude-fable-5-2-medium",
+      "anthropic/claude-opus-5-5",
+      "anthropic/claude-opus-5"
     ],
     "rawModels": [
       "Devin Fusion CLI - Claude Opus 5.5 Max + GPT-6 Luna High",
-      "Claude Code - Claude Opus 5.5 (max)",
-      "Claude Code - Claude Sonnet 5.5 (max)",
-      "Claude Code - Claude Fable 5.2 (medium)"
+      "Claude Code - Claude Fable 5.2 (medium)",
+      "Claude Opus 5.5 (Max, Default Fallback)",
+      "Claude Opus 5 (Max)"
     ],
     "limits": "Approximately 5× higher usage limits than Pro. Early access to advanced features.",
-    "last_synced_at": "2026-11-20T13:54:41.628Z"
+    "last_synced_at": "2026-11-23T09:47:26.747Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -198,18 +206,18 @@
     "isPerSeat": false,
     "models": [
       "anthropic/devin-fusion-cli-claude-opus-5-5-max-gpt-6-luna-high",
-      "anthropic/claude-code-claude-opus-5-5-max",
-      "anthropic/claude-code-claude-sonnet-5-5-max",
-      "anthropic/claude-code-claude-fable-5-2-medium"
+      "anthropic/claude-code-claude-fable-5-2-medium",
+      "anthropic/claude-opus-5-5",
+      "anthropic/claude-opus-5"
     ],
     "rawModels": [
       "Devin Fusion CLI - Claude Opus 5.5 Max + GPT-6 Luna High",
-      "Claude Code - Claude Opus 5.5 (max)",
-      "Claude Code - Claude Sonnet 5.5 (max)",
-      "Claude Code - Claude Fable 5.2 (medium)"
+      "Claude Code - Claude Fable 5.2 (medium)",
+      "Claude Opus 5.5 (Max, Default Fallback)",
+      "Claude Opus 5 (Max)"
     ],
     "limits": "Approximately 20× higher usage limits than Pro. Highest usage limits available.",
-    "last_synced_at": "2026-11-20T13:54:41.629Z"
+    "last_synced_at": "2026-11-23T09:47:26.749Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -221,15 +229,19 @@
     "annualDiscount": true,
     "isPerSeat": true,
     "models": [
-      "anthropic/claude-code-claude-sonnet-5-5-max",
-      "anthropic/claude-code-claude-fable-5-2-medium"
+      "anthropic/claude-code-claude-fable-5-2-medium",
+      "anthropic/claude-sonnet-5-5",
+      "anthropic/claude-fable-5-1-medium",
+      "anthropic/claude-sonnet-5"
     ],
     "rawModels": [
-      "Claude Code - Claude Sonnet 5.5 (max)",
-      "Claude Code - Claude Fable 5.2 (medium)"
+      "Claude Code - Claude Fable 5.2 (medium)",
+      "Claude Sonnet 5.5 (Max, Default Fallback)",
+      "Claude Fable 5.1 (Medium, Default Fallback)",
+      "Claude Sonnet 5 (Max)"
     ],
     "limits": "For teams of 5 to 150. Standard seat: All Claude features, plus more usage than Pro. $20/seat/month billed annually, $25 billed monthly. Mix and match seat types. Model training is off by default.",
-    "last_synced_at": "2026-11-20T13:54:41.629Z"
+    "last_synced_at": "2026-11-23T09:47:26.750Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -242,18 +254,18 @@
     "isPerSeat": true,
     "models": [
       "anthropic/devin-fusion-cli-claude-opus-5-5-max-gpt-6-luna-high",
-      "anthropic/claude-code-claude-opus-5-5-max",
-      "anthropic/claude-code-claude-sonnet-5-5-max",
-      "anthropic/claude-code-claude-fable-5-2-medium"
+      "anthropic/claude-code-claude-fable-5-2-medium",
+      "anthropic/claude-opus-5-5",
+      "anthropic/claude-opus-5"
     ],
     "rawModels": [
       "Devin Fusion CLI - Claude Opus 5.5 Max + GPT-6 Luna High",
-      "Claude Code - Claude Opus 5.5 (max)",
-      "Claude Code - Claude Sonnet 5.5 (max)",
-      "Claude Code - Claude Fable 5.2 (medium)"
+      "Claude Code - Claude Fable 5.2 (medium)",
+      "Claude Opus 5.5 (Max, Default Fallback)",
+      "Claude Opus 5 (Max)"
     ],
     "limits": "For teams of 5 to 150. Premium seat: 5x more usage than standard seats. $100/seat/month billed annually, $125 billed monthly. Mix and match seat types. Model training is off by default.",
-    "last_synced_at": "2026-11-20T13:54:41.629Z"
+    "last_synced_at": "2026-11-23T09:47:26.751Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -266,18 +278,18 @@
     "isPerSeat": true,
     "models": [
       "anthropic/devin-fusion-cli-claude-opus-5-5-max-gpt-6-luna-high",
-      "anthropic/claude-code-claude-opus-5-5-max",
-      "anthropic/claude-code-claude-sonnet-5-5-max",
-      "anthropic/claude-code-claude-fable-5-2-medium"
+      "anthropic/claude-code-claude-fable-5-2-medium",
+      "anthropic/claude-opus-5-5",
+      "anthropic/claude-opus-5"
     ],
     "rawModels": [
       "Devin Fusion CLI - Claude Opus 5.5 Max + GPT-6 Luna High",
-      "Claude Code - Claude Opus 5.5 (max)",
-      "Claude Code - Claude Sonnet 5.5 (max)",
-      "Claude Code - Claude Fable 5.2 (medium)"
+      "Claude Code - Claude Fable 5.2 (medium)",
+      "Claude Opus 5.5 (Max, Default Fallback)",
+      "Claude Opus 5 (Max)"
     ],
     "limits": "For large businesses operating at scale. Seat price + usage at API rates. $20/seat. Usage cost scales with model and task. Includes admin spend limits, role-based access control, SCIM, audit logs, compliance API, network-level access control, and HIPAA compliance.",
-    "last_synced_at": "2026-11-20T13:54:41.630Z"
+    "last_synced_at": "2026-11-23T09:47:26.752Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -289,17 +301,17 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "google/gemini-3-8-flash",
+      "google/gemini-3.8-flash",
       "google/gemini-3-7-flash",
-      "google/gemini-3-6-flash"
+      "google/gemini-3-5-flash-lite"
     ],
     "rawModels": [
       "Gemini 3.8 Flash (High)",
       "Gemini 3.7 Flash (High)",
-      "Gemini 3.6 Flash (High)"
+      "Gemini 3.5 Flash-Lite"
     ],
     "limits": "32K token context window. Standard usage limits. US users have access to Pro for advanced thinking with daily limits.",
-    "last_synced_at": "2026-11-01T12:04:32.852Z"
+    "last_synced_at": "2026-11-23T09:47:26.753Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -311,19 +323,19 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
+      "google/gemini-3.8-flash",
+      "google/gemini-3-7-flash",
       "google/diffusiongemma-26b-a4b",
-      "google/gemma-4-31b",
-      "google/gemini-3-8-flash",
-      "google/gemini-3-7-flash"
+      "google/gemma-4-26b-a4b"
     ],
     "rawModels": [
       "Gemini 3.8 Flash (High)",
       "Gemini 3.7 Flash (High)",
       "DiffusionGemma 26B A4B",
-      "Gemma 4 31B (Reasoning)"
+      "Gemma 4 26B A4B (Reasoning)"
     ],
     "limits": "2x higher usage limits than Free. 128K token context window. 400GB cloud storage. Daily Brief feature. Redo images with Nano Banana Pro. Video generation with Omni Flash.",
-    "last_synced_at": "2026-11-01T12:04:32.852Z"
+    "last_synced_at": "2026-11-23T09:47:26.753Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -335,13 +347,19 @@
     "annualDiscount": true,
     "isPerSeat": false,
     "models": [
-      "google/antigravity-cli-gemini-4-argon-high"
+      "google/antigravity-cli-gemini-4-argon-high",
+      "google/gemini-4-argon",
+      "google/gemini-3.8-flash",
+      "google/gemini-2.5-pro"
     ],
     "rawModels": [
-      "Antigravity CLI - Gemini 4 Argon (high)"
+      "Antigravity CLI - Gemini 4 Argon (high)",
+      "Gemini 4 Argon (High)",
+      "Gemini 3.8 Flash (High)",
+      "Gemini 2.5 Pro"
     ],
     "limits": "4x higher usage limits than Free. 1M token context window (1,500 pages of text or 30,000 lines of code). 5TB cloud storage. YouTube Premium Lite included. Google Home Premium and Health Premium included. Higher AI Studio limits.",
-    "last_synced_at": "2026-11-20T13:54:41.630Z"
+    "last_synced_at": "2026-11-23T09:47:26.753Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -353,15 +371,21 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
+      "google/antigravity-cli-gemini-4-neon-xhigh",
+      "google/antigravity-cli-gemini-4-hydrogen-xhigh",
       "google/antigravity-cli-gemini-4-carbon-high",
-      "google/antigravity-cli-gemini-4-argon-high"
+      "google/antigravity-cli-gemini-4-argon-high",
+      "google/gemini-3-deep-think"
     ],
     "rawModels": [
+      "Antigravity CLI - Gemini 4 Neon (xhigh)",
+      "Antigravity CLI - Gemini 4 Hydrogen (xhigh)",
       "Antigravity CLI - Gemini 4 Carbon (high)",
-      "Antigravity CLI - Gemini 4 Argon (high)"
+      "Antigravity CLI - Gemini 4 Argon (high)",
+      "Gemini 3 Deep Think"
     ],
     "limits": "5x higher usage limit than Pro. 20TB cloud storage. YouTube Premium individual plan. Priority access to Google Antigravity. Access to Gemini Spark. Introduced at Google I/O 2026 for developers and power users.",
-    "last_synced_at": "2026-11-20T13:54:41.631Z"
+    "last_synced_at": "2026-11-23T09:47:26.754Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -373,15 +397,21 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
+      "google/antigravity-cli-gemini-4-neon-xhigh",
+      "google/antigravity-cli-gemini-4-hydrogen-xhigh",
       "google/antigravity-cli-gemini-4-carbon-high",
-      "google/antigravity-cli-gemini-4-argon-high"
+      "google/antigravity-cli-gemini-4-argon-high",
+      "google/gemini-3-deep-think"
     ],
     "rawModels": [
+      "Antigravity CLI - Gemini 4 Neon (xhigh)",
+      "Antigravity CLI - Gemini 4 Hydrogen (xhigh)",
       "Antigravity CLI - Gemini 4 Carbon (high)",
-      "Antigravity CLI - Gemini 4 Argon (high)"
+      "Antigravity CLI - Gemini 4 Argon (high)",
+      "Gemini 3 Deep Think"
     ],
     "limits": "20x higher usage limit than Pro. 30TB cloud storage. All features of the $100 Ultra plan plus Project Genie (experimental world-building with Street View-powered capabilities). Previously $250/month, reduced to $200 at I/O 2026.",
-    "last_synced_at": "2026-11-20T13:54:41.631Z"
+    "last_synced_at": "2026-11-23T09:47:26.754Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -393,21 +423,21 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "deepseek/deepseek-harness-deepseek-v4-1-flash-1017-max",
-      "deepseek/deepseek-v4-1-flash",
       "deepseek/deepseek-v4-1-flash-1017",
+      "deepseek/deepseek-v4-1-flash-non-reasoning",
       "deepseek/deepseek-v4-flash-vision",
-      "deepseek/deepseek-v4-pro"
+      "deepseek/deepseek-v4-pro",
+      "deepseek/deepseek-v4-flash"
     ],
     "rawModels": [
-      "DeepSeek Harness - DeepSeek V4.1 Flash 1017 (max)",
-      "DeepSeek V4.1 Flash (Max)",
       "DeepSeek V4.1 Flash 1017 (Max)",
+      "DeepSeek V4.1 Flash (Non-reasoning)",
       "DeepSeek V4 Flash Vision (Max)",
-      "DeepSeek V4 Pro 0813 (Max)"
+      "DeepSeek V4 Pro 0813 (Max)",
+      "DeepSeek V4 Flash 0731 (Max)"
     ],
     "limits": "Completely free on web and app with no ads. No paid consumer plans available.",
-    "last_synced_at": "2026-11-20T13:54:41.631Z"
+    "last_synced_at": "2026-11-23T09:47:26.754Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -419,17 +449,17 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "mistralai/mistral-small-4-non-reasoning",
+      "mistralai/mistral-small-4",
       "mistralai/devstral-small-2",
-      "mistralai/ministral-3-14b"
+      "mistralai/ministral-3-3b"
     ],
     "rawModels": [
-      "Mistral Small 4 (Non-reasoning)",
+      "Mistral Small 4 (Reasoning)",
       "Devstral Small 2",
-      "Ministral 3 14B"
+      "Ministral 3 3B"
     ],
     "limits": "Limited access to Vibe, latest models, chat, search, creation. Limited image generations.",
-    "last_synced_at": "2026-11-01T12:04:32.854Z"
+    "last_synced_at": "2026-11-23T09:47:26.754Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -441,17 +471,19 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "mistralai/mistral-vibe-mistral-large-4-high",
-      "mistralai/mistral-vibe-mistral-large-4-medium",
-      "mistral/pixtral-large-2411"
+      "mistralai/mistral-large-4",
+      "mistralai/mistral-large-4-preview",
+      "mistralai/mistral-medium-3-5",
+      "mistralai/devstral-2"
     ],
     "rawModels": [
-      "Mistral Vibe - Mistral Large 4 (high)",
-      "Mistral Vibe - Mistral Large 4 (medium)",
-      "Pixtral Large"
+      "Mistral Large 4 (High)",
+      "Mistral Large 4 Preview",
+      "Mistral Medium 3.5",
+      "Devstral 2"
     ],
     "limits": "Higher limits across chat, more messages and web searches, more extended thinking and deep research reports, expanded Mistral Vibe capacity, chat and email support. Student discount available.",
-    "last_synced_at": "2026-11-20T13:54:41.632Z"
+    "last_synced_at": "2026-11-23T09:47:26.754Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -463,17 +495,17 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "meta/llama-3-1-nemotron-nano-4b-reasoning",
-      "meta/muse-code-muse-spark-1-3-max",
-      "meta/muse-spark-1-2"
+      "meta-llama/muse-spark-open",
+      "meta-llama/muse-spark-1-3",
+      "meta-llama/muse-spark-1-2"
     ],
     "rawModels": [
-      "Llama 3.1 Nemotron Nano 4B v1.1 (Reasoning)",
-      "Muse Code - Muse Spark 1.3 (max)",
+      "Muse Spark Open (Xhigh)",
+      "Muse Spark 1.3 (Max)",
       "Muse Spark 1.2 (Xhigh)"
     ],
     "limits": "Meta AI is free across all Meta apps with unlimited conversational chat. Image generation, video creation, and Thinking mode are capped for free users. Available in 200+ countries with multi-language support.",
-    "last_synced_at": "2026-11-20T13:54:41.632Z"
+    "last_synced_at": "2026-11-23T09:47:26.755Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -485,19 +517,19 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "meta/llama-3-1-nemotron-ultra-253b-v1-reasoning",
-      "meta/muse-code-muse-wonder-full-max",
-      "meta/muse-code-muse-wonder-max",
-      "meta/muse-wonder-full"
+      "meta-llama/muse-wonder-full",
+      "meta-llama/muse-wonder",
+      "nous-research/hermes-4-llama-3-1-405b-reasoning",
+      "nvidia/llama-3-1-nemotron-ultra-253b-v1-reasoning"
     ],
     "rawModels": [
-      "Llama 3.1 Nemotron Ultra 253B v1 (Reasoning)",
-      "Muse Code - Muse Wonder Full (max)",
-      "Muse Code - Muse Wonder (max)",
-      "Muse Wonder Full (Max)"
+      "Muse Wonder Full (Max)",
+      "Muse Wonder (Max)",
+      "Hermes 4 - Llama-3.1 405B (Reasoning)",
+      "Llama 3.1 Nemotron Ultra 253B v1 (Reasoning)"
     ],
     "limits": "Includes Facebook Plus, Instagram Plus, and WhatsApp Plus benefits at a discounted price[reference:8]. More monthly AI usage allowance for eligible AI features[reference:9]. More advanced reasoning with Thinking mode[reference:10]. Currently in limited testing in select locations[reference:11][reference:12].",
-    "last_synced_at": "2026-11-20T13:54:41.633Z"
+    "last_synced_at": "2026-11-23T09:47:26.755Z"
   },
   {
     "category": "Search & Research",
@@ -509,15 +541,15 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "xai/grok-4-1-fast-reasoning",
-      "xai/grok-4-fast"
+      "x-ai/grok-4-1-fast-reasoning",
+      "x-ai/grok-4-fast"
     ],
     "rawModels": [
       "Grok 4.1 Fast (Reasoning)",
       "Grok 4 Fast (Non-reasoning)"
     ],
     "limits": "Limited daily usage with access to Grok and basic multimodal features.",
-    "last_synced_at": "2026-11-20T13:54:41.634Z"
+    "last_synced_at": "2026-11-23T09:47:26.755Z"
   },
   {
     "category": "Search & Research",
@@ -529,17 +561,17 @@
     "annualDiscount": true,
     "isPerSeat": false,
     "models": [
-      "xai/grok-4-6-xhigh",
-      "xai/grok-4-6",
-      "xai/grok-4-3-medium"
+      "x-ai/grok-4-6-xhigh",
+      "x-ai/grok-4-6-medium",
+      "x-ai/grok-4-3-medium"
     ],
     "rawModels": [
       "Grok 4.6 (Xhigh)",
-      "Grok 4.6 (High)",
+      "Grok 4.6 (Medium)",
       "Grok 4.3 (Medium)"
     ],
     "limits": "Basic Grok access inside X app.",
-    "last_synced_at": "2026-11-20T13:54:41.635Z"
+    "last_synced_at": "2026-11-23T09:47:26.755Z"
   },
   {
     "category": "Search & Research",
@@ -551,17 +583,17 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "xai/grok-4-6-xhigh",
-      "xai/grok-4-6",
-      "xai/grok-4-3-medium"
+      "x-ai/grok-4-6-xhigh",
+      "x-ai/grok-4-6-medium",
+      "x-ai/grok-4-3-medium"
     ],
     "rawModels": [
       "Grok 4.6 (Xhigh)",
-      "Grok 4.6 (High)",
+      "Grok 4.6 (Medium)",
       "Grok 4.3 (Medium)"
     ],
     "limits": "2x longer context window; basic image/video generation; 1 AI agent in Expert mode.",
-    "last_synced_at": "2026-11-20T13:54:41.635Z"
+    "last_synced_at": "2026-11-23T09:47:26.755Z"
   },
   {
     "category": "Search & Research",
@@ -573,19 +605,19 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
+      "x-ai/grok-4-7",
       "xai/grok-build-grok-4-7-xhigh",
-      "xai/grok-4-7-low",
-      "xai/grok-4-6-xhigh",
-      "xai/grok-4-3-medium"
+      "x-ai/grok-4-6-xhigh",
+      "x-ai/grok-4-3-medium"
     ],
     "rawModels": [
+      "Grok 4.7 (Xhigh)",
       "Grok Build - Grok 4.7 (xhigh)",
-      "Grok 4.7 (Low)",
       "Grok 4.6 (Xhigh)",
       "Grok 4.3 (Medium)"
     ],
     "limits": "Higher rate limits, Grok 4 access, frontier models, image/video generation, connectors, and Expert mode.[reference:27]",
-    "last_synced_at": "2026-11-20T13:54:41.636Z"
+    "last_synced_at": "2026-11-23T09:47:26.756Z"
   },
   {
     "category": "Search & Research",
@@ -597,19 +629,19 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
+      "x-ai/grok-4-7",
       "xai/grok-build-grok-4-7-xhigh",
-      "xai/grok-4-7-low",
-      "xai/grok-4-6-xhigh",
-      "xai/grok-4-3-medium"
+      "x-ai/grok-4-6-xhigh",
+      "x-ai/grok-4-3-medium"
     ],
     "rawModels": [
+      "Grok 4.7 (Xhigh)",
       "Grok Build - Grok 4.7 (xhigh)",
-      "Grok 4.7 (Low)",
       "Grok 4.6 (Xhigh)",
       "Grok 4.3 (Medium)"
     ],
     "limits": "Highest consumer/business tier with maximum rate limits and access to advanced Grok capabilities.[reference:28]",
-    "last_synced_at": "2026-11-20T13:54:41.637Z"
+    "last_synced_at": "2026-11-23T09:47:26.756Z"
   },
   {
     "category": "Search & Research",
@@ -621,15 +653,17 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "anthropic/claude-code-claude-haiku-5-5-max",
-      "perplexity/sonar-reasoning-pro"
+      "anthropic/claude-haiku-5-5",
+      "google/gemini-3.8-flash",
+      "perplexity/sonar-reasoning"
     ],
     "rawModels": [
-      "Claude Code - Claude Haiku 5.5 (max)",
-      "Sonar Reasoning Pro"
+      "Claude Haiku 5.5 (Max)",
+      "Gemini 3.8 Flash (High)",
+      "Sonar Reasoning"
     ],
     "limits": "Free AI search with limited Pro searches per day.",
-    "last_synced_at": "2026-11-20T13:54:41.638Z"
+    "last_synced_at": "2026-11-23T09:47:26.756Z"
   },
   {
     "category": "Search & Research",
@@ -642,18 +676,18 @@
     "isPerSeat": false,
     "models": [
       "openai/codex-gpt-6-2-sol-xhigh",
+      "anthropic/claude-code-claude-fable-5-2-medium",
       "google/antigravity-cli-gemini-4-argon-high",
-      "anthropic/claude-code-claude-sonnet-5-5-max",
-      "perplexity/sonar-reasoning-pro"
+      "perplexity/sonar-reasoning"
     ],
     "rawModels": [
       "Codex - GPT-6.2 Sol (xhigh)",
+      "Claude Code - Claude Fable 5.2 (medium)",
       "Antigravity CLI - Gemini 4 Argon (high)",
-      "Claude Code - Claude Sonnet 5.5 (max)",
-      "Sonar Reasoning Pro"
+      "Sonar Reasoning"
     ],
     "limits": "Includes unlimited Quick searches, daily Pro searches, Labs, Deep Research, and access to premium AI models. Annual billing: $200/year (save ~17%).",
-    "last_synced_at": "2026-11-20T13:54:41.639Z"
+    "last_synced_at": "2026-11-23T09:47:26.765Z"
   },
   {
     "category": "Search & Research",
@@ -667,17 +701,17 @@
     "models": [
       "openai/codex-gpt-6-2-sol-max",
       "anthropic/devin-fusion-cli-claude-opus-5-5-max-gpt-6-luna-high",
-      "google/antigravity-cli-gemini-4-carbon-high",
-      "perplexity/sonar-reasoning-pro"
+      "google/antigravity-cli-gemini-4-neon-xhigh",
+      "perplexity/sonar-reasoning"
     ],
     "rawModels": [
       "Codex - GPT-6.2 Sol (max)",
       "Devin Fusion CLI - Claude Opus 5.5 Max + GPT-6 Luna High",
-      "Antigravity CLI - Gemini 4 Carbon (high)",
-      "Sonar Reasoning Pro"
+      "Antigravity CLI - Gemini 4 Neon (xhigh)",
+      "Sonar Reasoning"
     ],
     "limits": "Highest consumer tier with significantly increased usage limits and priority access. Includes Computer access, 10,000 monthly credits.",
-    "last_synced_at": "2026-11-20T13:54:41.640Z"
+    "last_synced_at": "2026-11-23T09:47:26.766Z"
   },
   {
     "category": "Code & Agents",
@@ -689,13 +723,17 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "anthropic/claude-code-claude-haiku-5-5-max"
+      "anthropic/claude-haiku-5-5",
+      "openai/gpt-5-3-instant",
+      "google/gemini-3.8-flash"
     ],
     "rawModels": [
-      "Claude Code - Claude Haiku 5.5 (max)"
+      "Claude Haiku 5.5 (Max)",
+      "GPT-5.3 Instant",
+      "Gemini 3.8 Flash (High)"
     ],
     "limits": "2,000 code completions/month.[reference:14] 50 chat/agent messages/month.[reference:15][reference:16] Limited access to select models.[reference:17]",
-    "last_synced_at": "2026-11-20T13:54:41.640Z"
+    "last_synced_at": "2026-11-23T09:47:26.766Z"
   },
   {
     "category": "Code & Agents",
@@ -708,16 +746,16 @@
     "isPerSeat": false,
     "models": [
       "openai/codex-gpt-6-2-sol-xhigh",
-      "google/antigravity-cli-gemini-4-argon-high",
-      "anthropic/claude-code-claude-sonnet-5-5-max"
+      "anthropic/claude-code-claude-fable-5-2-medium",
+      "google/antigravity-cli-gemini-4-argon-high"
     ],
     "rawModels": [
       "Codex - GPT-6.2 Sol (xhigh)",
-      "Antigravity CLI - Gemini 4 Argon (high)",
-      "Claude Code - Claude Sonnet 5.5 (max)"
+      "Claude Code - Claude Fable 5.2 (medium)",
+      "Antigravity CLI - Gemini 4 Argon (high)"
     ],
     "limits": "$10/month. Includes $10 base credits + $5 flex allotment = $15 total included usage.[reference:18][reference:19] Code completions and next-edit suggestions unlimited and do not consume credits.[reference:20]",
-    "last_synced_at": "2026-11-20T13:54:41.641Z"
+    "last_synced_at": "2026-11-23T09:47:26.768Z"
   },
   {
     "category": "Code & Agents",
@@ -731,17 +769,17 @@
     "models": [
       "openai/codex-gpt-6-2-sol-max",
       "anthropic/devin-fusion-cli-claude-opus-5-5-max-gpt-6-luna-high",
-      "google/antigravity-cli-gemini-4-carbon-high",
-      "anthropic/claude-code-claude-sonnet-5-5-max"
+      "google/antigravity-cli-gemini-4-neon-xhigh",
+      "anthropic/claude-code-claude-fable-5-2-medium"
     ],
     "rawModels": [
       "Codex - GPT-6.2 Sol (max)",
       "Devin Fusion CLI - Claude Opus 5.5 Max + GPT-6 Luna High",
-      "Antigravity CLI - Gemini 4 Carbon (high)",
-      "Claude Code - Claude Sonnet 5.5 (max)"
+      "Antigravity CLI - Gemini 4 Neon (xhigh)",
+      "Claude Code - Claude Fable 5.2 (medium)"
     ],
     "limits": "$39/month. Includes $39 base credits + $31 flex allotment = $70 total included usage.[reference:21][reference:22] Access to premium models.[reference:23]",
-    "last_synced_at": "2026-11-20T13:54:41.642Z"
+    "last_synced_at": "2026-11-23T09:47:26.769Z"
   },
   {
     "category": "Code & Agents",
@@ -753,13 +791,17 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "anthropic/claude-code-claude-haiku-5-5-max"
+      "anthropic/claude-haiku-5-5",
+      "openai/gpt-5-3-instant",
+      "google/gemini-3.8-flash"
     ],
     "rawModels": [
-      "Claude Code - Claude Haiku 5.5 (max)"
+      "Claude Haiku 5.5 (Max)",
+      "GPT-5.3 Instant",
+      "Gemini 3.8 Flash (High)"
     ],
     "limits": "25 prompt credits/month. Light daily and weekly quota. Unlimited Tab autocomplete. Unlimited previews. Basic models only.",
-    "last_synced_at": "2026-11-20T13:54:41.642Z"
+    "last_synced_at": "2026-11-23T09:47:26.770Z"
   },
   {
     "category": "Code & Agents",
@@ -772,16 +814,16 @@
     "isPerSeat": false,
     "models": [
       "openai/codex-gpt-6-2-sol-xhigh",
-      "google/antigravity-cli-gemini-4-argon-high",
-      "anthropic/claude-code-claude-sonnet-5-5-max"
+      "anthropic/claude-code-claude-fable-5-2-medium",
+      "google/antigravity-cli-gemini-4-argon-high"
     ],
     "rawModels": [
       "Codex - GPT-6.2 Sol (xhigh)",
-      "Antigravity CLI - Gemini 4 Argon (high)",
-      "Claude Code - Claude Sonnet 5.5 (max)"
+      "Claude Code - Claude Fable 5.2 (medium)",
+      "Antigravity CLI - Gemini 4 Argon (high)"
     ],
     "limits": "500 prompt credits/month. Standard daily and weekly quota. Unlimited Tab autocomplete. Access to all premium models including SWE-1.5, Claude Sonnet 4.6, and GPT-5.4. Additional credits available for purchase.",
-    "last_synced_at": "2026-11-20T13:54:41.643Z"
+    "last_synced_at": "2026-11-23T09:47:26.771Z"
   },
   {
     "category": "Code & Dev",
@@ -793,13 +835,17 @@
     "annualDiscount": false,
     "isPerSeat": false,
     "models": [
-      "anthropic/claude-code-claude-haiku-5-5-max"
+      "anthropic/claude-haiku-5-5",
+      "openai/gpt-5-3-instant",
+      "google/gemini-3.8-flash"
     ],
     "rawModels": [
-      "Claude Code - Claude Haiku 5.5 (max)"
+      "Claude Haiku 5.5 (Max)",
+      "GPT-5.3 Instant",
+      "Gemini 3.8 Flash (High)"
     ],
     "limits": "Two-week Pro trial, then 50 slow requests/month with basic completions.",
-    "last_synced_at": "2026-11-20T13:54:41.643Z"
+    "last_synced_at": "2026-11-23T09:47:26.772Z"
   },
   {
     "category": "Code & Dev",
@@ -812,16 +858,16 @@
     "isPerSeat": false,
     "models": [
       "openai/codex-gpt-6-2-sol-xhigh",
-      "google/antigravity-cli-gemini-4-argon-high",
-      "anthropic/claude-code-claude-sonnet-5-5-max"
+      "anthropic/claude-code-claude-fable-5-2-medium",
+      "google/antigravity-cli-gemini-4-argon-high"
     ],
     "rawModels": [
       "Codex - GPT-6.2 Sol (xhigh)",
-      "Antigravity CLI - Gemini 4 Argon (high)",
-      "Claude Code - Claude Sonnet 5.5 (max)"
+      "Claude Code - Claude Fable 5.2 (medium)",
+      "Antigravity CLI - Gemini 4 Argon (high)"
     ],
     "limits": "Unlimited fast completions, 500 fast premium requests per month, and unlimited slow requests.",
-    "last_synced_at": "2026-11-20T13:54:41.644Z"
+    "last_synced_at": "2026-11-23T09:47:26.773Z"
   },
   {
     "category": "Code & Dev",
@@ -835,17 +881,17 @@
     "models": [
       "openai/codex-gpt-6-2-sol-max",
       "anthropic/devin-fusion-cli-claude-opus-5-5-max-gpt-6-luna-high",
-      "google/antigravity-cli-gemini-4-carbon-high",
-      "anthropic/claude-code-claude-sonnet-5-5-max"
+      "google/antigravity-cli-gemini-4-neon-xhigh",
+      "anthropic/claude-code-claude-fable-5-2-medium"
     ],
     "rawModels": [
       "Codex - GPT-6.2 Sol (max)",
       "Devin Fusion CLI - Claude Opus 5.5 Max + GPT-6 Luna High",
-      "Antigravity CLI - Gemini 4 Carbon (high)",
-      "Claude Code - Claude Sonnet 5.5 (max)"
+      "Antigravity CLI - Gemini 4 Neon (xhigh)",
+      "Claude Code - Claude Fable 5.2 (medium)"
     ],
     "limits": "Centralized billing, admin dashboard, privacy mode enforced, and SAML/SSO.",
-    "last_synced_at": "2026-11-20T13:54:41.645Z"
+    "last_synced_at": "2026-11-23T09:47:26.774Z"
   },
   {
     "category": "Code & Agents",
@@ -866,9 +912,9 @@
     ],
     "rawModels": [
       "GPT-5.5 (xhigh)",
+      "GLM-5.1 (Reasoning)",
       "Claude Opus 4.8 (Adaptive Reasoning, Max Effort)",
       "Claude Sonnet 4.6 (Non-reasoning, High Effort)",
-      "GLM-5.1 (Reasoning)",
       "Kimi K2.6"
     ],
     "limits": "480 credits/month (320 base + 160 current promotional bonus). Eco Mode for light usage. Access to all models. Suitable for occasional use and small tasks.",
@@ -1293,19 +1339,19 @@
     "annualDiscount": true,
     "isPerSeat": false,
     "models": [
+      "alibaba/qwen4-max",
       "alibaba/qwen3-8-max",
-      "alibaba/qwen3-8-27b",
-      "alibaba/qwen3-8-2-4t-a95b",
-      "alibaba/qwen3-8-flash-next"
+      "alibaba/qwen3-8-flash-next",
+      "alibaba/qwen3-8-27b"
     ],
     "rawModels": [
+      "Qwen4 Max",
       "Qwen3.8 Max (0902)",
-      "Qwen3.8 27B (Xhigh)",
-      "Qwen3.8 2.4T A95B",
-      "Qwen3.8-Flash-Next"
+      "Qwen3.8-Flash-Next",
+      "Qwen3.8 27B (Xhigh)"
     ],
     "limits": "Access to flagship Qwen models with fast inference.",
-    "last_synced_at": "2026-11-01T12:04:32.865Z"
+    "last_synced_at": "2026-11-23T09:47:26.775Z"
   },
   {
     "category": "Chat & Reasoning",
@@ -1317,18 +1363,18 @@
     "annualDiscount": true,
     "isPerSeat": false,
     "models": [
+      "cohere/north-mini-code",
       "cohere/command-a-plus",
       "cohere/tiny-aya-global",
-      "cohere/command-a",
-      "cohere/north-mini-code"
+      "cohere/command-a"
     ],
     "rawModels": [
+      "North Mini Code",
       "Command A+",
       "Tiny Aya Global",
-      "Command A",
-      "North Mini Code"
+      "Command A"
     ],
     "limits": "Access to Command R and R+ models with enterprise grounding.",
-    "last_synced_at": "2026-11-01T12:04:32.865Z"
+    "last_synced_at": "2026-11-23T09:47:26.775Z"
   }
 ]

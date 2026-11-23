@@ -72,7 +72,7 @@ function isLightweightModel(slug = '', name = '') {
   const s = `${slug} ${name}`.toLowerCase();
   
   // Explicitly NEVER lightweight if it's a known flagship or ultra frontier model:
-  if (s.includes('carbon') || s.includes('argon') || s.includes('terra') || 
+  if (s.includes('neon') || s.includes('hydrogen') || s.includes('carbon') || s.includes('argon') || s.includes('terra') || 
       s.includes('opus') || s.includes('large') || s.includes('sol') || 
       s.includes('grok 4.7') || s.includes('grok-4-7') || s.includes('405b') ||
       s.includes('397b') || s.includes('480b')) {
@@ -99,13 +99,13 @@ function isLightweightModel(slug = '', name = '') {
 function isUltraModel(slug = '', name = '') {
   const s = `${slug} ${name}`.toLowerCase();
   if (isLightweightModel(slug, name)) return false;
-  return s.includes('carbon') || s.includes('terra') || 
+  return s.includes('neon') || s.includes('hydrogen') || s.includes('carbon') || s.includes('terra') || 
          s.includes('opus 5.5') || s.includes('opus 5') || s.includes('opus-5') ||
          s.includes('grok 4.7') || s.includes('grok-4-7') ||
          s.includes('heavy') || s.includes('405b') || s.includes('480b') ||
          s.includes('397b') || (s.includes('sol') && s.includes('max')) ||
          (s.includes('ultra') && !s.includes('1.0')) || s.includes('deep-think') ||
-         (s.includes('xhigh') && (s.includes('terra') || s.includes('opus') || s.includes('grok 4.7')));
+         (s.includes('xhigh') && (s.includes('terra') || s.includes('opus') || s.includes('grok 4.7') || s.includes('gemini') || s.includes('neon') || s.includes('hydrogen')));
 }
 
 /**
@@ -114,7 +114,7 @@ function isUltraModel(slug = '', name = '') {
 function isFlagshipModel(slug = '', name = '') {
   const s = `${slug} ${name}`.toLowerCase();
   if (isLightweightModel(slug, name)) return false;
-  return s.includes('argon') || s.includes('sol') || s.includes('sonnet') || 
+  return s.includes('argon') || s.includes('neon') || s.includes('hydrogen') || s.includes('carbon') || s.includes('sol') || s.includes('sonnet') || 
          s.includes('pro') || s.includes('large') || s.includes('medium') ||
          s.includes('grok 4.6') || s.includes('grok-4-6') || s.includes('v4-pro') ||
          s.includes('command a') || s.includes('speciale') || isUltraModel(slug, name);
@@ -124,9 +124,9 @@ function isFlagshipModel(slug = '', name = '') {
  * Check if a model is deprecated, outdated, or discontinued from active subscriptions
  */
 function isDiscontinuedModel(name = '', slug = '') {
-  const s = `${name} ${slug}`.toLowerCase();
-  // Deprecated date-stamped models that have been superseded
-  if (s.includes("dec '24") || s.includes("dec 24") || s.includes("apr '24") || s.includes("apr 24") || s.includes("mar '25") || s.includes("may '25")) return true;
+  const s = `${name} ${slug}`.toLowerCase().replace(/[''"]/g, "'");
+  // Deprecated date-stamped models that have been superseded (any month '24 or '25)
+  if (/\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[\s']*2[45]\b/i.test(s)) return true;
   
   // Explicitly discontinued / deprecated older generations
   if (s.includes('gpt-3') || s.includes('gpt-3.5') || s.includes('gpt-4-0') || s.includes('o1-preview') || s.includes('o1-mini')) return true;
@@ -148,6 +148,8 @@ function initDateMap(models = []) {
     if (m.release_date) {
       if (m.name) globalDateMap[m.name.toLowerCase().trim()] = m.release_date;
       if (m.slug) globalDateMap[m.slug.toLowerCase().trim()] = m.release_date;
+      const base = (m.slug || '').replace(/^(?:google|openai|anthropic|meta|xai)\//i, '').replace(/-high|-medium|-low|-xhigh|-preview|-reasoning|-non-reasoning/g, '');
+      if (base) globalDateMap[base] = m.release_date;
     }
   });
 }
@@ -163,13 +165,17 @@ function getModelRecencyScore(name = '', slug = '', releaseDate = null) {
   if (globalDateMap[cleanName] || globalDateMap[cleanSlug]) {
     return new Date(globalDateMap[cleanName] || globalDateMap[cleanSlug]).getTime();
   }
+  const stripped = cleanSlug.replace(/^(?:antigravity|devin[- ]fusion|claude[- ]code|codex)[- ]*(?:cli)?[- ]*/i, '').replace(/-high|-medium|-low|-xhigh|-preview|-reasoning|-non-reasoning/g, '');
+  if (globalDateMap[stripped]) {
+    return new Date(globalDateMap[stripped]).getTime();
+  }
   let score = new Date('2025-01-01').getTime();
   const versionMatch = s.match(/(?:v|version|gpt-|claude |gemini |grok |deepseek v|qwen|suno v|midjourney v|gen-)(\d+(?:\.\d+)?)/i);
   if (versionMatch) {
     const v = parseFloat(versionMatch[1]);
     score += v * 10000000000;
   }
-  if (s.includes('terra') || s.includes('sol (max)') || s.includes('opus 5') || s.includes('carbon') || s.includes('grok 4.7')) {
+  if (s.includes('neon') || s.includes('hydrogen') || s.includes('terra') || s.includes('sol (max)') || s.includes('opus 5') || s.includes('carbon') || s.includes('grok 4.7')) {
     score += 5000000000;
   } else if (s.includes('xhigh') || s.includes('ultra') || s.includes('max')) {
     score += 2000000000;
@@ -193,8 +199,9 @@ function pickDiverseModels(models, maxCount = 4) {
   
   for (const m of models) {
     const familyKey = (m.name || m.slug || '').toLowerCase()
+      .replace(/^(?:antigravity|devin[- ]fusion|claude[- ]code|codex)[- ]*(?:cli)?[- ]*/i, '')
       .replace(/\s*\([^)]*\)/g, '')
-      .replace(/-high|-medium|-low|-preview|-reasoning|-non-reasoning/g, '')
+      .replace(/-high|-medium|-low|-xhigh|-preview|-reasoning|-non-reasoning/g, '')
       .trim();
     if (!seenFamilies.has(familyKey)) {
       seenFamilies.add(familyKey);
@@ -361,9 +368,9 @@ async function syncSubscriptionTiers(freshModels = null) {
         const flash = pickDiverseModels(googleModels.filter(m => m.slug.includes('3-8-flash') || m.slug.includes('3-7-flash')), 1);
         selectedModels = pickDiverseModels([...flagship, ...flash], 4);
       } else if (planName.includes('ultra')) {
-        const ultra = pickDiverseModels(googleModels.filter(m => isUltraModel(m.slug, m.name)), 2);
+        const ultra = pickDiverseModels(googleModels.filter(m => isUltraModel(m.slug, m.name)), 4);
         const flagship = pickDiverseModels(googleModels.filter(m => isFlagshipModel(m.slug, m.name) && !isUltraModel(m.slug, m.name)), 2);
-        selectedModels = pickDiverseModels([...ultra, ...flagship], 4);
+        selectedModels = pickDiverseModels([...ultra, ...flagship], 5);
       }
     }
 
